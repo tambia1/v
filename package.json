@@ -1,0 +1,43 @@
+{
+	"name": "redis-frontend",
+	"private": true,
+	"version": "0.0.15",
+	"type": "module",
+	"homepage": "https://tambia1.github.io",
+	"scripts": {
+		"dev": "vite --host --port 8080",
+		"build": "tsc && vite build",
+		"preview": "vite preview --port 8080",
+		"test": "vitest",
+		"coverage": "vitest watch --coverage",
+		"deploy": "gh-pages -d dist"
+	},
+	"dependencies": {
+		"localforage": "1.10.0",
+		"match-sorter": "6.3.1",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"react-modal": "3.16.1",
+		"react-router-dom": "6.15.0",
+		"react-svg": "16.1.22",
+		"styled-components": "5.3.6"
+	},
+	"devDependencies": {
+		"@testing-library/jest-dom": "6.1.2",
+		"@testing-library/react": "14.0.0",
+		"@types/node": "20.5.7",
+		"@types/react": "18.2.21",
+		"@types/react-dom": "18.2.7",
+		"@types/styled-components": "5.1.26",
+		"@vitejs/plugin-react": "4.0.4",
+		"@vitest/coverage-v8": "0.34.3",
+		"babel-plugin-styled-components": "2.1.4",
+		"dotenv": "16.3.1",
+		"gh-pages": "6.0.0",
+		"jsdom": "22.1.0",
+		"styled-components": "6.0.7",
+		"typescript": "5.2.2",
+		"vite": "4.4.9",
+		"vitest": "0.34.3"
+	}
+}

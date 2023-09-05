@@ -1,0 +1,45 @@
+.screen-logo {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.screen-logo-box {
+	position: relative;
+	width: 450px;
+	height: 80px;
+	box-sizing: border-box;
+	color: #fff;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-color: #0008;
+	border-radius: 5px;
+}
+
+.screen-logo-box-logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.screen-logo-text {
+	display: inline-flex;
+	font-size: 40px;
+	padding-bottom: 6px;
+}
+
+.screen-logo-icon {
+	display: inline-flex;
+	width: 50px;
+	height: 50px;
+	background-image: url("./../../assets/redis_icon.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	margin-right: 30px;
+}

@@ -1,0 +1,32 @@
+html {
+	width: 100%;
+	height: 100%;
+
+	margin: 0px;
+	padding: 0px;
+
+	font-family: cursive;
+	font-size: 12px;
+
+	overflow: hidden;
+
+	background-color: #eeeeee;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+
+	margin: 0px;
+	padding: 0px;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+}
