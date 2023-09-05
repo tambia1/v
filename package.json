@@ -1,7 +1,7 @@
 {
 	"name": "redis-frontend",
 	"private": true,
-	"version": "0.0.15",
+	"version": "0.0.1",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -19,13 +19,13 @@
 		"react-dom": "18.2.0",
 		"react-modal": "3.16.1",
 		"react-router-dom": "6.15.0",
-		"react-svg": "16.1.22",
+		"react-svg": "16.1.23",
 		"styled-components": "5.3.6"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "6.1.2",
 		"@testing-library/react": "14.0.0",
-		"@types/node": "20.5.7",
+		"@types/node": "20.5.9",
 		"@types/react": "18.2.21",
 		"@types/react-dom": "18.2.7",
 		"@types/styled-components": "5.1.26",
