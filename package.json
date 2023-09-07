@@ -1,9 +1,9 @@
 {
 	"name": "redis-frontend",
 	"private": true,
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"type": "module",
-	"homepage": "https://tambia1.github.io/os",
+	"homepage": "https://tambia1.github.io",
 	"scripts": {
 		"dev": "vite --host --port 8080",
 		"build": "tsc && vite build",
