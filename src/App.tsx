@@ -1,6 +1,6 @@
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
 import { Pages } from "@pages/Pages.types";
-import { PageHome } from "@src/pages/pageLogin/PageHome";
+import { PageHome } from "@src/pages/pageHome/PageHome";
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
