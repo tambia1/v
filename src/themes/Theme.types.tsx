@@ -1,7 +1,7 @@
 import { themeDark } from "./ThemeDark";
 import { themeLight } from "./ThemeLight";
 
-export interface Theme {
+export interface ITheme {
 	themeName: ThemeName;
 	fontSizes: {
 		small: string;
@@ -25,4 +25,4 @@ export interface Theme {
 }
 
 export type ThemeName = "themeLight" | "themeDark";
-export const themes: { [key in ThemeName]: Theme } = { themeLight, themeDark };
+export const themes: { [key in ThemeName]: ITheme } = { themeLight, themeDark };
