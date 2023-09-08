@@ -1,3 +1,4 @@
+import { ITheme } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -14,7 +15,7 @@ export const Box = styled.div`
 	width: 300px;
 	height: 100px;
 	box-sizing: border-box;
-	color: ${({ theme }) => theme.colors.primary};
+	color: ${({ theme }: { theme: ITheme }) => theme.color.primary};
 
 	display: flex;
 	flex-direction: column;
@@ -29,13 +30,13 @@ export const Text = styled.div`
 	display: inline-flex;
 	padding-bottom: 6px;
 	align-self: flex-start;
-	color: ${({ theme }) => theme.colors.primary};
-	font-size: ${({ theme }) => theme.fontSizes.medium};
+	color: ${({ theme }: { theme: ITheme }) => theme.color.primary};
+	font-size: ${({ theme }: { theme: ITheme }) => theme.size.medium};
 `;
 
 export const Title = styled.div`
 	display: inline-flex;
 	padding-bottom: 6px;
-	color: ${({ theme }) => theme.colors.primary};
-	font-size: ${({ theme }) => theme.fontSizes.large};
+	color: ${({ theme }: { theme: ITheme }) => theme.color.primary};
+	font-size: ${({ theme }: { theme: ITheme }) => theme.size.large};
 `;

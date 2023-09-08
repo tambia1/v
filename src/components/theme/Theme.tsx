@@ -1,11 +1,10 @@
-import { ITheme, ThemeName, themes } from "@src/themes/Theme.types";
-import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react";
+import { ThemeName, themes } from "@src/themes/Theme.types";
+import { ReactNode, useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { ThemeContext } from "./hooks/UseTheme";
 
-const themeName: ThemeName = import.meta.env.VITE_THEME || "themeLight";
+const themeName: ThemeName = import.meta.env.VITE_THEME || "light";
 const defaultTheme = themes[themeName];
-
-export const ThemeContext = createContext<{ theme: ITheme; setTheme: Dispatch<SetStateAction<ITheme>> }>({ theme: defaultTheme, setTheme: () => {} });
 
 interface Props {
 	children: ReactNode;
@@ -14,19 +13,11 @@ interface Props {
 export const Theme = ({ children }: Props) => {
 	const [theme, setTheme] = useState(defaultTheme);
 
+	console.log(theme.themeName);
+
 	return (
 		<ThemeProvider theme={theme}>
 			<ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
 		</ThemeProvider>
 	);
-};
-
-export const useTheme = () => {
-	const context = useContext(ThemeContext);
-
-	if (!context) {
-		throw new Error("Theme must be rendered as a child of Theme component");
-	}
-
-	return context;
 };

@@ -1,3 +1,4 @@
+import { ITheme } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -11,8 +12,8 @@ const Container = styled.div`
 	height: 50px;
 	left: 0px;
 	box-sizing: border-box;
-	color: ${({ theme }) => theme.colors.primary};
-	background-color: ${({ theme }) => theme.backgroundColors.primary};
+	color: ${({ theme }: { theme: ITheme }) => theme.color.primary};
+	background-color: ${({ theme }: { theme: ITheme }) => theme.color.primary};
 `;
 
 const Item = styled.div`

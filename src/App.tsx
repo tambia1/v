@@ -1,5 +1,5 @@
-import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
 import { Pages } from "@pages/Pages.types";
+import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
 import { PageHome } from "@src/pages/pageHome/PageHome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Theme } from "./components/theme/Theme";
