@@ -9,13 +9,6 @@ export const Container = styled.div`
 
 	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
 `;
-export const Title = styled.div`
-	display: inline-flex;
-	padding-bottom: 6px;
-	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
-	font-size: ${({ theme }: { theme: ITheme }) => theme.size.large};
-`;
-
 export const Theme = styled.div`
 	position: absolute;
 	bottom: 1rem;
@@ -37,4 +30,12 @@ export const Version = styled.div`
 	left: 1rem;
 	margin: 1rem;
 	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
+`;
+
+export const Apps = styled.div`
+	display: flex;
+	gap: 0.5rem;
+	padding-bottom: 6px;
+	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
+	font-size: ${({ theme }: { theme: ITheme }) => theme.size.l};
 `;

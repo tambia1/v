@@ -5,6 +5,8 @@ import { useTheme } from "@src/components/theme/hooks/UseTheme";
 import { content } from "@src/locale/en";
 import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
+import { App } from "./components/App/App";
+import { apps } from "./data/apps";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
@@ -15,7 +17,11 @@ export const PageHome = () => {
 
 	return (
 		<S.Container>
-			<S.Title>Hello</S.Title>
+			<S.Apps>
+				{apps.map((app) => (
+					<App key={app.title} title={app.title} />
+				))}
+			</S.Apps>
 			<S.Theme>
 				<Icon iconName="sun" />
 				<Switch onChange={handleOnChange} initialValue={theme.themeName === "light"} />

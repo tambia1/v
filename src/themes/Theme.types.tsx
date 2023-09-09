@@ -22,8 +22,10 @@ export interface ITheme {
 	};
 
 	size: {
-		small: string;
-		medium: string;
-		large: string;
+		xs: string;
+		s: string;
+		m: string;
+		l: string;
+		xl: string;
 	};
 }
