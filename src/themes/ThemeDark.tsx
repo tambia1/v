@@ -1,5 +1,3 @@
-import imageBgDark from "@pages/assets/bgDark.jpg";
-import imageWorldMapDark from "@pages/pageHome/screens/screenDataCenter/assets/world-map-dark.png";
 import { ITheme } from "./Theme.types";
 
 export const themeDark: ITheme = {
@@ -22,10 +20,5 @@ export const themeDark: ITheme = {
 		small: "14px",
 		medium: "16px",
 		large: "20px",
-	},
-
-	image: {
-		mainBackground: imageBgDark,
-		map: imageWorldMapDark,
 	},
 };

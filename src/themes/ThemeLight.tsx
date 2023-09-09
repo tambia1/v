@@ -1,5 +1,3 @@
-import imageBgLight from "@pages/assets/bgLight.jpg";
-import imageWorldMapLight from "@pages/pageHome/screens/screenDataCenter/assets/world-map-light.png";
 import { ITheme } from "./Theme.types";
 
 export const themeLight: ITheme = {
@@ -22,10 +20,5 @@ export const themeLight: ITheme = {
 		small: "14px",
 		medium: "16px",
 		large: "20px",
-	},
-
-	image: {
-		mainBackground: imageBgLight,
-		map: imageWorldMapLight,
 	},
 };

@@ -26,9 +26,4 @@ export interface ITheme {
 		medium: string;
 		large: string;
 	};
-
-	image: {
-		mainBackground: string;
-		map: string;
-	};
 }
