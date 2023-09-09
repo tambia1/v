@@ -6,18 +6,16 @@ export const themeDark: ITheme = {
 	themeName: "dark",
 
 	color: {
-		primary: "#9E9E9E",
-		primaryVariant: "#616161",
-		secondary: "#607D8B",
-		secondaryVariant: "#455A64",
 		background: "#000000",
-		surface: "#000000",
-		error: "#c51162",
-		onPrimary: "#ffffff",
-		onSecondary: "#000000",
 		onBackground: "#ffffff",
-		onSurface: "#ffffff",
+		primary: "#9E9E9E",
+		onPrimary: "#000000",
+		secondary: "#607D8B",
+		onSecondary: "#ffffff",
+		error: "#c51162",
 		onError: "#ffffff",
+		success: "#4CAF50",
+		onSuccess: "#ffffff",
 	},
 
 	size: {

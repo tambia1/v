@@ -9,18 +9,16 @@ export interface ITheme {
 	themeName: ThemeName;
 
 	color: {
-		primary: string;
-		primaryVariant: string;
-		secondary: string;
-		secondaryVariant: string;
 		background: string;
-		surface: string;
-		error: string;
-		onPrimary: string;
-		onSecondary: string;
 		onBackground: string;
-		onSurface: string;
+		primary: string;
+		onPrimary: string;
+		secondary: string;
+		onSecondary: string;
+		error: string;
 		onError: string;
+		success: string;
+		onSuccess: string;
 	};
 
 	size: {

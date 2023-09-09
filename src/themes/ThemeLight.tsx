@@ -6,18 +6,16 @@ export const themeLight: ITheme = {
 	themeName: "light",
 
 	color: {
-		primary: "#6200ee",
-		primaryVariant: "#3700b3",
-		secondary: "#03dac6",
-		secondaryVariant: "#018786",
 		background: "#ffffff",
-		surface: "#ffffff",
-		error: "#c51162",
-		onPrimary: "#ffffff",
-		onSecondary: "#000000",
 		onBackground: "#000000",
-		onSurface: "#000000",
+		primary: "#00BCD4",
+		onPrimary: "#000000",
+		secondary: "#006064",
+		onSecondary: "#ffffff",
+		error: "#c51162",
 		onError: "#ffffff",
+		success: "#4CAF50",
+		onSuccess: "#ffffff",
 	},
 
 	size: {
