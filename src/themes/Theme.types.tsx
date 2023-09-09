@@ -1,28 +1,34 @@
 import { themeDark } from "./ThemeDark";
 import { themeLight } from "./ThemeLight";
 
-export interface Theme {
+export const themes: { [key in ThemeName]: ITheme } = { light: themeLight, dark: themeDark };
+
+export type ThemeName = "light" | "dark";
+
+export interface ITheme {
 	themeName: ThemeName;
-	fontSizes: {
+
+	color: {
+		background: string;
+		onBackground: string;
+		primary: string;
+		onPrimary: string;
+		secondary: string;
+		onSecondary: string;
+		error: string;
+		onError: string;
+		success: string;
+		onSuccess: string;
+	};
+
+	size: {
 		small: string;
 		medium: string;
 		large: string;
 	};
-	colors: {
-		primary: string;
-		secondary: string;
-		tertiary: string;
-	};
-	backgroundColors: {
-		primary: string;
-		secondary: string;
-		tertiary: string;
-	};
-	images: {
+
+	image: {
 		mainBackground: string;
 		map: string;
 	};
 }
-
-export type ThemeName = "themeLight" | "themeDark";
-export const themes: { [key in ThemeName]: Theme } = { themeLight, themeDark };

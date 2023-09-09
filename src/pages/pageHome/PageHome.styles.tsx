@@ -1,44 +1,40 @@
-import { Button } from "@src/components/button/Button";
-import { Theme } from "@src/themes/Theme.types";
+import { ITheme } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
-export const PageContainer = styled.div<{ theme: Theme }>`
-	display: flex;
+export const Container = styled.div`
 	width: 100%;
 	height: 100%;
 
-	background-image: ${({ theme }) => `url("${theme.images.mainBackground}")`};
-	background-size: cover;
-`;
-
-export const MenuContainer = styled.div<{ $isCollapsed: boolean }>`
 	display: flex;
-	width: ${(props) => (props.$isCollapsed ? "5rem" : "15rem")};
-	height: 100%;
-	flex-shrink: 0;
 
-	transition: all ease-out 0.3s;
-	position: relative;
+	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
+`;
+export const Title = styled.div`
+	display: inline-flex;
+	padding-bottom: 6px;
+	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
+	font-size: ${({ theme }: { theme: ITheme }) => theme.size.large};
 `;
 
-export const ScreenContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-
-	color: ${({ theme }) => theme.colors.primary};
-`;
-
-export const ButtonCollapse = styled(Button)<{ $isCollapsed: boolean }>`
+export const Theme = styled.div`
 	position: absolute;
-	top: 1rem;
-	right: -1rem;
-	width: 2rem;
-	height: 2rem;
-	min-width: unset;
-	padding: 0;
-	margin: 0;
+	bottom: 1rem;
+	right: 1rem;
+	margin: 1rem;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
 
-	padding-top: ${(props) => (props.$isCollapsed ? "2px" : "0px")};
+	& svg {
+		stroke: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
+	}
+`;
+
+export const Version = styled.div`
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+	margin: 1rem;
+	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
 `;

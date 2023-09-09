@@ -1,34 +1,27 @@
-import { useState } from "react";
+import { version } from "@src/../package.json";
+import { Icon } from "@src/components/icon/Icon";
+import { Switch } from "@src/components/switch/Switch";
+import { useTheme } from "@src/components/theme/hooks/UseTheme";
+import { content } from "@src/locale/en";
+import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
-import { PageItem, PageKey } from "./PageHome.types";
-import { PageHeader } from "./components/pageHeader/PageHeader";
-import { PageMenu } from "./components/pageMenu/PageMenu";
-import { PageScreen } from "./components/pageScreen/pageScreen";
 
-interface Props {
-	pageKey: PageKey;
-}
+export const PageHome = () => {
+	const { theme, setTheme } = useTheme();
 
-export const PageHome = ({ pageKey }: Props) => {
-	const [isCollapsed, setIsCollapsed] = useState(true);
-
-	const onClickButtonCollapse = () => {
-		setIsCollapsed(!isCollapsed);
+	const handleOnChange = (isChecked: boolean) => {
+		setTheme(isChecked ? themes.light : themes.dark);
 	};
 
 	return (
-		<S.PageContainer>
-			<S.MenuContainer $isCollapsed={isCollapsed}>
-				<PageMenu selectedItem={PageItem[pageKey].menuItem} />
-				<S.ButtonCollapse onClick={onClickButtonCollapse} $isCollapsed={isCollapsed}>
-					{isCollapsed ? "+" : "-"}
-				</S.ButtonCollapse>
-			</S.MenuContainer>
-
-			<S.ScreenContainer>
-				<PageHeader>{PageItem[pageKey].pageHeader}</PageHeader>
-				<PageScreen>{PageItem[pageKey].pageScreen}</PageScreen>
-			</S.ScreenContainer>
-		</S.PageContainer>
+		<S.Container>
+			<S.Title>Hello</S.Title>
+			<S.Theme>
+				<Icon iconName="sun" />
+				<Switch onChange={handleOnChange} initialValue={theme.themeName === "light"} />
+				<Icon iconName="moon" />
+			</S.Theme>
+			<S.Version>{content.all.version.replace(/\{version\}/g, version)}</S.Version>
+		</S.Container>
 	);
 };

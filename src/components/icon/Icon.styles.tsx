@@ -9,11 +9,13 @@ import imageUp from "./assets/arrow-up.svg";
 import imageVCircle from "./assets/check-circle.svg";
 import imageDatabase from "./assets/database.svg";
 import imageMinusCircle from "./assets/minus-circle.svg";
+import imageMoon from "./assets/moon.svg";
 import imagePlusCircle from "./assets/plus-circle.svg";
 import imageRedisDisk from "./assets/redis-disk.svg";
 import imageRedisFlash from "./assets/redis-flash.svg";
 import imageRedisReplica from "./assets/redis-replica.svg";
 import imageRedisPrimary from "./assets/redis.svg";
+import imageSun from "./assets/sun.svg";
 import imageXCircle from "./assets/x-circle.svg";
 
 const Icons = {
@@ -36,6 +38,9 @@ const Icons = {
 	imageRight: imageRight,
 	imageUp: imageUp,
 	imageDown: imageDown,
+
+	sun: imageSun,
+	moon: imageMoon,
 } as const;
 
 export type IconsName = keyof typeof Icons;
