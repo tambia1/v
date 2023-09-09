@@ -17,10 +17,10 @@ export const themeDark: ITheme = {
 	},
 
 	size: {
-		xs: "10px",
-		s: "14px",
-		m: "16px",
-		l: "20px",
-		xl: "24px",
+		xs: "0.5rem",
+		s: "1.0rem",
+		m: "1.5rem",
+		l: "2.0rem",
+		xl: "2.5rem",
 	},
 };

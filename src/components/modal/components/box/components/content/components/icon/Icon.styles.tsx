@@ -11,7 +11,7 @@ const Icons = {
 	error: imageError,
 	help: imageHelp,
 	info: imageInfo,
-};
+} as const;
 
 export type IconsName = keyof typeof Icons;
 

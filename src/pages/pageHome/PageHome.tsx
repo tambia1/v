@@ -19,7 +19,7 @@ export const PageHome = () => {
 		<S.Container>
 			<S.Apps>
 				{apps.map((app) => (
-					<App key={app.title} title={app.title} />
+					<App key={app.title} title={app.title} icon={app.icon} />
 				))}
 			</S.Apps>
 			<S.Theme>
