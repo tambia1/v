@@ -16,9 +16,25 @@ export const Title = styled.div`
 	font-size: ${({ theme }: { theme: ITheme }) => theme.size.large};
 `;
 
+export const Theme = styled.div`
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	margin: 1rem;
+	display: flex;
+	gap: 1rem;
+	align-items: center;
+	justify-content: center;
+
+	& svg {
+		stroke: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
+	}
+`;
+
 export const Version = styled.div`
 	position: absolute;
 	bottom: 1rem;
+	left: 1rem;
 	margin: 1rem;
 	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
 `;
