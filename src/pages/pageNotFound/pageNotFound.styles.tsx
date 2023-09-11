@@ -31,12 +31,12 @@ export const Text = styled.div`
 	padding-bottom: 6px;
 	align-self: flex-start;
 	color: ${({ theme }: { theme: ITheme }) => theme.color.primary};
-	font-size: ${({ theme }: { theme: ITheme }) => theme.size.medium};
+	font-size: ${({ theme }: { theme: ITheme }) => theme.size.m};
 `;
 
 export const Title = styled.div`
 	display: inline-flex;
 	padding-bottom: 6px;
 	color: ${({ theme }: { theme: ITheme }) => theme.color.primary};
-	font-size: ${({ theme }: { theme: ITheme }) => theme.size.large};
+	font-size: ${({ theme }: { theme: ITheme }) => theme.size.l};
 `;

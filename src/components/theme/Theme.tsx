@@ -13,8 +13,6 @@ interface Props {
 export const Theme = ({ children }: Props) => {
 	const [theme, setTheme] = useState(defaultTheme);
 
-	console.log(theme.themeName);
-
 	return (
 		<ThemeProvider theme={theme}>
 			<ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>

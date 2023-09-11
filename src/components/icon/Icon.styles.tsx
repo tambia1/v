@@ -1,46 +1,40 @@
 import { Size } from "@src/types/Sizes";
 import { ReactSVG } from "react-svg";
 import styled from "styled-components";
-import imageDown from "./assets/arrow-down.svg";
-import imageLeft from "./assets/arrow-left.svg";
-import imageLink from "./assets/arrow-right-circle.svg";
-import imageRight from "./assets/arrow-right.svg";
-import imageUp from "./assets/arrow-up.svg";
-import imageVCircle from "./assets/check-circle.svg";
-import imageDatabase from "./assets/database.svg";
-import imageMinusCircle from "./assets/minus-circle.svg";
-import imageMoon from "./assets/moon.svg";
-import imagePlusCircle from "./assets/plus-circle.svg";
-import imageRedisDisk from "./assets/redis-disk.svg";
-import imageRedisFlash from "./assets/redis-flash.svg";
-import imageRedisReplica from "./assets/redis-replica.svg";
-import imageRedisPrimary from "./assets/redis.svg";
-import imageSun from "./assets/sun.svg";
-import imageXCircle from "./assets/x-circle.svg";
+import vCircle from "./assets/check-circle.svg";
+import minusCircle from "./assets/minus-circle.svg";
+import moon from "./assets/moon.svg";
+import plusCircle from "./assets/plus-circle.svg";
+import sun from "./assets/sun.svg";
+import xCircle from "./assets/x-circle.svg";
+import left from "./assets/arrow-left.svg";
+import right from "./assets/arrow-right.svg";
+import up from "./assets/arrow-up.svg";
+import down from "./assets/arrow-down.svg";
+import leftCircle from "./assets/arrow-left-circle.svg";
+import rightCircle from "./assets/arrow-right-circle.svg";
+import upCircle from "./assets/arrow-up-circle.svg";
+import downCircle from "./assets/arrow-down-circle.svg";
 
 const Icons = {
-	redisPrimary: imageRedisPrimary,
-	redisReplica: imageRedisReplica,
-	redisFlash: imageRedisFlash,
-	redisDisk: imageRedisDisk,
+	left,
+	right,
+	up,
+	down,
 
-	xCircle: imageXCircle,
-	vCircle: imageVCircle,
+	leftCircle,
+	rightCircle,
+	upCircle,
+	downCircle,
 
-	plusCircle: imagePlusCircle,
-	minusCircle: imageMinusCircle,
+	xCircle,
+	vCircle,
 
-	database: imageDatabase,
+	plusCircle,
+	minusCircle,
 
-	link: imageLink,
-
-	imageLeft: imageLeft,
-	imageRight: imageRight,
-	imageUp: imageUp,
-	imageDown: imageDown,
-
-	sun: imageSun,
-	moon: imageMoon,
+	sun,
+	moon,
 } as const;
 
 export type IconsName = keyof typeof Icons;
@@ -63,7 +57,6 @@ export const Icon = styled(ReactSVG).attrs<{ $iconName: IconsName }>((props) => 
 }))<{ $iconName: IconsName }>`
 	width: 100%;
 	height: 100%;
-	color: #000000;
 
 	& > div {
 		width: 100%;

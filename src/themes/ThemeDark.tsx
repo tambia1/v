@@ -17,8 +17,10 @@ export const themeDark: ITheme = {
 	},
 
 	size: {
-		small: "14px",
-		medium: "16px",
-		large: "20px",
+		xs: "0.5rem",
+		s: "1.0rem",
+		m: "1.5rem",
+		l: "2.0rem",
+		xl: "2.5rem",
 	},
 };
