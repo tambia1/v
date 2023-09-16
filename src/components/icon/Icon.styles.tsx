@@ -54,7 +54,7 @@ export const Container = styled.div<{ size: Size }>`
 
 export const Icon = styled(ReactSVG).attrs<{ $iconName: IconsName }>((props) => ({
 	src: Icons[props.$iconName],
-}))<{ $iconName: IconsName }>`
+}))`
 	width: 100%;
 	height: 100%;
 
