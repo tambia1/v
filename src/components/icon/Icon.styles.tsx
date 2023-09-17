@@ -1,5 +1,4 @@
 import { Size } from "@src/types/Sizes";
-import { ReactSVG } from "react-svg";
 import styled from "styled-components";
 
 const sizes: { [K in Size]: { width: string; height: string } } = {
