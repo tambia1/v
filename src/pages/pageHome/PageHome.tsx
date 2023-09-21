@@ -7,9 +7,11 @@ import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
 import { AppButton } from "./components/AppButton/AppButton";
 import { apps } from "./data/apps";
+import { useSearchParams } from "react-router-dom";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	const handleOnChange = (isChecked: boolean) => {
 		setTheme(isChecked ? themes.light : themes.dark);

@@ -48,3 +48,10 @@ type BModel2 = typeof components.model2;
 type BUser = typeof components.model1.user;
 type BDatabase = typeof components.model2.databases;
 type BNames = typeof components.model1.user.names;
+
+type ThemeName = "light" | "dark";
+const themes1: { [key in ThemeName]: number } = { light: 0, dark: 1 };
+
+type TypeToObject<T extends string> = { [key in T]: 0 };
+type Theme2 = TypeToObject<ThemeName>;
+const theme: Theme2 = { dark: 0, light: 0 };

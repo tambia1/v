@@ -7,14 +7,14 @@ import { GlobalStyle } from "./styles/globalStyles";
 
 export const App = () => {
 	return (
-		<Theme>
+		<BrowserRouter basename="/os">
 			<GlobalStyle />
-			<BrowserRouter basename="/os">
+			<Theme>
 				<Routes>
 					<Route path={Pages.notFound} element={<PageNotFound />} />
 					<Route path={Pages.home} element={<PageHome />} />
 				</Routes>
-			</BrowserRouter>
-		</Theme>
+			</Theme>
+		</BrowserRouter>
 	);
 };
