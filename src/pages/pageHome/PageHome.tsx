@@ -7,14 +7,13 @@ import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
 import { AppButton } from "./components/AppButton/AppButton";
 import { apps } from "./data/apps";
-import { useSearchParams } from "react-router-dom";
+import { SwitchState } from "@src/components/switch/Switch.styles";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
-	const [searchParams, setSearchParams] = useSearchParams();
 
-	const handleOnChange = (isChecked: boolean) => {
-		setTheme(isChecked ? themes.light : themes.dark);
+	const handleOnChange = (switchState: SwitchState) => {
+		setTheme(switchState === "left" ? themes.light : themes.dark);
 	};
 
 	return (
@@ -26,7 +25,7 @@ export const PageHome = () => {
 			</S.Apps>
 			<S.ThemeMode>
 				<Icon iconName="sun" />
-				<Switch onChange={handleOnChange} initialValue={theme.themeName === "light"} />
+				<Switch onChange={handleOnChange} state={theme.themeName === "light" ? "left" : "right"} />
 				<Icon iconName="moon" />
 			</S.ThemeMode>
 			<S.Version>{content.all.version.replace(/\{version\}/g, version)}</S.Version>

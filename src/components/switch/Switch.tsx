@@ -1,24 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./Switch.styles";
 
 interface Props {
-	initialValue?: boolean;
-	onChange: (isChecked: boolean) => void;
+	state?: S.SwitchState;
+	onChange: (switchState: S.SwitchState) => void;
 }
 
-export const Switch = ({ onChange, initialValue = false }: Props) => {
-	const [isChecked, setIsChecked] = useState(initialValue);
+export const Switch = ({ onChange, state = "left" }: Props) => {
+	const [switchState, setSwitchState] = useState(state);
 
 	const handleOnClick = () => {
-		const updatedIsChecked = !isChecked;
+		const updatedState: S.SwitchState = switchState === "left" ? "right" : "left";
 
-		setIsChecked(updatedIsChecked);
-		onChange(updatedIsChecked);
+		setSwitchState(updatedState);
+		onChange(updatedState);
 	};
+
+	useEffect(() => {
+		setSwitchState(state);
+	}, [state]);
 
 	return (
 		<S.Container onClick={handleOnClick}>
-			<S.Dot $isChecked={isChecked} />
+			<S.Dot $switchState={switchState} />
 		</S.Container>
 	);
 };
