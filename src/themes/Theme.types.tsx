@@ -29,7 +29,3 @@ export interface ITheme {
 		xl: string;
 	};
 }
-
-export const isThemeNameOk = (themeName: string | null): themeName is ThemeName => {
-	return Object.keys(themes).includes(themeName || "");
-};

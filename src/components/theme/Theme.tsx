@@ -1,4 +1,4 @@
-import { ITheme, ThemeName, isThemeNameOk, themes } from "@src/themes/Theme.types";
+import { ITheme, ThemeName, themes } from "@src/themes/Theme.types";
 import { ReactNode, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { ThemeContext } from "./hooks/UseTheme";
@@ -22,10 +22,10 @@ export const Theme = ({ children }: Props) => {
 	};
 
 	useEffect(() => {
-		const themNameFromSearchParams = searchParams.get("theme") || "";
+		const themNameParam = searchParams.get("theme") || "";
 
-		if (isThemeNameOk(themNameFromSearchParams)) {
-			setCurrentTheme(themes[themNameFromSearchParams]);
+		if (themNameParam === themes.light.themeName || themNameParam === themes.dark.themeName) {
+			setCurrentTheme(themes[themNameParam]);
 		} else {
 			searchParams.delete("theme");
 			setSearchParams(searchParams, { replace: true });
