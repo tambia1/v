@@ -6,7 +6,6 @@ import path from "path";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
 
-// https://vitejs.dev/config/
 export default defineConfig({
 	base: "/os",
 
@@ -25,7 +24,6 @@ export default defineConfig({
 			},
 		}),
 		checker({
-			// e.g. use TypeScript check
 			typescript: true,
 		}),
 	],
