@@ -5,7 +5,7 @@ import { useTheme } from "@src/components/theme/hooks/UseTheme";
 import { content } from "@src/locale/en";
 import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
-import { App } from "./components/App/App";
+import { AppButton } from "./components/AppButton/AppButton";
 import { apps } from "./data/apps";
 
 export const PageHome = () => {
@@ -19,14 +19,14 @@ export const PageHome = () => {
 		<S.Container>
 			<S.Apps>
 				{apps.map((app) => (
-					<App key={app.title} title={app.title} icon={app.icon} />
+					<AppButton key={app.title} title={app.title} icon={app.icon} />
 				))}
 			</S.Apps>
-			<S.Theme>
+			<S.ThemeMode>
 				<Icon iconName="sun" />
 				<Switch onChange={handleOnChange} initialValue={theme.themeName === "light"} />
 				<Icon iconName="moon" />
-			</S.Theme>
+			</S.ThemeMode>
 			<S.Version>{content.all.version.replace(/\{version\}/g, version)}</S.Version>
 		</S.Container>
 	);

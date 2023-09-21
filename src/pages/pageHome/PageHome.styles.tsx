@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
 `;
-export const Theme = styled.div`
+export const ThemeMode = styled.div`
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;

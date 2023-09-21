@@ -1,4 +1,4 @@
-import * as S from "./App.styles";
+import * as S from "./AppButton.styles";
 
 interface Props {
 	title: string;
@@ -6,7 +6,7 @@ interface Props {
 	onClick?: () => void;
 }
 
-export const App = ({ title, icon, onClick }: Props) => {
+export const AppButton = ({ title, icon, onClick }: Props) => {
 	return (
 		<S.Container onClick={onClick}>
 			<S.Image $icon={icon} />
