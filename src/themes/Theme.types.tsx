@@ -30,6 +30,6 @@ export interface ITheme {
 	};
 }
 
-export const isThemeName = (themeName: string | null): themeName is ThemeName => {
+export const isThemeNameOk = (themeName: string | null): themeName is ThemeName => {
 	return Object.keys(themes).includes(themeName || "");
 };

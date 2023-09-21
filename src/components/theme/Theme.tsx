@@ -1,4 +1,4 @@
-import { ITheme, ThemeName, isThemeName as isThemeNameOk, themes } from "@src/themes/Theme.types";
+import { ITheme, ThemeName, isThemeNameOk, themes } from "@src/themes/Theme.types";
 import { ReactNode, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { ThemeContext } from "./hooks/UseTheme";
