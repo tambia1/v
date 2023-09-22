@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { version } from "@src/../package.json";
 import { Icon } from "@src/components/icon/Icon";
 import { Switch } from "@src/components/switch/Switch";
@@ -6,23 +7,43 @@ import { content } from "@src/locale/en";
 import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
 import { AppButton } from "./components/AppButton/AppButton";
-import { apps } from "./data/apps";
+import { AppId, apps } from "./data/apps";
 import { SwitchState } from "@src/components/switch/Switch.styles";
+import { Pager } from "@src/components/pager/Pager";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
+	const [pagerIndex, setPagerIndex] = useState(0);
 
 	const handleOnChange = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
+	};
+
+	const handleOnClick = (id: AppId) => {
+		if (id === "settings") {
+			setPagerIndex(pagerIndex - 1);
+		}
+
+		if (id === "calculator") {
+			setPagerIndex(pagerIndex + 1);
+		}
 	};
 
 	return (
 		<S.Container>
 			<S.Apps>
 				{apps.map((app) => (
-					<AppButton key={app.title} title={app.title} icon={app.icon} />
+					<AppButton key={app.title} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClick} />
 				))}
-				<S.Test></S.Test>
+
+				<S.Test>
+					<Pager currentIndex={pagerIndex}>
+						<Pager.Page>aaa</Pager.Page>
+						<Pager.Page>bbb</Pager.Page>
+						<Pager.Page>ccc</Pager.Page>
+						<Pager.Page>ddd</Pager.Page>
+					</Pager>
+				</S.Test>
 			</S.Apps>
 			<S.ThemeMode>
 				<Icon iconName="sun" />

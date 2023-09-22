@@ -3,10 +3,14 @@ import styled from "styled-components";
 
 import calculator from "./../../assets/calculator.png";
 import settings from "./../../assets/settings.png";
+import camera from "./../../assets/camera.png";
+import notes from "./../../assets/notes.png";
 
 const Icons = {
 	settings,
 	calculator,
+	camera,
+	notes,
 } as const;
 
 export type Icon = keyof typeof Icons;

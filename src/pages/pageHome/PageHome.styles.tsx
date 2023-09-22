@@ -45,9 +45,11 @@ export const Apps = styled.div`
 `;
 
 export const Test = styled.div`
+	position: absolute;
 	width: 300px;
 	height: 500px;
-	margin-top: 150px;
+	left: 150px;
+	top: 150px;
 	display: flex;
 	background-color: yellow;
 `;
