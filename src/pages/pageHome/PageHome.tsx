@@ -37,7 +37,7 @@ export const PageHome = () => {
 				))}
 
 				<S.Test>
-					<Pager currentIndex={pagerIndex}>
+					<Pager index={pagerIndex}>
 						<Pager.Page>aaa</Pager.Page>
 						<Pager.Page>bbb</Pager.Page>
 						<Pager.Page>ccc</Pager.Page>

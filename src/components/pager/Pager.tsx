@@ -3,17 +3,15 @@ import * as S from "./Pager.styles";
 import { Page } from "./Page";
 
 interface Props {
-	currentIndex: number;
+	index: number;
 	children?: ReactNode[];
 }
 
-export const Pager = ({ children, currentIndex, ...rest }: Props) => {
-	const [items, setItems] = useState<ReactNode[] | undefined>(children);
-
+export const Pager = ({ children, index, ...rest }: Props) => {
 	return (
 		<S.Pager {...rest}>
 			{children?.map((child, i) => (
-				<Pager.Page key={i} index={i - currentIndex}>
+				<Pager.Page key={i} index={i - index}>
 					{child}
 				</Pager.Page>
 			))}
