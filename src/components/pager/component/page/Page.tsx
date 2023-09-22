@@ -1,5 +1,5 @@
 import { useState, ReactNode } from "react";
-import * as S from "./Pager.styles";
+import * as S from "./Page.styles";
 
 interface Props {
 	index?: number;
