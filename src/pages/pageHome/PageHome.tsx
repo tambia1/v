@@ -22,6 +22,7 @@ export const PageHome = () => {
 				{apps.map((app) => (
 					<AppButton key={app.title} title={app.title} icon={app.icon} />
 				))}
+				<S.Test></S.Test>
 			</S.Apps>
 			<S.ThemeMode>
 				<Icon iconName="sun" />
