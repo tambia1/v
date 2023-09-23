@@ -2,10 +2,10 @@ import { useState, ReactNode } from "react";
 import * as S from "./Page.styles";
 
 interface Props {
-	index?: number;
+	id: string;
 	children?: ReactNode;
 }
 
-export const Page = ({ children, index }: Props) => {
-	return <S.Page index={index || 0}>{children}</S.Page>;
+export const Page = ({ children }: Props) => {
+	return <S.Page>{children}</S.Page>;
 };

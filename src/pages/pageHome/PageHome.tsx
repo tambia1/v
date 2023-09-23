@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { version } from "@src/../package.json";
 import { Icon } from "@src/components/icon/Icon";
 import { Switch } from "@src/components/switch/Switch";
@@ -10,24 +9,16 @@ import { AppButton } from "./components/AppButton/AppButton";
 import { AppId, apps } from "./data/apps";
 import { SwitchState } from "@src/components/switch/Switch.styles";
 import { Pager } from "@src/components/pager/Pager";
+import { Settings } from "./Settings";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
-	const [pagerIndex, setPagerIndex] = useState(0);
 
 	const handleOnChange = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
 	};
 
-	const handleOnClick = (id: AppId) => {
-		if (id === "settings") {
-			setPagerIndex(pagerIndex - 1);
-		}
-
-		if (id === "calculator") {
-			setPagerIndex(pagerIndex + 1);
-		}
-	};
+	const handleOnClick = (id: AppId) => {};
 
 	return (
 		<S.Container>
@@ -37,11 +28,8 @@ export const PageHome = () => {
 				))}
 
 				<S.Test>
-					<Pager index={pagerIndex}>
-						<Pager.Page>aaa</Pager.Page>
-						<Pager.Page>bbb</Pager.Page>
-						<Pager.Page>ccc</Pager.Page>
-						<Pager.Page>ddd</Pager.Page>
+					<Pager>
+						<Settings />
 					</Pager>
 				</S.Test>
 			</S.Apps>

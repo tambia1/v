@@ -41,15 +41,13 @@ export const Apps = styled.div`
 	padding-bottom: 6px;
 	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
 	font-size: ${({ theme }: { theme: ITheme }) => theme.size.l};
-	background-color: red;
 `;
 
 export const Test = styled.div`
 	position: absolute;
 	width: 300px;
-	height: 500px;
+	height: 400px;
 	left: 150px;
 	top: 150px;
 	display: flex;
-	background-color: yellow;
 `;
