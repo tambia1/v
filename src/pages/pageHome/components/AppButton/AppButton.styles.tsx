@@ -35,12 +35,23 @@ export const Container = styled.div`
 	width: 5rem;
 	height: 7rem;
 	overflow: hidden;
+	border-radius: 0.5rem;
 
 	& > * {
 		transition: all 0.3s ease;
 	}
 
 	&:hover {
+		background-color: #00000033;
+
+		${Image} {
+			opacity: 0.6;
+		}
+	}
+
+	&:active {
+		background-color: #00000066;
+
 		${Image} {
 			opacity: 0.6;
 		}
