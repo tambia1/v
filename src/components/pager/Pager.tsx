@@ -6,57 +6,69 @@ import { State } from "./component/page/Page.styles";
 
 interface Props {
 	children?: ReactNode;
+	onChange?: (action: "start" | "end", page: Page) => void;
 }
 
-export const Pager = ({ children, ...rest }: Props) => {
-	const [items, setItems] = useState<{ id: string; node: ReactNode; state: State }[]>(children ? [{ id: "children", node: children, state: "goToCenter" }] : []);
+interface Page {
+	id: string;
+	node: ReactNode;
+	state: State;
+}
 
-	console.log({ length: items.length, items });
+export const Pager = ({ children, onChange, ...rest }: Props) => {
+	const [pages, setPages] = useState<Page[]>(children ? [{ id: "children", node: children, state: "goToCenter" }] : []);
 
 	const push = (id: string, node: ReactNode) => {
-		setItems((prevState) => {
-			const newItems = prevState.map((item) => ({ ...item, state: "moveFromCenterToLeft" as State }));
+		setPages((prevPages) => {
+			const newPages = prevPages.map((page) => ({ ...page, state: "moveFromCenterToLeft" as State }));
 
-			return [...newItems, { id: id, node: node, state: "moveFromRightToCenter" }];
+			return [
+				...newPages,
+				{
+					id: id,
+					node: node,
+					state: "moveFromRightToCenter",
+				},
+			];
 		});
 	};
 
 	const pop = () => {
-		setItems((prevState) => {
-			const newItems = [...prevState];
+		setPages((prevPages) => {
+			const newPages = [...prevPages];
 
-			if (newItems.length >= 2) {
-				newItems[newItems.length - 1].state = "moveFromCenterToRight";
-				newItems[newItems.length - 2].state = "moveFromLeftToCenter";
+			if (newPages.length >= 2) {
+				newPages[newPages.length - 1].state = "moveFromCenterToRight";
+				newPages[newPages.length - 2].state = "moveFromLeftToCenter";
 			}
 
-			return newItems;
+			return newPages;
 		});
 	};
 
 	const home = () => {
-		setItems([items[0]]);
+		setPages([pages[0]]);
 	};
 
-	const onAnimationStart = (state: State) => {
-		console.log("onAnimationStart");
+	const onAnimationStart = (page: Page) => {
+		onChange?.("start", page);
 	};
 
-	const onAnimationEnd = (state: State) => {
-		console.log("onAnimationEnd");
+	const onAnimationEnd = (page: Page) => {
+		onChange?.("end", page);
 
-		if (state === "moveFromCenterToRight") {
-			setItems((prevItems) => [...prevItems.slice(0, -1)]);
+		if (page.state === "moveFromCenterToRight") {
+			setPages((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
 
 	return (
-		<PagerContext.Provider value={{ items, push, pop, home }}>
+		<PagerContext.Provider value={{ pages: pages, push, pop, home }}>
 			<S.Pager {...rest}>
-				{items.map((item, i) => {
+				{pages.map((page) => {
 					return (
-						<Pager.Page key={item.id} state={item.state} onAnimationStart={() => onAnimationStart(item.state)} onAnimationEnd={() => onAnimationEnd(item.state)}>
-							{item.node}
+						<Pager.Page key={page.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
+							{page.node}
 						</Pager.Page>
 					);
 				})}
