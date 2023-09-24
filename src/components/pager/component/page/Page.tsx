@@ -10,7 +10,7 @@ interface Props {
 
 export const Page = ({ children, state, onAnimationStart, onAnimationEnd }: Props) => {
 	return (
-		<S.Page state={state} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
+		<S.Page $state={state} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
 			{children}
 		</S.Page>
 	);

@@ -87,12 +87,12 @@ const animations: { [K in State]: RuleSet<object> } = {
 	`,
 };
 
-export const Page = styled.div<{ state: State }>`
+export const Page = styled.div<{ $state: State }>`
 	flex-shrink: 0;
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	background-color: #0000ff88;
 
-	${(props) => animations[props.state]}
+	${(props) => animations[props.$state]}
 `;

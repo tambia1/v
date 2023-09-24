@@ -12,15 +12,15 @@ export const Line = styled.div`
 	width: auto;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	background-color: #eeeeee;
+	background-color: ${(props) => props.theme.color.secondary};
 `;
 
-export const Container = styled.div<{ isEnabled: boolean; isSelected: boolean }>`
+export const Container = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
 	height: auto;
 
-	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
-	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
+	color: ${(props) => props.theme.color.onBackground};
+	background-color: ${(props) => props.theme.color.background};
 
 	box-sizing: border-box;
 
@@ -45,13 +45,6 @@ export const Container = styled.div<{ isEnabled: boolean; isSelected: boolean }>
 		border-radius: 1rem 1rem 1rem 1rem;
 	}
 
-	${(props) =>
-		props.isSelected &&
-		css`
-			color: #000000;
-			background-color: red;
-		`}
-
 	&:hover {
 		color: #000000;
 		background-color: #dddddd;
@@ -64,9 +57,16 @@ export const Container = styled.div<{ isEnabled: boolean; isSelected: boolean }>
 	}
 
 	${(props) =>
-		props.isSelected &&
+		!props.$isEnabled &&
 		css`
-			color: #000000;
-			background-color: red;
+			color: ${(props) => props.theme.color.onBackground};
+			background-color: ${(props) => props.theme.color.secondary};
+		`}
+
+	${(props) =>
+		props.$isSelected &&
+		css`
+			color: ${(props) => props.theme.color.onBackground};
+			background-color: ${(props) => props.theme.color.success};
 		`}
 `;

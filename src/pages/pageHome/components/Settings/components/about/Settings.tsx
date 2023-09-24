@@ -2,7 +2,6 @@ import * as S from "./Settings.styles";
 import { usePager } from "@src/components/pager/component/hooks/UsePager";
 import { Button } from "@src/components/button/Button";
 import { List } from "@src/components/list/List";
-import { Text } from "@src/components/text/Text";
 
 export const Settings = () => {
 	const pager = usePager();
@@ -38,7 +37,8 @@ export const Settings = () => {
 
 	return (
 		<S.Container>
-			<Text>Settings</Text>
+			<div>Settings</div>
+			<Button onClick={handleOnClickNextA}>Next</Button>
 			<List>
 				<List.Cell>A</List.Cell>
 				<List.Cell $isEnabled={false}>B</List.Cell>
