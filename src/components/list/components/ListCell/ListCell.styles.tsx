@@ -45,17 +45,12 @@ export const Container = styled.div<{ isEnabled: boolean; isSelected: boolean }>
 		border-radius: 1rem 1rem 1rem 1rem;
 	}
 
-	${(props) => {
-		console.log("a", props.isSelected);
-
-		return (
-			props.isSelected &&
-			css`
-				color: #000000;
-				background-color: red;
-			`
-		);
-	}}
+	${(props) =>
+		props.isSelected &&
+		css`
+			color: #000000;
+			background-color: red;
+		`}
 
 	&:hover {
 		color: #000000;
