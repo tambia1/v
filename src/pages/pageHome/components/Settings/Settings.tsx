@@ -1,6 +1,7 @@
 import * as S from "./Settings.styles";
 import { usePager } from "@src/components/pager/component/hooks/UsePager";
 import { Button } from "@src/components/button/Button";
+import { List } from "@src/components/list/List";
 
 export const Settings = () => {
 	const pager = usePager();
@@ -33,10 +34,16 @@ export const Settings = () => {
 	const handleOnClickBackC = () => {
 		pager.pop();
 	};
+
 	return (
 		<S.Container>
 			<div>Settings</div>
 			<Button onClick={handleOnClickNextA}>Next</Button>
+			<List>
+				<List.Cell>A</List.Cell>
+				<List.Cell>B</List.Cell>
+				<List.Cell>C</List.Cell>
+			</List>
 		</S.Container>
 	);
 };
