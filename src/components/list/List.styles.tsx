@@ -10,4 +10,6 @@ export const Container = styled.div`
 
 	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
 	background-color: #ff000088;
+
+	overflow: auto;
 `;

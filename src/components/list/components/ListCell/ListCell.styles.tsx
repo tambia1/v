@@ -1,22 +1,23 @@
 import { ITheme } from "@src/themes/Theme.types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Text = styled.div`
-	height: 100%;
-	width: 100%;
+	height: auto;
+	width: auto;
+	padding: 1rem;
 `;
 
 export const Line = styled.div`
-	height: 0.5px;
+	height: 1px;
 	width: auto;
 	margin-left: 1rem;
 	margin-right: 1rem;
 	background-color: #eeeeee;
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<{ isEnabled: boolean; isSelected: boolean }>`
 	width: 100%;
-	height: 4rem;
+	height: auto;
 
 	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
 	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
@@ -44,17 +45,22 @@ export const Container = styled.div`
 		border-radius: 1rem 1rem 1rem 1rem;
 	}
 
-	& [isEnabled="true"] {
-	}
+	${(props) => {
+		console.log("a", props.isSelected);
 
-	& [isEnabled="false"] {
-		color: #999999;
-		background-color: #777777;
-	}
+		return (
+			props.isSelected &&
+			css`
+				color: #000000;
+				background-color: red;
+			`
+		);
+	}}
 
 	&:hover {
 		color: #000000;
 		background-color: #dddddd;
+		cursor: pointer;
 	}
 
 	&:active {
@@ -62,11 +68,10 @@ export const Container = styled.div`
 		background-color: #cccccc;
 	}
 
-	& [isSelected="true"] {
-		color: #000000;
-		background-color: #cccccc;
-	}
-
-	& [isSelected="false"] {
-	}
+	${(props) =>
+		props.isSelected &&
+		css`
+			color: #000000;
+			background-color: red;
+		`}
 `;

@@ -41,8 +41,15 @@ export const Settings = () => {
 			<Button onClick={handleOnClickNextA}>Next</Button>
 			<List>
 				<List.Cell>A</List.Cell>
-				<List.Cell>B</List.Cell>
+				<List.Cell isEnabled={false}>B</List.Cell>
 				<List.Cell>C</List.Cell>
+				<List.Cell isSelected={true}>D</List.Cell>
+				<List.Cell>E</List.Cell>
+				<List.Cell>F</List.Cell>
+				<List.Cell>G</List.Cell>
+				<List.Cell>H</List.Cell>
+				<List.Cell>I</List.Cell>
+				<List.Cell>J</List.Cell>
 			</List>
 		</S.Container>
 	);
