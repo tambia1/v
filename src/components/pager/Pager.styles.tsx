@@ -6,6 +6,6 @@ export const Pager = styled.div`
 	display: flex;
 	flex-direction: row;
 	position: relative;
-	/* overflow: hidden; */
+	overflow: hidden;
 	background-color: #eeeeee;
 `;
