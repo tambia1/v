@@ -1,5 +1,4 @@
 import * as S from "./Settings.styles";
-import { Pager } from "@src/components/pager/Pager";
 import { usePager } from "@src/components/pager/component/hooks/UsePager";
 import { Button } from "@src/components/button/Button";
 
