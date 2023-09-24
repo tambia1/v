@@ -1,9 +1,9 @@
-import * as S from "./Settings.styles";
+import * as S from "./About.styles";
 import { usePager } from "@src/components/pager/component/hooks/UsePager";
 import { Button } from "@src/components/button/Button";
 import { List } from "@src/components/list/List";
 
-export const Settings = () => {
+export const About = () => {
 	const pager = usePager();
 
 	const handleOnClickNextA = () => {

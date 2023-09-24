@@ -1,7 +1,5 @@
-import { ITheme } from "@src/themes/Theme.types";
 import * as S from "./Text.styles";
 import { Size } from "@src/types/Sizes";
-import { useState } from "react";
 import { useTheme } from "../theme/hooks/UseTheme";
 
 interface Props {
@@ -14,7 +12,7 @@ interface Props {
 export const Text = ({ children, size = "m", color, bgcolor }: Props) => {
 	const theme = useTheme();
 
-	color = color ?? theme.theme.color.onBackground;
+	color = color ?? theme.theme.color.normalFg;
 	bgcolor = bgcolor ?? "transparent";
 
 	return (

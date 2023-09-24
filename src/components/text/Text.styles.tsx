@@ -1,4 +1,3 @@
-import { ITheme } from "@src/themes/Theme.types";
 import { Size } from "@src/types/Sizes";
 import styled from "styled-components";
 

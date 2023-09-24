@@ -1,4 +1,3 @@
-import { ITheme } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
 import calculator from "./../../assets/calculator.png";
@@ -30,8 +29,8 @@ export const Container = styled.div`
 	align-items: center;
 	justify-content: start;
 	flex-direction: column;
-	gap: ${({ theme }: { theme: ITheme }) => theme.size.xs};
-	padding: ${({ theme }: { theme: ITheme }) => theme.size.xs};
+	gap: ${(props) => props.theme.size.xs};
+	padding: ${(props) => props.theme.size.xs};
 	width: 5rem;
 	height: 7rem;
 	overflow: hidden;
@@ -59,5 +58,5 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-	font-size: ${({ theme }: { theme: ITheme }) => theme.size.s};
+	font-size: ${(props) => props.theme.size.s};
 `;

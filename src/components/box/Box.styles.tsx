@@ -1,4 +1,3 @@
-import { ITheme } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -16,7 +15,8 @@ export const Container = styled.div`
 
 	padding: 0.5rem;
 
-	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
+	color: ${(props) => props.theme.color.normalFg};
+	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
 export const ContainerTitle = styled.div`
