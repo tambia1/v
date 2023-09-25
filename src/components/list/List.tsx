@@ -6,8 +6,8 @@ interface Props {
 	children?: ReactNode;
 }
 
-export const List = ({ children, ...rest }: Props) => {
-	return <S.Container {...rest}>{children}</S.Container>;
+export const List = ({ children }: Props) => {
+	return <S.Container>{children}</S.Container>;
 };
 
 List.Cell = ListCell;
