@@ -1,6 +1,6 @@
 import * as S from "./List.styles";
 import { ReactNode } from "react";
-import { ListCell } from "./components/ListCell1/ListCell";
+import { ListCell } from "./components/listCell/ListCell";
 
 interface Props {
 	children?: ReactNode;
