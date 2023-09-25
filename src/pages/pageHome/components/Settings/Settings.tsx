@@ -46,7 +46,7 @@ export const Settings = () => {
 				<List.Cell>C</List.Cell>
 				<List.Cell $isSelected={true}>D</List.Cell>
 				<List.Cell>E</List.Cell>
-				<List.Cell>
+				<List.Cell $isEnabled={false}>
 					<List.Cell.Image>
 						<Icon iconName="redisPrimary" />
 					</List.Cell.Image>

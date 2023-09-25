@@ -1,3 +1,4 @@
+import { Container as Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
 export const Content = styled.div`
@@ -63,6 +64,10 @@ export const Container = styled.div<{ $isEnabled: boolean; $isSelected: boolean 
 		css`
 			color: ${(props) => props.theme.color.normalFgDisabled};
 			background-color: ${(props) => props.theme.color.normalBgDisabled};
+
+			& ${Text} {
+				color: ${(props) => props.theme.color.normalFgDisabled};
+			}
 		`}
 
 	${(props) =>
