@@ -6,5 +6,5 @@ export const Container = styled.div`
 	height: 5rem;
 	display: flex;
 	align-items: center;
-	background-color: ${(props) => props.theme.color.normalFgDisabled};
+	background-color: ${(props) => props.theme.color.normalBgDisabled};
 `;

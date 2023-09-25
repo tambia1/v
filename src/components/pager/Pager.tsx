@@ -74,15 +74,23 @@ export const Pager = ({ children, onChange }: Props) => {
 		<PagerContext.Provider value={{ pages: pages, push, pop, home }}>
 			<S.Container>
 				<Header>
-					<S.Back>{pages.length > 1 && <Icon iconName="chevronLeft" size="l" onClick={handleGoBack} />}</S.Back>
-					<Text>{pages.at(-1)?.id}</Text>
+					<S.Back>
+						{pages.length > 1 && (
+							<S.BackContainer onClick={handleGoBack}>
+								<Icon iconName="chevronLeft" size="l" />
+							</S.BackContainer>
+						)}
+					</S.Back>
+					<S.Text>
+						<Text>{pages.at(-1)?.id}</Text>
+					</S.Text>
 				</Header>
 				<S.Pages>
 					{pages.map((page) => {
 						return (
-							<Pager.Page key={page.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
+							<Page key={page.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
 								{page.node}
-							</Pager.Page>
+							</Page>
 						);
 					})}
 				</S.Pages>
@@ -90,5 +98,3 @@ export const Pager = ({ children, onChange }: Props) => {
 		</PagerContext.Provider>
 	);
 };
-
-Pager.Page = Page;
