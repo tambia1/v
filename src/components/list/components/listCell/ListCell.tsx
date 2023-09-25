@@ -2,9 +2,9 @@ import { Arrow } from "../components/arrow/Arrow";
 import { Image } from "../components/image/Image";
 import { Text } from "../components/text/Text";
 import * as S from "./ListCell.styles";
-import { ReactNode } from "react";
+import { ReactNode, HTMLProps } from "react";
 
-interface Props {
+interface Props extends HTMLProps<HTMLDivElement> {
 	$isEnabled?: boolean;
 	$isSelected?: boolean;
 	children?: ReactNode;
