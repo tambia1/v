@@ -8,14 +8,18 @@ import moon from "./assets/moon.svg";
 import plusCircle from "./assets/plus-circle.svg";
 import sun from "./assets/sun.svg";
 import xCircle from "./assets/x-circle.svg";
-import left from "./assets/arrow-left.svg";
-import right from "./assets/arrow-right.svg";
-import up from "./assets/arrow-up.svg";
-import down from "./assets/arrow-down.svg";
-import leftCircle from "./assets/arrow-left-circle.svg";
-import rightCircle from "./assets/arrow-right-circle.svg";
-import upCircle from "./assets/arrow-up-circle.svg";
-import downCircle from "./assets/arrow-down-circle.svg";
+import arrowLeft from "./assets/arrow-left.svg";
+import arrowRight from "./assets/arrow-right.svg";
+import arrowUp from "./assets/arrow-up.svg";
+import arrowDown from "./assets/arrow-down.svg";
+import arrowLeftCircle from "./assets/arrow-left-circle.svg";
+import arrowRightCircle from "./assets/arrow-right-circle.svg";
+import arrowIpCircle from "./assets/arrow-up-circle.svg";
+import arrowDownCircle from "./assets/arrow-down-circle.svg";
+import chevronLeft from "./assets/chevron-left.svg";
+import chevronRight from "./assets/chevron-right.svg";
+import chevronUp from "./assets/chevron-up.svg";
+import chevronDown from "./assets/chevron-down.svg";
 
 export const Icons = {
 	redisPrimary,
@@ -23,15 +27,15 @@ export const Icons = {
 	redisFlash,
 	redisDisk,
 
-	left,
-	right,
-	up,
-	down,
+	arrowLeft,
+	arrowRight,
+	arrowUp,
+	arrowDown,
 
-	leftCircle,
-	rightCircle,
-	upCircle,
-	downCircle,
+	arrowLeftCircle,
+	arrowRightCircle,
+	arrowIpCircle,
+	arrowDownCircle,
 
 	xCircle,
 	vCircle,
@@ -41,6 +45,11 @@ export const Icons = {
 
 	sun,
 	moon,
+
+	chevronLeft,
+	chevronRight,
+	chevronUp,
+	chevronDown,
 } as const;
 
 export type IconsName = keyof typeof Icons;

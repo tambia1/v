@@ -3,6 +3,7 @@ import { usePager } from "@src/components/pager/component/hooks/UsePager";
 import { Button } from "@src/components/button/Button";
 import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
+import { Icon } from "@src/components/icon/Icon";
 
 export const Settings = () => {
 	const pager = usePager();
@@ -45,7 +46,17 @@ export const Settings = () => {
 				<List.Cell>C</List.Cell>
 				<List.Cell $isSelected={true}>D</List.Cell>
 				<List.Cell>E</List.Cell>
-				<List.Cell>F</List.Cell>
+				<List.Cell>
+					<List.Cell.Image>
+						<Icon iconName="redisPrimary" />
+					</List.Cell.Image>
+					<List.Cell.Text>
+						<Text>F</Text>
+					</List.Cell.Text>
+					<List.Cell.Arrow>
+						<Icon iconName="chevronRight" />
+					</List.Cell.Arrow>
+				</List.Cell>
 				<List.Cell>G</List.Cell>
 				<List.Cell>H</List.Cell>
 				<List.Cell>I</List.Cell>

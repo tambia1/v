@@ -1,9 +1,12 @@
 import styled, { css } from "styled-components";
 
-export const Text = styled.div`
+export const Content = styled.div`
 	height: auto;
 	width: auto;
 	padding: 1rem;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 `;
 
 export const Line = styled.div`
