@@ -1,5 +1,5 @@
 import * as S from "./Settings.styles";
-import { usePager } from "@src/components/pager/component/hooks/UsePager";
+import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Button } from "@src/components/button/Button";
 import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";

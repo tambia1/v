@@ -1,8 +1,12 @@
 import { useState, ReactNode } from "react";
 import * as S from "./Pager.styles";
-import { Page } from "./component/page/Page";
-import { PagerContext } from "./component/hooks/UsePager";
-import { State } from "./component/page/Page.styles";
+import { Page } from "./components/page/Page";
+import { PagerContext } from "./hooks/UsePager";
+import { State } from "./components/page/Page.styles";
+import { Header } from "./components/header/Header";
+import { Text } from "../text/Text";
+import { Icons } from "../icon/Icon.types";
+import { Icon } from "../icon/Icon";
 
 interface Props {
 	children?: ReactNode;
@@ -15,7 +19,7 @@ interface Page {
 	state: State;
 }
 
-export const Pager = ({ children, onChange, ...rest }: Props) => {
+export const Pager = ({ children, onChange }: Props) => {
 	const [pages, setPages] = useState<Page[]>(children ? [{ id: "children", node: children, state: "goToCenter" }] : []);
 
 	const push = (id: string, node: ReactNode) => {
@@ -62,17 +66,27 @@ export const Pager = ({ children, onChange, ...rest }: Props) => {
 		}
 	};
 
+	const handleGoBack = () => {
+		pop();
+	};
+
 	return (
 		<PagerContext.Provider value={{ pages: pages, push, pop, home }}>
-			<S.Pager {...rest}>
-				{pages.map((page) => {
-					return (
-						<Pager.Page key={page.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
-							{page.node}
-						</Pager.Page>
-					);
-				})}
-			</S.Pager>
+			<S.Container>
+				<Header>
+					<S.Back>{pages.length > 1 && <Icon iconName="chevronLeft" size="l" onClick={handleGoBack} />}</S.Back>
+					<Text>{pages.at(-1)?.id}</Text>
+				</Header>
+				<S.Pages>
+					{pages.map((page) => {
+						return (
+							<Pager.Page key={page.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
+								{page.node}
+							</Pager.Page>
+						);
+					})}
+				</S.Pages>
+			</S.Container>
 		</PagerContext.Provider>
 	);
 };
