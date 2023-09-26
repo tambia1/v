@@ -5,11 +5,11 @@ import { PagerContext } from "./hooks/UsePager";
 import { State } from "./components/page/Page.styles";
 import { Header } from "./components/header/Header";
 import { Text } from "../text/Text";
-import { Icons } from "../icon/Icon.types";
 import { Icon } from "../icon/Icon";
+import { Body } from "./components/body/Body";
 
 interface Props {
-	children?: ReactNode;
+	children?: React.ReactElement<Body>;
 	onChange?: (action: "start" | "end", page: Page) => void;
 }
 
@@ -20,7 +20,7 @@ interface Page {
 }
 
 export const Pager = ({ children, onChange }: Props) => {
-	const [pages, setPages] = useState<Page[]>(children ? [{ id: "children", node: children, state: "goToCenter" }] : []);
+	const [pages, setPages] = useState<Page[]>(children ? [{ id: children.props.title, node: children.props.page, state: "goToCenter" }] : []);
 
 	const push = (id: string, node: ReactNode) => {
 		setPages((prevPages) => {
@@ -98,3 +98,5 @@ export const Pager = ({ children, onChange }: Props) => {
 		</PagerContext.Provider>
 	);
 };
+
+Pager.Body = Body;

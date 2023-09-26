@@ -29,7 +29,7 @@ export const PageHome = () => {
 
 				<S.Test>
 					<Pager>
-						<Settings />
+						<Pager.Body title="Setting" page={<Settings />} />
 					</Pager>
 				</S.Test>
 			</S.Apps>
