@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import { CSS, RuleSet, Styles } from "styled-components/dist/types";
+import { RuleSet } from "styled-components/dist/types";
 
 export type State =
 	| "goToCenter"

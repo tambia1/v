@@ -23,7 +23,9 @@
 		"noEmit": true,
 		"jsx": "react-jsx",
 		"sourceMap": true,
-		"types": ["vitest/globals"]
+		"types": ["vitest/globals"],
+		"noUnusedParameters": true,
+		"noUnusedLocals": true
 	},
 	"include": ["src", "**/*.ts", "**/*.d.ts", "**/*.tsx", "src/pages/pageLogin copy/pageNotFound.styles.tsx"],
 	"references": [{ "path": "./tsconfig.node.json" }]

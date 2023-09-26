@@ -1,4 +1,4 @@
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, ReactElement } from "react";
 import * as S from "./Pager.styles";
 import { Page } from "./components/page/Page";
 import { PagerContext } from "./hooks/UsePager";
@@ -6,10 +6,10 @@ import { State } from "./components/page/Page.styles";
 import { Header } from "./components/header/Header";
 import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
-import { Body } from "./components/body/Body";
+import { Body, Props as BodyProps } from "./components/body/Body";
 
 interface Props {
-	children?: React.ReactElement<Body>;
+	children?: ReactElement<BodyProps, typeof Body>;
 	onChange?: (action: "start" | "end", page: Page) => void;
 }
 
@@ -20,7 +20,8 @@ interface Page {
 }
 
 export const Pager = ({ children, onChange }: Props) => {
-	const [pages, setPages] = useState<Page[]>(children ? [{ id: children.props.title, node: children.props.page, state: "goToCenter" }] : []);
+	const [pages, setPages] = useState<Page[]>(!children ? [] : [{ id: children.props.title, node: children.props.page, state: "goToCenter" }]);
+	// const [pages, setPages] = useState<Page[]>([{ id: children.props.title, node: children.props.page, state: "goToCenter" }]);
 
 	const push = (id: string, node: ReactNode) => {
 		setPages((prevPages) => {

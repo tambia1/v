@@ -1,4 +1,4 @@
-import { useState, ReactNode } from "react";
+import { ReactNode } from "react";
 import * as S from "./Page.styles";
 
 interface Props {

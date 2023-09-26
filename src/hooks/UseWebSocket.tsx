@@ -27,11 +27,11 @@ export const useWebSocket = <TypeWebSocketMessageCustom,>(url: string) => {
 			setWebSocketOpen(undefined);
 		};
 
-		ws.onclose = (e) => {
+		ws.onclose = () => {
 			setWebSocketClose(undefined);
 		};
 
-		ws.onerror = (e) => {
+		ws.onerror = () => {
 			setWebSocketError(undefined);
 		};
 

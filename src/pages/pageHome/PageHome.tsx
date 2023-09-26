@@ -18,7 +18,9 @@ export const PageHome = () => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
 	};
 
-	const handleOnClick = (id: AppId) => {};
+	const handleOnClick = (id: AppId) => {
+		console.log(id);
+	};
 
 	return (
 		<S.Container>
