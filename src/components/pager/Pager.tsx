@@ -10,25 +10,25 @@ import { Page, IPage } from "./components/page/Page";
 
 interface Props {
 	children?: IPage;
-	onChange?: (action: "start" | "end", page: IFrame) => void;
+	onChange?: (action: "start" | "end", leave: ILeave) => void;
 }
 
-export interface IFrame {
+export interface ILeave {
 	state: State;
-	page?: IPage;
+	page: IPage;
 }
 
 export const Pager = ({ children, onChange }: Props) => {
-	const [pages, setPages] = useState<IFrame[]>(!children ? [] : [{ state: "goToCenter", page: children }]);
+	const [leaves, setLeaves] = useState<ILeave[]>(!children ? [] : [{ state: "goToCenter", page: children }]);
 
-	const push = (node: IPage) => {
-		setPages((prevPages) => {
+	const push = (page: IPage) => {
+		setLeaves((prevPages) => {
 			const newPages = prevPages.map((page) => ({ ...page, state: "moveFromCenterToLeft" as State }));
 
 			return [
 				...newPages,
 				{
-					page: node,
+					page,
 					state: "moveFromRightToCenter",
 				},
 			];
@@ -36,7 +36,7 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	const pop = () => {
-		setPages((prevPages) => {
+		setLeaves((prevPages) => {
 			const newPages = [...prevPages];
 
 			if (newPages.length >= 2) {
@@ -49,18 +49,18 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	const home = () => {
-		setPages([pages[0]]);
+		setLeaves([leaves[0]]);
 	};
 
-	const onAnimationStart = (page: IFrame) => {
+	const onAnimationStart = (page: ILeave) => {
 		onChange?.("start", page);
 	};
 
-	const onAnimationEnd = (page: IFrame) => {
+	const onAnimationEnd = (page: ILeave) => {
 		onChange?.("end", page);
 
 		if (page.state === "moveFromCenterToRight") {
-			setPages((prevPages) => [...prevPages.slice(0, -1)]);
+			setLeaves((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
 
@@ -69,22 +69,22 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	return (
-		<PagerContext.Provider value={{ pages, push, pop, home }}>
+		<PagerContext.Provider value={{ pages: leaves, push, pop, home }}>
 			<S.Container>
 				<Header>
 					<S.Back>
-						{pages.length > 1 && (
+						{leaves.length > 1 && (
 							<S.BackContainer onClick={handleGoBack}>
 								<Icon iconName="chevronLeft" size="l" />
 							</S.BackContainer>
 						)}
 					</S.Back>
 					<S.Text>
-						<Text>{pages.at(-1)?.page?.props.title}</Text>
+						<Text>{leaves.at(-1)?.page?.props.title}</Text>
 					</S.Text>
 				</Header>
 				<S.Bodies>
-					{pages.map((page) => (
+					{leaves.map((page) => (
 						<Body key={page.page?.props.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
 							{page.page?.props.body}
 						</Body>

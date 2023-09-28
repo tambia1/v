@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { IPage } from "../components/page/Page";
-import { IFrame } from "../Pager";
+import { ILeave } from "../Pager";
 
 export const PagerContext = createContext<{
-	pages: IFrame[];
+	pages: ILeave[];
 	push: (node: IPage) => void;
 	pop: () => void;
 	home: () => void;
