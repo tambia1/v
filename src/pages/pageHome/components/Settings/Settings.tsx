@@ -75,13 +75,14 @@ export const Settings = () => {
 	return (
 		<S.Container>
 			<List>
-				<Text color="successFg">Settings</Text>
+				<Text color="accentBg">Appearance</Text>
 				<List.Cell onClick={handleOnClickA}>A</List.Cell>
 				<List.Cell onClick={handleOnClickB} $isEnabled={false}>
 					B
 				</List.Cell>
 				<List.Cell onClick={handleOnClickC}>C</List.Cell>
 				<List.Cell $isSelected={true}>D</List.Cell>
+				<Text color="accentBg">Language</Text>
 				<List.Cell>E</List.Cell>
 				<List.Cell $isEnabled={false}>
 					<List.Cell.Image>
