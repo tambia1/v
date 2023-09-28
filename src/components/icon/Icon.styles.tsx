@@ -1,4 +1,4 @@
-import { Size } from "@src/types/Sizes";
+import { Size } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
 const sizes: { [K in Size]: { width: string; height: string } } = {

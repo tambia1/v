@@ -4,6 +4,7 @@ export const themeDark: ITheme = {
 	themeName: "dark",
 
 	color: {
+		transparent: "transparent",
 		normalFg: "#dedede",
 		normalBg: "#2a2a2a",
 		normalFgHover: "#dedede",

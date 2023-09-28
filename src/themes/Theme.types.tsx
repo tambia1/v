@@ -5,60 +5,59 @@ export const themes: { [key in ThemeName]: ITheme } = { light: themeLight, dark:
 
 export type ThemeName = "light" | "dark";
 
+const colors = [
+	"transparent",
+	"normalFg",
+	"normalBg",
+	"normalFgHover",
+	"normalBgHover",
+	"normalFgActive",
+	"normalBgActive",
+	"normalFgSelected",
+	"normalBgSelected",
+	"normalFgDisabled",
+	"normalBgDisabled",
+	"accentFg",
+	"accentBg",
+	"accentFgHover",
+	"accentBgHover",
+	"accentFgActive",
+	"accentBgActive",
+	"accentFgSelected",
+	"accentBgSelected",
+	"accentFgDisabled",
+	"accentBgDisabled",
+	"successFg",
+	"successBg",
+	"successFgHover",
+	"successBgHover",
+	"successFgActive",
+	"successBgActive",
+	"successFgSelected",
+	"successBgSelected",
+	"successFgDisabled",
+	"successBgDisabled",
+	"errorFg",
+	"errorBg",
+	"errorFgHover",
+	"errorBgHover",
+	"errorFgActive",
+	"errorBgActive",
+	"errorFgSelected",
+	"errorBgSelected",
+	"errorFgDisabled",
+	"errorBgDisabled",
+] as const;
+
+export type Color = (typeof colors)[number];
+export const Colors = {} as { [K in Color]: K };
+
+const sizes = ["xs", "s", "m", "l", "xl"] as const;
+export type Size = (typeof sizes)[number];
+export const Sizes = {} as { [K in Size]: K };
+
 export interface ITheme {
 	themeName: ThemeName;
-
-	color: {
-		normalFg: string;
-		normalBg: string;
-		normalFgHover: string;
-		normalBgHover: string;
-		normalFgActive: string;
-		normalBgActive: string;
-		normalFgSelected: string;
-		normalBgSelected: string;
-		normalFgDisabled: string;
-		normalBgDisabled: string;
-
-		accentFg: string;
-		accentBg: string;
-		accentFgHover: string;
-		accentBgHover: string;
-		accentFgActive: string;
-		accentBgActive: string;
-		accentFgSelected: string;
-		accentBgSelected: string;
-		accentFgDisabled: string;
-		accentBgDisabled: string;
-
-		successFg: string;
-		successBg: string;
-		successFgHover: string;
-		successBgHover: string;
-		successFgActive: string;
-		successBgActive: string;
-		successFgSelected: string;
-		successBgSelected: string;
-		successFgDisabled: string;
-		successBgDisabled: string;
-
-		errorFg: string;
-		errorBg: string;
-		errorFgHover: string;
-		errorBgHover: string;
-		errorFgActive: string;
-		errorBgActive: string;
-		errorFgSelected: string;
-		errorBgSelected: string;
-		errorFgDisabled: string;
-		errorBgDisabled: string;
-	};
-
-	size: {
-		xs: string;
-		s: string;
-		m: string;
-		l: string;
-		xl: string;
-	};
+	color: { [K in Color]: string };
+	size: { [K in Size]: string };
 }

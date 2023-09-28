@@ -59,7 +59,7 @@ export const Settings = () => {
 	return (
 		<S.Container>
 			<List>
-				<Text>Settings</Text>
+				<Text color="successFg">Settings</Text>
 				<List.Cell onClick={handleOnClickA}>A</List.Cell>
 				<List.Cell onClick={handleOnClickB} $isEnabled={false}>
 					B

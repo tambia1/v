@@ -4,6 +4,7 @@ export const themeLight: ITheme = {
 	themeName: "light",
 
 	color: {
+		transparent: "transparent",
 		normalFg: "#333333",
 		normalBg: "#ffffff",
 		normalFgHover: "#333333",

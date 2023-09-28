@@ -21,7 +21,6 @@ interface Page {
 
 export const Pager = ({ children, onChange }: Props) => {
 	const [pages, setPages] = useState<Page[]>(!children ? [] : [{ id: children.props.title, node: children.props.page, state: "goToCenter" }]);
-	// const [pages, setPages] = useState<Page[]>([{ id: children.props.title, node: children.props.page, state: "goToCenter" }]);
 
 	const push = (id: string, node: ReactNode) => {
 		setPages((prevPages) => {

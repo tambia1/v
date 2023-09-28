@@ -1,18 +1,15 @@
 import * as S from "./Text.styles";
-import { Size } from "@src/types/Sizes";
-import { useTheme } from "../theme/hooks/UseTheme";
+import { Color, Size } from "@src/themes/Theme.types";
 
 interface Props {
 	children?: string;
 	size?: Size;
-	color?: string;
-	bgcolor?: string;
+	color?: Color;
+	bgcolor?: Color;
 }
 
 export const Text = ({ children, size = "m", color, bgcolor }: Props) => {
-	const theme = useTheme();
-
-	color = color ?? theme.theme.color.normalFg;
+	color = color ?? "accentBg";
 	bgcolor = bgcolor ?? "transparent";
 
 	return (
