@@ -84,9 +84,9 @@ export const Pager = ({ children, onChange }: Props) => {
 					</S.Text>
 				</Header>
 				<S.Bodies>
-					{leaves.map((page) => (
-						<Body key={page.page?.props.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
-							{page.page?.props.body}
+					{leaves.map((leave) => (
+						<Body key={leave.page.props.id} state={leave.state} onAnimationStart={() => onAnimationStart(leave)} onAnimationEnd={() => onAnimationEnd(leave)}>
+							{leave.page.props.body}
 						</Body>
 					))}
 				</S.Bodies>
