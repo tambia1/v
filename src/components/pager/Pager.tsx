@@ -19,7 +19,7 @@ export interface ILeave {
 }
 
 export const Pager = ({ children, onChange }: Props) => {
-	const [leaves, setLeaves] = useState<ILeave[]>(!children ? [] : [{ state: "goToCenter", page: children }]);
+	const [leaves, setLeaves] = useState<ILeave[]>(children ? [{ state: "goToCenter", page: children }] : []);
 
 	const push = (page: IPage) => {
 		setLeaves((prevPages) => {
