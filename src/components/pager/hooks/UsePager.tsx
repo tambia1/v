@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
-import { TBody } from "../components/body/Body";
-import { TPage } from "../Pager";
+import { IPage } from "../components/page/Page";
+import { IFrame } from "../Pager";
 
 export const PagerContext = createContext<{
-	pages: TPage[];
-	push: (node: TBody) => void;
+	pages: IFrame[];
+	push: (node: IPage) => void;
 	pop: () => void;
 	home: () => void;
 } | null>(null);

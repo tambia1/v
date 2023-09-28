@@ -11,10 +11,10 @@ export const Settings = () => {
 
 	const handleOnClickA = () => {
 		pager.push(
-			<Pager.Body
+			<Pager.Page
 				id="a"
 				title="A"
-				page={
+				body={
 					<S.Container>
 						<div>A</div>
 						<Button
@@ -32,10 +32,10 @@ export const Settings = () => {
 
 	const handleOnClickB = () => {
 		pager.push(
-			<Pager.Body
+			<Pager.Page
 				id="b"
 				title="B"
-				page={
+				body={
 					<S.Container>
 						<div>B</div>
 						<Button
@@ -53,10 +53,10 @@ export const Settings = () => {
 
 	const handleOnClickC = () => {
 		pager.push(
-			<Pager.Body
+			<Pager.Page
 				id="c"
 				title="C"
-				page={
+				body={
 					<S.Container>
 						<div>C</div>
 						<Button

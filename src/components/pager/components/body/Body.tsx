@@ -1,13 +1,17 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
+import * as S from "./Body.styles";
 
-export type TBody = ReactElement<Props, typeof Body>;
-
-export interface Props {
-	id: string;
-	title: string;
-	page: ReactNode;
+interface Props {
+	state: S.State;
+	children?: ReactNode;
+	onAnimationStart?: () => void;
+	onAnimationEnd?: () => void;
 }
 
-export const Body = ({}: Props) => {
-	return null;
+export const Body = ({ children, state, onAnimationStart, onAnimationEnd }: Props) => {
+	return (
+		<S.Body $state={state} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
+			{children}
+		</S.Body>
+	);
 };

@@ -1,17 +1,13 @@
-import { ReactNode } from "react";
-import * as S from "./Page.styles";
+import { ReactElement, ReactNode } from "react";
 
-interface Props {
-	state: S.State;
-	children?: ReactNode;
-	onAnimationStart?: () => void;
-	onAnimationEnd?: () => void;
+export type IPage = ReactElement<Props, typeof Page>;
+
+export interface Props {
+	id: string;
+	title: string;
+	body: ReactNode;
 }
 
-export const Page = ({ children, state, onAnimationStart, onAnimationEnd }: Props) => {
-	return (
-		<S.Page $state={state} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
-			{children}
-		</S.Page>
-	);
+export const Page = ({}: Props) => {
+	return null;
 };
