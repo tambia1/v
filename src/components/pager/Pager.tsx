@@ -1,4 +1,4 @@
-import { useState, ReactNode, ReactElement } from "react";
+import { useState } from "react";
 import * as S from "./Pager.styles";
 import { Page } from "./components/page/Page";
 import { PagerContext } from "./hooks/UsePager";
@@ -6,30 +6,28 @@ import { State } from "./components/page/Page.styles";
 import { Header } from "./components/header/Header";
 import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
-import { Body, Props as BodyProps } from "./components/body/Body";
+import { Body, TBody } from "./components/body/Body";
 
 interface Props {
-	children?: ReactElement<BodyProps, typeof Body>;
-	onChange?: (action: "start" | "end", page: Page) => void;
+	children?: TBody;
+	onChange?: (action: "start" | "end", page: TPage) => void;
 }
 
-interface Page {
-	id: string;
-	node: ReactNode;
+export interface TPage {
 	state: State;
+	node?: TBody;
 }
 
 export const Pager = ({ children, onChange }: Props) => {
-	const [pages, setPages] = useState<Page[]>(!children ? [] : [{ id: children.props.title, node: children.props.page, state: "goToCenter" }]);
+	const [pages, setPages] = useState<TPage[]>(!children ? [] : [{ state: "goToCenter", node: children }]);
 
-	const push = (id: string, node: ReactNode) => {
+	const push = (node: TBody) => {
 		setPages((prevPages) => {
 			const newPages = prevPages.map((page) => ({ ...page, state: "moveFromCenterToLeft" as State }));
 
 			return [
 				...newPages,
 				{
-					id: id,
 					node: node,
 					state: "moveFromRightToCenter",
 				},
@@ -54,11 +52,11 @@ export const Pager = ({ children, onChange }: Props) => {
 		setPages([pages[0]]);
 	};
 
-	const onAnimationStart = (page: Page) => {
+	const onAnimationStart = (page: TPage) => {
 		onChange?.("start", page);
 	};
 
-	const onAnimationEnd = (page: Page) => {
+	const onAnimationEnd = (page: TPage) => {
 		onChange?.("end", page);
 
 		if (page.state === "moveFromCenterToRight") {
@@ -71,7 +69,7 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	return (
-		<PagerContext.Provider value={{ pages: pages, push, pop, home }}>
+		<PagerContext.Provider value={{ pages, push, pop, home }}>
 			<S.Container>
 				<Header>
 					<S.Back>
@@ -82,14 +80,14 @@ export const Pager = ({ children, onChange }: Props) => {
 						)}
 					</S.Back>
 					<S.Text>
-						<Text>{pages.at(-1)?.id}</Text>
+						<Text>{pages.at(-1)?.node?.props.id}</Text>
 					</S.Text>
 				</Header>
 				<S.Pages>
 					{pages.map((page) => {
 						return (
-							<Page key={page.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
-								{page.node}
+							<Page key={page.node?.props.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
+								{page.node?.props.page}
 							</Page>
 						);
 					})}

@@ -1,8 +1,10 @@
-import { ReactNode, createContext, useContext } from "react";
+import { createContext, useContext } from "react";
+import { TBody } from "../components/body/Body";
+import { TPage } from "../Pager";
 
 export const PagerContext = createContext<{
-	pages: { id: string; node: ReactNode }[];
-	push: (id: string, node: ReactNode) => void;
+	pages: TPage[];
+	push: (node: TBody) => void;
 	pop: () => void;
 	home: () => void;
 } | null>(null);

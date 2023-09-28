@@ -4,55 +4,71 @@ import { Button } from "@src/components/button/Button";
 import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
+import { Pager } from "@src/components/pager/Pager";
 
 export const Settings = () => {
 	const pager = usePager();
 
 	const handleOnClickA = () => {
 		pager.push(
-			"A",
-			<S.Container>
-				<div>A</div>
-				<Button
-					onClick={() => {
-						pager.pop();
-					}}
-				>
-					Back
-				</Button>
-			</S.Container>
+			<Pager.Body
+				id="a"
+				title="A"
+				page={
+					<S.Container>
+						<div>A</div>
+						<Button
+							onClick={() => {
+								pager.pop();
+							}}
+						>
+							Back
+						</Button>
+					</S.Container>
+				}
+			/>
 		);
 	};
 
 	const handleOnClickB = () => {
 		pager.push(
-			"B",
-			<S.Container>
-				<div>B</div>
-				<Button
-					onClick={() => {
-						pager.pop();
-					}}
-				>
-					Back
-				</Button>
-			</S.Container>
+			<Pager.Body
+				id="b"
+				title="B"
+				page={
+					<S.Container>
+						<div>B</div>
+						<Button
+							onClick={() => {
+								pager.pop();
+							}}
+						>
+							Back
+						</Button>
+					</S.Container>
+				}
+			/>
 		);
 	};
 
 	const handleOnClickC = () => {
 		pager.push(
-			"C",
-			<S.Container>
-				<div>C</div>
-				<Button
-					onClick={() => {
-						pager.pop();
-					}}
-				>
-					Back
-				</Button>
-			</S.Container>
+			<Pager.Body
+				id="c"
+				title="C"
+				page={
+					<S.Container>
+						<div>C</div>
+						<Button
+							onClick={() => {
+								pager.pop();
+							}}
+						>
+							Back
+						</Button>
+					</S.Container>
+				}
+			/>
 		);
 	};
 
