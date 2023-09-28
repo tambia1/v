@@ -73,11 +73,9 @@ export const Pager = ({ children, onChange }: Props) => {
 			<S.Container>
 				<Header>
 					<S.Back>
-						{leaves.length > 1 && (
-							<S.BackContainer onClick={handleGoBack}>
-								<Icon iconName="chevronLeft" size="l" />
-							</S.BackContainer>
-						)}
+						<S.BackContainer onClick={handleGoBack} $isVisible={leaves.length > 1}>
+							<Icon iconName="chevronLeft" size="l" />
+						</S.BackContainer>
 					</S.Back>
 					<S.Text>
 						<Text>{leaves.at(-1)?.page?.props.title}</Text>

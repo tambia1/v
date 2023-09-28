@@ -33,7 +33,7 @@ export const Back = styled.div`
 	align-items: center;
 `;
 
-export const BackContainer = styled.div`
+export const BackContainer = styled.div<{ $isVisible: boolean }>`
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -41,6 +41,9 @@ export const BackContainer = styled.div`
 	margin-left: 1rem;
 	border-radius: 1rem;
 	color: ${(props) => props.theme.color.accentFg};
+	cursor: pointer;
+	transition: all 0.3s ease;
+	opacity: ${({ $isVisible: isVisible }) => (isVisible ? 1 : 0)};
 
 	&:active {
 		color: ${(props) => props.theme.color.normalFgActive};
