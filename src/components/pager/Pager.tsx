@@ -9,7 +9,7 @@ import { Page, IPage } from "./components/page/Page";
 
 interface Props {
 	children?: IPage;
-	onChange?: (action: "start" | "end", leave: IPageState) => void;
+	onChange?: (action: "start" | "end", pageState: IPageState) => void;
 }
 
 export interface IPageState {
