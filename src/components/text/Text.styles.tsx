@@ -10,7 +10,7 @@ const sizes: { [K in Size]: string } = {
 };
 
 export const Container = styled.div<{ $size: Size; $color: string; $bgcolor: string }>`
-	color: ${({ $color }) => $color};
-	background-color: ${({ $bgcolor }) => $bgcolor};
+	color: ${({ theme, $color }) => theme.color[$color]};
+	background-color: ${({ theme, $bgcolor }) => theme.color[$bgcolor]};
 	font-size: ${({ $size }) => sizes[$size]};
 `;

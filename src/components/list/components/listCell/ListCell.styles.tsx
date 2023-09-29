@@ -1,6 +1,11 @@
 import { Container as Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
+export const Cell = styled.div`
+	width: 100%;
+	height: auto;
+`;
+
 export const Content = styled.div`
 	height: auto;
 	width: auto;
@@ -15,7 +20,7 @@ export const Line = styled.div`
 	width: auto;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.normalFgSelected};
 `;
 
 export const Container = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
@@ -48,13 +53,13 @@ export const Container = styled.div<{ $isEnabled: boolean; $isSelected: boolean 
 		border-radius: 1rem 1rem 1rem 1rem;
 	}
 
-	&:hover {
+	&:hover ${Content} {
 		color: ${(props) => props.theme.color.normalFgHover};
 		background-color: ${(props) => props.theme.color.normalBgHover};
 		cursor: pointer;
 	}
 
-	&:active {
+	&:active ${Content} {
 		color: ${(props) => props.theme.color.normalFgActive};
 		background-color: ${(props) => props.theme.color.normalBgActive};
 	}
@@ -62,18 +67,22 @@ export const Container = styled.div<{ $isEnabled: boolean; $isSelected: boolean 
 	${(props) =>
 		!props.$isEnabled &&
 		css`
-			color: ${(props) => props.theme.color.normalFgDisabled};
-			background-color: ${(props) => props.theme.color.normalBgDisabled};
-
-			& ${Text} {
+			& ${Content} {
 				color: ${(props) => props.theme.color.normalFgDisabled};
+				background-color: ${(props) => props.theme.color.normalBgDisabled};
+
+				& ${Text} {
+					color: ${(props) => props.theme.color.normalFgDisabled};
+				}
 			}
 		`}
 
 	${(props) =>
 		props.$isSelected &&
 		css`
-			color: ${(props) => props.theme.color.normalFgSelected};
-			background-color: ${(props) => props.theme.color.normalBgSelected};
+			& ${Content} {
+				color: ${(props) => props.theme.color.normalFgSelected};
+				background-color: ${(props) => props.theme.color.normalBgSelected};
+			}
 		`}
 `;

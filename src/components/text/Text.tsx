@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const Text = ({ children, size = "m", color, bgcolor }: Props) => {
-	color = color ?? "accentBg";
+	color = color ?? "normalFg";
 	bgcolor = bgcolor ?? "transparent";
 
 	return (
