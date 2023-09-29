@@ -6,5 +6,5 @@ interface Props {
 }
 
 export const Arrow = ({ children }: Props) => {
-	return <S.Container>{children}</S.Container>;
+	return <S.Arrow>{children}</S.Arrow>;
 };

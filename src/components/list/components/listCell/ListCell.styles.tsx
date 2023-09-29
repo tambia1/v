@@ -23,7 +23,7 @@ export const Line = styled.div`
 	border-top: solid ${(props) => props.theme.color.normalFgSelected} 1px;
 `;
 
-export const Container = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
+export const ListCell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
 	height: auto;
 

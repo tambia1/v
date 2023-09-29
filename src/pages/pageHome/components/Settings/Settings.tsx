@@ -74,31 +74,33 @@ export const Settings = () => {
 
 	return (
 		<S.Settings>
+			<List.Title>Appearance</List.Title>
+
 			<List>
-				<Text color="accentBg">Appearance</Text>
-				<List.Cell onClick={handleOnClickA}>A</List.Cell>
-				<List.Cell onClick={handleOnClickB} $isEnabled={false}>
-					B
-				</List.Cell>
-				<List.Cell onClick={handleOnClickC}>C</List.Cell>
-				<List.Cell $isSelected={true}>D</List.Cell>
-				<Text color="accentBg">Language</Text>
-				<List.Cell>E</List.Cell>
-				<List.Cell $isEnabled={false}>
+				<List.Cell onClick={handleOnClickA}>
 					<List.Cell.Image>
-						<Icon iconName="redisPrimary" />
+						<Icon iconName="globe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>F</Text>
+						<Text>Language</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" />
 					</List.Cell.Arrow>
 				</List.Cell>
-				<List.Cell>G</List.Cell>
-				<List.Cell>H</List.Cell>
-				<List.Cell>I</List.Cell>
-				<List.Cell>J</List.Cell>
+
+				<List.Cell onClick={handleOnClickB}>
+					<List.Cell.Image>
+						<Icon iconName="aperture" />
+					</List.Cell.Image>
+					<List.Cell.Text>
+						<Text>Theme</Text>
+					</List.Cell.Text>
+					<List.Cell.Arrow>
+						<Icon iconName="chevronRight" />
+					</List.Cell.Arrow>
+				</List.Cell>
+				<List.Cell onClick={handleOnClickC}>About</List.Cell>
 			</List>
 		</S.Settings>
 	);

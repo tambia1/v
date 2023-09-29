@@ -24,6 +24,8 @@ import chevronLeft from "./assets/chevron-left.svg";
 import chevronRight from "./assets/chevron-right.svg";
 import chevronUp from "./assets/chevron-up.svg";
 import chevronDown from "./assets/chevron-down.svg";
+import aperture from "./assets/aperture.svg";
+import globe from "./assets/globe.svg";
 
 export const Icons = {
 	redisPrimary,
@@ -58,6 +60,9 @@ export const Icons = {
 	chevronRight,
 	chevronUp,
 	chevronDown,
+
+	globe,
+	aperture,
 } as const;
 
 export type IconsName = keyof typeof Icons;

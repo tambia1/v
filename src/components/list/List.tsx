@@ -1,6 +1,7 @@
 import * as S from "./List.styles";
 import { ReactNode } from "react";
 import { ListCell } from "./components/listCell/ListCell";
+import { ListTitle } from "./components/listTitle/ListTile";
 
 interface Props {
 	children?: ReactNode;
@@ -11,3 +12,4 @@ export const List = ({ children }: Props) => {
 };
 
 List.Cell = ListCell;
+List.Title = ListTitle;

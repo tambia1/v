@@ -12,10 +12,10 @@ interface Props extends HTMLProps<HTMLDivElement> {
 
 export const ListCell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected, ...rest }: Props) => {
 	return (
-		<S.Container $isEnabled={isEnabled ?? true} $isSelected={isSelected ?? false} {...rest}>
+		<S.ListCell $isEnabled={isEnabled ?? true} $isSelected={isSelected ?? false} {...rest}>
 			<S.Content>{children}</S.Content>
 			<S.Line />
-		</S.Container>
+		</S.ListCell>
 	);
 };
 

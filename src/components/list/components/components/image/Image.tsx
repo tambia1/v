@@ -6,5 +6,5 @@ interface Props {
 }
 
 export const Image = ({ children }: Props) => {
-	return <S.Container>{children}</S.Container>;
+	return <S.Image>{children}</S.Image>;
 };
