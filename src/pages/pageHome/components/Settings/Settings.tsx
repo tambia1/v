@@ -15,7 +15,7 @@ export const Settings = () => {
 				id="a"
 				title="A"
 				body={
-					<S.Container>
+					<S.Settings>
 						<div>A</div>
 						<Button
 							onClick={() => {
@@ -24,7 +24,7 @@ export const Settings = () => {
 						>
 							Back
 						</Button>
-					</S.Container>
+					</S.Settings>
 				}
 			/>
 		);
@@ -36,7 +36,7 @@ export const Settings = () => {
 				id="b"
 				title="B"
 				body={
-					<S.Container>
+					<S.Settings>
 						<div>B</div>
 						<Button
 							onClick={() => {
@@ -45,7 +45,7 @@ export const Settings = () => {
 						>
 							Back
 						</Button>
-					</S.Container>
+					</S.Settings>
 				}
 			/>
 		);
@@ -57,7 +57,7 @@ export const Settings = () => {
 				id="c"
 				title="C"
 				body={
-					<S.Container>
+					<S.Settings>
 						<div>C</div>
 						<Button
 							onClick={() => {
@@ -66,14 +66,14 @@ export const Settings = () => {
 						>
 							Back
 						</Button>
-					</S.Container>
+					</S.Settings>
 				}
 			/>
 		);
 	};
 
 	return (
-		<S.Container>
+		<S.Settings>
 			<List>
 				<Text color="accentBg">Appearance</Text>
 				<List.Cell onClick={handleOnClickA}>A</List.Cell>
@@ -100,6 +100,6 @@ export const Settings = () => {
 				<List.Cell>I</List.Cell>
 				<List.Cell>J</List.Cell>
 			</List>
-		</S.Container>
+		</S.Settings>
 	);
 };
