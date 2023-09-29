@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { IPage } from "../components/page/Page";
-import { IPageState } from "../Pager";
+import { IPagerItem } from "../Pager";
 
 export const PagerContext = createContext<{
-	pages: IPageState[];
+	pages: IPagerItem[];
 	push: (node: IPage) => void;
 	pop: () => void;
 	home: () => void;

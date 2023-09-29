@@ -9,7 +9,7 @@ const sizes: { [K in Size]: { width: string; height: string } } = {
 	xl: { width: "3.0rem", height: "3.0rem" },
 };
 
-export const Container = styled.div<{ size: Size }>`
+export const Icon = styled.div<{ size: Size }>`
 	width: ${({ size }) => sizes[size].width};
 	height: ${({ size }) => sizes[size].height};
 

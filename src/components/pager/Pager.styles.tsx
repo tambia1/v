@@ -47,13 +47,15 @@ export const Header = styled.div`
 `;
 
 export const Back = styled.div`
-	width: 3rem;
+	width: 4rem;
 	height: 3rem;
 	display: flex;
 	align-items: center;
+	position: relative;
 `;
 
 export const BackContainer = styled.div<{ $isVisible: boolean }>`
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -63,7 +65,8 @@ export const BackContainer = styled.div<{ $isVisible: boolean }>`
 	color: ${(props) => props.theme.color.accentFg};
 	cursor: pointer;
 	transition: all 0.3s ease;
-	opacity: ${({ $isVisible: isVisible }) => (isVisible ? 1 : 0)};
+	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+	pointer-events: ${({ $isVisible }) => ($isVisible ? "auto" : "none")};
 
 	&:active {
 		color: ${(props) => props.theme.color.normalFgActive};
