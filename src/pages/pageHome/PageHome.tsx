@@ -23,7 +23,7 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.Container>
+		<S.PageHome>
 			<S.Apps>
 				{apps.map((app) => (
 					<AppButton key={app.title} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClick} />
@@ -41,6 +41,6 @@ export const PageHome = () => {
 				<Icon iconName="moon" />
 			</S.ThemeMode>
 			<S.Version>{content.all.version.replace(/\{version\}/g, version)}</S.Version>
-		</S.Container>
+		</S.PageHome>
 	);
 };
