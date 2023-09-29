@@ -5,27 +5,59 @@ export const themes: { [key in ThemeName]: ITheme } = { light: themeLight, dark:
 
 export type ThemeName = "light" | "dark";
 
+const colors = [
+	"transparent",
+	"normalFg",
+	"normalBg",
+	"normalFgHover",
+	"normalBgHover",
+	"normalFgActive",
+	"normalBgActive",
+	"normalFgSelected",
+	"normalBgSelected",
+	"normalFgDisabled",
+	"normalBgDisabled",
+	"accentFg",
+	"accentBg",
+	"accentFgHover",
+	"accentBgHover",
+	"accentFgActive",
+	"accentBgActive",
+	"accentFgSelected",
+	"accentBgSelected",
+	"accentFgDisabled",
+	"accentBgDisabled",
+	"successFg",
+	"successBg",
+	"successFgHover",
+	"successBgHover",
+	"successFgActive",
+	"successBgActive",
+	"successFgSelected",
+	"successBgSelected",
+	"successFgDisabled",
+	"successBgDisabled",
+	"errorFg",
+	"errorBg",
+	"errorFgHover",
+	"errorBgHover",
+	"errorFgActive",
+	"errorBgActive",
+	"errorFgSelected",
+	"errorBgSelected",
+	"errorFgDisabled",
+	"errorBgDisabled",
+] as const;
+
+export type Color = (typeof colors)[number];
+export const Colors = {} as { [K in Color]: K };
+
+const sizes = ["xs", "s", "m", "l", "xl"] as const;
+export type Size = (typeof sizes)[number];
+export const Sizes = {} as { [K in Size]: K };
+
 export interface ITheme {
 	themeName: ThemeName;
-
-	color: {
-		background: string;
-		onBackground: string;
-		primary: string;
-		onPrimary: string;
-		secondary: string;
-		onSecondary: string;
-		error: string;
-		onError: string;
-		success: string;
-		onSuccess: string;
-	};
-
-	size: {
-		xs: string;
-		s: string;
-		m: string;
-		l: string;
-		xl: string;
-	};
+	color: { [K in Color]: string };
+	size: { [K in Size]: string };
 }

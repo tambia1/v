@@ -1,19 +1,30 @@
-import { Size } from "@src/types/Sizes";
+import { Size } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
 const sizes: { [K in Size]: { width: string; height: string } } = {
-	xs: { width: "0.8rem", height: "0.8rem" },
-	s: { width: "1rem", height: "1rem" },
-	m: { width: "1.2rem", height: "1.2rem" },
-	l: { width: "1.4rem", height: "1.2rem" },
-	xl: { width: "1.8rem", height: "1.8rem" },
+	xs: { width: "1.0rem", height: "1.0rem" },
+	s: { width: "1.5rem", height: "1.5rem" },
+	m: { width: "2.0rem", height: "2.0rem" },
+	l: { width: "2.5rem", height: "2.5rem" },
+	xl: { width: "3.0rem", height: "3.0rem" },
 };
 
-export const Container = styled.div<{ size: Size }>`
+export const Icon = styled.div<{ size: Size }>`
 	width: ${({ size }) => sizes[size].width};
 	height: ${({ size }) => sizes[size].height};
 
-	& svg {
+	& > div {
+		width: 100%;
+		height: 100%;
+	}
+
+	& > div > div {
+		width: 100%;
+		height: 100%;
+		display: flex;
+	}
+
+	& > div > div > svg {
 		width: 100%;
 		height: 100%;
 	}

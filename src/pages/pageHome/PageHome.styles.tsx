@@ -1,4 +1,3 @@
-import { ITheme } from "@src/themes/Theme.types";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -7,7 +6,8 @@ export const Container = styled.div`
 
 	display: flex;
 
-	background-color: ${({ theme }: { theme: ITheme }) => theme.color.background};
+	color: ${(props) => props.theme.color.normalFg};
+	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
 export const ThemeMode = styled.div`
@@ -21,7 +21,7 @@ export const ThemeMode = styled.div`
 	justify-content: center;
 
 	& svg {
-		stroke: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
+		stroke: ${(props) => props.theme.color.normalFg};
 	}
 `;
 
@@ -30,13 +30,24 @@ export const Version = styled.div`
 	bottom: 1rem;
 	left: 1rem;
 	margin: 1rem;
-	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
+	color: ${(props) => props.theme.color.normalFg};
 `;
 
 export const Apps = styled.div`
+	width: 100%;
+	height: 100%;
 	display: flex;
 	gap: 0.5rem;
 	padding-bottom: 6px;
-	color: ${({ theme }: { theme: ITheme }) => theme.color.onBackground};
-	font-size: ${({ theme }: { theme: ITheme }) => theme.size.l};
+	color: ${(props) => props.theme.color.normalFg};
+	font-size: ${(props) => props.theme.size.l};
+`;
+
+export const Test = styled.div`
+	position: absolute;
+	width: 300px;
+	height: 400px;
+	left: 150px;
+	top: 150px;
+	display: flex;
 `;

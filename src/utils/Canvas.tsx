@@ -6,6 +6,8 @@ export const getCanvas = (canvasElement: HTMLCanvasElement | null) => {
 	const resizeObserver = new ResizeObserver((entries) => {
 		let rect = entries[0].target;
 
+		console.log(rect);
+
 		// ctx.width = rect.offsetWidth;
 		// ctx.height = rect.offsetHeight;
 	});

@@ -1,5 +1,5 @@
 import { ITheme } from "@src/themes/Theme.types";
-import { Dispatch, SetStateAction, createContext, useContext } from "react";
+import { createContext, useContext } from "react";
 
 export const ThemeContext = createContext<{ theme: ITheme; setTheme: (theme: ITheme) => void } | null>(null);
 
