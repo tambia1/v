@@ -87,7 +87,7 @@ const animations: { [K in State]: RuleSet<object> } = {
 	`,
 };
 
-export const Body = styled.div<{ $state: State }>`
+export const Item = styled.div<{ $state: State }>`
 	flex-shrink: 0;
 	width: 100%;
 	height: 100%;

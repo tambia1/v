@@ -1,8 +1,8 @@
 import { useState } from "react";
 import * as S from "./Pager.styles";
-import { Body } from "./components/body/Body";
+import { Item } from "./components/item/Item";
 import { PagerContext } from "./hooks/UsePager";
-import { State } from "./components/body/Body.styles";
+import { State } from "./components/item/Item.styles";
 import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
@@ -82,9 +82,9 @@ export const Pager = ({ children, onChange }: Props) => {
 				</S.Headers>
 				<S.Bodies>
 					{pages.map((page) => (
-						<Body key={page.page.props.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
+						<Item key={page.page.props.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
 							{page.page.props.body}
-						</Body>
+						</Item>
 					))}
 				</S.Bodies>
 			</S.Container>
