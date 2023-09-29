@@ -76,9 +76,13 @@ export const Pager = ({ children, onChange }: Props) => {
 							<Icon iconName="chevronLeft" size="l" />
 						</S.BackContainer>
 					</S.Back>
-					<S.Text>
-						<Text>{pages.at(-1)?.page?.props.title}</Text>
-					</S.Text>
+					<S.Header>
+						{pages.map((page) => (
+							<Item key={page.page.props.id} state={page.state}>
+								<Text>{page.page.props.title}</Text>
+							</Item>
+						))}
+					</S.Header>
 				</S.Headers>
 				<S.Bodies>
 					{pages.map((page) => (

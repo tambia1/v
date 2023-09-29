@@ -92,7 +92,6 @@ export const Item = styled.div<{ $state: State }>`
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	background-color: #0000ff88;
 
 	${(props) => animations[props.$state]}
 `;

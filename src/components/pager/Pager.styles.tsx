@@ -11,12 +11,19 @@ export const Container = styled.div`
 `;
 
 export const Headers = styled.div`
+	position: relative;
 	width: 100%;
 	height: 5rem;
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
 	background-color: ${(props) => props.theme.color.normalBgDisabled};
+
+	& * {
+		height: 100%;
+		display: flex;
+		align-items: center;
+	}
 `;
 
 export const Bodies = styled.div`
@@ -29,7 +36,11 @@ export const Bodies = styled.div`
 	background-color: ${(props) => props.theme.color.normalBgActive};
 `;
 
-export const Text = styled.div`
+export const Header = styled.div`
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
 	display: flex;
 	align-items: center;
 	margin-left: 1rem;
