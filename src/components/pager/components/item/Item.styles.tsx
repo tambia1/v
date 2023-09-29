@@ -10,7 +10,9 @@ export type State =
 	| "goFromCenterToRight"
 	| "moveFromCenterToRight"
 	| "goFromRightRoCenter"
-	| "moveFromRightToCenter";
+	| "moveFromRightToCenter"
+	| "hideFromCenter"
+	| "showInCenter";
 
 const goToCenter = keyframes`
 		0% {
@@ -57,6 +59,24 @@ const moveFromRightToCenter = keyframes`
 	}
 `;
 
+const hideFromCenter = keyframes`
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+`;
+
+const showInCenter = keyframes`
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+`;
+
 const animations: { [K in State]: RuleSet<object> } = {
 	goToCenter: css`
 		animation: ${goToCenter} 0s both;
@@ -84,6 +104,12 @@ const animations: { [K in State]: RuleSet<object> } = {
 	`,
 	moveFromRightToCenter: css`
 		animation: ${moveFromRightToCenter} 0.3s both;
+	`,
+	hideFromCenter: css`
+		animation: ${hideFromCenter} 0.3s both;
+	`,
+	showInCenter: css`
+		animation: ${showInCenter} 0.3s both;
 	`,
 };
 

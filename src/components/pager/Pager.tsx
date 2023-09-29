@@ -13,22 +13,24 @@ interface Props {
 }
 
 export interface IPageState {
-	state: State;
 	page: IPage;
+	pageState: State;
+	titleState: State;
 }
 
 export const Pager = ({ children, onChange }: Props) => {
-	const [pages, setPages] = useState<IPageState[]>(children ? [{ state: "goToCenter", page: children }] : []);
+	const [pages, setPages] = useState<IPageState[]>(children ? [{ pageState: "goToCenter", titleState: "goToCenter", page: children }] : []);
 
 	const push = (page: IPage) => {
 		setPages((prevPages) => {
-			const newPages = prevPages.map((page) => ({ ...page, state: "moveFromCenterToLeft" as State }));
+			const newPages = prevPages.map((page) => ({ ...page, pageState: "moveFromCenterToLeft" as State, titleState: "hideFromCenter" as State }));
 
 			return [
 				...newPages,
 				{
 					page,
-					state: "moveFromRightToCenter",
+					pageState: "moveFromRightToCenter",
+					titleState: "moveFromRightToCenter",
 				},
 			];
 		});
@@ -39,8 +41,10 @@ export const Pager = ({ children, onChange }: Props) => {
 			const newPages = [...prevPages];
 
 			if (newPages.length >= 2) {
-				newPages[newPages.length - 1].state = "moveFromCenterToRight";
-				newPages[newPages.length - 2].state = "moveFromLeftToCenter";
+				newPages[newPages.length - 1].pageState = "moveFromCenterToRight";
+				newPages[newPages.length - 1].titleState = "moveFromCenterToRight";
+				newPages[newPages.length - 2].pageState = "moveFromLeftToCenter";
+				newPages[newPages.length - 2].titleState = "showInCenter";
 			}
 
 			return newPages;
@@ -58,7 +62,7 @@ export const Pager = ({ children, onChange }: Props) => {
 	const onAnimationEnd = (page: IPageState) => {
 		onChange?.("end", page);
 
-		if (page.state === "moveFromCenterToRight") {
+		if (page.pageState === "moveFromCenterToRight") {
 			setPages((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
@@ -78,7 +82,7 @@ export const Pager = ({ children, onChange }: Props) => {
 					</S.Back>
 					<S.Header>
 						{pages.map((page) => (
-							<Item key={page.page.props.id} state={page.state}>
+							<Item key={page.page.props.id} state={page.titleState}>
 								<Text>{page.page.props.title}</Text>
 							</Item>
 						))}
@@ -86,7 +90,7 @@ export const Pager = ({ children, onChange }: Props) => {
 				</S.Headers>
 				<S.Bodies>
 					{pages.map((page) => (
-						<Item key={page.page.props.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
+						<Item key={page.page.props.id} state={page.pageState} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
 							{page.page.props.body}
 						</Item>
 					))}
