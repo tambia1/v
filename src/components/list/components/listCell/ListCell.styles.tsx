@@ -16,11 +16,11 @@ export const Content = styled.div`
 `;
 
 export const Line = styled.div`
-	height: 1px;
+	height: 0px;
 	width: auto;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	background-color: ${(props) => props.theme.color.normalFgSelected};
+	border-top: solid ${(props) => props.theme.color.normalFgSelected} 1px;
 `;
 
 export const Container = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
