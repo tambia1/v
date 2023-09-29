@@ -3,26 +3,25 @@ import * as S from "./Pager.styles";
 import { Body } from "./components/body/Body";
 import { PagerContext } from "./hooks/UsePager";
 import { State } from "./components/body/Body.styles";
-import { Header } from "./components/header/Header";
 import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
 
 interface Props {
 	children?: IPage;
-	onChange?: (action: "start" | "end", leave: ILeave) => void;
+	onChange?: (action: "start" | "end", leave: IPageState) => void;
 }
 
-export interface ILeave {
+export interface IPageState {
 	state: State;
 	page: IPage;
 }
 
 export const Pager = ({ children, onChange }: Props) => {
-	const [leaves, setLeaves] = useState<ILeave[]>(children ? [{ state: "goToCenter", page: children }] : []);
+	const [pages, setPages] = useState<IPageState[]>(children ? [{ state: "goToCenter", page: children }] : []);
 
 	const push = (page: IPage) => {
-		setLeaves((prevPages) => {
+		setPages((prevPages) => {
 			const newPages = prevPages.map((page) => ({ ...page, state: "moveFromCenterToLeft" as State }));
 
 			return [
@@ -36,7 +35,7 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	const pop = () => {
-		setLeaves((prevPages) => {
+		setPages((prevPages) => {
 			const newPages = [...prevPages];
 
 			if (newPages.length >= 2) {
@@ -49,18 +48,18 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	const home = () => {
-		setLeaves([leaves[0]]);
+		setPages([pages[0]]);
 	};
 
-	const onAnimationStart = (page: ILeave) => {
+	const onAnimationStart = (page: IPageState) => {
 		onChange?.("start", page);
 	};
 
-	const onAnimationEnd = (page: ILeave) => {
+	const onAnimationEnd = (page: IPageState) => {
 		onChange?.("end", page);
 
 		if (page.state === "moveFromCenterToRight") {
-			setLeaves((prevPages) => [...prevPages.slice(0, -1)]);
+			setPages((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
 
@@ -69,22 +68,22 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	return (
-		<PagerContext.Provider value={{ pages: leaves, push, pop, home }}>
+		<PagerContext.Provider value={{ pages: pages, push, pop, home }}>
 			<S.Container>
-				<Header>
+				<S.Headers>
 					<S.Back>
-						<S.BackContainer onClick={handleGoBack} $isVisible={leaves.length > 1}>
+						<S.BackContainer onClick={handleGoBack} $isVisible={pages.length > 1}>
 							<Icon iconName="chevronLeft" size="l" />
 						</S.BackContainer>
 					</S.Back>
 					<S.Text>
-						<Text>{leaves.at(-1)?.page?.props.title}</Text>
+						<Text>{pages.at(-1)?.page?.props.title}</Text>
 					</S.Text>
-				</Header>
+				</S.Headers>
 				<S.Bodies>
-					{leaves.map((leave) => (
-						<Body key={leave.page.props.id} state={leave.state} onAnimationStart={() => onAnimationStart(leave)} onAnimationEnd={() => onAnimationEnd(leave)}>
-							{leave.page.props.body}
+					{pages.map((page) => (
+						<Body key={page.page.props.id} state={page.state} onAnimationStart={() => onAnimationStart(page)} onAnimationEnd={() => onAnimationEnd(page)}>
+							{page.page.props.body}
 						</Body>
 					))}
 				</S.Bodies>

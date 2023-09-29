@@ -10,6 +10,15 @@ export const Container = styled.div`
 	background-color: #eeeeee;
 `;
 
+export const Headers = styled.div`
+	width: 100%;
+	height: 5rem;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	background-color: ${(props) => props.theme.color.normalBgDisabled};
+`;
+
 export const Bodies = styled.div`
 	width: 100%;
 	height: 100%;
