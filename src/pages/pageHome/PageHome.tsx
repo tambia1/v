@@ -28,17 +28,18 @@ export const PageHome = () => {
 				{apps.map((app) => (
 					<AppButton key={app.title} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClick} />
 				))}
-
-				<S.Test>
-					<Pager
-						onChange={(action, pagerItem) => {
-							console.log("a", { action, pagerItem: pagerItem?.pageState });
-						}}
-					>
-						<Pager.Page id="settings" title="Setting" body={<Settings />} />
-					</Pager>
-				</S.Test>
 			</S.Apps>
+
+			<S.Test>
+				<Pager
+					onChange={(action, pagerItem) => {
+						console.log("a", { action, pagerItem: pagerItem?.pageState });
+					}}
+				>
+					<Pager.Page id="settings" title="Setting" body={<Settings />} />
+				</Pager>
+			</S.Test>
+
 			<S.ThemeMode>
 				<Icon iconName="sun" />
 				<Switch onChange={handleOnChange} state={theme.themeName === "light" ? "left" : "right"} />
