@@ -1,11 +1,6 @@
 import { Container as Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
-export const Cell = styled.div`
-	width: 100%;
-	height: auto;
-`;
-
 export const Content = styled.div`
 	height: auto;
 	width: auto;
@@ -23,7 +18,7 @@ export const Line = styled.div`
 	border-top: solid ${(props) => props.theme.color.normalFgSelected} 1px;
 `;
 
-export const ListCell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
+export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
 	height: auto;
 

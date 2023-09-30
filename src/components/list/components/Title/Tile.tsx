@@ -1,17 +1,17 @@
 import { Text } from "@src/components/text/Text";
-import * as S from "./ListTitle.styles";
+import * as S from "./Title.styles";
 import { HTMLProps } from "react";
 
 interface Props extends HTMLProps<HTMLDivElement> {
 	children?: string;
 }
 
-export const ListTitle = ({ children, ...rest }: Props) => {
+export const Title = ({ children, ...rest }: Props) => {
 	return (
-		<S.ListTitle {...rest}>
+		<S.Title {...rest}>
 			<Text color="normalFg" bgcolor="transparent">
 				{children}
 			</Text>
-		</S.ListTitle>
+		</S.Title>
 	);
 };

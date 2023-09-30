@@ -1,7 +1,7 @@
 import { Arrow } from "../components/arrow/Arrow";
 import { Image } from "../components/image/Image";
 import { Text } from "../components/text/Text";
-import * as S from "./ListCell.styles";
+import * as S from "./Cell.styles";
 import { ReactNode, HTMLProps } from "react";
 
 interface Props extends HTMLProps<HTMLDivElement> {
@@ -10,15 +10,15 @@ interface Props extends HTMLProps<HTMLDivElement> {
 	children?: ReactNode;
 }
 
-export const ListCell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected, ...rest }: Props) => {
+export const Cell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected, ...rest }: Props) => {
 	return (
-		<S.ListCell $isEnabled={isEnabled ?? true} $isSelected={isSelected ?? false} {...rest}>
+		<S.Cell $isEnabled={isEnabled ?? true} $isSelected={isSelected ?? false} {...rest}>
 			<S.Content>{children}</S.Content>
 			<S.Line />
-		</S.ListCell>
+		</S.Cell>
 	);
 };
 
-ListCell.Text = Text;
-ListCell.Image = Image;
-ListCell.Arrow = Arrow;
+Cell.Text = Text;
+Cell.Image = Image;
+Cell.Arrow = Arrow;
