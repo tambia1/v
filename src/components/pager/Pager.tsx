@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as S from "./Pager.styles";
 import { Item } from "./components/item/Item";
 import { PagerContext } from "./hooks/UsePager";
-import { State } from "./components/item/Item.styles";
+import { IState } from "./components/item/Item.styles";
 import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
@@ -12,22 +12,20 @@ interface Props {
 	onChange?: (action: IAction, pagerItem?: IPagerItem) => void;
 }
 
-type IAction = "" | "onPushStart" | "onPushEnd" | "onPopStart" | "onPopEnd" | "onClickBack" | "onClickClose";
-
 export interface IPagerItem {
 	page: IPage;
-	pageState: State;
-	titleState: State;
+	pageState: IState;
+	titleState: IState;
 }
+
+type IAction = "onStart" | "onEnd" | "onBack" | "onClose";
 
 export const Pager = ({ children, onChange }: Props) => {
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageState: "goToCenter", titleState: "goToCenter", page: children }] : []);
-	const [action, setAction] = useState<IAction>("");
 
 	const push = (page: IPage) => {
-		setAction("onPushStart");
 		setPagerItems((prevPages) => {
-			const newPages = prevPages.map((page) => ({ ...page, pageState: "moveFromCenterToLeft" as State, titleState: "hideFromCenter" as State }));
+			const newPages = prevPages.map((page) => ({ ...page, pageState: "moveFromCenterToLeft" as IState, titleState: "hideFromCenter" as IState }));
 
 			return [
 				...newPages,
@@ -41,7 +39,6 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	const pop = () => {
-		setAction("onPopStart");
 		setPagerItems((prevPages) => {
 			const newPages = [...prevPages];
 
@@ -60,29 +57,25 @@ export const Pager = ({ children, onChange }: Props) => {
 		setPagerItems([pagerItems[0]]);
 	};
 
-	const onAnimationStart = (page: IPagerItem) => {
-		onChange?.(action, page);
+	const onAnimationStart = (pagerItem: IPagerItem) => {
+		onChange?.("onStart", pagerItem);
 	};
 
-	const onAnimationEnd = (page: IPagerItem) => {
-		if (action === "onPushStart") {
-			setAction("onPushEnd");
-			onChange?.("onPushEnd", page);
-		}
+	const onAnimationEnd = (pagerItem: IPagerItem) => {
+		onChange?.("onEnd", pagerItem);
 
-		if (action === "onPopStart") {
-			setAction("onPopEnd");
-			onChange?.("onPopEnd", page);
-		}
-
-		if (page.pageState === "moveFromCenterToRight") {
+		if (pagerItem.pageState === "moveFromCenterToRight") {
 			setPagerItems((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
 
-	const handleGoBack = (action: IAction) => {
+	const handleGoBack = () => {
 		pop();
-		onChange?.(action, pagerItems.at(-1));
+		onChange?.("onBack", pagerItems.at(-1));
+	};
+
+	const handleClose = () => {
+		onChange?.("onClose", pagerItems.at(-1));
 	};
 
 	return (
@@ -90,21 +83,11 @@ export const Pager = ({ children, onChange }: Props) => {
 			<S.Container>
 				<S.Headers>
 					<S.Back>
-						<S.BackContainer
-							onClick={() => {
-								handleGoBack("onClickBack");
-							}}
-							$isVisible={pagerItems.length > 1}
-						>
-							<Icon iconName="chevronLeft" size="l" />
-						</S.BackContainer>
-						<S.BackContainer
-							onClick={() => {
-								handleGoBack("onClickClose");
-							}}
-							$isVisible={pagerItems.length === 1}
-						>
+						<S.BackContainer onClick={handleClose} $isVisible={pagerItems.length === 1}>
 							<Icon iconName="x" size="l" />
+						</S.BackContainer>
+						<S.BackContainer onClick={handleGoBack} $isVisible={pagerItems.length > 1}>
+							<Icon iconName="chevronLeft" size="l" />
 						</S.BackContainer>
 					</S.Back>
 					<S.Header>

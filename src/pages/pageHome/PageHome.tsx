@@ -30,7 +30,11 @@ export const PageHome = () => {
 				))}
 
 				<S.Test>
-					<Pager>
+					<Pager
+						onChange={(action, pagerItem) => {
+							console.log("a", { action, pagerItem: pagerItem?.pageState });
+						}}
+					>
 						<Pager.Page id="settings" title="Setting" body={<Settings />} />
 					</Pager>
 				</S.Test>

@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from "styled-components";
 import { RuleSet } from "styled-components/dist/types";
 
-export type State =
+export type IState =
 	| "goToCenter"
 	| "goFromLeftToCenter"
 	| "moveFromLeftToCenter"
@@ -77,7 +77,7 @@ const showInCenter = keyframes`
 	}
 `;
 
-const animations: { [K in State]: RuleSet<object> } = {
+const animations: { [K in IState]: RuleSet<object> } = {
 	goToCenter: css`
 		animation: ${goToCenter} 0s both;
 	`,
@@ -113,7 +113,7 @@ const animations: { [K in State]: RuleSet<object> } = {
 	`,
 };
 
-export const Item = styled.div<{ $state: State }>`
+export const Item = styled.div<{ $state: IState }>`
 	flex-shrink: 0;
 	width: 100%;
 	height: 100%;
