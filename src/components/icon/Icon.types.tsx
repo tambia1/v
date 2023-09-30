@@ -65,4 +65,4 @@ export const Icons = {
 	aperture,
 } as const;
 
-export type IconsName = keyof typeof Icons;
+export type IconName = keyof typeof Icons;
