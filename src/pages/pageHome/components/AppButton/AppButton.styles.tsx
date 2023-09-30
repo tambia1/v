@@ -41,15 +41,11 @@ export const Container = styled.div`
 	}
 
 	&:hover {
-		background-color: #00000033;
-
-		${Image} {
-			opacity: 0.6;
-		}
+		background-color: ${(props) => props.theme.color.normalBgHover};
 	}
 
 	&:active {
-		background-color: #00000066;
+		background-color: ${(props) => props.theme.color.normalBgActive};
 
 		${Image} {
 			opacity: 0.6;
