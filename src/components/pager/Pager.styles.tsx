@@ -17,7 +17,7 @@ export const Headers = styled.div`
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
-	background-color: ${(props) => props.theme.color.normalBgDisabled};
+	background-color: ${(props) => props.theme.color.normalBgActive};
 
 	& * {
 		height: 100%;
@@ -33,7 +33,7 @@ export const Bodies = styled.div`
 	flex-direction: row;
 	position: relative;
 	overflow: hidden;
-	background-color: ${(props) => props.theme.color.normalBgActive};
+	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
 
 export const Header = styled.div`

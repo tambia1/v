@@ -7,7 +7,5 @@ export const Settings = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	background-color: ${(props) => props.theme.color.normalBgHover};
-
 	padding: 1rem;
 `;
