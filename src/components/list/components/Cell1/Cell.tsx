@@ -1,6 +1,6 @@
-import { Arrow } from "../components/arrow/Arrow";
-import { Image } from "../components/image/Image";
-import { Text } from "../components/text/Text";
+import { Arrow } from "./components/arrow/Arrow";
+import { Image } from "./components/image/Image";
+import { Text } from "./components/text/Text";
 import * as S from "./Cell.styles";
 import { ReactNode, HTMLProps } from "react";
 
