@@ -24,6 +24,28 @@ export const Settings = () => {
 						>
 							Back
 						</Button>
+						<Button onClick={handleOnClickAA}>Next</Button>
+					</S.Settings>
+				}
+			/>
+		);
+	};
+
+	const handleOnClickAA = () => {
+		pager.push(
+			<Pager.Page
+				id="aa"
+				title="AA"
+				body={
+					<S.Settings>
+						<div>AA</div>
+						<Button
+							onClick={() => {
+								pager.pop();
+							}}
+						>
+							Back
+						</Button>
 					</S.Settings>
 				}
 			/>
