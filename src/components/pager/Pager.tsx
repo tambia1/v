@@ -66,10 +66,12 @@ export const Pager = ({ children, onChange }: Props) => {
 
 	const onAnimationEnd = (page: IPagerItem) => {
 		if (action === "onPushStart") {
+			setAction("onPushStart");
 			onChange?.("onPushEnd", page);
 		}
 
 		if (action === "onPopStart") {
+			setAction("onPopEnd");
 			onChange?.("onPopEnd", page);
 		}
 
@@ -92,7 +94,7 @@ export const Pager = ({ children, onChange }: Props) => {
 							onClick={() => {
 								handleGoBack("onClickBack");
 							}}
-							$isVisible={pagerItems.length > 1}
+							$isVisible={pagerItems.length > 1 && action === "onPushStart"}
 						>
 							<Icon iconName="chevronLeft" size="l" />
 						</S.BackContainer>
@@ -100,7 +102,7 @@ export const Pager = ({ children, onChange }: Props) => {
 							onClick={() => {
 								handleGoBack("onClickClose");
 							}}
-							$isVisible={pagerItems.length === 1}
+							$isVisible={pagerItems.length === 1 || (pagerItems.length === 2 && action === "onPopStart")}
 						>
 							<Icon iconName="x" size="l" />
 						</S.BackContainer>
