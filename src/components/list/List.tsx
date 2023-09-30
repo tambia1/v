@@ -1,7 +1,7 @@
 import * as S from "./List.styles";
 import { ReactNode } from "react";
-import { Cell } from "./components/cell1/Cell";
-import { Title } from "./components/title1/Tile";
+import { Cell } from "./components/cell/Cell";
+import { Title } from "./components/title/Tile";
 
 interface Props {
 	children?: ReactNode;
