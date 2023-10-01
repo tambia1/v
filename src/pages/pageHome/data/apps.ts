@@ -1,4 +1,4 @@
-import { Icon } from "../components/AppButton1/AppButton.styles";
+import { Icon } from "../components/appButton/AppButton.styles";
 
 interface IApp {
 	id: AppId;
