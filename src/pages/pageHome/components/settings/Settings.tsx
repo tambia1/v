@@ -6,6 +6,7 @@ import { Theme } from "./../theme/Theme";
 import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
+import { About } from "../about/About";
 
 export const Settings = () => {
 	const pager = usePager();
@@ -16,6 +17,10 @@ export const Settings = () => {
 
 	const handleOnClickTheme = () => {
 		pager.push(<Pager.Page id="theme" title="Theme" body={<Theme />} />);
+	};
+
+	const handleOnClickAbout = () => {
+		pager.push(<Pager.Page id="about" title="About" body={<About />} />);
 	};
 
 	return (
@@ -46,7 +51,7 @@ export const Settings = () => {
 						<Icon iconName="chevronRight" size="s" />
 					</List.Cell.Arrow>
 				</List.Cell>
-				<List.Cell>About</List.Cell>
+				<List.Cell onClick={handleOnClickAbout}>About</List.Cell>
 			</List>
 		</S.Settings>
 	);

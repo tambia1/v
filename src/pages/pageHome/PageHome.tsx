@@ -5,7 +5,7 @@ import { useTheme } from "@src/components/theme/hooks/UseTheme";
 import { content } from "@src/locale/en";
 import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
-import { AppButton } from "./components/AppButton/AppButton";
+import { AppButton } from "./components/AppButton1/AppButton";
 import { AppId, apps } from "./data/apps";
 import { SwitchState } from "@src/components/switch/Switch.styles";
 import { Pager } from "@src/components/pager/Pager";
