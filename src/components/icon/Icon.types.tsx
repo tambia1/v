@@ -2,10 +2,14 @@ import redisDisk from "./assets/redis-disk.svg";
 import redisFlash from "./assets/redis-flash.svg";
 import redisReplica from "./assets/redis-replica.svg";
 import redisPrimary from "./assets/redis.svg";
+import circle from "./assets/circle.svg";
+import square from "./assets/square.svg";
 import v from "./assets/check.svg";
 import vCircle from "./assets/check-circle.svg";
+import vSquare from "./assets/check-square.svg";
 import x from "./assets/x.svg";
 import xCircle from "./assets/x-circle.svg";
+import xSquare from "./assets/x-square.svg";
 import minus from "./assets/minus.svg";
 import minusCircle from "./assets/minus-circle.svg";
 import moon from "./assets/moon.svg";
@@ -28,6 +32,8 @@ import aperture from "./assets/aperture.svg";
 import globe from "./assets/globe.svg";
 
 export const Icons = {
+	"": "",
+
 	redisPrimary,
 	redisReplica,
 	redisFlash,
@@ -43,10 +49,15 @@ export const Icons = {
 	arrowIpCircle,
 	arrowDownCircle,
 
+	circle,
+	square,
+
 	x,
-	xCircle,
 	v,
+	xCircle,
 	vCircle,
+	xSquare,
+	vSquare,
 
 	plus,
 	plusCircle,

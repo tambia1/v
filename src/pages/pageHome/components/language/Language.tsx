@@ -14,25 +14,24 @@ export const Language = () => {
 						<Icon iconName="globe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>Language</Text>
+						<Text>English</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName="chevronRight" />
+						<Icon iconName="v" />
 					</List.Cell.Arrow>
 				</List.Cell>
 
 				<List.Cell>
 					<List.Cell.Image>
-						<Icon iconName="aperture" />
+						<Icon iconName="globe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>Theme</Text>
+						<Text>Finnish</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName="chevronRight" />
+						<Icon iconName="" />
 					</List.Cell.Arrow>
 				</List.Cell>
-				<List.Cell>About</List.Cell>
 			</List>
 		</S.Language>
 	);
