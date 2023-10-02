@@ -2,6 +2,7 @@ import * as S from "./Language.styles";
 import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
+import { Flag } from "@src/components/flag/Flag";
 
 export const Language = () => {
 	return (
@@ -11,7 +12,7 @@ export const Language = () => {
 			<List>
 				<List.Cell>
 					<List.Cell.Image>
-						<Icon iconName="globe" />
+						<Flag flagName="greatBritain" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Text>English</Text>
@@ -23,7 +24,7 @@ export const Language = () => {
 
 				<List.Cell>
 					<List.Cell.Image>
-						<Icon iconName="globe" />
+						<Flag flagName="finland" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Text>Finnish</Text>
