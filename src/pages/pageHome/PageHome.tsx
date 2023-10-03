@@ -2,7 +2,6 @@ import { version } from "@src/../package.json";
 import { Icon } from "@src/components/icon/Icon";
 import { Switch } from "@src/components/switch/Switch";
 import { useTheme } from "@src/components/theme/hooks/UseTheme";
-import { content } from "@src/locale/en";
 import { themes } from "@src/themes/Theme.types";
 import * as S from "./PageHome.styles";
 import { AppButton } from "./components/appButton/AppButton";
@@ -10,9 +9,11 @@ import { AppId, apps } from "./data/apps";
 import { SwitchState } from "@src/components/switch/Switch.styles";
 import { Pager } from "@src/components/pager/Pager";
 import { Settings } from "./components/settings/Settings";
+import { useLanguage } from "@src/components/language/hooks/UseLanguage";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
+	const { all } = useLanguage();
 
 	const handleOnChange = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
@@ -45,7 +46,7 @@ export const PageHome = () => {
 				<Switch onChange={handleOnChange} state={theme.themeName === "light" ? "left" : "right"} />
 				<Icon iconName="moon" />
 			</S.ThemeMode>
-			<S.Version>{content.all.version.replace(/\{version\}/g, version)}</S.Version>
+			<S.Version>{all.version.replace(/\{version\}/g, version)}</S.Version>
 		</S.PageHome>
 	);
 };
