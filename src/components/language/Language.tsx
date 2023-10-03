@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { LanguageContext } from "./hooks/UseLanguage";
 import { useSearchParams } from "react-router-dom";
 import { ILanguage, LanguageName, languages } from "@src/locale/Language.types";
+import { all } from "@src/locale/all";
 
 const languageName: LanguageName = import.meta.env.VITE_LANGUAGE || "en";
 const defaultLanguage = languages[languageName];
@@ -31,5 +32,5 @@ export const Language = ({ children }: Props) => {
 		}
 	}, [searchParams]);
 
-	return <LanguageContext.Provider value={{ language: language, setLanguage }}>{children}</LanguageContext.Provider>;
+	return <LanguageContext.Provider value={{ all, language, setLanguage }}>{children}</LanguageContext.Provider>;
 };

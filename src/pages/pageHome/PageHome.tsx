@@ -1,4 +1,4 @@
-// import { version } from "@src/../package.json";
+import { version } from "@src/../package.json";
 import { Icon } from "@src/components/icon/Icon";
 import { Switch } from "@src/components/switch/Switch";
 import { useTheme } from "@src/components/theme/hooks/UseTheme";
@@ -13,7 +13,7 @@ import { useLanguage } from "@src/components/language/hooks/UseLanguage";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
-	const { language } = useLanguage();
+	const { all } = useLanguage();
 
 	const handleOnChange = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
@@ -46,8 +46,7 @@ export const PageHome = () => {
 				<Switch onChange={handleOnChange} state={theme.themeName === "light" ? "left" : "right"} />
 				<Icon iconName="moon" />
 			</S.ThemeMode>
-			{/* <S.Version>{language.settings.about.all.version.replace(/\{version\}/g, version)}</S.Version> */}
-			<S.Version>{language.settings.title}</S.Version>
+			<S.Version>{all.version.replace(/\{version\}/g, version)}</S.Version>
 		</S.PageHome>
 	);
 };
