@@ -1,7 +1,7 @@
 import { ILanguage } from "./Language.types";
 
-export const en: ILanguage = {
-	languageName: "en",
+export const fi: ILanguage = {
+	languageName: "fi",
 	pageMenu: {
 		logout: {
 			alertText: "Are you sure ?",
@@ -22,10 +22,10 @@ export const en: ILanguage = {
 		title: "Logout",
 	},
 	settings: {
-		title: "Settings",
-		apearance: "Appearance",
-		language: "Language",
-		theme: "Theme",
-		about: "About",
+		title: "Asetukset",
+		apearance: "Ulkomuoto",
+		language: "Kieli",
+		theme: "Teema",
+		about: "Noin",
 	},
 };
