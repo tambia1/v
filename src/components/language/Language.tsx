@@ -24,11 +24,19 @@ export const Language = ({ children }: Props) => {
 	useEffect(() => {
 		const languageNameParam = searchParams.get("language") || "";
 
-		if (languageNameParam === languages.en.languageName || languageNameParam === languages.fi.languageName) {
-			setCurrentLanguage(languages[languageNameParam]);
-		} else {
-			searchParams.delete("language");
-			setSearchParams(searchParams, { replace: true });
+		switch (languageNameParam) {
+			case languages.en.languageName:
+				setCurrentLanguage(languages.en);
+				break;
+
+			case languages.fi.languageName:
+				setCurrentLanguage(languages.fi);
+				break;
+
+			default:
+				searchParams.delete("language");
+				setSearchParams(searchParams, { replace: true });
+				break;
 		}
 	}, [searchParams]);
 

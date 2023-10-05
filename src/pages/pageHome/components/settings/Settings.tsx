@@ -7,9 +7,11 @@ import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { About } from "../about/About";
+import { useLanguage } from "@src/components/language/hooks/UseLanguage";
 
 export const Settings = () => {
 	const pager = usePager();
+	const { language } = useLanguage();
 
 	const handleOnClickLanguage = () => {
 		pager.push(<Pager.Page id="language" title="Language" body={<Language />} />);
@@ -25,7 +27,7 @@ export const Settings = () => {
 
 	return (
 		<S.Settings>
-			<List.Title>Appearance</List.Title>
+			<List.Title>{language.settings.apearance}</List.Title>
 
 			<List>
 				<List.Cell onClick={handleOnClickLanguage}>
@@ -33,7 +35,7 @@ export const Settings = () => {
 						<Icon iconName="globe" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>Language</Text>
+						<Text>{language.settings.language}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />
@@ -45,13 +47,13 @@ export const Settings = () => {
 						<Icon iconName="aperture" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>Theme</Text>
+						<Text>{language.settings.theme}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />
 					</List.Cell.Arrow>
 				</List.Cell>
-				<List.Cell onClick={handleOnClickAbout}>About</List.Cell>
+				<List.Cell onClick={handleOnClickAbout}>{language.settings.about}</List.Cell>
 			</List>
 		</S.Settings>
 	);

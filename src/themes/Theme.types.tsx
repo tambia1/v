@@ -49,15 +49,15 @@ const colors = [
 	"errorBgDisabled",
 ] as const;
 
-export type Color = (typeof colors)[number];
-export const Colors = {} as { [K in Color]: K };
+export type IColor = (typeof colors)[number];
+export const Colors = {} as { [K in IColor]: K };
 
 const sizes = ["xs", "s", "m", "l", "xl"] as const;
-export type Size = (typeof sizes)[number];
-export const Sizes = {} as { [K in Size]: K };
+export type ISize = (typeof sizes)[number];
+export const Sizes = {} as { [K in ISize]: K };
 
 export interface ITheme {
 	themeName: ThemeName;
-	color: { [K in Color]: string };
-	size: { [K in Size]: string };
+	color: { [K in IColor]: string };
+	size: { [K in ISize]: string };
 }

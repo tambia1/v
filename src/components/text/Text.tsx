@@ -1,11 +1,11 @@
 import * as S from "./Text.styles";
-import { Color, Size } from "@src/themes/Theme.types";
+import { IColor, ISize } from "@src/themes/Theme.types";
 
 interface Props {
 	children?: string;
-	size?: Size;
-	color?: Color;
-	bgcolor?: Color;
+	size?: ISize;
+	color?: IColor;
+	bgcolor?: IColor;
 }
 
 export const Text = ({ children, size = "m", color, bgcolor }: Props) => {
