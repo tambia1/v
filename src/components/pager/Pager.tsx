@@ -23,7 +23,7 @@ type IAction = "onStart" | "onEnd" | "onBack" | "onClose";
 export const Pager = ({ children, onChange }: Props) => {
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageState: "goToCenter", titleState: "goToCenter", page: children }] : []);
 
-	const push = (page: IPage) => {
+	const pushPage = (page: IPage) => {
 		setPagerItems((prevPages) => {
 			const newPages = prevPages.map((page) => ({ ...page, pageState: "moveFromCenterToLeft" as IState, titleState: "hideFromCenter" as IState }));
 
@@ -38,7 +38,7 @@ export const Pager = ({ children, onChange }: Props) => {
 		});
 	};
 
-	const pop = () => {
+	const popPage = () => {
 		setPagerItems((prevPages) => {
 			const newPages = [...prevPages];
 
@@ -53,7 +53,7 @@ export const Pager = ({ children, onChange }: Props) => {
 		});
 	};
 
-	const home = () => {
+	const goHome = () => {
 		setPagerItems([pagerItems[0]]);
 	};
 
@@ -70,7 +70,7 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	const handleGoBack = () => {
-		pop();
+		popPage();
 		onChange?.("onBack", pagerItems.at(-1));
 	};
 
@@ -79,7 +79,7 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	return (
-		<PagerContext.Provider value={{ pages: pagerItems, push, pop, home }}>
+		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome }}>
 			<S.Container>
 				<S.Headers>
 					<S.Back>

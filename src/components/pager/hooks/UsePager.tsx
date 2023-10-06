@@ -4,9 +4,9 @@ import { IPagerItem } from "../Pager";
 
 export const PagerContext = createContext<{
 	pages: IPagerItem[];
-	push: (node: IPage) => void;
-	pop: () => void;
-	home: () => void;
+	pushPage: (page: IPage) => void;
+	popPage: () => void;
+	goHome: () => void;
 } | null>(null);
 
 export const usePager = () => {

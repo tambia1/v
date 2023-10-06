@@ -19,7 +19,7 @@ export const Language = () => {
 
 	return (
 		<S.Language>
-			<List.Title>Language</List.Title>
+			<List.Title>{language.settings.language}</List.Title>
 
 			<List>
 				<List.Cell onClick={handleOnClickEnglish}>

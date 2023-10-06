@@ -14,15 +14,15 @@ export const Settings = () => {
 	const { language } = useLanguage();
 
 	const handleOnClickLanguage = () => {
-		pager.push(<Pager.Page id="language" title="Language" body={<Language />} />);
+		pager.pushPage(<Pager.Page id="language" title={language.settings.language} body={<Language />} />);
 	};
 
 	const handleOnClickTheme = () => {
-		pager.push(<Pager.Page id="theme" title="Theme" body={<Theme />} />);
+		pager.pushPage(<Pager.Page id="theme" title={language.settings.theme} body={<Theme />} />);
 	};
 
 	const handleOnClickAbout = () => {
-		pager.push(<Pager.Page id="about" title="About" body={<About />} />);
+		pager.pushPage(<Pager.Page id="about" title={language.settings.about} body={<About />} />);
 	};
 
 	return (
