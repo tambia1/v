@@ -13,7 +13,7 @@ import { useLanguage } from "@src/components/language/hooks/UseLanguage";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
-	const { all } = useLanguage();
+	const { all, language } = useLanguage();
 
 	const handleOnChange = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
@@ -33,7 +33,7 @@ export const PageHome = () => {
 
 			<S.Test>
 				<Pager>
-					<Pager.Page id="settings" title="Setting" body={<Settings />} />
+					<Pager.Page id="settings" title={language.settings.title} body={<Settings />} />
 				</Pager>
 			</S.Test>
 
