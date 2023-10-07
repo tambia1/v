@@ -8,10 +8,7 @@ interface Props {
 	bgcolor?: IColor;
 }
 
-export const Text = ({ children, size = "m", color, bgcolor }: Props) => {
-	color = color ?? "normalFg";
-	bgcolor = bgcolor ?? "transparent";
-
+export const Text = ({ children, size, color, bgcolor }: Props) => {
 	return (
 		<S.Container $size={size} $color={color} $bgcolor={bgcolor}>
 			{children}

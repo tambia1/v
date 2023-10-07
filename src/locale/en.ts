@@ -2,6 +2,7 @@ import { ILanguage } from "./Language.types";
 
 export const en: ILanguage = {
 	languageName: "en",
+
 	pageMenu: {
 		logout: {
 			alertText: "Are you sure ?",
@@ -9,18 +10,7 @@ export const en: ILanguage = {
 			alertButtonNo: "No",
 		},
 	},
-	screenDataCenter: {
-		title: "Data Center",
-	},
-	screenThemes: {
-		title: "Themes",
-	},
-	screenAbout: {
-		title: "About",
-	},
-	screenLogout: {
-		title: "Logout",
-	},
+
 	settings: {
 		title: "Settings",
 		apearance: "Appearance",

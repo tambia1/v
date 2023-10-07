@@ -9,8 +9,8 @@ const sizes: { [K in ISize]: string } = {
 	xl: "150%",
 };
 
-export const Container = styled.div<{ $size: ISize; $color: IColor; $bgcolor: IColor }>`
-	color: ${({ theme, $color }) => theme.color[$color]};
-	background-color: ${({ theme, $bgcolor }) => theme.color[$bgcolor]};
-	font-size: ${({ $size }) => sizes[$size]};
+export const Container = styled.div<{ $size?: ISize; $color?: IColor; $bgcolor?: IColor }>`
+	color: ${({ theme, $color }) => ($color ? theme.color[$color] : "inherit")};
+	background-color: ${({ theme, $bgcolor }) => ($bgcolor ? theme.color[$bgcolor] : "inherit")};
+	font-size: ${({ $size }) => sizes[$size || "m"]};
 `;

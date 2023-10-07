@@ -1,5 +1,5 @@
-import { all } from "@src/locale/all";
 import { ILanguage } from "@src/locale/Language.types";
+import { all } from "@src/locale/all";
 import { createContext, useContext } from "react";
 
 export const LanguageContext = createContext<{ all: typeof all; language: ILanguage; setLanguage: (language: ILanguage) => void } | null>(null);

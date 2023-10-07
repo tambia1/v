@@ -1,12 +1,14 @@
+import { GetTypeKeysAsArray } from "@src/types/Types";
 import { en } from "./en";
 import { fi } from "./fi";
 
-export const languages: { [key in LanguageName]: ILanguage } = { en, fi };
+export type ILanguageName = "en" | "fi";
+export type ILanguageKeys = GetTypeKeysAsArray<ILanguage>;
 
-export type LanguageName = "en" | "fi";
+export const languages: { [key in ILanguageName]: ILanguage } = { en, fi };
 
-export interface ILanguage {
-	languageName: LanguageName;
+export type ILanguage = {
+	languageName: ILanguageName;
 
 	pageMenu: {
 		logout: {
@@ -15,18 +17,7 @@ export interface ILanguage {
 			alertButtonNo: string;
 		};
 	};
-	screenDataCenter: {
-		title: string;
-	};
-	screenThemes: {
-		title: string;
-	};
-	screenAbout: {
-		title: string;
-	};
-	screenLogout: {
-		title: string;
-	};
+
 	settings: {
 		title: string;
 		apearance: string;
@@ -34,4 +25,4 @@ export interface ILanguage {
 		theme: string;
 		about: string;
 	};
-}
+};

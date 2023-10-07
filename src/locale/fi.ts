@@ -2,6 +2,7 @@ import { ILanguage } from "./Language.types";
 
 export const fi: ILanguage = {
 	languageName: "fi",
+
 	pageMenu: {
 		logout: {
 			alertText: "Are you sure ?",
@@ -9,18 +10,7 @@ export const fi: ILanguage = {
 			alertButtonNo: "No",
 		},
 	},
-	screenDataCenter: {
-		title: "Data Center",
-	},
-	screenThemes: {
-		title: "Themes",
-	},
-	screenAbout: {
-		title: "About",
-	},
-	screenLogout: {
-		title: "Logout",
-	},
+
 	settings: {
 		title: "Asetukset",
 		apearance: "Ulkomuoto",
