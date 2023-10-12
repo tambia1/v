@@ -14,8 +14,16 @@ export const en: ILanguage = {
 	settings: {
 		title: "Settings",
 		apearance: "Appearance",
-		language: "Language",
-		theme: "Theme",
+		language: {
+			title: "Language",
+			english: "English",
+			finnish: "Finnish",
+		},
+		theme: {
+			title: "Theme",
+			light: "Light",
+			dark: "Dark",
+		},
 		about: "About",
 	},
 };

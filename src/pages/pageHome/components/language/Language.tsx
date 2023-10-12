@@ -19,7 +19,9 @@ export const Language = () => {
 
 	return (
 		<S.Language>
-			<List.Title>{language.settings.language}</List.Title>
+			<List.Title>
+				<Text>Language</Text>
+			</List.Title>
 
 			<List>
 				<List.Cell onClick={handleOnClickEnglish}>

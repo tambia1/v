@@ -14,11 +14,11 @@ export const Settings = () => {
 	const { language } = useLanguage();
 
 	const handleOnClickLanguage = () => {
-		pager.pushPage(<Pager.Page id="language" title={language.settings.language} body={<Language />} />);
+		pager.pushPage(<Pager.Page id="language" title={language.settings.language.title} body={<Language />} />);
 	};
 
 	const handleOnClickTheme = () => {
-		pager.pushPage(<Pager.Page id="theme" title={language.settings.theme} body={<Theme />} />);
+		pager.pushPage(<Pager.Page id="theme" title={language.settings.theme.title} body={<Theme />} />);
 	};
 
 	const handleOnClickAbout = () => {
@@ -27,7 +27,9 @@ export const Settings = () => {
 
 	return (
 		<S.Settings>
-			<List.Title>{language.settings.apearance}</List.Title>
+			<List.Title>
+				<Text>{language.settings.apearance}</Text>
+			</List.Title>
 
 			<List>
 				<List.Cell onClick={handleOnClickLanguage}>
@@ -35,7 +37,7 @@ export const Settings = () => {
 						<Icon iconName="globe" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.language}</Text>
+						<Text>{language.settings.language.title}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />
@@ -47,7 +49,7 @@ export const Settings = () => {
 						<Icon iconName="aperture" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.theme}</Text>
+						<Text>{language.settings.theme.title}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />

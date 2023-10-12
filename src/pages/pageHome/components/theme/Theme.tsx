@@ -4,8 +4,10 @@ import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { useTheme } from "@src/components/theme/hooks/UseTheme";
 import { themes } from "@src/themes/Theme.types";
+import { useLanguage } from "@src/components/language/hooks/UseLanguage";
 
 export const Theme = () => {
+	const { language } = useLanguage();
 	const { theme, setTheme } = useTheme();
 
 	const handleOnClickLight = () => {
@@ -18,7 +20,7 @@ export const Theme = () => {
 
 	return (
 		<S.Theme>
-			<List.Title>Theme</List.Title>
+			<List.Title>{language.settings.theme.title}</List.Title>
 
 			<List>
 				<List.Cell onClick={handleOnClickLight}>
@@ -26,7 +28,7 @@ export const Theme = () => {
 						<Icon iconName="globe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>Light</Text>
+						<Text>{language.settings.theme.light}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={theme.themeName === "light" ? "v" : ""} />
@@ -38,7 +40,7 @@ export const Theme = () => {
 						<Icon iconName="globe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>Dark</Text>
+						<Text>{language.settings.theme.dark}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={theme.themeName === "dark" ? "v" : ""} />

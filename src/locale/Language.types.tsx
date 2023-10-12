@@ -1,9 +1,7 @@
-import { GetTypeKeysAsArray } from "@src/types/Types";
 import { en } from "./en";
 import { fi } from "./fi";
 
 export type ILanguageName = "en" | "fi";
-export type ILanguageKeys = GetTypeKeysAsArray<ILanguage>;
 
 export const languages: { [key in ILanguageName]: ILanguage } = { en, fi };
 
@@ -21,8 +19,16 @@ export type ILanguage = {
 	settings: {
 		title: string;
 		apearance: string;
-		language: string;
-		theme: string;
+		language: {
+			title: string;
+			english: string;
+			finnish: string;
+		};
+		theme: {
+			title: string;
+			light: string;
+			dark: string;
+		};
 		about: string;
 	};
 };

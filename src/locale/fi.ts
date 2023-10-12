@@ -14,8 +14,16 @@ export const fi: ILanguage = {
 	settings: {
 		title: "Asetukset",
 		apearance: "Ulkomuoto",
-		language: "Kieli",
-		theme: "Teema",
+		language: {
+			title: "Kieli",
+			english: "English",
+			finnish: "Finnish",
+		},
+		theme: {
+			title: "Teema",
+			light: "Valoa",
+			dark: "Tumma",
+		},
 		about: "Noin",
 	},
 };
