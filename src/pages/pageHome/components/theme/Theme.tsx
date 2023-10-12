@@ -4,7 +4,7 @@ import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { useTheme } from "@src/components/theme/hooks/UseTheme";
 import { themes } from "@src/themes/Theme.types";
-import { useLanguage } from "@src/components/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/hooks/UseLanguage";
 
 export const Theme = () => {
 	const { language } = useLanguage();

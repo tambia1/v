@@ -1,4 +1,4 @@
-import { ILanguage } from "./Language.types";
+import { ILanguage } from "../Language.types";
 
 export const en: ILanguage = {
 	languageName: "en",

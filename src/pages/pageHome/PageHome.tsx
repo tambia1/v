@@ -9,7 +9,7 @@ import { AppId, apps } from "./data/apps";
 import { SwitchState } from "@src/components/switch/Switch.styles";
 import { Pager } from "@src/components/pager/Pager";
 import { Settings } from "./components/settings/Settings";
-import { useLanguage } from "@src/components/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/hooks/UseLanguage";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();

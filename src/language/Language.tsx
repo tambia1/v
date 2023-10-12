@@ -1,8 +1,8 @@
 import { ReactNode, useEffect, useState } from "react";
 import { LanguageContext } from "./hooks/UseLanguage";
 import { useSearchParams } from "react-router-dom";
-import { ILanguage, ILanguageName, languages } from "@src/locale/Language.types";
-import { all } from "@src/locale/all";
+import { ILanguage, ILanguageName, languages } from "@src/language/Language.types";
+import { all } from "@src/language/translations/all";
 
 const defaultLanguageName: ILanguageName = import.meta.env.VITE_LANGUAGE || "en";
 const defaultLanguage: ILanguage = languages[defaultLanguageName];

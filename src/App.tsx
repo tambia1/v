@@ -4,7 +4,7 @@ import { PageHome } from "@src/pages/pageHome/PageHome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Theme } from "./components/theme/Theme";
 import { GlobalStyle } from "./styles/globalStyles";
-import { Language } from "./components/language/Language";
+import { Language } from "./language/Language";
 
 export const App = () => {
 	return (

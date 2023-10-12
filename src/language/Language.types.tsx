@@ -1,5 +1,5 @@
-import { en } from "./en";
-import { fi } from "./fi";
+import { en } from "./translations/en";
+import { fi } from "./translations/fi";
 
 export type ILanguageName = "en" | "fi";
 

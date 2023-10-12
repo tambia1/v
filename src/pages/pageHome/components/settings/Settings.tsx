@@ -7,7 +7,7 @@ import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { About } from "../about/About";
-import { useLanguage } from "@src/components/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/hooks/UseLanguage";
 
 export const Settings = () => {
 	const pager = usePager();

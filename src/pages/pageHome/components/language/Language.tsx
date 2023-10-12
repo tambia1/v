@@ -3,8 +3,8 @@ import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { Flag } from "@src/components/flag/Flag";
-import { useLanguage } from "@src/components/language/hooks/UseLanguage";
-import { languages } from "@src/locale/Language.types";
+import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { languages } from "@src/language/Language.types";
 
 export const Language = () => {
 	const { language, setLanguage } = useLanguage();
