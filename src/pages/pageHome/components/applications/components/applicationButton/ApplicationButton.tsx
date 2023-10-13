@@ -1,5 +1,5 @@
-import { AppId } from "../../data/apps";
-import * as S from "./AppButton.styles";
+import { AppId } from "../../../../data/apps";
+import * as S from "./ApplicationButton.styles";
 
 interface Props {
 	id: AppId;
@@ -8,7 +8,7 @@ interface Props {
 	onClick?: (id: AppId) => void;
 }
 
-export const AppButton = ({ id, title, icon, onClick }: Props) => {
+export const ApplicationButton = ({ id, title, icon, onClick }: Props) => {
 	return (
 		<S.Container
 			onClick={() => {
