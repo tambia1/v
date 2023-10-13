@@ -5,9 +5,9 @@ export type IPage = ReactElement<Props, typeof Page>;
 export interface Props {
 	id: string;
 	title: string;
-	body: ReactNode;
+	children: ReactNode;
 }
 
-export const Page = ({}: Props) => {
-	return null;
+export const Page = ({ children }: Props) => {
+	return <>{children}</>;
 };

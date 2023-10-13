@@ -33,7 +33,9 @@ export const PageHome = () => {
 
 			<S.Test>
 				<Pager>
-					<Pager.Page id="settings" title={language.settings.title} body={<Settings />} />
+					<Pager.Page id="settings" title={language.settings.title}>
+						<Settings />
+					</Pager.Page>
 				</Pager>
 			</S.Test>
 

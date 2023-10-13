@@ -101,7 +101,7 @@ export const Pager = ({ children, onChange }: Props) => {
 				<S.Bodies>
 					{pagerItems.map((pagerItem) => (
 						<Item key={pagerItem.page.props.id} state={pagerItem.pageState} onAnimationStart={() => onAnimationStart(pagerItem)} onAnimationEnd={() => onAnimationEnd(pagerItem)}>
-							{pagerItem.page.props.body}
+							{pagerItem.page.props.children}
 						</Item>
 					))}
 				</S.Bodies>
