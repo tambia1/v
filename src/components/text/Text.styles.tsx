@@ -1,4 +1,4 @@
-import { IColor, ISize } from "@src/themes/Theme.types";
+import { IColor, ISize } from "@src/theme/Theme.types";
 import styled from "styled-components";
 
 const sizes: { [K in ISize]: string } = {

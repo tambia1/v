@@ -2,8 +2,8 @@ import * as S from "./Theme.styles";
 import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
-import { useTheme } from "@src/components/theme/hooks/UseTheme";
-import { themes } from "@src/themes/Theme.types";
+import { useTheme } from "@src/theme/hooks/UseTheme";
+import { themes } from "@src/theme/Theme.types";
 import { useLanguage } from "@src/language/hooks/UseLanguage";
 
 export const Theme = () => {

@@ -1,5 +1,5 @@
 import * as S from "./Text.styles";
-import { IColor, ISize } from "@src/themes/Theme.types";
+import { IColor, ISize } from "@src/theme/Theme.types";
 import { ReactNode } from "react";
 
 interface Props {

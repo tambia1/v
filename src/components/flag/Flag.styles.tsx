@@ -1,4 +1,4 @@
-import { ISize } from "@src/themes/Theme.types";
+import { ISize } from "@src/theme/Theme.types";
 import styled from "styled-components";
 import { FlagName, Flags } from "./Flag.types";
 

@@ -1,4 +1,4 @@
-import { ITheme } from "@src/themes/Theme.types";
+import { ITheme } from "@src/theme/Theme.types";
 import { createContext, useContext } from "react";
 
 export const ThemeContext = createContext<{ theme: ITheme; setTheme: (theme: ITheme) => void } | null>(null);

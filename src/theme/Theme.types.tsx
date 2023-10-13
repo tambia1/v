@@ -1,5 +1,5 @@
-import { themeDark } from "./ThemeDark";
-import { themeLight } from "./ThemeLight";
+import { themeDark } from "./themes/ThemeDark";
+import { themeLight } from "./themes/ThemeLight";
 
 export const themes: { [key in ThemeName]: ITheme } = { light: themeLight, dark: themeDark };
 

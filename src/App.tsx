@@ -2,9 +2,9 @@ import { Pages } from "@pages/Pages.types";
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
 import { PageHome } from "@src/pages/pageHome/PageHome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Theme } from "./components/theme/Theme";
-import { GlobalStyle } from "./styles/globalStyles";
-import { Language } from "./language/Language";
+import { Theme } from "@src/theme/Theme";
+import { GlobalStyle } from "@src/styles/globalStyles";
+import { Language } from "@src/language/Language";
 
 export const App = () => {
 	return (

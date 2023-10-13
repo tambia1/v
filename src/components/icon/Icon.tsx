@@ -1,7 +1,7 @@
 import * as S from "./Icon.styles";
 import { ReactSVG } from "react-svg";
 import { Icons, IconName } from "./Icon.types";
-import { ISize } from "@src/themes/Theme.types";
+import { ISize } from "@src/theme/Theme.types";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string | undefined;

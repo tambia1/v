@@ -1,6 +1,6 @@
 import * as S from "./Flag.styles";
 import { FlagName } from "./Flag.types";
-import { ISize } from "@src/themes/Theme.types";
+import { ISize } from "@src/theme/Theme.types";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string | undefined;

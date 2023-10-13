@@ -1,8 +1,8 @@
 import { version } from "@src/../package.json";
 import { Icon } from "@src/components/icon/Icon";
 import { Switch } from "@src/components/switch/Switch";
-import { useTheme } from "@src/components/theme/hooks/UseTheme";
-import { themes } from "@src/themes/Theme.types";
+import { useTheme } from "@src/theme/hooks/UseTheme";
+import { themes } from "@src/theme/Theme.types";
 import * as S from "./PageHome.styles";
 import { AppButton } from "./components/appButton/AppButton";
 import { AppId, apps } from "./data/apps";
