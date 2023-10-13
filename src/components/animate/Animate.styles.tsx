@@ -39,5 +39,6 @@ export const Animations = {
 export type IAnimation = keyof typeof Animations;
 
 export const Container = styled.div<{ $animation: IAnimation }>`
+	opacity: 0;
 	${({ $animation }) => Animations[$animation]};
 `;
