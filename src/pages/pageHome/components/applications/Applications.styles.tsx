@@ -3,6 +3,16 @@ import styled from "styled-components";
 export const Applications = styled.div`
 	width: 100%;
 	height: 100%;
+
+	display: flex;
+
+	color: ${(props) => props.theme.color.normalFg};
+	background-color: ${(props) => props.theme.color.normalBg};
+`;
+
+export const Container = styled.div`
+	width: 100%;
+	height: 100%;
 	display: flex;
 	gap: 0.5rem;
 	padding-bottom: 6px;

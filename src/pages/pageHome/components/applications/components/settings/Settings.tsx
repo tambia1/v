@@ -1,12 +1,12 @@
 import * as S from "./Settings.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
-import { Language } from "./../language/Language";
-import { Theme } from "./../theme/Theme";
+import { Language } from "./components/language/Language";
+import { Theme } from "./components/theme/Theme";
 import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
-import { About } from "../about/About";
+import { About } from "./components/about/About";
 import { useLanguage } from "@src/language/hooks/UseLanguage";
 
 export const Settings = () => {

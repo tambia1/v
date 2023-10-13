@@ -56,10 +56,6 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 		});
 	};
 
-	const goHome = () => {
-		setPagerItems([pagerItems[0]]);
-	};
-
 	const onAnimationStart = (pagerItem: IPagerItem) => {
 		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
 			onPushStart?.(pagerItem);
@@ -89,13 +85,29 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 		onBack?.();
 	};
 
+	const goHome = () => {
+		setPagerItems((prevPages) => {
+			const newPages = [prevPages[0]];
+
+			if (newPages.length >= 2) {
+				newPages[newPages.length - 1].pageAnimation = "moveFromCenterToRight";
+				newPages[newPages.length - 1].titleAnimation = "moveFromCenterToRight";
+				newPages[0].pageAnimation = "moveFromLeftToCenter";
+				newPages[0].titleAnimation = "showInCenter";
+			}
+
+			return newPages;
+		});
+		onBack?.();
+	};
+
 	const handleClose = () => {
 		onClose?.();
 	};
 
 	return (
 		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome }}>
-			<S.Container>
+			<S.Pager>
 				<S.Headers>
 					<S.Back>
 						<S.BackContainer onClick={handleClose} $isVisible={pagerItems.length === 1}>
@@ -120,7 +132,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 						</Item>
 					))}
 				</S.Bodies>
-			</S.Container>
+			</S.Pager>
 		</PagerContext.Provider>
 	);
 };
