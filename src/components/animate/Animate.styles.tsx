@@ -1,64 +1,43 @@
 import styled, { css, keyframes } from "styled-components";
 
-const rotateAnimation = keyframes`
-	0% {transform: rotate(0deg);}
-	100% {transform: rotate(160deg);}
+const show = keyframes`
+	0% { opacity: 1; display: flex;}
+	100% { opacity: 1; display: flex;}
 `;
 
-const Rotate = css`
-	animation-name: ${rotateAnimation};
-	animation-duration: 1s;
-	animation-timing-function: linear;
-	animation-fill-mode: both;
+const hide = keyframes`
+	0% { opacity: 0; display: none;}
+	100% { opacity: 0; display: none;}
 `;
 
-const moveAnimation = keyframes`
-	0% {transform: translateX(0);}
-	50% {transform: translateX(100px);}
-	0% {transform: translateX(0);}
+const appear = keyframes`
+	0% { opacity: 0; display: flex;}
+	100% { opacity: 1; display: flex;}
 `;
 
-const Move = css`
-	animation-name: ${moveAnimation};
-	animation-duration: 2s;
-	animation-timing-function: ease;
-	animation-fill-mode: both;
+const disappear = keyframes`
+	0% { opacity: 1; display: flex;}
+	100% { opacity: 0; display: none;}
 `;
 
-const showAnimation = keyframes`
-	0% { opacity: 0; }
-	100% { opacity: 1; }
-`;
-
-const Show = css`
-	animation-name: ${showAnimation};
-	animation-duration: 0.5s;
-	animation-timing-function: ease;
-	animation-fill-mode: both;
-`;
-
-const hideAnimation = keyframes`
-	0% { opacity: 1; }
-	100% { opacity: 0; }
-`;
-
-const Hide = css`
-	animation-name: ${hideAnimation};
-	animation-duration: 0.5s;
-	animation-timing-function: ease;
-	animation-fill-mode: both;
-`;
-
-export const AnimationTypes = {
+export const Animations = {
 	none: "",
-	rotate: Rotate,
-	move: Move,
-	show: Show,
-	hide: Hide,
+	show: css`
+		animation: ${show} ease 0s both;
+	`,
+	hide: css`
+		animation: ${hide} ease 0s both;
+	`,
+	appear: css`
+		animation: ${appear} ease 0.3s both;
+	`,
+	disappear: css`
+		animation: ${disappear} ease 0.3s both;
+	`,
 } as const;
 
-export type IAnimationType = keyof typeof AnimationTypes;
+export type IAnimation = keyof typeof Animations;
 
-export const Container = styled.div<{ $animationType: IAnimationType }>`
-	${({ $animationType }) => AnimationTypes[$animationType]};
+export const Container = styled.div<{ $animation: IAnimation }>`
+	${({ $animation }) => Animations[$animation]};
 `;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as S from "./Pager.styles";
 import { Item } from "./components/item/Item";
 import { PagerContext } from "./hooks/UsePager";
-import { IState } from "./components/item/Item.styles";
+import { IAnimation } from "./components/item/Item.styles";
 import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
@@ -19,23 +19,23 @@ interface Props {
 
 export interface IPagerItem {
 	page: IPage;
-	pageState: IState;
-	titleState: IState;
+	pageAnimation: IAnimation;
+	titleAnimation: IAnimation;
 }
 
 export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
-	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageState: "goToCenter", titleState: "goToCenter", page: children }] : []);
+	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
 
 	const pushPage = (page: IPage) => {
 		setPagerItems((prevPages) => {
-			const newPages = prevPages.map((page) => ({ ...page, pageState: "moveFromCenterToLeft" as IState, titleState: "hideFromCenter" as IState }));
+			const newPages = prevPages.map((page) => ({ ...page, pageAnimation: "moveFromCenterToLeft" as IAnimation, titleAnimation: "hideFromCenter" as IAnimation }));
 
 			return [
 				...newPages,
 				{
 					page,
-					pageState: "moveFromRightToCenter",
-					titleState: "moveFromRightToCenter",
+					pageAnimation: "moveFromRightToCenter",
+					titleAnimation: "moveFromRightToCenter",
 				},
 			];
 		});
@@ -46,10 +46,10 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 			const newPages = [...prevPages];
 
 			if (newPages.length >= 2) {
-				newPages[newPages.length - 1].pageState = "moveFromCenterToRight";
-				newPages[newPages.length - 1].titleState = "moveFromCenterToRight";
-				newPages[newPages.length - 2].pageState = "moveFromLeftToCenter";
-				newPages[newPages.length - 2].titleState = "showInCenter";
+				newPages[newPages.length - 1].pageAnimation = "moveFromCenterToRight";
+				newPages[newPages.length - 1].titleAnimation = "moveFromCenterToRight";
+				newPages[newPages.length - 2].pageAnimation = "moveFromLeftToCenter";
+				newPages[newPages.length - 2].titleAnimation = "showInCenter";
 			}
 
 			return newPages;
@@ -61,30 +61,31 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 	};
 
 	const onAnimationStart = (pagerItem: IPagerItem) => {
-		if (pagerItem.pageState === "moveFromRightToCenter" || pagerItem.pageState === "goFromRightToCenter") {
+		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
 			onPushStart?.(pagerItem);
 		}
 
-		if (pagerItem.pageState === "moveFromCenterToRight" || pagerItem.pageState === "goFromCenterToRight") {
+		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
 			onPopStart?.(pagerItem);
 		}
 	};
 
 	const onAnimationEnd = (pagerItem: IPagerItem) => {
-		if (pagerItem.pageState === "moveFromRightToCenter" || pagerItem.pageState === "goFromRightToCenter") {
+		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
 			onPushEnd?.(pagerItem);
 		}
 
-		if (pagerItem.pageState === "moveFromCenterToRight" || pagerItem.pageState === "goFromCenterToRight") {
+		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
 			onPopEnd?.(pagerItem);
 		}
 
-		if (pagerItem.pageState === "moveFromCenterToRight") {
+		if (pagerItem.pageAnimation === "moveFromCenterToRight") {
 			setPagerItems((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
 
 	const handleBack = () => {
+		popPage();
 		onBack?.();
 	};
 
@@ -106,7 +107,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 					</S.Back>
 					<S.Header>
 						{pagerItems.map((pagerItem) => (
-							<Item key={pagerItem.page.props.id} state={pagerItem.titleState}>
+							<Item key={pagerItem.page.props.id} animation={pagerItem.titleAnimation}>
 								<Text>{pagerItem.page.props.title}</Text>
 							</Item>
 						))}
@@ -114,7 +115,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 				</S.Headers>
 				<S.Bodies>
 					{pagerItems.map((pagerItem) => (
-						<Item key={pagerItem.page.props.id} state={pagerItem.pageState} onAnimationStart={() => onAnimationStart(pagerItem)} onAnimationEnd={() => onAnimationEnd(pagerItem)}>
+						<Item key={pagerItem.page.props.id} animation={pagerItem.pageAnimation} onAnimationStart={() => onAnimationStart(pagerItem)} onAnimationEnd={() => onAnimationEnd(pagerItem)}>
 							{pagerItem.page.props.children}
 						</Item>
 					))}

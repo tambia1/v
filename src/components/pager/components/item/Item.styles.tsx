@@ -1,83 +1,41 @@
 import styled, { css, keyframes } from "styled-components";
-import { RuleSet } from "styled-components/dist/types";
-
-export type IState =
-	| "goToCenter"
-	| "goFromLeftToCenter"
-	| "moveFromLeftToCenter"
-	| "goFromCenterToLeft"
-	| "moveFromCenterToLeft"
-	| "goFromCenterToRight"
-	| "moveFromCenterToRight"
-	| "goFromRightToCenter"
-	| "moveFromRightToCenter"
-	| "hideFromCenter"
-	| "showInCenter";
 
 const goToCenter = keyframes`
-		0% {
-			transform: translateX(0%);
-		}
-		100% {
-			transform: translateX(0%);
-		}
-	`;
+	0% {transform: translateX(0%);}
+	100% {transform: translateX(0%);}
+`;
 
 const moveFromCenterToLeft = keyframes`
-	0% {
-		transform: translateX(0%);
-	}
-	100% {
-		transform: translateX(-100%);
-	}
+	0% {transform: translateX(0%);}
+	100% {transform: translateX(-100%);}
 `;
 
 const moveFromCenterToRight = keyframes`
-	0% {
-		transform: translateX(0%);
-	}
-	100% {
-		transform: translateX(100%);
-	}
+	0% {transform: translateX(0%);}
+	100% {transform: translateX(100%);}
 `;
 
 const moveFromLeftToCenter = keyframes`
-	0% {
-		transform: translateX(-100%);
-	}
-	100% {
-		transform: translateX(0%);
-	}
+	0% {transform: translateX(-100%);}
+	100% {transform: translateX(0%);}
 `;
 
 const moveFromRightToCenter = keyframes`
-	0% {
-		transform: translateX(100%);
-	}
-	100% {
-		transform: translateX(0%);
-	}
+	0% {transform: translateX(100%);}
+	100% {transform: translateX(0%);}
 `;
 
 const hideFromCenter = keyframes`
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
-	}
+	0% {opacity: 1;}
+	100% {opacity: 0;}
 `;
 
 const showInCenter = keyframes`
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+	0% {opacity: 0;}
+	100% {opacity: 1;}
 `;
 
-const animations: { [K in IState]: RuleSet<object> } = {
+const Animations = {
 	goToCenter: css`
 		animation: ${goToCenter} 0s both;
 	`,
@@ -111,13 +69,15 @@ const animations: { [K in IState]: RuleSet<object> } = {
 	showInCenter: css`
 		animation: ${showInCenter} 0.3s both;
 	`,
-};
+} as const;
 
-export const Item = styled.div<{ $state: IState }>`
+export type IAnimation = keyof typeof Animations;
+
+export const Item = styled.div<{ $animation: IAnimation }>`
 	flex-shrink: 0;
 	width: 100%;
 	height: 100%;
 	position: absolute;
 
-	${(props) => animations[props.$state]}
+	${(props) => Animations[props.$animation]}
 `;

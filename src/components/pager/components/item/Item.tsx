@@ -2,15 +2,15 @@ import { ReactNode } from "react";
 import * as S from "./Item.styles";
 
 interface Props {
-	state: S.IState;
+	animation: S.IAnimation;
 	children?: ReactNode;
 	onAnimationStart?: () => void;
 	onAnimationEnd?: () => void;
 }
 
-export const Item = ({ children, state, onAnimationStart, onAnimationEnd }: Props) => {
+export const Item = ({ children, animation, onAnimationStart, onAnimationEnd }: Props) => {
 	return (
-		<S.Item $state={state} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
+		<S.Item $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
 			{children}
 		</S.Item>
 	);

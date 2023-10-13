@@ -7,22 +7,26 @@ interface Props {
 }
 
 export interface IAnimate {
-	play: (animationType: S.IAnimationType) => Promise<void>;
+	play: (animationType: S.IAnimation) => Promise<void>;
 }
 
 export const Animate = ({ useAnimate, children }: Props) => {
 	const refContainer = useRef<HTMLDivElement | null>(null);
-	const [animationType, setAnimationType] = useState<S.IAnimationType>("none");
+	const [animation, setAnimation] = useState<S.IAnimation>("none");
 	const [key, setKey] = useState<number>(0);
 	const refResolve = useRef<() => void>(() => {});
 
-	const play = (animationType: S.IAnimationType): Promise<void> => {
+	const play = (animation: S.IAnimation): Promise<void> => {
 		setKey((prevKey) => prevKey + 1);
-		setAnimationType(animationType);
+		setAnimation(animation);
 
 		return new Promise<void>((resolve) => {
 			refResolve.current = resolve;
 		});
+	};
+
+	const onAnimationStart = () => {
+		refResolve.current();
 	};
 
 	const onAnimationEnd = () => {
@@ -32,7 +36,7 @@ export const Animate = ({ useAnimate, children }: Props) => {
 	useImperativeHandle(useAnimate, () => ({ play }));
 
 	return (
-		<S.Container ref={refContainer} key={key} $animationType={animationType} onAnimationEnd={onAnimationEnd}>
+		<S.Container ref={refContainer} key={key} $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
 			{children}
 		</S.Container>
 	);

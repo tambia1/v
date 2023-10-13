@@ -10,21 +10,26 @@ import { SwitchState } from "@src/components/switch/Switch.styles";
 import { Pager } from "@src/components/pager/Pager";
 import { Settings } from "./components/settings/Settings";
 import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { Animate } from "@src/components/animate/Animate";
+import { useAnimate } from "@src/components/animate/UseAnimate";
 
 export const PageHome = () => {
 	const { theme, setTheme } = useTheme();
 	const { all, language } = useLanguage();
+	const useAnimateAppContainer = useAnimate("hide");
 
 	const handleOnChange = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
 	};
 
 	const handleOnClick = (id: AppId) => {
-		console.log(id);
+		if (id === "settings") {
+			useAnimateAppContainer.current.play("appear");
+		}
 	};
 
 	const handleOnClosePager = () => {
-		console.log("a");
+		useAnimateAppContainer.current.play("disappear");
 	};
 
 	return (
@@ -35,13 +40,15 @@ export const PageHome = () => {
 				))}
 			</S.Apps>
 
-			<S.AppContainer>
-				<Pager onClose={handleOnClosePager}>
-					<Pager.Page id="settings" title={language.settings.title}>
-						<Settings />
-					</Pager.Page>
-				</Pager>
-			</S.AppContainer>
+			<Animate useAnimate={useAnimateAppContainer}>
+				<S.AppContainer>
+					<Pager onClose={handleOnClosePager}>
+						<Pager.Page id="settings" title={language.settings.title}>
+							<Settings />
+						</Pager.Page>
+					</Pager>
+				</S.AppContainer>
+			</Animate>
 
 			<S.ThemeMode>
 				<Icon iconName="sun" />
