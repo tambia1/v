@@ -23,6 +23,10 @@ export const PageHome = () => {
 		console.log(id);
 	};
 
+	const handleOnClosePager = () => {
+		console.log("a");
+	};
+
 	return (
 		<S.PageHome>
 			<S.Apps>
@@ -31,13 +35,13 @@ export const PageHome = () => {
 				))}
 			</S.Apps>
 
-			<S.Test>
-				<Pager>
+			<S.AppContainer>
+				<Pager onClose={handleOnClosePager}>
 					<Pager.Page id="settings" title={language.settings.title}>
 						<Settings />
 					</Pager.Page>
 				</Pager>
-			</S.Test>
+			</S.AppContainer>
 
 			<S.ThemeMode>
 				<Icon iconName="sun" />

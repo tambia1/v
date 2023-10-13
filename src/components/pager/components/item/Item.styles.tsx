@@ -9,7 +9,7 @@ export type IState =
 	| "moveFromCenterToLeft"
 	| "goFromCenterToRight"
 	| "moveFromCenterToRight"
-	| "goFromRightRoCenter"
+	| "goFromRightToCenter"
 	| "moveFromRightToCenter"
 	| "hideFromCenter"
 	| "showInCenter";
@@ -99,7 +99,7 @@ const animations: { [K in IState]: RuleSet<object> } = {
 	moveFromCenterToRight: css`
 		animation: ${moveFromCenterToRight} 0.3s both;
 	`,
-	goFromRightRoCenter: css`
+	goFromRightToCenter: css`
 		animation: ${moveFromRightToCenter} 0s both;
 	`,
 	moveFromRightToCenter: css`

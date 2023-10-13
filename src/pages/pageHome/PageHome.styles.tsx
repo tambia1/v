@@ -43,11 +43,8 @@ export const Apps = styled.div`
 	font-size: ${(props) => props.theme.size.l};
 `;
 
-export const Test = styled.div`
+export const AppContainer = styled.div`
 	position: absolute;
-	width: 300px;
-	height: 400px;
-	left: 150px;
-	top: 150px;
+	inset: 0 0 0 0;
 	display: flex;
 `;

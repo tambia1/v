@@ -9,7 +9,12 @@ import { Page, IPage } from "./components/page/Page";
 
 interface Props {
 	children?: IPage;
-	onChange?: (action: IAction, pagerItem?: IPagerItem) => void;
+	onPushStart?: (pagerItem?: IPagerItem) => void;
+	onPushEnd?: (pagerItem?: IPagerItem) => void;
+	onPopStart?: (pagerItem?: IPagerItem) => void;
+	onPopEnd?: (pagerItem?: IPagerItem) => void;
+	onBack?: () => void;
+	onClose?: () => void;
 }
 
 export interface IPagerItem {
@@ -18,9 +23,7 @@ export interface IPagerItem {
 	titleState: IState;
 }
 
-type IAction = "onStart" | "onEnd" | "onBack" | "onClose";
-
-export const Pager = ({ children, onChange }: Props) => {
+export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageState: "goToCenter", titleState: "goToCenter", page: children }] : []);
 
 	const pushPage = (page: IPage) => {
@@ -58,24 +61,35 @@ export const Pager = ({ children, onChange }: Props) => {
 	};
 
 	const onAnimationStart = (pagerItem: IPagerItem) => {
-		onChange?.("onStart", pagerItem);
+		if (pagerItem.pageState === "moveFromRightToCenter" || pagerItem.pageState === "goFromRightToCenter") {
+			onPushStart?.(pagerItem);
+		}
+
+		if (pagerItem.pageState === "moveFromCenterToRight" || pagerItem.pageState === "goFromCenterToRight") {
+			onPopStart?.(pagerItem);
+		}
 	};
 
 	const onAnimationEnd = (pagerItem: IPagerItem) => {
-		onChange?.("onEnd", pagerItem);
+		if (pagerItem.pageState === "moveFromRightToCenter" || pagerItem.pageState === "goFromRightToCenter") {
+			onPushEnd?.(pagerItem);
+		}
+
+		if (pagerItem.pageState === "moveFromCenterToRight" || pagerItem.pageState === "goFromCenterToRight") {
+			onPopEnd?.(pagerItem);
+		}
 
 		if (pagerItem.pageState === "moveFromCenterToRight") {
 			setPagerItems((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
 
-	const handleGoBack = () => {
-		popPage();
-		onChange?.("onBack", pagerItems.at(-1));
+	const handleBack = () => {
+		onBack?.();
 	};
 
 	const handleClose = () => {
-		onChange?.("onClose", pagerItems.at(-1));
+		onClose?.();
 	};
 
 	return (
@@ -86,7 +100,7 @@ export const Pager = ({ children, onChange }: Props) => {
 						<S.BackContainer onClick={handleClose} $isVisible={pagerItems.length === 1}>
 							<Icon iconName="x" size="l" />
 						</S.BackContainer>
-						<S.BackContainer onClick={handleGoBack} $isVisible={pagerItems.length > 1}>
+						<S.BackContainer onClick={handleBack} $isVisible={pagerItems.length > 1}>
 							<Icon iconName="chevronLeft" size="l" />
 						</S.BackContainer>
 					</S.Back>
