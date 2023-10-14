@@ -5,7 +5,7 @@ import { Applications } from "./components/applications/Applications";
 export const PageHome = () => {
 	return (
 		<S.PageHome>
-			<Pager>
+			<Pager animtionType="show">
 				<Pager.Page id="applications" title="">
 					<Applications />
 				</Pager.Page>

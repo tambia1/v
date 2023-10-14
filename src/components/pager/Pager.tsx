@@ -2,13 +2,14 @@ import { useState } from "react";
 import * as S from "./Pager.styles";
 import { Item } from "./components/item/Item";
 import { PagerContext } from "./hooks/UsePager";
-import { IAnimation } from "./components/item/Item.styles";
+import { IAnimationState, IAnimationType } from "./components/item/Item.styles";
 import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
 
 interface Props {
 	children?: IPage;
+	animtionType?: IAnimationType;
 	onPushStart?: (pagerItem?: IPagerItem) => void;
 	onPushEnd?: (pagerItem?: IPagerItem) => void;
 	onPopStart?: (pagerItem?: IPagerItem) => void;
@@ -19,16 +20,16 @@ interface Props {
 
 export interface IPagerItem {
 	page: IPage;
-	pageAnimation: IAnimation;
-	titleAnimation: IAnimation;
+	pageAnimation: IAnimationState;
+	titleAnimation: IAnimationState;
 }
 
-export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
+export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
 
 	const pushPage = (page: IPage) => {
 		setPagerItems((prevPages) => {
-			const newPages = prevPages.map((page) => ({ ...page, pageAnimation: "moveFromCenterToLeft" as IAnimation, titleAnimation: "hideFromCenter" as IAnimation }));
+			const newPages = prevPages.map((page) => ({ ...page, pageAnimation: "moveFromCenterToLeft" as IAnimationState, titleAnimation: "hideFromCenter" as IAnimationState }));
 
 			return [
 				...newPages,
@@ -119,7 +120,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 					</S.Back>
 					<S.Header>
 						{pagerItems.map((pagerItem) => (
-							<Item key={pagerItem.page.props.id} animation={pagerItem.titleAnimation}>
+							<Item key={pagerItem.page.props.id} animationType={animtionType} animation={pagerItem.titleAnimation}>
 								<Text>{pagerItem.page.props.title}</Text>
 							</Item>
 						))}
@@ -127,7 +128,13 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 				</S.Headers>
 				<S.Bodies>
 					{pagerItems.map((pagerItem) => (
-						<Item key={pagerItem.page.props.id} animation={pagerItem.pageAnimation} onAnimationStart={() => onAnimationStart(pagerItem)} onAnimationEnd={() => onAnimationEnd(pagerItem)}>
+						<Item
+							key={pagerItem.page.props.id}
+							animationType={animtionType}
+							animation={pagerItem.pageAnimation}
+							onAnimationStart={() => onAnimationStart(pagerItem)}
+							onAnimationEnd={() => onAnimationEnd(pagerItem)}
+						>
 							{pagerItem.page.props.children}
 						</Item>
 					))}
