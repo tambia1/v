@@ -26,7 +26,7 @@ export const Applications = () => {
 	const handleOnClickApplication = (id: AppId) => {
 		if (id === "settings") {
 			pager.pushPage(
-				<Pager.Page id="language" title="">
+				<Pager.Page id="settings" title="">
 					<ApplicationContainer>
 						<Settings />
 					</ApplicationContainer>
