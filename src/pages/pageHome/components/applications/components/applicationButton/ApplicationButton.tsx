@@ -1,11 +1,11 @@
-import { AppId } from "../../../../data/apps";
+import { IAppId } from "../../../../data/apps";
 import * as S from "./ApplicationButton.styles";
 
 interface Props {
-	id: AppId;
+	id: IAppId;
 	title: string;
 	icon: S.Icon;
-	onClick?: (id: AppId) => void;
+	onClick?: (id: IAppId) => void;
 }
 
 export const ApplicationButton = ({ id, title, icon, onClick }: Props) => {

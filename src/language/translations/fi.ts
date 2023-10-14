@@ -27,4 +27,15 @@ export const fi: ILanguage = {
 		},
 		about: "Noin",
 	},
+
+	calculator: {
+		title: "Laskin",
+	},
+
+	camera: {
+		title: "Kamera",
+	},
+	notes: {
+		title: "Huomautuksia",
+	},
 };

@@ -1,6 +1,6 @@
 import * as S from "./Applications.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
-import { AppId, apps } from "../../data/apps";
+import { IAppId, apps } from "../../data/apps";
 import { ApplicationButton } from "./components/applicationButton/ApplicationButton";
 import { version } from "@src/../package.json";
 import { Icon } from "@src/components/icon/Icon";
@@ -9,7 +9,6 @@ import { useTheme } from "@src/theme/hooks/UseTheme";
 import { themes } from "@src/theme/Theme.types";
 import { SwitchState } from "@src/components/switch/Switch.styles";
 import { useLanguage } from "@src/language/hooks/UseLanguage";
-import { Settings } from "./components/settings/Settings";
 import { ApplicationContainer } from "./components/applicationContainer/ApplicationContainer";
 import { Pager } from "@src/components/pager/Pager";
 
@@ -23,16 +22,12 @@ export const Applications = () => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
 	};
 
-	const handleOnClickApplication = (id: AppId) => {
-		if (id === "settings") {
-			pager.pushPage(
-				<Pager.Page id="settings" title="">
-					<ApplicationContainer>
-						<Settings />
-					</ApplicationContainer>
-				</Pager.Page>
-			);
-		}
+	const handleOnClickApplication = (appId: IAppId) => {
+		pager.pushPage(
+			<Pager.Page id={appId} title={`Application`}>
+				<ApplicationContainer appId={appId} />
+			</Pager.Page>
+		);
 	};
 
 	return (

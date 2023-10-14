@@ -27,4 +27,15 @@ export const en: ILanguage = {
 		},
 		about: "About",
 	},
+
+	calculator: {
+		title: "Calculator",
+	},
+
+	camera: {
+		title: "Camera",
+	},
+	notes: {
+		title: "Notes",
+	},
 };

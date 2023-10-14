@@ -1,12 +1,12 @@
 import { Icon } from "../components/applications/components/applicationButton/ApplicationButton.styles";
 
 interface IApp {
-	id: AppId;
+	id: IAppId;
 	title: string;
 	icon: Icon;
 }
 
-export type AppId = "settings" | "calculator" | "camera" | "notes";
+export type IAppId = "settings" | "calculator" | "camera" | "notes";
 
 export const apps: IApp[] = [
 	{ id: "settings", title: "Settings", icon: "settings" },

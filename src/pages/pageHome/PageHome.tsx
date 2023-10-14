@@ -6,7 +6,7 @@ export const PageHome = () => {
 	return (
 		<S.PageHome>
 			<Pager animtionType="show">
-				<Pager.Page id="applications" title="">
+				<Pager.Page id="applications" title="Applications">
 					<Applications />
 				</Pager.Page>
 			</Pager>

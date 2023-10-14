@@ -32,4 +32,16 @@ export type ILanguage = {
 		};
 		about: string;
 	};
+
+	calculator: {
+		title: string;
+	};
+
+	camera: {
+		title: string;
+	};
+
+	notes: {
+		title: string;
+	};
 };
