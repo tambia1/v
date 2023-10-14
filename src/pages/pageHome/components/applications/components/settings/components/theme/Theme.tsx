@@ -20,7 +20,7 @@ export const Theme = () => {
 
 	return (
 		<S.Theme>
-			<List.Title>{language.settings.theme.title}</List.Title>
+			<List.Section>{language.settings.theme.title}</List.Section>
 
 			<List>
 				<List.Cell onClick={handleOnClickLight}>

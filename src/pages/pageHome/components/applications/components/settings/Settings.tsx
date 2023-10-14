@@ -39,9 +39,9 @@ export const Settings = () => {
 
 	return (
 		<S.Settings>
-			<List.Title>
+			<List.Section>
 				<Text>{language.settings.apearance}</Text>
-			</List.Title>
+			</List.Section>
 
 			<List>
 				<List.Cell onClick={handleOnClickLanguage}>

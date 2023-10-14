@@ -16,6 +16,7 @@ export const fi: ILanguage = {
 		apearance: "Ulkomuoto",
 		language: {
 			title: "Kieli",
+			save: "Tallentaa",
 			english: "English",
 			finnish: "Finnish",
 		},

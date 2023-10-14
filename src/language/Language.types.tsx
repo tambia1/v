@@ -21,6 +21,7 @@ export type ILanguage = {
 		apearance: string;
 		language: {
 			title: string;
+			save: string;
 			english: string;
 			finnish: string;
 		};

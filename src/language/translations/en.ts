@@ -16,6 +16,7 @@ export const en: ILanguage = {
 		apearance: "Appearance",
 		language: {
 			title: "Language",
+			save: "Save",
 			english: "English",
 			finnish: "Finnish",
 		},
