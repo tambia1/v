@@ -26,19 +26,11 @@ export const Language = ({ children }: Props) => {
 	useEffect(() => {
 		const languageNameParam = searchParams.get("language") || "";
 
-		switch (languageNameParam) {
-			case languages.en.languageName:
-				setCurrentLanguage(languages.en);
-				break;
-
-			case languages.fi.languageName:
-				setCurrentLanguage(languages.fi);
-				break;
-
-			default:
-				searchParams.delete("language");
-				setSearchParams(searchParams, { replace: true });
-				break;
+		if (Object.keys(languages).includes(languageNameParam)) {
+			setCurrentLanguage(languages[languageNameParam as ILanguageName]);
+		} else {
+			searchParams.delete("language");
+			setSearchParams(searchParams, { replace: true });
 		}
 	}, [searchParams]);
 

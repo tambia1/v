@@ -1,9 +1,9 @@
 import { en } from "./translations/en";
 import { fi } from "./translations/fi";
 
-export type ILanguageName = "en" | "fi";
+export const languages = { en, fi };
 
-export const languages: { [key in ILanguageName]: ILanguage } = { en, fi };
+export type ILanguageName = keyof typeof languages;
 
 export type ILanguage = {
 	languageName: ILanguageName;
