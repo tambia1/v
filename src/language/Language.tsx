@@ -20,7 +20,7 @@ export const Language = ({ children }: Props) => {
 		setCurrentLanguage({ ...language });
 		searchParams.set("language", language.languageName);
 		setSearchParams(searchParams, { replace: true });
-		// setKey(key + 1);
+		setKey(key + 1);
 	};
 
 	useEffect(() => {
