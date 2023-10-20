@@ -120,7 +120,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 					</S.Back>
 					<S.Header>
 						{pagerItems.map((pagerItem) => (
-							<Item key={pagerItem.page.props.id} animationType={animtionType} animation={pagerItem.titleAnimation}>
+							<Item key={pagerItem.page.props.title} animationType={animtionType} animation={pagerItem.titleAnimation}>
 								<Text>{pagerItem.page.props.title}</Text>
 							</Item>
 						))}
