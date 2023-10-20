@@ -16,7 +16,7 @@ export const Applications = () => {
 	const pager = usePager();
 
 	const { theme, setTheme } = useTheme();
-	const { all } = useLanguage();
+	const { all, lang, getText } = useLanguage();
 
 	const handleOnChangeTheme = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);

@@ -4,6 +4,7 @@ export type GetTypeKeysAsArray<T, P extends string[] = []> = T extends object ? 
 export type GetObjectValues<T> = T extends object ? { [K in keyof T]: GetObjectValues<T[K]> }[keyof T] : T;
 export type GetTypeAsObject<T> = T extends object ? { [K in keyof T]: T[K] extends object ? GetTypeAsObject<T[K]> : K } : T;
 export type GetTypeAsObjectPath<T, P extends string = ""> = T extends object ? { [K in keyof T]: T[K] extends object ? GetTypeAsObjectPath<T[K], `${P}${K & string}.`> : `${P}${K & string}` } : never;
+export type GetTypeAsObjectArray<T, P extends string[] = []> = T extends object ? { [K in keyof T]: T[K] extends object ? GetTypeAsObjectArray<T[K], [...P, K & string]> : [...P, K & string] } : never;
 export type GetTypeByKey<U, T> = T extends keyof U ? U[T] : U extends string | number ? never : { [K in keyof U]: GetTypeByKey<U[K], T> }[keyof U];
 
 // // examples
@@ -37,9 +38,23 @@ export type GetTypeByKey<U, T> = T extends keyof U ? U[T] : U extends string | n
 // type bbb = GetTypeKeysPath<ILanguage>;
 // type bbb = "languageName" | "pageMenu.logout.alertText" | "pageMenu.logout.alertButtonYes" | "pageMenu.logout.alertButtonNo" | "settings.title" | "settings.apearance" | "settings.language" | "settings.theme" | "settings.about"
 // type bbb_1 = GetTypeAsObjectPath<ILanguage>;
+// type bbb_2 = GetTypeAsObjectArray<ILanguage>;
+// type bbb_2 = {
+//     languageName: ["languageName"];
+//     pageMenu: {
+//         logout: {
+//             alertText: ["pageMenu", "logout", "alertText"];
+//             alertButtonYes: ["pageMenu", "logout", "alertButtonYes"];
+//             alertButtonNo: ["pageMenu", "logout", "alertButtonNo"];
+//         };
+//     };
+// }
 
 // type bbb_1 = GetTypeKeysAsArray<ILanguage>;
 // // type bbb_1 = ["languageName"] | ["pageMenu", "logout", "alertText"] | ["pageMenu", "logout", "alertButtonYes"] | ["pageMenu", "logout", "alertButtonNo"]
+
+// type bbb_2 = GetTypeKeysAsArray<ILanguage>;
+// type bbb_1 = ["languageName"] | ["pageMenu", "logout", "alertText"] | ["pageMenu", "logout", "alertButtonYes"] | ["pageMenu", "logout", "alertButtonNo"]
 
 // type ccc = GetObjectValues<typeof language>;
 // // type ccc = "aaa" | "bbb" | "ccc" | "ddd"
