@@ -5,21 +5,21 @@ import settings from "./../../assets/settings.png";
 import camera from "./../../assets/camera.png";
 import notes from "./../../assets/notes.png";
 
-const Icons = {
+const appIcons = {
 	settings,
 	calculator,
 	camera,
 	notes,
 } as const;
 
-export type Icon = keyof typeof Icons;
+export type IAppIcon = keyof typeof appIcons;
 
-export const Image = styled.div<{ $icon: Icon }>`
+export const Image = styled.div<{ $appIcon: IAppIcon }>`
 	border-radius: 0.5rem;
 	width: 5rem;
 	height: 5rem;
 	flex-shrink: 0;
-	background-image: url(${({ $icon }) => Icons[$icon]});
+	background-image: url(${({ $appIcon }) => appIcons[$appIcon]});
 	background-size: contain;
 	background-repeat: no-repeat;
 `;
