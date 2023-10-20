@@ -31,7 +31,7 @@ export const Settings = () => {
 
 	const handleOnClickAbout = () => {
 		pager.pushPage(
-			<Pager.Page id="about" title={language.settings.about}>
+			<Pager.Page id="about" title={language.settings.about.title}>
 				<About />
 			</Pager.Page>
 		);
@@ -67,7 +67,7 @@ export const Settings = () => {
 						<Icon iconName="chevronRight" size="s" />
 					</List.Cell.Arrow>
 				</List.Cell>
-				<List.Cell onClick={handleOnClickAbout}>{language.settings.about}</List.Cell>
+				<List.Cell onClick={handleOnClickAbout}>{language.settings.about.title}</List.Cell>
 			</List>
 		</S.Settings>
 	);

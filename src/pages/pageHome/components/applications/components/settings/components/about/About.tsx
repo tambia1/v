@@ -1,10 +1,13 @@
+import { useLanguage } from "@src/language/hooks/UseLanguage";
 import * as S from "./About.styles";
 import { Text } from "@src/components/text/Text";
 
 export const About = () => {
+	const { language } = useLanguage();
+
 	return (
 		<S.About>
-			<Text size="l">About</Text>
+			<Text size="l">{language.settings.about.text}</Text>
 		</S.About>
 	);
 };

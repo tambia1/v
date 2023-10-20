@@ -1,4 +1,5 @@
 import { ILanguage } from "../Language.types";
+import { version } from "@src/../package.json";
 
 export const fi: ILanguage = {
 	languageName: "fi",
@@ -25,7 +26,10 @@ export const fi: ILanguage = {
 			light: "Valoa",
 			dark: "Tumma",
 		},
-		about: "Noin",
+		about: {
+			title: "Noin",
+			text: `App Version: ${version}`,
+		},
 	},
 
 	calculator: {

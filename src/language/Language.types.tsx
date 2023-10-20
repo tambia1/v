@@ -30,7 +30,10 @@ export type ILanguage = {
 			light: string;
 			dark: string;
 		};
-		about: string;
+		about: {
+			title: string;
+			text: string;
+		};
 	};
 
 	calculator: {
