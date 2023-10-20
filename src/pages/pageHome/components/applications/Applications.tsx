@@ -13,6 +13,7 @@ import { Pager } from "@src/components/pager/Pager";
 import { Settings } from "./components/settings/Settings";
 import { ReactElement } from "react";
 import { IAppIcon } from "./components/applicationButton/ApplicationButton.styles";
+import { Notes } from "./components/notes/Notes";
 
 interface IApp {
 	id: IAppId;
@@ -31,9 +32,9 @@ export const Applications = () => {
 
 	const apps: IApp[] = [
 		{ id: "settings", title: language.settings.title, icon: "settings", component: <Settings /> },
+		{ id: "notes", title: language.notes.title, icon: "notes", component: <Notes /> },
 		{ id: "calculator", title: language.calculator.title, icon: "calculator", component: <></> },
 		{ id: "camera", title: language.camera.title, icon: "camera", component: <></> },
-		{ id: "notes", title: language.notes.title, icon: "notes", component: <></> },
 	];
 
 	const handleOnChangeTheme = (switchState: SwitchState) => {
