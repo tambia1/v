@@ -1,8 +1,5 @@
 import { en } from "./translations/en";
 import { fi } from "./translations/fi";
-import { GetTypeAsObjectArray } from "@src/types/Types";
-
-export type ILang = GetTypeAsObjectArray<ILanguage>;
 
 export const languages = { en, fi };
 
