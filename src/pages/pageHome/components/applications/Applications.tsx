@@ -60,7 +60,7 @@ export const Applications = () => {
 			</S.Container>
 
 			<S.ThemeMode>
-				<Icon iconName="sun" color="red" />
+				<Icon iconName="sun" />
 				<Switch onChange={handleOnChangeTheme} state={theme.themeName === "light" ? "left" : "right"} />
 				<Icon iconName="moon" />
 			</S.ThemeMode>
