@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { LanguageContext } from "./UseLanguage";
 import { useSearchParams } from "react-router-dom";
 import { ILang, ILanguage, ILanguageName, languages } from "@src/language/Language.types";
-import { all } from "@src/language/translations/all";
+import { all } from "@src/language/languages/all";
 
 const defaultLanguageName: ILanguageName = import.meta.env.VITE_LANGUAGE || "en";
 const defaultLanguage: ILanguage = languages[defaultLanguageName];
@@ -10,24 +10,6 @@ const defaultLanguage: ILanguage = languages[defaultLanguageName];
 interface Props {
 	children: ReactNode;
 }
-
-export const lang: ILang = (function (language: ILanguage) {
-	const get = (v: string | { [key: string]: any }, str: string): {} | string => {
-		if (v instanceof Object) {
-			const obj: { [key: string]: {} } = {};
-
-			Object.keys(v).forEach((k) => {
-				obj[k] = get(v[k], str + "." + k);
-			});
-
-			return obj;
-		}
-
-		return str;
-	};
-
-	return get(language, "") as ILang;
-})(defaultLanguage);
 
 export const Language = ({ children }: Props) => {
 	const [language, setCurrentLanguage] = useState(defaultLanguage);
@@ -63,3 +45,21 @@ export const Language = ({ children }: Props) => {
 
 	return <LanguageContext.Provider value={{ all, language, lang, setLanguage, getText }}>{children}</LanguageContext.Provider>;
 };
+
+export const lang: ILang = (function (language: ILanguage) {
+	const get = (v: string | { [key: string]: any }, str: string): {} | string => {
+		if (v instanceof Object) {
+			const obj: { [key: string]: {} } = {};
+
+			Object.keys(v).forEach((k) => {
+				obj[k] = get(v[k], str + "." + k);
+			});
+
+			return obj;
+		}
+
+		return str;
+	};
+
+	return get(language, "") as ILang;
+})(defaultLanguage);

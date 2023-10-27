@@ -1,5 +1,5 @@
 import { ILang, ILanguage } from "@src/language/Language.types";
-import { all } from "@src/language/translations/all";
+import { all } from "@src/language/languages/all";
 import { createContext, useContext } from "react";
 
 interface Props {

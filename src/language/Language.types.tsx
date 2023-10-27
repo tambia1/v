@@ -1,5 +1,5 @@
-import { en } from "./translations/en";
-import { fi } from "./translations/fi";
+import { en } from "./languages/en";
+import { fi } from "./languages/fi";
 
 import { GetTypeAsObjectPath } from "@src/types/Types";
 
