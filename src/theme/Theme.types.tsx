@@ -1,9 +1,9 @@
 import { themeDark } from "./themes/ThemeDark";
 import { themeLight } from "./themes/ThemeLight";
 
-export const themes: { [key in ThemeName]: ITheme } = { light: themeLight, dark: themeDark };
+export const themes = { light: themeLight, dark: themeDark };
 
-export type ThemeName = "light" | "dark";
+export type IThemeName = keyof typeof themes;
 
 const colors = [
 	"transparent",
@@ -48,16 +48,13 @@ const colors = [
 	"errorFgDisabled",
 	"errorBgDisabled",
 ] as const;
-
 export type IColor = (typeof colors)[number];
-export const Colors = {} as { [K in IColor]: K };
 
 const sizes = ["xs", "s", "m", "l", "xl"] as const;
 export type ISize = (typeof sizes)[number];
-export const Sizes = {} as { [K in ISize]: K };
 
 export interface ITheme {
-	themeName: ThemeName;
+	themeName: IThemeName;
 	color: { [K in IColor]: string };
 	size: { [K in ISize]: string };
 }

@@ -1,10 +1,10 @@
-import { ITheme, ThemeName, themes } from "@src/theme/Theme.types";
+import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
 import { ReactNode, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { ThemeContext } from "./UseTheme";
 import { useSearchParams } from "react-router-dom";
 
-const themeName: ThemeName = import.meta.env.VITE_THEME || "light";
+const themeName: IThemeName = import.meta.env.VITE_THEME || "light";
 const defaultTheme = themes[themeName];
 
 interface Props {
