@@ -4,10 +4,10 @@ import { Pager } from "@src/components/pager/Pager";
 import { Language } from "./components/language/Language";
 import { Theme } from "./components/theme/Theme";
 import { List } from "@src/components/list/List";
-import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { About } from "./components/about/About";
 import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { Lang } from "@src/language/components/lang/Lang";
 
 export const Settings = () => {
 	const pager = usePager();
@@ -40,7 +40,7 @@ export const Settings = () => {
 	return (
 		<S.Settings>
 			<List.Section>
-				<Text>{lang.settings.apearance}</Text>
+				<Lang>{lang.settings.apearance}</Lang>
 			</List.Section>
 
 			<List>
@@ -49,7 +49,7 @@ export const Settings = () => {
 						<Icon iconName="globe" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{lang.settings.language.title}</Text>
+						<Lang>{lang.settings.language.title}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />
@@ -61,14 +61,14 @@ export const Settings = () => {
 						<Icon iconName="aperture" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{lang.settings.theme.title}</Text>
+						<Lang>{lang.settings.theme.title}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />
 					</List.Cell.Arrow>
 				</List.Cell>
 				<List.Cell onClick={handleOnClickAbout}>
-					<Text>{lang.settings.about.title}</Text>
+					<Lang>{lang.settings.about.title}</Lang>
 				</List.Cell>
 			</List>
 		</S.Settings>

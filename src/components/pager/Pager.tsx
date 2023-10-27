@@ -3,9 +3,9 @@ import * as S from "./Pager.styles";
 import { Item } from "./components/item/Item";
 import { PagerContext } from "./hooks/UsePager";
 import { IAnimationState, IAnimationType } from "./components/item/Item.styles";
-import { Text } from "../text/Text";
 import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
+import { Lang } from "@src/language/components/lang/Lang";
 
 interface Props {
 	children?: IPage;
@@ -121,7 +121,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 					<S.Header>
 						{pagerItems.map((pagerItem) => (
 							<Item key={pagerItem.page.props.title} animationType={animtionType} animation={pagerItem.titleAnimation}>
-								<Text>{pagerItem.page.props.title}</Text>
+								<Lang>{pagerItem.page.props.title}</Lang>
 							</Item>
 						))}
 					</S.Header>

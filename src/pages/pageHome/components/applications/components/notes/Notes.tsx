@@ -2,9 +2,9 @@ import * as S from "./Notes.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
 import { List } from "@src/components/list/List";
-import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { Lang } from "@src/language/components/lang/Lang";
 
 export const Notes = () => {
 	const pager = usePager();
@@ -21,7 +21,7 @@ export const Notes = () => {
 	return (
 		<S.Notes>
 			<List.Section>
-				<Text>{language.notes.title}</Text>
+				<Lang>{language.notes.title}</Lang>
 			</List.Section>
 
 			<List>
@@ -30,7 +30,7 @@ export const Notes = () => {
 						<Icon iconName="globe" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.language.title}</Text>
+						<Lang>{language.settings.language.title}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />

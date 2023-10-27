@@ -1,4 +1,4 @@
-import { Text } from "@src/components/text/Text";
+import { Lang } from "@src/language/components/lang/Lang";
 import { IAppId } from "../../Applications";
 import * as S from "./ApplicationButton.styles";
 
@@ -18,7 +18,7 @@ export const ApplicationButton = ({ id, title, icon, onClick }: Props) => {
 		>
 			<S.Image $appIcon={icon} />
 			<S.Title>
-				<Text>{title}</Text>
+				<Lang>{title}</Lang>
 			</S.Title>
 		</S.Container>
 	);

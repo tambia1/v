@@ -1,10 +1,10 @@
 import * as S from "./Theme.styles";
 import { List } from "@src/components/list/List";
-import { Text } from "@src/components/text/Text";
 import { Icon } from "@src/components/icon/Icon";
 import { useTheme } from "@src/theme/hooks/UseTheme";
 import { themes } from "@src/theme/Theme.types";
 import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { Lang } from "@src/language/components/lang/Lang";
 
 export const Theme = () => {
 	const { lang } = useLanguage();
@@ -21,7 +21,7 @@ export const Theme = () => {
 	return (
 		<S.Theme>
 			<List.Section>
-				<Text>{lang.settings.theme.title}</Text>
+				<Lang>{lang.settings.theme.title}</Lang>
 			</List.Section>
 
 			<List>
@@ -30,7 +30,7 @@ export const Theme = () => {
 						<Icon iconName="globe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{lang.settings.theme.light}</Text>
+						<Lang>{lang.settings.theme.light}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={theme.themeName === "light" ? "v" : ""} />
@@ -42,7 +42,7 @@ export const Theme = () => {
 						<Icon iconName="globe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{lang.settings.theme.dark}</Text>
+						<Lang>{lang.settings.theme.dark}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={theme.themeName === "dark" ? "v" : ""} />
