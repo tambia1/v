@@ -4,10 +4,10 @@ import { ApplicationButton } from "./components/applicationButton/ApplicationBut
 import { version } from "@src/../package.json";
 import { Icon } from "@src/components/icon/Icon";
 import { Switch } from "@src/components/switch/Switch";
-import { useTheme } from "@src/theme/hooks/UseTheme";
+import { useTheme } from "@src/theme/UseTheme";
 import { themes } from "@src/theme/Theme.types";
 import { SwitchState } from "@src/components/switch/Switch.styles";
-import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/UseLanguage";
 import { ApplicationContainer } from "./components/applicationContainer/ApplicationContainer";
 import { Pager } from "@src/components/pager/Pager";
 import { Settings } from "./components/settings/Settings";

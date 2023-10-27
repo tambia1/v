@@ -6,8 +6,8 @@ import { Theme } from "./components/theme/Theme";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
 import { About } from "./components/about/About";
-import { useLanguage } from "@src/language/hooks/UseLanguage";
-import { Lang } from "@src/language/components/lang/Lang";
+import { useLanguage } from "@src/language/UseLanguage";
+import { Lang } from "@src/language/Lang";
 
 export const Settings = () => {
 	const pager = usePager();

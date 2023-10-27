@@ -5,7 +5,7 @@ import { PagerContext } from "./hooks/UsePager";
 import { IAnimationState, IAnimationType } from "./components/item/Item.styles";
 import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
-import { Lang } from "@src/language/components/lang/Lang";
+import { Lang } from "@src/language/Lang";
 
 interface Props {
 	children?: IPage;

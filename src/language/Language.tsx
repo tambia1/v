@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
-import { LanguageContext } from "./hooks/UseLanguage";
+import { LanguageContext } from "./UseLanguage";
 import { useSearchParams } from "react-router-dom";
 import { ILang, ILanguage, ILanguageName, languages } from "@src/language/Language.types";
 import { all } from "@src/language/translations/all";

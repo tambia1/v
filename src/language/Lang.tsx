@@ -1,4 +1,4 @@
-import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/UseLanguage";
 
 interface Props {
 	children: string;

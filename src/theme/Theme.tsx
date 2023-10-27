@@ -1,7 +1,7 @@
 import { ITheme, ThemeName, themes } from "@src/theme/Theme.types";
 import { ReactNode, useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { ThemeContext } from "./hooks/UseTheme";
+import { ThemeContext } from "./UseTheme";
 import { useSearchParams } from "react-router-dom";
 
 const themeName: ThemeName = import.meta.env.VITE_THEME || "light";

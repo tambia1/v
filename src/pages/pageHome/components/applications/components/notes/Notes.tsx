@@ -3,8 +3,8 @@ import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
-import { useLanguage } from "@src/language/hooks/UseLanguage";
-import { Lang } from "@src/language/components/lang/Lang";
+import { useLanguage } from "@src/language/UseLanguage";
+import { Lang } from "@src/language/Lang";
 
 export const Notes = () => {
 	const pager = usePager();

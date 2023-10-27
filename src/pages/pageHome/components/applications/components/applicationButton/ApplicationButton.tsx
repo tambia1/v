@@ -1,4 +1,4 @@
-import { Lang } from "@src/language/components/lang/Lang";
+import { Lang } from "@src/language/Lang";
 import { IAppId } from "../../Applications";
 import * as S from "./ApplicationButton.styles";
 

@@ -2,9 +2,9 @@ import * as S from "./Language.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
 import { Flag } from "@src/components/flag/Flag";
-import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/UseLanguage";
 import { languages } from "@src/language/Language.types";
-import { Lang } from "@src/language/components/lang/Lang";
+import { Lang } from "@src/language/Lang";
 
 export const Language = () => {
 	const { lang, language, setLanguage } = useLanguage();

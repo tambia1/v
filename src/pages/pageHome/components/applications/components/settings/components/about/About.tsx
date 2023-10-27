@@ -1,4 +1,4 @@
-import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/UseLanguage";
 import * as S from "./About.styles";
 import { Text } from "@src/components/text/Text";
 

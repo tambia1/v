@@ -1,10 +1,10 @@
 import * as S from "./Theme.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
-import { useTheme } from "@src/theme/hooks/UseTheme";
+import { useTheme } from "@src/theme/UseTheme";
 import { themes } from "@src/theme/Theme.types";
-import { useLanguage } from "@src/language/hooks/UseLanguage";
-import { Lang } from "@src/language/components/lang/Lang";
+import { useLanguage } from "@src/language/UseLanguage";
+import { Lang } from "@src/language/Lang";
 
 export const Theme = () => {
 	const { lang } = useLanguage();
