@@ -9,7 +9,7 @@ import { Button } from "@src/components/button/Button";
 import { useState } from "react";
 
 export const Language = () => {
-	const { language, setLanguage } = useLanguage();
+	const { lang, language, setLanguage } = useLanguage();
 	const [selectedLanguage, setSelectedLanguage] = useState(language);
 
 	const handleOnClickSave = () => {
@@ -27,7 +27,7 @@ export const Language = () => {
 	return (
 		<S.Language>
 			<List.Section>
-				<Text>{language.settings.language.title}</Text>
+				<Text>{lang.settings.language.title}</Text>
 			</List.Section>
 
 			<List>
@@ -36,7 +36,7 @@ export const Language = () => {
 						<Flag flagName="greatBritain" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.language.english}</Text>
+						<Text>{lang.settings.language.english}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={selectedLanguage.languageName === "en" ? "v" : ""} />
@@ -48,7 +48,7 @@ export const Language = () => {
 						<Flag flagName="finland" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.language.finnish}</Text>
+						<Text>{lang.settings.language.finnish}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={selectedLanguage.languageName === "fi" ? "v" : ""} />
@@ -57,7 +57,9 @@ export const Language = () => {
 			</List>
 
 			<List.Section>
-				<Button onClick={handleOnClickSave}>{language.settings.language.save}</Button>
+				<Button onClick={handleOnClickSave}>
+					<Text>{lang.settings.language.save}</Text>
+				</Button>
 			</List.Section>
 		</S.Language>
 	);

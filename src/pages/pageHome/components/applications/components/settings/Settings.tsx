@@ -11,11 +11,11 @@ import { useLanguage } from "@src/language/hooks/UseLanguage";
 
 export const Settings = () => {
 	const pager = usePager();
-	const { language } = useLanguage();
+	const { lang } = useLanguage();
 
 	const handleOnClickLanguage = () => {
 		pager.pushPage(
-			<Pager.Page id="language" title={language.settings.language.title}>
+			<Pager.Page id="language" title={lang.settings.language.title}>
 				<Language />
 			</Pager.Page>
 		);
@@ -23,7 +23,7 @@ export const Settings = () => {
 
 	const handleOnClickTheme = () => {
 		pager.pushPage(
-			<Pager.Page id="theme" title={language.settings.theme.title}>
+			<Pager.Page id="theme" title={lang.settings.theme.title}>
 				<Theme />
 			</Pager.Page>
 		);
@@ -31,7 +31,7 @@ export const Settings = () => {
 
 	const handleOnClickAbout = () => {
 		pager.pushPage(
-			<Pager.Page id="about" title={language.settings.about.title}>
+			<Pager.Page id="about" title={lang.settings.about.title}>
 				<About />
 			</Pager.Page>
 		);
@@ -40,7 +40,7 @@ export const Settings = () => {
 	return (
 		<S.Settings>
 			<List.Section>
-				<Text>{language.settings.apearance}</Text>
+				<Text>{lang.settings.apearance}</Text>
 			</List.Section>
 
 			<List>
@@ -49,7 +49,7 @@ export const Settings = () => {
 						<Icon iconName="globe" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.language.title}</Text>
+						<Text>{lang.settings.language.title}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />
@@ -61,13 +61,15 @@ export const Settings = () => {
 						<Icon iconName="aperture" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.theme.title}</Text>
+						<Text>{lang.settings.theme.title}</Text>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="chevronRight" size="s" />
 					</List.Cell.Arrow>
 				</List.Cell>
-				<List.Cell onClick={handleOnClickAbout}>{language.settings.about.title}</List.Cell>
+				<List.Cell onClick={handleOnClickAbout}>
+					<Text>{lang.settings.about.title}</Text>
+				</List.Cell>
 			</List>
 		</S.Settings>
 	);

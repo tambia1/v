@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { LanguageContext } from "./hooks/UseLanguage";
 import { useSearchParams } from "react-router-dom";
-import { ILanguage, ILanguageName, languages } from "@src/language/Language.types";
+import { ILang, ILanguage, ILanguageName, languages } from "@src/language/Language.types";
 import { all } from "@src/language/translations/all";
 
 const defaultLanguageName: ILanguageName = import.meta.env.VITE_LANGUAGE || "en";
@@ -11,16 +11,43 @@ interface Props {
 	children: ReactNode;
 }
 
+export const lang: ILang = (function (language: ILanguage) {
+	const get = (v: string | { [key: string]: any }, str: string): {} | string => {
+		if (v instanceof Object) {
+			const obj: { [key: string]: {} } = {};
+
+			Object.keys(v).forEach((k) => {
+				obj[k] = get(v[k], str + "." + k);
+			});
+
+			return obj;
+		}
+
+		return str;
+	};
+
+	return get(language, "") as ILang;
+})(defaultLanguage);
+
 export const Language = ({ children }: Props) => {
 	const [language, setCurrentLanguage] = useState(defaultLanguage);
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [key, setKey] = useState(0);
 
 	const setLanguage = (language: ILanguage) => {
 		setCurrentLanguage({ ...language });
 		searchParams.set("language", language.languageName);
 		setSearchParams(searchParams, { replace: true });
-		setKey(key + 1);
+	};
+
+	const getText = (keys: string): string => {
+		let result: any = language;
+		let arr = keys.split(".");
+
+		for (let i = 1; i < arr.length; i++) {
+			result = result[arr[i]];
+		}
+
+		return result;
 	};
 
 	useEffect(() => {
@@ -34,9 +61,5 @@ export const Language = ({ children }: Props) => {
 		}
 	}, [searchParams]);
 
-	return (
-		<LanguageContext.Provider key={key} value={{ all, language, setLanguage }}>
-			{children}
-		</LanguageContext.Provider>
-	);
+	return <LanguageContext.Provider value={{ all, language, lang, setLanguage, getText }}>{children}</LanguageContext.Provider>;
 };

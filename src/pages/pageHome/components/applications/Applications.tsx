@@ -28,13 +28,13 @@ export const Applications = () => {
 	const pager = usePager();
 
 	const { theme, setTheme } = useTheme();
-	const { all, language } = useLanguage();
+	const { all, lang } = useLanguage();
 
 	const apps: IApp[] = [
-		{ id: "settings", title: language.settings.title, icon: "settings", component: <Settings /> },
-		{ id: "notes", title: language.notes.title, icon: "notes", component: <Notes /> },
-		{ id: "calculator", title: language.calculator.title, icon: "calculator", component: <></> },
-		{ id: "camera", title: language.camera.title, icon: "camera", component: <></> },
+		{ id: "settings", title: lang.settings.title, icon: "settings", component: <Settings /> },
+		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
+		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <></> },
+		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
 	];
 
 	const handleOnChangeTheme = (switchState: SwitchState) => {

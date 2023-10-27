@@ -3,11 +3,11 @@ import * as S from "./About.styles";
 import { Text } from "@src/components/text/Text";
 
 export const About = () => {
-	const { language } = useLanguage();
+	const { lang } = useLanguage();
 
 	return (
 		<S.About>
-			<Text size="l">{language.settings.about.text}</Text>
+			<Text size="l">{lang.settings.about.text}</Text>
 		</S.About>
 	);
 };
