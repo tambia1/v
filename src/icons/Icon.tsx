@@ -11,7 +11,7 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Icon = ({ className, iconName, size = "2.0rem", color = "currentcolor", ...rest }: Props) => {
 	return (
-		<S.Icon className={className} $size={size} color={color} {...rest}>
+		<S.Icon className={className} $size={size} $color={color} {...rest}>
 			<ReactSVG src={Icons[iconName]} />
 		</S.Icon>
 	);
