@@ -1,6 +1,6 @@
 import * as S from "./Language.styles";
 import { List } from "@src/components/list/List";
-import { Icon } from "@src/components/icon/Icon";
+import { Icon } from "@src/icons/Icon";
 import { Flag } from "@src/components/flag/Flag";
 import { useLanguage } from "@src/language/UseLanguage";
 import { languages } from "@src/language/Language.types";

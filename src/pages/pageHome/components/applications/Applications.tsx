@@ -2,7 +2,7 @@ import * as S from "./Applications.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { ApplicationButton } from "./components/applicationButton/ApplicationButton";
 import { version } from "@src/../package.json";
-import { Icon } from "@src/components/icon/Icon";
+import { Icon } from "@src/icons/Icon";
 import { Switch } from "@src/components/switch/Switch";
 import { useTheme } from "@src/theme/UseTheme";
 import { themes } from "@src/theme/Theme.types";
@@ -60,10 +60,11 @@ export const Applications = () => {
 			</S.Container>
 
 			<S.ThemeMode>
-				<Icon iconName="sun" />
+				<Icon iconName="sun" color="red" />
 				<Switch onChange={handleOnChangeTheme} state={theme.themeName === "light" ? "left" : "right"} />
 				<Icon iconName="moon" />
 			</S.ThemeMode>
+
 			<S.Version>{all.version.replace(/\{version\}/g, version)}</S.Version>
 		</S.Applications>
 	);

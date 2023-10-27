@@ -4,7 +4,7 @@ import { Pager } from "@src/components/pager/Pager";
 import { Language } from "./components/language/Language";
 import { Theme } from "./components/theme/Theme";
 import { List } from "@src/components/list/List";
-import { Icon } from "@src/components/icon/Icon";
+import { Icon } from "@src/icons/Icon";
 import { About } from "./components/about/About";
 import { useLanguage } from "@src/language/UseLanguage";
 import { Lang } from "@src/language/Lang";

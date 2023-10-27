@@ -3,7 +3,7 @@ import * as S from "./Pager.styles";
 import { Item } from "./components/item/Item";
 import { PagerContext } from "./hooks/UsePager";
 import { IAnimationState, IAnimationType } from "./components/item/Item.styles";
-import { Icon } from "../icon/Icon";
+import { Icon } from "../../icons/Icon";
 import { Page, IPage } from "./components/page/Page";
 import { Lang } from "@src/language/Lang";
 

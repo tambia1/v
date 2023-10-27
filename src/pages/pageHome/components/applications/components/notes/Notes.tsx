@@ -2,7 +2,7 @@ import * as S from "./Notes.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
 import { List } from "@src/components/list/List";
-import { Icon } from "@src/components/icon/Icon";
+import { Icon } from "@src/icons/Icon";
 import { useLanguage } from "@src/language/UseLanguage";
 import { Lang } from "@src/language/Lang";
 
