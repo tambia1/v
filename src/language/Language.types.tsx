@@ -49,6 +49,6 @@ export type ILanguage = {
 
 	notes: {
 		title: string;
-		folders: string;
+		notes: string;
 	};
 };

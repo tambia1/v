@@ -41,6 +41,6 @@ export const fi: ILanguage = {
 	},
 	notes: {
 		title: "Huomautuksia",
-		folders: "Kansiot",
+		notes: "Huomautuksia",
 	},
 };

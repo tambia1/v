@@ -7,50 +7,85 @@ import { Lang } from "@src/language/Lang";
 import { Icon } from "@src/icons/Icon";
 import { useState } from "react";
 
+const noteId = {
+	id: 0,
+
+	get getId() {
+		this.id++;
+		return this.id;
+	},
+};
+
+interface INote {
+	id: string;
+	title: string;
+	text: string;
+}
+
 export const Notes = () => {
 	const pager = usePager();
 	const { lang } = useLanguage();
-	const [notes, setNotes] = useState<{ [K in string]: string }>({
-		note_0: "hi 0",
-		note_1: "hi 1",
-		note_2: "hi 2",
-	});
+	const [notes, setNotes] = useState<{ [K in string]: INote }>({});
 
-	const handleOnClickAddFolder = () => {
+	const handleOnClickNote = (noteId: string) => {
+		const note = notes[noteId];
+
+		pager.pushPage(
+			<Pager.Page id={String(note.id)} title={note.title}>
+				<div>{note.text}</div>
+			</Pager.Page>
+		);
+	};
+
+	const handleOnClickAddNote = () => {
 		const newNotes = structuredClone(notes);
 
-		newNotes[`note_${Object.keys(notes).length}`] = `hi ${Object.keys(notes).length}`;
+		newNotes[noteId.getId] = {
+			id: String(noteId.id),
+			title: "Title",
+			text: "Text",
+		};
 
 		setNotes(newNotes);
 	};
 
-	const handleOnClickFolder = (note: string) => {
-		pager.pushPage(
-			<Pager.Page id={note} title={note}>
-				<div>{notes[note]}</div>
-			</Pager.Page>
-		);
+	const handleOnClickRemoveNote = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, noteId: string) => {
+		event.stopPropagation();
+
+		const newNotes = structuredClone(notes);
+
+		delete newNotes[noteId];
+
+		setNotes(newNotes);
 	};
 
 	return (
 		<S.Settings>
 			<List.Section>
-				<S.Folders>
-					<Lang>{lang.notes.folders}</Lang>
-					<Icon iconName="plusCircle" onClick={handleOnClickAddFolder} />
-				</S.Folders>
+				<S.CellGrid>
+					<Lang>{lang.notes.notes}</Lang>
+					<Icon iconName="plusCircle" onClick={handleOnClickAddNote} />
+				</S.CellGrid>
 			</List.Section>
 
 			<List>
 				{Object.keys(notes)
 					.sort()
-					.map((note) => (
+					.map((noteId) => (
 						<List.Cell
 							onClick={() => {
-								handleOnClickFolder(note);
+								handleOnClickNote(noteId);
 							}}
 						>
-							<Lang>{note}</Lang>
+							<S.CellGrid>
+								<Lang>{noteId}</Lang>
+								<Icon
+									iconName="minusCircle"
+									onClick={(e) => {
+										handleOnClickRemoveNote(e, noteId);
+									}}
+								/>
+							</S.CellGrid>
 						</List.Cell>
 					))}
 			</List>

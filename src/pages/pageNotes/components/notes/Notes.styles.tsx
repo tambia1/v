@@ -11,8 +11,8 @@ export const Settings = styled.div`
 	padding: 1rem;
 `;
 
-export const Folders = styled.div`
-	width: auto;
+export const CellGrid = styled.div`
+	width: 100%;
 	height: 100%;
 
 	display: grid;
