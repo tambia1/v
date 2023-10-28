@@ -7,4 +7,5 @@ export const Section = styled.div`
 	flex-direction: column;
 	margin-top: 2rem;
 	margin-bottom: 1rem;
+	max-width: 40rem;
 `;

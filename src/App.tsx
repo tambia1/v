@@ -6,6 +6,7 @@ import { Theme } from "@src/theme/Theme";
 import { GlobalStyle } from "@src/styles/globalStyles";
 import { Language } from "@src/language/Language";
 import { PageSettings } from "./pages/pageSettings/PageSettings";
+import { PageNotes } from "./pages/pageNotes/PageNotes";
 
 export const App = () => {
 	return (
@@ -17,6 +18,7 @@ export const App = () => {
 						<Route path={Pages.notFound} element={<PageNotFound />} />
 						<Route path={Pages.home} element={<PageHome />} />
 						<Route path={Pages.settings} element={<PageSettings />} />
+						<Route path={Pages.notes} element={<PageNotes />} />
 					</Routes>
 				</Language>
 			</Theme>

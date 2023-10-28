@@ -41,5 +41,6 @@ export const en: ILanguage = {
 	},
 	notes: {
 		title: "Notes",
+		folders: "Folders",
 	},
 };
