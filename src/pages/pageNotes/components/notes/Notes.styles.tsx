@@ -15,8 +15,10 @@ export const CellGrid = styled.div`
 	width: 100%;
 	height: 100%;
 
-	display: grid;
-	grid-template-columns: auto min-content;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 1rem;
 
 	& ${Icon}:hover {
 		color: ${(props) => props.theme.color.normalFgHover};

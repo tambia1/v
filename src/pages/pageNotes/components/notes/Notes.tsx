@@ -63,8 +63,8 @@ export const Notes = () => {
 		<S.Settings>
 			<List.Section>
 				<S.CellGrid>
-					<Lang>{lang.notes.notes}</Lang>
 					<Icon iconName="plusCircle" onClick={handleOnClickAddNote} />
+					<Lang>{lang.notes.notes}</Lang>
 				</S.CellGrid>
 			</List.Section>
 
@@ -73,18 +73,19 @@ export const Notes = () => {
 					.sort()
 					.map((noteId) => (
 						<List.Cell
+							key={noteId}
 							onClick={() => {
 								handleOnClickNote(noteId);
 							}}
 						>
 							<S.CellGrid>
-								<Lang>{noteId}</Lang>
 								<Icon
 									iconName="minusCircle"
 									onClick={(e) => {
 										handleOnClickRemoveNote(e, noteId);
 									}}
 								/>
+								<Lang>{noteId}</Lang>
 							</S.CellGrid>
 						</List.Cell>
 					))}
