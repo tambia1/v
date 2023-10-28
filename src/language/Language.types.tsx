@@ -1,8 +1,11 @@
-import { en } from "./translations/en";
-import { fi } from "./translations/fi";
+import { en } from "./languages/en";
+import { fi } from "./languages/fi";
+
+import { GetTypeAsObjectPath } from "@src/types/Types";
+
+export type ILang = GetTypeAsObjectPath<ILanguage, "....">;
 
 export const languages = { en, fi };
-
 export type ILanguageName = keyof typeof languages;
 
 export type ILanguage = {

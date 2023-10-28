@@ -1,33 +1,26 @@
 import * as S from "./Language.styles";
 import { List } from "@src/components/list/List";
-import { Text } from "@src/components/text/Text";
-import { Icon } from "@src/components/icon/Icon";
+import { Icon } from "@src/icons/Icon";
 import { Flag } from "@src/components/flag/Flag";
-import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/UseLanguage";
 import { languages } from "@src/language/Language.types";
-import { Button } from "@src/components/button/Button";
-import { useState } from "react";
+import { Lang } from "@src/language/Lang";
 
 export const Language = () => {
-	const { language, setLanguage } = useLanguage();
-	const [selectedLanguage, setSelectedLanguage] = useState(language);
-
-	const handleOnClickSave = () => {
-		setLanguage(languages[selectedLanguage.languageName]);
-	};
+	const { lang, language, setLanguage } = useLanguage();
 
 	const handleOnClickEnglish = () => {
-		setSelectedLanguage(languages.en);
+		setLanguage(languages.en);
 	};
 
 	const handleOnClickFinnish = () => {
-		setSelectedLanguage(languages.fi);
+		setLanguage(languages.fi);
 	};
 
 	return (
 		<S.Language>
 			<List.Section>
-				<Text>{language.settings.language.title}</Text>
+				<Lang>{lang.settings.language.title}</Lang>
 			</List.Section>
 
 			<List>
@@ -36,10 +29,10 @@ export const Language = () => {
 						<Flag flagName="greatBritain" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.language.english}</Text>
+						<Lang>{lang.settings.language.english}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={selectedLanguage.languageName === "en" ? "v" : ""} />
+						<Icon iconName={language.languageName === "en" ? "v" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
@@ -48,17 +41,13 @@ export const Language = () => {
 						<Flag flagName="finland" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Text>{language.settings.language.finnish}</Text>
+						<Lang>{lang.settings.language.finnish}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={selectedLanguage.languageName === "fi" ? "v" : ""} />
+						<Icon iconName={language.languageName === "fi" ? "v" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 			</List>
-
-			<List.Section>
-				<Button onClick={handleOnClickSave}>{language.settings.language.save}</Button>
-			</List.Section>
 		</S.Language>
 	);
 };

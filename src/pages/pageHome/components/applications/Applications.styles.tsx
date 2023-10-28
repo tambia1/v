@@ -29,10 +29,6 @@ export const ThemeMode = styled.div`
 	gap: 1rem;
 	align-items: center;
 	justify-content: center;
-
-	& svg {
-		stroke: ${(props) => props.theme.color.normalFg};
-	}
 `;
 
 export const Version = styled.div`

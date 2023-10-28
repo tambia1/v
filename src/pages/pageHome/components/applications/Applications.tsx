@@ -2,17 +2,18 @@ import * as S from "./Applications.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { ApplicationButton } from "./components/applicationButton/ApplicationButton";
 import { version } from "@src/../package.json";
-import { Icon } from "@src/components/icon/Icon";
+import { Icon } from "@src/icons/Icon";
 import { Switch } from "@src/components/switch/Switch";
-import { useTheme } from "@src/theme/hooks/UseTheme";
+import { useTheme } from "@src/theme/UseTheme";
 import { themes } from "@src/theme/Theme.types";
 import { SwitchState } from "@src/components/switch/Switch.styles";
-import { useLanguage } from "@src/language/hooks/UseLanguage";
+import { useLanguage } from "@src/language/UseLanguage";
 import { ApplicationContainer } from "./components/applicationContainer/ApplicationContainer";
 import { Pager } from "@src/components/pager/Pager";
 import { Settings } from "./components/settings/Settings";
 import { ReactElement } from "react";
 import { IAppIcon } from "./components/applicationButton/ApplicationButton.styles";
+import { Notes } from "./components/notes/Notes";
 
 interface IApp {
 	id: IAppId;
@@ -27,13 +28,13 @@ export const Applications = () => {
 	const pager = usePager();
 
 	const { theme, setTheme } = useTheme();
-	const { all, language } = useLanguage();
+	const { all, lang } = useLanguage();
 
 	const apps: IApp[] = [
-		{ id: "settings", title: language.settings.title, icon: "settings", component: <Settings /> },
-		{ id: "calculator", title: language.calculator.title, icon: "calculator", component: <></> },
-		{ id: "camera", title: language.camera.title, icon: "camera", component: <></> },
-		{ id: "notes", title: language.notes.title, icon: "notes", component: <></> },
+		{ id: "settings", title: lang.settings.title, icon: "settings", component: <Settings /> },
+		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
+		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <></> },
+		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
 	];
 
 	const handleOnChangeTheme = (switchState: SwitchState) => {
@@ -63,6 +64,7 @@ export const Applications = () => {
 				<Switch onChange={handleOnChangeTheme} state={theme.themeName === "light" ? "left" : "right"} />
 				<Icon iconName="moon" />
 			</S.ThemeMode>
+
 			<S.Version>{all.version.replace(/\{version\}/g, version)}</S.Version>
 		</S.Applications>
 	);

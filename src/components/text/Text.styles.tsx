@@ -1,7 +1,7 @@
-import { IColor, ISize } from "@src/theme/Theme.types";
+import { ITheme } from "@src/theme/Theme.types";
 import styled from "styled-components";
 
-const sizes: { [K in ISize]: string } = {
+const sizes: { [K in keyof ITheme["size"]]: string } = {
 	xs: "50%",
 	s: "80%",
 	m: "100%",
@@ -9,7 +9,7 @@ const sizes: { [K in ISize]: string } = {
 	xl: "150%",
 };
 
-export const Container = styled.div<{ $size?: ISize; $color?: IColor; $bgcolor?: IColor }>`
+export const Container = styled.div<{ $size?: keyof ITheme["size"]; $color?: keyof ITheme["color"]; $bgcolor?: keyof ITheme["color"] }>`
 	color: ${({ theme, $color }) => ($color ? theme.color[$color] : "inherit")};
 	background-color: ${({ theme, $bgcolor }) => ($bgcolor ? theme.color[$bgcolor] : "inherit")};
 	font-size: ${({ $size }) => sizes[$size || "m"]};
