@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import calculator from "./../../assets/calculator.png";
-import settings from "./../../assets/settings.png";
-import camera from "./../../assets/camera.png";
-import notes from "./../../assets/notes.png";
+import calculator from "./assets/calculator.png";
+import settings from "./assets/settings.png";
+import camera from "./assets/camera.png";
+import notes from "./assets/notes.png";
 
 const appIcons = {
 	settings,
@@ -24,7 +24,7 @@ export const Image = styled.div<{ $appIcon: IAppIcon }>`
 	background-repeat: no-repeat;
 `;
 
-export const Container = styled.div`
+export const AppButton = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: start;

@@ -111,7 +111,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 			<S.Pager>
 				<S.Headers>
 					<S.Back>
-						<S.BackContainer onClick={handleClose} $isVisible={pagerItems.length === 1}>
+						<S.BackContainer onClick={handleClose} $isVisible={onClose !== undefined && pagerItems.length === 1}>
 							<Icon iconName="x" size="l" />
 						</S.BackContainer>
 						<S.BackContainer onClick={handleBack} $isVisible={pagerItems.length > 1}>

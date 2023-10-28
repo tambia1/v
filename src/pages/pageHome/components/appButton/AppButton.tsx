@@ -1,6 +1,6 @@
 import { Lang } from "@src/language/Lang";
-import { IAppId } from "../../Applications";
-import * as S from "./ApplicationButton.styles";
+import * as S from "./AppButton.styles";
+import { IAppId } from "../../PageHome";
 
 interface Props {
 	id: IAppId;
@@ -9,9 +9,9 @@ interface Props {
 	onClick?: (id: IAppId) => void;
 }
 
-export const ApplicationButton = ({ id, title, icon, onClick }: Props) => {
+export const AppButton = ({ id, title, icon, onClick }: Props) => {
 	return (
-		<S.Container
+		<S.AppButton
 			onClick={() => {
 				onClick?.(id);
 			}}
@@ -20,6 +20,6 @@ export const ApplicationButton = ({ id, title, icon, onClick }: Props) => {
 			<S.Title>
 				<Lang>{title}</Lang>
 			</S.Title>
-		</S.Container>
+		</S.AppButton>
 	);
 };
