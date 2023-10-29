@@ -7,12 +7,12 @@ export const PageNotes = () => {
 	const { lang } = useLanguage();
 
 	return (
-		<S.PageSettings>
+		<S.PageNotes>
 			<Pager>
 				<Pager.Page id="notes" title={lang.notes.title}>
 					<Notes />
 				</Pager.Page>
 			</Pager>
-		</S.PageSettings>
+		</S.PageNotes>
 	);
 };

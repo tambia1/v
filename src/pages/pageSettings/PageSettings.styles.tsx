@@ -5,4 +5,15 @@ export const PageSettings = styled.div`
 	height: 100%;
 
 	display: flex;
+
+	animation: appear ease 0.3s both;
+
+	@keyframes appear {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
 `;
