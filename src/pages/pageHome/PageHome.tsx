@@ -28,7 +28,7 @@ export const PageHome = () => {
 	const apps: IApp[] = [
 		{ id: "settings", title: lang.settings.title, icon: "settings", url: Pages.settings },
 		{ id: "notes", title: lang.notes.title, icon: "notes", url: Pages.notes },
-		{ id: "calculator", title: lang.calculator.title, icon: "calculator", url: Pages.home },
+		{ id: "calculator", title: lang.calculator.title, icon: "calculator", url: Pages.calculator },
 		{ id: "camera", title: lang.camera.title, icon: "camera", url: Pages.home },
 	];
 

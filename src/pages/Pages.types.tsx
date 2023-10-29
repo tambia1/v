@@ -3,4 +3,5 @@ export const Pages = {
 	home: "/",
 	settings: "/settings",
 	notes: "/notes",
+	calculator: "/calculator",
 } as const;
