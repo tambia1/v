@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const PageCalculator = styled.div`
+export const Calculator = styled.div`
 	width: 100%;
 	height: 100%;
 

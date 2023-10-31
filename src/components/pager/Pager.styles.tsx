@@ -18,6 +18,7 @@ export const Headers = styled.div`
 	flex-shrink: 0;
 	align-items: center;
 	background-color: ${(props) => props.theme.color.normalBgActive};
+	z-index: 1;
 
 	& * {
 		height: 100%;

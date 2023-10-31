@@ -1,6 +1,6 @@
 import { Lang } from "@src/language/Lang";
 import * as S from "./AppButton.styles";
-import { IAppId } from "../../PageHome";
+import { IAppId } from "../../AppContainer";
 
 interface Props {
 	id: IAppId;

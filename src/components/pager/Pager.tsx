@@ -108,7 +108,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 	return (
 		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome }}>
-			<S.Pager>
+			<S.Pager data-items={pagerItems.length}>
 				<S.Headers>
 					<S.Back>
 						<S.BackContainer onClick={handleClose} $isVisible={onClose !== undefined && pagerItems.length === 1}>

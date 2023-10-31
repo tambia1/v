@@ -22,6 +22,8 @@ export const Image = styled.div<{ $appIcon: IAppIcon }>`
 	background-image: url(${({ $appIcon }) => appIcons[$appIcon]});
 	background-size: contain;
 	background-repeat: no-repeat;
+	box-shadow: 0px 0px 5px #00000066;
+	border-radius: 15px;
 `;
 
 export const AppButton = styled.div`
@@ -46,10 +48,6 @@ export const AppButton = styled.div`
 
 	&:active {
 		background-color: ${(props) => props.theme.color.normalBgActive};
-
-		${Image} {
-			opacity: 0.6;
-		}
 	}
 `;
 

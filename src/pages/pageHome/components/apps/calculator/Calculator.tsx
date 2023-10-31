@@ -1,7 +1,7 @@
 import { useState } from "react";
-import * as S from "./PageCalculator.styles";
+import * as S from "./Calculator.styles";
 
-export const PageCalculator = () => {
+export const Calculator = () => {
 	const [result, setResult] = useState(0);
 	const [number, setNumber] = useState("0");
 	const [action, setAction] = useState("+");
@@ -79,7 +79,7 @@ export const PageCalculator = () => {
 	};
 
 	return (
-		<S.PageCalculator>
+		<S.Calculator>
 			<S.ButtonsContainer>
 				<S.Result>{display}</S.Result>
 				<S.ButtonGrey
@@ -220,6 +220,6 @@ export const PageCalculator = () => {
 					=
 				</S.ButtonYellow>
 			</S.ButtonsContainer>
-		</S.PageCalculator>
+		</S.Calculator>
 	);
 };
