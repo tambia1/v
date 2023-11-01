@@ -10,12 +10,12 @@ import { Lang } from "@src/language/Lang";
 interface Props {
 	children?: IPage;
 	animtionType?: IAnimationType;
-	onPushStart?: (pagerItem?: IPagerItem) => void;
-	onPushEnd?: (pagerItem?: IPagerItem) => void;
-	onPopStart?: (pagerItem?: IPagerItem) => void;
-	onPopEnd?: (pagerItem?: IPagerItem) => void;
-	onBack?: () => void;
-	onClose?: () => void;
+	onPushStart?: ICallback;
+	onPushEnd?: ICallback;
+	onPopStart?: ICallback;
+	onPopEnd?: ICallback;
+	onBack?: ICallback;
+	onClose?: ICallback;
 }
 
 export interface IPagerItem {
@@ -24,8 +24,16 @@ export interface IPagerItem {
 	titleAnimation: IAnimationState;
 }
 
+export type ICallback = (pagerItem?: IPagerItem) => void;
+
 export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
+	const [listenersPushStart, setListenersPushStart] = useState<{ [K in string]: ICallback }>(onPushStart ? { pager: onPushStart } : {});
+	const [listenersPushEnd, setListenersPushEnd] = useState<{ [K in string]: ICallback }>(onPushEnd ? { pager: onPushEnd } : {});
+	const [listenersPopStart, setListenersPopStart] = useState<{ [K in string]: ICallback }>(onPopStart ? { pager: onPopStart } : {});
+	const [listenersPopEnd, setListenersPopEnd] = useState<{ [K in string]: ICallback }>(onPopEnd ? { pager: onPopEnd } : {});
+	const [listenersBack, setListenersBack] = useState<{ [K in string]: ICallback }>(onBack ? { pager: onBack } : {});
+	const [listenersClose, setListenersClose] = useState<{ [K in string]: ICallback }>(onClose ? { pager: onClose } : {});
 
 	const pushPage = (page: IPage) => {
 		setPagerItems((prevPages) => {
@@ -59,21 +67,21 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 	const onAnimationStart = (pagerItem: IPagerItem) => {
 		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			onPushStart?.(pagerItem);
+			Object.keys(listenersPushStart).forEach((k) => listenersPushStart[k](pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			onPopStart?.(pagerItem);
+			Object.keys(listenersPopStart).forEach((k) => listenersPopStart[k](pagerItem));
 		}
 	};
 
 	const onAnimationEnd = (pagerItem: IPagerItem) => {
 		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			onPushEnd?.(pagerItem);
+			Object.keys(listenersPushEnd).forEach((k) => listenersPushEnd[k](pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			onPopEnd?.(pagerItem);
+			Object.keys(listenersPopEnd).forEach((k) => listenersPopEnd[k](pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight") {
@@ -83,7 +91,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 	const handleBack = () => {
 		popPage();
-		onBack?.();
+		Object.keys(listenersBack).forEach((k) => listenersBack[k]());
 	};
 
 	const goHome = () => {
@@ -99,15 +107,52 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 			return newPages;
 		});
-		onBack?.();
+
+		Object.keys(listenersBack).forEach((k) => listenersBack[k]());
 	};
 
 	const handleClose = () => {
-		onClose?.();
+		Object.keys(listenersClose).forEach((k) => listenersClose[k]());
+	};
+
+	const listenToPushStart = (key: string, callback: ICallback) => {
+		if (!listenersPushStart[key]) {
+			setListenersPushStart({ ...listenersPushStart, [key]: callback });
+		}
+	};
+
+	const listenToPushEnd = (key: string, callback: ICallback) => {
+		if (!listenersPushStart[key]) {
+			setListenersPushEnd({ ...listenersPushEnd, [key]: callback });
+		}
+	};
+
+	const listenToPopStart = (key: string, callback: ICallback) => {
+		if (!listenersPushStart[key]) {
+			setListenersPopStart({ ...listenersPopStart, [key]: callback });
+		}
+	};
+
+	const listenToPopEnd = (key: string, callback: ICallback) => {
+		if (!listenersPushStart[key]) {
+			setListenersPopEnd({ ...listenersPopEnd, [key]: callback });
+		}
+	};
+
+	const listenToBack = (key: string, callback: ICallback) => {
+		if (!listenersPushStart[key]) {
+			setListenersBack({ ...listenersBack, [key]: callback });
+		}
+	};
+
+	const listenToClose = (key: string, callback: ICallback) => {
+		if (!listenersPushStart[key]) {
+			setListenersClose({ ...listenersClose, [key]: callback });
+		}
 	};
 
 	return (
-		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome }}>
+		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome, listenToPushStart, listenToPushEnd, listenToPopStart, listenToPopEnd, listenToBack, listenToClose }}>
 			<S.Pager data-items={pagerItems.length}>
 				<S.Headers>
 					<S.Back>

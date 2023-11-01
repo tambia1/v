@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import * as S from "./Notes.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
@@ -26,6 +27,16 @@ export const Notes = () => {
 	const pager = usePager();
 	const { lang } = useLanguage();
 	const [notes, setNotes] = useState<{ [K in string]: INote }>({});
+
+	useEffect(() => {
+		pager.listenToPushStart("aaa", () => {
+			console.log("AAA", pager.pages.length);
+		});
+
+		pager.listenToPushEnd("bbb", () => {
+			console.log("BBB", pager.pages.length);
+		});
+	}, []);
 
 	const handleOnClickNote = (noteId: string) => {
 		const note = notes[noteId];
