@@ -38,9 +38,7 @@ export const AppButton = styled.div`
 	overflow: hidden;
 	border-radius: 0.5rem;
 
-	& > * {
-		transition: all 0.3s ease;
-	}
+	transition: all 0.3s ease;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};

@@ -10,12 +10,12 @@ import { Lang } from "@src/language/Lang";
 interface Props {
 	children?: IPage;
 	animtionType?: IAnimationType;
-	onPushStart?: (pagerItem?: IPagerItem) => void;
-	onPushEnd?: (pagerItem?: IPagerItem) => void;
-	onPopStart?: (pagerItem?: IPagerItem) => void;
-	onPopEnd?: (pagerItem?: IPagerItem) => void;
-	onBack?: () => void;
-	onClose?: () => void;
+	onPushStart?: ICallback;
+	onPushEnd?: ICallback;
+	onPopStart?: ICallback;
+	onPopEnd?: ICallback;
+	onBack?: ICallback;
+	onClose?: ICallback;
 }
 
 export interface IPagerItem {
@@ -24,8 +24,19 @@ export interface IPagerItem {
 	titleAnimation: IAnimationState;
 }
 
+export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
+export type ICallback = (pagerItem?: IPagerItem) => void;
+
 export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
+	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
+		pushStart: onPushStart ? { pager: onPushStart } : {},
+		pushEnd: onPushEnd ? { pager: onPushEnd } : {},
+		popStart: onPopStart ? { pager: onPopStart } : {},
+		popEnd: onPopEnd ? { pager: onPopEnd } : {},
+		back: onBack ? { pager: onBack } : {},
+		close: onClose ? { pager: onClose } : {},
+	});
 
 	const pushPage = (page: IPage) => {
 		setPagerItems((prevPages) => {
@@ -59,21 +70,21 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 	const onAnimationStart = (pagerItem: IPagerItem) => {
 		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			onPushStart?.(pagerItem);
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			onPopStart?.(pagerItem);
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](pagerItem));
 		}
 	};
 
 	const onAnimationEnd = (pagerItem: IPagerItem) => {
 		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			onPushEnd?.(pagerItem);
+			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			onPopEnd?.(pagerItem);
+			Object.keys(listeners.popEnd).forEach((k) => listeners.popEnd[k](pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight") {
@@ -83,7 +94,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 	const handleBack = () => {
 		popPage();
-		onBack?.();
+		Object.keys(listeners.back).forEach((k) => listeners.back[k]());
 	};
 
 	const goHome = () => {
@@ -99,15 +110,30 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 			return newPages;
 		});
-		onBack?.();
+
+		Object.keys(listeners.back).forEach((k) => listeners.back[k]());
 	};
 
 	const handleClose = () => {
-		onClose?.();
+		Object.keys(listeners.close).forEach((k) => listeners.close[k]());
+	};
+
+	const addListener = (action: IAction, key: string, callback: ICallback) => {
+		if (!listeners[action][key]) {
+			setListeners({ ...listeners, [action]: { ...listeners[action], [key]: callback } });
+		}
+	};
+
+	const removeListener = (action: IAction, key: string) => {
+		if (listeners[action][key]) {
+			const newListeners = { ...listeners, [action]: { ...listeners[action] } };
+			delete newListeners[action][key];
+			setListeners(newListeners);
+		}
 	};
 
 	return (
-		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome }}>
+		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome, addListener, removeListener }}>
 			<S.Pager data-items={pagerItems.length}>
 				<S.Headers>
 					<S.Back>
