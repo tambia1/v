@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
 import { IPage } from "../components/page/Page";
-import { ICallback, IPagerItem } from "../Pager";
+import { IAction, ICallback, IPagerItem } from "../Pager";
 
 export const PagerContext = createContext<{
 	pages: IPagerItem[];
@@ -8,12 +8,8 @@ export const PagerContext = createContext<{
 	popPage: () => void;
 	goHome: () => void;
 
-	listenToPushStart: (key: string, callback: ICallback) => void;
-	listenToPushEnd: (key: string, callback: ICallback) => void;
-	listenToPopStart: (key: string, callback: ICallback) => void;
-	listenToPopEnd: (key: string, callback: ICallback) => void;
-	listenToBack: (key: string, callback: ICallback) => void;
-	listenToClose: (key: string, callback: ICallback) => void;
+	addListener: (action: IAction, key: string, callback: ICallback) => void;
+	removeListener: (action: IAction, key: string) => void;
 } | null>(null);
 
 export const usePager = () => {

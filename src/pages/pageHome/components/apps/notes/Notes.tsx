@@ -29,11 +29,11 @@ export const Notes = () => {
 	const [notes, setNotes] = useState<{ [K in string]: INote }>({});
 
 	useEffect(() => {
-		pager.listenToPushStart("aaa", () => {
+		pager.addListener("pushStart", "aaa", () => {
 			console.log("AAA", pager.pages.length);
 		});
 
-		pager.listenToPushEnd("bbb", () => {
+		pager.addListener("pushEnd", "bbb", () => {
 			console.log("BBB", pager.pages.length);
 		});
 	}, []);
