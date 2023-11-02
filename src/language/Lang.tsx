@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const Lang = ({ children }: Props) => {
-	const { language, getText } = useLanguage();
+	const { getText } = useLanguage();
 
-	return <span key={language.languageName}>{children.charAt(0) === "." ? getText(children) : children}</span>;
+	return <>{getText(children)}</>;
 };

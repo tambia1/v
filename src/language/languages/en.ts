@@ -12,6 +12,10 @@ export const en: ILanguage = {
 		},
 	},
 
+	home: {
+		title: "Applications",
+	},
+
 	settings: {
 		title: "Settings",
 		apearance: "Appearance",

@@ -19,6 +19,10 @@ export type ILanguage = {
 		};
 	};
 
+	home: {
+		title: string;
+	};
+
 	settings: {
 		title: string;
 		apearance: string;

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useEffect, useState, useCallback } from "react";
 import { LanguageContext } from "./UseLanguage";
 import { useSearchParams } from "react-router-dom";
 import { ILang, ILanguage, ILanguageName, languages } from "@src/language/Language.types";
@@ -21,16 +21,23 @@ export const Language = ({ children }: Props) => {
 		setSearchParams(searchParams, { replace: true });
 	};
 
-	const getText = (keys: string): string => {
-		let result: any = language;
-		let arr = keys.split(".");
+	const getText = useCallback(
+		(keys: string): string => {
+			if (keys.charAt(0) === ".") {
+				let result: any = language;
+				let arr = keys.split(".");
 
-		for (let i = 1; i < arr.length; i++) {
-			result = result[arr[i]];
-		}
+				for (let i = 1; i < arr.length; i++) {
+					result = result[arr[i]];
+				}
 
-		return result;
-	};
+				return result;
+			}
+
+			return keys;
+		},
+		[language]
+	);
 
 	useEffect(() => {
 		const languageNameParam = searchParams.get("language") || "";

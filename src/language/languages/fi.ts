@@ -12,6 +12,10 @@ export const fi: ILanguage = {
 		},
 	},
 
+	home: {
+		title: "Koti",
+	},
+
 	settings: {
 		title: "Asetukset",
 		apearance: "Ulkomuoto",
