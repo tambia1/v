@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import * as S from "./DropDown.styles";
 import { List } from "./components/list/List";
+import { Icon } from "@src/icons/Icon";
 
 interface Props {
 	children?: ReactNode;
@@ -16,7 +17,14 @@ export const DropDown = ({ children }: Props) => {
 	return (
 		<S.DropDown>
 			<DropDown.List>
-				<DropDown.List.Cell onClick={handleOnClickButton}>All</DropDown.List.Cell>
+				<DropDown.List.Cell onClick={handleOnClickButton}>
+					<DropDown.List.Cell.Text>All</DropDown.List.Cell.Text>
+					<DropDown.List.Cell.Arrow>
+						<S.ContainerIconArrow $isOpen={isOpen}>
+							<Icon iconName="iconChevronDown" />
+						</S.ContainerIconArrow>
+					</DropDown.List.Cell.Arrow>
+				</DropDown.List.Cell>
 			</DropDown.List>
 			<S.ListContainer $isOpen={isOpen}>
 				<DropDown.List>

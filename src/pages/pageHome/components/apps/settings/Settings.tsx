@@ -46,25 +46,25 @@ export const Settings = () => {
 			<List>
 				<List.Cell onClick={handleOnClickLanguage}>
 					<List.Cell.Image>
-						<Icon iconName="globe" size="s" />
+						<Icon iconName="iconGlobe" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Lang>{lang.settings.language.title}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName="chevronRight" size="s" />
+						<Icon iconName="iconChevronRight" size="s" />
 					</List.Cell.Arrow>
 				</List.Cell>
 
 				<List.Cell onClick={handleOnClickTheme}>
 					<List.Cell.Image>
-						<Icon iconName="aperture" size="s" />
+						<Icon iconName="iconAperture" size="s" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Lang>{lang.settings.theme.title}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName="chevronRight" size="s" />
+						<Icon iconName="iconChevronRight" size="s" />
 					</List.Cell.Arrow>
 				</List.Cell>
 				<List.Cell onClick={handleOnClickAbout}>

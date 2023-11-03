@@ -32,7 +32,7 @@ export const Language = () => {
 						<Lang>{lang.settings.language.english}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={language.languageName === "en" ? "v" : ""} />
+						<Icon iconName={language.languageName === "en" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
@@ -44,7 +44,7 @@ export const Language = () => {
 						<Lang>{lang.settings.language.finnish}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={language.languageName === "fi" ? "v" : ""} />
+						<Icon iconName={language.languageName === "fi" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 			</List>

@@ -61,9 +61,9 @@ export const AppContainer = () => {
 			</S.Container>
 
 			<S.ThemeMode>
-				<Icon iconName="sun" />
+				<Icon iconName="iconSun" />
 				<Switch onChange={handleOnChangeTheme} state={theme.themeName === "light" ? "left" : "right"} />
-				<Icon iconName="moon" />
+				<Icon iconName="iconMoon" />
 			</S.ThemeMode>
 
 			<S.Version>{all.version.replace(/\{version\}/g, version)}</S.Version>
