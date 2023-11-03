@@ -13,6 +13,7 @@ import { themes } from "@src/theme/Theme.types";
 import { Settings } from "../apps/settings/Settings";
 import { Notes } from "../apps/notes/Notes";
 import { Calculator } from "../apps/calculator/Calculator";
+import { DropDown } from "../apps/dropDown/DropDown";
 
 interface IApp {
 	id: IAppId;
@@ -38,7 +39,7 @@ export const AppContainer = () => {
 		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
 		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
-		{ id: "dropDown", title: lang.dropdown.title, icon: "photos", component: <></> },
+		{ id: "dropDown", title: lang.dropdown.title, icon: "photos", component: <DropDown /> },
 	];
 
 	const handleOnClickApplication = (appId: IAppId) => {
