@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DropDown = styled.div`
-	width: 15rem;
+	width: 20rem;
 `;
 
 export const ListContainer = styled.div<{ $isOpen: boolean }>`
