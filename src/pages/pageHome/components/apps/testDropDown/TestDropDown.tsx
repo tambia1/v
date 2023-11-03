@@ -4,7 +4,7 @@ import * as S from "./TestDropDown.styles";
 export const TestDropDown = () => {
 	return (
 		<S.TestDropDown>
-			<DropDown></DropDown>
+			<DropDown selectedItemIndex={1} items={["Item A", "Item B", "Item C"]} />
 		</S.TestDropDown>
 	);
 };
