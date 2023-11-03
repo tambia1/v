@@ -34,6 +34,14 @@ export const AppContainer = () => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
 	};
 
+	const handleSetThemeLight = () => {
+		setTheme(themes.light);
+	};
+
+	const handleSetThemeDark = () => {
+		setTheme(themes.dark);
+	};
+
 	const apps: IApp[] = [
 		{ id: "settings", title: lang.settings.title, icon: "settings", component: <Settings /> },
 		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
@@ -61,9 +69,9 @@ export const AppContainer = () => {
 			</S.Container>
 
 			<S.ThemeMode>
-				<Icon iconName="iconSun" />
+				<Icon iconName="iconSun" onClick={handleSetThemeLight} />
 				<Switch onChange={handleOnChangeTheme} state={theme.themeName === "light" ? "left" : "right"} />
-				<Icon iconName="iconMoon" />
+				<Icon iconName="iconMoon" onClick={handleSetThemeDark} />
 			</S.ThemeMode>
 
 			<S.Version>{all.version.replace(/\{version\}/g, version)}</S.Version>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Arrow = styled.div`
+export const CellLeft = styled.div`
 	width: 2rem;
 	height: 100%;
 	display: flex;

@@ -7,6 +7,9 @@ export const Calculator = styled.div`
 	display: flex;
 
 	background-color: #000000;
+
+	padding: 1rem;
+	box-sizing: border-box;
 `;
 
 export const ButtonsContainer = styled.div`

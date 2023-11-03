@@ -11,7 +11,7 @@ export const Content = styled.div`
 `;
 
 export const Line = styled.div`
-	height: 0px;
+	height: 0rem;
 	width: auto;
 	margin-left: 1rem;
 	margin-right: 1rem;
@@ -34,11 +34,11 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	border-radius: 0rem 0rem 0rem 0rem;
 
 	&:first-child {
-		border-radius: 1rem 1rem 0px 0px;
+		border-radius: 1rem 1rem 0rem 0rem;
 	}
 
 	&:last-child {
-		border-radius: 0px 0px 1rem 1rem;
+		border-radius: 0rem 0rem 1rem 1rem;
 	}
 
 	&:last-child ${Line} {

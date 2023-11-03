@@ -10,4 +10,7 @@ export const List = styled.div`
 	flex-shrink: 0;
 
 	overflow: auto;
+
+	box-shadow: 0 0 0.5rem 0 #00000033;
+	border-radius: 1rem;
 `;

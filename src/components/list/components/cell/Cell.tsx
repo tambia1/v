@@ -1,6 +1,6 @@
-import { Arrow } from "./components/arrow/Arrow";
-import { Image } from "./components/image/Image";
-import { Text } from "./components/text/Text";
+import { CellRight } from "./components/cellRight/CellRight";
+import { CellLeft } from "./components/cellLeft/CellLeft";
+import { CellCenter } from "./components/cellCenter/CellCenter";
 import * as S from "./Cell.styles";
 import { ReactNode, HTMLProps } from "react";
 
@@ -19,6 +19,6 @@ export const Cell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected,
 	);
 };
 
-Cell.Text = Text;
-Cell.Image = Image;
-Cell.Arrow = Arrow;
+Cell.Text = CellCenter;
+Cell.Image = CellLeft;
+Cell.Arrow = CellRight;

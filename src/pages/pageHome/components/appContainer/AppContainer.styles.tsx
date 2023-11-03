@@ -9,6 +9,9 @@ export const AppContainer = styled.div`
 
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};
+
+	padding: 1rem;
+	box-sizing: border-box;
 `;
 
 export const Container = styled.div`
@@ -16,7 +19,6 @@ export const Container = styled.div`
 	height: 100%;
 	display: flex;
 	gap: 0.5rem;
-	padding: 1rem;
 	color: ${(props) => props.theme.color.normalFg};
 	font-size: ${(props) => props.theme.size.l};
 `;

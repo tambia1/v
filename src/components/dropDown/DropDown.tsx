@@ -18,12 +18,12 @@ export const DropDown = ({ children }: Props) => {
 		<S.DropDown>
 			<DropDown.List>
 				<DropDown.List.Cell onClick={handleOnClickButton}>
-					<DropDown.List.Cell.Text>All</DropDown.List.Cell.Text>
-					<DropDown.List.Cell.Arrow>
+					<DropDown.List.Cell.CellCenter>All</DropDown.List.Cell.CellCenter>
+					<DropDown.List.Cell.CellRight>
 						<S.ContainerIconArrow $isOpen={isOpen}>
 							<Icon iconName="iconChevronDown" />
 						</S.ContainerIconArrow>
-					</DropDown.List.Cell.Arrow>
+					</DropDown.List.Cell.CellRight>
 				</DropDown.List.Cell>
 			</DropDown.List>
 			<S.ListContainer $isOpen={isOpen}>

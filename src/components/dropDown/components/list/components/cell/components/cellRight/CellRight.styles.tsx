@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const Text = styled.div`
-	width: 100%;
+export const CellRight = styled.div`
+	width: 2rem;
 	height: 100%;
 	display: flex;
 	align-items: center;
-	gap: 1rem;
+	flex-shrink: 0;
 `;
