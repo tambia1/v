@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DropDown = styled.div`
+export const TestDropDown = styled.div`
 	width: 100%;
 	height: 100%;
 
