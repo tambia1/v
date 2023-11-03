@@ -38,6 +38,7 @@ export const DropDown = ({ children, selectedIndex, onClickItem }: Props) => {
 				<List>
 					{children.map((item, index) => (
 						<List.Cell
+							key={index}
 							onClick={() => {
 								handleOnClickCell(index);
 							}}
