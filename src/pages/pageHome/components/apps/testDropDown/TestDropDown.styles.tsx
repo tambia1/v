@@ -5,6 +5,7 @@ export const TestDropDown = styled.div`
 	height: 100%;
 
 	display: flex;
+	flex-direction: column;
 
 	padding: 1rem;
 	box-sizing: border-box;

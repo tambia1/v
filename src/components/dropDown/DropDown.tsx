@@ -1,53 +1,54 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import * as S from "./DropDown.styles";
 import { List } from "./components/list/List";
 import { Icon } from "@src/icons/Icon";
+import { Item } from "./components/item/Item";
 
 interface Props {
-	items: string[];
-	selectedItemIndex: number;
+	children: ReactNode[];
+	selectedIndex: number;
+	onClickItem: (index: number) => void;
 }
 
-export const DropDown = ({ items, selectedItemIndex }: Props) => {
+export const DropDown = ({ children, selectedIndex, onClickItem }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [selectedIndex, setSelectedIndex] = useState(selectedItemIndex);
 
 	const handleOnClickButton = () => {
 		setIsOpen(!isOpen);
 	};
 
 	const handleOnClickCell = (index: number) => {
-		setSelectedIndex(index);
+		onClickItem(index);
 		setIsOpen(false);
 	};
 
 	return (
 		<S.DropDown>
-			<DropDown.List>
-				<DropDown.List.Cell onClick={handleOnClickButton}>
-					<DropDown.List.Cell.CellCenter>{items[selectedIndex]}</DropDown.List.Cell.CellCenter>
-					<DropDown.List.Cell.CellRight>
+			<List>
+				<List.Cell onClick={handleOnClickButton}>
+					<List.Cell.CellCenter>{children[selectedIndex]}</List.Cell.CellCenter>
+					<List.Cell.CellRight>
 						<S.ContainerIconArrow $isOpen={isOpen}>
 							<Icon iconName="iconChevronDown" />
 						</S.ContainerIconArrow>
-					</DropDown.List.Cell.CellRight>
-				</DropDown.List.Cell>
-			</DropDown.List>
+					</List.Cell.CellRight>
+				</List.Cell>
+			</List>
 			<S.ListContainer $isOpen={isOpen}>
-				<DropDown.List>
-					{items.map((item, index) => (
-						<DropDown.List.Cell
+				<List>
+					{children.map((item, index) => (
+						<List.Cell
 							onClick={() => {
 								handleOnClickCell(index);
 							}}
 						>
 							{item}
-						</DropDown.List.Cell>
+						</List.Cell>
 					))}
-				</DropDown.List>
+				</List>
 			</S.ListContainer>
 		</S.DropDown>
 	);
 };
 
-DropDown.List = List;
+DropDown.Item = Item;

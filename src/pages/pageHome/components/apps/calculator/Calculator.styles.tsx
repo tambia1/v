@@ -5,11 +5,12 @@ export const Calculator = styled.div`
 	height: 100%;
 
 	display: flex;
-
-	background-color: #000000;
+	flex-direction: column;
 
 	padding: 1rem;
 	box-sizing: border-box;
+
+	background-color: #000000;
 `;
 
 export const ButtonsContainer = styled.div`
