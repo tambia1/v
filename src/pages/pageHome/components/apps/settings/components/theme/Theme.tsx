@@ -27,25 +27,25 @@ export const Theme = () => {
 			<List>
 				<List.Cell onClick={handleOnClickLight}>
 					<List.Cell.Image>
-						<Icon iconName="globe" />
+						<Icon iconName="iconGlobe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Lang>{lang.settings.theme.light}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={theme.themeName === "light" ? "v" : ""} />
+						<Icon iconName={theme.themeName === "light" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
 				<List.Cell onClick={handleOnClickDark}>
 					<List.Cell.Image>
-						<Icon iconName="globe" />
+						<Icon iconName="iconGlobe" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Lang>{lang.settings.theme.dark}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={theme.themeName === "dark" ? "v" : ""} />
+						<Icon iconName={theme.themeName === "dark" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 			</List>

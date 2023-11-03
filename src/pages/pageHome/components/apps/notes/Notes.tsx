@@ -67,7 +67,7 @@ export const Notes = () => {
 		<S.Settings>
 			<List.Section>
 				<S.CellGrid>
-					<Icon iconName="plusCircle" onClick={handleOnClickAddNote} />
+					<Icon iconName="iconPlusCircle" onClick={handleOnClickAddNote} />
 					<Lang>{lang.notes.notes}</Lang>
 				</S.CellGrid>
 			</List.Section>
@@ -84,7 +84,7 @@ export const Notes = () => {
 						>
 							<S.CellGrid>
 								<Icon
-									iconName="minusCircle"
+									iconName="iconMinusCircle"
 									onClick={(e) => {
 										handleOnClickRemoveNote(e, noteId);
 									}}

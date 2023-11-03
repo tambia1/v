@@ -56,7 +56,7 @@ export type ILanguage = {
 		notes: string;
 	};
 
-	dropdown: {
+	testDropDown: {
 		title: string;
 		item0: string;
 		item1: string;

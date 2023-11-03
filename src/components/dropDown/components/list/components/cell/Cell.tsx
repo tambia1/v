@@ -19,6 +19,6 @@ export const Cell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected,
 	);
 };
 
-Cell.Text = CellCenter;
-Cell.Image = CellLeft;
-Cell.Arrow = CellRight;
+Cell.CellCenter = CellCenter;
+Cell.CellLeft = CellLeft;
+Cell.CellRight = CellRight;

@@ -47,8 +47,8 @@ export const en: ILanguage = {
 		title: "Notes",
 		notes: "Notes",
 	},
-	dropdown: {
-		title: "DropDown",
+	testDropDown: {
+		title: "T-DropDown",
 		item0: "Item 0",
 		item1: "Item 1",
 		item2: "Item 2",

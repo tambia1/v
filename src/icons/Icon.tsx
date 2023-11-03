@@ -1,10 +1,10 @@
 import * as S from "./Icon.styles";
 import { ReactSVG } from "react-svg";
-import { Icons, IconName } from "./Icon.types";
+import { Icons, IIconName } from "./Icon.types";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string | undefined;
-	iconName: IconName;
+	iconName: IIconName;
 	size?: string;
 	color?: string;
 }
