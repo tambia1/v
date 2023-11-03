@@ -6,6 +6,8 @@ import { useLanguage } from "@src/language/UseLanguage";
 import { Lang } from "@src/language/Lang";
 import { Icon } from "@src/icons/Icon";
 import { useState } from "react";
+import { NotesContent } from "./components/NotesContent/NotesContent";
+import { Text } from "@src/components/text/Text";
 
 const noteId = {
 	id: 0,
@@ -32,7 +34,9 @@ export const Notes = () => {
 
 		pager.pushPage(
 			<Pager.Page id={String(note.id)} title={note.title}>
-				<div>{note.text}</div>
+				<NotesContent>
+					<Text size="m">{note.text}</Text>
+				</NotesContent>
 			</Pager.Page>
 		);
 	};

@@ -47,4 +47,12 @@ export const fi: ILanguage = {
 		title: "Huomautuksia",
 		notes: "Huomautuksia",
 	},
+	dropdown: {
+		title: "DropDown",
+		item0: "Item 0",
+		item1: "Item 1",
+		item2: "Item 2",
+		item3: "Item 3",
+		item4: "Item 4",
+	},
 };

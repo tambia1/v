@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const About = styled.div`
+export const NotesContent = styled.div`
 	width: auto;
 	height: 100%;
 

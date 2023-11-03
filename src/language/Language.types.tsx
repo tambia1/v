@@ -55,4 +55,13 @@ export type ILanguage = {
 		title: string;
 		notes: string;
 	};
+
+	dropdown: {
+		title: string;
+		item0: string;
+		item1: string;
+		item2: string;
+		item3: string;
+		item4: string;
+	};
 };

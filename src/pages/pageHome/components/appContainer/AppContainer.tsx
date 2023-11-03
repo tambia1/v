@@ -21,7 +21,7 @@ interface IApp {
 	component: React.ReactElement;
 }
 
-export type IAppId = "settings" | "calculator" | "camera" | "notes";
+export type IAppId = "settings" | "calculator" | "camera" | "notes" | "dropDown";
 
 export const AppContainer = () => {
 	const { lang } = useLanguage();
@@ -38,6 +38,7 @@ export const AppContainer = () => {
 		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
 		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
+		{ id: "dropDown", title: lang.dropdown.title, icon: "photos", component: <></> },
 	];
 
 	const handleOnClickApplication = (appId: IAppId) => {
