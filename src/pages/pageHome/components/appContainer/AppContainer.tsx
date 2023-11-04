@@ -67,7 +67,7 @@ export const AppContainer = () => {
 		<S.AppContainer>
 			<S.Container>
 				{apps.map((app) => (
-					<AppButton key={app.title} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
+					<AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
 				))}
 			</S.Container>
 
