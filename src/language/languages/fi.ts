@@ -43,13 +43,27 @@ export const fi: ILanguage = {
 	camera: {
 		title: "Kamera",
 	},
+
 	notes: {
 		title: "Huomautuksia",
 		notes: "Huomautuksia",
 	},
+
+	tetris: {
+		title: "Tetris",
+	},
+
+	clashRoyale: {
+		title: "Clash Royale",
+		start: "ALKAA",
+		back: "TAKAISIN",
+		loading: "LADATAAN...",
+	},
+
 	test: {
 		title: "Test",
 	},
+
 	testDropDown: {
 		title: "T-DropDown",
 		item0: "Item 0",

@@ -56,6 +56,17 @@ export type ILanguage = {
 		notes: string;
 	};
 
+	tetris: {
+		title: string;
+	};
+
+	clashRoyale: {
+		title: string;
+		start: string;
+		back: string;
+		loading: string;
+	};
+
 	test: {
 		title: string;
 	};

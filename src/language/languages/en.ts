@@ -43,15 +43,29 @@ export const en: ILanguage = {
 	camera: {
 		title: "Camera",
 	},
+
 	notes: {
 		title: "Notes",
 		notes: "Notes",
 	},
+
+	tetris: {
+		title: "Tetris",
+	},
+
+	clashRoyale: {
+		title: "Clash Royale",
+		start: "START",
+		back: "BACK",
+		loading: "LOADING...",
+	},
+
 	test: {
 		title: "Test",
 	},
+
 	testDropDown: {
-		title: "T-DropDown",
+		title: "Test DropDown",
 		item0: "Item 0",
 		item1: "Item 1",
 		item2: "Item 2",
