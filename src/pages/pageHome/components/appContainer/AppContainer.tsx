@@ -15,6 +15,7 @@ import { Notes } from "../apps/notes/Notes";
 import { Calculator } from "../apps/calculator/Calculator";
 import { TestDropDown } from "../apps/testDropDown/TestDropDown";
 import { ClashRoyale } from "../apps/clashRoyale/ClashRoyale";
+import { Tetris } from "../apps/tetris/Tetris";
 
 interface IApp {
 	id: IAppId;
@@ -48,7 +49,7 @@ export const AppContainer = () => {
 		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
 		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
-		{ id: "tetris", title: lang.clashRoyale.title, icon: "tetris", component: <ClashRoyale /> },
+		{ id: "tetris", title: lang.tetris.title, icon: "tetris", component: <Tetris /> },
 		{ id: "clashRoyale", title: lang.clashRoyale.title, icon: "clashRoyale", component: <ClashRoyale /> },
 		{ id: "test", title: lang.test.title, icon: "weather", component: <></> },
 		{ id: "testDropDown", title: lang.testDropDown.title, icon: "photos", component: <TestDropDown /> },

@@ -1,0 +1,94 @@
+.board {
+	width: 15em;
+	height: 25em;
+}
+
+.control-buttons {
+	width: 8em;
+	height: 8em;
+}
+
+.next {
+	width: 4em;
+	height: 4em;
+}
+
+.mat {
+	display: inline-flex;
+	flex-direction: column;
+	position: relative;
+}
+
+.row {
+	display: inline-flex;
+	height: 100%;
+}
+
+.col {
+	display: inline-flex;
+	width: 100%;
+}
+
+.margin-0 {
+	margin: 0em;
+}
+
+.margin-left-0 {
+	margin-left: 0em;
+}
+
+.margin-right-0 {
+	margin-right: 0em;
+}
+
+.margin-top-0 {
+	margin-top: 0em;
+}
+
+.margin-bottom-0 {
+	margin-bottom: 0em;
+}
+
+.margin-1 {
+	margin: 0em;
+}
+
+.margin-left-1 {
+	margin-left: 1em;
+}
+
+.margin-right-1 {
+	margin-right: 1em;
+}
+
+.margin-top-1 {
+	margin-top: 1em;
+}
+
+.margin-bottom-1 {
+	margin-bottom: 1em;
+}
+
+.hor-align-center {
+	justify-content: center;
+}
+
+.hor-align-left {
+	justify-content: start;
+}
+
+.hor-align-right {
+	justify-content: end;
+}
+
+.ver-align-center {
+	align-items: center;
+}
+
+.ver-align-left {
+	align-items: start;
+}
+
+.ver-align-right {
+	align-items: end;
+}
