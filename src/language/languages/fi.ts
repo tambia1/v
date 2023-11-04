@@ -47,6 +47,9 @@ export const fi: ILanguage = {
 		title: "Huomautuksia",
 		notes: "Huomautuksia",
 	},
+	test: {
+		title: "Test",
+	},
 	testDropDown: {
 		title: "T-DropDown",
 		item0: "Item 0",

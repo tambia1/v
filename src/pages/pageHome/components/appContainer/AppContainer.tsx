@@ -22,7 +22,7 @@ interface IApp {
 	component: React.ReactElement;
 }
 
-export type IAppId = "settings" | "calculator" | "camera" | "notes" | "testDropDown" | "testTree" | "testTabs" | "testTable";
+export type IAppId = "settings" | "calculator" | "camera" | "notes" | "test" | "testDropDown" | "testTree" | "testTabs" | "testTable";
 
 export const AppContainer = () => {
 	const { lang } = useLanguage();
@@ -47,6 +47,7 @@ export const AppContainer = () => {
 		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
 		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
+		{ id: "test", title: lang.test.title, icon: "photos", component: <></> },
 		{ id: "testDropDown", title: lang.testDropDown.title, icon: "photos", component: <TestDropDown /> },
 		{ id: "testTree", title: lang.testDropDown.title, icon: "photos", component: <></> },
 		{ id: "testTabs", title: lang.testDropDown.title, icon: "photos", component: <></> },
