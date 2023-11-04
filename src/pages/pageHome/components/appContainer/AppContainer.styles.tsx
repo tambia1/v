@@ -17,7 +17,7 @@ export const AppContainer = styled.div`
 export const Container = styled.div`
 	width: 100%;
 	height: 100%;
-	display: flex;
+	display: block;
 	gap: 0.5rem;
 	color: ${(props) => props.theme.color.normalFg};
 	font-size: ${(props) => props.theme.size.l};

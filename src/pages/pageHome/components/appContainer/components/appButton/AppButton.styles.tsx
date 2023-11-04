@@ -29,7 +29,7 @@ export const Image = styled.div<{ $appIcon: IAppIcon }>`
 `;
 
 export const AppButton = styled.div`
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	justify-content: start;
 	flex-direction: column;
