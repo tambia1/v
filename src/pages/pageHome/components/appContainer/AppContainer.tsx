@@ -49,9 +49,6 @@ export const AppContainer = () => {
 		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
 		{ id: "test", title: lang.test.title, icon: "photos", component: <></> },
 		{ id: "testDropDown", title: lang.testDropDown.title, icon: "photos", component: <TestDropDown /> },
-		{ id: "testTree", title: lang.testDropDown.title, icon: "photos", component: <></> },
-		{ id: "testTabs", title: lang.testDropDown.title, icon: "photos", component: <></> },
-		{ id: "testTable", title: lang.testDropDown.title, icon: "photos", component: <></> },
 	];
 
 	const handleOnClickApplication = (appId: IAppId) => {
