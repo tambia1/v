@@ -47,7 +47,7 @@ export const AppContainer = () => {
 		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
 		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
-		{ id: "test", title: lang.test.title, icon: "photos", component: <></> },
+		{ id: "test", title: lang.test.title, icon: "weather", component: <></> },
 		{ id: "testDropDown", title: lang.testDropDown.title, icon: "photos", component: <TestDropDown /> },
 	];
 

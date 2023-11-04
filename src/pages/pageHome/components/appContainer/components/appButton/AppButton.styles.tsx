@@ -5,6 +5,7 @@ import settings from "./assets/settings.png";
 import camera from "./assets/camera.png";
 import notes from "./assets/notes.png";
 import photos from "./assets/photos.png";
+import weather from "./assets/weather.png";
 
 const appIcons = {
 	settings,
@@ -12,6 +13,7 @@ const appIcons = {
 	camera,
 	notes,
 	photos,
+	weather,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;
