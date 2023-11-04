@@ -1,8 +1,8 @@
 import * as S from "./Tetris.styles";
 import { useEffect, useState } from "react";
-import { TetrisState, useTetris } from "./tetris/hooks/UseTetris";
-import { TetrisGame } from "./tetris/TetrisGame";
-import { Button } from "./tetris/components/button/Button";
+import { TetrisState, useTetris } from "./tetrisGame/hooks/UseTetris";
+import { TetrisGame } from "./tetrisGame/TetrisGame";
+import { Button } from "./tetrisGame/components/button/Button";
 
 enum WarState {
 	Wait,
