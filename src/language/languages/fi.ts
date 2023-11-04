@@ -47,6 +47,12 @@ export const fi: ILanguage = {
 		title: "Huomautuksia",
 		notes: "Huomautuksia",
 	},
+	clashRoyale: {
+		title: "Clash Royale",
+		start: "ALKAA",
+		back: "TAKAISIN",
+		loading: "LADATAAN...",
+	},
 	test: {
 		title: "Test",
 	},

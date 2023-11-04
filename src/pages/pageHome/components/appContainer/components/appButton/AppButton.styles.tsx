@@ -6,6 +6,7 @@ import camera from "./assets/camera.png";
 import notes from "./assets/notes.png";
 import photos from "./assets/photos.png";
 import weather from "./assets/weather.png";
+import clashRoyale from "./assets/clashRoyale.webp";
 
 const appIcons = {
 	settings,
@@ -14,6 +15,7 @@ const appIcons = {
 	notes,
 	photos,
 	weather,
+	clashRoyale,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;
@@ -38,7 +40,7 @@ export const AppButton = styled.div`
 	gap: ${(props) => props.theme.size.xs};
 	padding: ${(props) => props.theme.size.xs};
 	width: 5rem;
-	height: 7rem;
+	height: 8rem;
 	overflow: hidden;
 	border-radius: 0.5rem;
 
@@ -55,5 +57,5 @@ export const AppButton = styled.div`
 
 export const Title = styled.div`
 	font-size: ${(props) => props.theme.size.s};
-	white-space: nowrap;
+	text-align: center;
 `;
