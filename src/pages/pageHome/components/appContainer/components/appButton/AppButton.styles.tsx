@@ -6,6 +6,7 @@ import camera from "./assets/camera.png";
 import notes from "./assets/notes.png";
 import photos from "./assets/photos.png";
 import weather from "./assets/weather.png";
+import tetris from "./assets/tetris.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 
 const appIcons = {
@@ -15,6 +16,7 @@ const appIcons = {
 	notes,
 	photos,
 	weather,
+	tetris,
 	clashRoyale,
 } as const;
 
