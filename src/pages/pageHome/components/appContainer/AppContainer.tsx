@@ -14,7 +14,6 @@ import { Settings } from "../apps/settings/Settings";
 import { Notes } from "../apps/notes/Notes";
 import { Calculator } from "../apps/calculator/Calculator";
 import { TestDropDown } from "../apps/testDropDown/TestDropDown";
-import { ClashRoyale } from "../apps/clashRoyale/ClashRoyale";
 import { Tetris } from "../apps/tetris/Tetris";
 
 interface IApp {
@@ -24,7 +23,7 @@ interface IApp {
 	component: React.ReactElement;
 }
 
-export type IAppId = "settings" | "calculator" | "camera" | "notes" | "tetris" | "clashRoyale" | "test" | "testDropDown" | "testTree" | "testTabs" | "testTable";
+export type IAppId = "settings" | "calculator" | "camera" | "notes" | "tetris" | "test" | "testDropDown" | "testTree" | "testTabs" | "testTable";
 
 export const AppContainer = () => {
 	const { lang } = useLanguage();
@@ -50,7 +49,6 @@ export const AppContainer = () => {
 		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
 		{ id: "tetris", title: lang.tetris.title, icon: "tetris", component: <Tetris /> },
-		{ id: "clashRoyale", title: lang.clashRoyale.title, icon: "clashRoyale", component: <ClashRoyale /> },
 		{ id: "test", title: lang.test.title, icon: "weather", component: <></> },
 		{ id: "testDropDown", title: lang.testDropDown.title, icon: "photos", component: <TestDropDown /> },
 	];
