@@ -74,8 +74,6 @@ export default defineConfig({
 				},
 
 				// manualChunks: (id) => {
-				// 	if (id.includes(".svg")) return "img";
-				// 	if (id.includes("apexcharts")) return "charts";
 				// 	if (id.includes("node_modules")) return "vendor";
 				// },
 			},
