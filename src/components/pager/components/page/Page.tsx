@@ -4,7 +4,7 @@ export type IPage = ReactElement<Props, typeof Page>;
 
 export interface Props {
 	id: string;
-	title: string;
+	title: ReactNode;
 	children: ReactNode;
 }
 

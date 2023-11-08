@@ -16,10 +16,11 @@ import { Calculator } from "../apps/calculator/Calculator";
 import { TestDropDown } from "../apps/testDropDown/TestDropDown";
 import { Tetris } from "../apps/tetris/Tetris";
 import { TestTable } from "../apps/testTable/TestTable";
+import { Lang } from "@src/language/Lang";
 
 interface IApp {
 	id: IAppId;
-	title: string;
+	title: React.ReactNode;
 	icon: IAppIcon;
 	component: React.ReactElement;
 }
@@ -45,14 +46,14 @@ export const AppContainer = () => {
 	};
 
 	const apps: IApp[] = [
-		{ id: "settings", title: lang.settings.title, icon: "settings", component: <Settings /> },
-		{ id: "notes", title: lang.notes.title, icon: "notes", component: <Notes /> },
-		{ id: "calculator", title: lang.calculator.title, icon: "calculator", component: <Calculator /> },
-		{ id: "camera", title: lang.camera.title, icon: "camera", component: <></> },
-		{ id: "tetris", title: lang.tetris.title, icon: "tetris", component: <Tetris /> },
-		{ id: "test", title: lang.test.title, icon: "weather", component: <></> },
-		{ id: "testDropDown", title: lang.testDropDown.title, icon: "photos", component: <TestDropDown /> },
-		{ id: "testTable", title: lang.testTable.title, icon: "photos", component: <TestTable /> },
+		{ id: "settings", title: <Lang>{lang.settings.title}</Lang>, icon: "settings", component: <Settings /> },
+		{ id: "notes", title: <Lang>{lang.notes.title}</Lang>, icon: "notes", component: <Notes /> },
+		{ id: "calculator", title: <Lang>{lang.calculator.title}</Lang>, icon: "calculator", component: <Calculator /> },
+		{ id: "camera", title: <Lang>{lang.camera.title}</Lang>, icon: "camera", component: <></> },
+		{ id: "tetris", title: <Lang>{lang.tetris.title}</Lang>, icon: "tetris", component: <Tetris /> },
+		{ id: "test", title: <Lang>{lang.test.title}</Lang>, icon: "weather", component: <></> },
+		{ id: "testDropDown", title: <Lang>{lang.testDropDown.title}</Lang>, icon: "photos", component: <TestDropDown /> },
+		{ id: "testTable", title: <Lang>{lang.testTable.title}</Lang>, icon: "photos", component: <TestTable /> },
 	];
 
 	const handleOnClickApplication = (appId: IAppId) => {
