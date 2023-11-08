@@ -23,6 +23,7 @@ export default defineConfig({
 				],
 			},
 		}),
+
 		checker({
 			typescript: true,
 		}),
@@ -51,6 +52,33 @@ export default defineConfig({
 			functions: 85,
 			branches: 85,
 			statements: 85,
+		},
+	},
+
+	build: {
+		rollupOptions: {
+			output: {
+				chunkFileNames: "assets/js/[name]-[hash].js",
+				entryFileNames: "assets/js/[name]-[hash].js",
+
+				assetFileNames: ({ name }) => {
+					if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? "")) {
+						return "assets/images/[name]-[hash][extname]";
+					}
+
+					if (/\.css$/.test(name ?? "")) {
+						return "assets/css/[name]-[hash][extname]";
+					}
+
+					return "assets/[name]-[hash][extname]";
+				},
+
+				// manualChunks: (id) => {
+				// 	if (id.includes(".svg")) return "img";
+				// 	if (id.includes("apexcharts")) return "charts";
+				// 	if (id.includes("node_modules")) return "vendor";
+				// },
+			},
 		},
 	},
 });
