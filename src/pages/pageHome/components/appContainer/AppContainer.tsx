@@ -15,6 +15,7 @@ import { Notes } from "../apps/notes/Notes";
 import { Calculator } from "../apps/calculator/Calculator";
 import { TestDropDown } from "../apps/testDropDown/TestDropDown";
 import { Tetris } from "../apps/tetris/Tetris";
+import { TestTable } from "../apps/testTable/TestTable";
 
 interface IApp {
 	id: IAppId;
@@ -51,6 +52,7 @@ export const AppContainer = () => {
 		{ id: "tetris", title: lang.tetris.title, icon: "tetris", component: <Tetris /> },
 		{ id: "test", title: lang.test.title, icon: "weather", component: <></> },
 		{ id: "testDropDown", title: lang.testDropDown.title, icon: "photos", component: <TestDropDown /> },
+		{ id: "testTable", title: lang.testTable.title, icon: "photos", component: <TestTable /> },
 	];
 
 	const handleOnClickApplication = (appId: IAppId) => {

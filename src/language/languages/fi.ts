@@ -72,4 +72,8 @@ export const fi: ILanguage = {
 		item3: "Item 3",
 		item4: "Item 4",
 	},
+
+	testTable: {
+		title: "Test Table",
+	},
 };
