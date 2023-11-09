@@ -2,10 +2,11 @@ import { useLanguage } from "@src/language/UseLanguage";
 
 interface Props {
 	children: string;
+	replacer?: (str: string) => string;
 }
 
-export const Lang = ({ children }: Props) => {
+export const Lang = ({ children, replacer }: Props) => {
 	const { getText } = useLanguage();
 
-	return <>{getText(children)}</>;
+	return <>{!replacer ? getText(children) : replacer(getText(children))}</>;
 };

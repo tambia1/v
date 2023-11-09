@@ -14,6 +14,7 @@ export const fi: ILanguage = {
 
 	home: {
 		title: "Koti",
+		version: "Versio: {version}",
 	},
 
 	settings: {
@@ -65,7 +66,7 @@ export const fi: ILanguage = {
 	},
 
 	testDropDown: {
-		title: "T-DropDown",
+		title: "Test DropDown",
 		item0: "Item 0",
 		item1: "Item 1",
 		item2: "Item 2",

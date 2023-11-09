@@ -1,6 +1,5 @@
 import { en } from "./languages/en";
 import { fi } from "./languages/fi";
-
 import { GetTypeAsObjectPath } from "@src/types/Types";
 
 export type ILang = GetTypeAsObjectPath<ILanguage, ".">;
@@ -21,6 +20,7 @@ export type ILanguage = {
 
 	home: {
 		title: string;
+		version: string;
 	};
 
 	settings: {

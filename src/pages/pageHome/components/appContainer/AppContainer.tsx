@@ -31,7 +31,6 @@ export const AppContainer = () => {
 	const { lang } = useLanguage();
 	const pager = usePager();
 	const { theme, setTheme } = useTheme();
-	const { all } = useLanguage();
 
 	const handleOnChangeTheme = (switchState: SwitchState) => {
 		setTheme(switchState === "left" ? themes.light : themes.dark);
@@ -80,7 +79,9 @@ export const AppContainer = () => {
 				<Icon iconName="iconMoon" onClick={handleSetThemeDark} />
 			</S.ThemeMode>
 
-			<S.Version>{all.version.replace(/\{version\}/g, version)}</S.Version>
+			<S.Version>
+				<Lang replacer={(str: string) => str.replace(/\{version\}/g, version)}>{lang.home.version}</Lang>
+			</S.Version>
 		</S.AppContainer>
 	);
 };

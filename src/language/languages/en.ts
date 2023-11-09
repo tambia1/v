@@ -14,6 +14,7 @@ export const en: ILanguage = {
 
 	home: {
 		title: "Applications",
+		version: "Version: {version}",
 	},
 
 	settings: {
