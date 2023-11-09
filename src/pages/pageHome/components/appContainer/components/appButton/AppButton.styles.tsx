@@ -60,4 +60,5 @@ export const AppButton = styled.div`
 export const Title = styled.div`
 	font-size: ${(props) => props.theme.size.s};
 	text-align: center;
+	word-break: normal;
 `;

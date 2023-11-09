@@ -15,7 +15,7 @@ export const Settings = () => {
 
 	const handleOnClickLanguage = () => {
 		pager.pushPage(
-			<Pager.Page id="language" title={lang.settings.language.title}>
+			<Pager.Page id="language" title={<Lang>{lang.settings.language.title}</Lang>}>
 				<Language />
 			</Pager.Page>
 		);
@@ -23,7 +23,7 @@ export const Settings = () => {
 
 	const handleOnClickTheme = () => {
 		pager.pushPage(
-			<Pager.Page id="theme" title={lang.settings.theme.title}>
+			<Pager.Page id="theme" title={<Lang>{lang.settings.theme.title}</Lang>}>
 				<Theme />
 			</Pager.Page>
 		);
@@ -31,7 +31,7 @@ export const Settings = () => {
 
 	const handleOnClickAbout = () => {
 		pager.pushPage(
-			<Pager.Page id="about" title={lang.settings.about.title}>
+			<Pager.Page id="about" title={<Lang>{lang.settings.about.title}</Lang>}>
 				<About />
 			</Pager.Page>
 		);

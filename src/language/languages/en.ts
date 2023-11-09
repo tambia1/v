@@ -14,6 +14,7 @@ export const en: ILanguage = {
 
 	home: {
 		title: "Applications",
+		version: "Version: {version}",
 	},
 
 	settings: {
@@ -71,5 +72,9 @@ export const en: ILanguage = {
 		item2: "Item 2",
 		item3: "Item 3",
 		item4: "Item 4",
+	},
+
+	testTable: {
+		title: "Test Table",
 	},
 };

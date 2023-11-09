@@ -2,7 +2,6 @@ import { ReactNode, useEffect, useState, useCallback } from "react";
 import { LanguageContext } from "./UseLanguage";
 import { useSearchParams } from "react-router-dom";
 import { ILang, ILanguage, ILanguageName, languages } from "@src/language/Language.types";
-import { all } from "@src/language/languages/all";
 
 const defaultLanguageName: ILanguageName = import.meta.env.VITE_LANGUAGE || "en";
 const defaultLanguage: ILanguage = languages[defaultLanguageName];
@@ -23,18 +22,14 @@ export const Language = ({ children }: Props) => {
 
 	const getText = useCallback(
 		(keys: string): string => {
-			if (keys.charAt(0) === ".") {
-				let result: any = language;
-				let arr = keys.split(".");
+			let result: any = language;
+			let arr = keys.split(".");
 
-				for (let i = 1; i < arr.length; i++) {
-					result = result[arr[i]];
-				}
-
-				return result;
+			for (let i = 1; i < arr.length; i++) {
+				result = result[arr[i]];
 			}
 
-			return keys;
+			return result instanceof Object ? keys : result;
 		},
 		[language]
 	);
@@ -50,7 +45,7 @@ export const Language = ({ children }: Props) => {
 		}
 	}, [searchParams]);
 
-	return <LanguageContext.Provider value={{ all, language, lang, setLanguage, getText }}>{children}</LanguageContext.Provider>;
+	return <LanguageContext.Provider value={{ language, lang, setLanguage, getText }}>{children}</LanguageContext.Provider>;
 };
 
 export const lang: ILang = (function (language: ILanguage) {
@@ -68,5 +63,5 @@ export const lang: ILang = (function (language: ILanguage) {
 		return str;
 	};
 
-	return get(language, "") as ILang;
+	return get(language, "lang") as ILang;
 })(defaultLanguage);
