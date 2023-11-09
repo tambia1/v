@@ -13,20 +13,22 @@ interface Props {
 export const Table = ({ data }: Props) => {
 	return (
 		<S.Table>
-			<S.TableCols>
-				{data.cols.map((col) => (
-					<S.TableCol>{col}</S.TableCol>
-				))}
-			</S.TableCols>
-			<S.TableRows>
-				{data.rows.map((row) => (
-					<S.TableRow>
-						{row.map((cell) => (
-							<S.TableCell>{cell}</S.TableCell>
-						))}
-					</S.TableRow>
-				))}
-			</S.TableRows>
+			<S.TableContainer>
+				<S.TableCols>
+					{data.cols.map((col) => (
+						<S.TableCol>{col}</S.TableCol>
+					))}
+				</S.TableCols>
+				<S.TableRows>
+					{data.rows.map((row) => (
+						<S.TableRow>
+							{row.map((cell) => (
+								<S.TableCell>{cell}</S.TableCell>
+							))}
+						</S.TableRow>
+					))}
+				</S.TableRows>
+			</S.TableContainer>
 		</S.Table>
 	);
 };
