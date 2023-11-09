@@ -52,7 +52,7 @@ export const Language = ({ children }: Props) => {
 	return <LanguageContext.Provider value={{ language, lang, setLanguage, getText }}>{children}</LanguageContext.Provider>;
 };
 
-export const lang: ILang = (function (language: ILanguage) {
+export const lang: ILanguage = (function (language: ILanguage) {
 	const get = (v: string | { [key: string]: any }, str: string): {} | string => {
 		if (v instanceof Object) {
 			const obj: { [key: string]: {} } = {};
@@ -67,5 +67,5 @@ export const lang: ILang = (function (language: ILanguage) {
 		return str;
 	};
 
-	return get(language, "") as ILang;
+	return get(language, "lang") as ILanguage;
 })(defaultLanguage);

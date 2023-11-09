@@ -1,8 +1,8 @@
-import { ILang, ILanguage } from "@src/language/Language.types";
+import { ILanguage } from "@src/language/Language.types";
 import { createContext, useContext } from "react";
 
 interface Props {
-	lang: ILang;
+	lang: ILanguage;
 	language: ILanguage;
 	setLanguage: (language: ILanguage) => void;
 	getText: (key: string) => string;
