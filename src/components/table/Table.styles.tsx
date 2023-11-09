@@ -29,4 +29,5 @@ export const TableRow = styled.tr`
 
 export const TableCell = styled.td`
 	white-space: nowrap;
+	font-weight: normal;
 `;
