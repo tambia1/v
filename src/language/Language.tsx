@@ -22,18 +22,14 @@ export const Language = ({ children }: Props) => {
 
 	const getText = useCallback(
 		(keys: string): string => {
-			if (keys.charAt(0) === ".") {
-				let result: any = language;
-				let arr = keys.split(".");
+			let result: any = language;
+			let arr = keys.split(".");
 
-				for (let i = 1; i < arr.length; i++) {
-					result = result[arr[i]];
-				}
-
-				return result;
+			for (let i = 1; i < arr.length; i++) {
+				result = result[arr[i]];
 			}
 
-			return keys;
+			return result;
 		},
 		[language]
 	);
@@ -52,7 +48,7 @@ export const Language = ({ children }: Props) => {
 	return <LanguageContext.Provider value={{ language, lang, setLanguage, getText }}>{children}</LanguageContext.Provider>;
 };
 
-export const lang: ILanguage = (function (language: ILanguage) {
+export const lang: ILang = (function (language: ILanguage) {
 	const get = (v: string | { [key: string]: any }, str: string): {} | string => {
 		if (v instanceof Object) {
 			const obj: { [key: string]: {} } = {};
@@ -67,5 +63,5 @@ export const lang: ILanguage = (function (language: ILanguage) {
 		return str;
 	};
 
-	return get(language, "lang") as ILanguage;
+	return get(language, "lang") as ILang;
 })(defaultLanguage);
