@@ -29,7 +29,7 @@ export const Language = ({ children }: Props) => {
 				result = result[arr[i]];
 			}
 
-			return result;
+			return result instanceof Object ? keys : result;
 		},
 		[language]
 	);
