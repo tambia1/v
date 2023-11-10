@@ -1,5 +1,5 @@
+import { IAppId } from "../../PageHome";
 import * as S from "./AppButton.styles";
-import { IAppId } from "../../AppContainer";
 import { ReactNode } from "react";
 
 interface Props {
