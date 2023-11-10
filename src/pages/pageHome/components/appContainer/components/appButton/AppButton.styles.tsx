@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import calculator from "./assets/calculator.png";
 import settings from "./assets/settings.png";
 import camera from "./assets/camera.png";

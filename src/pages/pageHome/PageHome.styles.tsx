@@ -6,6 +6,7 @@ export const Applications = styled.div`
 	height: 100%;
 
 	display: flex;
+	flex-direction: column;
 
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};

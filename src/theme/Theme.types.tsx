@@ -8,6 +8,7 @@ export interface ITheme {
 
 	color: {
 		transparent: string;
+
 		normalFg: string;
 		normalBg: string;
 		normalFgHover: string;
@@ -18,6 +19,7 @@ export interface ITheme {
 		normalBgSelected: string;
 		normalFgDisabled: string;
 		normalBgDisabled: string;
+
 		accentFg: string;
 		accentBg: string;
 		accentFgHover: string;
@@ -28,6 +30,7 @@ export interface ITheme {
 		accentBgSelected: string;
 		accentFgDisabled: string;
 		accentBgDisabled: string;
+
 		successFg: string;
 		successBg: string;
 		successFgHover: string;
@@ -38,6 +41,7 @@ export interface ITheme {
 		successBgSelected: string;
 		successFgDisabled: string;
 		successBgDisabled: string;
+
 		errorFg: string;
 		errorBg: string;
 		errorFgHover: string;

@@ -5,6 +5,7 @@ export const AppContainer = styled.div`
 	height: 100%;
 
 	display: flex;
+	flex-direction: column;
 	position: relative;
 
 	color: ${(props) => props.theme.color.normalFg};
@@ -40,4 +41,37 @@ export const Version = styled.div`
 	left: 1rem;
 	margin: 1rem;
 	color: ${(props) => props.theme.color.normalFg};
+`;
+
+export const TabBar = styled.div`
+	overflow: hidden;
+	background-color: #e4eefa;
+	position: relative;
+	width: 100%;
+	height: 5rem;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	background-color: #e4eefa;
+	z-index: 1;
+`;
+
+export const TabBarButton = styled.div`
+	position: absolute;
+	width: 4rem;
+	height: 4rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 1rem;
+	border-radius: 1rem;
+	color: ${(props) => props.theme.color.accentFg};
+	background-color: ${(props) => props.theme.color.accentBg};
+	cursor: pointer;
+	transition: all 0.3s ease;
+
+	&:active {
+		color: ${(props) => props.theme.color.accentFgActive};
+		background-color: ${(props) => props.theme.color.accentBgActive};
+	}
 `;

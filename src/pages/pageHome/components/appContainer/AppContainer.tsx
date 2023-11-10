@@ -65,6 +65,8 @@ export const AppContainer = () => {
 		);
 	};
 
+	const handleClose = () => {};
+
 	return (
 		<S.AppContainer>
 			<S.Container>
@@ -82,6 +84,12 @@ export const AppContainer = () => {
 			<S.Version>
 				<Lang replacer={(str: string) => str.replace(/\{version\}/g, version)}>{lang.home.version}</Lang>
 			</S.Version>
+
+			<S.TabBar>
+				<S.TabBarButton onClick={handleClose}>
+					<Icon iconName="iconCircle" size={theme.size.l} />
+				</S.TabBarButton>
+			</S.TabBar>
 		</S.AppContainer>
 	);
 };

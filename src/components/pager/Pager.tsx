@@ -5,6 +5,7 @@ import { PagerContext } from "./hooks/UsePager";
 import { IAnimationState, IAnimationType } from "./components/item/Item.styles";
 import { Icon } from "../../icons/Icon";
 import { Page, IPage } from "./components/page/Page";
+import { useTheme } from "@src/theme/UseTheme";
 
 interface Props {
 	children?: IPage;
@@ -27,6 +28,7 @@ export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" |
 export type ICallback = (pagerItem?: IPagerItem) => void;
 
 export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
+	const { theme } = useTheme();
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
 	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
 		pushStart: onPushStart ? { pager: onPushStart } : {},
@@ -137,10 +139,10 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 				<S.Headers>
 					<S.Back>
 						<S.BackContainer onClick={handleClose} $isVisible={onClose !== undefined && pagerItems.length === 1}>
-							<Icon iconName="iconX" size="l" />
+							<Icon iconName="iconX" size={theme.size.l} />
 						</S.BackContainer>
 						<S.BackContainer onClick={handleBack} $isVisible={pagerItems.length > 1}>
-							<Icon iconName="iconChevronLeft" size="l" />
+							<Icon iconName="iconChevronLeft" size={theme.size.l} />
 						</S.BackContainer>
 					</S.Back>
 					<S.Header>

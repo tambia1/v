@@ -8,10 +8,12 @@ import { Icon } from "@src/icons/Icon";
 import { About } from "./components/about/About";
 import { useLanguage } from "@src/language/UseLanguage";
 import { Lang } from "@src/language/Lang";
+import { useTheme } from "@src/theme/UseTheme";
 
 export const Settings = () => {
 	const pager = usePager();
 	const { lang } = useLanguage();
+	const { theme } = useTheme();
 
 	const handleOnClickLanguage = () => {
 		pager.pushPage(
@@ -46,25 +48,25 @@ export const Settings = () => {
 			<List>
 				<List.Cell onClick={handleOnClickLanguage}>
 					<List.Cell.Image>
-						<Icon iconName="iconGlobe" size="s" />
+						<Icon iconName="iconGlobe" size={theme.size.m} />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Lang>{lang.settings.language.title}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName="iconChevronRight" size="s" />
+						<Icon iconName="iconChevronRight" size={theme.size.m} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
 				<List.Cell onClick={handleOnClickTheme}>
 					<List.Cell.Image>
-						<Icon iconName="iconAperture" size="s" />
+						<Icon iconName="iconAperture" size={theme.size.m} />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<Lang>{lang.settings.theme.title}</Lang>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName="iconChevronRight" size="s" />
+						<Icon iconName="iconChevronRight" size={theme.size.m} />
 					</List.Cell.Arrow>
 				</List.Cell>
 				<List.Cell onClick={handleOnClickAbout}>
