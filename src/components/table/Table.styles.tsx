@@ -28,8 +28,15 @@ export const TableRow = styled.tr`
 	border-bottom: 1px solid ${({ theme }) => theme.color.accentBg};
 `;
 
-export const TableCell = styled.td`
+export const TableCellData = styled.td`
 	white-space: nowrap;
 	font-weight: normal;
 	width: 50%;
+`;
+
+export const TableCellHead = styled.td`
+	white-space: nowrap;
+	font-weight: normal;
+	width: 50%;
+	font-weight: bold;
 `;
