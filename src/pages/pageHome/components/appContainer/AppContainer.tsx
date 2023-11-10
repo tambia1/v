@@ -75,20 +75,22 @@ export const AppContainer = () => {
 				))}
 			</S.Container>
 
-			<S.ThemeMode>
-				<Icon iconName="iconSun" onClick={handleSetThemeLight} />
-				<Switch onChange={handleOnChangeTheme} state={theme.themeName === "light" ? "left" : "right"} />
-				<Icon iconName="iconMoon" onClick={handleSetThemeDark} />
-			</S.ThemeMode>
-
-			<S.Version>
-				<Lang replacer={(str: string) => str.replace(/\{version\}/g, version)}>{lang.home.version}</Lang>
-			</S.Version>
-
 			<S.TabBar>
 				<S.TabBarButton onClick={handleClose}>
 					<Icon iconName="iconCircle" size={theme.size.l} />
 				</S.TabBarButton>
+
+				<S.TabBarSeparator />
+
+				<S.Version>
+					<Lang replacer={(str: string) => str.replace(/\{version\}/g, version)}>{lang.home.version}</Lang>
+				</S.Version>
+
+				<S.ThemeMode>
+					<Icon iconName="iconSun" onClick={handleSetThemeLight} />
+					<Switch onChange={handleOnChangeTheme} state={theme.themeName === "light" ? "left" : "right"} />
+					<Icon iconName="iconMoon" onClick={handleSetThemeDark} />
+				</S.ThemeMode>
 			</S.TabBar>
 		</S.AppContainer>
 	);

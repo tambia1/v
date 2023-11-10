@@ -25,21 +25,21 @@ export const Container = styled.div`
 `;
 
 export const ThemeMode = styled.div`
-	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
 	margin: 1rem;
 	display: flex;
+	flex-shrink: 0;
 	gap: 1rem;
 	align-items: center;
 	justify-content: center;
 `;
 
 export const Version = styled.div`
-	position: absolute;
 	bottom: 1rem;
 	left: 1rem;
 	margin: 1rem;
+	flex-shrink: 0;
 	color: ${(props) => props.theme.color.normalFg};
 `;
 
@@ -57,10 +57,10 @@ export const TabBar = styled.div`
 `;
 
 export const TabBarButton = styled.div`
-	position: absolute;
 	width: 4rem;
 	height: 4rem;
 	display: flex;
+	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
 	margin-left: 1rem;
@@ -74,4 +74,9 @@ export const TabBarButton = styled.div`
 		color: ${(props) => props.theme.color.accentFgActive};
 		background-color: ${(props) => props.theme.color.accentBgActive};
 	}
+`;
+
+export const TabBarSeparator = styled.div`
+	width: 100%;
+	height: 100%;
 `;
