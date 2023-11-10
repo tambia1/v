@@ -48,6 +48,8 @@ export const themeDark: ITheme = {
 		errorBgSelected: "#e48481",
 		errorFgDisabled: "#959595",
 		errorBgDisabled: "#c12e2a",
+
+		shadow: "#ffffff66",
 	},
 
 	size: {

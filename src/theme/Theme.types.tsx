@@ -52,6 +52,8 @@ export interface ITheme {
 		errorBgSelected: string;
 		errorFgDisabled: string;
 		errorBgDisabled: string;
+
+		shadow: string;
 	};
 
 	size: {
