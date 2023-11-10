@@ -33,7 +33,7 @@ export const Image = styled.div<{ $appIcon: IAppIcon }>`
 	border-radius: 15px;
 `;
 
-export const AppButton = styled.div`
+export const Button = styled.div`
 	display: inline-flex;
 	align-items: center;
 	justify-content: start;
@@ -59,5 +59,5 @@ export const AppButton = styled.div`
 export const Title = styled.div`
 	font-size: ${(props) => props.theme.size.s};
 	text-align: center;
-	word-break: normal;
+	word-break: break-word;
 `;
