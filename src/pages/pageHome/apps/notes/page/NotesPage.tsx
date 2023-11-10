@@ -1,4 +1,4 @@
-import * as S from "./Notes.styles";
+import * as S from "./NotesPage.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
 import { List } from "@src/components/list/List";
@@ -24,7 +24,7 @@ interface INote {
 	text: string;
 }
 
-export const Notes = () => {
+export const NotesPage = () => {
 	const pager = usePager();
 	const { lang } = useLanguage();
 	const [notes, setNotes] = useState<{ [K in string]: INote }>({});
@@ -64,7 +64,7 @@ export const Notes = () => {
 	};
 
 	return (
-		<S.Settings>
+		<S.NotesPage>
 			<List.Section>
 				<S.CellGrid>
 					<Icon iconName="iconPlusCircle" onClick={handleOnClickAddNote} />
@@ -94,6 +94,6 @@ export const Notes = () => {
 						</List.Cell>
 					))}
 			</List>
-		</S.Settings>
+		</S.NotesPage>
 	);
 };

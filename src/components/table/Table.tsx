@@ -19,15 +19,17 @@ export const Table = ({ data, type }: Props) => {
 			{type === "movable" && (
 				<S.TableContainer>
 					<S.TableCols>
-						{data.cols.map((col) => (
-							<S.TableCol>{col}</S.TableCol>
-						))}
+						<S.TableRow>
+							{data.cols.map((col, i) => (
+								<S.TableCol key={i}>{col}</S.TableCol>
+							))}
+						</S.TableRow>
 					</S.TableCols>
 					<S.TableRows>
-						{data.rows.map((row) => (
-							<S.TableRow>
-								{row.map((cell) => (
-									<S.TableCellData>{cell}</S.TableCellData>
+						{data.rows.map((row, i) => (
+							<S.TableRow key={i}>
+								{row.map((cell, i) => (
+									<S.TableCellData key={i}>{cell}</S.TableCellData>
 								))}
 							</S.TableRow>
 						))}
@@ -37,11 +39,11 @@ export const Table = ({ data, type }: Props) => {
 
 			{type === "transformed" && (
 				<>
-					{data.rows.map((row) => (
-						<S.TableContainer>
+					{data.rows.map((row, i) => (
+						<S.TableContainer key={i}>
 							<S.TableRows>
 								{data.cols.map((col, i) => (
-									<S.TableRow>
+									<S.TableRow key={i}>
 										<S.TableCellHead>{col}</S.TableCellHead>
 										<S.TableCellData>{row[i]}</S.TableCellData>
 									</S.TableRow>

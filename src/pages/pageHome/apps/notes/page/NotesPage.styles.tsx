@@ -1,8 +1,7 @@
-import { Headers } from "@src/components/pager/Pager.styles";
 import { Icon } from "@src/icons/Icon.styles";
 import styled from "styled-components";
 
-export const Settings = styled.div`
+export const NotesPage = styled.div`
 	width: auto;
 	height: 100%;
 
@@ -11,10 +10,6 @@ export const Settings = styled.div`
 
 	padding: 1rem;
 	box-sizing: border-box;
-
-	& ${Headers} {
-		background-color: #fbdc4a;
-	}
 `;
 
 export const CellGrid = styled.div`

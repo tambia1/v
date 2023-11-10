@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Settings = styled.div`
+export const SettingsPage = styled.div`
 	width: auto;
 	height: 100%;
 

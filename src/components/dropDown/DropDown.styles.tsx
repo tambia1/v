@@ -6,7 +6,7 @@ export const DropDown = styled.div`
 `;
 
 export const ListContainer = styled.div<{ $isOpen: boolean }>`
-	margin-top: 0.1rem;
+	margin-top: 0.5rem;
 	display: grid;
 	grid-template-rows: ${({ $isOpen }) => ($isOpen ? "1fr" : "0fr")};
 	opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};

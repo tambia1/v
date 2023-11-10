@@ -17,7 +17,7 @@ export const themeDark: ITheme = {
 		normalBgDisabled: "#3e3e3e",
 
 		accentFg: "#ffffff",
-		accentBg: "#337ab7",
+		accentBg: "#676767",
 		accentFgHover: "#ffffff",
 		accentBgHover: "#296293",
 		accentFgActive: "#ffffff",
@@ -48,6 +48,8 @@ export const themeDark: ITheme = {
 		errorBgSelected: "#e48481",
 		errorFgDisabled: "#959595",
 		errorBgDisabled: "#c12e2a",
+
+		shadow: "#ffffff66",
 	},
 
 	size: {

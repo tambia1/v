@@ -1,5 +1,5 @@
-import * as S from "./AppButton.styles";
-import { IAppId } from "../../AppContainer";
+import { IAppId } from "../../PageHome";
+import * as S from "./Button.styles";
 import { ReactNode } from "react";
 
 interface Props {
@@ -9,15 +9,15 @@ interface Props {
 	onClick?: (id: IAppId) => void;
 }
 
-export const AppButton = ({ id, title, icon, onClick }: Props) => {
+export const Button = ({ id, title, icon, onClick }: Props) => {
 	return (
-		<S.AppButton
+		<S.Button
 			onClick={() => {
 				onClick?.(id);
 			}}
 		>
 			<S.Image $appIcon={icon} />
 			<S.Title>{title}</S.Title>
-		</S.AppButton>
+		</S.Button>
 	);
 };
