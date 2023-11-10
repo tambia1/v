@@ -10,3 +10,10 @@ export const TestTable = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 `;
+
+export const TableContainer = styled.div`
+	margin-top: 1rem;
+	width: 100%;
+	max-height: 50rem;
+	display: grid;
+`;

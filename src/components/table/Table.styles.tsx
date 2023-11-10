@@ -12,6 +12,7 @@ export const TableContainer = styled.table`
 	border-collapse: collapse;
 	color: ${({ theme }) => theme.color.normalFg};
 	background-color: ${({ theme }) => theme.color.normalBg};
+	border: 2px solid ${({ theme }) => theme.color.accentBg};
 `;
 
 export const TableCols = styled.thead`
@@ -30,4 +31,5 @@ export const TableRow = styled.tr`
 export const TableCell = styled.td`
 	white-space: nowrap;
 	font-weight: normal;
+	width: 50%;
 `;
