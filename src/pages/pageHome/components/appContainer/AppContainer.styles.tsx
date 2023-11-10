@@ -45,14 +45,13 @@ export const Version = styled.div`
 
 export const TabBar = styled.div`
 	overflow: hidden;
-	background-color: #e4eefa;
 	position: relative;
 	width: 100%;
 	height: 5rem;
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
-	background-color: #e4eefa;
+	background-color: ${(props) => props.theme.color.accentBg};
 	z-index: 1;
 `;
 
@@ -65,8 +64,8 @@ export const TabBarButton = styled.div`
 	justify-content: center;
 	margin-left: 1rem;
 	border-radius: 1rem;
-	color: ${(props) => props.theme.color.accentFg};
-	background-color: ${(props) => props.theme.color.accentBg};
+	color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.normalFg};
 	cursor: pointer;
 	transition: all 0.3s ease;
 
