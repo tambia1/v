@@ -1,7 +1,6 @@
-import { ILanguage } from "../Language.types";
-import { version } from "@src/../package.json";
+import { IHome } from "../types/home.types";
 
-export const en: ILanguage = {
+export const translation: IHome = {
 	languageName: "en",
 
 	pageMenu: {
@@ -14,27 +13,7 @@ export const en: ILanguage = {
 
 	home: {
 		title: "Applications",
-		version: "Version: {version}",
-	},
-
-	settings: {
-		title: "Settings",
-		apearance: "Appearance",
-		language: {
-			title: "Language",
-			save: "Save",
-			english: "English",
-			finnish: "Finnish",
-		},
-		theme: {
-			title: "Theme",
-			light: "Light",
-			dark: "Dark",
-		},
-		about: {
-			title: "About",
-			text: `App Version: ${version}`,
-		},
+		version: "Version: {{version}}",
 	},
 
 	calculator: {

@@ -2,12 +2,12 @@ import * as S from "./NotesPage.styles";
 import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
 import { List } from "@src/components/list/List";
-import { useLanguage } from "@src/language/UseLanguage";
-import { Lang } from "@src/language/Lang";
 import { Icon } from "@src/icons/Icon";
 import { useState } from "react";
 import { NotesContent } from "./components/NotesContent/NotesContent";
 import { Text } from "@src/components/text/Text";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
 
 const noteId = {
 	id: 0,
@@ -26,7 +26,6 @@ interface INote {
 
 export const NotesPage = () => {
 	const pager = usePager();
-	const { lang } = useLanguage();
 	const [notes, setNotes] = useState<{ [K in string]: INote }>({});
 
 	const handleOnClickNote = (noteId: string) => {
@@ -68,7 +67,7 @@ export const NotesPage = () => {
 			<List.Section>
 				<S.CellGrid>
 					<Icon iconName="iconPlusCircle" onClick={handleOnClickAddNote} />
-					<Lang>{lang.notes.notes}</Lang>
+					<T>{lang.notes.notes}</T>
 				</S.CellGrid>
 			</List.Section>
 
@@ -89,7 +88,7 @@ export const NotesPage = () => {
 										handleOnClickRemoveNote(e, noteId);
 									}}
 								/>
-								<Lang>{noteId}</Lang>
+								<T>{noteId}</T>
 							</S.CellGrid>
 						</List.Cell>
 					))}

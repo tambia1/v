@@ -1,7 +1,6 @@
-import { ILanguage } from "../Language.types";
-import { version } from "@src/../package.json";
+import { IHome } from "../types/home.types";
 
-export const fi: ILanguage = {
+export const translation: IHome = {
 	languageName: "fi",
 
 	pageMenu: {
@@ -15,26 +14,6 @@ export const fi: ILanguage = {
 	home: {
 		title: "Koti",
 		version: "Versio: {version}",
-	},
-
-	settings: {
-		title: "Asetukset",
-		apearance: "Ulkomuoto",
-		language: {
-			title: "Kieli",
-			save: "Tallentaa",
-			english: "English",
-			finnish: "Finnish",
-		},
-		theme: {
-			title: "Teema",
-			light: "Valoa",
-			dark: "Tumma",
-		},
-		about: {
-			title: "Noin",
-			text: `App Version: ${version}`,
-		},
 	},
 
 	calculator: {

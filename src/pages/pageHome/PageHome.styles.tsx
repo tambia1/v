@@ -60,16 +60,15 @@ export const TabBarButton = styled.div<{ $isVisible: boolean }>`
 	align-items: center;
 	justify-content: center;
 	margin-left: 1rem;
-	border-radius: 1rem;
-	color: ${(props) => props.theme.color.normalBg};
-	background-color: ${(props) => props.theme.color.normalFg};
-	cursor: pointer;
+	border-radius: 50%;
+	color: ${(props) => props.theme.color.normalFg};
 	transition: all 0.3s ease;
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+	cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "none")};
+	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
 
 	&:active {
-		color: ${(props) => props.theme.color.accentFgActive};
-		background-color: ${(props) => props.theme.color.accentBgActive};
+		color: ${(props) => props.theme.color.normalFgActive};
 	}
 `;
 

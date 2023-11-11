@@ -1,13 +1,6 @@
-import { en } from "./languages/en";
-import { fi } from "./languages/fi";
-import { GetTypeAsObjectPath } from "@src/types/Types";
+export type ILanguageName = "en" | "fi";
 
-export type ILang = GetTypeAsObjectPath<ILanguage, "lang.">;
-
-export const languages = { en, fi };
-export type ILanguageName = keyof typeof languages;
-
-export type ILanguage = {
+export type IHome = {
 	languageName: ILanguageName;
 
 	pageMenu: {
@@ -21,26 +14,6 @@ export type ILanguage = {
 	home: {
 		title: string;
 		version: string;
-	};
-
-	settings: {
-		title: string;
-		apearance: string;
-		language: {
-			title: string;
-			save: string;
-			english: string;
-			finnish: string;
-		};
-		theme: {
-			title: string;
-			light: string;
-			dark: string;
-		};
-		about: {
-			title: string;
-			text: string;
-		};
 	};
 
 	calculator: {

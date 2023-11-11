@@ -2,25 +2,25 @@ import * as S from "./Language.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { Flag } from "@src/components/flag/Flag";
-import { useLanguage } from "@src/language/UseLanguage";
-import { languages } from "@src/language/Language.types";
-import { Lang } from "@src/language/Lang";
+import { useTranslation } from "react-i18next";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
 
 export const Language = () => {
-	const { lang, language, setLanguage } = useLanguage();
+	const { i18n } = useTranslation();
 
 	const handleOnClickEnglish = () => {
-		setLanguage(languages.en);
+		i18n.changeLanguage("en");
 	};
 
 	const handleOnClickFinnish = () => {
-		setLanguage(languages.fi);
+		i18n.changeLanguage("fi");
 	};
 
 	return (
 		<S.Language>
 			<List.Section>
-				<Lang>{lang.settings.language.title}</Lang>
+				<T>{lang.settings.language.title}</T>
 			</List.Section>
 
 			<List>
@@ -29,10 +29,10 @@ export const Language = () => {
 						<Flag flagName="greatBritain" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Lang>{lang.settings.language.english}</Lang>
+						<T>{lang.settings.language.english}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={language.languageName === "en" ? "iconCheck" : ""} />
+						<Icon iconName={i18n.language === "en" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
@@ -41,10 +41,10 @@ export const Language = () => {
 						<Flag flagName="finland" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Lang>{lang.settings.language.finnish}</Lang>
+						<T>{lang.settings.language.finnish}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={language.languageName === "fi" ? "iconCheck" : ""} />
+						<Icon iconName={i18n.language === "fi" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 			</List>
