@@ -5,16 +5,20 @@ import { Flag } from "@src/components/flag/Flag";
 import { useLanguage } from "@src/language/UseLanguage";
 import { languages } from "@src/language/Language.types";
 import { Lang } from "@src/language/Lang";
+import { useTranslation } from "react-i18next";
 
 export const Language = () => {
+	const { i18n } = useTranslation();
 	const { lang, language, setLanguage } = useLanguage();
 
 	const handleOnClickEnglish = () => {
 		setLanguage(languages.en);
+		i18n.changeLanguage("en");
 	};
 
 	const handleOnClickFinnish = () => {
 		setLanguage(languages.fi);
+		i18n.changeLanguage("fi");
 	};
 
 	return (

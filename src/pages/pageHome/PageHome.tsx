@@ -15,6 +15,7 @@ import { TestDropDown } from "./apps/testDropDown/TestDropDown";
 import { TestTable } from "./apps/testTable/TestTable";
 import { Settings } from "./apps/settings/Settings";
 import { Test } from "./apps/test/Test";
+import { useTranslation } from "react-i18next";
 
 interface IApp {
 	id: IAppId;
@@ -26,6 +27,8 @@ interface IApp {
 export type IAppId = "settings" | "calculator" | "camera" | "notes" | "tetris" | "test" | "testDropDown" | "testTree" | "testTabs" | "testTable";
 
 export const PageHome = () => {
+	const { t } = useTranslation();
+
 	const { lang } = useLanguage();
 	const { theme, setTheme } = useTheme();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
@@ -70,13 +73,15 @@ export const PageHome = () => {
 				<S.TabBarButton onClick={handleClose} $isVisible={!!currentApp}>
 					<Icon iconName="iconCircle" size={theme.size.l} />
 				</S.TabBarButton>
-
-				<S.TabBarSeparator />
-
+				{/* <S.TabBarSeparator /> */}
+				___
+				<span>{t("welcome")}</span>
+				___
+				<span>{t("greeting", { name: "John" })}</span>
+				___
 				<S.Version>
 					<Lang replacer={(str: string) => str.replace(/\{version\}/g, version)}>{lang.home.version}</Lang>
 				</S.Version>
-
 				<S.ThemeMode>{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={handleSetThemeLight} /> : <Icon iconName="iconMoon" onClick={handleSetThemeDark} />}</S.ThemeMode>
 			</S.TabBar>
 		</S.PageHome>
