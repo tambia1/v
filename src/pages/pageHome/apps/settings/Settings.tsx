@@ -1,15 +1,14 @@
 import * as S from "./Settings.styles";
 import { Pager } from "@src/components/pager/Pager";
-import { Lang } from "@src/language/Lang";
 import { SettingsPage } from "./page/SettingsPage";
-import { useLanguage } from "@src/language/UseLanguage";
+import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 
 export const Settings = () => {
-	const { lang } = useLanguage();
 	return (
 		<S.Settings>
 			<Pager>
-				<Pager.Page id="app" title={<Lang>{lang.settings.title}</Lang>}>
+				<Pager.Page id="app" title={<T>{lang.settings.title}</T>}>
 					<SettingsPage />
 				</Pager.Page>
 			</Pager>

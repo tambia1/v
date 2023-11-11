@@ -1,11 +1,9 @@
 import { ReactNode, useState } from "react";
 import * as S from "./PageHome.styles";
-import { useLanguage } from "@src/language/UseLanguage";
 import { useTheme } from "@src/theme/UseTheme";
 import { version } from "@src/../package.json";
 import { Icon } from "@src/icons/Icon";
 import { themes } from "@src/theme/Theme.types";
-import { Lang } from "@src/language/Lang";
 import { IAppIcon } from "./components/button/Button.styles";
 import { Button } from "./components/button/Button";
 import { Notes } from "./apps/notes/Notes";
@@ -16,6 +14,8 @@ import { TestTable } from "./apps/testTable/TestTable";
 import { Settings } from "./apps/settings/Settings";
 import { Test } from "./apps/test/Test";
 import { useTranslation } from "react-i18next";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
 
 interface IApp {
 	id: IAppId;
@@ -29,7 +29,6 @@ export type IAppId = "settings" | "calculator" | "camera" | "notes" | "tetris" |
 export const PageHome = () => {
 	const { t } = useTranslation();
 
-	const { lang } = useLanguage();
 	const { theme, setTheme } = useTheme();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 
@@ -42,14 +41,14 @@ export const PageHome = () => {
 	};
 
 	const apps: IApp[] = [
-		{ id: "settings", title: <Lang>{lang.settings.title}</Lang>, icon: "settings", component: <Settings /> },
-		{ id: "notes", title: <Lang>{lang.notes.title}</Lang>, icon: "notes", component: <Notes /> },
-		{ id: "calculator", title: <Lang>{lang.calculator.title}</Lang>, icon: "calculator", component: <Calculator /> },
-		{ id: "camera", title: <Lang>{lang.camera.title}</Lang>, icon: "camera", component: <></> },
-		{ id: "tetris", title: <Lang>{lang.tetris.title}</Lang>, icon: "tetris", component: <Tetris /> },
-		{ id: "test", title: <Lang>{lang.test.title}</Lang>, icon: "weather", component: <Test /> },
-		{ id: "testDropDown", title: <Lang>{lang.testDropDown.title}</Lang>, icon: "photos", component: <TestDropDown /> },
-		{ id: "testTable", title: <Lang>{lang.testTable.title}</Lang>, icon: "photos", component: <TestTable /> },
+		{ id: "settings", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
+		{ id: "notes", title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
+		{ id: "calculator", title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
+		{ id: "camera", title: <T>{lang.camera.title}</T>, icon: "camera", component: <></> },
+		{ id: "tetris", title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
+		{ id: "test", title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
+		{ id: "testDropDown", title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
+		{ id: "testTable", title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
 	];
 
 	const handleOnClickApplication = (appId: IAppId) => {
@@ -73,16 +72,10 @@ export const PageHome = () => {
 				<S.TabBarButton onClick={handleClose} $isVisible={!!currentApp}>
 					<Icon iconName="iconCircle" size={theme.size.l} />
 				</S.TabBarButton>
-				{/* <S.TabBarSeparator /> */}
-				___
-				<span>{t("welcome")}</span>
-				___
-				<span>{t("greeting", { name: "John" })}</span>
-				___ ___
-				<span>{t("hi")}</span>
-				<S.Version>
-					<Lang replacer={(str: string) => str.replace(/\{version\}/g, version)}>{lang.home.version}</Lang>
-				</S.Version>
+
+				<S.TabBarSeparator />
+
+				<S.Version>{t(lang.home.version, { version: version })}</S.Version>
 				<S.ThemeMode>{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={handleSetThemeLight} /> : <Icon iconName="iconMoon" onClick={handleSetThemeDark} />}</S.ThemeMode>
 			</S.TabBar>
 		</S.PageHome>
