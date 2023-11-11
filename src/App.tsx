@@ -7,7 +7,7 @@ import { GlobalStyle } from "@src/styles/globalStyles";
 import { Language } from "@src/language/Language";
 import { I18nextProvider } from "react-i18next";
 import { Suspense } from "react";
-import i18n from "./i18n";
+import i18n from "./locales/i18n";
 
 export const App = () => {
 	return (
