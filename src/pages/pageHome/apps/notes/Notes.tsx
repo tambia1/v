@@ -1,15 +1,14 @@
 import * as S from "./Notes.styles";
 import { Pager } from "@src/components/pager/Pager";
-import { Lang } from "@src/language/Lang";
-import { useLanguage } from "@src/language/UseLanguage";
 import { NotesPage } from "./page/NotesPage";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
 
 export const Notes = () => {
-	const { lang } = useLanguage();
 	return (
 		<S.Notes>
 			<Pager>
-				<Pager.Page id="app" title={<Lang>{lang.notes.title}</Lang>}>
+				<Pager.Page id="app" title={<T>{lang.notes.title}</T>}>
 					<NotesPage />
 				</Pager.Page>
 			</Pager>

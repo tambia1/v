@@ -60,7 +60,7 @@ export const TabBarButton = styled.div<{ $isVisible: boolean }>`
 	align-items: center;
 	justify-content: center;
 	margin-left: 1rem;
-	border-radius: 1rem;
+	border-radius: 50%;
 	color: ${(props) => props.theme.color.normalBg};
 	background-color: ${(props) => props.theme.color.normalFg};
 	cursor: pointer;

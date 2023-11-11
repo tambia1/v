@@ -6,18 +6,17 @@ import { Theme } from "./components/theme/Theme";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { About } from "./components/about/About";
-import { useLanguage } from "@src/language/UseLanguage";
-import { Lang } from "@src/language/Lang";
 import { useTheme } from "@src/theme/UseTheme";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
 
 export const SettingsPage = () => {
 	const pager = usePager();
-	const { lang } = useLanguage();
 	const { theme } = useTheme();
 
 	const handleOnClickLanguage = () => {
 		pager.pushPage(
-			<Pager.Page id="language" title={<Lang>{lang.settings.language.title}</Lang>}>
+			<Pager.Page id="language" title={<T>{lang.settings.language.title}</T>}>
 				<Language />
 			</Pager.Page>
 		);
@@ -25,7 +24,7 @@ export const SettingsPage = () => {
 
 	const handleOnClickTheme = () => {
 		pager.pushPage(
-			<Pager.Page id="theme" title={<Lang>{lang.settings.theme.title}</Lang>}>
+			<Pager.Page id="theme" title={<T>{lang.settings.theme.title}</T>}>
 				<Theme />
 			</Pager.Page>
 		);
@@ -33,7 +32,7 @@ export const SettingsPage = () => {
 
 	const handleOnClickAbout = () => {
 		pager.pushPage(
-			<Pager.Page id="about" title={<Lang>{lang.settings.about.title}</Lang>}>
+			<Pager.Page id="about" title={<T>{lang.settings.about.title}</T>}>
 				<About />
 			</Pager.Page>
 		);
@@ -42,7 +41,7 @@ export const SettingsPage = () => {
 	return (
 		<S.SettingsPage>
 			<List.Section>
-				<Lang>{lang.settings.apearance}</Lang>
+				<T>{lang.settings.apearance}</T>
 			</List.Section>
 
 			<List>
@@ -51,7 +50,7 @@ export const SettingsPage = () => {
 						<Icon iconName="iconGlobe" size={theme.size.m} />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Lang>{lang.settings.language.title}</Lang>
+						<T>{lang.settings.language.title}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="iconChevronRight" size={theme.size.m} />
@@ -63,14 +62,14 @@ export const SettingsPage = () => {
 						<Icon iconName="iconAperture" size={theme.size.m} />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<Lang>{lang.settings.theme.title}</Lang>
+						<T>{lang.settings.theme.title}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="iconChevronRight" size={theme.size.m} />
 					</List.Cell.Arrow>
 				</List.Cell>
 				<List.Cell onClick={handleOnClickAbout}>
-					<Lang>{lang.settings.about.title}</Lang>
+					<T>{lang.settings.about.title}</T>
 				</List.Cell>
 			</List>
 		</S.SettingsPage>
