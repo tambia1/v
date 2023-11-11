@@ -78,7 +78,8 @@ export const PageHome = () => {
 				<span>{t("welcome")}</span>
 				___
 				<span>{t("greeting", { name: "John" })}</span>
-				___
+				___ ___
+				<span>{t("hi")}</span>
 				<S.Version>
 					<Lang replacer={(str: string) => str.replace(/\{version\}/g, version)}>{lang.home.version}</Lang>
 				</S.Version>
