@@ -13,7 +13,7 @@ export const translation: IHome = {
 
 	home: {
 		title: "Koti",
-		version: "Versio: {version}",
+		version: "Versio: {{version}}",
 	},
 
 	calculator: {

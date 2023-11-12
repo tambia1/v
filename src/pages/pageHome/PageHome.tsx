@@ -81,7 +81,7 @@ export const PageHome = () => {
 
 				<S.TabBarSeparator />
 
-				<S.Version>{t(lang.home.version, { version: version })}</S.Version>
+				<S.Version>{t(lang.home.version, { version })}</S.Version>
 				<S.ThemeMode>
 					{theme.themeName === "light" ? (
 						<Icon
