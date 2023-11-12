@@ -6,13 +6,13 @@ import { useTranslation } from "react-i18next";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
-import { ILanguage } from "@src/locales/i18n.types";
+import { ILanguageName } from "@src/locales/i18n.types";
 
 export const Language = () => {
 	const { i18n } = useTranslation();
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const handleOnClickChangeLanguage = (language: ILanguage) => {
+	const handleOnClickChangeLanguage = (language: ILanguageName) => {
 		i18n.changeLanguage(language);
 
 		searchParams.set("language", language);

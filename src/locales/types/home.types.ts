@@ -1,7 +1,7 @@
-import { ILanguage } from "../i18n.types";
+import { ILanguageName } from "../i18n.types";
 
 export type IHome = {
-	language: ILanguage;
+	languageName: ILanguageName;
 
 	pageMenu: {
 		logout: {
