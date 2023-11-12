@@ -2,19 +2,20 @@ import * as S from "./Theme.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { useTheme } from "@src/theme/UseTheme";
-import { themes } from "@src/theme/Theme.types";
+import { ITheme, themes } from "@src/theme/Theme.types";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { useSearchParams } from "react-router-dom";
 
 export const Theme = () => {
 	const { theme, setTheme } = useTheme();
+	const [searchParams, setSearchParams] = useSearchParams();
 
-	const handleOnClickLight = () => {
-		setTheme(themes.light);
-	};
+	const handleOnClickChangeTheme = (themeName: ITheme["themeName"]) => {
+		setTheme(themes[themeName]);
 
-	const handleOnClickDark = () => {
-		setTheme(themes.dark);
+		searchParams.set("theme", themeName);
+		setSearchParams(searchParams, { replace: true });
 	};
 
 	return (
@@ -24,7 +25,11 @@ export const Theme = () => {
 			</List.Section>
 
 			<List>
-				<List.Cell onClick={handleOnClickLight}>
+				<List.Cell
+					onClick={() => {
+						handleOnClickChangeTheme("light");
+					}}
+				>
 					<List.Cell.Image>
 						<Icon iconName="iconSun" />
 					</List.Cell.Image>
@@ -36,7 +41,11 @@ export const Theme = () => {
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell onClick={handleOnClickDark}>
+				<List.Cell
+					onClick={() => {
+						handleOnClickChangeTheme("dark");
+					}}
+				>
 					<List.Cell.Image>
 						<Icon iconName="iconMoon" />
 					</List.Cell.Image>
