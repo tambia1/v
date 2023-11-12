@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import * as S from "./PageHome.styles";
 import { useTheme } from "@src/theme/UseTheme";
 import { version } from "@src/../package.json";
@@ -16,6 +16,8 @@ import { Test } from "./apps/test/Test";
 import { useTranslation } from "react-i18next";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { ILanguage, languages } from "@src/locales/i18n.types";
+import { useSearchParams } from "react-router-dom";
 
 interface IApp {
 	id: IAppId;
@@ -31,6 +33,20 @@ export const PageHome = () => {
 
 	const { theme, setTheme } = useTheme();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
+
+	const { i18n } = useTranslation();
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	useEffect(() => {
+		const language = (searchParams.get("language") || "") as ILanguage;
+
+		if (languages.includes(language)) {
+			i18n.changeLanguage(language);
+		} else {
+			searchParams.delete("language");
+			setSearchParams(searchParams, { replace: true });
+		}
+	}, [searchParams]);
 
 	const handleSetThemeLight = () => {
 		setTheme(themes.dark);

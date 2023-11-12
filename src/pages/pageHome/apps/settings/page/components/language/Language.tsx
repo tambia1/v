@@ -5,16 +5,18 @@ import { Flag } from "@src/components/flag/Flag";
 import { useTranslation } from "react-i18next";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { useSearchParams } from "react-router-dom";
+import { ILanguage } from "@src/locales/i18n.types";
 
 export const Language = () => {
 	const { i18n } = useTranslation();
+	const [searchParams, setSearchParams] = useSearchParams();
 
-	const handleOnClickEnglish = () => {
-		i18n.changeLanguage("en");
-	};
+	const handleOnClickChangeLanguage = (language: ILanguage) => {
+		i18n.changeLanguage(language);
 
-	const handleOnClickFinnish = () => {
-		i18n.changeLanguage("fi");
+		searchParams.set("language", language);
+		setSearchParams(searchParams, { replace: true });
 	};
 
 	return (
@@ -24,7 +26,11 @@ export const Language = () => {
 			</List.Section>
 
 			<List>
-				<List.Cell onClick={handleOnClickEnglish}>
+				<List.Cell
+					onClick={() => {
+						handleOnClickChangeLanguage("en");
+					}}
+				>
 					<List.Cell.Image>
 						<Flag flagName="greatBritain" />
 					</List.Cell.Image>
@@ -36,7 +42,11 @@ export const Language = () => {
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell onClick={handleOnClickFinnish}>
+				<List.Cell
+					onClick={() => {
+						handleOnClickChangeLanguage("fi");
+					}}
+				>
 					<List.Cell.Image>
 						<Flag flagName="finland" />
 					</List.Cell.Image>

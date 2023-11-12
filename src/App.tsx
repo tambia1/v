@@ -6,9 +6,11 @@ import { Theme } from "@src/theme/Theme";
 import { GlobalStyle } from "@src/styles/globalStyles";
 import { I18nextProvider } from "react-i18next";
 import { Suspense } from "react";
-import i18n from "./locales/i18n";
+import { useTranslation } from "react-i18next";
 
 export const App = () => {
+	const { i18n } = useTranslation();
+
 	return (
 		<Suspense fallback="...loading">
 			<I18nextProvider i18n={i18n}>

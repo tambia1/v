@@ -1,7 +1,7 @@
-export type ILanguageName = "en" | "fi";
+import { ILanguage } from "../i18n.types";
 
 export type IHome = {
-	languageName: ILanguageName;
+	language: ILanguage;
 
 	pageMenu: {
 		logout: {

@@ -1,7 +1,7 @@
 import { IHome } from "../types/home.types";
 
 export const translation: IHome = {
-	languageName: "fi",
+	language: "fi",
 
 	pageMenu: {
 		logout: {
