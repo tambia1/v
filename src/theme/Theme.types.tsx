@@ -2,9 +2,10 @@ import { themeDark } from "./themes/ThemeDark";
 import { themeLight } from "./themes/ThemeLight";
 
 export const themes = { light: themeLight, dark: themeDark };
+export type IThemeName = keyof typeof themes;
 
 export interface ITheme {
-	themeName: keyof typeof themes;
+	themeName: IThemeName;
 
 	color: {
 		transparent: string;

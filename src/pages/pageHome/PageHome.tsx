@@ -3,7 +3,7 @@ import * as S from "./PageHome.styles";
 import { useTheme } from "@src/theme/UseTheme";
 import { version } from "@src/../package.json";
 import { Icon } from "@src/icons/Icon";
-import { themes } from "@src/theme/Theme.types";
+import { IThemeName, themes } from "@src/theme/Theme.types";
 import { IAppIcon } from "./components/button/Button.styles";
 import { Button } from "./components/button/Button";
 import { Notes } from "./apps/notes/Notes";
@@ -18,6 +18,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useLocalesSearchParams } from "@src/locales/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/theme/useThemesSearchParams";
+import { useSearchParams } from "react-router-dom";
 
 interface IApp {
 	id: IAppId;
@@ -32,18 +33,11 @@ export const PageHome = () => {
 	const { t } = useTranslation();
 
 	const { theme, setTheme } = useTheme();
+	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 
 	useLocalesSearchParams();
 	useThemesSearchParams();
-
-	const handleSetThemeLight = () => {
-		setTheme(themes.dark);
-	};
-
-	const handleSetThemeDark = () => {
-		setTheme(themes.light);
-	};
 
 	const apps: IApp[] = [
 		{ id: "settings", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
@@ -66,6 +60,13 @@ export const PageHome = () => {
 		setCurrentApp(null);
 	};
 
+	const handleOnClickChangeTheme = (themeName: IThemeName) => {
+		setTheme(themes[themeName]);
+
+		searchParams.set("theme", themeName);
+		setSearchParams(searchParams, { replace: true });
+	};
+
 	return (
 		<S.PageHome>
 			<S.Container>
@@ -81,7 +82,23 @@ export const PageHome = () => {
 				<S.TabBarSeparator />
 
 				<S.Version>{t(lang.home.version, { version: version })}</S.Version>
-				<S.ThemeMode>{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={handleSetThemeLight} /> : <Icon iconName="iconMoon" onClick={handleSetThemeDark} />}</S.ThemeMode>
+				<S.ThemeMode>
+					{theme.themeName === "light" ? (
+						<Icon
+							iconName="iconSun"
+							onClick={() => {
+								handleOnClickChangeTheme("dark");
+							}}
+						/>
+					) : (
+						<Icon
+							iconName="iconMoon"
+							onClick={() => {
+								handleOnClickChangeTheme("light");
+							}}
+						/>
+					)}
+				</S.ThemeMode>
 			</S.TabBar>
 		</S.PageHome>
 	);

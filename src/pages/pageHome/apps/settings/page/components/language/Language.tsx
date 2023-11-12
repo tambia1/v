@@ -12,10 +12,10 @@ export const Language = () => {
 	const { i18n } = useTranslation();
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const handleOnClickChangeLanguage = (language: ILanguageName) => {
-		i18n.changeLanguage(language);
+	const handleOnClickChangeLanguage = (languageName: ILanguageName) => {
+		i18n.changeLanguage(languageName);
 
-		searchParams.set("language", language);
+		searchParams.set("language", languageName);
 		setSearchParams(searchParams, { replace: true });
 	};
 
