@@ -69,10 +69,10 @@ export const PageHome = () => {
 
 	return (
 		<S.PageHome>
-			<S.Container>
+			<S.Apps>
 				{currentApp}
 				{!currentApp && apps.map((app) => <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />)}
-			</S.Container>
+			</S.Apps>
 
 			<S.TabBar>
 				<S.TabBarButton onClick={handleClose} $isVisible={!!currentApp}>

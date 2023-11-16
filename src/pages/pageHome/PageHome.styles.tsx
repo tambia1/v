@@ -12,7 +12,7 @@ export const PageHome = styled.div`
 	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
-export const Container = styled.div`
+export const Apps = styled.div`
 	position: relative;
 	width: 100%;
 	height: 100%;
