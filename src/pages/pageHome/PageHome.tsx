@@ -76,7 +76,7 @@ export const PageHome = () => {
 
 			<S.TabBar>
 				<S.TabBarButton onClick={handleClose} $isVisible={!!currentApp}>
-					<Icon iconName="iconCircle" size={theme.size.l} />
+					<Icon iconName="iconXCircle" size={theme.size.l} />
 				</S.TabBarButton>
 
 				<S.TabBarSeparator />

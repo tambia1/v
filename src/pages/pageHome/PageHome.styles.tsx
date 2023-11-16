@@ -48,7 +48,7 @@ export const TabBar = styled.div`
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
-	background-color: ${(props) => props.theme.color.accentBg};
+	background-color: ${(props) => props.theme.color.normalBg};
 	z-index: 1;
 `;
 
