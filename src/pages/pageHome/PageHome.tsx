@@ -74,12 +74,12 @@ export const PageHome = () => {
 				{!currentApp && apps.map((app) => <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />)}
 			</S.Apps>
 
-			<S.TabBar>
-				<S.TabBarButton onClick={handleClose} $isVisible={!!currentApp}>
+			<S.PageBar>
+				<S.PageBarButton onClick={handleClose} $isVisible={!!currentApp}>
 					<Icon iconName="iconXCircle" size={theme.size.l} />
-				</S.TabBarButton>
+				</S.PageBarButton>
 
-				<S.TabBarSeparator />
+				<S.PageBarSeparator />
 
 				<S.Version>{t(lang.home.version, { version })}</S.Version>
 				<S.ThemeMode>
@@ -99,7 +99,7 @@ export const PageHome = () => {
 						/>
 					)}
 				</S.ThemeMode>
-			</S.TabBar>
+			</S.PageBar>
 		</S.PageHome>
 	);
 };

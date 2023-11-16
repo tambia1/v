@@ -40,7 +40,7 @@ export const Version = styled.div`
 	color: ${(props) => props.theme.color.normalFg};
 `;
 
-export const TabBar = styled.div`
+export const PageBar = styled.div`
 	overflow: hidden;
 	position: relative;
 	width: 100%;
@@ -49,10 +49,11 @@ export const TabBar = styled.div`
 	flex-shrink: 0;
 	align-items: center;
 	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: red;
 	z-index: 1;
 `;
 
-export const TabBarButton = styled.div<{ $isVisible: boolean }>`
+export const PageBarButton = styled.div<{ $isVisible: boolean }>`
 	width: 4rem;
 	height: 4rem;
 	display: flex;
@@ -72,7 +73,7 @@ export const TabBarButton = styled.div<{ $isVisible: boolean }>`
 	}
 `;
 
-export const TabBarSeparator = styled.div`
+export const PageBarSeparator = styled.div`
 	width: 100%;
 	height: 100%;
 `;
