@@ -4,30 +4,15 @@ import { useTheme } from "@src/theme/UseTheme";
 import { version } from "@src/../package.json";
 import { Icon } from "@src/icons/Icon";
 import { IThemeName, themes } from "@src/theme/Theme.types";
-import { IAppIcon } from "./components/button/Button.styles";
 import { Button } from "./components/button/Button";
-import { Notes } from "./apps/notes/Notes";
-import { Calculator } from "./apps/calculator/Calculator";
-import { Tetris } from "./apps/tetris/Tetris";
-import { TestDropDown } from "./apps/testDropDown/TestDropDown";
-import { TestTable } from "./apps/testTable/TestTable";
-import { Settings } from "./apps/settings/Settings";
-import { Test } from "./apps/test/Test";
 import { useTranslation } from "react-i18next";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useLocalesSearchParams } from "@src/locales/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/theme/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
 import { usePageBarSearchParams } from "./usePageBarSearchParams";
 import { IAppId } from "./PageHome.types";
-
-interface IApp {
-	id: IAppId;
-	title: React.ReactNode;
-	icon: IAppIcon;
-	component: React.ReactElement;
-}
+import { apps } from "./PageHome.consts";
 
 export const PageHome = () => {
 	const { t } = useTranslation();
@@ -46,17 +31,6 @@ export const PageHome = () => {
 			setSearchParams(searchParams, { replace: true });
 		},
 	});
-
-	const apps: IApp[] = [
-		{ id: "settings", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
-		{ id: "notes", title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
-		{ id: "calculator", title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
-		{ id: "camera", title: <T>{lang.camera.title}</T>, icon: "camera", component: <></> },
-		{ id: "tetris", title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
-		{ id: "test", title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
-		{ id: "testDropDown", title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
-		{ id: "testTable", title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
-	];
 
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
