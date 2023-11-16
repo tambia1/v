@@ -1,6 +1,32 @@
 import styled from "styled-components";
 
-export const PageHome = styled.div`
+export type IPageBarPosition = "top" | "bottom" | "left" | "right";
+
+const PAGE_BAR_SIZE = "5rem";
+
+export const Apps = styled.div`
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: block;
+	gap: 0.5rem;
+	color: ${(props) => props.theme.color.normalFg};
+`;
+
+export const PageBar = styled.div`
+	overflow: hidden;
+	position: absolute;
+	width: 100%;
+	height: 5rem;
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: red;
+	z-index: 1;
+`;
+
+export const PageHome = styled.div<{ $pageBarPosition: IPageBarPosition }>`
 	width: 100%;
 	height: 100%;
 
@@ -10,15 +36,26 @@ export const PageHome = styled.div`
 
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};
-`;
 
-export const Apps = styled.div`
-	position: relative;
-	width: 100%;
-	height: 100%;
-	display: block;
-	gap: 0.5rem;
-	color: ${(props) => props.theme.color.normalFg};
+	& ${Apps} {
+		width: ${({ $pageBarPosition }) => ($pageBarPosition === "left" || $pageBarPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
+		height: ${({ $pageBarPosition }) => ($pageBarPosition === "top" || $pageBarPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
+
+		left: ${({ $pageBarPosition }) => ($pageBarPosition === "left" ? PAGE_BAR_SIZE : "unset")};
+		right: ${({ $pageBarPosition }) => ($pageBarPosition === "right" ? 0 : "unset")};
+		top: ${({ $pageBarPosition }) => ($pageBarPosition === "top" ? PAGE_BAR_SIZE : "unset")};
+		bottom: ${({ $pageBarPosition }) => ($pageBarPosition === "bottom" ? 0 : "unset")};
+	}
+
+	& ${PageBar} {
+		width: ${({ $pageBarPosition }) => ($pageBarPosition === "left" || $pageBarPosition === "right" ? `${PAGE_BAR_SIZE}` : `100%`)};
+		height: ${({ $pageBarPosition }) => ($pageBarPosition === "top" || $pageBarPosition === "bottom" ? `${PAGE_BAR_SIZE}` : `100%`)};
+
+		top: ${({ $pageBarPosition }) => ($pageBarPosition === "top" ? 0 : "unset")};
+		bottom: ${({ $pageBarPosition }) => ($pageBarPosition === "bottom" ? 0 : "unset")};
+		left: ${({ $pageBarPosition }) => ($pageBarPosition === "left" ? 0 : "unset")};
+		right: ${({ $pageBarPosition }) => ($pageBarPosition === "right" ? 0 : "unset")};
+	}
 `;
 
 export const ThemeMode = styled.div`
@@ -38,19 +75,6 @@ export const Version = styled.div`
 	margin: 1rem;
 	flex-shrink: 0;
 	color: ${(props) => props.theme.color.normalFg};
-`;
-
-export const PageBar = styled.div`
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-	height: 5rem;
-	display: flex;
-	flex-shrink: 0;
-	align-items: center;
-	background-color: ${(props) => props.theme.color.normalBg};
-	background-color: red;
-	z-index: 1;
 `;
 
 export const PageBarButton = styled.div<{ $isVisible: boolean }>`

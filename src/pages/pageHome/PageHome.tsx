@@ -19,6 +19,8 @@ import { lang } from "@src/locales/i18n";
 import { useLocalesSearchParams } from "@src/locales/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/theme/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
+import { usePageBarSearchParams } from "./usePageBarSearchParams";
+import { IAppId } from "./PageHome.types";
 
 interface IApp {
 	id: IAppId;
@@ -27,17 +29,23 @@ interface IApp {
 	component: React.ReactElement;
 }
 
-export type IAppId = "settings" | "calculator" | "camera" | "notes" | "tetris" | "test" | "testDropDown" | "testTree" | "testTabs" | "testTable";
-
 export const PageHome = () => {
 	const { t } = useTranslation();
-
 	const { theme, setTheme } = useTheme();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
+	const [pageBarPosition, setPageBarPosition] = useState<S.IPageBarPosition>("bottom");
 
 	useLocalesSearchParams();
 	useThemesSearchParams();
+	usePageBarSearchParams({
+		setPagePosition: (pageBarPosition: S.IPageBarPosition) => {
+			setPageBarPosition(pageBarPosition);
+
+			searchParams.set("bar", pageBarPosition);
+			setSearchParams(searchParams, { replace: true });
+		},
+	});
 
 	const apps: IApp[] = [
 		{ id: "settings", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
@@ -68,7 +76,7 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.PageHome>
+		<S.PageHome $pageBarPosition={pageBarPosition}>
 			<S.Apps>
 				{currentApp}
 				{!currentApp && apps.map((app) => <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />)}
