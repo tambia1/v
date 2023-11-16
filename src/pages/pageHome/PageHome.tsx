@@ -3,7 +3,7 @@ import * as S from "./PageHome.styles";
 import { useTheme } from "@src/theme/UseTheme";
 import { version } from "@src/../package.json";
 import { Icon } from "@src/icons/Icon";
-import { IThemeName, themes } from "@src/theme/Theme.types";
+import { IThemeName } from "@src/theme/Theme.types";
 import { Button } from "./components/button/Button";
 import { useTranslation } from "react-i18next";
 import { lang } from "@src/locales/i18n";
@@ -16,7 +16,7 @@ import { apps } from "./PageHome.consts";
 
 export const PageHome = () => {
 	const { t } = useTranslation();
-	const { theme, setTheme } = useTheme();
+	const { theme } = useTheme();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 	const [pageBarPosition, setPageBarPosition] = useState<S.IPageBarPosition>("bottom");
@@ -43,8 +43,6 @@ export const PageHome = () => {
 	};
 
 	const handleOnClickChangeTheme = (themeName: IThemeName) => {
-		setTheme(themes[themeName]);
-
 		searchParams.set("theme", themeName);
 		setSearchParams(searchParams, { replace: true });
 	};
