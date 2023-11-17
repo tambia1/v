@@ -1,7 +1,7 @@
 import { ITheme, themes } from "@src/theme/Theme.types";
 import { ReactNode, useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { ThemeContext } from "./UseTheme";
+import { ThemeContext } from "./UseThemeContext";
 
 const themeName: ITheme["themeName"] = import.meta.env.VITE_THEME || "light";
 const defaultTheme = themes[themeName];

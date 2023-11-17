@@ -1,14 +1,14 @@
 import * as S from "./Theme.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
-import { useTheme } from "@src/theme/UseTheme";
+import { useThemeContext } from "@src/theme/UseThemeContext";
 import { IThemeName, themes } from "@src/theme/Theme.types";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
 
 export const Theme = () => {
-	const { theme, setTheme } = useTheme();
+	const { theme, setTheme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	const handleOnClickChangeTheme = (themeName: IThemeName) => {

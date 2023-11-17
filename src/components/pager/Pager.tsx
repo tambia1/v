@@ -5,7 +5,7 @@ import { PagerContext } from "./hooks/UsePager";
 import { IAnimationState, IAnimationType } from "./components/item/Item.styles";
 import { Icon } from "../../icons/Icon";
 import { Page, IPage } from "./components/page/Page";
-import { useTheme } from "@src/theme/UseTheme";
+import { useThemeContext } from "@src/theme/UseThemeContext";
 
 interface Props {
 	children?: IPage;
@@ -28,7 +28,7 @@ export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" |
 export type ICallback = (pagerItem?: IPagerItem) => void;
 
 export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
-	const { theme } = useTheme();
+	const { theme } = useThemeContext();
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
 	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
 		pushStart: onPushStart ? { pager: onPushStart } : {},

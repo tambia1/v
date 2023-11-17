@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ITheme, themes } from "./Theme.types";
-import { useTheme } from "./UseTheme";
+import { useThemeContext } from "./UseThemeContext";
 
 export const useThemesSearchParams = () => {
-	const { setTheme } = useTheme();
+	const { setTheme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {

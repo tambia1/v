@@ -1,6 +1,6 @@
 import { ReactNode, useState } from "react";
 import * as S from "./PageHome.styles";
-import { useTheme } from "@src/theme/UseTheme";
+import { useThemeContext } from "@src/theme/UseThemeContext";
 import { Icon } from "@src/icons/Icon";
 import { IThemeName } from "@src/theme/Theme.types";
 import { Button } from "./components/button/Button";
@@ -14,7 +14,7 @@ import { Animate } from "@src/components/animate/Animate";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 
 export const PageHome = () => {
-	const { theme } = useTheme();
+	const { theme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 	const [appBarPosition, setAppBarPosition] = useState<S.IAppBarPosition>("bottom");
