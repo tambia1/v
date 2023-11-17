@@ -19,7 +19,7 @@ export const PageHome = () => {
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 	const [appBarPosition, setAppBarPosition] = useState<S.IAppBarPosition>("bottom");
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
-	const animate = useAnimate("hide");
+	const animateApp = useAnimate("hide");
 
 	useLocalesSearchParams();
 	useThemesSearchParams();
@@ -33,12 +33,12 @@ export const PageHome = () => {
 		const app = apps.find((app) => app.id === appId)!;
 		setCurrentApp(app.component);
 		setIsVisibleButtonClose(true);
-		animate.current.play("appear");
+		animateApp.current.play("appear");
 	};
 
 	const handleOnClickClose = () => {
 		setIsVisibleButtonClose(false);
-		animate.current.play("disappear").then(() => {
+		animateApp.current.play("disappear").then(() => {
 			setCurrentApp(null);
 		});
 	};
@@ -51,7 +51,7 @@ export const PageHome = () => {
 	return (
 		<S.PageHome $appBarPosition={appBarPosition}>
 			<S.Apps>
-				<Animate useAnimate={animate}>{currentApp}</Animate>
+				<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
 				{apps.map((app) => (
 					<Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
