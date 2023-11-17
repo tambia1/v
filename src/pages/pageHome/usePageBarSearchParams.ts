@@ -3,10 +3,10 @@ import { useSearchParams } from "react-router-dom";
 import { IPageBarPosition } from "./PageHome.styles";
 
 interface Props {
-	setPagePosition: (pageBarPosition: IPageBarPosition) => void;
+	onChange: (pageBarPosition: IPageBarPosition) => void;
 }
 
-export const usePageBarSearchParams = ({ setPagePosition }: Props) => {
+export const usePageBarSearchParams = ({ onChange }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
@@ -17,10 +17,10 @@ export const usePageBarSearchParams = ({ setPagePosition }: Props) => {
 			right: "right",
 		};
 
-		const position = (searchParams.get("bar") || "") as IPageBarPosition;
+		const position = searchParams.get("pagebar") as IPageBarPosition;
 
 		if (Object.keys(pageBarPositions).includes(position)) {
-			setPagePosition(pageBarPositions[position]);
+			onChange(pageBarPositions[position]);
 		} else {
 			searchParams.delete("theme");
 			setSearchParams(searchParams, { replace: true });

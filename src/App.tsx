@@ -1,12 +1,12 @@
 import { Pages } from "@pages/Pages.types";
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
-import { PageHome } from "@src/pages/pageHome/PageHome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Theme } from "@src/theme/Theme";
 import { GlobalStyle } from "@src/styles/globalStyles";
 import { I18nextProvider } from "react-i18next";
 import { Suspense } from "react";
 import { useTranslation } from "react-i18next";
+import { PageHome } from "./pages/pageHome/PageHome";
 
 export const App = () => {
 	const { i18n } = useTranslation();

@@ -11,6 +11,7 @@ export const Apps = styled.div`
 	display: block;
 	gap: 0.5rem;
 	color: ${(props) => props.theme.color.normalFg};
+	transition: all ease 0.3s;
 `;
 
 export const PageBar = styled.div`
@@ -24,6 +25,7 @@ export const PageBar = styled.div`
 	background-color: ${(props) => props.theme.color.normalBg};
 	background-color: red;
 	z-index: 1;
+	transition: all ease 0.3s;
 `;
 
 export const PageHome = styled.div<{ $pageBarPosition: IPageBarPosition }>`

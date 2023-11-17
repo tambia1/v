@@ -16,6 +16,13 @@ export const translation: ISettings = {
 			light: "Valoa",
 			dark: "Tumma",
 		},
+		pageBar: {
+			title: "Sivupalkin sijainti",
+			top: "Yläosa",
+			bottom: "Pohja",
+			left: "Vasen",
+			right: "Oikein",
+		},
 		about: {
 			title: "Noin",
 			text: `App Version: ${version}`,

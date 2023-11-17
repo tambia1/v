@@ -24,17 +24,13 @@ export const PageHome = () => {
 	useLocalesSearchParams();
 	useThemesSearchParams();
 	usePageBarSearchParams({
-		setPagePosition: (pageBarPosition: S.IPageBarPosition) => {
+		onChange: (pageBarPosition: S.IPageBarPosition) => {
 			setPageBarPosition(pageBarPosition);
-
-			searchParams.set("bar", pageBarPosition);
-			setSearchParams(searchParams, { replace: true });
 		},
 	});
 
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
-
 		setCurrentApp(app.component);
 	};
 
@@ -63,21 +59,7 @@ export const PageHome = () => {
 
 				<S.Version>{t(lang.home.version, { version })}</S.Version>
 				<S.ThemeMode>
-					{theme.themeName === "light" ? (
-						<Icon
-							iconName="iconSun"
-							onClick={() => {
-								handleOnClickChangeTheme("dark");
-							}}
-						/>
-					) : (
-						<Icon
-							iconName="iconMoon"
-							onClick={() => {
-								handleOnClickChangeTheme("light");
-							}}
-						/>
-					)}
+					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}
 				</S.ThemeMode>
 			</S.PageBar>
 		</S.PageHome>
