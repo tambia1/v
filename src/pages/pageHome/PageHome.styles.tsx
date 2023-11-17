@@ -23,7 +23,7 @@ export const AppBar = styled.div`
 	flex-shrink: 0;
 	background-color: ${(props) => props.theme.color.normalBg};
 	z-index: 1;
-	transition: all ease 0.3s;
+	transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, bottom 0.3s ease, left 0.3s ease, right 0.3s ease;
 `;
 
 export const PageHome = styled.div<{ $appBarPosition: IAppBarPosition }>`
