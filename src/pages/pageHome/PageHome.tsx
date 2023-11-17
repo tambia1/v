@@ -10,12 +10,15 @@ import { useSearchParams } from "react-router-dom";
 import { useAppBarSearchParams } from "./useAppBarSearchParams";
 import { IAppId } from "./PageHome.types";
 import { apps } from "./PageHome.consts";
+import { Animate } from "@src/components/animate/Animate";
+import { useAnimate } from "@src/components/animate/UseAnimate";
 
 export const PageHome = () => {
 	const { theme } = useTheme();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 	const [appBarPosition, setAppBarPosition] = useState<S.IAppBarPosition>("bottom");
+	const animate = useAnimate("hide");
 
 	useLocalesSearchParams();
 	useThemesSearchParams();
@@ -28,10 +31,13 @@ export const PageHome = () => {
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
 		setCurrentApp(app.component);
+		animate.current.play("appear");
 	};
 
 	const handleClose = () => {
-		setCurrentApp(null);
+		animate.current.play("disappear").then(() => {
+			setCurrentApp(null);
+		});
 	};
 
 	const handleOnClickChangeTheme = (themeName: IThemeName) => {
@@ -42,8 +48,11 @@ export const PageHome = () => {
 	return (
 		<S.PageHome $appBarPosition={appBarPosition}>
 			<S.Apps>
-				{currentApp}
-				{!currentApp && apps.map((app) => <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />)}
+				<Animate useAnimate={animate}>{currentApp}</Animate>
+
+				{apps.map((app) => (
+					<Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
+				))}
 			</S.Apps>
 
 			<S.AppBar>

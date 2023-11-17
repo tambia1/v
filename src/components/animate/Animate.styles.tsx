@@ -20,7 +20,7 @@ const disappear = keyframes`
 	100% { opacity: 0; display: none;}
 `;
 
-export const Animations = {
+const Animations = {
 	none: "",
 	show: css`
 		animation: ${show} ease 0s both;
@@ -29,16 +29,21 @@ export const Animations = {
 		animation: ${hide} ease 0s both;
 	`,
 	appear: css`
-		animation: ${appear} ease 0.3s both;
+		animation: ${appear} ease 3.3s both;
 	`,
 	disappear: css`
-		animation: ${disappear} ease 0.3s both;
+		animation: ${disappear} ease 3.3s both;
 	`,
 } as const;
 
 export type IAnimation = keyof typeof Animations;
 
-export const Container = styled.div<{ $animation: IAnimation }>`
+export const Animate = styled.div<{ $animation: IAnimation }>`
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
 	opacity: 0;
 	${({ $animation }) => Animations[$animation]};
 `;

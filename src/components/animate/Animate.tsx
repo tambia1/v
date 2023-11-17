@@ -26,18 +26,19 @@ export const Animate = ({ useAnimate, children }: Props) => {
 	};
 
 	const onAnimationStart = () => {
-		refResolve.current();
+		console.log("start", key);
 	};
 
 	const onAnimationEnd = () => {
+		console.log("end", key);
 		refResolve.current();
 	};
 
 	useImperativeHandle(useAnimate, () => ({ play }));
 
 	return (
-		<S.Container ref={refContainer} key={key} $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
+		<S.Animate ref={refContainer} key={key} $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
 			{children}
-		</S.Container>
+		</S.Animate>
 	);
 };
