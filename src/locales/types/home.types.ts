@@ -13,7 +13,6 @@ export type IHome = {
 
 	home: {
 		title: string;
-		version: string;
 	};
 
 	calculator: {

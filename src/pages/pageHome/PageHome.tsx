@@ -1,12 +1,9 @@
 import { ReactNode, useState } from "react";
 import * as S from "./PageHome.styles";
 import { useTheme } from "@src/theme/UseTheme";
-import { version } from "@src/../package.json";
 import { Icon } from "@src/icons/Icon";
 import { IThemeName } from "@src/theme/Theme.types";
 import { Button } from "./components/button/Button";
-import { useTranslation } from "react-i18next";
-import { lang } from "@src/locales/i18n";
 import { useLocalesSearchParams } from "@src/locales/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/theme/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
@@ -15,7 +12,6 @@ import { IAppId } from "./PageHome.types";
 import { apps } from "./PageHome.consts";
 
 export const PageHome = () => {
-	const { t } = useTranslation();
 	const { theme } = useTheme();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
@@ -51,16 +47,13 @@ export const PageHome = () => {
 			</S.Apps>
 
 			<S.PageBar>
-				<S.PageBarButton onClick={handleClose} $isVisible={!!currentApp}>
+				<S.IconClose onClick={handleClose} $isVisible={!!currentApp}>
 					<Icon iconName="iconXCircle" size={theme.size.l} />
-				</S.PageBarButton>
+				</S.IconClose>
 
-				<S.PageBarSeparator />
-
-				<S.Version>{t(lang.home.version, { version })}</S.Version>
-				<S.ThemeMode>
+				<S.IconTheme>
 					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}
-				</S.ThemeMode>
+				</S.IconTheme>
 			</S.PageBar>
 		</S.PageHome>
 	);
