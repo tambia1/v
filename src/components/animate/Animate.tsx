@@ -11,13 +11,10 @@ export interface IAnimate {
 }
 
 export const Animate = ({ useAnimate, children }: Props) => {
-	const refContainer = useRef<HTMLDivElement | null>(null);
 	const [animation, setAnimation] = useState<S.IAnimation>("none");
-	const [key, setKey] = useState<number>(0);
 	const refResolve = useRef<() => void>(() => {});
 
 	const play = (animation: S.IAnimation): Promise<void> => {
-		setKey((prevKey) => prevKey + 1);
 		setAnimation(animation);
 
 		return new Promise<void>((resolve) => {
@@ -26,18 +23,18 @@ export const Animate = ({ useAnimate, children }: Props) => {
 	};
 
 	const onAnimationStart = () => {
-		console.log("start", key);
+		console.log("start", 0);
 	};
 
 	const onAnimationEnd = () => {
-		console.log("end", key);
+		console.log("end", 0);
 		refResolve.current();
 	};
 
 	useImperativeHandle(useAnimate, () => ({ play }));
 
 	return (
-		<S.Animate ref={refContainer} key={key} $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
+		<S.Animate $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
 			{children}
 		</S.Animate>
 	);
