@@ -34,8 +34,6 @@ export const PageHome = () => {
 		setCurrentApp(app.component);
 
 		animate.current.play("appear").then(() => {
-			console.log("aaa");
-
 			setIsVisibleButtonClose(true);
 		});
 	};
@@ -44,7 +42,6 @@ export const PageHome = () => {
 		setIsVisibleButtonClose(false);
 
 		animate.current.play("disappear").then(() => {
-			console.log("bbb");
 			setCurrentApp(null);
 		});
 	};
