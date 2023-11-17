@@ -32,15 +32,12 @@ export const PageHome = () => {
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
 		setCurrentApp(app.component);
-
-		animate.current.play("appear").then(() => {
-			setIsVisibleButtonClose(true);
-		});
+		setIsVisibleButtonClose(true);
+		animate.current.play("appear");
 	};
 
 	const handleClose = () => {
 		setIsVisibleButtonClose(false);
-
 		animate.current.play("disappear").then(() => {
 			setCurrentApp(null);
 		});
