@@ -22,7 +22,7 @@ export const useAppBarSearchParams = ({ onChange }: Props) => {
 		if (Object.keys(appBarPositions).includes(position)) {
 			onChange(appBarPositions[position]);
 		} else {
-			searchParams.delete("theme");
+			searchParams.delete("appbar");
 			setSearchParams(searchParams, { replace: true });
 		}
 	}, [searchParams]);
