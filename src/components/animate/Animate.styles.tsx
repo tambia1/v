@@ -29,10 +29,10 @@ const Animations = {
 		animation: ${hide} ease 0s both;
 	`,
 	appear: css`
-		animation: ${appear} ease 3.3s both;
+		animation: ${appear} ease 0.3s both;
 	`,
 	disappear: css`
-		animation: ${disappear} ease 3.3s both;
+		animation: ${disappear} ease 0.3s both;
 	`,
 } as const;
 

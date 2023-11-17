@@ -18,6 +18,7 @@ export const PageHome = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 	const [appBarPosition, setAppBarPosition] = useState<S.IAppBarPosition>("bottom");
+	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
 	const animate = useAnimate("hide");
 
 	useLocalesSearchParams();
@@ -31,11 +32,19 @@ export const PageHome = () => {
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
 		setCurrentApp(app.component);
-		animate.current.play("appear");
+
+		animate.current.play("appear").then(() => {
+			console.log("aaa");
+
+			setIsVisibleButtonClose(true);
+		});
 	};
 
 	const handleClose = () => {
+		setIsVisibleButtonClose(false);
+
 		animate.current.play("disappear").then(() => {
+			console.log("bbb");
 			setCurrentApp(null);
 		});
 	};
@@ -56,7 +65,7 @@ export const PageHome = () => {
 			</S.Apps>
 
 			<S.AppBar>
-				<S.IconClose onClick={handleClose} $isVisible={!!currentApp}>
+				<S.IconClose onClick={handleClose} $isVisible={isVisibleButtonClose}>
 					<Icon iconName="iconXCircle" size={theme.size.l} />
 				</S.IconClose>
 
