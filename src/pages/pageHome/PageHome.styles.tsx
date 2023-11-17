@@ -43,20 +43,16 @@ export const PageHome = styled.div<{ $pageBarPosition: IPageBarPosition }>`
 		width: ${({ $pageBarPosition }) => ($pageBarPosition === "left" || $pageBarPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
 		height: ${({ $pageBarPosition }) => ($pageBarPosition === "top" || $pageBarPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
 
-		left: ${({ $pageBarPosition }) => ($pageBarPosition === "left" ? PAGE_BAR_SIZE : "unset")};
-		right: ${({ $pageBarPosition }) => ($pageBarPosition === "right" ? 0 : "unset")};
-		top: ${({ $pageBarPosition }) => ($pageBarPosition === "top" ? PAGE_BAR_SIZE : "unset")};
-		bottom: ${({ $pageBarPosition }) => ($pageBarPosition === "bottom" ? 0 : "unset")};
+		left: ${({ $pageBarPosition }) => ($pageBarPosition === "left" ? PAGE_BAR_SIZE : 0)};
+		top: ${({ $pageBarPosition }) => ($pageBarPosition === "top" ? PAGE_BAR_SIZE : 0)};
 	}
 
 	& ${PageBar} {
 		width: ${({ $pageBarPosition }) => ($pageBarPosition === "left" || $pageBarPosition === "right" ? `${PAGE_BAR_SIZE}` : `100%`)};
 		height: ${({ $pageBarPosition }) => ($pageBarPosition === "top" || $pageBarPosition === "bottom" ? `${PAGE_BAR_SIZE}` : `100%`)};
 
-		top: ${({ $pageBarPosition }) => ($pageBarPosition === "top" ? 0 : "unset")};
-		bottom: ${({ $pageBarPosition }) => ($pageBarPosition === "bottom" ? 0 : "unset")};
-		left: ${({ $pageBarPosition }) => ($pageBarPosition === "left" ? 0 : "unset")};
-		right: ${({ $pageBarPosition }) => ($pageBarPosition === "right" ? 0 : "unset")};
+		top: ${({ $pageBarPosition }) => ($pageBarPosition === "top" ? 0 : $pageBarPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
+		left: ${({ $pageBarPosition }) => ($pageBarPosition === "left" ? 0 : $pageBarPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
 	}
 `;
 
