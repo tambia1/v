@@ -7,7 +7,7 @@ import { Button } from "./components/button/Button";
 import { useLocalesSearchParams } from "@src/locales/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/theme/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
-import { usePageBarSearchParams } from "./usePageBarSearchParams";
+import { useAppBarSearchParams } from "./useAppBarSearchParams";
 import { IAppId } from "./PageHome.types";
 import { apps } from "./PageHome.consts";
 
@@ -15,13 +15,13 @@ export const PageHome = () => {
 	const { theme } = useTheme();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
-	const [pageBarPosition, setPageBarPosition] = useState<S.IPageBarPosition>("bottom");
+	const [appBarPosition, setAppBarPosition] = useState<S.IAppBarPosition>("bottom");
 
 	useLocalesSearchParams();
 	useThemesSearchParams();
-	usePageBarSearchParams({
-		onChange: (pageBarPosition: S.IPageBarPosition) => {
-			setPageBarPosition(pageBarPosition);
+	useAppBarSearchParams({
+		onChange: (appBarPosition: S.IAppBarPosition) => {
+			setAppBarPosition(appBarPosition);
 		},
 	});
 
@@ -40,13 +40,13 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.PageHome $pageBarPosition={pageBarPosition}>
+		<S.PageHome $appBarPosition={appBarPosition}>
 			<S.Apps>
 				{currentApp}
 				{!currentApp && apps.map((app) => <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />)}
 			</S.Apps>
 
-			<S.PageBar>
+			<S.AppBar>
 				<S.IconClose onClick={handleClose} $isVisible={!!currentApp}>
 					<Icon iconName="iconXCircle" size={theme.size.l} />
 				</S.IconClose>
@@ -54,7 +54,7 @@ export const PageHome = () => {
 				<S.IconTheme>
 					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}
 				</S.IconTheme>
-			</S.PageBar>
+			</S.AppBar>
 		</S.PageHome>
 	);
 };

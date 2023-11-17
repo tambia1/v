@@ -16,7 +16,7 @@ export const translation: ISettings = {
 			light: "Light",
 			dark: "Dark",
 		},
-		pageBar: {
+		appBar: {
 			title: "Page Bar Position",
 			top: "Top",
 			bottom: "Bottom",

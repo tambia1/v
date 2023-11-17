@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PageBar = styled.div`
+export const AppBar = styled.div`
 	width: auto;
 	height: 100%;
 
