@@ -36,7 +36,7 @@ export const PageHome = () => {
 		animate.current.play("appear");
 	};
 
-	const handleClose = () => {
+	const handleOnClickClose = () => {
 		setIsVisibleButtonClose(false);
 		animate.current.play("disappear").then(() => {
 			setCurrentApp(null);
@@ -59,7 +59,7 @@ export const PageHome = () => {
 			</S.Apps>
 
 			<S.AppBar>
-				<S.IconClose onClick={handleClose} $isVisible={isVisibleButtonClose}>
+				<S.IconClose onClick={handleOnClickClose} $isVisible={isVisibleButtonClose}>
 					<Icon iconName="iconXCircle" size={theme.size.l} />
 				</S.IconClose>
 
