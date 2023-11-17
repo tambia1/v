@@ -23,7 +23,6 @@ export const PageBar = styled.div`
 	flex-shrink: 0;
 	align-items: center;
 	background-color: ${(props) => props.theme.color.normalBg};
-	background-color: red;
 	z-index: 1;
 	transition: all ease 0.3s;
 `;
