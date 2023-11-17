@@ -25,11 +25,7 @@ export const Theme = () => {
 			</List.Section>
 
 			<List>
-				<List.Cell
-					onClick={() => {
-						handleOnClickChangeTheme("light");
-					}}
-				>
+				<List.Cell onClick={() => handleOnClickChangeTheme("light")}>
 					<List.Cell.Image>
 						<Icon iconName="iconSun" />
 					</List.Cell.Image>
@@ -37,15 +33,11 @@ export const Theme = () => {
 						<T>{lang.settings.theme.light}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={theme.themeName === "light" ? "iconCheck" : ""} size={theme.size.m} />
+						<Icon iconName={theme.themeName === "light" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell
-					onClick={() => {
-						handleOnClickChangeTheme("dark");
-					}}
-				>
+				<List.Cell onClick={() => handleOnClickChangeTheme("dark")}>
 					<List.Cell.Image>
 						<Icon iconName="iconMoon" />
 					</List.Cell.Image>
@@ -53,7 +45,7 @@ export const Theme = () => {
 						<T>{lang.settings.theme.dark}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={theme.themeName === "dark" ? "iconCheck" : ""} size={theme.size.m} />
+						<Icon iconName={theme.themeName === "dark" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 			</List>

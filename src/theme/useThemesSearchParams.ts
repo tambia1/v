@@ -17,15 +17,4 @@ export const useThemesSearchParams = () => {
 			setSearchParams(searchParams, { replace: true });
 		}
 	}, [searchParams]);
-
-	// useEffect(() => {
-	// 	const language = (searchParams.get("language") || "") as ILanguage;
-
-	// 	if (languages.includes(language)) {
-	// 		i18n.changeLanguage(language);
-	// 	} else {
-	// 		searchParams.delete("language");
-	// 		setSearchParams(searchParams, { replace: true });
-	// 	}
-	// }, [searchParams]);
 };

@@ -26,11 +26,7 @@ export const Language = () => {
 			</List.Section>
 
 			<List>
-				<List.Cell
-					onClick={() => {
-						handleOnClickChangeLanguage("en");
-					}}
-				>
+				<List.Cell onClick={() => handleOnClickChangeLanguage("en")}>
 					<List.Cell.Image>
 						<Flag flagName="greatBritain" />
 					</List.Cell.Image>
@@ -42,11 +38,7 @@ export const Language = () => {
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell
-					onClick={() => {
-						handleOnClickChangeLanguage("fi");
-					}}
-				>
+				<List.Cell onClick={() => handleOnClickChangeLanguage("fi")}>
 					<List.Cell.Image>
 						<Flag flagName="finland" />
 					</List.Cell.Image>

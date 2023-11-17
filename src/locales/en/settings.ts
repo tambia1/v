@@ -16,6 +16,13 @@ export const translation: ISettings = {
 			light: "Light",
 			dark: "Dark",
 		},
+		appBar: {
+			title: "Page Bar Position",
+			top: "Top",
+			bottom: "Bottom",
+			left: "Left",
+			right: "Right",
+		},
 		about: {
 			title: "About",
 			text: `App Version: ${version}`,
