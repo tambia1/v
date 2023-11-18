@@ -16,7 +16,7 @@ export type ISettings = {
 			background: string;
 			noBackground: string;
 		};
-		bar: {
+		layout: {
 			title: string;
 			barPositon: string;
 			top: string;

@@ -3,7 +3,7 @@ import { usePager } from "@src/components/pager/hooks/UsePager";
 import { Pager } from "@src/components/pager/Pager";
 import { Language } from "./components/language/Language";
 import { Theme } from "./components/theme/Theme";
-import { Bar } from "./components/bar/Bar";
+import { Layout } from "./components/layout/Layout";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { About } from "./components/about/About";
@@ -29,10 +29,10 @@ export const SettingsPage = () => {
 		);
 	};
 
-	const handleOnClickBar = () => {
+	const handleOnClickLayout = () => {
 		pager.pushPage(
-			<Pager.Page id="bar" title={<T>{lang.settings.bar.title}</T>}>
-				<Bar />
+			<Pager.Page id="bar" title={<T>{lang.settings.layout.title}</T>}>
+				<Layout />
 			</Pager.Page>
 		);
 	};
@@ -76,12 +76,12 @@ export const SettingsPage = () => {
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell onClick={handleOnClickBar}>
+				<List.Cell onClick={handleOnClickLayout}>
 					<List.Cell.Image>
 						<Icon iconName="iconLayout" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.bar.title}</T>
+						<T>{lang.settings.layout.title}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName="iconChevronRight" />

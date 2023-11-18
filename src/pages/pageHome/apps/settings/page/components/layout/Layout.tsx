@@ -1,5 +1,5 @@
 import { useState } from "react";
-import * as S from "./Bar.styles";
+import * as S from "./Layout.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { T } from "@src/locales/T";
@@ -7,7 +7,7 @@ import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
 import { IBarPosition } from "@src/pages/pageHome/PageHome.styles";
 
-export const Bar = () => {
+export const Layout = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [barPosition, setBarPosition] = useState<IBarPosition>((searchParams.get("bar") as IBarPosition) || "bottom");
 
@@ -19,9 +19,9 @@ export const Bar = () => {
 	};
 
 	return (
-		<S.Bar>
+		<S.Layout>
 			<List.Section>
-				<T>{lang.settings.bar.barPositon}</T>
+				<T>{lang.settings.layout.barPositon}</T>
 			</List.Section>
 
 			<List>
@@ -30,7 +30,7 @@ export const Bar = () => {
 						<Icon iconName="iconArrowUpCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.bar.top}</T>
+						<T>{lang.settings.layout.top}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={barPosition === "top" ? "iconCheck" : ""} />
@@ -42,7 +42,7 @@ export const Bar = () => {
 						<Icon iconName="iconArrowDownCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.bar.bottom}</T>
+						<T>{lang.settings.layout.bottom}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={barPosition === "bottom" ? "iconCheck" : ""} />
@@ -54,7 +54,7 @@ export const Bar = () => {
 						<Icon iconName="iconArrowLeftCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.bar.left}</T>
+						<T>{lang.settings.layout.left}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={barPosition === "left" ? "iconCheck" : ""} />
@@ -66,13 +66,13 @@ export const Bar = () => {
 						<Icon iconName="iconArrowRightCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.bar.right}</T>
+						<T>{lang.settings.layout.right}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
 						<Icon iconName={barPosition === "right" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 			</List>
-		</S.Bar>
+		</S.Layout>
 	);
 };

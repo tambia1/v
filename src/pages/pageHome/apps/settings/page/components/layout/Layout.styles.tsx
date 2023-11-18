@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Bar = styled.div`
+export const Layout = styled.div`
 	width: auto;
 	height: auto;
 

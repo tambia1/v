@@ -19,7 +19,7 @@ export const translation: ISettings = {
 			background: "Tausta",
 			noBackground: "Ei taustaa",
 		},
-		bar: {
+		layout: {
 			title: "Asettelu",
 			barPositon: "Sivupalkin sijainti",
 			top: "Yläosa",
