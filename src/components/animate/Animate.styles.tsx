@@ -46,5 +46,5 @@ export const Animate = styled.div<{ $animation: IAnimation }>`
 	bottom: 0;
 	opacity: 0;
 	${({ $animation }) => Animations[$animation]};
-	pointer-events: none;
+	z-index: 0;
 `;
