@@ -20,7 +20,8 @@ export const translation: ISettings = {
 			noBackground: "Ei taustaa",
 		},
 		bar: {
-			title: "Sivupalkin sijainti",
+			title: "Asettelu",
+			barPositon: "Sivupalkin sijainti",
 			top: "Yläosa",
 			bottom: "Pohja",
 			left: "Vasen",

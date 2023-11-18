@@ -21,7 +21,7 @@ export const Bar = () => {
 	return (
 		<S.Bar>
 			<List.Section>
-				<T>{lang.settings.bar.title}</T>
+				<T>{lang.settings.bar.barPositon}</T>
 			</List.Section>
 
 			<List>

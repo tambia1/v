@@ -20,7 +20,8 @@ export const translation: ISettings = {
 			noBackground: "No Background",
 		},
 		bar: {
-			title: "Bar Position",
+			title: "Layout",
+			barPositon: "Bar Position",
 			top: "Top",
 			bottom: "Bottom",
 			left: "Left",
