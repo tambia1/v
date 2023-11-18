@@ -10,8 +10,10 @@ export type ISettings = {
 		};
 		theme: {
 			title: string;
+			mode: string;
 			light: string;
 			dark: string;
+			background: string;
 		};
 		bar: {
 			title: string;

@@ -13,8 +13,10 @@ export const translation: ISettings = {
 		},
 		theme: {
 			title: "Theme",
+			mode: "Mode",
 			light: "Light",
 			dark: "Dark",
+			background: "Background",
 		},
 		bar: {
 			title: "Bar Position",

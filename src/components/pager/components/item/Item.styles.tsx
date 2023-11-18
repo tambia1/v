@@ -150,7 +150,7 @@ export type IAnimationType = keyof typeof Animations;
 export const Item = styled.div<{ $animationType: IAnimationType; $animationState: IAnimationState }>`
 	flex-shrink: 0;
 	width: 100%;
-	height: 100%;
+	height: auto;
 	position: absolute;
 
 	${(props) => Animations[props.$animationType][props.$animationState]}

@@ -21,7 +21,7 @@ export const Theme = () => {
 	return (
 		<S.Theme>
 			<List.Section>
-				<T>{lang.settings.theme.title}</T>
+				<T>{lang.settings.theme.mode}</T>
 			</List.Section>
 
 			<List>
@@ -48,6 +48,24 @@ export const Theme = () => {
 						<Icon iconName={theme.themeName === "dark" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
+			</List>
+
+			<List.Section>
+				<T>{lang.settings.theme.background}</T>
+			</List.Section>
+
+			<List>
+				{S.backgroundImages.map((backgroundImage) => (
+					<List.Cell onClick={() => handleOnClickChangeTheme("light")}>
+						<List.Cell.Image>
+							<S.BackgroundImage $backgroundImage={backgroundImage} />
+						</List.Cell.Image>
+						<List.Cell.Text></List.Cell.Text>
+						<List.Cell.Arrow>
+							<Icon iconName={theme.themeName === "light" ? "iconCheck" : ""} />
+						</List.Cell.Arrow>
+					</List.Cell>
+				))}
 			</List>
 		</S.Theme>
 	);

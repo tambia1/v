@@ -33,7 +33,9 @@ export const Bodies = styled.div`
 	display: flex;
 	flex-direction: row;
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
+
 	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
 

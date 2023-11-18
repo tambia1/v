@@ -2,7 +2,7 @@ import * as S from "./CellLeft.styles";
 import { ReactNode } from "react";
 
 interface Props {
-	children: ReactNode;
+	children?: ReactNode;
 }
 
 export const CellLeft = ({ children }: Props) => {

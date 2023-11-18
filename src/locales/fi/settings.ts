@@ -13,8 +13,10 @@ export const translation: ISettings = {
 		},
 		theme: {
 			title: "Teema",
+			mode: "Tila",
 			light: "Valoa",
 			dark: "Tumma",
+			background: "Tausta",
 		},
 		bar: {
 			title: "Sivupalkin sijainti",
