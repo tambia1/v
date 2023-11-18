@@ -3,12 +3,12 @@ import { IHome } from "../types/home.types";
 export const translation: IHome = {
 	languageName: "fi",
 
-	pageMenu: {
-		logout: {
-			alertText: "Are you sure ?",
-			alertButtonYes: "Yes",
-			alertButtonNo: "No",
-		},
+	misc: {
+		yes: "Joo",
+		no: "Ei",
+		ok: "OK",
+		cancel: "Peruuttaa",
+		areYouSure: "Oletko varma ?",
 	},
 
 	home: {

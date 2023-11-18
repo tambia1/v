@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const Icon = ({ iconName }: Props) => {
-	return <Icon.Compose>{iconName && <S.Icon $iconName={iconName} />}</Icon.Compose>;
+	return <Icon.Compose>{iconName && <S.Image $iconName={iconName} />}</Icon.Compose>;
 };
 
-Icon.Compose = S.Container;
+Icon.Compose = S.Icon;

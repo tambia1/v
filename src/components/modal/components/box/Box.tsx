@@ -11,6 +11,6 @@ export const Box = ({ children }: Props) => {
 	return <Box.Compose onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}>{children}</Box.Compose>;
 };
 
-Box.Compose = S.Container;
+Box.Compose = S.Box;
 Box.Content = Content;
 Box.Buttons = Buttons;

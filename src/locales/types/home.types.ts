@@ -3,12 +3,12 @@ import { ILanguageName } from "../i18n.types";
 export type IHome = {
 	languageName: ILanguageName;
 
-	pageMenu: {
-		logout: {
-			alertText: string;
-			alertButtonYes: string;
-			alertButtonNo: string;
-		};
+	misc: {
+		yes: string;
+		no: string;
+		ok: string;
+		cancel: string;
+		areYouSure: string;
 	};
 
 	home: {

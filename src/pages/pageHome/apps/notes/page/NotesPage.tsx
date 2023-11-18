@@ -7,6 +7,7 @@ import { useState } from "react";
 import { NotesContent } from "./components/NotesContent/NotesContent";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { Modal } from "@src/components/modal/Modal";
 
 const noteId = {
 	id: 0,
@@ -26,6 +27,7 @@ interface INote {
 export const NotesPage = () => {
 	const pager = usePager();
 	const [notes, setNotes] = useState<{ [K in string]: INote }>({});
+	const [noteIdToRemove, setNoteIdToRemove] = useState("");
 
 	const handleOnClickNote = (noteId: string) => {
 		const note = notes[noteId];
@@ -52,11 +54,17 @@ export const NotesPage = () => {
 	const handleOnClickRemoveNote = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, noteId: string) => {
 		event.stopPropagation();
 
+		setNoteIdToRemove(noteId);
+	};
+
+	const performRemoveNote = () => {
 		const newNotes = structuredClone(notes);
-
-		delete newNotes[noteId];
-
+		delete newNotes[noteIdToRemove];
 		setNotes(newNotes);
+	};
+
+	const cancelRemoveNote = () => {
+		setNoteIdToRemove("");
 	};
 
 	return (
@@ -90,6 +98,17 @@ export const NotesPage = () => {
 						</List.Cell>
 					))}
 			</List>
+
+			<Modal
+				isVisible={noteIdToRemove !== ""}
+				iconName="question"
+				text={<T>{lang.misc.areYouSure}</T>}
+				onClickBackground={cancelRemoveNote}
+				buttonContentA={<T>{lang.misc.yes}</T>}
+				buttonCallbackA={performRemoveNote}
+				buttonContentB={<T>{lang.misc.no}</T>}
+				buttonCallbackB={cancelRemoveNote}
+			/>
 		</S.NotesPage>
 	);
 };

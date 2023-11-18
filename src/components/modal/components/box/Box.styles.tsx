@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Box = styled.div`
 	position: relative;
 	width: 350px;
 	height: 150px;

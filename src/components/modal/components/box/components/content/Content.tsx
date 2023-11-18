@@ -11,6 +11,6 @@ export const Content = ({ children }: Props) => {
 	return <Content.Compose>{children}</Content.Compose>;
 };
 
-Content.Compose = S.Container;
+Content.Compose = S.Content;
 Content.Icon = Icon;
 Content.Text = Text;

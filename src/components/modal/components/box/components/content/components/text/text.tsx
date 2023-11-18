@@ -9,4 +9,4 @@ export const Text = ({ children }: Props) => {
 	return <Text.Compose>{children}</Text.Compose>;
 };
 
-Text.Compose = S.Contaier;
+Text.Compose = S.Text;
