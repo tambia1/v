@@ -24,15 +24,19 @@ const Animations = {
 	none: "",
 	show: css`
 		animation: ${show} ease 0s both;
+		pointer-events: all;
 	`,
 	hide: css`
 		animation: ${hide} ease 0s both;
+		pointer-events: none;
 	`,
 	appear: css`
 		animation: ${appear} ease 0.3s both;
+		pointer-events: all;
 	`,
 	disappear: css`
 		animation: ${disappear} ease 0.3s both;
+		pointer-events: none;
 	`,
 } as const;
 
@@ -46,5 +50,4 @@ export const Animate = styled.div<{ $animation: IAnimation }>`
 	bottom: 0;
 	opacity: 0;
 	${({ $animation }) => Animations[$animation]};
-	z-index: 0;
 `;
