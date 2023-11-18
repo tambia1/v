@@ -10,6 +10,7 @@ import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "./hooks/useBarSearchParams";
 import { IAppId } from "./PageHome.types";
 import { apps } from "./PageHome.consts";
+import { Animate } from "@src/components/animate/Animate";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
@@ -66,7 +67,7 @@ export const PageHome = () => {
 	return (
 		<S.PageHome $barPosition={barPosition} $backgroundImage={themeStore.backgroundImage}>
 			<S.Apps>
-				{currentApp}
+				<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
 				{apps.map((app) => (
 					<Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
