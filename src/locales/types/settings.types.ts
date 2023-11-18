@@ -13,7 +13,7 @@ export type ISettings = {
 			light: string;
 			dark: string;
 		};
-		appBar: {
+		bar: {
 			title: string;
 			top: string;
 			bottom: string;

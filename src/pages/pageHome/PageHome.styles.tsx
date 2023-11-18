@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export type IAppBarPosition = "top" | "bottom" | "left" | "right";
+export type IBarPosition = "top" | "bottom" | "left" | "right";
 
 const PAGE_BAR_SIZE = "4rem";
 
@@ -14,7 +14,7 @@ export const Apps = styled.div`
 	transition: all ease 0.3s;
 `;
 
-export const AppBar = styled.div`
+export const Bar = styled.div`
 	overflow: hidden;
 	position: absolute;
 	width: 100%;
@@ -26,7 +26,7 @@ export const AppBar = styled.div`
 	transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, bottom 0.3s ease, left 0.3s ease, right 0.3s ease;
 `;
 
-export const PageHome = styled.div<{ $appBarPosition: IAppBarPosition }>`
+export const PageHome = styled.div<{ $barPosition: IBarPosition }>`
 	width: 100%;
 	height: 100%;
 
@@ -38,19 +38,19 @@ export const PageHome = styled.div<{ $appBarPosition: IAppBarPosition }>`
 	background-color: ${(props) => props.theme.color.normalBg};
 
 	& ${Apps} {
-		width: ${({ $appBarPosition }) => ($appBarPosition === "left" || $appBarPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
-		height: ${({ $appBarPosition }) => ($appBarPosition === "top" || $appBarPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
+		width: ${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
+		height: ${({ $barPosition }) => ($barPosition === "top" || $barPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
 
-		left: ${({ $appBarPosition }) => ($appBarPosition === "left" ? PAGE_BAR_SIZE : 0)};
-		top: ${({ $appBarPosition }) => ($appBarPosition === "top" ? PAGE_BAR_SIZE : 0)};
+		left: ${({ $barPosition }) => ($barPosition === "left" ? PAGE_BAR_SIZE : 0)};
+		top: ${({ $barPosition }) => ($barPosition === "top" ? PAGE_BAR_SIZE : 0)};
 	}
 
-	& ${AppBar} {
-		width: ${({ $appBarPosition }) => ($appBarPosition === "left" || $appBarPosition === "right" ? `${PAGE_BAR_SIZE}` : `100%`)};
-		height: ${({ $appBarPosition }) => ($appBarPosition === "top" || $appBarPosition === "bottom" ? `${PAGE_BAR_SIZE}` : `100%`)};
+	& ${Bar} {
+		width: ${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `${PAGE_BAR_SIZE}` : `100%`)};
+		height: ${({ $barPosition }) => ($barPosition === "top" || $barPosition === "bottom" ? `${PAGE_BAR_SIZE}` : `100%`)};
 
-		top: ${({ $appBarPosition }) => ($appBarPosition === "top" ? 0 : $appBarPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
-		left: ${({ $appBarPosition }) => ($appBarPosition === "left" ? 0 : $appBarPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
+		top: ${({ $barPosition }) => ($barPosition === "top" ? 0 : $barPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
+		left: ${({ $barPosition }) => ($barPosition === "left" ? 0 : $barPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
 	}
 `;
 

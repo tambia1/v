@@ -7,7 +7,7 @@ import { Button } from "./components/button/Button";
 import { useLocalesSearchParams } from "@src/locales/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/theme/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
-import { useAppBarSearchParams } from "./useAppBarSearchParams";
+import { useBarSearchParams } from "./useBarSearchParams";
 import { IAppId } from "./PageHome.types";
 import { apps } from "./PageHome.consts";
 import { Animate } from "@src/components/animate/Animate";
@@ -17,15 +17,15 @@ export const PageHome = () => {
 	const { theme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
-	const [appBarPosition, setAppBarPosition] = useState<S.IAppBarPosition>("bottom");
+	const [barPosition, setBarPosition] = useState<S.IBarPosition>("bottom");
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
 	const animateApp = useAnimate("hide");
 
 	useLocalesSearchParams();
 	useThemesSearchParams();
-	useAppBarSearchParams({
-		onChange: (appBarPosition: S.IAppBarPosition) => {
-			setAppBarPosition(appBarPosition);
+	useBarSearchParams({
+		onChange: (barPosition: S.IBarPosition) => {
+			setBarPosition(barPosition);
 		},
 	});
 
@@ -49,7 +49,7 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.PageHome $appBarPosition={appBarPosition}>
+		<S.PageHome $barPosition={barPosition}>
 			<S.Apps>
 				<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
@@ -58,7 +58,7 @@ export const PageHome = () => {
 				))}
 			</S.Apps>
 
-			<S.AppBar>
+			<S.Bar>
 				<S.IconClose onClick={handleOnClickClose} $isVisible={isVisibleButtonClose}>
 					<Icon iconName="iconXCircle" size={theme.size.l} />
 				</S.IconClose>
@@ -66,7 +66,7 @@ export const PageHome = () => {
 				<S.IconTheme>
 					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}
 				</S.IconTheme>
-			</S.AppBar>
+			</S.Bar>
 		</S.PageHome>
 	);
 };

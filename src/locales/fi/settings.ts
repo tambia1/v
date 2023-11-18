@@ -16,7 +16,7 @@ export const translation: ISettings = {
 			light: "Valoa",
 			dark: "Tumma",
 		},
-		appBar: {
+		bar: {
 			title: "Sivupalkin sijainti",
 			top: "Yläosa",
 			bottom: "Pohja",

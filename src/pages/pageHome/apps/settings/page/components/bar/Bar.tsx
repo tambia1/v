@@ -1,78 +1,78 @@
 import { useState } from "react";
-import * as S from "./AppBar.styles";
+import * as S from "./Bar.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
-import { IAppBarPosition } from "@src/pages/pageHome/PageHome.styles";
+import { IBarPosition } from "@src/pages/pageHome/PageHome.styles";
 
-export const AppBar = () => {
+export const Bar = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [appBarPosition, setAppBarPosition] = useState<IAppBarPosition>((searchParams.get("appbar") as IAppBarPosition) || "bottom");
+	const [barPosition, setBarPosition] = useState<IBarPosition>((searchParams.get("bar") as IBarPosition) || "bottom");
 
-	const handleOnClickChangeAppBarPosition = (appBarPosition: IAppBarPosition) => {
-		setAppBarPosition(appBarPosition);
+	const handleOnClickChangeBarPosition = (barPosition: IBarPosition) => {
+		setBarPosition(barPosition);
 
-		searchParams.set("appbar", appBarPosition);
+		searchParams.set("bar", barPosition);
 		setSearchParams(searchParams, { replace: true });
 	};
 
 	return (
-		<S.AppBar>
+		<S.Bar>
 			<List.Section>
-				<T>{lang.settings.appBar.title}</T>
+				<T>{lang.settings.bar.title}</T>
 			</List.Section>
 
 			<List>
-				<List.Cell onClick={() => handleOnClickChangeAppBarPosition("top")}>
+				<List.Cell onClick={() => handleOnClickChangeBarPosition("top")}>
 					<List.Cell.Image>
 						<Icon iconName="iconArrowUpCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.appBar.top}</T>
+						<T>{lang.settings.bar.top}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={appBarPosition === "top" ? "iconCheck" : ""} />
+						<Icon iconName={barPosition === "top" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell onClick={() => handleOnClickChangeAppBarPosition("bottom")}>
+				<List.Cell onClick={() => handleOnClickChangeBarPosition("bottom")}>
 					<List.Cell.Image>
 						<Icon iconName="iconArrowDownCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.appBar.bottom}</T>
+						<T>{lang.settings.bar.bottom}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={appBarPosition === "bottom" ? "iconCheck" : ""} />
+						<Icon iconName={barPosition === "bottom" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell onClick={() => handleOnClickChangeAppBarPosition("left")}>
+				<List.Cell onClick={() => handleOnClickChangeBarPosition("left")}>
 					<List.Cell.Image>
 						<Icon iconName="iconArrowLeftCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.appBar.left}</T>
+						<T>{lang.settings.bar.left}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={appBarPosition === "left" ? "iconCheck" : ""} />
+						<Icon iconName={barPosition === "left" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell onClick={() => handleOnClickChangeAppBarPosition("right")}>
+				<List.Cell onClick={() => handleOnClickChangeBarPosition("right")}>
 					<List.Cell.Image>
 						<Icon iconName="iconArrowRightCircle" />
 					</List.Cell.Image>
 					<List.Cell.Text>
-						<T>{lang.settings.appBar.right}</T>
+						<T>{lang.settings.bar.right}</T>
 					</List.Cell.Text>
 					<List.Cell.Arrow>
-						<Icon iconName={appBarPosition === "right" ? "iconCheck" : ""} />
+						<Icon iconName={barPosition === "right" ? "iconCheck" : ""} />
 					</List.Cell.Arrow>
 				</List.Cell>
 			</List>
-		</S.AppBar>
+		</S.Bar>
 	);
 };
