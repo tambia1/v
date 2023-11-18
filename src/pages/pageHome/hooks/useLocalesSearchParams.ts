@@ -1,17 +1,19 @@
 import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { ILanguageName, languages } from "./i18n.types";
+import { ILanguageName, languages } from "../../../locales/i18n.types";
 
-export const useLocalesSearchParams = () => {
-	const { i18n } = useTranslation();
+interface Props {
+	onChange: (language: ILanguageName) => void;
+}
+
+export const useLocalesSearchParams = ({ onChange }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
 		const language = (searchParams.get("language") || "") as ILanguageName;
 
 		if (languages.includes(language)) {
-			i18n.changeLanguage(language);
+			onChange(language);
 		} else {
 			searchParams.delete("language");
 			setSearchParams(searchParams, { replace: true });

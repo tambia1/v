@@ -1,17 +1,19 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { ITheme, themes } from "./Theme.types";
-import { useThemeContext } from "./UseThemeContext";
+import { ITheme, themes } from "../../../theme/Theme.types";
 
-export const useThemesSearchParams = () => {
-	const { setTheme } = useThemeContext();
+interface Props {
+	onChange: (themeName: ITheme["themeName"]) => void;
+}
+
+export const useThemesSearchParams = ({ onChange }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
 		const theme = (searchParams.get("theme") || "") as ITheme["themeName"];
 
 		if (Object.keys(themes).includes(theme)) {
-			setTheme(themes[theme]);
+			onChange(theme);
 		} else {
 			searchParams.delete("theme");
 			setSearchParams(searchParams, { replace: true });

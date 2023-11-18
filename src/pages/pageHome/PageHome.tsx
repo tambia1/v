@@ -2,16 +2,18 @@ import { ReactNode, useState } from "react";
 import * as S from "./PageHome.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { Icon } from "@src/icons/Icon";
-import { IThemeName } from "@src/theme/Theme.types";
+import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
 import { Button } from "./components/button/Button";
-import { useLocalesSearchParams } from "@src/locales/useLocalesSearchParams";
-import { useThemesSearchParams } from "@src/theme/useThemesSearchParams";
+import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
+import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
-import { useBarSearchParams } from "./useBarSearchParams";
+import { useBarSearchParams } from "./hooks/useBarSearchParams";
 import { IAppId } from "./PageHome.types";
 import { apps } from "./PageHome.consts";
 import { Animate } from "@src/components/animate/Animate";
 import { useAnimate } from "@src/components/animate/UseAnimate";
+import { ILanguageName } from "@src/locales/i18n.types";
+import { useTranslation } from "react-i18next";
 
 export const PageHome = () => {
 	const { theme } = useThemeContext();
@@ -20,9 +22,21 @@ export const PageHome = () => {
 	const [barPosition, setBarPosition] = useState<S.IBarPosition>("bottom");
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
 	const animateApp = useAnimate("hide");
+	const { setTheme } = useThemeContext();
+	const { i18n } = useTranslation();
 
-	useLocalesSearchParams();
-	useThemesSearchParams();
+	useLocalesSearchParams({
+		onChange: (language: ILanguageName) => {
+			i18n.changeLanguage(language);
+		},
+	});
+
+	useThemesSearchParams({
+		onChange: (themeName: ITheme["themeName"]) => {
+			setTheme(themes[themeName]);
+		},
+	});
+
 	useBarSearchParams({
 		onChange: (barPosition: S.IBarPosition) => {
 			setBarPosition(barPosition);
