@@ -17,6 +17,7 @@ export const translation: ISettings = {
 			light: "Valoa",
 			dark: "Tumma",
 			background: "Tausta",
+			noBackground: "Ei taustaa",
 		},
 		bar: {
 			title: "Sivupalkin sijainti",

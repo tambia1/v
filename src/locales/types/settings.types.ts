@@ -14,6 +14,7 @@ export type ISettings = {
 			light: string;
 			dark: string;
 			background: string;
+			noBackground: string;
 		};
 		bar: {
 			title: string;

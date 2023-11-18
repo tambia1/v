@@ -66,7 +66,9 @@ export const Theme = () => {
 						<List.Cell.Image>
 							<S.BackgroundImage $backgroundImage={backgroundImage} />
 						</List.Cell.Image>
-						<List.Cell.Text></List.Cell.Text>
+						<List.Cell.Text>
+							<T>{backgroundImage ? "" : lang.settings.theme.noBackground}</T>
+						</List.Cell.Text>
 						<List.Cell.Arrow>
 							<Icon iconName={themeStore.backgroundImage === backgroundImage ? "iconCheck" : ""} />
 						</List.Cell.Arrow>

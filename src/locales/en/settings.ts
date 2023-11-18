@@ -17,6 +17,7 @@ export const translation: ISettings = {
 			light: "Light",
 			dark: "Dark",
 			background: "Background",
+			noBackground: "No Background",
 		},
 		bar: {
 			title: "Bar Position",

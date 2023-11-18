@@ -8,7 +8,7 @@ import background6 from "./background/imagesTheme6/bg_0.jpg";
 import background7 from "./background/imagesTheme7/bg_0.jpg";
 import background8 from "./background/imagesTheme8/bg_0.jpg";
 
-export const backgroundImages = [background1, background2, background3, background4, background5, background6, background7, background8];
+export const backgroundImages = ["", background1, background2, background3, background4, background5, background6, background7, background8];
 
 export const Theme = styled.div`
 	width: auto;

@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 interface Props {
 	backgroundImage: string;
@@ -6,10 +7,19 @@ interface Props {
 }
 
 const initialState = {
-	backgroundImage: "/os/src/pages/pageHome/apps/settings/page/components/theme/background/imagesTheme1/bg_0.png",
+	backgroundImage: "",
 };
 
-export const useThemeStore = create<Props>()((set) => ({
-	...initialState,
-	setBackgroundImage: (backgroundImage: string) => set(() => ({ backgroundImage })),
-}));
+export const useThemeStore = create<Props>()(
+	persist(
+		(set) => ({
+			...initialState,
+			setBackgroundImage: (backgroundImage: string) => set(() => ({ backgroundImage })),
+		}),
+		{
+			version: 1,
+			name: "backgroundImage",
+			storage: createJSONStorage(() => localStorage),
+		}
+	)
+);
