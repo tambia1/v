@@ -1,7 +1,7 @@
 ﻿{
-	"name": "redis-frontend",
-	"short_name": "redis-frontend",
-	"description": "redis-frontend",
+	"name": "tambi",
+	"short_name": "tambi",
+	"description": "tambi",
 	"categories": ["games", "kids"],
 	"theme_color": "#000000",
 	"background_color": "#000000",
