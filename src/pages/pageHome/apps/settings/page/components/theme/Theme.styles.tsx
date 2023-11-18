@@ -12,12 +12,13 @@ export const backgroundImages = ["", background1, background2, background3, back
 
 export const Theme = styled.div`
 	width: auto;
-	height: 100%;
+	height: auto;
 
 	display: flex;
 	flex-direction: column;
 
 	padding: 1rem;
+	box-sizing: border-box;
 `;
 
 export const Background = css`

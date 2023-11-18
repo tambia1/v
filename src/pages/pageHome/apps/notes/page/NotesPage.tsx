@@ -5,7 +5,6 @@ import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { useState } from "react";
 import { NotesContent } from "./components/NotesContent/NotesContent";
-import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 
@@ -33,9 +32,7 @@ export const NotesPage = () => {
 
 		pager.pushPage(
 			<Pager.Page id={String(note.id)} title={note.title}>
-				<NotesContent>
-					<Text size="m">{note.text}</Text>
-				</NotesContent>
+				<NotesContent>{note.text}</NotesContent>
 			</Pager.Page>
 		);
 	};

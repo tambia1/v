@@ -6,5 +6,9 @@ interface Props {
 }
 
 export const NotesContent = ({ children }: Props) => {
-	return <S.NotesContent>{children}</S.NotesContent>;
+	return (
+		<S.NotesContent>
+			<S.TextArea>{children}</S.TextArea>
+		</S.NotesContent>
+	);
 };

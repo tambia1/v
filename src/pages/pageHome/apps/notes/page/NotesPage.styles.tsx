@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const NotesPage = styled.div`
 	width: auto;
-	height: 100%;
+	height: auto;
 
 	display: flex;
 	flex-direction: column;
