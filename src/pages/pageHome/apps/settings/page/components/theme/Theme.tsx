@@ -6,16 +6,22 @@ import { IThemeName, themes } from "@src/theme/Theme.types";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
+import { useThemeStore } from "./store/useThemeStore";
 
 export const Theme = () => {
 	const { theme, setTheme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
+	const themeStore = useThemeStore();
 
-	const handleOnClickChangeTheme = (themeName: IThemeName) => {
+	const handleOnClickTheme = (themeName: IThemeName) => {
 		setTheme(themes[themeName]);
 
 		searchParams.set("theme", themeName);
 		setSearchParams(searchParams, { replace: true });
+	};
+
+	const handleOnClickBackground = (backgroundImage: string) => {
+		themeStore.setBackgroundImage(backgroundImage);
 	};
 
 	return (
@@ -25,7 +31,7 @@ export const Theme = () => {
 			</List.Section>
 
 			<List>
-				<List.Cell onClick={() => handleOnClickChangeTheme("light")}>
+				<List.Cell onClick={() => handleOnClickTheme("light")}>
 					<List.Cell.Image>
 						<Icon iconName="iconSun" />
 					</List.Cell.Image>
@@ -37,7 +43,7 @@ export const Theme = () => {
 					</List.Cell.Arrow>
 				</List.Cell>
 
-				<List.Cell onClick={() => handleOnClickChangeTheme("dark")}>
+				<List.Cell onClick={() => handleOnClickTheme("dark")}>
 					<List.Cell.Image>
 						<Icon iconName="iconMoon" />
 					</List.Cell.Image>
@@ -56,13 +62,13 @@ export const Theme = () => {
 
 			<List>
 				{S.backgroundImages.map((backgroundImage) => (
-					<List.Cell onClick={() => handleOnClickChangeTheme("light")}>
+					<List.Cell onClick={() => handleOnClickBackground(backgroundImage)}>
 						<List.Cell.Image>
 							<S.BackgroundImage $backgroundImage={backgroundImage} />
 						</List.Cell.Image>
 						<List.Cell.Text></List.Cell.Text>
 						<List.Cell.Arrow>
-							<Icon iconName={theme.themeName === "light" ? "iconCheck" : ""} />
+							<Icon iconName={themeStore.backgroundImage === backgroundImage ? "iconCheck" : ""} />
 						</List.Cell.Arrow>
 					</List.Cell>
 				))}

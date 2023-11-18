@@ -26,7 +26,7 @@ export const Bar = styled.div`
 	transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, bottom 0.3s ease, left 0.3s ease, right 0.3s ease;
 `;
 
-export const PageHome = styled.div<{ $barPosition: IBarPosition }>`
+export const PageHome = styled.div<{ $barPosition: IBarPosition; $backgroundImage: string }>`
 	width: 100%;
 	height: 100%;
 
@@ -36,6 +36,9 @@ export const PageHome = styled.div<{ $barPosition: IBarPosition }>`
 
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};
+	background-image: url(${({ $backgroundImage }) => $backgroundImage});
+	background-size: cover;
+	background-position: 50%;
 
 	& ${Apps} {
 		width: ${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};

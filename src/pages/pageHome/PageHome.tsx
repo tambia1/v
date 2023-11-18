@@ -14,6 +14,7 @@ import { Animate } from "@src/components/animate/Animate";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
+import { useThemeStore } from "./apps/settings/page/components/theme/store/useThemeStore";
 
 export const PageHome = () => {
 	const { theme } = useThemeContext();
@@ -24,6 +25,7 @@ export const PageHome = () => {
 	const animateApp = useAnimate("hide");
 	const { setTheme } = useThemeContext();
 	const { i18n } = useTranslation();
+	const themeStore = useThemeStore();
 
 	useLocalesSearchParams({
 		onChange: (language: ILanguageName) => {
@@ -63,7 +65,7 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.PageHome $barPosition={barPosition}>
+		<S.PageHome $barPosition={barPosition} $backgroundImage={themeStore.backgroundImage}>
 			<S.Apps>
 				<Animate useAnimate={animateApp}>{currentApp}</Animate>
 

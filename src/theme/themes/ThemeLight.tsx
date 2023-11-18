@@ -8,7 +8,7 @@ export const themeLight: ITheme = {
 		normalFg: "#333333",
 		normalBg: "#ffffff",
 		normalFgHover: "#999999",
-		normalBgHover: "#f5f5f5",
+		normalBgHover: "#f5f5f566",
 		normalFgActive: "#666666",
 		normalBgActive: "#c2c2c2",
 		normalFgSelected: "#333333",

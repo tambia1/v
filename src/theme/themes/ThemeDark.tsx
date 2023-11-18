@@ -8,7 +8,7 @@ export const themeDark: ITheme = {
 		normalFg: "#dedede",
 		normalBg: "#2a2a2a",
 		normalFgHover: "#dedede",
-		normalBgHover: "#343434",
+		normalBgHover: "#34343466",
 		normalFgActive: "#dedede",
 		normalBgActive: "#676767",
 		normalFgSelected: "#dedede",
