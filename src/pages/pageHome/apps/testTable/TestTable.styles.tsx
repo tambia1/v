@@ -9,6 +9,8 @@ export const TestTable = styled.div`
 
 	padding: 1rem;
 	box-sizing: border-box;
+
+	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
 
 export const TableContainer = styled.div`

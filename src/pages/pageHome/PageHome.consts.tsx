@@ -21,7 +21,7 @@ export const apps: IApp[] = [
 	{ id: "settings", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
 	{ id: "notes", title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
 	{ id: "calculator", title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
-	{ id: "camera", title: <T>{lang.camera.title}</T>, icon: "camera", component: <></> },
+	{ id: "camera", title: <T>{lang.camera.title}</T>, icon: "camera", component: <Test /> },
 	{ id: "tetris", title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 	{ id: "test", title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
 	{ id: "testDropDown", title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },

@@ -9,4 +9,6 @@ export const Tetris = styled.div`
 
 	padding: 1rem;
 	box-sizing: border-box;
+
+	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
