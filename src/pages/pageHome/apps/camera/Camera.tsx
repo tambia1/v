@@ -10,10 +10,11 @@ export const Camera = () => {
 	const handleTakePicture = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({
+				audio: false,
 				video: {
-					facingMode: {
-						exact: "environment",
-					},
+					facingMode: { exact: "environment" },
+					width: { min: 1024, ideal: 1280, max: 1920 },
+					height: { min: 576, ideal: 720, max: 1080 },
 				},
 			});
 			if (videoRef.current) {
