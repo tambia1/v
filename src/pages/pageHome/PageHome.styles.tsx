@@ -113,9 +113,11 @@ export const IconTheme = styled.div`
 
 export const Version = styled.div`
 	position: absolute;
-	bottom: 1rem;
-	right: 1rem;
-	margin: 1rem;
+	bottom: 0rem;
+	right: 4rem;
+	height: 4rem;
+	align-items: center;
+	display: flex;
 	color: ${(props) => props.theme.color.normalFg};
 	text-shadow: 0px 0px 5px ${(props) => props.theme.color.normalBg};
 `;

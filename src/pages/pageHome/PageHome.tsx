@@ -73,8 +73,6 @@ export const PageHome = () => {
 				{apps.map((app) => (
 					<Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
 				))}
-
-				<S.Version>{version}</S.Version>
 			</S.Apps>
 
 			<S.Bar>
@@ -85,6 +83,8 @@ export const PageHome = () => {
 				<S.IconTheme>
 					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}
 				</S.IconTheme>
+
+				<S.Version>{version}</S.Version>
 			</S.Bar>
 		</S.PageHome>
 	);
