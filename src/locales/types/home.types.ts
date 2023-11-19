@@ -23,6 +23,10 @@ export type IHome = {
 		title: string;
 	};
 
+	clock: {
+		title: string;
+	};
+
 	notes: {
 		title: string;
 		notes: string;

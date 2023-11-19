@@ -1,1 +1,1 @@
-export type IAppId = "settings" | "calculator" | "camera" | "notes" | "tetris" | "test" | "testDropDown" | "testTree" | "testTabs" | "testTable";
+export type IAppId = "settings" | "calculator" | "camera" | "clock" | "notes" | "tetris" | "test" | "testDropDown" | "testTree" | "testTabs" | "testTable";

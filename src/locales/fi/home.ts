@@ -23,6 +23,10 @@ export const translation: IHome = {
 		title: "Kamera",
 	},
 
+	clock: {
+		title: "Kello",
+	},
+
 	notes: {
 		title: "Huomautuksia",
 		notes: "Huomautuksia",
