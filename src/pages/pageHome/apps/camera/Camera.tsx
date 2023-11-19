@@ -45,7 +45,7 @@ export const Camera = () => {
 			<Button onClick={handleCapture}>Take Picture</Button>
 			<Text>Picture:</Text>
 			<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
-			<video ref={videoRef} autoPlay muted style={{ display: capturedImage ? "none" : "block" }} />
+			<video ref={videoRef} autoPlay muted />
 		</S.Camera>
 	);
 };
