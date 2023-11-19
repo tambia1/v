@@ -15,6 +15,7 @@ import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "./apps/settings/page/components/theme/store/useThemeStore";
+import { version } from "@src/../package.json";
 
 export const PageHome = () => {
 	const { theme } = useThemeContext();
@@ -72,6 +73,8 @@ export const PageHome = () => {
 				{apps.map((app) => (
 					<Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
 				))}
+
+				<S.Version>{version}</S.Version>
 			</S.Apps>
 
 			<S.Bar>

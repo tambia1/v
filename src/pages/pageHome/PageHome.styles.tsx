@@ -110,3 +110,12 @@ export const IconTheme = styled.div`
 		color: ${(props) => props.theme.color.normalFgActive};
 	}
 `;
+
+export const Version = styled.div`
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	margin: 1rem;
+	color: ${(props) => props.theme.color.normalFg};
+	text-shadow: 0px 0px 5px ${(props) => props.theme.color.normalBg};
+`;
