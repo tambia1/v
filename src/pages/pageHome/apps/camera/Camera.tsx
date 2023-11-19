@@ -42,11 +42,14 @@ export const Camera = () => {
 
 	return (
 		<S.Camera>
-			<Button onClick={handleCamera}>Start Camera</Button>
+			<Text>Camera:</Text>
 			<S.Video ref={videoRef} autoPlay />
-			<Button onClick={handleCapture}>Take Picture</Button>
 			<Text>Picture:</Text>
 			<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
+			<S.Buttons>
+				<Button onClick={handleCamera}>Start Camera</Button>
+				<Button onClick={handleCapture}>Take Picture</Button>
+			</S.Buttons>
 		</S.Camera>
 	);
 };
