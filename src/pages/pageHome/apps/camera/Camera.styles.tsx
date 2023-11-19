@@ -46,4 +46,6 @@ export const Buttons = styled.div`
 	height: auto;
 	justify-content: space-between;
 	margin-top: auto;
+	transform: rotate(90deg);
+	transform-origin: 50% 50%;
 `;
