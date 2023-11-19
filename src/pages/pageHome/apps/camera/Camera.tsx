@@ -7,7 +7,7 @@ export const Camera = () => {
 	const [capturedImage, setCapturedImage] = useState<string | null>(null);
 	const videoRef = useRef<HTMLVideoElement>(null);
 
-	const handleTakePicture = async () => {
+	const handleCamera = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({
 				audio: false,
@@ -17,6 +17,7 @@ export const Camera = () => {
 					height: { min: 576, ideal: 720, max: 1080 },
 				},
 			});
+
 			if (videoRef.current) {
 				videoRef.current.srcObject = stream;
 			}
@@ -41,7 +42,7 @@ export const Camera = () => {
 
 	return (
 		<S.Camera>
-			<Button onClick={handleTakePicture}>Start Camera</Button>
+			<Button onClick={handleCamera}>Start Camera</Button>
 			<S.Video ref={videoRef} autoPlay />
 			<Button onClick={handleCapture}>Take Picture</Button>
 			<Text>Picture:</Text>

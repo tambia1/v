@@ -33,6 +33,7 @@ export const Image = styled.img`
 `;
 
 export const Video = styled.video`
+	display: none;
 	position: relative;
 	width: 10rem;
 	height: 10rem;
