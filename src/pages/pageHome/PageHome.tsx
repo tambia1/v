@@ -20,7 +20,7 @@ export const PageHome = () => {
 	const { theme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
-	const [barPosition, setBarPosition] = useState<S.IBarPosition>("bottom");
+	const [bar, setBar] = useState<{ isReady: boolean; position: S.IBarPosition }>({ isReady: false, position: "bottom" });
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
 	const animateApp = useAnimate("hide");
 	const { setTheme } = useThemeContext();
@@ -41,7 +41,7 @@ export const PageHome = () => {
 
 	useBarSearchParams({
 		onChange: (barPosition: S.IBarPosition) => {
-			setBarPosition(barPosition);
+			setBar({ isReady: true, position: barPosition });
 		},
 	});
 
@@ -65,7 +65,7 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.PageHome $barPosition={barPosition} $backgroundImage={themeStore.backgroundImage}>
+		<S.PageHome $barPosition={bar.position} $backgroundImage={themeStore.backgroundImage}>
 			<S.Apps>
 				<Animate useAnimate={animateApp}>{currentApp}</Animate>
 

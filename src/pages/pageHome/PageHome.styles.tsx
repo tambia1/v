@@ -11,7 +11,7 @@ export const Apps = styled.div`
 	display: block;
 	gap: 0.5rem;
 	color: ${(props) => props.theme.color.normalFg};
-	transition: all ease 0.3s;
+	opacity: 0;
 `;
 
 export const Bar = styled.div`
@@ -23,7 +23,7 @@ export const Bar = styled.div`
 	flex-shrink: 0;
 	background-color: ${(props) => props.theme.color.normalBg};
 	z-index: 1;
-	transition: width 0.3s ease, height 0.3s ease, top 0.3s ease, bottom 0.3s ease, left 0.3s ease, right 0.3s ease;
+	opacity: 0;
 `;
 
 export const PageHome = styled.div<{ $barPosition: IBarPosition; $backgroundImage: string }>`
@@ -46,6 +46,10 @@ export const PageHome = styled.div<{ $barPosition: IBarPosition; $backgroundImag
 
 		left: ${({ $barPosition }) => ($barPosition === "left" ? PAGE_BAR_SIZE : 0)};
 		top: ${({ $barPosition }) => ($barPosition === "top" ? PAGE_BAR_SIZE : 0)};
+
+		opacity: 1;
+
+		transition: all ease 0.3s 1s;
 	}
 
 	& ${Bar} {
@@ -54,6 +58,10 @@ export const PageHome = styled.div<{ $barPosition: IBarPosition; $backgroundImag
 
 		top: ${({ $barPosition }) => ($barPosition === "top" ? 0 : $barPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
 		left: ${({ $barPosition }) => ($barPosition === "left" ? 0 : $barPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
+
+		opacity: 1;
+
+		transition: all ease 0.3s 1s;
 	}
 `;
 
