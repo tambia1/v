@@ -32,6 +32,7 @@ export const Camera = () => {
 			canvas.width = videoRef.current.videoWidth;
 			canvas.height = videoRef.current.videoHeight;
 			const context = canvas.getContext("2d");
+
 			if (context) {
 				context.drawImage(videoRef.current, 0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
 				const imageUrl = canvas.toDataURL("image/png");
@@ -43,7 +44,7 @@ export const Camera = () => {
 	return (
 		<S.Camera>
 			<Text>Camera:</Text>
-			<S.Video ref={videoRef} autoPlay />
+			<S.Video ref={videoRef} autoPlay playsInline />
 			<Text>Picture:</Text>
 			<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
 			<S.Buttons>
