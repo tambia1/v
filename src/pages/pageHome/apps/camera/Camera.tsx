@@ -9,7 +9,13 @@ export const Camera = () => {
 
 	const handleTakePicture = async () => {
 		try {
-			const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } });
+			const stream = await navigator.mediaDevices.getUserMedia({
+				video: {
+					facingMode: {
+						exact: "environment",
+					},
+				},
+			});
 			if (videoRef.current) {
 				videoRef.current.srcObject = stream;
 			}
