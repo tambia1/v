@@ -4,12 +4,14 @@ import { IAppIcon } from "./components/button/Button.styles";
 import { lang } from "@src/locales/i18n";
 import { Settings } from "./apps/settings/Settings";
 import { Notes } from "./apps/notes/Notes";
-import { Calculator } from "./apps/calculator/Calculator";
 import { Tetris } from "./apps/tetris/Tetris";
 import { Test } from "./apps/test/Test";
 import { TestDropDown } from "./apps/testDropDown/TestDropDown";
 import { TestTable } from "./apps/testTable/TestTable";
 import { Camera } from "./apps/camera/Camera";
+import { lazy } from "react";
+
+const Calculator = lazy(() => import("./apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
 
 interface IApp {
 	id: IAppId;
