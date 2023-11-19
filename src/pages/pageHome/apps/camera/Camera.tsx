@@ -42,10 +42,10 @@ export const Camera = () => {
 	return (
 		<S.Camera>
 			<Button onClick={handleTakePicture}>Start Camera</Button>
+			<S.Video ref={videoRef} />
 			<Button onClick={handleCapture}>Take Picture</Button>
 			<Text>Picture:</Text>
 			<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
-			<video ref={videoRef} autoPlay muted />
 		</S.Camera>
 	);
 };

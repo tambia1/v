@@ -27,7 +27,15 @@ export const Image = styled.img`
 		width: 100%;
 		height: 100%;
 		content: "";
-		background: yellow;
+		background-color: ${(props) => props.theme.color.normalBg};
 		position: absolute;
 	}
+`;
+
+export const Video = styled.video`
+	position: relative;
+	width: 10rem;
+	height: 10rem;
+
+	background-color: ${(props) => props.theme.color.normalBg};
 `;
