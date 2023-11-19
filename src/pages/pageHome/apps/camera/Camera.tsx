@@ -1,12 +1,13 @@
 import { Button } from "@src/components/button/Button";
 import * as S from "./Camera.styles";
-import { useRef } from "react";
+import { Text } from "@src/components/text/Text";
+import { useRef, useState } from "react";
 
 export const Camera = () => {
-	const videoRef = useRef<HTMLVideoElement | null>(null);
-	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const [capturedImage, setCapturedImage] = useState<string | null>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
 
-	const startCamera = async () => {
+	const handleTakePicture = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({ video: true });
 			if (videoRef.current) {
@@ -17,42 +18,27 @@ export const Camera = () => {
 		}
 	};
 
-	const captureImage = () => {
-		const video = videoRef.current;
-		const canvas = canvasRef.current;
-
-		if (video && canvas) {
+	const handleCapture = () => {
+		if (videoRef.current) {
+			const canvas = document.createElement("canvas");
+			canvas.width = videoRef.current.videoWidth;
+			canvas.height = videoRef.current.videoHeight;
 			const context = canvas.getContext("2d");
-			context?.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-			// Convert the canvas content to a data URL representing a PNG image
-			const dataUrl = canvas.toDataURL("image/png");
-			console.log("Captured image:", dataUrl);
-
-			// Stop video tracks to release the camera
-			const tracks = video.srcObject instanceof MediaStream && video.srcObject.getTracks();
-			if (tracks) {
-				tracks.forEach((track) => track.stop());
-			}
-
-			// Clear the video stream from the video element
-			if (video.srcObject) {
-				// Check if getTracks method exists before calling it
-				if (video.srcObject instanceof MediaStream && "getTracks" in video.srcObject) {
-					const tracks = video.srcObject.getTracks();
-					tracks.forEach((track) => track.stop());
-				}
-
-				video.srcObject = null;
+			if (context) {
+				context.drawImage(videoRef.current, 0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
+				const imageUrl = canvas.toDataURL("image/png");
+				setCapturedImage(imageUrl);
 			}
 		}
 	};
 
 	return (
 		<S.Camera>
-			<Button onClick={startCamera}>Take Picture</Button>
-			<canvas ref={canvasRef} style={{ display: "none" }} width="400" height="300"></canvas>
-			<Button onClick={captureImage}>Take Picture 1</Button>
+			<Button onClick={handleTakePicture}>Start Camera</Button>
+			<Button onClick={handleCapture}>Take Picture</Button>
+			<Text>Picture:</Text>
+			<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
+			<video ref={videoRef} autoPlay muted style={{ display: capturedImage ? "none" : "block" }} />
 		</S.Camera>
 	);
 };

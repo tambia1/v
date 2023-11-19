@@ -12,3 +12,22 @@ export const Camera = styled.div`
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
+
+export const Image = styled.img`
+	position: relative;
+	width: 10rem;
+	height: 10rem;
+
+	background-color: ${(props) => props.theme.color.normalBg};
+
+	&[alt]:after {
+		display: block;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: "";
+		background: yellow;
+		position: absolute;
+	}
+`;
