@@ -38,8 +38,6 @@ export const Video = styled.video`
 	width: 100%;
 	height: 20rem;
 	background-color: ${(props) => props.theme.color.normalBg};
-	transform: rotate(90deg);
-	transform-origin: 50% 50%;
 `;
 
 export const Buttons = styled.div`
