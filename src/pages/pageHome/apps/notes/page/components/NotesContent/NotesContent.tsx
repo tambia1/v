@@ -1,14 +1,13 @@
-import { ReactNode } from "react";
 import * as S from "./NotesContent.styles";
 
 interface Props {
-	children: ReactNode;
+	children: string;
 }
 
 export const NotesContent = ({ children }: Props) => {
 	return (
 		<S.NotesContent>
-			<S.TextArea>{children}</S.TextArea>
+			<S.TextArea defaultValue={children}></S.TextArea>
 		</S.NotesContent>
 	);
 };

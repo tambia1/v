@@ -44,7 +44,7 @@ export const NotesPage = () => {
 
 		newNotes[noteId.getId] = {
 			id: String(noteId.id),
-			title: "Title",
+			title: "Untitled " + String(noteId.id),
 			text: "Text",
 		};
 
@@ -93,7 +93,7 @@ export const NotesPage = () => {
 										handleOnClickRemoveNote(e, noteId);
 									}}
 								/>
-								<T>{noteId}</T>
+								<T>{notes[noteId].title}</T>
 							</S.CellGrid>
 						</List.Cell>
 					))}
