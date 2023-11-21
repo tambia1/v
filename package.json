@@ -1,7 +1,7 @@
 {
 	"name": "tambi",
 	"private": true,
-	"version": "0.0.50",
+	"version": "0.0.51",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -19,7 +19,7 @@
 		"react-dom": "18.2.0",
 		"react-modal": "3.16.1",
 		"react-router-dom": "6.19.0",
-		"react-svg": "16.1.30",
+		"react-svg": "16.1.31",
 		"styled-components": "5.3.6",
 		"i18next": "23.7.6",
 		"react-i18next": "13.5.0",
@@ -28,10 +28,10 @@
 	"devDependencies": {
 		"@testing-library/jest-dom": "6.1.4",
 		"@testing-library/react": "14.1.2",
-		"@types/node": "20.9.2",
-		"@types/react": "18.2.37",
-		"@types/react-dom": "18.2.15",
-		"@types/styled-components": "5.1.30",
+		"@types/node": "20.9.3",
+		"@types/react": "18.2.38",
+		"@types/react-dom": "18.2.16",
+		"@types/styled-components": "5.1.31",
 		"@vitejs/plugin-react": "4.2.0",
 		"@vitest/coverage-v8": "0.34.6",
 		"babel-plugin-styled-components": "2.1.4",
@@ -39,8 +39,8 @@
 		"gh-pages": "6.1.0",
 		"jsdom": "22.1.0",
 		"styled-components": "6.1.1",
-		"typescript": "5.2.2",
-		"vite": "5.0.0",
+		"typescript": "5.3.2",
+		"vite": "5.0.2",
 		"vite-plugin-checker": "^0.6.2",
 		"vitest": "0.34.6",
 		"zustand": "4.4.6"
