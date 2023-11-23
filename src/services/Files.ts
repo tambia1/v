@@ -1,6 +1,6 @@
 type IOnProgress = (props: { loads: string[]; errors: string[]; progress: number; fileName: string; status: string; loadTime: number }) => void;
 
-const download = (urls: string[], onProgress: IOnProgress, onFinish: IOnProgress) => {
+const download = (urls: string[], onProgress: IOnProgress | null, onFinish: IOnProgress | null) => {
 	let loads: string[] = [];
 	let errors: string[] = [];
 
