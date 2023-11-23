@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import * as S from "./PageHome.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { Icon } from "@src/icons/Icon";
@@ -16,8 +16,6 @@ import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "./apps/settings/page/components/theme/store/useThemeStore";
 import { version } from "@src/../package.json";
-import { Files } from "@src/services/Files";
-import { Icons } from "@src/icons/Icon.types";
 
 export const PageHome = () => {
 	const { theme } = useThemeContext();
@@ -66,18 +64,6 @@ export const PageHome = () => {
 		searchParams.set("theme", themeName);
 		setSearchParams(searchParams, { replace: true });
 	};
-
-	useEffect(() => {
-		Files.download(
-			Object.values(Icons),
-			(props) => {
-				console.log("progress", props.progress);
-			},
-			(props) => {
-				console.log("finish", props.errors);
-			}
-		);
-	}, []);
 
 	return (
 		<S.PageHome $barPosition={bar.position} $backgroundImage={themeStore.backgroundImage}>

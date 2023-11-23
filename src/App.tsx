@@ -7,6 +7,7 @@ import { I18nextProvider } from "react-i18next";
 import { Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { PageHome } from "./pages/pageHome/PageHome";
+import { PageSplash } from "./pages/pageSplash/PageSplash";
 
 export const App = () => {
 	const { i18n } = useTranslation();
@@ -19,6 +20,7 @@ export const App = () => {
 					<Theme>
 						<Routes>
 							<Route path={Pages.notFound} element={<PageNotFound />} />
+							<Route path={Pages.splash} element={<PageSplash />} />
 							<Route path={Pages.home} element={<PageHome />} />
 						</Routes>
 					</Theme>

@@ -1,4 +1,5 @@
 export const Pages = {
 	notFound: "*",
-	home: "/",
+	splash: "/",
+	home: "/home",
 } as const;

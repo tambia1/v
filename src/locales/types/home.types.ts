@@ -11,6 +11,10 @@ export type IHome = {
 		areYouSure: string;
 	};
 
+	splash: {
+		title: string;
+	};
+
 	home: {
 		title: string;
 	};

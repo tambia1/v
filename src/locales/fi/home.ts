@@ -11,6 +11,10 @@ export const translation: IHome = {
 		areYouSure: "Oletko varma ?",
 	},
 
+	splash: {
+		title: "OS",
+	},
+
 	home: {
 		title: "Koti",
 	},
