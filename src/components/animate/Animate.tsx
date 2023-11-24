@@ -12,7 +12,7 @@ export interface IAnimate {
 
 type IResolve = (value: void | PromiseLike<void>) => void;
 
-export const Animate = ({ useAnimate, children }: Props) => {
+export const Animate = ({ useAnimate, children, ...rest }: Props) => {
 	const [animation, setAnimation] = useState<S.IAnimation>("none");
 	const [resolve, setResolve] = useState<IResolve>();
 
@@ -37,7 +37,7 @@ export const Animate = ({ useAnimate, children }: Props) => {
 	useImperativeHandle(useAnimate, () => ({ play }));
 
 	return (
-		<S.Animate $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd}>
+		<S.Animate $animation={animation} onAnimationStart={onAnimationStart} onAnimationEnd={onAnimationEnd} {...rest}>
 			{children}
 		</S.Animate>
 	);

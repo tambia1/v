@@ -52,11 +52,10 @@ export const Home = () => {
 		animateApp.current.play("appear");
 	};
 
-	const handleOnClickClose = () => {
+	const handleOnClickClose = async () => {
 		setIsVisibleButtonClose(false);
-		animateApp.current.play("disappear").then(() => {
-			setCurrentApp(null);
-		});
+		await animateApp.current.play("disappear");
+		setCurrentApp(null);
 	};
 
 	const handleOnClickChangeTheme = (themeName: IThemeName) => {

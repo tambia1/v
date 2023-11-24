@@ -15,6 +15,5 @@ export const ProgressValue = styled.div<{ $width: number }>`
 	height: 100%;
 	position: relative;
 	border-radius: 100rem;
-	transition: width 0.1s linear;
 	background-color: ${({ theme }) => theme.color.normalBg};
 `;
