@@ -29,12 +29,3 @@ export const Version = styled.div`
 	bottom: 1rem;
 	right: 1rem;
 `;
-
-export const Progress = styled(Animate)`
-	position: relative;
-
-	& > div {
-		width: 15rem;
-		height: 1.5rem;
-	}
-`;

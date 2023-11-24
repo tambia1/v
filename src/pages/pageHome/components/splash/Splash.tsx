@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import * as S from "./Splash.styles";
 import { lang } from "@src/locales/i18n";
 import { version } from "@src/../package.json";
 import { T } from "@src/locales/T";
-import { Progress } from "@src/components/progress/Progress";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 // import { Files } from "@src/services/Files";
 // import { Icons } from "@src/icons/Icon.types";
@@ -14,7 +13,6 @@ interface Props {
 }
 
 export const Splash = ({ onFinish }: Props) => {
-	const [progress, setProgress] = useState(0);
 	const animateTitle = useAnimate("show");
 	const animateProgress = useAnimate("show");
 
@@ -30,7 +28,6 @@ export const Splash = ({ onFinish }: Props) => {
 			// 	}
 			// );
 
-			setProgress(100);
 			resolve();
 		});
 	};
@@ -53,9 +50,6 @@ export const Splash = ({ onFinish }: Props) => {
 				<T>{lang.splash.title}</T>
 			</S.Title>
 
-			<S.Progress useAnimate={animateProgress}>
-				<Progress progress={progress} />
-			</S.Progress>
 			<S.Version>{version}</S.Version>
 		</S.Splash>
 	);
