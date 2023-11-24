@@ -4,8 +4,8 @@ import { lang } from "@src/locales/i18n";
 import { version } from "@src/../package.json";
 import { T } from "@src/locales/T";
 import { useAnimate } from "@src/components/animate/UseAnimate";
-// import { Files } from "@src/services/Files";
-// import { Icons } from "@src/icons/Icon.types";
+import { Files } from "@src/services/Files";
+import { Icons } from "@src/icons/Icon.types";
 import { Promises } from "@src/services/Promises";
 
 interface Props {
@@ -18,15 +18,15 @@ export const Splash = ({ onFinish }: Props) => {
 
 	const downloadImages = async () => {
 		return new Promise<void>((resolve) => {
-			// Files.download(
-			// 	Object.values(Icons),
-			// 	(props) => {
-			// 		setProgress(props.progress * 100);
-			// 	},
-			// 	() => {
-			// 		resolve();
-			// 	}
-			// );
+			Files.download(
+				Object.values(Icons),
+				(props) => {
+					console.log("aaa", props.fileName);
+				},
+				() => {
+					resolve();
+				}
+			);
 
 			resolve();
 		});
