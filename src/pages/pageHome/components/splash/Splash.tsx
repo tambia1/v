@@ -35,6 +35,7 @@ export const Splash = ({ onFinish }: Props) => {
 	useEffect(() => {
 		const start = async () => {
 			await downloadImages();
+			await Promises.sleep(500);
 			await animateProgress.current.play("disappear");
 			await Promises.sleep(500);
 			await animateTitle.current.play("disappear");
