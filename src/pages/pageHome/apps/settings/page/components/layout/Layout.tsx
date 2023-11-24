@@ -5,7 +5,7 @@ import { Icon } from "@src/icons/Icon";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
-import { IBarPosition } from "@src/pages/pageHome/PageHome.styles";
+import { IBarPosition } from "@src/pages/pageHome/components/home/Home.styles";
 
 export const Layout = () => {
 	const [searchParams, setSearchParams] = useSearchParams();

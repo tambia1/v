@@ -1,4 +1,4 @@
-import { IAppId } from "../../PageHome.types";
+import { IAppId } from "../../Home.types";
 import * as S from "./Button.styles";
 import { ReactNode } from "react";
 

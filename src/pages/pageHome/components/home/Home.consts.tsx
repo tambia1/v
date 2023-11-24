@@ -1,18 +1,18 @@
 import { T } from "@src/locales/T";
-import { IAppId } from "./PageHome.types";
-import { IAppIcon } from "./components/button/Button.styles";
+import { IAppId } from "./Home.types";
 import { lang } from "@src/locales/i18n";
-import { Settings } from "./apps/settings/Settings";
-import { Tetris } from "./apps/tetris/Tetris";
-import { Test } from "./apps/test/Test";
-import { TestDropDown } from "./apps/testDropDown/TestDropDown";
-import { TestTable } from "./apps/testTable/TestTable";
-import { Camera } from "./apps/camera/Camera";
+import { Settings } from "../../apps/settings/Settings";
+import { Tetris } from "../../apps/tetris/Tetris";
+import { Test } from "../../apps/test/Test";
+import { TestDropDown } from "../../apps/testDropDown/TestDropDown";
+import { TestTable } from "../../apps/testTable/TestTable";
+import { Camera } from "../../apps/camera/Camera";
 import { lazy } from "react";
-import { Clock } from "./apps/clock/Clock";
+import { Clock } from "../../apps/clock/Clock";
+import { IAppIcon } from "./components/button/Button.styles";
 
-const Notes = lazy(() => import("./apps/notes/Notes").then((module) => ({ default: module.Notes })));
-const Calculator = lazy(() => import("./apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
+const Notes = lazy(() => import("../../apps/notes/Notes").then((module) => ({ default: module.Notes })));
+const Calculator = lazy(() => import("../../apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
 
 interface IApp {
 	id: IAppId;

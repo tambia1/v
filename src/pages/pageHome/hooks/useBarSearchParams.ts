@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { IBarPosition } from "../PageHome.styles";
+import { IBarPosition } from "../components/home/Home.styles";
 
 interface Props {
 	onChange: (barPosition: IBarPosition) => void;

@@ -1,16 +1,21 @@
 import styled from "styled-components";
 
-export const PageSplash = styled.div`
-	position: relative;
+export const Splash = styled.div`
 	width: 100%;
 	height: 100%;
+
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 0.5rem;
+
+	padding: 1rem;
+	box-sizing: border-box;
+
 	color: #ffffff;
 	background-color: #000000;
+
+	z-index: 1;
 `;
 
 export const Title = styled.div``;
