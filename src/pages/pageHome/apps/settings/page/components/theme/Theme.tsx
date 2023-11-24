@@ -20,8 +20,8 @@ export const Theme = () => {
 		setSearchParams(searchParams, { replace: true });
 	};
 
-	const handleOnClickBackground = (backgroundImage: string) => {
-		themeStore.setBackgroundImage(backgroundImage);
+	const handleOnClickBackground = (backgroundImageIndex: number) => {
+		themeStore.setBackgroundImageIndex(backgroundImageIndex);
 	};
 
 	return (
@@ -61,16 +61,16 @@ export const Theme = () => {
 			</List.Section>
 
 			<List>
-				{S.backgroundImages.map((backgroundImage) => (
-					<List.Cell onClick={() => handleOnClickBackground(backgroundImage)}>
+				{S.backgroundImages.map((backgroundImage, index) => (
+					<List.Cell onClick={() => handleOnClickBackground(index)}>
 						<List.Cell.Image>
-							<S.BackgroundImage $backgroundImage={backgroundImage} />
+							<S.BackgroundImage $backgroundImageIndex={index} />
 						</List.Cell.Image>
 						<List.Cell.Text>
 							<T>{backgroundImage ? "" : lang.settings.theme.noBackground}</T>
 						</List.Cell.Text>
 						<List.Cell.Arrow>
-							<Icon iconName={themeStore.backgroundImage === backgroundImage ? "iconCheck" : ""} />
+							<Icon iconName={themeStore.backgroundImageIndex === index ? "iconCheck" : ""} />
 						</List.Cell.Arrow>
 					</List.Cell>
 				))}

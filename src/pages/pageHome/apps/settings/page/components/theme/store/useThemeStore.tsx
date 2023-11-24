@@ -2,23 +2,23 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
 interface Props {
-	backgroundImage: string;
-	setBackgroundImage: (backgroundImage: string) => void;
+	backgroundImageIndex: number;
+	setBackgroundImageIndex: (backgroundImageIndex: number) => void;
 }
 
 const initialState = {
-	backgroundImage: "",
+	backgroundImageIndex: 0,
 };
 
 export const useThemeStore = create<Props>()(
 	persist(
 		(set) => ({
 			...initialState,
-			setBackgroundImage: (backgroundImage: string) => set(() => ({ backgroundImage })),
+			setBackgroundImageIndex: (backgroundImageIndex: number) => set(() => ({ backgroundImageIndex })),
 		}),
 		{
 			version: 1,
-			name: "backgroundImage",
+			name: "backgroundImageIndex",
 			storage: createJSONStorage(() => localStorage),
 		}
 	)

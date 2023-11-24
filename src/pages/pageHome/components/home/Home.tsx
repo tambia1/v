@@ -64,7 +64,7 @@ export const Home = () => {
 	};
 
 	return (
-		<S.Home $barPosition={bar.position} $backgroundImage={themeStore.backgroundImage}>
+		<S.Home $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
 			<S.Apps>
 				<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
