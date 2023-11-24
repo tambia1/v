@@ -3,9 +3,9 @@ import * as S from "./Splash.styles";
 import { lang } from "@src/locales/i18n";
 import { version } from "@src/../package.json";
 import { T } from "@src/locales/T";
-import { Files } from "@src/services/Files";
-import { Icons } from "@src/icons/Icon.types";
 import { Progress } from "@src/components/progress/Progress";
+import { Icons } from "@src/icons/Icon.types";
+import { Files } from "@src/services/Files";
 
 interface Props {
 	onFinish: () => void;
@@ -20,7 +20,13 @@ export const Splash = ({ onFinish }: Props) => {
 			(props) => {
 				setProgress(props.progress * 100);
 			},
-			onFinish
+			() => {
+				setProgress(100);
+
+				setTimeout(() => {
+					onFinish();
+				}, 300);
+			}
 		);
 	}, []);
 
