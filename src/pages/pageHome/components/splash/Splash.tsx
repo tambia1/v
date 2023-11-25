@@ -17,18 +17,19 @@ export const Splash = ({ onFinish }: Props) => {
 	const animateProgress = useAnimate("show");
 
 	const downloadImages = async () => {
+		console.log("aaa", Object.keys(Icons).length);
+
 		return new Promise<void>((resolve) => {
 			Files.download(
 				Object.values(Icons),
 				(props) => {
-					console.log("aaa", props.fileName);
+					console.log("bbb", props.fileName);
 				},
 				() => {
+					console.log("ccc");
 					resolve();
 				}
 			);
-
-			resolve();
 		});
 	};
 
