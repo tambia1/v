@@ -20,6 +20,7 @@ export const Splash = ({ onFinish }: Props) => {
 			console.time("downloadImages");
 			await Files.downloadImages(Object.values(Icons));
 			console.timeEnd("downloadImages");
+			await Promises.sleep(500);
 			await animateTitle.current.play("appear");
 			await Promises.sleep(500);
 			await animateTitle.current.play("disappear");
