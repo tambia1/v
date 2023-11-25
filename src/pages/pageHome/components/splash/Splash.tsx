@@ -7,6 +7,7 @@ import { useAnimate } from "@src/components/animate/UseAnimate";
 import { Files } from "@src/services/Files";
 import { Icons } from "@src/icons/Icon.types";
 import { Promises } from "@src/services/Promises";
+import { backgroundImages } from "../../apps/settings/page/components/theme/Theme.styles";
 
 interface Props {
 	onFinish: () => void;
@@ -17,11 +18,13 @@ export const Splash = ({ onFinish }: Props) => {
 
 	useEffect(() => {
 		const start = async () => {
-			console.time("downloadImages");
-			await Files.downloadImages(Object.values(Icons));
-			console.timeEnd("downloadImages");
 			await Promises.sleep(500);
 			await animateTitle.current.play("appear");
+
+			await Files.downloadImages(Object.values(Icons));
+			await Files.downloadImages(backgroundImages.map((item) => item.light));
+			await Files.downloadImages(backgroundImages.map((item) => item.dark));
+
 			await Promises.sleep(500);
 			await animateTitle.current.play("disappear");
 			onFinish();
