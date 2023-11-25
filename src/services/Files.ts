@@ -32,8 +32,6 @@ const download = (urls: string[], onProgress: IOnProgress | null, onFinish: IOnP
 	};
 
 	let loadUrl = () => {
-		console.log("z");
-
 		let fragment = document.createDocumentFragment();
 
 		for (let i = 0; i < urls.length; i++) {
