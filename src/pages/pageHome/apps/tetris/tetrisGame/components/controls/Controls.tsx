@@ -1,14 +1,15 @@
 import { Box } from "../box/Box";
 
 interface Props {
-	onClickUp: () => void;
+	onClickUpLeft: () => void;
+	onClickUpRight: () => void;
 	onClickLeft: () => void;
 	onClickDown: () => void;
 	onClickRight: () => void;
 }
 
 export const Controls = (props: Props) => {
-	const { onClickUp, onClickLeft, onClickDown, onClickRight } = props;
+	const { onClickUpLeft, onClickUpRight, onClickLeft, onClickDown, onClickRight } = props;
 
 	return (
 		<>
@@ -22,11 +23,13 @@ export const Controls = (props: Props) => {
 					<div className="col hor-align-center">
 						<div className="mat control-buttons">
 							<div className="row">
-								<div className="col"></div>
-								<div className="col" onClick={onClickUp}>
+								<div className="col" onClick={onClickUpLeft}>
 									<Box color={-1}>&uarr;</Box>
 								</div>
 								<div className="col"></div>
+								<div className="col" onClick={onClickUpRight}>
+									<Box color={-1}>&uarr;</Box>
+								</div>
 							</div>
 							<div className="row">
 								<div className="col" onClick={onClickLeft}>

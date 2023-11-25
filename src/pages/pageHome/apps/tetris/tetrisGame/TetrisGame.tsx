@@ -10,14 +10,15 @@ interface Props {
 
 	lines: number;
 
-	onClickUp?: () => void;
+	onClickUpLeft?: () => void;
+	onClickUpRight?: () => void;
 	onClickDown?: () => void;
 	onClickLeft?: () => void;
 	onClickRight?: () => void;
 }
 
 export const TetrisGame = (props: Props) => {
-	const { board, next, lines, onClickUp, onClickDown, onClickLeft, onClickRight } = props;
+	const { board, next, lines, onClickUpLeft, onClickUpRight, onClickDown, onClickLeft, onClickRight } = props;
 
 	return (
 		<>
@@ -46,7 +47,11 @@ export const TetrisGame = (props: Props) => {
 
 							<div className="row">
 								<div className="col">
-									{onClickUp && onClickDown && onClickLeft && onClickRight ? <Controls onClickUp={onClickUp} onClickLeft={onClickLeft} onClickDown={onClickDown} onClickRight={onClickRight} /> : <></>}
+									{onClickUpLeft && onClickUpRight && onClickDown && onClickLeft && onClickRight ? (
+										<Controls onClickUpLeft={onClickUpLeft} onClickUpRight={onClickUpRight} onClickLeft={onClickLeft} onClickDown={onClickDown} onClickRight={onClickRight} />
+									) : (
+										<></>
+									)}
 								</div>
 							</div>
 						</div>

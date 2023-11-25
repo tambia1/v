@@ -1,16 +1,21 @@
 .board {
-	width: 15em;
-	height: 25em;
+	width: 15rem;
+	height: 25rem;
 }
 
 .control-buttons {
-	width: 8em;
-	height: 8em;
+	width: 8rem;
+	height: 8rem;
+}
+
+.start-button {
+	width: 25rem;
+	height: auto;
 }
 
 .next {
-	width: 4em;
-	height: 4em;
+	width: 4rem;
+	height: 4rem;
 }
 
 .mat {
@@ -30,43 +35,43 @@
 }
 
 .margin-0 {
-	margin: 0em;
+	margin: 0rem;
 }
 
 .margin-left-0 {
-	margin-left: 0em;
+	margin-left: 0rem;
 }
 
 .margin-right-0 {
-	margin-right: 0em;
+	margin-right: 0rem;
 }
 
 .margin-top-0 {
-	margin-top: 0em;
+	margin-top: 0rem;
 }
 
 .margin-bottom-0 {
-	margin-bottom: 0em;
+	margin-bottom: 0rem;
 }
 
 .margin-1 {
-	margin: 0em;
+	margin: 0rem;
 }
 
 .margin-left-1 {
-	margin-left: 1em;
+	margin-left: 1rem;
 }
 
 .margin-right-1 {
-	margin-right: 1em;
+	margin-right: 1rem;
 }
 
 .margin-top-1 {
-	margin-top: 1em;
+	margin-top: 1rem;
 }
 
 .margin-bottom-1 {
-	margin-bottom: 1em;
+	margin-bottom: 1rem;
 }
 
 .hor-align-center {

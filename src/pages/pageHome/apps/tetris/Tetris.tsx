@@ -65,7 +65,8 @@ export const Tetris = () => {
 							board={tetris1.board}
 							next={tetris1.next}
 							lines={tetris1.lines}
-							onClickUp={tetris1.onClickUp}
+							onClickUpLeft={tetris1.onClickUpLeft}
+							onClickUpRight={tetris1.onClickUpRight}
 							onClickDown={tetris1.onClickDown}
 							onClickLeft={tetris1.onClickLeft}
 							onClickRight={tetris1.onClickRight}
@@ -87,7 +88,9 @@ export const Tetris = () => {
 					</div>
 				</div>
 				<div className="row">
-					<div className="col hor-align-center margin-top-1">{warState == WarState.Wait ? <Button onClick={startWar}>Start</Button> : <></>}</div>
+					<div className="start-button ">
+						<div className="col hor-align-center margin-top-1">{warState == WarState.Wait ? <Button onClick={startWar}>Start</Button> : <></>}</div>
+					</div>
 				</div>
 			</div>
 		</S.Tetris>

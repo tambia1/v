@@ -79,12 +79,27 @@ export const useTetris = () => {
 		setPieceXY(pieceSlideX + 1, pieceSlideY);
 	};
 
-	const onClickUp = () => {
+	const onClickUpLeft = () => {
 		if (pollingTime == 0) {
 			return;
 		}
 
 		const newPiece = rotatePieceToLeft(pieceSlide);
+
+		if (isCanPutPieceOnBoard(board, newPiece, pieceSlideX, pieceSlideY) == true) {
+			setPieceSlide(newPiece);
+
+			const newBoard = putPieceOnBoard(board, newPiece, pieceSlideX, pieceSlideY);
+			setBoardToDisplay(newBoard);
+		}
+	};
+
+	const onClickUpRight = () => {
+		if (pollingTime == 0) {
+			return;
+		}
+
+		const newPiece = rotatePieceToRight(pieceSlide);
 
 		if (isCanPutPieceOnBoard(board, newPiece, pieceSlideX, pieceSlideY) == true) {
 			setPieceSlide(newPiece);
@@ -193,7 +208,8 @@ export const useTetris = () => {
 
 		onClickLeft: onClickLeft,
 		onClickRight: onClickRight,
-		onClickUp: onClickUp,
+		onClickUpLeft: onClickUpLeft,
+		onClickUpRight: onClickUpRight,
 		onClickDown: onClickDown,
 
 		pushLines: pushLines,
@@ -338,17 +354,17 @@ const rotatePieceToLeft = (piece: number[][]) => {
 	return newPiece;
 };
 
-// const rotatePieceToRight = (piece: number[][]) => {
-// 	const newPiece = cloneMatrix(piece);
+const rotatePieceToRight = (piece: number[][]) => {
+	const newPiece = cloneMatrix(piece);
 
-// 	for (let i = 0; i < piece.length; i++) {
-// 		for (let j = 0; j < piece[i].length; j++) {
-// 			newPiece[j][piece[i].length - 1 - i] = piece[i][j];
-// 		}
-// 	}
+	for (let i = 0; i < piece.length; i++) {
+		for (let j = 0; j < piece[i].length; j++) {
+			newPiece[j][piece[i].length - 1 - i] = piece[i][j];
+		}
+	}
 
-// 	return newPiece;
-// };
+	return newPiece;
+};
 
 const removeBoardFullLines = (board: number[][]) => {
 	const newBoard = cloneMatrix(board);
