@@ -13,13 +13,14 @@ interface Props {
 }
 
 export const Splash = ({ onFinish }: Props) => {
-	const animateTitle = useAnimate("show");
+	const animateTitle = useAnimate("hide");
 
 	useEffect(() => {
 		const start = async () => {
 			console.time("downloadImages");
 			await Files.downloadImages(Object.values(Icons));
 			console.timeEnd("downloadImages");
+			await animateTitle.current.play("appear");
 			await Promises.sleep(500);
 			await animateTitle.current.play("disappear");
 			onFinish();
