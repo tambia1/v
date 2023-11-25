@@ -79,12 +79,14 @@ export const Tetris = () => {
 					</div>
 				</div>
 				<div className="row">
-					<div className="col hor-align-center margin-top-1">
-						<h3>
-							{warState == WarState.Wait ? "" : ""}
-							{warState == WarState.Start ? "Ready ?" : ""}
-							{warState == WarState.Play ? "Play !" : ""}
-						</h3>
+					<div className="start-button ">
+						<div className="col hor-align-center margin-top-1">
+							<h3>
+								{warState == WarState.Wait ? "" : ""}
+								{warState == WarState.Start ? "Ready ?" : ""}
+								{warState == WarState.Play ? "Play !" : ""}
+							</h3>
+						</div>
 					</div>
 				</div>
 				<div className="row">

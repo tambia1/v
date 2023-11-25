@@ -24,11 +24,11 @@ export const Controls = (props: Props) => {
 						<div className="mat control-buttons">
 							<div className="row">
 								<div className="col" onClick={onClickUpLeft}>
-									<Box color={-1}>&uarr;</Box>
+									<Box color={-1}>&#x21B0;</Box>
 								</div>
 								<div className="col"></div>
 								<div className="col" onClick={onClickUpRight}>
-									<Box color={-1}>&uarr;</Box>
+									<Box color={-1}>&#x21B1;</Box>
 								</div>
 							</div>
 							<div className="row">
