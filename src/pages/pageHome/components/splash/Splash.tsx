@@ -18,15 +18,18 @@ export const Splash = ({ onFinish }: Props) => {
 
 	useEffect(() => {
 		const start = async () => {
-			await Promises.sleep(500);
+			await Promises.sleep(50);
 			await animateTitle.current.play("appear");
 
-			await Files.downloadImages(Object.values(Icons));
-			await Files.downloadImages(backgroundImages.map((item) => item.light));
-			await Files.downloadImages(backgroundImages.map((item) => item.dark));
+			await Promise.all([
+				Files.downloadImages(Object.values(Icons)),
+				Files.downloadImages(backgroundImages.map((item) => item.light)),
+				Files.downloadImages(backgroundImages.map((item) => item.dark)),
+			]);
 
 			await Promises.sleep(500);
 			await animateTitle.current.play("disappear");
+
 			onFinish();
 		};
 
