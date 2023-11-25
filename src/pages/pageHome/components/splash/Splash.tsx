@@ -6,6 +6,7 @@ import { T } from "@src/locales/T";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 import { Files } from "@src/services/Files";
 import { Icons } from "@src/icons/Icon.types";
+import { Promises } from "@src/services/Promises";
 
 interface Props {
 	onFinish: () => void;
@@ -19,6 +20,7 @@ export const Splash = ({ onFinish }: Props) => {
 			console.time("downloadImages");
 			await Files.downloadImages(Object.values(Icons));
 			console.timeEnd("downloadImages");
+			await Promises.sleep(500);
 			await animateTitle.current.play("disappear");
 			onFinish();
 		};
