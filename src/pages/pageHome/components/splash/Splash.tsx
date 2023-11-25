@@ -4,9 +4,8 @@ import { lang } from "@src/locales/i18n";
 import { version } from "@src/../package.json";
 import { T } from "@src/locales/T";
 import { useAnimate } from "@src/components/animate/UseAnimate";
-// import { Files } from "@src/services/Files";
-// import { Icons } from "@src/icons/Icon.types";
-import { Promises } from "@src/services/Promises";
+import { Files } from "@src/services/Files";
+import { Icons } from "@src/icons/Icon.types";
 
 interface Props {
 	onFinish: () => void;
@@ -14,30 +13,12 @@ interface Props {
 
 export const Splash = ({ onFinish }: Props) => {
 	const animateTitle = useAnimate("show");
-	const animateProgress = useAnimate("show");
-
-	const downloadImages = async () => {
-		return new Promise<void>((resolve) => {
-			// Files.download(
-			// 	Object.values(Icons),
-			// 	(props) => {
-			// 		setProgress(props.progress * 100);
-			// 	},
-			// 	() => {
-			// 		resolve();
-			// 	}
-			// );
-
-			resolve();
-		});
-	};
 
 	useEffect(() => {
 		const start = async () => {
-			await downloadImages();
-			await Promises.sleep(500);
-			await animateProgress.current.play("disappear");
-			await Promises.sleep(500);
+			console.time("downloadImages");
+			await Files.downloadImages(Object.values(Icons));
+			console.timeEnd("downloadImages");
 			await animateTitle.current.play("disappear");
 			onFinish();
 		};

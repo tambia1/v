@@ -81,6 +81,29 @@ const download = (urls: string[], onProgress: IOnProgress | null, onFinish: IOnP
 	loadUrl();
 };
 
+const downloadImages = async (urls: string[]) => {
+	await new Promise<void>((resolve) => {
+		let loads = 0;
+
+		urls.map((url) => {
+			const image = new Image();
+			image.onload = () => {
+				console.log("aaa", url);
+
+				if (++loads === urls.length) resolve();
+			};
+
+			image.onerror = () => {
+				console.log("bbb", url);
+				if (++loads === urls.length) resolve();
+			};
+
+			image.src = url;
+		});
+	});
+};
+
 export const Files = {
 	download,
+	downloadImages,
 };
