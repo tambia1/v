@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useImperativeHandle, useState } from "react";
+import React, { MutableRefObject, useImperativeHandle, useRef, useState } from "react";
 import * as S from "./Animate.styles";
 
 interface Props {
@@ -14,13 +14,13 @@ type IResolve = (value: void | PromiseLike<void>) => void;
 
 export const Animate = ({ useAnimate, children, ...rest }: Props) => {
 	const [animation, setAnimation] = useState<S.IAnimation>("none");
-	const [resolve, setResolve] = useState<IResolve>();
+	const refResolve = useRef<IResolve>();
 
 	const play = (animation: S.IAnimation): Promise<void> => {
-		setAnimation(animation);
+		setAnimation(() => animation);
 
-		return new Promise<void>((res: IResolve) => {
-			setResolve(() => res);
+		return new Promise<void>((resolve: IResolve) => {
+			refResolve.current = resolve;
 		});
 	};
 
@@ -30,8 +30,8 @@ export const Animate = ({ useAnimate, children, ...rest }: Props) => {
 
 	const onAnimationEnd = (e: React.AnimationEvent) => {
 		e.stopPropagation();
-		resolve?.();
-		setResolve(() => undefined);
+		refResolve.current?.();
+		refResolve.current = undefined;
 	};
 
 	useImperativeHandle(useAnimate, () => ({ play }));
