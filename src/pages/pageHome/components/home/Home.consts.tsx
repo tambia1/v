@@ -23,6 +23,8 @@ interface IApp {
 
 export const apps: IApp[] = [
 	{ id: "settings", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
+	{ id: "login", title: <T>{lang.login.title}</T>, icon: "login", component: <></> },
+	{ id: "logout", title: <T>{lang.logout.title}</T>, icon: "logout", component: <></> },
 	{ id: "notes", title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
 	{ id: "calculator", title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
 	{ id: "camera", title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },

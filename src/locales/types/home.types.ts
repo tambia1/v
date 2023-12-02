@@ -19,6 +19,16 @@ export type IHome = {
 		title: string;
 	};
 
+	login: {
+		title: string;
+		email: string;
+		password: string;
+	};
+
+	logout: {
+		title: string;
+	};
+
 	calculator: {
 		title: string;
 	};

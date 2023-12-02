@@ -8,6 +8,8 @@ import weather from "./assets/weather.png";
 import tetris from "./assets/tetris.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 import clock from "./assets/clock.png";
+import login from "./assets/login.png";
+import logout from "./assets/logout.png";
 
 const appIcons = {
 	settings,
@@ -19,6 +21,8 @@ const appIcons = {
 	tetris,
 	clashRoyale,
 	clock,
+	login,
+	logout,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;

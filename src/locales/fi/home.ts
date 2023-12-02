@@ -19,6 +19,16 @@ export const translation: IHome = {
 		title: "Koti",
 	},
 
+	login: {
+		title: "sisään",
+		email: "sähköposti",
+		password: "Salasana",
+	},
+
+	logout: {
+		title: "ulos",
+	},
+
 	calculator: {
 		title: "Laskin",
 	},
