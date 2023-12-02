@@ -23,13 +23,14 @@
 		"styled-components": "5.3.6",
 		"i18next": "23.7.7",
 		"react-i18next": "13.5.0",
-		"i18next-browser-languagedetector": "7.2.0"
+		"i18next-browser-languagedetector": "7.2.0",
+		"@tanstack/react-query": "5.12.2"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "6.1.5",
 		"@testing-library/react": "14.1.2",
 		"@types/node": "20.10.2",
-		"@types/react": "18.2.40",
+		"@types/react": "18.2.41",
 		"@types/react-dom": "18.2.17",
 		"@types/styled-components": "5.1.32",
 		"@vitejs/plugin-react": "4.2.0",

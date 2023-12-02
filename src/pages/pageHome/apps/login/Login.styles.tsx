@@ -90,6 +90,14 @@ export const PasswordInput = styled.input`
 	}
 `;
 
+export const ButtonBox = styled.div`
+	height: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+`;
+
 export const ButtonLogin = styled(Button)`
 	background-image: none;
 	background-color: #3b5374;
@@ -105,7 +113,7 @@ export const ButtonLogin = styled(Button)`
 	}
 `;
 
-export const ButtonBox = styled.div`
+export const StateBox = styled.div`
 	height: 2rem;
 	display: flex;
 	flex-direction: column;
@@ -127,4 +135,16 @@ export const Loader = styled(Icon)`
 			rotate: 360deg;
 		}
 	}
+`;
+
+export const Check = styled(Icon)`
+	width: 2rem;
+	height: 2rem;
+	color: ${(props) => props.theme.color.successBg};
+`;
+
+export const Error = styled(Icon)`
+	width: 2rem;
+	height: 2rem;
+	color: ${(props) => props.theme.color.errorBg};
 `;
