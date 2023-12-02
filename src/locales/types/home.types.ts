@@ -23,6 +23,7 @@ export type IHome = {
 		title: string;
 		email: string;
 		password: string;
+		button: string;
 	};
 
 	logout: {
