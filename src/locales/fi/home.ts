@@ -23,7 +23,8 @@ export const translation: IHome = {
 		title: "Sisään",
 		email: "Sähköposti",
 		password: "Salasana",
-		button: "Sisään",
+		buttonLogin: "Sisään",
+		buttonLogout: "ulos",
 	},
 
 	logout: {

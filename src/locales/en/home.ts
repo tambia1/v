@@ -23,7 +23,8 @@ export const translation: IHome = {
 		title: "Login",
 		email: "Email",
 		password: "Password",
-		button: "Login",
+		buttonLogin: "Login",
+		buttonLogout: "Logout",
 	},
 
 	logout: {

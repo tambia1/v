@@ -14,7 +14,7 @@ export const Login = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: #f5f5f5;
+	background-color: #f5f5f588;
 `;
 
 export const Box = styled.div`
@@ -99,6 +99,21 @@ export const ButtonBox = styled.div`
 `;
 
 export const ButtonLogin = styled(Button)`
+	background-image: none;
+	background-color: #3b5374;
+	color: #ffffff;
+	text-shadow: none;
+	border: solid 1px #08264e;
+	box-shadow: 0px 0px 5px 0px #08264e;
+
+	&:active {
+		background-color: #08264e;
+		background-image: none;
+		box-shadow: none;
+	}
+`;
+
+export const ButtonLogout = styled(Button)`
 	background-image: none;
 	background-color: #3b5374;
 	color: #ffffff;

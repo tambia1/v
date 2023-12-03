@@ -39,9 +39,16 @@ export const Login = () => {
 					{state === "error" && <S.Error iconName="iconX" />}
 				</S.ButtonBox>
 				<S.ButtonBox>
-					<S.ButtonLogin onClick={handleOnClickLogin}>
-						<T>{lang.login.button}</T>
-					</S.ButtonLogin>
+					{state !== "check" && (
+						<S.ButtonLogin onClick={handleOnClickLogin}>
+							<T>{lang.login.buttonLogin}</T>
+						</S.ButtonLogin>
+					)}
+					{state === "check" && (
+						<S.ButtonLogout onClick={handleOnClickLogin}>
+							<T>{lang.login.buttonLogout}</T>
+						</S.ButtonLogout>
+					)}
 				</S.ButtonBox>
 			</S.Box>
 		</S.Login>
