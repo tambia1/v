@@ -115,14 +115,14 @@ export const ButtonLogin = styled(Button)`
 
 export const ButtonLogout = styled(Button)`
 	background-image: none;
-	background-color: #3b5374;
+	background-color: #703939;
 	color: #ffffff;
 	text-shadow: none;
-	border: solid 1px #08264e;
-	box-shadow: 0px 0px 5px 0px #08264e;
+	border: solid 1px #4c0808;
+	box-shadow: 0px 0px 5px 0px #4c0808;
 
 	&:active {
-		background-color: #08264e;
+		background-color: #4c0808;
 		background-image: none;
 		box-shadow: none;
 	}
