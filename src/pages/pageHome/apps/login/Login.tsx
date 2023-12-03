@@ -8,7 +8,10 @@ import { useTranslation } from "react-i18next";
 export const Login = () => {
 	const { t } = useTranslation();
 	const [state, setState] = useState<"idle" | "loader" | "check" | "error">("idle");
-	const queryLogin = QueryLogin.performLogin({ enabled: true });
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const queryLogin = QueryLogin.performLogin({ email: email, password: password }, { enabled: true });
+	const queryLogout = QueryLogin.performLogout({ enabled: true });
 
 	const handleOnClickLogin = async () => {
 		setState("loader");
@@ -22,16 +25,28 @@ export const Login = () => {
 		}
 	};
 
+	const handleOnClickLogout = async () => {
+		setState("loader");
+
+		await queryLogout.refetch();
+
+		if (queryLogin.data?.error === 0) {
+			setState("check");
+		} else {
+			setState("error");
+		}
+	};
+
 	return (
 		<S.Login>
 			<S.Box>
 				<S.EmailBox>
 					<S.EmailImage iconName="iconUser" />
-					<S.EmailInput placeholder={t(lang.login.email)} />
+					<S.EmailInput placeholder={t(lang.login.email)} onChange={(e) => setEmail(e.target.value)} />
 				</S.EmailBox>
 				<S.PasswordBox>
 					<S.PasswordImage iconName="iconLock" />
-					<S.PasswordInput placeholder={t(lang.login.password)} />
+					<S.PasswordInput placeholder={t(lang.login.password)} onChange={(e) => setPassword(e.target.value)} />
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{state === "loader" && <S.Loader iconName="iconLoader" />}
@@ -45,7 +60,7 @@ export const Login = () => {
 						</S.ButtonLogin>
 					)}
 					{state === "check" && (
-						<S.ButtonLogout onClick={handleOnClickLogin}>
+						<S.ButtonLogout onClick={handleOnClickLogout}>
 							<T>{lang.login.buttonLogout}</T>
 						</S.ButtonLogout>
 					)}
