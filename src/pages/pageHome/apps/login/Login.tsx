@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 export const Login = () => {
 	const { t } = useTranslation();
-	const [state, setState] = useState<"idle" | "loader" | "check" | "error">("idle");
+	const [state, setState] = useState<"idle" | "loader" | "logged-in" | "logged-out">("idle");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const queryLogin = QueryLogin.performLogin({ email: email, password: password }, { enabled: true });
@@ -19,9 +19,9 @@ export const Login = () => {
 		await queryLogin.refetch();
 
 		if (queryLogin.data?.error === 0) {
-			setState("check");
+			setState("logged-in");
 		} else {
-			setState("error");
+			setState("logged-out");
 		}
 	};
 
@@ -31,9 +31,9 @@ export const Login = () => {
 		await queryLogout.refetch();
 
 		if (queryLogin.data?.error === 0) {
-			setState("check");
+			setState("logged-in");
 		} else {
-			setState("error");
+			setState("logged-out");
 		}
 	};
 
@@ -50,16 +50,16 @@ export const Login = () => {
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{state === "loader" && <S.Loader iconName="iconLoader" />}
-					{state === "check" && <S.Check iconName="iconCheck" />}
-					{state === "error" && <S.Error iconName="iconX" />}
+					{state === "logged-in" && <S.Check iconName="iconCheck" />}
+					{state === "logged-out" && <S.Error iconName="iconX" />}
 				</S.ButtonBox>
 				<S.ButtonBox>
-					{state !== "check" && (
+					{state !== "logged-in" && (
 						<S.ButtonLogin onClick={handleOnClickLogin}>
 							<T>{lang.login.buttonLogin}</T>
 						</S.ButtonLogin>
 					)}
-					{state === "check" && (
+					{state === "logged-in" && (
 						<S.ButtonLogout onClick={handleOnClickLogout}>
 							<T>{lang.login.buttonLogout}</T>
 						</S.ButtonLogout>
