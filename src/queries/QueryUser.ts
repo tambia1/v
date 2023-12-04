@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QueryType } from "./Query.types";
-import { getUser } from "./api";
+import { sendUser } from "./api";
 
 export interface UserType extends QueryType {
 	firstName: string;
@@ -14,7 +14,7 @@ interface UserProps {
 }
 
 const user = (props: UserProps, options?: Partial<UseQueryOptions<UserType, Error>>) => {
-	return useQuery({ queryKey: ["login"], queryFn: () => getUser(props.token, props.userId), ...options });
+	return useQuery({ queryKey: ["login"], queryFn: () => sendUser(props.token, props.userId), ...options });
 };
 
 export const QueryUser = {

@@ -33,7 +33,7 @@ export const sendLogout = async (): Promise<LogoutType> => {
 	return result;
 };
 
-export const getUser = async (token: string, userId: string): Promise<UserType> => {
+export const sendUser = async (token: string, userId: string): Promise<UserType> => {
 	await Promises.sleep(DELAY);
 
 	const result: UserType = {
