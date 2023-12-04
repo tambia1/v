@@ -115,14 +115,14 @@ export const ButtonLogin = styled(Button)`
 
 export const ButtonLogout = styled(Button)`
 	background-image: none;
-	background-color: #703939;
+	background-color: #3b5374;
 	color: #ffffff;
 	text-shadow: none;
-	border: solid 1px #4c0808;
-	box-shadow: 0px 0px 5px 0px #4c0808;
+	border: solid 1px #08264e;
+	box-shadow: 0px 0px 5px 0px #08264e;
 
 	&:active {
-		background-color: #4c0808;
+		background-color: #08264e;
 		background-image: none;
 		box-shadow: none;
 	}
@@ -152,14 +152,14 @@ export const Loader = styled(Icon)`
 	}
 `;
 
-export const Check = styled(Icon)`
-	width: 2rem;
+export const Success = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.successBg};
+	white-space: nowrap;
 `;
 
-export const Error = styled(Icon)`
-	width: 2rem;
+export const Error = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.errorBg};
+	white-space: nowrap;
 `;

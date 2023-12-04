@@ -50,8 +50,7 @@ export const Login = () => {
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{state === "loader" && <S.Loader iconName="iconLoader" />}
-					{state === "logged-in" && <S.Check iconName="iconCheck" />}
-					{state === "logged-out" && <S.Error iconName="iconX" />}
+					{state === "logged-in" && <S.Success> Welcome ! </S.Success>}
 				</S.ButtonBox>
 				<S.ButtonBox>
 					{state !== "logged-in" && (
