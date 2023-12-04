@@ -18,7 +18,7 @@ export const Login = () => {
 
 		await queryLogin.refetch();
 
-		if (queryLogin.data?.error === 0) {
+		if (queryLogin.data?.token !== "") {
 			setState("logged-in");
 		} else {
 			setState("logged-out");
@@ -30,7 +30,7 @@ export const Login = () => {
 
 		await queryLogout.refetch();
 
-		if (queryLogin.data?.error === 0) {
+		if (queryLogin.data?.error !== 0) {
 			setState("logged-in");
 		} else {
 			setState("logged-out");
