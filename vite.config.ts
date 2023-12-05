@@ -48,10 +48,13 @@ export default defineConfig({
 			provider: "v8",
 			reporter: ["text", "json", "html"],
 			all: true,
-			lines: 85,
-			functions: 85,
-			branches: 85,
-			statements: 85,
+			thresholds: {
+				lines: 85,
+				functions: 85,
+				branches: 85,
+				statements: 85,
+				autoUpdate: true,
+			},
 		},
 	},
 

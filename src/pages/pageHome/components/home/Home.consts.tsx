@@ -10,7 +10,7 @@ import { Camera } from "../../apps/camera/Camera";
 import { lazy } from "react";
 import { Clock } from "../../apps/clock/Clock";
 import { IAppIcon } from "./components/button/Button.styles";
-import { Login } from "../../apps/login/Login";
+import { User } from "../../apps/user/User";
 
 const Notes = lazy(() => import("../../apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("../../apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
@@ -24,8 +24,7 @@ interface IApp {
 
 export const apps: IApp[] = [
 	{ id: "settings", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
-	{ id: "login", title: <T>{lang.login.title}</T>, icon: "login", component: <Login /> },
-	{ id: "logout", title: <T>{lang.logout.title}</T>, icon: "logout", component: <></> },
+	{ id: "user", title: <T>{lang.user.title}</T>, icon: "user", component: <User /> },
 	{ id: "notes", title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
 	{ id: "calculator", title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
 	{ id: "camera", title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },

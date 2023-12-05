@@ -19,16 +19,12 @@ export const translation: IHome = {
 		title: "Applications",
 	},
 
-	login: {
-		title: "Login",
+	user: {
+		title: "User",
 		email: "Email",
 		password: "Password",
-		buttonLogin: "Login",
-		buttonLogout: "Logout",
-	},
-
-	logout: {
-		title: "Logout",
+		login: "Login",
+		logout: "Logout",
 	},
 
 	calculator: {

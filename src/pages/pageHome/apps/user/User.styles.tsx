@@ -1,8 +1,10 @@
 import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/icons/Icon";
 import styled from "styled-components";
+import imageUserLoggedIn from "./assets/userLoggedIn.png";
+import imageUserLoggedOut from "./assets/userLoggedOut.png";
 
-export const Login = styled.div`
+export const User = styled.div`
 	width: 100%;
 	height: 100%;
 
@@ -115,14 +117,14 @@ export const ButtonLogin = styled(Button)`
 
 export const ButtonLogout = styled(Button)`
 	background-image: none;
-	background-color: #3b5374;
+	background-color: #723a3a;
 	color: #ffffff;
 	text-shadow: none;
-	border: solid 1px #08264e;
-	box-shadow: 0px 0px 5px 0px #08264e;
+	border: solid 1px #4c0808;
+	box-shadow: 0px 0px 5px 0px #4c0808;
 
 	&:active {
-		background-color: #08264e;
+		background-color: #4c0808;
 		background-image: none;
 		box-shadow: none;
 	}
@@ -162,4 +164,18 @@ export const Error = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.errorBg};
 	white-space: nowrap;
+`;
+
+export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
+	width: 10rem;
+	height: 10rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-image: url(${(props) => (props.$logState === "loggedIn" ? imageUserLoggedIn : imageUserLoggedOut)});
+	background-position: 50%;
+	background-size: 123%;
+	box-shadow: 0px 0px 5px 0px #08264e;
+	border-radius: 50%;
 `;
