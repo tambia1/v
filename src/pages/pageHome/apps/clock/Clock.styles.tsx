@@ -49,12 +49,17 @@ export const NumberBox = styled.div<{ $number: number }>`
 	text-align: center;
 `;
 
-export const Marker = styled.div<{ $number: number }>`
+export const NumberMarker = styled.div<{ $number: number }>`
 	background-color: #000000;
-	width: 0.1rem;
+	width: 0.2rem;
 	height: 0.5rem;
 	position: absolute;
 	transform: rotate(${({ $number }) => 30 * $number}deg) translateY(-1.5rem);
+	box-shadow: 0px 0px 1px 0px #00000088;
+`;
+
+export const NumberText = styled.span`
+	text-shadow: 0px 0px 1px #00000088;
 `;
 
 export const Hour = styled.div<{ $rotate: number }>`
@@ -67,6 +72,7 @@ export const Hour = styled.div<{ $rotate: number }>`
 	transform: translate(-50%) rotate(${({ $rotate }) => (360 / 12) * $rotate}deg);
 	transform-origin: bottom;
 	border-radius: 1rem 1rem;
+	box-shadow: 0px 0px 5px 0px #00000088;
 `;
 
 export const Minute = styled.div<{ $rotate: number }>`
@@ -79,6 +85,7 @@ export const Minute = styled.div<{ $rotate: number }>`
 	transform: translate(-50%) rotate(${({ $rotate }) => (360 / 60) * $rotate}deg);
 	transform-origin: bottom;
 	border-radius: 1rem 1rem;
+	box-shadow: 0px 0px 5px 0px #00000088;
 `;
 
 export const Second = styled.div<{ $rotate: number }>`
@@ -91,6 +98,7 @@ export const Second = styled.div<{ $rotate: number }>`
 	transform: translate(-50%) rotate(${({ $rotate }) => (360 / 60) * $rotate}deg);
 	transform-origin: bottom;
 	border-radius: 1rem 1rem;
+	box-shadow: 0px 0px 5px 0px #00000088;
 `;
 
 export const Dot = styled.div`
@@ -99,4 +107,5 @@ export const Dot = styled.div`
 	height: 1rem;
 	background-color: red;
 	border-radius: 50%;
+	box-shadow: 0px 0px 5px 0px #00000088;
 `;

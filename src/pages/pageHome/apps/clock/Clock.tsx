@@ -30,8 +30,8 @@ export const Clock = () => {
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((number) => (
 					<S.Number key={number} $number={number}>
 						<S.NumberBox $number={number}>
-							<S.Marker $number={number} />
-							<span>{number}</span>
+							<S.NumberMarker $number={number} />
+							<S.NumberText>{number}</S.NumberText>
 						</S.NumberBox>
 					</S.Number>
 				))}
