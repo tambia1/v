@@ -25,8 +25,6 @@ export const Splash = ({ onFinish }: Props) => {
 				Files.downloadImages(backgroundImages.map((item) => item.dark)),
 			]);
 
-			await animateTitle.current.play("disappear");
-
 			onFinish();
 		};
 
