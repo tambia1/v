@@ -1,27 +1,58 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { QueryType } from "./Query.types";
-import { sendLogin, sendLogout } from "./api";
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { QueryResult } from "./Query.types";
+import { getLogin, sendLogin, sendLogout } from "./api";
 
-export interface LoginType extends QueryType {
-	token: string;
-}
-
-export interface LogoutType extends QueryType {}
-
-interface LoginProps {
+interface MutateLoginProps {
 	email: string;
 	password: string;
 }
 
-const performLogin = (props: LoginProps, options?: Partial<UseQueryOptions<LoginType, Error>>) => {
-	return useQuery({ queryKey: ["login"], queryFn: () => sendLogin(props.email, props.password), ...options });
+export interface MutateLoginResult extends QueryResult {
+	token: string;
+}
+
+const mutateLogin = (options?: UseMutationOptions<MutateLoginResult, Error, MutateLoginProps, unknown>) => {
+	const { mutateAsync } = useMutation({
+		...options,
+		mutationFn: (props: MutateLoginProps) => sendLogin(props.email, props.password),
+	});
+
+	return mutateAsync;
 };
 
-const performLogout = (options?: Partial<UseQueryOptions<QueryType, Error>>) => {
-	return useQuery({ queryKey: ["logout"], queryFn: () => sendLogout(), ...options });
+interface MutateLogoutProps {
+	token: string;
+}
+
+export interface MutateLogoutResult extends QueryResult {}
+
+const mutateLogout = (options?: UseMutationOptions<MutateLogoutResult, Error, MutateLogoutProps, unknown>) => {
+	const { mutateAsync } = useMutation({
+		...options,
+		mutationFn: (props: MutateLogoutProps) => sendLogout(props.token),
+	});
+
+	return mutateAsync;
+};
+
+interface QueryLoginProps {
+	token: string;
+}
+
+export interface QueryLoginResult extends QueryResult {
+	token: string;
+}
+
+const queryLogin = (props: QueryLoginProps, options?: Partial<UseQueryOptions<MutateLoginResult, Error>>) => {
+	return useQuery({
+		queryKey: ["login"],
+		queryFn: () => getLogin(props.token),
+		...options,
+	});
 };
 
 export const QueryLogin = {
-	performLogin,
-	performLogout,
+	mutateLogin,
+	mutateLogout,
+	queryLogin,
 };

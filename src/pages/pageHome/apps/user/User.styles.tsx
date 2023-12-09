@@ -62,7 +62,12 @@ export const EmailInput = styled.input`
 	border-radius: 0 5rem 5rem 0;
 	background-color: #3b5374;
 	color: #ffffff;
+
 	&::placeholder {
+		color: #bbbbbb;
+	}
+
+	&:disabled {
 		color: #bbbbbb;
 	}
 `;
@@ -87,7 +92,12 @@ export const PasswordInput = styled.input`
 	border-radius: 0 5rem 5rem 0;
 	background-color: #3b5374;
 	color: #ffffff;
+
 	&::placeholder {
+		color: #bbbbbb;
+	}
+
+	&:disabled {
 		color: #bbbbbb;
 	}
 `;
@@ -152,6 +162,12 @@ export const Loader = styled(Icon)`
 			rotate: 360deg;
 		}
 	}
+`;
+
+export const Idle = styled.div`
+	height: 2rem;
+	color: #08264e;
+	white-space: nowrap;
 `;
 
 export const Success = styled.div`

@@ -29,6 +29,10 @@ i18n.use(initReactI18next).init({
 	interpolation: {
 		escapeValue: false,
 	},
+	react: {
+		transSupportBasicHtmlNodes: true,
+		transKeepBasicHtmlNodesFor: ["br", "strong", "b", "i"],
+	},
 });
 
 export type ILang = GetTypeAsObjectPath<IResources["en"]["translation"], "">;

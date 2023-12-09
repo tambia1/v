@@ -25,6 +25,7 @@ export const translation: IHome = {
 		password: "Password",
 		login: "Login",
 		logout: "Logout",
+		welcome: "Welcome {{firstName}} {{lastName}}!",
 	},
 
 	calculator: {
