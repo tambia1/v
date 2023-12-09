@@ -34,6 +34,7 @@ export const Number = styled.div<{ $number: number }>`
 	position: absolute;
 	text-align: center;
 	inset: 20px;
+	color: #000000;
 
 	& span {
 		display: inline-block;
@@ -48,7 +49,7 @@ export const Hour = styled.div<{ $rotate: number }>`
 	background-color: black;
 	left: 50%;
 	bottom: 50%;
-	transform: translate(-50%) rotate(${({ $rotate }) => 30 * $rotate}deg);
+	transform: translate(-50%) rotate(${({ $rotate }) => (360 / 12) * $rotate}deg);
 	transform-origin: bottom;
 	border-radius: 1rem 1rem;
 `;
@@ -60,7 +61,7 @@ export const Minute = styled.div<{ $rotate: number }>`
 	background-color: blue;
 	left: 50%;
 	bottom: 50%;
-	transform: translate(-50%) rotate(${({ $rotate }) => 6 * $rotate}deg);
+	transform: translate(-50%) rotate(${({ $rotate }) => (360 / 60) * $rotate}deg);
 	transform-origin: bottom;
 	border-radius: 1rem 1rem;
 `;
@@ -72,7 +73,7 @@ export const Second = styled.div<{ $rotate: number }>`
 	background-color: red;
 	left: 50%;
 	bottom: 50%;
-	transform: translate(-50%) rotate(${({ $rotate }) => 6 * $rotate}deg);
+	transform: translate(-50%) rotate(${({ $rotate }) => (360 / 60) * $rotate}deg);
 	transform-origin: bottom;
 	border-radius: 1rem 1rem;
 `;
