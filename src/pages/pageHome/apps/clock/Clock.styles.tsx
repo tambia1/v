@@ -32,14 +32,29 @@ export const ClockCircle = styled.div`
 export const Number = styled.div<{ $number: number }>`
 	transform: rotate(${({ $number }) => 30 * $number}deg);
 	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: start;
 	text-align: center;
 	inset: 20px;
 	color: #000000;
+`;
 
-	& span {
-		display: inline-block;
-		transform: rotate(${({ $number }) => -30 * $number}deg);
-	}
+export const NumberBox = styled.div<{ $number: number }>`
+	position: relative;
+	transform: rotate(${({ $number }) => -30 * $number}deg);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+`;
+
+export const Marker = styled.div<{ $number: number }>`
+	background-color: #000000;
+	width: 0.1rem;
+	height: 0.5rem;
+	position: absolute;
+	transform: rotate(${({ $number }) => 30 * $number}deg) translateY(-1.5rem);
 `;
 
 export const Hour = styled.div<{ $rotate: number }>`

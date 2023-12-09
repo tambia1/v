@@ -29,7 +29,10 @@ export const Clock = () => {
 			<S.ClockCircle>
 				{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((number) => (
 					<S.Number key={number} $number={number}>
-						<span>{number}</span>
+						<S.NumberBox $number={number}>
+							<S.Marker $number={number} />
+							<span>{number}</span>
+						</S.NumberBox>
 					</S.Number>
 				))}
 				<S.Hour $rotate={hour} />
