@@ -78,7 +78,7 @@ export const User = () => {
 						<S.Loader iconName="iconLoader" />
 					) : (
 						<>
-							{queryUser.isLoading && <S.Idle>Loading...</S.Idle>}
+							{queryUser.isLoading && <S.Idle>Loading user data...</S.Idle>}
 							{queryUser.data?.error === 0 && <S.Success>{t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName })}</S.Success>}
 							{queryUser.data?.error !== 0 && <S.Error>{queryUser.data?.message}</S.Error>}
 						</>
