@@ -49,6 +49,10 @@ export type IHome = {
 		title: string;
 	};
 
+	snake: {
+		title: string;
+	};
+
 	clashRoyale: {
 		title: string;
 		start: string;

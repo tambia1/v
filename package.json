@@ -13,18 +13,19 @@
 		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
+		"@stylexjs/stylex": "^0.3.0",
+		"@tanstack/react-query": "5.13.4",
+		"i18next": "23.7.9",
+		"i18next-browser-languagedetector": "7.2.0",
 		"localforage": "1.10.0",
 		"match-sorter": "6.3.1",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
+		"react-i18next": "13.5.0",
 		"react-modal": "3.16.1",
 		"react-router-dom": "6.20.1",
 		"react-svg": "16.1.31",
 		"styled-components": "5.3.6",
-		"i18next": "23.7.8",
-		"react-i18next": "13.5.0",
-		"i18next-browser-languagedetector": "7.2.0",
-		"@tanstack/react-query": "5.13.4",
 		"zustand": "4.4.7"
 	},
 	"devDependencies": {
@@ -42,7 +43,7 @@
 		"jsdom": "23.0.1",
 		"styled-components": "6.1.1",
 		"typescript": "5.3.3",
-		"vite": "5.0.7",
+		"vite": "5.0.8",
 		"vite-plugin-checker": "^0.6.2",
 		"vitest": "1.0.4",
 		"zustand": "4.4.7"
