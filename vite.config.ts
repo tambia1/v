@@ -76,9 +76,11 @@ export default defineConfig({
 					return "assets/[name]-[hash][extname]";
 				},
 
-				// manualChunks: (id) => {
-				// 	if (id.includes("node_modules")) return "vendor";
-				// },
+				manualChunks: (id) => {
+					if (id.includes("node_modules")) return "node";
+
+					return "";
+				},
 			},
 		},
 	},
