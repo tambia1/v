@@ -75,7 +75,7 @@ export const Home = () => {
 
 			<S.Bar>
 				<S.IconClose onClick={handleOnClickClose} $isVisible={isVisibleButtonClose}>
-					<Icon iconName="iconXCircle" size={theme.size.l} color="red" />
+					<Icon iconName="iconXCircle" size={theme.size.l} />
 				</S.IconClose>
 
 				<S.IconTheme>
