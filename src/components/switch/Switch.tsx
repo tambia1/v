@@ -1,24 +1,16 @@
-import { useEffect, useState } from "react";
 import * as S from "./Switch.styles";
 
+export type SwitchState = "left" | "right";
+
 interface Props {
-	state?: S.SwitchState;
-	onChange: (switchState: S.SwitchState) => void;
+	switchState: SwitchState;
+	onClickSwitch: (switchState: SwitchState) => void;
 }
 
-export const Switch = ({ onChange, state = "left" }: Props) => {
-	const [switchState, setSwitchState] = useState(state);
-
+export const Switch = ({ onClickSwitch, switchState = "left" }: Props) => {
 	const handleOnClick = () => {
-		const updatedState: S.SwitchState = switchState === "left" ? "right" : "left";
-
-		setSwitchState(updatedState);
-		onChange(updatedState);
+		onClickSwitch(switchState);
 	};
-
-	useEffect(() => {
-		setSwitchState(state);
-	}, [state]);
 
 	return (
 		<S.Container onClick={handleOnClick}>

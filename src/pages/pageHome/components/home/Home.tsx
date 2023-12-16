@@ -20,7 +20,7 @@ export const Home = () => {
 	const { theme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
-	const [bar, setBar] = useState<{ isReady: boolean; position: S.IBarPosition }>({ isReady: false, position: "bottom" });
+	const [bar, setBar] = useState<{ isReady: boolean; position: S.IBarPosition }>({ isReady: false, position: "top" });
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
 	const animateApp = useAnimate("hide");
 	const { setTheme } = useThemeContext();

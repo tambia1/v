@@ -1,6 +1,5 @@
 import styled from "styled-components";
-
-export type SwitchState = "left" | "right";
+import { SwitchState } from "./Switch";
 
 export const Container = styled.div`
 	width: 2.1rem;
