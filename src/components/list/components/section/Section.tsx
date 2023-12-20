@@ -5,6 +5,6 @@ interface Props extends HTMLProps<HTMLDivElement> {
 	children?: ReactNode;
 }
 
-export const Section = ({ children, ...rest }: Props) => {
-	return <S.Section {...rest}>{children}</S.Section>;
+export const Section = ({ children }: Props) => {
+	return <S.Section>{children}</S.Section>;
 };

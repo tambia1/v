@@ -10,9 +10,9 @@ interface Props extends HTMLProps<HTMLDivElement> {
 	children?: ReactNode;
 }
 
-export const Cell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected, ...rest }: Props) => {
+export const Cell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected }: Props) => {
 	return (
-		<S.Cell $isEnabled={isEnabled ?? true} $isSelected={isSelected ?? false} {...rest}>
+		<S.Cell $isEnabled={isEnabled ?? true} $isSelected={isSelected ?? false}>
 			<S.Content>{children}</S.Content>
 			<S.Line />
 		</S.Cell>
