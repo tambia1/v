@@ -1,3 +1,4 @@
+import { Headers } from "@src/components/pager/Pager.styles";
 import styled from "styled-components";
 
 export const ClashRoyale = styled.div`
@@ -5,10 +6,8 @@ export const ClashRoyale = styled.div`
 	height: 100%;
 
 	display: flex;
-	flex-direction: column;
 
-	padding: 1rem;
-	box-sizing: border-box;
-
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	& ${Headers} {
+		background-image: linear-gradient(45deg, #27649e, #1c437b);
+	}
 `;

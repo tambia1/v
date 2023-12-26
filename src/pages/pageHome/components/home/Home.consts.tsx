@@ -33,8 +33,8 @@ export const apps: IApp[] = [
 	{ id: "clock", title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
 	{ id: "tetris", title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 	{ id: "snake", title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
+	{ id: "clashRoyale", title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 	{ id: "test", title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
 	{ id: "testDropDown", title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
 	{ id: "testTable", title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
-	{ id: "clashRoyale", title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 ];
