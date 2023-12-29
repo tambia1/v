@@ -12,15 +12,40 @@ export const ClashRoyaleGame = styled.div`
 	background-image: url(${arena1});
 	background-size: cover;
 	background-position: 50% 50%;
-	filter: blur(2px);
+	/* filter: blur(2px); */
 `;
 
 export const ClashRoyaleBoard = styled.div`
 	position: absolute;
-	width: 689px;
-	height: 963px;
 	width: 550px;
 	height: 768px;
 	display: flex;
 	justify-content: center;
+`;
+
+export const Dot1 = styled.div`
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	left: 10px;
+	top: 10px;
+	background-color: red;
+`;
+
+export const Dot2 = styled.div`
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	left: 10px;
+	top: 10px;
+	background-color: blue;
+`;
+
+export const Dot3 = styled.div`
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	left: 10px;
+	top: 10px;
+	background-color: green;
 `;
