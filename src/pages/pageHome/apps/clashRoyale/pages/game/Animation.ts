@@ -63,25 +63,25 @@ export class Animation {
 	private arrayResults: number[];
 
 	constructor(
-		timeLength: number,
-		arrayPoints: number[][],
-		arrayTiming: number[],
-		direction: number,
-		delayBeforeStart: number,
-		isDelayBeforeStartOnRepeat: boolean,
-		numberOfRepeats: number,
-		isCyclic: boolean,
-		calculateCallback: ((result: ICallbackResult) => void) | null,
-		callbacks: ICallback[] | null
+		timeLength: number = 1000,
+		arrayPoints: number[][] = [
+			[0, 100],
+			[0, 100],
+		],
+		arrayTiming: number[] = Animation.TIMING_LINEAR,
+		direction: number = Animation.DIRECTION_FORWARD,
+		delayBeforeStart: number = 0,
+		isDelayBeforeStartOnRepeat: boolean = false,
+		numberOfRepeats: number = 1,
+		isCyclic: boolean = false,
+		calculateCallback: ((result: ICallbackResult) => void) | null = null,
+		callbacks: ICallback[] = []
 	) {
-		// Default values
-		this.arrayPoints = [
-			[0, 100],
-			[0, 100],
-		];
-		this.arrayTiming = Animation.TIMING_LINEAR;
-		this.timeLength = 1000;
-		this.direction = Animation.DIRECTION_FORWARD;
+		// init values
+		this.arrayPoints = arrayPoints;
+		this.arrayTiming = arrayTiming;
+		this.timeLength = timeLength;
+		this.direction = direction;
 		this.saveDirection = this.direction;
 
 		this.position = 0;
@@ -91,20 +91,20 @@ export class Animation {
 		this.isStarted = false;
 		this.isFinished = true;
 
-		this.calculateCallback = null;
+		this.calculateCallback = calculateCallback;
 
-		this.callbacks = [];
-		this.callbacksCounters = [];
+		this.callbacks = callbacks;
+		this.callbacksCounters = new Array(this.callbacks.length).fill(0);
 
-		this.delayBeforeStart = 0;
-		this.currentDelayBeforeStart = 0;
+		this.delayBeforeStart = delayBeforeStart;
+		this.currentDelayBeforeStart = this.delayBeforeStart;
 
-		this.isDelayBeforeStartOnRepeat = false;
+		this.isDelayBeforeStartOnRepeat = isDelayBeforeStartOnRepeat;
 
-		this.numberOfRepeats = 1;
-		this.currentNumberOfRepeats = 1;
+		this.numberOfRepeats = numberOfRepeats;
+		this.currentNumberOfRepeats = this.numberOfRepeats;
 
-		this.isCyclic = false;
+		this.isCyclic = isCyclic;
 
 		this.isLooping = false;
 		this.requestAnimationFrameId = null;
@@ -112,9 +112,8 @@ export class Animation {
 
 		this.arrayResults = [];
 
-		if (arrayPoints !== null) {
-			this.setRoute(timeLength, arrayPoints, arrayTiming, direction, delayBeforeStart, isDelayBeforeStartOnRepeat, numberOfRepeats, isCyclic, calculateCallback, callbacks);
-		}
+		//calculate and init values
+		this.setRoute(timeLength, arrayPoints, arrayTiming, direction, delayBeforeStart, isDelayBeforeStartOnRepeat, numberOfRepeats, isCyclic, calculateCallback, callbacks);
 	}
 
 	private static bezier_2(t: number, p0: number, p1: number): number {

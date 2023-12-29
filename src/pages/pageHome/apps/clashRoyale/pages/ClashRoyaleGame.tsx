@@ -77,7 +77,7 @@ export const ClashRoyaleGame = () => {
 				1,
 				1000,
 				true,
-				4,
+				3,
 				true,
 				(result) => {
 					refDot2.current!.style.left = result.arrayResults[0] + "px";
