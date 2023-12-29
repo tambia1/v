@@ -18,24 +18,24 @@ export const ClashRoyaleGame = () => {
 
 	useEffect(() => {
 		if (refDot1.current) {
-			const animation = new Animation(
-				5000,
-				[
+			const animation = new Animation({
+				timeLength: 5000,
+				arrayPoints: [
 					[0, 100],
 					[200, 100, 200],
 				],
-				Animation.TIMING_EASE,
-				1,
-				1000,
-				true,
-				2,
-				true,
-				(result) => {
-					console.log("---", result);
+				arrayTiming: Animation.TIMING_EASE,
+				direction: Animation.DIRECTION_FORWARD,
+				delayBeforeStart: 1000,
+				isDelayBeforeStartOnRepeat: true,
+				numberOfRepeats: 2,
+				isCyclic: true,
+				calculateCallback: (result) => {
+					console.log("---", result.positionInPoints, result.positionInPercent);
 					refDot1.current!.style.left = result.arrayResults[0] + "px";
 					refDot1.current!.style.top = result.arrayResults[1] + "px";
 				},
-				[
+				callbacks: [
 					{
 						positionInPoints: 0,
 						direction: 1,
@@ -57,8 +57,8 @@ export const ClashRoyaleGame = () => {
 							console.log("ccc", result.arrayResults[0]);
 						},
 					},
-				]
-			);
+				],
+			});
 
 			animation.startLoop();
 			animation.resume();
@@ -67,24 +67,24 @@ export const ClashRoyaleGame = () => {
 
 	useEffect(() => {
 		if (refDot2.current) {
-			const animation = new Animation(
-				5000,
-				[
+			const animation = new Animation({
+				timeLength: 5000,
+				arrayPoints: [
 					[0, 100],
 					[200, 300, 200],
 				],
-				Animation.TIMING_EASE_IN,
-				1,
-				1000,
-				true,
-				3,
-				true,
-				(result) => {
+				arrayTiming: Animation.TIMING_EASE_IN,
+				direction: 1,
+				delayBeforeStart: 1000,
+				isDelayBeforeStartOnRepeat: true,
+				numberOfRepeats: 3,
+				isCyclic: true,
+				calculateCallback: (result) => {
 					refDot2.current!.style.left = result.arrayResults[0] + "px";
 					refDot2.current!.style.top = result.arrayResults[1] + "px";
 				},
-				[]
-			);
+				callbacks: [],
+			});
 
 			animation.startLoop();
 			animation.resume();
@@ -93,24 +93,24 @@ export const ClashRoyaleGame = () => {
 
 	useEffect(() => {
 		if (refDot3.current) {
-			const animation = new Animation(
-				5000,
-				[
+			const animation = new Animation({
+				timeLength: 5000,
+				arrayPoints: [
 					[0, 100],
 					[200, 200],
 				],
-				Animation.TIMING_EASE_OUT,
-				1,
-				1000,
-				true,
-				4,
-				true,
-				(result) => {
+				arrayTiming: Animation.TIMING_EASE_OUT,
+				direction: 1,
+				delayBeforeStart: 1000,
+				isDelayBeforeStartOnRepeat: true,
+				numberOfRepeats: 4,
+				isCyclic: true,
+				calculateCallback: (result) => {
 					refDot3.current!.style.left = result.arrayResults[0] + "px";
 					refDot3.current!.style.top = result.arrayResults[1] + "px";
 				},
-				[]
-			);
+				callbacks: [],
+			});
 
 			animation.startLoop();
 			animation.resume();

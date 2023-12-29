@@ -18,6 +18,19 @@ type ICallbackResult = {
 	isFinished: boolean;
 };
 
+type Props = {
+	timeLength: number;
+	arrayPoints: number[][];
+	arrayTiming: number[];
+	direction: -1 | 0 | 1;
+	delayBeforeStart: number;
+	isDelayBeforeStartOnRepeat: boolean;
+	numberOfRepeats: number;
+	isCyclic: boolean;
+	calculateCallback: ((result: ICallbackResult) => void) | null;
+	callbacks: ICallback[];
+};
+
 export class Animation {
 	public static readonly DIRECTION_FORWARD = 1;
 	public static readonly DIRECTION_STAND = 0;
@@ -62,21 +75,21 @@ export class Animation {
 
 	private arrayResults: number[];
 
-	constructor(
-		timeLength: number = 1000,
-		arrayPoints: number[][] = [
+	constructor({
+		timeLength = 1000,
+		arrayPoints = [
 			[0, 100],
 			[0, 100],
 		],
-		arrayTiming: number[] = Animation.TIMING_LINEAR,
-		direction: number = Animation.DIRECTION_FORWARD,
-		delayBeforeStart: number = 0,
-		isDelayBeforeStartOnRepeat: boolean = false,
-		numberOfRepeats: number = 1,
-		isCyclic: boolean = false,
-		calculateCallback: ((result: ICallbackResult) => void) | null = null,
-		callbacks: ICallback[] = []
-	) {
+		arrayTiming = Animation.TIMING_LINEAR,
+		direction = Animation.DIRECTION_FORWARD,
+		delayBeforeStart = 0,
+		isDelayBeforeStartOnRepeat = false,
+		numberOfRepeats = 1,
+		isCyclic = false,
+		calculateCallback = null,
+		callbacks = [],
+	}: Props) {
 		// init values
 		this.arrayPoints = arrayPoints;
 		this.arrayTiming = arrayTiming;
