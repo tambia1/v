@@ -6,15 +6,15 @@ type ICallback = {
 
 type ICallbackResult = {
 	animation: Animation;
-	arrayResults: number[];
-	timeLength: number;
-	delayBeforeStart: number;
-	isDelayBeforeStartOnRepeat: boolean;
+	results: number[];
+	time: number;
+	direction: number;
+	delay: number;
+	repeat: number;
+	isDelayOnRepeat: boolean;
+	isCyclic: boolean;
 	positionInPoints: number;
 	positionInPercent: number;
-	direction: number;
-	numberOfRepeats: number;
-	isCyclic: boolean;
 	isFinished: boolean;
 };
 
@@ -295,16 +295,16 @@ export class Animation {
 		this.calculateResults();
 
 		// Save results to send to callbacks
-		const callbackResult = {
+		const callbackResult: ICallbackResult = {
 			animation: this,
-			arrayResults: this.results,
-			timeLength: this.time,
-			delayBeforeStart: this.currentDelay,
-			isDelayBeforeStartOnRepeat: this.isDelayOnRepeat,
+			results: this.results,
+			time: this.time,
+			delay: this.currentDelay,
+			isDelayOnRepeat: this.isDelayOnRepeat,
 			positionInPoints: this.getPositionInPoints(),
 			positionInPercent: this.getPositionInPercent(),
 			direction: this.direction,
-			numberOfRepeats: this.currentRepeat,
+			repeat: this.currentRepeat,
 			isCyclic: this.isCyclic,
 			isFinished: this.isFinished,
 		};

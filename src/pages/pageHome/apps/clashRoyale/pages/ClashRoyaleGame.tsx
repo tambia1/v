@@ -32,29 +32,29 @@ export const ClashRoyaleGame = () => {
 				isCyclic: true,
 				onCalculate: (result) => {
 					console.log("---", result.positionInPoints, result.positionInPercent);
-					refDot1.current!.style.left = result.arrayResults[0] + "px";
-					refDot1.current!.style.top = result.arrayResults[1] + "px";
+					refDot1.current!.style.left = result.results[0] + "px";
+					refDot1.current!.style.top = result.results[1] + "px";
 				},
 				callbacks: [
 					{
 						positionInPoints: 0,
 						direction: 1,
 						callback(result) {
-							console.log("aaa", result.arrayResults[0]);
+							console.log("aaa", result.results[0]);
 						},
 					},
 					{
 						positionInPoints: 1,
 						direction: 1,
 						callback(result) {
-							console.log("bbb", result.arrayResults[0]);
+							console.log("bbb", result.results[0]);
 						},
 					},
 					{
 						positionInPoints: 1,
 						direction: 1,
 						callback(result) {
-							console.log("ccc", result.arrayResults[0]);
+							console.log("ccc", result.results[0]);
 						},
 					},
 				],
@@ -80,8 +80,8 @@ export const ClashRoyaleGame = () => {
 				repeat: 3,
 				isCyclic: true,
 				onCalculate: (result) => {
-					refDot2.current!.style.left = result.arrayResults[0] + "px";
-					refDot2.current!.style.top = result.arrayResults[1] + "px";
+					refDot2.current!.style.left = result.results[0] + "px";
+					refDot2.current!.style.top = result.results[1] + "px";
 				},
 				callbacks: [],
 			});
@@ -106,8 +106,8 @@ export const ClashRoyaleGame = () => {
 				repeat: 4,
 				isCyclic: true,
 				onCalculate: (result) => {
-					refDot3.current!.style.left = result.arrayResults[0] + "px";
-					refDot3.current!.style.top = result.arrayResults[1] + "px";
+					refDot3.current!.style.left = result.results[0] + "px";
+					refDot3.current!.style.top = result.results[1] + "px";
 				},
 				callbacks: [],
 			});
