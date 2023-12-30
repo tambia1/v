@@ -49,7 +49,7 @@ export class Animation {
 
 	private position: number;
 	private actualPosition: number;
-	private time: number;
+	private actualTime: number;
 
 	private isStarted: boolean;
 	private isFinished: boolean;
@@ -99,7 +99,7 @@ export class Animation {
 
 		this.position = 0;
 		this.actualPosition = 0;
-		this.time = 0;
+		this.actualTime = 0;
 
 		this.isStarted = false;
 		this.isFinished = true;
@@ -213,7 +213,7 @@ export class Animation {
 
 		this.position = 0;
 		this.actualPosition = 0;
-		this.time = 0;
+		this.actualTime = 0;
 
 		this.isStarted = false;
 		this.isFinished = true;
@@ -246,11 +246,11 @@ export class Animation {
 		const currentTime = +new Date();
 
 		// If time is not set yet (this.time == 0) then take current time
-		this.time = this.time || currentTime;
+		this.actualTime = this.actualTime || currentTime;
 
 		// If we already started then wait till delay before start finishes
 		if (this.isStarted === true && this.currentDelayBeforeStart > 0) {
-			this.currentDelayBeforeStart -= currentTime - this.time;
+			this.currentDelayBeforeStart -= currentTime - this.actualTime;
 
 			if (this.currentDelayBeforeStart < 0) {
 				this.currentDelayBeforeStart = 0;
@@ -259,12 +259,12 @@ export class Animation {
 
 		// If we still not started then take current time and keep position
 		if (this.isStarted === false || this.currentDelayBeforeStart > 0 || this.isFinished === true) {
-			this.time = currentTime;
+			this.actualTime = currentTime;
 		}
 
 		// Add this amount of time that passed to the current position
-		const add = (currentTime - this.time) * this.direction;
-		this.time = currentTime;
+		const add = (currentTime - this.actualTime) * this.direction;
+		this.actualTime = currentTime;
 
 		this.position = this.position + add;
 		this.actualPosition = this.position;
@@ -374,7 +374,7 @@ export class Animation {
 	public resume(): void {
 		this.isStarted = true;
 		this.isFinished = false;
-		this.time = 0;
+		this.actualTime = 0;
 
 		this.calculate();
 	}
@@ -391,7 +391,7 @@ export class Animation {
 
 		this.position = 0;
 		this.actualPosition = 0;
-		this.time = 0;
+		this.actualTime = 0;
 
 		this.direction = this.saveDirection;
 
