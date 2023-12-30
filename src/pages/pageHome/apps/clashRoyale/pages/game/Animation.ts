@@ -126,7 +126,18 @@ export class Animation {
 		this.arrayResults = [];
 
 		//calculate and init values
-		this.setRoute(timeLength, arrayPoints, arrayTiming, direction, delayBeforeStart, isDelayBeforeStartOnRepeat, numberOfRepeats, isCyclic, calculateCallback, callbacks);
+		this.setRoute({
+			timeLength,
+			arrayPoints,
+			arrayTiming,
+			direction,
+			delayBeforeStart,
+			isDelayBeforeStartOnRepeat,
+			numberOfRepeats,
+			isCyclic,
+			calculateCallback,
+			callbacks,
+		});
 	}
 
 	private static bezier_2(t: number, p0: number, p1: number): number {
@@ -192,18 +203,7 @@ export class Animation {
 		return arrayResults;
 	}
 
-	public setRoute(
-		timeLength: number,
-		arrayPoints: number[][],
-		arrayTiming: number[],
-		direction: number,
-		delayBeforeStart: number,
-		isDelayBeforeStartOnRepeat: boolean,
-		numberOfRepeats: number,
-		isCyclic: boolean,
-		calculateCallback: ((result: ICallbackResult) => void) | null,
-		callbacks: ICallback[] | null
-	): void {
+	public setRoute({ timeLength, arrayPoints, arrayTiming, direction, delayBeforeStart, isDelayBeforeStartOnRepeat, numberOfRepeats, isCyclic, calculateCallback, callbacks }: Props): void {
 		// Save args
 		this.arrayPoints = arrayPoints;
 		this.arrayTiming = arrayTiming;
