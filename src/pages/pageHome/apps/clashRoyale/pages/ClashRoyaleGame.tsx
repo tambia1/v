@@ -19,18 +19,18 @@ export const ClashRoyaleGame = () => {
 	useEffect(() => {
 		if (refDot1.current) {
 			const animation = new Animation({
-				timeLength: 5000,
-				arrayPoints: [
+				time: 5000,
+				points: [
 					[0, 100],
 					[200, 100, 200],
 				],
-				arrayTiming: Animation.TIMING_EASE,
+				timing: Animation.TIMING_EASE,
 				direction: Animation.DIRECTION_FORWARD,
-				delayBeforeStart: 1000,
-				isDelayBeforeStartOnRepeat: true,
-				numberOfRepeats: 2,
+				delay: 1000,
+				isDelayOnRepeat: true,
+				repeat: 2,
 				isCyclic: true,
-				calculateCallback: (result) => {
+				onCalculate: (result) => {
 					console.log("---", result.positionInPoints, result.positionInPercent);
 					refDot1.current!.style.left = result.arrayResults[0] + "px";
 					refDot1.current!.style.top = result.arrayResults[1] + "px";
@@ -68,18 +68,18 @@ export const ClashRoyaleGame = () => {
 	useEffect(() => {
 		if (refDot2.current) {
 			const animation = new Animation({
-				timeLength: 5000,
-				arrayPoints: [
+				time: 5000,
+				points: [
 					[0, 100],
 					[200, 300, 200],
 				],
-				arrayTiming: Animation.TIMING_EASE_IN,
+				timing: Animation.TIMING_EASE_IN,
 				direction: 1,
-				delayBeforeStart: 1000,
-				isDelayBeforeStartOnRepeat: true,
-				numberOfRepeats: 3,
+				delay: 1000,
+				isDelayOnRepeat: true,
+				repeat: 3,
 				isCyclic: true,
-				calculateCallback: (result) => {
+				onCalculate: (result) => {
 					refDot2.current!.style.left = result.arrayResults[0] + "px";
 					refDot2.current!.style.top = result.arrayResults[1] + "px";
 				},
@@ -94,18 +94,18 @@ export const ClashRoyaleGame = () => {
 	useEffect(() => {
 		if (refDot3.current) {
 			const animation = new Animation({
-				timeLength: 5000,
-				arrayPoints: [
+				time: 5000,
+				points: [
 					[0, 100],
 					[200, 200],
 				],
-				arrayTiming: Animation.TIMING_EASE_OUT,
+				timing: Animation.TIMING_EASE_OUT,
 				direction: 1,
-				delayBeforeStart: 1000,
-				isDelayBeforeStartOnRepeat: true,
-				numberOfRepeats: 4,
+				delay: 1000,
+				isDelayOnRepeat: true,
+				repeat: 4,
 				isCyclic: true,
-				calculateCallback: (result) => {
+				onCalculate: (result) => {
 					refDot3.current!.style.left = result.arrayResults[0] + "px";
 					refDot3.current!.style.top = result.arrayResults[1] + "px";
 				},
