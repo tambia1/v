@@ -1,5 +1,5 @@
 type ICallback = {
-	positionInPoints: number;
+	position: number;
 	direction: number;
 	callback: (result: ICallbackResult) => void;
 };
@@ -72,27 +72,27 @@ export class Animation {
 	private requestAnimationFrameId: number | null;
 	private requestAnimationFrameFunction: (() => void) | null;
 
-	private results: number[];
+	public results: number[];
 
 	constructor({
-		time: timeLength = 1000,
-		points: arrayPoints = [
+		time = 1000,
+		points = [
 			[0, 100],
 			[0, 100],
 		],
-		timing: arrayTiming = Animation.TIMING_LINEAR,
+		timing = Animation.TIMING_LINEAR,
 		direction = Animation.DIRECTION_FORWARD,
-		delay: delayBeforeStart = 0,
-		isDelayOnRepeat: isDelayBeforeStartOnRepeat = false,
-		repeat: numberOfRepeats = 1,
+		delay = 0,
+		isDelayOnRepeat = false,
+		repeat = 1,
 		isCyclic = false,
-		onCalculate: calculateCallback = null,
-		callbacks: callbacks = [],
-	}: Props) {
+		onCalculate = null,
+		callbacks = [],
+	}: Partial<Props> = {}) {
 		// init values
-		this.points = arrayPoints;
-		this.timing = arrayTiming;
-		this.time = timeLength;
+		this.points = points;
+		this.timing = timing;
+		this.time = time;
 		this.direction = direction;
 		this.saveDirection = this.direction;
 
@@ -103,17 +103,17 @@ export class Animation {
 		this.isStarted = false;
 		this.isFinished = true;
 
-		this.onCalculate = calculateCallback;
+		this.onCalculate = onCalculate;
 
 		this.callbacks = callbacks;
 		this.callbacksCounters = new Array(this.callbacks.length).fill(0);
 
-		this.delay = delayBeforeStart;
+		this.delay = delay;
 		this.currentDelay = this.delay;
 
-		this.isDelayOnRepeat = isDelayBeforeStartOnRepeat;
+		this.isDelayOnRepeat = isDelayOnRepeat;
 
-		this.repeat = numberOfRepeats;
+		this.repeat = repeat;
 		this.currentRepeat = this.repeat;
 
 		this.isCyclic = isCyclic;
@@ -125,16 +125,16 @@ export class Animation {
 		this.results = [];
 
 		//calculate and init values
-		this.setRoute({
-			time: timeLength,
-			points: arrayPoints,
-			timing: arrayTiming,
+		this.setAnimation({
+			time: time,
+			points: points,
+			timing: timing,
 			direction,
-			delay: delayBeforeStart,
-			isDelayOnRepeat: isDelayBeforeStartOnRepeat,
-			repeat: numberOfRepeats,
+			delay: delay,
+			isDelayOnRepeat: isDelayOnRepeat,
+			repeat: repeat,
 			isCyclic,
-			onCalculate: calculateCallback,
+			onCalculate: onCalculate,
 			callbacks: callbacks,
 		});
 	}
@@ -202,22 +202,11 @@ export class Animation {
 		return arrayResults;
 	}
 
-	public setRoute({
-		time: timeLength,
-		points: arrayPoints,
-		timing: arrayTiming,
-		direction,
-		delay: delayBeforeStart,
-		isDelayOnRepeat: isDelayBeforeStartOnRepeat,
-		repeat: numberOfRepeats,
-		isCyclic,
-		onCalculate: calculateCallback,
-		callbacks: callbacks,
-	}: Props): void {
+	public setAnimation({ time, points, timing, direction, delay: delay, isDelayOnRepeat, repeat, isCyclic, onCalculate, callbacks }: Props): void {
 		// Save args
-		this.points = arrayPoints;
-		this.timing = arrayTiming;
-		this.time = timeLength !== 0 ? timeLength : 0.0000000001;
+		this.points = points;
+		this.timing = timing;
+		this.time = time !== 0 ? time : 0.0000000001;
 		this.direction = direction;
 		this.saveDirection = direction;
 
@@ -228,7 +217,7 @@ export class Animation {
 		this.isStarted = false;
 		this.isFinished = true;
 
-		this.onCalculate = calculateCallback;
+		this.onCalculate = onCalculate;
 
 		this.callbacks = callbacks || [];
 		this.callbacksCounters = [];
@@ -237,13 +226,13 @@ export class Animation {
 			this.callbacksCounters[i] = 0;
 		}
 
-		this.delay = delayBeforeStart;
-		this.currentDelay = delayBeforeStart;
+		this.delay = delay;
+		this.currentDelay = delay;
 
-		this.isDelayOnRepeat = isDelayBeforeStartOnRepeat;
+		this.isDelayOnRepeat = isDelayOnRepeat;
 
-		this.repeat = numberOfRepeats;
-		this.currentRepeat = numberOfRepeats;
+		this.repeat = repeat;
+		this.currentRepeat = repeat;
 
 		this.isCyclic = isCyclic;
 
@@ -251,7 +240,7 @@ export class Animation {
 		this.calculateResults();
 	}
 
-	private calculate(): void {
+	public calculate(): void {
 		// Get current time
 		const currentTime = +new Date();
 
@@ -317,7 +306,7 @@ export class Animation {
 			// Run any other callback exist
 			for (let i = 0; i < this.callbacks.length; i++) {
 				if (
-					this.position * this.direction >= this.callbacks[i].positionInPoints * this.direction &&
+					this.position * this.direction >= this.callbacks[i].position * this.direction &&
 					this.callbacksCounters[i] === 0 &&
 					(this.callbacks[i].direction === 0 || this.direction === this.callbacks[i].direction)
 				) {

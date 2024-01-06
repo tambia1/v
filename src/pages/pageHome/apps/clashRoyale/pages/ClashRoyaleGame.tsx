@@ -37,21 +37,21 @@ export const ClashRoyaleGame = () => {
 				},
 				callbacks: [
 					{
-						positionInPoints: 0,
+						position: 0,
 						direction: 1,
 						callback(result) {
 							console.log("aaa", result.results[0]);
 						},
 					},
 					{
-						positionInPoints: 1,
+						position: 1,
 						direction: 1,
 						callback(result) {
 							console.log("bbb", result.results[0]);
 						},
 					},
 					{
-						positionInPoints: 1,
+						position: 1,
 						direction: 1,
 						callback(result) {
 							console.log("ccc", result.results[0]);
