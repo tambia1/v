@@ -22,30 +22,3 @@ export const ClashRoyaleBoard = styled.div`
 	display: flex;
 	justify-content: center;
 `;
-
-export const Dot1 = styled.div`
-	position: absolute;
-	width: 10px;
-	height: 10px;
-	left: 10px;
-	top: 10px;
-	background-color: red;
-`;
-
-export const Dot2 = styled.div`
-	position: absolute;
-	width: 10px;
-	height: 10px;
-	left: 10px;
-	top: 10px;
-	background-color: blue;
-`;
-
-export const Dot3 = styled.div`
-	position: absolute;
-	width: 10px;
-	height: 10px;
-	left: 10px;
-	top: 10px;
-	background-color: green;
-`;

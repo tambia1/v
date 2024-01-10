@@ -1,6 +1,7 @@
 import { Castle, IType as ICastleType } from "./Castle";
 import { IType as IUnitType, Unit } from "./Unit";
-import Utils from "./Utils";
+import { UtilsImage } from "./UtilsImage";
+import { UtilsMath } from "./UtilsMath";
 
 export type IType = "good" | "bad";
 
@@ -57,20 +58,21 @@ const styles: { [K in IType]: IStyle } = {
 };
 
 export class Player {
-	private static readonly STACK_SCALE_UNSELECTED = 1.0;
-	private static readonly STACK_SCALE_NEXT = 0.4;
+	public static readonly STACK_SCALE_SELECTED = 1.2;
+	public static readonly STACK_SCALE_UNSELECTED = 1.0;
+	public static readonly STACK_SCALE_NEXT = 0.4;
 
-	private static readonly imageElixir = Utils.getImage("./images/misc/elixir.png");
-	private static readonly imageElixirBg = Utils.getImage("./images/misc/elixirBg.png");
+	private static readonly imageElixir = UtilsImage.getImage("./images/misc/elixir.png");
+	private static readonly imageElixirBg = UtilsImage.getImage("./images/misc/elixirBg.png");
 
 	private type: IType;
 	private playerName: string;
 
-	private deck: IUnitType[] = [];
+	private decks: IUnitType[] = [];
 	private castles: Castle[] = [];
 	private units: Unit[] = [];
 
-	private stack: (Unit | null)[] = [null, null, null, null, null];
+	private stacks: (Unit | null)[] = [null, null, null, null, null];
 	private stackSelected: number = -1;
 	private energy: number = 0;
 	private energyMax: number = 0;
@@ -92,11 +94,11 @@ export class Player {
 	}
 
 	private initDeck(deck: IUnitType[]) {
-		this.deck = [];
+		this.decks = [];
 
 		while (deck.length > 0) {
-			let j = Utils.getRandomNumber(0, deck.length - 1);
-			this.deck.push(deck[j]);
+			let j = UtilsMath.getRandomNumber(0, deck.length - 1);
+			this.decks.push(deck[j]);
 
 			deck.splice(j, 1);
 		}
@@ -118,7 +120,7 @@ export class Player {
 	}
 
 	private initStack() {
-		this.stack = [null, null, null, null, null];
+		this.stacks = [null, null, null, null, null];
 		this.stackSelected = -1;
 
 		this.energy = 0;
@@ -132,8 +134,32 @@ export class Player {
 		this.elixirTiming = 2000;
 	}
 
+	public getType() {
+		return this.type;
+	}
+
 	public getPlayerName() {
 		return this.playerName;
+	}
+
+	public getStacks() {
+		return this.stacks;
+	}
+
+	public setStackSelected(stackSelected: number) {
+		this.stackSelected = stackSelected;
+	}
+
+	public getStackSelected() {
+		return this.stackSelected;
+	}
+
+	public getCastles() {
+		return this.castles;
+	}
+
+	public getUnits() {
+		return this.units;
 	}
 
 	public drawElixir(ctx: CanvasRenderingContext2D) {
@@ -159,12 +185,12 @@ export class Player {
 	}
 
 	public drawStack(ctx: CanvasRenderingContext2D) {
-		if (this.stack[0] != null) {
-			this.stack[0].drawImage(ctx);
+		if (this.stacks[0] != null) {
+			this.stacks[0].drawImage(ctx);
 		}
 
-		for (let i = 1; i < this.stack.length; i++) {
-			let unit = this.stack[i];
+		for (let i = 1; i < this.stacks.length; i++) {
+			let unit = this.stacks[i];
 
 			if (unit != null) {
 				unit.drawImage(ctx);
@@ -206,14 +232,14 @@ export class Player {
 	}
 
 	private getUnitFromDeck() {
-		let type = this.deck.shift();
+		let type = this.decks.shift();
 
 		if (type != null) {
 			{
 				let unit = new Unit(type);
 
 				unit.setLifeColor(styles[this.type].lifeStrokeStyle, styles[this.type].lifeFillStyle);
-				this.deck.push(type);
+				this.decks.push(type);
 
 				return unit;
 			}
@@ -224,10 +250,10 @@ export class Player {
 
 	public putSelectedStackOnGrid(x: number, y: number) {
 		if (this.stackSelected != -1) {
-			let unit = this.stack[this.stackSelected];
+			let unit = this.stacks[this.stackSelected];
 
 			if (unit != null && this.elixir >= unit.getElixirNeeded()) {
-				this.stack[this.stackSelected] = null;
+				this.stacks[this.stackSelected] = null;
 				this.stackSelected = -1;
 				this.energy = 0;
 
@@ -257,25 +283,25 @@ export class Player {
 	}
 
 	public updateStackNext(_timeDif: number) {
-		if (this.stack[0] == null) {
+		if (this.stacks[0] == null) {
 			let isNextStackUnique = null;
 
 			do {
-				this.stack[0] = this.getUnitFromDeck()!;
-				this.stack[0].setLoading(1);
+				this.stacks[0] = this.getUnitFromDeck()!;
+				this.stacks[0].setLoading(1);
 				isNextStackUnique = true;
 
-				for (let i = 1; i < this.stack.length; i++) {
-					if (this.stack[0].getType() == this.stack[i]?.getType()) {
+				for (let i = 1; i < this.stacks.length; i++) {
+					if (this.stacks[0].getType() == this.stacks[i]?.getType()) {
 						isNextStackUnique = false;
 						break;
 					}
 				}
 			} while (isNextStackUnique == false);
 
-			this.stack[0].setXY(styles[this.type].stacks[0].x, styles[this.type].stacks[0].y);
-			this.stack[0].setOpacity(0, 1, 700);
-			this.stack[0].setScale(Player.STACK_SCALE_NEXT, Player.STACK_SCALE_NEXT, 0);
+			this.stacks[0].setXY(styles[this.type].stacks[0].x, styles[this.type].stacks[0].y);
+			this.stacks[0].setOpacity(0, 1, 700);
+			this.stacks[0].setScale(Player.STACK_SCALE_NEXT, Player.STACK_SCALE_NEXT, 0);
 		}
 	}
 
@@ -283,33 +309,33 @@ export class Player {
 		this.energy += timeDif / this.energyTiming;
 		this.energy = Math.min(this.energy, this.energyMax);
 
-		for (let i = 1; i < this.stack.length; i++) {
-			if (this.stack[i] == null && this.stack[0] != null && this.energy >= this.energyMax) {
+		for (let i = 1; i < this.stacks.length; i++) {
+			if (this.stacks[i] == null && this.stacks[0] != null && this.energy >= this.energyMax) {
 				this.energy = 0;
 
-				this.stack[i] = this.stack[0];
-				this.stack[0] = null;
+				this.stacks[i] = this.stacks[0];
+				this.stacks[0] = null;
 
-				this.stack[i]!.setXY(styles[this.type].stacks[i].x, styles[this.type].stacks[i].y);
-				this.stack[i]!.setOpacity(this.stack[i]!.getOpacity(), 1, 300);
-				this.stack[i]!.setScale(Player.STACK_SCALE_UNSELECTED, Player.STACK_SCALE_UNSELECTED, 0);
+				this.stacks[i]!.setXY(styles[this.type].stacks[i].x, styles[this.type].stacks[i].y);
+				this.stacks[i]!.setOpacity(this.stacks[i]!.getOpacity(), 1, 300);
+				this.stacks[i]!.setScale(Player.STACK_SCALE_UNSELECTED, Player.STACK_SCALE_UNSELECTED, 0);
 			}
 		}
 	}
 
 	public updateStackLoading(_timeDif: number) {
-		for (let i = 1; i < this.stack.length; i++) {
-			if (this.stack[i] != null) {
-				let loading = this.elixir / this.stack[i]!.getElixirNeeded();
+		for (let i = 1; i < this.stacks.length; i++) {
+			if (this.stacks[i] != null) {
+				let loading = this.elixir / this.stacks[i]!.getElixirNeeded();
 
-				this.stack[i]!.setLoading(loading);
+				this.stacks[i]!.setLoading(loading);
 			}
 		}
 	}
 
 	public updateStacks(timeDif: number) {
-		for (let i = 0; i < this.stack.length; i++) {
-			this.stack[i]?.update(timeDif);
+		for (let i = 0; i < this.stacks.length; i++) {
+			this.stacks[i]?.update(timeDif);
 		}
 	}
 

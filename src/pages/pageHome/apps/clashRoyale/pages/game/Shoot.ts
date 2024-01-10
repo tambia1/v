@@ -1,5 +1,5 @@
 import { Animation } from "./Animation";
-import Utils from "./Utils";
+import { UtilsImage } from "./UtilsImage";
 
 export type IType = "shoot1" | "shoot2";
 type IShoot = {
@@ -19,7 +19,7 @@ type IShoot = {
 
 const types: { [K in IType]: IShoot } = {
 	shoot1: {
-		image: Utils.getImage("./images/shoot/shoot_1_38_128.webp"),
+		image: UtilsImage.getImage("./images/shoot/shoot_1_38_128.webp"),
 		size: 128,
 		cols: 8,
 		fireFrameStart: 0,
@@ -33,7 +33,7 @@ const types: { [K in IType]: IShoot } = {
 		explodeTime: 500,
 	},
 	shoot2: {
-		image: Utils.getImage("./images/shoot/shoot_2_7_128.webp"),
+		image: UtilsImage.getImage("./images/shoot/shoot_2_7_128.webp"),
 		size: 128,
 		cols: 5,
 		fireFrameStart: 0,
@@ -89,7 +89,7 @@ export class Shoot {
 		this.setType(type);
 	}
 
-	public setType(type: IType): void {
+	public setType(type: IType) {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.size = types[this.type].size;
@@ -173,7 +173,7 @@ export class Shoot {
 		return this.type;
 	}
 
-	public draw(ctx: CanvasRenderingContext2D): void {
+	public draw(ctx: CanvasRenderingContext2D) {
 		if (this.isShooting == true && this.type != null) {
 			ctx.save();
 
@@ -186,12 +186,12 @@ export class Shoot {
 		}
 	}
 
-	public setWH(w: number, h: number): void {
+	public setWH(w: number, h: number) {
 		this.w = w;
 		this.h = h;
 	}
 
-	public setXY(x1: number, y1: number, x2: number, y2: number): void {
+	public setXY(x1: number, y1: number, x2: number, y2: number) {
 		this.x1 = x1;
 		this.y1 = y1;
 		this.x2 = x2;

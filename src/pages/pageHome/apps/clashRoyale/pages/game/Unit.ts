@@ -1,10 +1,11 @@
 import { Animation } from "./Animation";
-import Utils from "./Utils";
+import { UtilsImage } from "./UtilsImage";
 import { IType as IShootType, Shoot } from "./Shoot";
 
 export type IType = "paladin" | "goblin" | "wolf" | "golem" | "orc" | "sorcerer" | "ninja" | "snake" | "skull" | "amazon" | "knight" | "giant" | "musketeer" | "hogRider" | "tank";
 
 type IState = "idle" | "idleDown" | "idleUp" | "walkDown" | "walkUp" | "attackDown" | "attackUp";
+type IDirection = "up" | "down";
 
 type IUnit = {
 	image: HTMLImageElement;
@@ -31,7 +32,7 @@ type IUnit = {
 
 const types: { [K in IType]: IUnit } = {
 	paladin: {
-		image: Utils.getImage("./images/units/paladin.png"),
+		image: UtilsImage.getImage("./images/units/paladin.png"),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -54,7 +55,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	goblin: {
-		image: Utils.getImage("./images/units/goblin.png"),
+		image: UtilsImage.getImage("./images/units/goblin.png"),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -77,7 +78,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	wolf: {
-		image: Utils.getImage("./images/units/wolf.png"),
+		image: UtilsImage.getImage("./images/units/wolf.png"),
 		elixirNeeded: 1,
 		lifeMax: 100,
 		life: 0,
@@ -100,7 +101,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	golem: {
-		image: Utils.getImage("./images/units/golem.png"),
+		image: UtilsImage.getImage("./images/units/golem.png"),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -123,7 +124,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	orc: {
-		image: Utils.getImage("./images/units/orc.png"),
+		image: UtilsImage.getImage("./images/units/orc.png"),
 		elixirNeeded: 4,
 		lifeMax: 100,
 		life: 0,
@@ -146,7 +147,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	sorcerer: {
-		image: Utils.getImage("./images/units/sorcerer.png"),
+		image: UtilsImage.getImage("./images/units/sorcerer.png"),
 		elixirNeeded: 4,
 		lifeMax: 100,
 		life: 0,
@@ -169,7 +170,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	ninja: {
-		image: Utils.getImage("./images/units/ninja.png"),
+		image: UtilsImage.getImage("./images/units/ninja.png"),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -192,7 +193,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	snake: {
-		image: Utils.getImage("./images/units/snake.png"),
+		image: UtilsImage.getImage("./images/units/snake.png"),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -215,7 +216,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	skull: {
-		image: Utils.getImage("./images/units/skull.png"),
+		image: UtilsImage.getImage("./images/units/skull.png"),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -238,7 +239,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	amazon: {
-		image: Utils.getImage("./images/units/amazon.png"),
+		image: UtilsImage.getImage("./images/units/amazon.png"),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -261,7 +262,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	knight: {
-		image: Utils.getImage("./images/units/knight.png"),
+		image: UtilsImage.getImage("./images/units/knight.png"),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -284,7 +285,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	giant: {
-		image: Utils.getImage("./images/units/giant.png"),
+		image: UtilsImage.getImage("./images/units/giant.png"),
 		elixirNeeded: 2,
 		lifeMax: 200,
 		life: 0,
@@ -307,7 +308,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	musketeer: {
-		image: Utils.getImage("./images/units/musketeer.png"),
+		image: UtilsImage.getImage("./images/units/musketeer.png"),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -330,7 +331,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	hogRider: {
-		image: Utils.getImage("./images/units/hogRider.png"),
+		image: UtilsImage.getImage("./images/units/hogRider.png"),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -353,7 +354,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	tank: {
-		image: Utils.getImage("./images/units/tank.png"),
+		image: UtilsImage.getImage("./images/units/tank.png"),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -408,6 +409,8 @@ export class Unit {
 	private animationScale: Animation = new Animation({});
 	private sprite: number = 0;
 
+	private direction: "up" | "down" = "up";
+
 	private x: number = 0;
 	private y: number = 0;
 	private w: number = 0;
@@ -421,7 +424,7 @@ export class Unit {
 		this.setType(type);
 	}
 
-	public setType(type: IType): void {
+	public setType(type: IType) {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.elixirNeeded = types[this.type].elixirNeeded;
@@ -467,7 +470,27 @@ export class Unit {
 		return this.type;
 	}
 
-	public drawImage(ctx: CanvasRenderingContext2D): void {
+	public getLife() {
+		return this.life;
+	}
+
+	public setLife(life: number) {
+		this.life = life;
+	}
+
+	public getWeaponSpeed() {
+		return this.weaponSpeed;
+	}
+
+	public getWeaponDamage() {
+		return this.weaponDamage;
+	}
+
+	public getweaponRange() {
+		return this.weaponRange;
+	}
+
+	public drawImage(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
 		ctx.globalAlpha = this.animationAlpha.results[0];
@@ -486,7 +509,7 @@ export class Unit {
 		ctx.restore();
 	}
 
-	public drawLife(ctx: CanvasRenderingContext2D): void {
+	public drawLife(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
 		let lifeWidth = ((this.ww - 40) / this.lifeMax) * this.life;
@@ -504,7 +527,7 @@ export class Unit {
 		ctx.restore();
 	}
 
-	public drawWeaponRange(ctx: CanvasRenderingContext2D): void {
+	public drawWeaponRange(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
 		ctx.fillStyle = "#00000033";
@@ -516,7 +539,7 @@ export class Unit {
 		ctx.restore();
 	}
 
-	public drawLoading(ctx: CanvasRenderingContext2D): void {
+	public drawLoading(ctx: CanvasRenderingContext2D) {
 		if (this.loading < 1) {
 			ctx.save();
 
@@ -530,7 +553,7 @@ export class Unit {
 		}
 	}
 
-	public drawAttack(ctx: CanvasRenderingContext2D): void {
+	public drawAttack(ctx: CanvasRenderingContext2D) {
 		if (this.shoot != null) {
 			this.shoot.draw(ctx);
 		}
@@ -544,6 +567,34 @@ export class Unit {
 	public setXY(x: number, y: number) {
 		this.x = x;
 		this.y = y;
+	}
+
+	public setX(x: number) {
+		this.x = x;
+	}
+
+	public setY(y: number) {
+		this.y = y;
+	}
+
+	public getX() {
+		return this.x;
+	}
+
+	public getY() {
+		return this.y;
+	}
+
+	public getMoveSpeed() {
+		return this.moveSpeed;
+	}
+
+	public setDirection(direction: IDirection) {
+		this.direction = direction;
+	}
+
+	public getDirection() {
+		return this.direction;
 	}
 
 	public setOpacity(alpha1: number, alpha2: number, time: number) {
@@ -635,6 +686,10 @@ export class Unit {
 	public setState(state: IState) {
 		this.state = state;
 		this.sprite = 0;
+	}
+
+	public getState() {
+		return this.state;
 	}
 
 	public getElixirNeeded() {

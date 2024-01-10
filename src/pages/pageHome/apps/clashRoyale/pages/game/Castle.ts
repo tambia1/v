@@ -1,23 +1,23 @@
 import { Animation } from "./Animation";
 import { Shoot } from "./Shoot";
-import Utils from "./Utils";
+import { UtilsImage } from "./UtilsImage";
 import { IType as IShootType } from "./Shoot";
 
 export type IType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
-type ICastle = { image: HTMLImageElement; lifeMax: number; weaponRange: number; shootType: IShootType | null };
+type ICastle = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
 
 const types: { [K in IType]: ICastle } = {
-	castleRuin: { image: Utils.getImage("./images/castles/castleRuin.webp"), lifeMax: 0, weaponRange: 0, shootType: null },
-	castle1: { image: Utils.getImage("./images/castles/castle1.webp"), lifeMax: 150, weaponRange: 90, shootType: "shoot2" },
-	castle2: { image: Utils.getImage("./images/castles/castle2.webp"), lifeMax: 250, weaponRange: 70, shootType: "shoot2" },
-	castle3: { image: Utils.getImage("./images/castles/castle3.webp"), lifeMax: 350, weaponRange: 70, shootType: "shoot2" },
-	castle4: { image: Utils.getImage("./images/castles/castle4.webp"), lifeMax: 450, weaponRange: 70, shootType: "shoot2" },
-	castle5: { image: Utils.getImage("./images/castles/castle5.webp"), lifeMax: 550, weaponRange: 70, shootType: "shoot2" },
-	castle6: { image: Utils.getImage("./images/castles/castle6.webp"), lifeMax: 650, weaponRange: 70, shootType: "shoot2" },
-	castle7: { image: Utils.getImage("./images/castles/castle7.webp"), lifeMax: 750, weaponRange: 70, shootType: "shoot2" },
-	castle8: { image: Utils.getImage("./images/castles/castle8.webp"), lifeMax: 850, weaponRange: 70, shootType: "shoot2" },
-	castle9: { image: Utils.getImage("./images/castles/castle9.webp"), lifeMax: 950, weaponRange: 70, shootType: "shoot2" },
-	castle10: { image: Utils.getImage("./images/castles/castle10.webp"), lifeMax: 1050, weaponRange: 70, shootType: "shoot2" },
+	castleRuin: { image: UtilsImage.getImage("./images/castles/castleRuin.webp"), lifeMax: 0, weaponRange: 0, weaponSpeed: 0, weaponDamage: 0, shootType: null },
+	castle1: { image: UtilsImage.getImage("./images/castles/castle1.webp"), lifeMax: 150, weaponRange: 90, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle2: { image: UtilsImage.getImage("./images/castles/castle2.webp"), lifeMax: 250, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle3: { image: UtilsImage.getImage("./images/castles/castle3.webp"), lifeMax: 350, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle4: { image: UtilsImage.getImage("./images/castles/castle4.webp"), lifeMax: 450, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle5: { image: UtilsImage.getImage("./images/castles/castle5.webp"), lifeMax: 550, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle6: { image: UtilsImage.getImage("./images/castles/castle6.webp"), lifeMax: 650, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle7: { image: UtilsImage.getImage("./images/castles/castle7.webp"), lifeMax: 750, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle8: { image: UtilsImage.getImage("./images/castles/castle8.webp"), lifeMax: 850, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle9: { image: UtilsImage.getImage("./images/castles/castle9.webp"), lifeMax: 950, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle10: { image: UtilsImage.getImage("./images/castles/castle10.webp"), lifeMax: 1050, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
 };
 
 export class Castle {
@@ -36,6 +36,8 @@ export class Castle {
 	private lifeStrokeStyle: string = "#ffffff66";
 	private lifeFillStyle: string = "#99999966";
 
+	private weaponSpeed: number = types[this.type].weaponSpeed;
+	private weaponDamage: number = types[this.type].weaponDamage;
 	private weaponRange: number = types[this.type].weaponRange;
 	private shootType: IShootType | null = types[this.type].shootType;
 	private shoot: Shoot | null = null;
@@ -49,21 +51,32 @@ export class Castle {
 		this.setType(type);
 	}
 
-	public setType(type: IType): void {
+	public setType(type: IType) {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.life = types[this.type].lifeMax;
 		this.animationWeaponRangeAlpha.reset();
+		this.weaponSpeed = types[this.type].weaponSpeed;
+		this.weaponDamage = types[this.type].weaponDamage;
+		this.weaponRange = types[this.type].weaponRange;
 
 		this.setWH(60, 60);
 		this.setXY(0, 0);
 	}
 
-	public getType(): IType {
+	public getType() {
 		return this.type;
 	}
 
-	public drawImage(ctx: CanvasRenderingContext2D): void {
+	public getLife() {
+		return this.life;
+	}
+
+	public setLife(life: number) {
+		this.life = life;
+	}
+
+	public drawImage(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.drawImage(this.image, this.cx, this.cy, this.w, this.h);
 		ctx.restore();
@@ -79,7 +92,27 @@ export class Castle {
 		this.y = y;
 	}
 
-	public drawWeaponRange(ctx: CanvasRenderingContext2D): void {
+	public getX() {
+		return this.x;
+	}
+
+	public getY() {
+		return this.y;
+	}
+
+	public getWeaponSpeed() {
+		return this.weaponSpeed;
+	}
+
+	public getWeaponDamage() {
+		return this.weaponDamage;
+	}
+
+	public getweaponRange() {
+		return this.weaponRange;
+	}
+
+	public drawWeaponRange(ctx: CanvasRenderingContext2D) {
 		if (this.life > 0) {
 			ctx.save();
 
@@ -93,7 +126,7 @@ export class Castle {
 		}
 	}
 
-	public drawLife(ctx: CanvasRenderingContext2D): void {
+	public drawLife(ctx: CanvasRenderingContext2D) {
 		if (this.life > 0) {
 			ctx.save();
 
@@ -113,18 +146,18 @@ export class Castle {
 		}
 	}
 
-	public drawAttack(ctx: CanvasRenderingContext2D): void {
+	public drawAttack(ctx: CanvasRenderingContext2D) {
 		if (this.shoot != null) {
 			this.shoot.draw(ctx);
 		}
 	}
 
-	public setLifeColor(strokeStyle: string, fillStyle: string): void {
+	public setLifeColor(strokeStyle: string, fillStyle: string) {
 		this.lifeStrokeStyle = strokeStyle;
 		this.lifeFillStyle = fillStyle;
 	}
 
-	public setWeaponRangeColor(fillStyle: string): void {
+	public setWeaponRangeColor(fillStyle: string) {
 		this.weaponRangeFillStyle = fillStyle;
 	}
 
@@ -132,7 +165,7 @@ export class Castle {
 		return (x - this.x) * (x - this.x) + (y - this.y) * (y - this.y) <= this.weaponRange * this.weaponRange;
 	}
 
-	public startAttacking(x: number, y: number): void {
+	public startAttacking(x: number, y: number) {
 		this.isAttacking = true;
 
 		if (this.shoot == null && this.shootType != null) {
@@ -143,7 +176,7 @@ export class Castle {
 		this.shoot?.setXY(this.x, this.y, x, y);
 	}
 
-	public stopAttacking(): void {
+	public stopAttacking() {
 		this.isAttacking = false;
 
 		if (this.shoot != null) {
@@ -156,7 +189,7 @@ export class Castle {
 		return this.isAttacking;
 	}
 
-	public setWeaponRangeOpacity(alpha1: number, alpha2: number, time: number): void {
+	public setWeaponRangeOpacity(alpha1: number, alpha2: number, time: number) {
 		this.weaponRangeAlpha = alpha2;
 
 		this.animationWeaponRangeAlpha.setAnimation({
@@ -178,7 +211,7 @@ export class Castle {
 		return this.animationWeaponRangeAlpha.results[0];
 	}
 
-	public update(timeDif: number): void {
+	public update(timeDif: number) {
 		this.animationWeaponRangeAlpha.calculate();
 
 		this.cx = this.x - this.w / 2;
