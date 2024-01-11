@@ -274,8 +274,8 @@ export class Shoot {
 		this.start(this.x1, this.y1, this.x2, this.y2, this.onFireEnd, this.onFlyEnd, this.onExplodeEnd);
 	}
 
-	public onMoveEnd() {
-		this.animationMove.pause();
+	private onMoveEnd() {
+		this.animationMove?.pause();
 	}
 
 	public update(_timeDif: number) {
