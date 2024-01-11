@@ -3,17 +3,17 @@ import { Shoot } from "./Shoot";
 import { UtilsImage } from "./UtilsImage";
 import { IType as IShootType } from "./Shoot";
 
-import imageCastleRuin from "./images/castle/castleRuin.webp";
-import imageCastle1 from "./images/castle/castle1.webp";
-import imageCastle2 from "./images/castle/castle2.webp";
-import imageCastle3 from "./images/castle/castle3.webp";
-import imageCastle4 from "./images/castle/castle4.webp";
-import imageCastle5 from "./images/castle/castle5.webp";
-import imageCastle6 from "./images/castle/castle6.webp";
-import imageCastle7 from "./images/castle/castle7.webp";
-import imageCastle8 from "./images/castle/castle8.webp";
-import imageCastle9 from "./images/castle/castle8.webp";
-import imageCastle10 from "./images/castle/castle8.webp";
+import imageCastleRuin from "./images/castles/castleRuin.webp";
+import imageCastle1 from "./images/castles/castle1.webp";
+import imageCastle2 from "./images/castles/castle2.webp";
+import imageCastle3 from "./images/castles/castle3.webp";
+import imageCastle4 from "./images/castles/castle4.webp";
+import imageCastle5 from "./images/castles/castle5.webp";
+import imageCastle6 from "./images/castles/castle6.webp";
+import imageCastle7 from "./images/castles/castle7.webp";
+import imageCastle8 from "./images/castles/castle8.webp";
+import imageCastle9 from "./images/castles/castle8.webp";
+import imageCastle10 from "./images/castles/castle8.webp";
 
 export type IType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
 type ICastle = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
