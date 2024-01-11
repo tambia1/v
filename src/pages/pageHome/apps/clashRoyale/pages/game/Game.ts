@@ -546,8 +546,8 @@ export class Game {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 
-		let minutes = Math.abs(this.timeLeft / 60);
-		let seconds = Math.abs(this.timeLeft % 60);
+		let minutes = Math.floor(this.timeLeft / 60);
+		let seconds = Math.floor(this.timeLeft % 60);
 
 		ctx.fillText(minutes + ":" + (seconds < 10 ? "0" : "") + seconds, 420, 170);
 

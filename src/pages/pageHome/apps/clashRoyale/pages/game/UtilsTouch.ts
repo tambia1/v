@@ -39,8 +39,8 @@ export const UtilsTouch = {
 			boundingX = div.getBoundingClientRect().left + window.scrollX + 0.5;
 			boundingY = div.getBoundingClientRect().top + window.scrollY + 0.5;
 
-			let x = Math.abs((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
-			let y = Math.abs((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
+			let x = Math.floor((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
+			let y = Math.floor((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
 
 			xx = x;
 			yy = y;
@@ -57,8 +57,8 @@ export const UtilsTouch = {
 					status = "move";
 					div.setAttribute("isPressed", "true");
 
-					let x = Math.abs((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
-					let y = Math.abs((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
+					let x = Math.floor((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
+					let y = Math.floor((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
 
 					timeEnd = new Date().getTime();
 
@@ -74,8 +74,8 @@ export const UtilsTouch = {
 			let mouseUpListener = (e: TouchEvent | MouseEvent) => {
 				// e.preventDefault();
 
-				let x = Math.abs((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
-				let y = Math.abs((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
+				let x = Math.floor((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
+				let y = Math.floor((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
 
 				timeEnd = new Date().getTime();
 

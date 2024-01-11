@@ -39,11 +39,13 @@ type IStack = {
 
 const path = (x1: number, y1: number, x2: number, y2: number, grid: number[][]) => {
 	let calcDistance = (x1: number, y1: number, x2: number, y2: number) => {
-		return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+		return Math.floor(x1 - x2) + Math.floor(y1 - y2);
 	};
 
 	let calcNeighbours = (x: number, y: number, stack: IStack) => {
-		stack[x + "," + y].v = true;
+		if (stack[x + "," + y]) {
+			stack[x + "," + y].v = true;
+		}
 
 		for (let i = -1; i <= 1; i++) {
 			for (let j = -1; j <= 1; j++) {
