@@ -29,6 +29,14 @@ export const UtilsTouch = {
 		let timeStart: number = 0;
 		let timeEnd: number = 0;
 
+		const getX = (e: TouchEvent | MouseEvent) => {
+			return (e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0;
+		};
+
+		const getY = (e: TouchEvent | MouseEvent) => {
+			return (e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0;
+		};
+
 		div.addEventListener(MOUSE_DOWN, (e: TouchEvent | MouseEvent) => {
 			//mouse down
 			// e.preventDefault();
@@ -39,8 +47,8 @@ export const UtilsTouch = {
 			boundingX = div.getBoundingClientRect().left + window.scrollX + 0.5;
 			boundingY = div.getBoundingClientRect().top + window.scrollY + 0.5;
 
-			let x = Math.floor((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
-			let y = Math.floor((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
+			let x = Math.floor(getX(e) - boundingX);
+			let y = Math.floor(getY(e) - boundingY);
 
 			xx = x;
 			yy = y;
@@ -57,8 +65,8 @@ export const UtilsTouch = {
 					status = "move";
 					div.setAttribute("isPressed", "true");
 
-					let x = Math.floor((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
-					let y = Math.floor((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
+					let x = Math.floor(getX(e) - boundingX);
+					let y = Math.floor(getY(e) - boundingY);
 
 					timeEnd = new Date().getTime();
 
@@ -74,8 +82,8 @@ export const UtilsTouch = {
 			let mouseUpListener = (e: TouchEvent | MouseEvent) => {
 				// e.preventDefault();
 
-				let x = Math.floor((e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0 - boundingX);
-				let y = Math.floor((e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0 - boundingY);
+				let x = Math.floor(getX(e) - boundingX);
+				let y = Math.floor(getY(e) - boundingY);
 
 				timeEnd = new Date().getTime();
 
