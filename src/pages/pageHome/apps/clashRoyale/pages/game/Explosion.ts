@@ -1,6 +1,15 @@
 import { Animation } from "./Animation";
 import { UtilsImage } from "./UtilsImage";
 
+import imageExplosion1 from "./images/explosions/explosion_1_38_128.webp";
+import imageExplosion2 from "./images/explosions/explosion_2_38_128.webp";
+import imageExplosion3 from "./images/explosions/explosion_3_5_128.webp";
+import imageExplosion4 from "./images/explosions/explosion_4_39_128.webp";
+import imageExplosion5 from "./images/explosions/explosion_5_5_128.webp";
+import imageExplosion6 from "./images/explosions/explosion_6_35_128.webp";
+import imageExplosion7 from "./images/explosions/explosion_7_35_128.webp";
+import imageExplosion8 from "./images/explosions/explosion_8_35_128.webp";
+
 export type IType = "explosion1" | "explosion2" | "explosion3" | "explosion4" | "explosion5" | "explosion6" | "explosion7" | "explosion8";
 type IExplosion = {
 	image: HTMLImageElement;
@@ -11,14 +20,14 @@ type IExplosion = {
 };
 
 const types: { [K in IType]: IExplosion } = {
-	explosion1: { image: UtilsImage.getImage("images/explosions/explosion_1_38_128.webp"), size: 128, frames: 38, cols: 8, time: 5000 },
-	explosion2: { image: UtilsImage.getImage("images/explosions/explosion_2_38_128.webp"), size: 128, frames: 38, cols: 8, time: 5000 },
-	explosion3: { image: UtilsImage.getImage("images/explosions/explosion_3_5_128.webp"), size: 128, frames: 5, cols: 5, time: 800 },
-	explosion4: { image: UtilsImage.getImage("images/explosions/explosion_4_39_128.webp"), size: 128, frames: 39, cols: 8, time: 5000 },
-	explosion5: { image: UtilsImage.getImage("images/explosions/explosion_5_5_128.webp"), size: 128, frames: 5, cols: 8, time: 800 },
-	explosion6: { image: UtilsImage.getImage("images/explosions/explosion_6_35_128.webp"), size: 128, frames: 35, cols: 8, time: 3000 },
-	explosion7: { image: UtilsImage.getImage("images/explosions/explosion_7_35_128.webp"), size: 128, frames: 35, cols: 8, time: 3000 },
-	explosion8: { image: UtilsImage.getImage("images/explosions/explosion_8_35_128.webp"), size: 128, frames: 35, cols: 8, time: 3000 },
+	explosion1: { image: UtilsImage.getImage(imageExplosion1), size: 128, frames: 38, cols: 8, time: 5000 },
+	explosion2: { image: UtilsImage.getImage(imageExplosion2), size: 128, frames: 38, cols: 8, time: 5000 },
+	explosion3: { image: UtilsImage.getImage(imageExplosion3), size: 128, frames: 5, cols: 5, time: 800 },
+	explosion4: { image: UtilsImage.getImage(imageExplosion4), size: 128, frames: 39, cols: 8, time: 5000 },
+	explosion5: { image: UtilsImage.getImage(imageExplosion5), size: 128, frames: 5, cols: 8, time: 800 },
+	explosion6: { image: UtilsImage.getImage(imageExplosion6), size: 128, frames: 35, cols: 8, time: 3000 },
+	explosion7: { image: UtilsImage.getImage(imageExplosion7), size: 128, frames: 35, cols: 8, time: 3000 },
+	explosion8: { image: UtilsImage.getImage(imageExplosion8), size: 128, frames: 35, cols: 8, time: 3000 },
 };
 
 export class Explosion {

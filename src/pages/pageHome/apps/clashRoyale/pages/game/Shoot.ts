@@ -1,6 +1,9 @@
 import { Animation } from "./Animation";
 import { UtilsImage } from "./UtilsImage";
 
+import imageShoot1 from "./images/shoot/shoot_1_38_128.webp";
+import imageShoot2 from "./images/Shoot/shoot_2_7_128.webp";
+
 export type IType = "shoot1" | "shoot2";
 type IShoot = {
 	image: HTMLImageElement;
@@ -19,7 +22,7 @@ type IShoot = {
 
 const types: { [K in IType]: IShoot } = {
 	shoot1: {
-		image: UtilsImage.getImage("./images/shoot/shoot_1_38_128.webp"),
+		image: UtilsImage.getImage(imageShoot1),
 		size: 128,
 		cols: 8,
 		fireFrameStart: 0,
@@ -33,7 +36,7 @@ const types: { [K in IType]: IShoot } = {
 		explodeTime: 500,
 	},
 	shoot2: {
-		image: UtilsImage.getImage("./images/shoot/shoot_2_7_128.webp"),
+		image: UtilsImage.getImage(imageShoot2),
 		size: 128,
 		cols: 5,
 		fireFrameStart: 0,

@@ -3,21 +3,33 @@ import { Shoot } from "./Shoot";
 import { UtilsImage } from "./UtilsImage";
 import { IType as IShootType } from "./Shoot";
 
+import imageCastleRuin from "./images/castle/castleRuin.webp";
+import imageCastle1 from "./images/castle/castle1.webp";
+import imageCastle2 from "./images/castle/castle2.webp";
+import imageCastle3 from "./images/castle/castle3.webp";
+import imageCastle4 from "./images/castle/castle4.webp";
+import imageCastle5 from "./images/castle/castle5.webp";
+import imageCastle6 from "./images/castle/castle6.webp";
+import imageCastle7 from "./images/castle/castle7.webp";
+import imageCastle8 from "./images/castle/castle8.webp";
+import imageCastle9 from "./images/castle/castle8.webp";
+import imageCastle10 from "./images/castle/castle8.webp";
+
 export type IType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
 type ICastle = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
 
 const types: { [K in IType]: ICastle } = {
-	castleRuin: { image: UtilsImage.getImage("./images/castles/castleRuin.webp"), lifeMax: 0, weaponRange: 0, weaponSpeed: 0, weaponDamage: 0, shootType: null },
-	castle1: { image: UtilsImage.getImage("./images/castles/castle1.webp"), lifeMax: 150, weaponRange: 90, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle2: { image: UtilsImage.getImage("./images/castles/castle2.webp"), lifeMax: 250, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle3: { image: UtilsImage.getImage("./images/castles/castle3.webp"), lifeMax: 350, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle4: { image: UtilsImage.getImage("./images/castles/castle4.webp"), lifeMax: 450, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle5: { image: UtilsImage.getImage("./images/castles/castle5.webp"), lifeMax: 550, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle6: { image: UtilsImage.getImage("./images/castles/castle6.webp"), lifeMax: 650, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle7: { image: UtilsImage.getImage("./images/castles/castle7.webp"), lifeMax: 750, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle8: { image: UtilsImage.getImage("./images/castles/castle8.webp"), lifeMax: 850, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle9: { image: UtilsImage.getImage("./images/castles/castle9.webp"), lifeMax: 950, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle10: { image: UtilsImage.getImage("./images/castles/castle10.webp"), lifeMax: 1050, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castleRuin: { image: UtilsImage.getImage(imageCastleRuin), lifeMax: 0, weaponRange: 0, weaponSpeed: 0, weaponDamage: 0, shootType: null },
+	castle1: { image: UtilsImage.getImage(imageCastle1), lifeMax: 150, weaponRange: 90, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle2: { image: UtilsImage.getImage(imageCastle2), lifeMax: 250, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle3: { image: UtilsImage.getImage(imageCastle3), lifeMax: 350, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle4: { image: UtilsImage.getImage(imageCastle4), lifeMax: 450, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle5: { image: UtilsImage.getImage(imageCastle5), lifeMax: 550, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle6: { image: UtilsImage.getImage(imageCastle6), lifeMax: 650, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle7: { image: UtilsImage.getImage(imageCastle7), lifeMax: 750, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle8: { image: UtilsImage.getImage(imageCastle8), lifeMax: 850, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle9: { image: UtilsImage.getImage(imageCastle9), lifeMax: 950, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	castle10: { image: UtilsImage.getImage(imageCastle10), lifeMax: 1050, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
 };
 
 export class Castle {

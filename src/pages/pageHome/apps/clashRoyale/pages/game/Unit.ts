@@ -2,6 +2,22 @@ import { Animation } from "./Animation";
 import { UtilsImage } from "./UtilsImage";
 import { IType as IShootType, Shoot } from "./Shoot";
 
+import imageAmazon from "./images/units/amazon.png";
+import imageGiant from "./images/units/giant.png";
+import imageGoblin from "./images/units/goblin.png";
+import imageGolem from "./images/units/golem.png";
+import imageHogrider from "./images/units/hogRider.png";
+import imageKnight from "./images/units/knight.png";
+import imageMusketeer from "./images/units/musketeer.png";
+import imageNinja from "./images/units/ninja.png";
+import imageOrc from "./images/units/orc.png";
+import imagePaladin from "./images/units/paladin.png";
+import imageSkull from "./images/units/skull.png";
+import imageSnake from "./images/units/snake.png";
+import imageWolf from "./images/units/wolf.png";
+import imageSorcerer from "./images/units/sorcerer.png";
+import imageTank from "./images/units/tank.png";
+
 export type IType = "paladin" | "goblin" | "wolf" | "golem" | "orc" | "sorcerer" | "ninja" | "snake" | "skull" | "amazon" | "knight" | "giant" | "musketeer" | "hogRider" | "tank";
 
 type IState = "idle" | "idleDown" | "idleUp" | "walkDown" | "walkUp" | "attackDown" | "attackUp";
@@ -32,7 +48,7 @@ type IUnit = {
 
 const types: { [K in IType]: IUnit } = {
 	paladin: {
-		image: UtilsImage.getImage("./images/units/paladin.png"),
+		image: UtilsImage.getImage(imagePaladin),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -55,7 +71,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	goblin: {
-		image: UtilsImage.getImage("./images/units/goblin.png"),
+		image: UtilsImage.getImage(imageGoblin),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -78,7 +94,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	wolf: {
-		image: UtilsImage.getImage("./images/units/wolf.png"),
+		image: UtilsImage.getImage(imageWolf),
 		elixirNeeded: 1,
 		lifeMax: 100,
 		life: 0,
@@ -101,7 +117,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	golem: {
-		image: UtilsImage.getImage("./images/units/golem.png"),
+		image: UtilsImage.getImage(imageGolem),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -124,7 +140,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	orc: {
-		image: UtilsImage.getImage("./images/units/orc.png"),
+		image: UtilsImage.getImage(imageOrc),
 		elixirNeeded: 4,
 		lifeMax: 100,
 		life: 0,
@@ -147,7 +163,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	sorcerer: {
-		image: UtilsImage.getImage("./images/units/sorcerer.png"),
+		image: UtilsImage.getImage(imageSorcerer),
 		elixirNeeded: 4,
 		lifeMax: 100,
 		life: 0,
@@ -170,7 +186,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	ninja: {
-		image: UtilsImage.getImage("./images/units/ninja.png"),
+		image: UtilsImage.getImage(imageNinja),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -193,7 +209,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	snake: {
-		image: UtilsImage.getImage("./images/units/snake.png"),
+		image: UtilsImage.getImage(imageSnake),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -216,7 +232,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	skull: {
-		image: UtilsImage.getImage("./images/units/skull.png"),
+		image: UtilsImage.getImage(imageSkull),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -239,7 +255,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	amazon: {
-		image: UtilsImage.getImage("./images/units/amazon.png"),
+		image: UtilsImage.getImage(imageAmazon),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -262,7 +278,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	knight: {
-		image: UtilsImage.getImage("./images/units/knight.png"),
+		image: UtilsImage.getImage(imageKnight),
 		elixirNeeded: 2,
 		lifeMax: 100,
 		life: 0,
@@ -285,7 +301,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	giant: {
-		image: UtilsImage.getImage("./images/units/giant.png"),
+		image: UtilsImage.getImage(imageGiant),
 		elixirNeeded: 2,
 		lifeMax: 200,
 		life: 0,
@@ -308,7 +324,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	musketeer: {
-		image: UtilsImage.getImage("./images/units/musketeer.png"),
+		image: UtilsImage.getImage(imageMusketeer),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -331,7 +347,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	hogRider: {
-		image: UtilsImage.getImage("./images/units/hogRider.png"),
+		image: UtilsImage.getImage(imageHogrider),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -354,7 +370,7 @@ const types: { [K in IType]: IUnit } = {
 	},
 
 	tank: {
-		image: UtilsImage.getImage("./images/units/tank.png"),
+		image: UtilsImage.getImage(imageTank),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,

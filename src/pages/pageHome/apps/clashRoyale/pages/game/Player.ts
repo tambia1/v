@@ -3,6 +3,9 @@ import { IType as IUnitType, Unit } from "./Unit";
 import { UtilsImage } from "./UtilsImage";
 import { UtilsMath } from "./UtilsMath";
 
+import imageElixir from "./images/misc/elixir.png";
+import imageelixirBg from "./images/misc/elixirBg.png";
+
 export type IType = "good" | "bad";
 
 type IStyle = {
@@ -62,8 +65,8 @@ export class Player {
 	public static readonly STACK_SCALE_UNSELECTED = 1.0;
 	public static readonly STACK_SCALE_NEXT = 0.4;
 
-	private static readonly imageElixir = UtilsImage.getImage("./images/misc/elixir.png");
-	private static readonly imageElixirBg = UtilsImage.getImage("./images/misc/elixirBg.png");
+	private static readonly imageElixir = UtilsImage.getImage(imageElixir);
+	private static readonly imageElixirBg = UtilsImage.getImage(imageelixirBg);
 
 	private type: IType;
 	private playerName: string;
