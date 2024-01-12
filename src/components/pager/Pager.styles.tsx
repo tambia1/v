@@ -47,6 +47,7 @@ export const Header = styled.div`
 	display: flex;
 	align-items: center;
 	margin-left: 1rem;
+	text-shadow: 0px 1px 3px #00000066;
 `;
 
 export const Back = styled.div`

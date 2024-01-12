@@ -62,7 +62,16 @@ export class Castle {
 	private weaponRangeAlphaTiming: number = 0;
 
 	constructor(type: IType) {
+		this.init();
 		this.setType(type);
+	}
+
+	private init() {
+		this.setWH(60, 60);
+		this.setXY(0, 0);
+
+		this.cw = this.w * 1.1;
+		this.ch = this.h * 1.1;
 	}
 
 	public setType(type: IType) {
@@ -75,12 +84,6 @@ export class Castle {
 		this.weaponDamage = types[this.type].weaponDamage;
 		this.weaponRange = types[this.type].weaponRange;
 		this.shootType = types[this.type].shootType;
-
-		this.setWH(60, 60);
-		this.setXY(0, 0);
-
-		this.cw = this.w * 1.1;
-		this.ch = this.h * 1.1;
 	}
 
 	public getType() {
