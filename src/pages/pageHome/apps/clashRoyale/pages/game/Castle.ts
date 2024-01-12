@@ -45,7 +45,7 @@ export class Castle {
 	private cw: number = 0;
 	private ch: number = 0;
 	private life: number = 0;
-	private lifeMax: number = types[this.type].lifeMax;
+	private lifeMax: number = 0;
 
 	private lifeStrokeStyle: string = "#ffffff66";
 	private lifeFillStyle: string = "#99999966";
@@ -69,6 +69,7 @@ export class Castle {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.life = types[this.type].lifeMax;
+		this.lifeMax = types[this.type].lifeMax;
 		this.animationWeaponRangeAlpha.reset();
 		this.weaponSpeed = types[this.type].weaponSpeed;
 		this.weaponDamage = types[this.type].weaponDamage;
@@ -144,7 +145,7 @@ export class Castle {
 	}
 
 	public drawLife(ctx: CanvasRenderingContext2D) {
-		if (this.life > 0) {
+		if (this.life > 0 && this.lifeMax > 0) {
 			ctx.save();
 
 			let lifeWidth = ((this.w - 20) / this.lifeMax) * this.life;
