@@ -457,7 +457,7 @@ export class Game {
 			this.drawGameOver(ctx);
 
 			//log
-			this.drawGrid(ctx);
+			// this.drawGrid(ctx);
 
 			ctx.restore();
 		}
