@@ -23,6 +23,7 @@ export const ClashRoyaleGame = () => {
 
 	return (
 		<S.ClashRoyaleGame>
+			<S.ClashRoyaleBoardBg />
 			<S.ClashRoyaleBoard ref={refBoard} />
 		</S.ClashRoyaleGame>
 	);
