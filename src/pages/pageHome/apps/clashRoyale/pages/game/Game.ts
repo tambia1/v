@@ -142,12 +142,14 @@ export class Game {
 		}
 
 		// log
-		let castle = UtilsPath.findClosestXYOfValue(0, 19, 2, this.adapter);
-		let path = UtilsPath.findPath(0, 19, castle.x, castle.y, this.adapter);
+		// const x = 19;
+		// const y = 19;
+		// const castle = UtilsPath.findClosestXYOfValue(x, y, 2, this.adapter);
+		// const path = UtilsPath.findPath(x, y, castle.x, castle.y, this.adapter);
 
-		for (let i = 0; i < path.length; i++) {
-			this.adapter[path[i].y][path[i].x] = 4;
-		}
+		// for (let i = 0; i < path.length; i++) {
+		// 	this.adapter[path[i].y][path[i].x] = 4;
+		// }
 	}
 
 	private isXYInsideGrid(x: number, y: number) {

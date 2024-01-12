@@ -30,7 +30,6 @@ type IStack = {
 		y: number;
 		d1: number;
 		d2: number;
-		d: number;
 		v: boolean;
 		px: number;
 		py: number;
@@ -39,7 +38,7 @@ type IStack = {
 
 const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[][]) => {
 	let calcDistance = (x1: number, y1: number, x2: number, y2: number) => {
-		return x1 - x2 + (y1 - y2);
+		return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 	};
 
 	let calcNeighbours = (x: number, y: number, stack: IStack) => {
@@ -48,10 +47,9 @@ const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[]
 				if (stack[x + j + "," + (y + i)] == undefined && grid[y + i]?.[x + j] != undefined) {
 					let d1 = calcDistance(x1, y1, x + j, y + i);
 					let d2 = calcDistance(x2, y2, x + j, y + i);
-					let d = d1 + d2;
 
 					if (grid[y + i][x + j] == 0 || d2 == 0) {
-						stack[x + j + "," + (y + i)] = { x: x + j, y: y + i, d1, d2, d, v: false, px: x, py: y };
+						stack[x + j + "," + (y + i)] = { x: x + j, y: y + i, d1, d2, v: false, px: x, py: y };
 					}
 				}
 			}
@@ -60,23 +58,20 @@ const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[]
 
 	let getNextStack = (stack: IStack) => {
 		let nextStack = null;
-		let maxd = Number.MAX_VALUE;
-		let mind2 = -Number.MAX_VALUE;
+		let maxd2 = Number.MAX_VALUE;
 
 		for (let k in stack) {
-			if (stack[k].v == false && stack[k].d <= maxd && stack[k].d2 >= mind2) {
+			if (stack[k].v == false && stack[k].d2 <= maxd2) {
 				nextStack = stack[k];
-				maxd = stack[k].d;
-				mind2 = stack[k].d2;
+				maxd2 = stack[k].d2;
 			}
 		}
 
 		return nextStack;
 	};
 
-	let stack: IStack = {
-		[x1 + "," + y1]: { x: x1, y: y1, d: 0, d1: 0, d2: 0, v: false, px: x1, py: y1 },
-	};
+	let stack: IStack = {};
+	calcNeighbours(x1, y1, stack);
 
 	let nextStack = null;
 
