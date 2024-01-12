@@ -1,10 +1,10 @@
-type ICallback = {
+export type ICallback = {
 	position: number;
 	direction: number;
 	callback: (result: ICallbackResult) => void;
 };
 
-type ICallbackResult = {
+export type ICallbackResult = {
 	animation: Animation;
 	results: number[];
 	time: number;

@@ -66,9 +66,10 @@ export class Shoot {
 	private explodeFramesEnd: number = types[this.type].explodeFramesEnd;
 	private explodeTime: number = types[this.type].explodeTime;
 
-	private animationFire: Animation = new Animation({});
-	private animationFly: Animation = new Animation({});
-	private animationExplode: Animation = new Animation({});
+	private animationExplosion: Animation = new Animation({});
+	private animationExplosionFire: Animation = new Animation({});
+	private animationExplosionFly: Animation = new Animation({});
+	private animationExplosionExplode: Animation = new Animation({});
 	private animationMove: Animation = new Animation({});
 
 	private isShooting: boolean = false;
@@ -110,7 +111,7 @@ export class Shoot {
 		this.isShooting = false;
 		this.moveTime = 0;
 
-		this.animationFire.setAnimation({
+		this.animationExplosionFire.setAnimation({
 			time: this.fireTime,
 			points: [[this.fireFrameStart, this.fireFrameEnd]],
 			timing: Animation.TIMING_LINEAR,
@@ -120,10 +121,18 @@ export class Shoot {
 			repeat: 0,
 			isCyclic: false,
 			onCalculate: null,
-			callbacks: [],
+			callbacks: [
+				{
+					position: this.fireTime,
+					direction: Animation.DIRECTION_FORWARD,
+					callback: () => {
+						this.handleOnFireEnd();
+					},
+				},
+			],
 		});
 
-		this.animationFly.setAnimation({
+		this.animationExplosionFly.setAnimation({
 			time: this.flyTime,
 			points: [[this.flyFramesStart, this.flyFramesEnd]],
 			timing: Animation.TIMING_LINEAR,
@@ -133,10 +142,18 @@ export class Shoot {
 			repeat: 999,
 			isCyclic: true,
 			onCalculate: null,
-			callbacks: [{ position: this.flyTime, direction: Animation.DIRECTION_FORWARD, callback: this.handleOnFlyEnd }],
+			callbacks: [
+				{
+					position: this.flyTime,
+					direction: Animation.DIRECTION_FORWARD,
+					callback: () => {
+						this.handleOnFlyEnd();
+					},
+				},
+			],
 		});
 
-		this.animationExplode.setAnimation({
+		this.animationExplosionExplode.setAnimation({
 			time: this.explodeTime,
 			points: [[this.explodeFramesStart, this.explodeFramesEnd]],
 			timing: Animation.TIMING_LINEAR,
@@ -146,8 +163,19 @@ export class Shoot {
 			repeat: 0,
 			isCyclic: false,
 			onCalculate: null,
-			callbacks: [{ position: this.explodeTime, direction: Animation.DIRECTION_FORWARD, callback: this.handleOnExplodeEnd }],
+			callbacks: [
+				{
+					position: this.explodeTime,
+					direction: Animation.DIRECTION_FORWARD,
+					callback: () => {
+						this.handleOnExplodeEnd();
+					},
+				},
+			],
 		});
+
+		this.animationExplosion = this.animationExplosionFire;
+		this.sprite = Number(this.animationExplosion.results[0]);
 
 		this.moveTime = this.flyTime;
 		this.animationMove.setAnimation({
@@ -163,10 +191,16 @@ export class Shoot {
 			repeat: 0,
 			isCyclic: false,
 			onCalculate: null,
-			callbacks: [{ position: this.moveTime, direction: Animation.DIRECTION_FORWARD, callback: this.onMoveEnd }],
+			callbacks: [
+				{
+					position: this.moveTime,
+					direction: Animation.DIRECTION_FORWARD,
+					callback: () => {
+						this.handleOnMoveEnd();
+					},
+				},
+			],
 		});
-
-		this.sprite = Number(this.animationFire.results[0]);
 
 		this.setWH(40, 40);
 		this.setXY(0, 0, 0, 0);
@@ -210,12 +244,13 @@ export class Shoot {
 
 		this.isShooting = true;
 
-		this.animationFire.reset();
-		this.animationFly.reset();
-		this.animationExplode.reset();
+		this.animationExplosionFire.reset();
+		this.animationExplosionFly.reset();
+		this.animationExplosionExplode.reset();
 		this.animationMove.reset();
 
-		this.animationFire.resume();
+		this.animationExplosion = this.animationExplosionFire;
+		this.animationExplosion.resume();
 
 		this.animationMove.setAnimation({
 			time: this.moveTime,
@@ -230,7 +265,7 @@ export class Shoot {
 			repeat: 0,
 			isCyclic: false,
 			onCalculate: null,
-			callbacks: [{ position: this.moveTime, direction: Animation.DIRECTION_FORWARD, callback: this.onMoveEnd }],
+			callbacks: [{ position: this.moveTime, direction: Animation.DIRECTION_FORWARD, callback: this.handleOnMoveEnd }],
 		});
 
 		this.animationMove.reset();
@@ -240,26 +275,28 @@ export class Shoot {
 	public stop() {
 		this.isShooting = false;
 
-		this.animationFire.reset();
-		this.animationFly.reset();
-		this.animationExplode.reset();
+		this.animationExplosionFire.reset();
+		this.animationExplosionFly.reset();
+		this.animationExplosionExplode.reset();
 		this.animationMove.reset();
 	}
 
 	public handleOnFireEnd() {
-		this.animationFire.pause();
+		this.animationExplosionFire.pause();
 
-		this.animationFly.reset();
-		this.animationFly.resume();
+		this.animationExplosion = this.animationExplosionFly;
+		this.animationExplosion.reset();
+		this.animationExplosion.resume();
 
 		this.onFireEnd?.();
 	}
 
 	public handleOnFlyEnd() {
-		this.animationFly.pause();
+		this.animationExplosionFly.pause();
 
-		this.animationExplode.reset();
-		this.animationExplode.resume();
+		this.animationExplosion = this.animationExplosionExplode;
+		this.animationExplosion.reset();
+		this.animationExplosion.resume();
 
 		this.onFlyEnd?.();
 	}
@@ -267,22 +304,22 @@ export class Shoot {
 	public handleOnExplodeEnd() {
 		this.isShooting = false;
 
-		this.animationExplode.pause();
+		this.animationExplosionExplode.pause();
 
-		this.handleOnExplodeEnd?.();
+		this.onExplodeEnd?.();
 
 		this.start(this.x1, this.y1, this.x2, this.y2, this.onFireEnd, this.onFlyEnd, this.onExplodeEnd);
 	}
 
-	private onMoveEnd() {
+	private handleOnMoveEnd() {
 		this.animationMove?.pause();
 	}
 
 	public update(_timeDif: number) {
-		this.animationFly.calculate();
+		this.animationExplosion.calculate();
 		this.animationMove.calculate();
 
-		this.sprite = Math.round(this.animationFly.results[0]);
+		this.sprite = Math.round(this.animationExplosion.results[0]);
 
 		this.cx = this.animationMove.results[0] - this.w / 2;
 		this.cy = this.animationMove.results[1] - this.h / 2;

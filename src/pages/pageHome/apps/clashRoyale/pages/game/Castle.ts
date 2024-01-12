@@ -74,6 +74,7 @@ export class Castle {
 		this.weaponSpeed = types[this.type].weaponSpeed;
 		this.weaponDamage = types[this.type].weaponDamage;
 		this.weaponRange = types[this.type].weaponRange;
+		this.shootType = types[this.type].shootType;
 
 		this.setWH(60, 60);
 		this.setXY(0, 0);
