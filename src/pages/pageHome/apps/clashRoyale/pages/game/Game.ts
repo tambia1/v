@@ -141,12 +141,13 @@ export class Game {
 			}
 		}
 
-		// let castle = UtilsPath.find(0, 20, 2, this.adapter);
-		// let path = UtilsPath.path(0, 20, castle.x, castle.y, this.adapter);
+		// log
+		let castle = UtilsPath.findClosestXYOfValue(0, 19, 2, this.adapter);
+		let path = UtilsPath.findPath(0, 19, castle.x, castle.y, this.adapter);
 
-		// for (let i = 0; i < path.length; i++) {
-		// 	this.adapter[path[i].y][path[i].x] = 4;
-		// }
+		for (let i = 0; i < path.length; i++) {
+			this.adapter[path[i].y][path[i].x] = 4;
+		}
 	}
 
 	private isXYInsideGrid(x: number, y: number) {
@@ -285,8 +286,8 @@ export class Game {
 					let y = Math.round((this.players[i].getUnits()[j].getY() - this.grid.y1) / gh);
 
 					let castleToAttack = castlesToAttack[this.players[i].getType()];
-					let castle = UtilsPath.find(x, y, castleToAttack, this.adapter);
-					let path = UtilsPath.path(x, y, castle.x, castle.y, this.adapter);
+					let castle = UtilsPath.findClosestXYOfValue(x, y, castleToAttack, this.adapter);
+					let path = UtilsPath.findPath(x, y, castle.x, castle.y, this.adapter);
 
 					x = (path[2]?.x || path[1].x) * gw + this.grid.x1;
 					y = (path[2]?.y || path[1].x) * gh + this.grid.y1;
@@ -452,7 +453,9 @@ export class Game {
 			this.drawPlayersNames(ctx);
 			this.drawPlayers(ctx);
 			this.drawGameOver(ctx);
-			//this.drawGrid(ctx);
+
+			//log
+			this.drawGrid(ctx);
 
 			ctx.restore();
 		}

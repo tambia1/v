@@ -2,7 +2,7 @@ const getDistance = (x1: number, y1: number, x2: number, y2: number) => {
 	return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 };
 
-const find = (x1: number, y1: number, value: number, grid: number[][]) => {
+const findClosestXYOfValue = (x1: number, y1: number, value: number, grid: number[][]) => {
 	let x2 = -1;
 	let y2 = -1;
 	let distanceMin = Number.MAX_VALUE;
@@ -28,50 +28,46 @@ type IStack = {
 	[key: string]: {
 		x: number;
 		y: number;
-		f: number;
-		h: number;
-		g: number;
+		d1: number;
+		d2: number;
+		d: number;
 		v: boolean;
 		px: number;
 		py: number;
 	};
 };
 
-const path = (x1: number, y1: number, x2: number, y2: number, grid: number[][]) => {
+const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[][]) => {
 	let calcDistance = (x1: number, y1: number, x2: number, y2: number) => {
-		return Math.floor(x1 - x2) + Math.floor(y1 - y2);
+		return x1 - x2 + (y1 - y2);
 	};
 
 	let calcNeighbours = (x: number, y: number, stack: IStack) => {
-		if (stack[x + "," + y]) {
-			stack[x + "," + y].v = true;
-		}
-
 		for (let i = -1; i <= 1; i++) {
 			for (let j = -1; j <= 1; j++) {
 				if (stack[x + j + "," + (y + i)] == undefined && grid[y + i]?.[x + j] != undefined) {
-					let g = calcDistance(x1, y1, x + j, y + i);
-					let h = calcDistance(x2, y2, x + j, y + i);
-					let f = g + h;
+					let d1 = calcDistance(x1, y1, x + j, y + i);
+					let d2 = calcDistance(x2, y2, x + j, y + i);
+					let d = d1 + d2;
 
-					if (grid[y + i][x + j] == 0 || h == 0) {
-						stack[x + j + "," + (y + i)] = { x: x + j, y: y + i, f: f, h: h, g: g, v: false, px: x, py: y };
+					if (grid[y + i][x + j] == 0 || d2 == 0) {
+						stack[x + j + "," + (y + i)] = { x: x + j, y: y + i, d1, d2, d, v: false, px: x, py: y };
 					}
 				}
 			}
 		}
 	};
 
-	let getNextStack = () => {
+	let getNextStack = (stack: IStack) => {
 		let nextStack = null;
-		let maxF = Number.MAX_VALUE;
-		let minH = Number.MAX_VALUE;
+		let maxd = Number.MAX_VALUE;
+		let mind2 = -Number.MAX_VALUE;
 
 		for (let k in stack) {
-			if (stack[k].v == false && stack[k].f <= maxF && stack[k].h <= minH) {
+			if (stack[k].v == false && stack[k].d <= maxd && stack[k].d2 >= mind2) {
 				nextStack = stack[k];
-				maxF = stack[k].f;
-				minH = stack[k].h;
+				maxd = stack[k].d;
+				mind2 = stack[k].d2;
 			}
 		}
 
@@ -79,29 +75,37 @@ const path = (x1: number, y1: number, x2: number, y2: number, grid: number[][]) 
 	};
 
 	let stack: IStack = {
-		[x1 + "," + y1]: { x: x1, y: y1, f: 0, h: 0, g: 0, v: false, px: x1, py: y1 },
+		[x1 + "," + y1]: { x: x1, y: y1, d: 0, d1: 0, d2: 0, v: false, px: x1, py: y1 },
 	};
 
 	let nextStack = null;
 
 	do {
-		nextStack = getNextStack();
-		calcNeighbours(nextStack?.x || 0, nextStack?.y || 0, stack);
-	} while (nextStack?.x != x2 || nextStack?.y != y2);
+		nextStack = getNextStack(stack);
+
+		if (nextStack != null) {
+			stack[nextStack.x + "," + nextStack.y].v = true;
+			calcNeighbours(nextStack.x || 0, nextStack.y || 0, stack);
+		}
+	} while ((nextStack?.x != x2 || nextStack?.y != y2) && nextStack != null);
 
 	let path = [];
 
 	do {
-		path.unshift(nextStack);
-		nextStack = stack[nextStack.px + "," + nextStack.py];
-	} while (nextStack.x != x1 || nextStack.y != y1);
+		if (nextStack != null) {
+			path.unshift(nextStack);
+			nextStack = stack[nextStack.px + "," + nextStack.py];
+		}
+	} while ((nextStack?.x != x1 || nextStack?.y != y1) && nextStack != null);
 
-	path.unshift(nextStack);
+	if (nextStack != null) {
+		path.unshift(nextStack);
+	}
 
 	return path;
 };
 
 export const UtilsPath = {
-	find,
-	path,
+	findClosestXYOfValue,
+	findPath,
 };

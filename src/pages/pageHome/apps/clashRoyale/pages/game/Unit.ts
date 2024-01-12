@@ -36,14 +36,8 @@ type IUnit = {
 	spriteSize: number;
 	spriteCols: number;
 	spriteTime: number;
-	state: "idle" | "idleDown" | "idleUp" | "walkDown" | "walkUp" | "attackDown" | "attackUp";
-	idle: [number, number];
-	idleDown: [number, number];
-	idleUp: [number, number];
-	walkDown: [number, number];
-	walkUp: [number, number];
-	attackDown: [number, number];
-	attackUp: [number, number];
+	state: IState;
+	states: { [K in IState]: number[] };
 };
 
 const types: { [K in IType]: IUnit } = {
@@ -61,13 +55,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 200,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 21],
-		walkUp: [22, 27],
-		attackDown: [32, 37],
-		attackUp: [38, 43],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 21],
+			walkUp: [22, 27],
+			attackDown: [32, 37],
+			attackUp: [38, 43],
+		},
 	},
 
 	goblin: {
@@ -84,13 +80,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 21],
-		walkUp: [22, 27],
-		attackDown: [32, 38],
-		attackUp: [39, 45],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 21],
+			walkUp: [22, 27],
+			attackDown: [32, 38],
+			attackUp: [39, 45],
+		},
 	},
 
 	wolf: {
@@ -107,13 +105,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 21],
-		walkUp: [22, 27],
-		attackDown: [32, 37],
-		attackUp: [38, 43],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 21],
+			walkUp: [22, 27],
+			attackDown: [32, 37],
+			attackUp: [38, 43],
+		},
 	},
 
 	golem: {
@@ -130,13 +130,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 23],
-		walkUp: [24, 31],
-		attackDown: [32, 37],
-		attackUp: [38, 43],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 23],
+			walkUp: [24, 31],
+			attackDown: [32, 37],
+			attackUp: [38, 43],
+		},
 	},
 
 	orc: {
@@ -153,13 +155,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 23],
-		walkUp: [24, 31],
-		attackDown: [32, 39],
-		attackUp: [40, 47],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 23],
+			walkUp: [24, 31],
+			attackDown: [32, 39],
+			attackUp: [40, 47],
+		},
 	},
 
 	sorcerer: {
@@ -176,13 +180,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 21],
-		walkUp: [22, 27],
-		attackDown: [32, 37],
-		attackUp: [38, 43],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 21],
+			walkUp: [22, 27],
+			attackDown: [32, 37],
+			attackUp: [38, 43],
+		},
 	},
 
 	ninja: {
@@ -199,13 +205,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 21],
-		walkUp: [22, 27],
-		attackDown: [32, 37],
-		attackUp: [38, 43],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 21],
+			walkUp: [22, 27],
+			attackDown: [32, 37],
+			attackUp: [38, 43],
+		},
 	},
 
 	snake: {
@@ -222,13 +230,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 21],
-		walkUp: [22, 27],
-		attackDown: [32, 36],
-		attackUp: [38, 42],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 21],
+			walkUp: [22, 27],
+			attackDown: [32, 36],
+			attackUp: [38, 42],
+		},
 	},
 
 	skull: {
@@ -245,13 +255,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 7],
-		idleUp: [8, 15],
-		walkDown: [16, 23],
-		walkUp: [24, 31],
-		attackDown: [32, 38],
-		attackUp: [39, 45],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 7],
+			idleUp: [8, 15],
+			walkDown: [16, 23],
+			walkUp: [24, 31],
+			attackDown: [32, 38],
+			attackUp: [39, 45],
+		},
 	},
 
 	amazon: {
@@ -268,13 +280,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [48, 48],
-		idleDown: [0, 5],
-		idleUp: [6, 11],
-		walkDown: [16, 21],
-		walkUp: [22, 27],
-		attackDown: [32, 39],
-		attackUp: [40, 47],
+		states: {
+			idle: [48, 48],
+			idleDown: [0, 5],
+			idleUp: [6, 11],
+			walkDown: [16, 21],
+			walkUp: [22, 27],
+			attackDown: [32, 39],
+			attackUp: [40, 47],
+		},
 	},
 
 	knight: {
@@ -291,13 +305,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 1],
-		idleUp: [16, 17],
-		walkDown: [0, 11],
-		walkUp: [16, 27],
-		attackDown: [32, 45],
-		attackUp: [48, 61],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 1],
+			idleUp: [16, 17],
+			walkDown: [0, 11],
+			walkUp: [16, 27],
+			attackDown: [32, 45],
+			attackUp: [48, 61],
+		},
 	},
 
 	giant: {
@@ -314,13 +330,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 1],
-		idleUp: [16, 17],
-		walkDown: [0, 15],
-		walkUp: [16, 31],
-		attackDown: [32, 40],
-		attackUp: [48, 56],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 1],
+			idleUp: [16, 17],
+			walkDown: [0, 15],
+			walkUp: [16, 31],
+			attackDown: [32, 40],
+			attackUp: [48, 56],
+		},
 	},
 
 	musketeer: {
@@ -337,13 +355,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 1],
-		idleUp: [16, 17],
-		walkDown: [0, 11],
-		walkUp: [16, 27],
-		attackDown: [32, 41],
-		attackUp: [48, 57],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 1],
+			idleUp: [16, 17],
+			walkDown: [0, 11],
+			walkUp: [16, 27],
+			attackDown: [32, 41],
+			attackUp: [48, 57],
+		},
 	},
 
 	hogRider: {
@@ -360,13 +380,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 1],
-		idleUp: [16, 17],
-		walkDown: [0, 7],
-		walkUp: [16, 23],
-		attackDown: [32, 41],
-		attackUp: [48, 57],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 1],
+			idleUp: [16, 17],
+			walkDown: [0, 7],
+			walkUp: [16, 23],
+			attackDown: [32, 41],
+			attackUp: [48, 57],
+		},
 	},
 
 	tank: {
@@ -383,13 +405,15 @@ const types: { [K in IType]: IUnit } = {
 		spriteCols: 16,
 		spriteTime: 100,
 		state: "idle",
-		idle: [64, 64],
-		idleDown: [0, 0],
-		idleUp: [16, 16],
-		walkDown: [32, 32],
-		walkUp: [48, 48],
-		attackDown: [32, 32],
-		attackUp: [48, 48],
+		states: {
+			idle: [64, 64],
+			idleDown: [0, 0],
+			idleUp: [16, 16],
+			walkDown: [32, 32],
+			walkUp: [48, 48],
+			attackDown: [32, 32],
+			attackUp: [48, 48],
+		},
 	},
 };
 
@@ -408,13 +432,6 @@ export class Unit {
 	private spriteCols: number = types[this.type].spriteCols;
 	private spriteTime: number = types[this.type].spriteTime;
 	private state: IState = types[this.type].state;
-	private idle: [number, number] = types[this.type].idle;
-	private idleDown: [number, number] = types[this.type].idleDown;
-	private idleUp: [number, number] = types[this.type].idleUp;
-	private walkDown: [number, number] = types[this.type].walkDown;
-	private walkUp: [number, number] = types[this.type].walkUp;
-	private attackDown: [number, number] = types[this.type].attackDown;
-	private attackUp: [number, number] = types[this.type].attackUp;
 
 	private lifeStrokeStyle: string = "#ffffff66";
 	private lifeFillStyle: string = "#99999966";
@@ -454,13 +471,6 @@ export class Unit {
 		this.spriteSize = types[this.type].spriteSize;
 		this.spriteCols = types[this.type].spriteCols;
 		this.spriteTime = types[this.type].spriteTime;
-		this.idle = types[this.type].idle;
-		this.idleDown = types[this.type].idleDown;
-		this.idleUp = types[this.type].idleUp;
-		this.walkDown = types[this.type].walkDown;
-		this.walkUp = types[this.type].walkUp;
-		this.attackDown = types[this.type].attackDown;
-		this.attackUp = types[this.type].attackUp;
 
 		this.life = this.lifeMax;
 		this.loading = 0;
@@ -511,16 +521,17 @@ export class Unit {
 
 		ctx.globalAlpha = this.animationAlpha.results[0];
 
-		let sprite = types[this.type][this.state][0] + this.sprite;
+		let sprite = types[this.type].states[this.state][0] + this.sprite;
 
 		let col = Math.floor(sprite % this.spriteCols);
 		let row = Math.floor(sprite / this.spriteCols);
 
 		ctx.drawImage(this.image, col * this.spriteSize + 2, row * this.spriteSize + 2, this.spriteSize - 4, this.spriteSize - 4, this.cx - 5, this.cy - 5, this.ww + 10, this.hh + 10);
 
-		// ctx.font = 'bold 15px Helvetica';
-		// ctx.fillStyle = '#000000';
-		// ctx.fillText(parseInt(this.sprite), this.cx, this.cy);
+		// log sprite number
+		// ctx.font = "bold 15px Helvetica";
+		// ctx.fillStyle = "#000000";
+		// ctx.fillText(Math.floor(this.sprite) + "", this.cx, this.cy);
 
 		ctx.restore();
 	}
@@ -726,7 +737,7 @@ export class Unit {
 			this.shoot.update(timeDif);
 		}
 
-		let spriteMax = types[this.type][this.state][1] - types[this.type][this.state][0] + 1;
+		let spriteMax = types[this.type].states[this.state][1] - types[this.type].states[this.state][0] + 1;
 		this.sprite = Math.min(this.sprite + timeDif / this.spriteTime, spriteMax) % spriteMax;
 	}
 }
