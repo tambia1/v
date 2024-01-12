@@ -42,6 +42,8 @@ export class Castle {
 	private h: number = 0;
 	private cx: number = 0;
 	private cy: number = 0;
+	private cw: number = 0;
+	private ch: number = 0;
 	private life: number = 0;
 	private lifeMax: number = types[this.type].lifeMax;
 
@@ -74,6 +76,9 @@ export class Castle {
 
 		this.setWH(60, 60);
 		this.setXY(0, 0);
+
+		this.cw = this.w * 1.1;
+		this.ch = this.h * 1.1;
 	}
 
 	public getType() {
@@ -90,7 +95,7 @@ export class Castle {
 
 	public drawImage(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(this.image, this.cx, this.cy, this.w, this.h);
+		ctx.drawImage(this.image, this.cx, this.cy, this.cw, this.ch);
 		ctx.restore();
 	}
 
@@ -226,8 +231,8 @@ export class Castle {
 	public update(timeDif: number) {
 		this.animationWeaponRangeAlpha.calculate();
 
-		this.cx = this.x - this.w / 2;
-		this.cy = this.y - this.h / 2;
+		this.cx = this.x - this.cw / 2;
+		this.cy = this.y - this.ch / 2;
 
 		if (this.shoot != null) {
 			this.shoot.update(timeDif);

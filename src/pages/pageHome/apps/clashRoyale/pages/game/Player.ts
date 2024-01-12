@@ -20,7 +20,7 @@ const styles: { [K in IType]: IStyle } = {
 	bad: {
 		castles: [
 			{ x: 190, y: 244, type: "castle1" },
-			{ x: 275, y: 200, type: "castle2" },
+			{ x: 275, y: 210, type: "castle2" },
 			{ x: 360, y: 244, type: "castle1" },
 		],
 
