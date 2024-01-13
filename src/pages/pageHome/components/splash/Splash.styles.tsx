@@ -29,6 +29,10 @@ export const Logo = styled(Animate)`
 	height: 10rem;
 `;
 
+export const Text = styled.div`
+	font-size: 200%;
+`;
+
 export const Version = styled.div`
 	position: absolute;
 	bottom: 1rem;
