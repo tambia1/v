@@ -48,10 +48,6 @@ export class Game {
 
 		this.winner = -1;
 
-		this.init();
-	}
-
-	private init() {
 		this.initCanvas();
 		this.initTouches();
 		this.initGrid();
