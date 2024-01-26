@@ -17,6 +17,7 @@ export const translation: IHome = {
 
 	home: {
 		title: "Applications",
+		guest: "Guest",
 	},
 
 	user: {

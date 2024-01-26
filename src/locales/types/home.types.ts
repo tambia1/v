@@ -17,6 +17,7 @@ export type IHome = {
 
 	home: {
 		title: string;
+		guest: string;
 	};
 
 	user: {

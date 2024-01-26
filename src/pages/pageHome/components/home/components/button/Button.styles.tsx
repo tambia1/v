@@ -8,7 +8,8 @@ import weather from "./assets/weather.png";
 import tetris from "./assets/tetris.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 import clock from "./assets/clock.png";
-import user from "./assets/user.png";
+import userLoggedIn from "./assets/userLoggedIn.png";
+import userLoggedOut from "./assets/userLoggedOut.png";
 import snake from "./assets/snake.png";
 
 const appIcons = {
@@ -21,7 +22,8 @@ const appIcons = {
 	tetris,
 	clashRoyale,
 	clock,
-	user,
+	userLoggedIn,
+	userLoggedOut,
 	snake,
 } as const;
 

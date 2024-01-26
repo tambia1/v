@@ -15,6 +15,10 @@ import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "./../../apps/settings/page/components/theme/store/useThemeStore";
 import { Button } from "./components/button/Button";
+import { useStoreLogin } from "@src/stores/StoreLogin";
+import { QueryUser } from "@src/queries/QueryUser";
+import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 
 export const Home = () => {
 	const { theme } = useThemeContext();
@@ -26,6 +30,9 @@ export const Home = () => {
 	const { setTheme } = useThemeContext();
 	const { i18n } = useTranslation();
 	const themeStore = useThemeStore();
+
+	const storeLogin = useStoreLogin();
+	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
 
 	useLocalesSearchParams({
 		onChange: (language: ILanguageName) => {
@@ -79,6 +86,16 @@ export const Home = () => {
 				<S.IconClose onClick={handleOnClickClose} $isVisible={isVisibleButtonClose}>
 					<Icon iconName="iconXCircle" size={theme.size.l} />
 				</S.IconClose>
+
+				<S.Username>
+					{queryUser.data?.firstName ? (
+						<S.Success>{queryUser.data?.firstName}</S.Success>
+					) : (
+						<S.Error>
+							<T>{lang.home.guest}</T>
+						</S.Error>
+					)}
+				</S.Username>
 
 				<S.IconTheme>
 					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}

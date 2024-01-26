@@ -4,7 +4,7 @@ import { lang } from "@src/locales/i18n";
 import { QueryLogin } from "@src/queries/QueryLogin";
 import { QueryUser } from "@src/queries/QueryUser";
 import { useStoreLogin } from "@src/stores/StoreLogin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export const User = () => {
@@ -12,20 +12,55 @@ export const User = () => {
 	const [state, setState] = useState<"idle" | "loader">("idle");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
+
 	const mutateLogin = QueryLogin.mutateLogin({
 		onSuccess: () => {
-			queryUser.refetch();
+			if (!!storeLogin.token) {
+				queryUser.refetch();
+			}
 		},
 	});
+
 	const mutateLogout = QueryLogin.mutateLogout({
 		onSuccess: () => {
-			queryUser.refetch();
+			if (!!storeLogin.token) {
+				queryUser.refetch();
+			}
 		},
 	});
+
 	const storeLogin = useStoreLogin();
-	const queryUser = QueryUser.queryUser({ token: storeLogin.token });
+	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
+
+	useEffect(() => {
+		if (!storeLogin.token) {
+			setMessage({ state: "", message: "" });
+			return;
+		}
+
+		if (queryUser.isLoading) {
+			setMessage({ state: "idle", message: "Loading user data..." });
+			return;
+		}
+
+		if (queryUser.data?.error !== 0) {
+			setMessage({ state: "error", message: t(lang.user.welcome) });
+			return;
+		}
+
+		if (queryUser.data?.firstName && queryUser.data?.lastName) {
+			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName }) });
+			return;
+		}
+	}, [queryUser.isLoading, storeLogin.token]);
 
 	const handleOnClickLogin = async () => {
+		if (!email || !password) {
+			setMessage({ state: "error", message: "Invalid name or password" });
+			return;
+		}
+
 		setState("loader");
 		const mutateResult = await mutateLogin({ email: email, password: password });
 		setState("idle");
@@ -34,6 +69,7 @@ export const User = () => {
 			storeLogin.setToken(mutateResult.token);
 		} else {
 			storeLogin.setToken("");
+			setMessage({ state: "error", message: "Invalid name or password" });
 		}
 	};
 
@@ -49,17 +85,27 @@ export const User = () => {
 		}
 	};
 
+	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setEmail(e.target.value);
+		setMessage({ state: "", message: "" });
+	};
+
+	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setPassword(e.target.value);
+		setMessage({ state: "", message: "" });
+	};
+
 	return (
 		<S.User>
 			<S.Box>
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
 				<S.EmailBox>
 					<S.EmailImage iconName="iconUser" />
-					<S.EmailInput placeholder={t(lang.user.email)} onChange={(e) => setEmail(e.target.value)} value={email} disabled={!!storeLogin.token} />
+					<S.EmailInput placeholder={t(lang.user.email)} onChange={handleEmailChange} value={email} disabled={!!storeLogin.token} />
 				</S.EmailBox>
 				<S.PasswordBox>
 					<S.PasswordImage iconName="iconLock" />
-					<S.PasswordInput placeholder={t(lang.user.password)} onChange={(e) => setPassword(e.target.value)} value={password} disabled={!!storeLogin.token} />
+					<S.PasswordInput placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={password} disabled={!!storeLogin.token} />
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
@@ -78,9 +124,9 @@ export const User = () => {
 						<S.Loader iconName="iconLoader" />
 					) : (
 						<>
-							{queryUser.isLoading && <S.Idle>Loading user data...</S.Idle>}
-							{queryUser.data?.error === 0 && <S.Success>{t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName })}</S.Success>}
-							{queryUser.data?.error !== 0 && <S.Error>{queryUser.data?.message}</S.Error>}
+							{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}
+							{message.state === "error" && <S.Error>{message.message}</S.Error>}
+							{message.state === "success" && <S.Success>{message.message}</S.Success>}
 						</>
 					)}
 				</S.ButtonBox>

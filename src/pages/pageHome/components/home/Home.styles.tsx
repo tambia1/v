@@ -117,3 +117,31 @@ export const IconTheme = styled.div`
 		color: ${(props) => props.theme.color.normalFgActive};
 	}
 `;
+
+export const Username = styled.div`
+	position: absolute;
+	width: 4rem;
+	height: 4rem;
+	bottom: 0rem;
+	right: 5rem;
+
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 50%;
+	color: ${(props) => props.theme.color.normalFg};
+	transition: all 0.3s ease;
+
+	color: ${(props) => props.theme.color.successBg};
+	white-space: nowrap;
+`;
+
+export const Success = styled.div`
+	color: ${(props) => props.theme.color.successBg};
+`;
+
+export const Error = styled.div`
+	color: ${(props) => props.theme.color.errorBg};
+`;

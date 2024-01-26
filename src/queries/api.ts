@@ -2,7 +2,7 @@ import { Promises } from "@src/services/Promises";
 import { MutateLoginResult, MutateLogoutResult, QueryLoginResult } from "./QueryLogin";
 import { QueryUserResult } from "./QueryUser";
 
-const DELAY = 1000;
+const DELAY = 2000;
 
 const dbUsers: { [userId in string]: { email: string; password: string; firstName: string; lastName: string } } = {
 	user_1: {
@@ -95,11 +95,14 @@ export const getUser = async (token: string): Promise<QueryUserResult> => {
 		email: "",
 	};
 
-	if (!dbTokens[token]) {
+	if (!token) {
 		result.error = 1;
+		result.message = "token is empty";
+	} else if (!dbTokens[token]) {
+		result.error = 2;
 		result.message = "unauthorized";
 	} else if (!dbUsers[dbTokens[token]]) {
-		result.error = 2;
+		result.error = 3;
 		result.message = "user not found";
 	} else {
 		const userId = dbTokens[token];
