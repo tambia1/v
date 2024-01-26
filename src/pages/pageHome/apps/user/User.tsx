@@ -16,17 +16,13 @@ export const User = () => {
 
 	const mutateLogin = QueryLogin.mutateLogin({
 		onSuccess: () => {
-			if (!!storeLogin.token) {
-				queryUser.refetch();
-			}
+			refetchQueryUser();
 		},
 	});
 
 	const mutateLogout = QueryLogin.mutateLogout({
 		onSuccess: () => {
-			if (!!storeLogin.token) {
-				queryUser.refetch();
-			}
+			refetchQueryUser();
 		},
 	});
 
@@ -54,6 +50,12 @@ export const User = () => {
 			return;
 		}
 	}, [queryUser.isLoading, storeLogin.token]);
+
+	const refetchQueryUser = () => {
+		if (!!storeLogin.token) {
+			queryUser.refetch();
+		}
+	};
 
 	const handleOnClickLogin = async () => {
 		if (!email || !password) {
