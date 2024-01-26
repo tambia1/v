@@ -39,10 +39,12 @@ const Animations = {
 	hide: css`
 		animation: ${hide} ease 0s both;
 		pointer-events: none;
+		z-index: -1;
 	`,
 	hideAndRemove: css`
 		animation: ${hideAndRemove} ease 0s both;
 		pointer-events: none;
+		z-index: -1;
 	`,
 	appear: css`
 		animation: ${appear} ease 0.3s both;
@@ -51,10 +53,12 @@ const Animations = {
 	disappear: css`
 		animation: ${disappear} ease 0.3s both;
 		pointer-events: none;
+		z-index: -1;
 	`,
 	disappearAndRemove: css`
 		animation: ${disappearAndRemove} ease 0.3s both;
 		pointer-events: none;
+		z-index: -1;
 	`,
 } as const;
 
