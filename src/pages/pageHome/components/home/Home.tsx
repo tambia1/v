@@ -66,11 +66,13 @@ export const Home = () => {
 	return (
 		<S.Home $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
 			<S.Apps>
-				<Animate useAnimate={animateApp}>{currentApp}</Animate>
+				<S.AppsContainer>
+					<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
-				{apps.map((app) => (
-					<Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
-				))}
+					{apps.map((app) => (
+						<Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />
+					))}
+				</S.AppsContainer>
 			</S.Apps>
 
 			<S.Bar>

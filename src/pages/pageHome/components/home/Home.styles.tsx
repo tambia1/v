@@ -15,6 +15,12 @@ export const Apps = styled.div`
 	opacity: 0;
 `;
 
+export const AppsContainer = styled.div`
+	width: auto;
+	height: 100%;
+	padding: 1rem;
+`;
+
 export const Bar = styled.div`
 	overflow: hidden;
 	position: absolute;
