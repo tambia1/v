@@ -76,13 +76,7 @@ export const Home = () => {
 				<S.AppsContainer>
 					<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
-					{apps.map((app) => {
-						if (!app.isNeedAuth || !!storeLogin.token) {
-							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
-						}
-
-						return <></>;
-					})}
+					{apps.map((app) => (!app.isNeedAuth || !!storeLogin.token ? <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} /> : <></>))}
 				</S.AppsContainer>
 			</S.Apps>
 
