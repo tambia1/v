@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import supercellMagicFont from "./game/fonts/SupercellMagicFont.ttf";
 import bg from "./game/images/misc/bg.webp";
 import splash0 from "./game/images/misc/splash_0.png";
 import splash1 from "./game/images/misc/splash_1.png";
@@ -18,15 +17,6 @@ export const ClashRoyaleMenu = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
-
-	@font-face {
-		font-family: "clashRoyaleFont";
-		font-weight: normal;
-		font-style: normal;
-		src: url(${supercellMagicFont});
-	}
-
-	font-family: "clashRoyaleFont", sans-serif;
 `;
 
 export const Page = styled.div`

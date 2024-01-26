@@ -1,5 +1,6 @@
 import { Headers } from "@src/components/pager/Pager.styles";
 import styled from "styled-components";
+import supercellMagicFont from "./pages/game/fonts/SupercellMagicFont.ttf";
 
 export const ClashRoyale = styled.div`
 	width: 100%;
@@ -9,5 +10,15 @@ export const ClashRoyale = styled.div`
 
 	& ${Headers} {
 		background-image: linear-gradient(45deg, #27649e, #1c437b);
+		color: ${({ theme }) => theme.color.normalBg};
 	}
+
+	@font-face {
+		font-family: "clashRoyaleFont";
+		font-weight: normal;
+		font-style: normal;
+		src: url(${supercellMagicFont});
+	}
+
+	font-family: "clashRoyaleFont", sans-serif;
 `;
