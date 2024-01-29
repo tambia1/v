@@ -9,7 +9,7 @@ export const PageHome = () => {
 	const animateHome = useAnimate("hide");
 
 	const handleSplashOnFinish = async () => {
-		animateHome.current.play("show");
+		await animateHome.current.play("show");
 		await animateSplash.current.play("disappear");
 	};
 
