@@ -1,7 +1,7 @@
 {
 	"name": "tambi",
 	"private": true,
-	"version": "0.0.72",
+	"version": "0.0.73",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -13,38 +13,38 @@
 		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "5.17.10",
-		"i18next": "23.7.16",
+		"@tanstack/react-query": "5.17.19",
+		"i18next": "23.8.1",
 		"i18next-browser-languagedetector": "7.2.0",
 		"localforage": "1.10.0",
-		"match-sorter": "6.3.1",
+		"match-sorter": "6.3.3",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
-		"react-i18next": "14.0.0",
+		"react-i18next": "14.0.1",
 		"react-modal": "3.16.1",
-		"react-router-dom": "6.21.2",
+		"react-router-dom": "6.21.3",
 		"react-svg": "16.1.32",
 		"styled-components": "5.3.6",
 		"zustand": "4.4.7"
 	},
 	"devDependencies": {
-		"@testing-library/jest-dom": "6.2.0",
+		"@testing-library/jest-dom": "6.3.0",
 		"@testing-library/react": "14.1.2",
-		"@types/node": "20.11.0",
-		"@types/react": "18.2.47",
+		"@types/node": "20.11.10",
+		"@types/react": "18.2.48",
 		"@types/react-dom": "18.2.18",
 		"@types/styled-components": "5.1.34",
 		"@vitejs/plugin-react": "4.2.1",
-		"@vitest/coverage-v8": "1.2.0",
+		"@vitest/coverage-v8": "1.2.2",
 		"babel-plugin-styled-components": "2.1.4",
-		"dotenv": "16.3.1",
+		"dotenv": "16.4.1",
 		"gh-pages": "6.1.1",
-		"jsdom": "23.2.0",
+		"jsdom": "24.0.0",
 		"styled-components": "6.1.8",
 		"typescript": "5.3.3",
-		"vite": "5.0.11",
+		"vite": "5.0.12",
 		"vite-plugin-checker": "^0.6.2",
-		"vitest": "1.2.0",
-		"zustand": "4.4.7"
+		"vitest": "1.2.2",
+		"zustand": "4.5.0"
 	}
 }
