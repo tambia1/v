@@ -18,10 +18,6 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     runs-on: ubuntu-latest
 
     steps:
@@ -34,9 +30,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          # Upload entire repository
           path: "./dist"
 
+      - name: Install Dependencies
+        run: npm install
+
       - name: Deploy to GitHub Pages
-        id: deployment
         run: npm run gh-pages -d dist
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NODE_ENV: production
