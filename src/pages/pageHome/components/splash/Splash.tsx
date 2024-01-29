@@ -19,11 +19,18 @@ export const Splash = ({ onFinish }: Props) => {
 			await Promises.sleep(300);
 			await animateTitle.current.play("appear");
 
+			const timeStart = new Date().getTime();
+
 			await Promise.all([
 				Files.downloadImages(Object.values(Icons)),
 				Files.downloadImages(backgroundImages.map((item) => item.light)),
 				Files.downloadImages(backgroundImages.map((item) => item.dark)),
 			]);
+
+			const timeEnd = new Date().getTime();
+			const timeToWait = Math.max(0, 1500 - (timeEnd - timeStart));
+
+			await Promises.sleep(timeToWait);
 
 			onFinish();
 		};
