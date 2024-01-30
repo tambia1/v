@@ -7,7 +7,7 @@
 	"background_color": "#000000",
 	"display_override": ["fullscreen", "minimal-ui"],
 	"display": "standalone",
-	"orientation": "landscape",
+	"orientation": "portrait",
 	"lang": "en",
 	"dir": "ltr",
 	"start_url": "./index.html",
