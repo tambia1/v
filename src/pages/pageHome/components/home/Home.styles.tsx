@@ -56,7 +56,7 @@ export const Home = styled.div<{ $barPosition: IBarPosition; $backgroundImageInd
 
 		opacity: 1;
 
-		transition: all ease 0.3s;
+		transition: all 0.3s ease;
 	}
 
 	& ${Bar} {
@@ -68,7 +68,7 @@ export const Home = styled.div<{ $barPosition: IBarPosition; $backgroundImageInd
 
 		opacity: 1;
 
-		transition: all ease 0.3s;
+		transition: all 0.3s ease;
 	}
 `;
 

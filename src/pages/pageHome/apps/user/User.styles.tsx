@@ -17,6 +17,10 @@ export const User = styled.div`
 	box-sizing: border-box;
 
 	background-color: #f5f5f588;
+
+	& * {
+		transition: all 0.3s ease;
+	}
 `;
 
 export const Box = styled.div`
@@ -24,7 +28,7 @@ export const Box = styled.div`
 	width: auto;
 	height: auto;
 	box-sizing: border-box;
-	color: #fff;
+	color: ${(props) => props.theme.color.boxColor1};
 
 	display: flex;
 	flex-direction: column;
@@ -33,72 +37,71 @@ export const Box = styled.div`
 	gap: 2rem;
 	padding: 4rem;
 
-	background-color: #0008;
 	border-radius: 2rem;
 
 	overflow: hidden;
 
-	background-image: linear-gradient(135deg, #ffffff, #ced9e8);
-	box-shadow: 5px 5px 10px 0px #3b5374;
+	background-image: linear-gradient(135deg, ${(props) => props.theme.color.boxColor1}, ${(props) => props.theme.color.boxColor2});
+	box-shadow: ${(props) => props.theme.color.boxShadow1} ${(props) => props.theme.color.boxColor3};
 `;
 
 export const EmailBox = styled.div`
 	display: flex;
 	flex-direction: row;
-	box-shadow: 0px 0px 5px 0px #08264e;
+	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
 	border-radius: 5rem;
 `;
 
 export const EmailImage = styled(Icon)`
 	width: 2rem;
-	background-color: #08264e;
+	background-color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 `;
 
 export const EmailInput = styled.input`
-	border: solid 1px #08264e;
+	border: solid 1px ${(props) => props.theme.color.boxColor4};
 	border-left: none;
 	border-radius: 0 5rem 5rem 0;
-	background-color: #3b5374;
-	color: #ffffff;
+	background-color: ${(props) => props.theme.color.boxColor3};
+	color: ${(props) => props.theme.color.boxColor1};
 
 	&::placeholder {
-		color: #bbbbbb;
+		color: ${(props) => props.theme.color.boxColor5};
 	}
 
 	&:disabled {
-		color: #bbbbbb;
+		color: ${(props) => props.theme.color.boxColor5};
 	}
 `;
 
 export const PasswordBox = styled.div`
 	display: flex;
 	flex-direction: row;
-	box-shadow: 0px 0px 5px 0px #08264e;
+	box-shadow: ${(props) => props.theme.color.boxColor2} ${(props) => props.theme.color.boxColor4};
 	border-radius: 5rem;
 `;
 
 export const PasswordImage = styled(Icon)`
 	width: 2rem;
-	background-color: #08264e;
+	background-color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 `;
 
 export const PasswordInput = styled.input`
-	border: solid 1px #08264e;
+	border: solid 1px ${(props) => props.theme.color.boxColor4};
 	border-left: none;
 	border-radius: 0 5rem 5rem 0;
-	background-color: #3b5374;
-	color: #ffffff;
+	background-color: ${(props) => props.theme.color.boxColor3};
+	color: ${(props) => props.theme.color.boxColor1};
 
 	&::placeholder {
-		color: #bbbbbb;
+		color: ${(props) => props.theme.color.boxColor5};
 	}
 
 	&:disabled {
-		color: #bbbbbb;
+		color: ${(props) => props.theme.color.boxColor5};
 	}
 `;
 
@@ -112,14 +115,14 @@ export const ButtonBox = styled.div`
 
 export const ButtonLogin = styled(Button)`
 	background-image: none;
-	background-color: #3b5374;
-	color: #ffffff;
+	background-color: ${(props) => props.theme.color.boxColor4};
+	color: ${(props) => props.theme.color.boxColor1};
 	text-shadow: none;
-	border: solid 1px #08264e;
-	box-shadow: 0px 0px 5px 0px #08264e;
+	border: solid 1px ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
 
 	&:active {
-		background-color: #08264e;
+		background-color: ${(props) => props.theme.color.boxColor4};
 		background-image: none;
 		box-shadow: none;
 	}
@@ -127,14 +130,14 @@ export const ButtonLogin = styled(Button)`
 
 export const ButtonLogout = styled(Button)`
 	background-image: none;
-	background-color: #723a3a;
-	color: #ffffff;
+	background-color: ${(props) => props.theme.color.boxColor7};
+	color: ${(props) => props.theme.color.boxColor1};
 	text-shadow: none;
-	border: solid 1px #4c0808;
-	box-shadow: 0px 0px 5px 0px #4c0808;
+	border: solid 1px ${(props) => props.theme.color.boxColor8};
+	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor8};
 
 	&:active {
-		background-color: #4c0808;
+		background-color: ${(props) => props.theme.color.boxColor8};
 		background-image: none;
 		box-shadow: none;
 	}
@@ -151,7 +154,7 @@ export const StateBox = styled.div`
 export const Loader = styled(Icon)`
 	width: 2rem;
 	height: 2rem;
-	color: #08264e;
+	color: ${(props) => props.theme.color.boxColor4};
 	animation: spin 3s linear infinite;
 
 	@keyframes spin {
@@ -166,7 +169,7 @@ export const Loader = styled(Icon)`
 
 export const Idle = styled.div`
 	height: 2rem;
-	color: #08264e;
+	color: ${(props) => props.theme.color.boxColor4};
 	white-space: nowrap;
 `;
 
@@ -192,6 +195,6 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	background-image: url(${(props) => (props.$logState === "loggedIn" ? imageUserLoggedIn : imageUserLoggedOut)});
 	background-position: 50%;
 	background-size: 123%;
-	box-shadow: 0px 0px 5px 0px #08264e;
+	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
 	border-radius: 50%;
 `;

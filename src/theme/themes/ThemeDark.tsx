@@ -5,6 +5,7 @@ export const themeDark: ITheme = {
 
 	color: {
 		transparent: "transparent",
+
 		normalFg: "#dedede",
 		normalBg: "#2a2a2a",
 		normalFgHover: "#dedede",
@@ -50,6 +51,17 @@ export const themeDark: ITheme = {
 		errorBgDisabled: "#c12e2a",
 
 		shadow: "#ffffff66",
+
+		boxColor1: "#959595",
+		boxColor2: "#ced9e8",
+		boxColor3: "#888888",
+		boxColor4: "#222222",
+		boxColor5: "#2a2a2a",
+		boxColor6: "#959595",
+		boxColor7: "#723a3a",
+		boxColor8: "#4c0808",
+		boxShadow1: "5px 5px 10px 0px",
+		boxShadow2: "0px 0px 5px 0px",
 	},
 
 	size: {

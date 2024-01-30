@@ -5,6 +5,7 @@ export const themeLight: ITheme = {
 
 	color: {
 		transparent: "transparent",
+
 		normalFg: "#333333",
 		normalBg: "#ffffff",
 		normalFgHover: "#999999",
@@ -50,6 +51,17 @@ export const themeLight: ITheme = {
 		errorBgDisabled: "#c12e2a",
 
 		shadow: "#00000066",
+
+		boxColor1: "#ffffff",
+		boxColor2: "#ced9e8",
+		boxColor3: "#3b5374",
+		boxColor4: "#08264e",
+		boxColor5: "#bbbbbb",
+		boxColor6: "#08264e",
+		boxColor7: "#723a3a",
+		boxColor8: "#4c0808",
+		boxShadow1: "5px 5px 10px 0px",
+		boxShadow2: "0px 0px 5px 0px",
 	},
 
 	size: {

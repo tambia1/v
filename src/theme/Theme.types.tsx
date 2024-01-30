@@ -55,6 +55,17 @@ export interface ITheme {
 		errorBgDisabled: string;
 
 		shadow: string;
+
+		boxColor1: string;
+		boxColor2: string;
+		boxColor3: string;
+		boxColor4: string;
+		boxColor5: string;
+		boxColor6: string;
+		boxColor7: string;
+		boxColor8: string;
+		boxShadow1: string;
+		boxShadow2: string;
 	};
 
 	size: {
