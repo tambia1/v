@@ -33,7 +33,7 @@ export const Bar = styled.div`
 	opacity: 0;
 `;
 
-export const Home = styled.div<{ $barPosition: IBarPosition; $backgroundImageIndex: number }>`
+export const Container = styled.div<{ $barPosition: IBarPosition; $backgroundImageIndex: number }>`
 	width: 100%;
 	height: 100%;
 

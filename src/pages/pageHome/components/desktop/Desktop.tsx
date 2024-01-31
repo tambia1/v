@@ -1,26 +1,26 @@
 import { ReactNode, useState } from "react";
-import * as S from "./Home.styles";
+import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { Icon } from "@src/icons/Icon";
 import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
-import { useBarSearchParams } from "./../../hooks/useBarSearchParams";
-import { IAppId } from "./Home.types";
-import { apps } from "./Home.consts";
+import { useBarSearchParams } from "../../hooks/useBarSearchParams";
+import { IAppId } from "./Desktop.types";
+import { apps } from "./Desktop.consts";
 import { Animate } from "@src/components/animate/Animate";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
-import { useThemeStore } from "./../../apps/settings/page/components/theme/store/useThemeStore";
+import { useThemeStore } from "../../apps/settings/page/components/theme/store/useThemeStore";
 import { Button } from "./components/button/Button";
 import { useStoreLogin } from "@src/stores/StoreLogin";
 import { QueryUser } from "@src/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 
-export const Home = () => {
+export const Desktop = () => {
 	const { theme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
@@ -71,12 +71,14 @@ export const Home = () => {
 	};
 
 	return (
-		<S.Home $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
+		<S.Container $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
 			<S.Apps>
 				<S.AppsContainer>
 					<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
-					{apps.map((app) => (!app.isNeedAuth || !!storeLogin.token ? <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} /> : <></>))}
+					{apps.map((app) =>
+						!app.isNeedAuth || !!storeLogin.token ? <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} /> : <div key={app.id}></div>
+					)}
 				</S.AppsContainer>
 			</S.Apps>
 
@@ -99,6 +101,6 @@ export const Home = () => {
 					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}
 				</S.IconTheme>
 			</S.Bar>
-		</S.Home>
+		</S.Container>
 	);
 };

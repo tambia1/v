@@ -1,5 +1,5 @@
 import { T } from "@src/locales/T";
-import { IAppId } from "./Home.types";
+import { IAppId } from "./Desktop.types";
 import { lang } from "@src/locales/i18n";
 import { Settings } from "../../apps/settings/Settings";
 import { Tetris } from "../../apps/tetris/Tetris";

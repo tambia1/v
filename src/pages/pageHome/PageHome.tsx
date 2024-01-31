@@ -2,7 +2,7 @@ import * as S from "./PageHome.styles";
 import { Animate } from "@src/components/animate/Animate";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 import { Splash } from "./components/splash/Splash";
-import { Home } from "./components/home/Home";
+import { Desktop } from "./components/desktop/Desktop";
 
 export const PageHome = () => {
 	const animateSplash = useAnimate("appear");
@@ -16,7 +16,7 @@ export const PageHome = () => {
 	return (
 		<S.PageHome>
 			<Animate useAnimate={animateHome}>
-				<Home />
+				<Desktop />
 			</Animate>
 			<Animate useAnimate={animateSplash}>
 				<Splash onFinish={handleSplashOnFinish} />

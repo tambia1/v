@@ -62,7 +62,7 @@ export const Theme = () => {
 
 			<List>
 				{S.backgroundImages.map((backgroundImage, index) => (
-					<List.Cell onClick={() => handleOnClickBackground(index)}>
+					<List.Cell key={index} onClick={() => handleOnClickBackground(index)}>
 						<List.Cell.Image>
 							<S.BackgroundImage $backgroundImageIndex={index} />
 						</List.Cell.Image>

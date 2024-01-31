@@ -25,7 +25,7 @@ export const User = styled.div`
 
 export const Box = styled.div`
 	position: relative;
-	width: auto;
+	width: 25rem;
 	height: auto;
 	box-sizing: border-box;
 	color: ${(props) => props.theme.color.boxColor1};
