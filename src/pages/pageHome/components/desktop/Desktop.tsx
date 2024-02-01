@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, Suspense } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { Icon } from "@src/icons/Icon";
@@ -19,6 +19,7 @@ import { QueryUser } from "@src/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { AppButton } from "./components/appButton/AppButton";
+import { SuspenseFallback } from "@src/components/SuspenseFallback/SuspenseFallback";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -30,6 +31,7 @@ export const Desktop = () => {
 	const { setTheme } = useThemeContext();
 	const { i18n } = useTranslation();
 	const themeStore = useThemeStore();
+	const [loadingAppId, setLoadingAppId] = useState("");
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
@@ -54,7 +56,10 @@ export const Desktop = () => {
 
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
-		setCurrentApp(app.component);
+
+		const appComponent = <Suspense fallback={<SuspenseFallback onFallbackStart={() => setLoadingAppId(app.id)} onFallbackEnd={() => setLoadingAppId("")} />}>{app.component}</Suspense>;
+
+		setCurrentApp(appComponent);
 		setIsVisibleButtonClose(true);
 		animateApp.current.play("appear");
 	};
@@ -78,7 +83,7 @@ export const Desktop = () => {
 
 					{apps.map((app) => {
 						if (app.authType === "both" || (app.authType === "loggedIn" && !!storeLogin.token) || (app.authType === "loggedOut" && !!!storeLogin.token)) {
-							return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.isLoading} />;
+							return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
 						}
 
 						return null;

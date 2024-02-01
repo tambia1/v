@@ -66,7 +66,7 @@ export const AppButton = styled.div<{ $isLoading: boolean }>`
 	${(props) =>
 		props.$isLoading &&
 		css`
-			animation: bounce 1.5s infinite 1.5s;
+			animation: bounce 1.5s infinite;
 
 			@keyframes bounce {
 				0%,
