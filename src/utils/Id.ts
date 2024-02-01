@@ -1,4 +1,4 @@
-export const getId = (() => {
+export const getUniqueId = (() => {
 	let id = 0;
 
 	return () => id++;

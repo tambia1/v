@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import calculator from "./assets/calculator.png";
 import settings from "./assets/settings.png";
 import camera from "./assets/camera.png";
@@ -41,7 +41,7 @@ export const Image = styled.div<{ $appIcon: IAppIcon }>`
 	border-radius: 15px;
 `;
 
-export const Button = styled.div`
+export const AppButton = styled.div<{ $isLoading: boolean }>`
 	display: inline-flex;
 	align-items: center;
 	justify-content: start;
@@ -62,6 +62,28 @@ export const Button = styled.div`
 	&:active {
 		background-color: ${(props) => props.theme.color.normalBgActive};
 	}
+
+	${(props) =>
+		props.$isLoading &&
+		css`
+			animation: bounce 1.5s infinite 1.5s;
+
+			@keyframes bounce {
+				0%,
+				20%,
+				50%,
+				80%,
+				100% {
+					transform: translate3d(0, 0, 0);
+				}
+				40% {
+					transform: translate3d(0, -20px, 0);
+				}
+				60% {
+					transform: translate3d(0, -10px, 0);
+				}
+			}
+		`}
 `;
 
 export const Title = styled.div`

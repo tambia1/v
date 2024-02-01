@@ -14,11 +14,11 @@ import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "../../apps/settings/page/components/theme/store/useThemeStore";
-import { Button } from "./components/button/Button";
 import { useStoreLogin } from "@src/stores/StoreLogin";
 import { QueryUser } from "@src/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+import { AppButton } from "./components/appButton/AppButton";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -78,11 +78,11 @@ export const Desktop = () => {
 
 					{apps.map((app) => {
 						if (app.authType === "both") {
-							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
+							return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.isLoading} />;
 						} else if (app.authType === "loggedIn" && !!storeLogin.token) {
-							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
+							return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.isLoading} />;
 						} else if (app.authType === "loggedOut" && !!!storeLogin.token) {
-							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
+							return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.isLoading} />;
 						}
 
 						return null;
