@@ -19,23 +19,24 @@ const Calculator = lazy(() => import("../../apps/calculator/Calculator").then((m
 
 interface IApp {
 	id: IAppId;
-	isNeedAuth: boolean;
+	authType: "loggedIn" | "loggedOut" | "both";
 	title: React.ReactNode;
 	icon: IAppIcon;
 	component: React.ReactElement;
 }
 
 export const apps: IApp[] = [
-	{ id: "settings", isNeedAuth: false, title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
-	{ id: "user", isNeedAuth: false, title: <T>{lang.user.title}</T>, icon: "userLoggedOut", component: <User /> },
-	{ id: "notes", isNeedAuth: false, title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
-	{ id: "calculator", isNeedAuth: false, title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
-	{ id: "camera", isNeedAuth: false, title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
-	{ id: "clock", isNeedAuth: false, title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
-	{ id: "tetris", isNeedAuth: false, title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
-	{ id: "snake", isNeedAuth: false, title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
-	{ id: "clashRoyale", isNeedAuth: false, title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
-	{ id: "test", isNeedAuth: true, title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
-	{ id: "testDropDown", isNeedAuth: true, title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
-	{ id: "testTable", isNeedAuth: true, title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
+	{ id: "settings", authType: "both", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
+	{ id: "user", authType: "loggedIn", title: <T>{lang.user.title}</T>, icon: "userLoggedIn", component: <User /> },
+	{ id: "user", authType: "loggedOut", title: <T>{lang.user.title}</T>, icon: "userLoggedOut", component: <User /> },
+	{ id: "notes", authType: "both", title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
+	{ id: "calculator", authType: "both", title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
+	{ id: "camera", authType: "both", title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
+	{ id: "clock", authType: "both", title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
+	{ id: "tetris", authType: "loggedIn", title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
+	{ id: "snake", authType: "loggedIn", title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
+	{ id: "clashRoyale", authType: "loggedIn", title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
+	{ id: "test", authType: "loggedIn", title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
+	{ id: "testDropDown", authType: "loggedIn", title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
+	{ id: "testTable", authType: "loggedIn", title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
 ];

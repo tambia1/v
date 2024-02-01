@@ -76,9 +76,17 @@ export const Desktop = () => {
 				<S.AppsContainer>
 					<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
-					{apps.map((app) =>
-						!app.isNeedAuth || !!storeLogin.token ? <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} /> : <div key={app.id}></div>
-					)}
+					{apps.map((app) => {
+						if (app.authType === "both") {
+							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
+						} else if (app.authType === "loggedIn" && !!storeLogin.token) {
+							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
+						} else if (app.authType === "loggedOut" && !!!storeLogin.token) {
+							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
+						}
+
+						return null;
+					})}
 				</S.AppsContainer>
 			</S.Apps>
 
