@@ -1,8 +1,8 @@
 name: Compare Versions
 on:
   push:
-    branches-ignore:
-      - main
+    branches:
+      - "*"
 
 jobs:
   compare-versions:
