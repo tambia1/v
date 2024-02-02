@@ -10,10 +10,10 @@
 	"orientation": "portrait",
 	"lang": "en",
 	"dir": "ltr",
-	"start_url": ".",
+	"start_url": "./index.html",
 	"icons": [
 		{
-			"src": "./src//assets/icon_120x120.png",
+			"src": "./src/assets/icon_120x120.png",
 			"sizes": "120x120",
 			"type": "image/svg"
 		}
