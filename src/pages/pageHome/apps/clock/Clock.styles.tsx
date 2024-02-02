@@ -6,7 +6,7 @@ export const Clock = styled.div`
 
 	display: flex;
 	flex-direction: column;
-	justify-content: start;
+	justify-content: center;
 	align-items: center;
 
 	padding: 1rem;
@@ -19,7 +19,6 @@ export const ClockCircle = styled.div`
 	position: relative;
 	width: 20rem;
 	height: 20rem;
-	margin-top: 5rem;
 	border-radius: 50%;
 	display: flex;
 	flex-direction: column;
