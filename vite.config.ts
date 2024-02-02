@@ -65,6 +65,10 @@ export default defineConfig({
 				entryFileNames: "assets/js/[name]-[hash].js",
 
 				assetFileNames: ({ name }) => {
+					if (/manifest/.test(name ?? "")) {
+						return "[name]-[hash][extname]";
+					}
+
 					if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? "")) {
 						return "assets/images/[name]-[hash][extname]";
 					}
