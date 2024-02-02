@@ -58,17 +58,7 @@ export const Desktop = () => {
 		const app = apps.find((app) => app.id === appId)!;
 
 		const appComponent = (
-			<Suspension
-				onFallbackStart={() => {
-					setLoadingAppId(app.id);
-				}}
-				onFallbackEnd={() => {
-					setLoadingAppId("");
-				}}
-				onEnd={() => {
-					animateApp.current.play("appear");
-				}}
-			>
+			<Suspension onFallbackStart={() => setLoadingAppId(app.id)} onFallbackEnd={() => setLoadingAppId("")} onEnd={() => animateApp.current.play("appear")}>
 				{app.component}
 			</Suspension>
 		);
