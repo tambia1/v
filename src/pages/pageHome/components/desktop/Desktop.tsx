@@ -21,6 +21,7 @@ import { T } from "@src/locales/T";
 import { AppButton } from "./components/appButton/AppButton";
 import { Suspension } from "@src/components/suspension/Suspension";
 import { Promises } from "@src/services/Promises";
+import { BarContext } from "./hooks/UseBar";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -98,19 +99,21 @@ export const Desktop = () => {
 
 	return (
 		<S.Container $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
-			<S.Apps>
-				<S.AppsContainer>
-					<Animate useAnimate={animateApp}>{currentApp}</Animate>
+			<BarContext.Provider value={{ onClickclose: handleOnClickClose }}>
+				<S.Apps>
+					<S.AppsContainer>
+						<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
-					{apps.map((app) => {
-						if (app.authType === "both" || (app.authType === "loggedIn" && !!storeLogin.token) || (app.authType === "loggedOut" && !!!storeLogin.token)) {
-							return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
-						}
+						{apps.map((app) => {
+							if (app.authType === "both" || (app.authType === "loggedIn" && !!storeLogin.token) || (app.authType === "loggedOut" && !!!storeLogin.token)) {
+								return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
+							}
 
-						return null;
-					})}
-				</S.AppsContainer>
-			</S.Apps>
+							return null;
+						})}
+					</S.AppsContainer>
+				</S.Apps>
+			</BarContext.Provider>
 
 			<S.Bar>
 				<S.IconClose onClick={handleOnClickClose} $isVisible={isVisibleButtonClose}>

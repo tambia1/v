@@ -6,6 +6,7 @@ import { QueryUser } from "@src/queries/QueryUser";
 import { useStoreLogin } from "@src/stores/StoreLogin";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useBar } from "../../components/desktop/hooks/UseBar";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -13,6 +14,7 @@ export const User = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
+	const bar = useBar();
 
 	const mutateLogin = QueryLogin.mutateLogin({
 		onSuccess: () => {
@@ -97,8 +99,12 @@ export const User = () => {
 		setMessage({ state: "", message: "" });
 	};
 
+	const handleOnClickBackground = () => {
+		bar.onClickclose();
+	};
+
 	return (
-		<S.User>
+		<S.User onClick={handleOnClickBackground}>
 			<S.Box>
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
 				<S.EmailBox>
