@@ -20,6 +20,7 @@ import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { AppButton } from "./components/appButton/AppButton";
 import { Suspension } from "@src/components/suspension/Suspension";
+import { Promises } from "@src/services/Promises";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -57,8 +58,25 @@ export const Desktop = () => {
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
 
+		const timeStart = Date.now();
+		let isLoading = false;
+
 		const appComponent = (
-			<Suspension onFallbackStart={() => setLoadingAppId(app.id)} onFallbackEnd={() => setLoadingAppId("")} onEnd={() => animateApp.current.play("appear")}>
+			<Suspension
+				onFallbackStart={() => {
+					setLoadingAppId(app.id);
+					isLoading = true;
+				}}
+				onEnd={async () => {
+					if (isLoading) {
+						const timeEnd = Date.now();
+						await Promises.sleep(1500 - (timeEnd - timeStart));
+					}
+
+					setLoadingAppId("");
+					animateApp.current.play("appear");
+				}}
+			>
 				{app.component}
 			</Suspension>
 		);
