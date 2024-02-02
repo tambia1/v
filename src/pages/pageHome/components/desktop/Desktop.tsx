@@ -14,11 +14,13 @@ import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "../../apps/settings/page/components/theme/store/useThemeStore";
-import { Button } from "./components/button/Button";
 import { useStoreLogin } from "@src/stores/StoreLogin";
 import { QueryUser } from "@src/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+import { AppButton } from "./components/appButton/AppButton";
+import { Suspension } from "@src/components/suspension/Suspension";
+import { Promises } from "@src/services/Promises";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -30,6 +32,7 @@ export const Desktop = () => {
 	const { setTheme } = useThemeContext();
 	const { i18n } = useTranslation();
 	const themeStore = useThemeStore();
+	const [loadingAppId, setLoadingAppId] = useState("");
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
@@ -54,9 +57,32 @@ export const Desktop = () => {
 
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
-		setCurrentApp(app.component);
+
+		const timeStart = Date.now();
+		let isLoading = false;
+
+		const appComponent = (
+			<Suspension
+				onFallbackStart={() => {
+					setLoadingAppId(app.id);
+					isLoading = true;
+				}}
+				onEnd={async () => {
+					if (isLoading) {
+						const timeEnd = Date.now();
+						await Promises.sleep(1500 - (timeEnd - timeStart));
+					}
+
+					setLoadingAppId("");
+					animateApp.current.play("appear");
+				}}
+			>
+				{app.component}
+			</Suspension>
+		);
+
+		setCurrentApp(appComponent);
 		setIsVisibleButtonClose(true);
-		animateApp.current.play("appear");
 	};
 
 	const handleOnClickClose = async () => {
@@ -77,12 +103,8 @@ export const Desktop = () => {
 					<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
 					{apps.map((app) => {
-						if (app.authType === "both") {
-							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
-						} else if (app.authType === "loggedIn" && !!storeLogin.token) {
-							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
-						} else if (app.authType === "loggedOut" && !!!storeLogin.token) {
-							return <Button key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} />;
+						if (app.authType === "both" || (app.authType === "loggedIn" && !!storeLogin.token) || (app.authType === "loggedOut" && !!!storeLogin.token)) {
+							return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
 						}
 
 						return null;

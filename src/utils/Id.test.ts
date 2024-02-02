@@ -1,8 +1,8 @@
-import { getId } from "./Id";
+import { getUniqueId } from "./Id";
 
 test("getId() generates unique IDs", () => {
-	const id0 = getId();
-	const id1 = getId();
+	const id0 = getUniqueId();
+	const id1 = getUniqueId();
 
 	expect(id0).not.toBe(id1);
 });

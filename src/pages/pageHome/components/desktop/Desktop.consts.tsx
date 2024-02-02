@@ -9,7 +9,7 @@ import { TestTable } from "../../apps/testTable/TestTable";
 import { Camera } from "../../apps/camera/Camera";
 import { lazy } from "react";
 import { Clock } from "../../apps/clock/Clock";
-import { IAppIcon } from "./components/button/Button.styles";
+import { IAppIcon } from "./components/appButton/AppButton.styles";
 import { User } from "../../apps/user/User";
 import { Snake } from "../../apps/snake/Snake";
 import { ClashRoyale } from "../../apps/clashRoyale/ClashRoyale";
