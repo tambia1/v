@@ -190,11 +190,13 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	height: 10rem;
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 	justify-content: center;
 	align-items: center;
 	background-image: url(${(props) => (props.$logState === "loggedIn" ? imageUserLoggedIn : imageUserLoggedOut)});
 	background-position: 50%;
-	background-size: 123%;
-	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
+	background-size: 125%;
 	border-radius: 50%;
+	background-repeat: no-repeat;
+	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
 `;
