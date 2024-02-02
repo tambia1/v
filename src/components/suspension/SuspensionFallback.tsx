@@ -5,14 +5,14 @@ interface Props {
 	onFallbackEnd: () => void;
 }
 
-export const SuspenseFallback = ({ onFallbackStart, onFallbackEnd }: Props) => {
+export const SuspensionFallback = ({ onFallbackStart, onFallbackEnd }: Props) => {
 	useEffect(() => {
 		onFallbackStart();
 
 		return () => {
 			onFallbackEnd();
 		};
-	}, [onFallbackStart]);
+	}, []);
 
 	return null;
 };

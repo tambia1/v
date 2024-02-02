@@ -1,4 +1,4 @@
-import { ReactNode, useState, Suspense } from "react";
+import { ReactNode, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { Icon } from "@src/icons/Icon";
@@ -19,7 +19,7 @@ import { QueryUser } from "@src/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { AppButton } from "./components/appButton/AppButton";
-import { SuspenseFallback } from "@src/components/SuspenseFallback/SuspenseFallback";
+import { Suspension } from "@src/components/suspension/Suspension";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -57,11 +57,24 @@ export const Desktop = () => {
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.find((app) => app.id === appId)!;
 
-		const appComponent = <Suspense fallback={<SuspenseFallback onFallbackStart={() => setLoadingAppId(app.id)} onFallbackEnd={() => setLoadingAppId("")} />}>{app.component}</Suspense>;
+		const appComponent = (
+			<Suspension
+				onFallbackStart={() => {
+					setLoadingAppId(app.id);
+				}}
+				onFallbackEnd={() => {
+					setLoadingAppId("");
+				}}
+				onEnd={() => {
+					animateApp.current.play("appear");
+				}}
+			>
+				{app.component}
+			</Suspension>
+		);
 
 		setCurrentApp(appComponent);
 		setIsVisibleButtonClose(true);
-		animateApp.current.play("appear");
 	};
 
 	const handleOnClickClose = async () => {
