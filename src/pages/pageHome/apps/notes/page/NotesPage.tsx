@@ -8,47 +8,35 @@ import { NotesContent } from "./components/NotesContent/NotesContent";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { Modal } from "@src/components/modal/Modal";
-
-const noteId = {
-	id: 0,
-
-	get getId() {
-		this.id++;
-		return this.id;
-	},
-};
-
-interface INote {
-	id: string;
-	title: string;
-	text: string;
-}
+import { useNotesStore } from "../store/UseNotesStore";
+import { getUniqueId } from "@src/utils/Id";
 
 export const NotesPage = () => {
 	const pager = usePager();
-	const [notes, setNotes] = useState<{ [K in string]: INote }>({});
+	const notes = useNotesStore();
 	const [noteIdToRemove, setNoteIdToRemove] = useState("");
 
 	const handleOnClickNote = (noteId: string) => {
-		const note = notes[noteId];
+		const note = notes.data[noteId];
 
 		pager.pushPage(
 			<Pager.Page id={String(note.id)} title={note.title}>
-				<NotesContent title={note.title} text={note.text} />
+				<NotesContent id={note.id} title={note.title} text={note.text} />
 			</Pager.Page>
 		);
 	};
 
 	const handleOnClickAddNote = () => {
-		const newNotes = structuredClone(notes);
+		const newNotes = structuredClone(notes.data);
+		const id = getUniqueId();
 
-		newNotes[noteId.getId] = {
-			id: String(noteId.id),
-			title: "Untitled " + String(noteId.id),
+		newNotes[id] = {
+			id: String(id),
+			title: "Untitled " + String(id),
 			text: "Text",
 		};
 
-		setNotes(newNotes);
+		notes.setNote(id, newNotes[id].title, newNotes[id].text);
 	};
 
 	const handleOnClickRemoveNote = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, noteId: string) => {
@@ -58,9 +46,9 @@ export const NotesPage = () => {
 	};
 
 	const performRemoveNote = () => {
-		const newNotes = structuredClone(notes);
+		const newNotes = structuredClone(notes.data);
 		delete newNotes[noteIdToRemove];
-		setNotes(newNotes);
+		notes.setNotes(newNotes);
 	};
 
 	const cancelRemoveNote = () => {
@@ -77,7 +65,7 @@ export const NotesPage = () => {
 			</List.Section>
 
 			<List>
-				{Object.keys(notes)
+				{Object.keys(notes.data)
 					.sort()
 					.map((noteId) => (
 						<List.Cell
@@ -93,7 +81,7 @@ export const NotesPage = () => {
 										handleOnClickRemoveNote(e, noteId);
 									}}
 								/>
-								<T>{notes[noteId].title}</T>
+								<T>{notes.data[noteId].title}</T>
 							</S.CellGrid>
 						</List.Cell>
 					))}

@@ -44,6 +44,7 @@ export const translation: IHome = {
 	notes: {
 		title: "Notes",
 		notes: "Notes",
+		save: "Save",
 	},
 
 	tetris: {

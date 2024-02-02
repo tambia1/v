@@ -44,6 +44,7 @@ export type IHome = {
 	notes: {
 		title: string;
 		notes: string;
+		save: string;
 	};
 
 	tetris: {

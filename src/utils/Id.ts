@@ -1,5 +1,3 @@
-export const getUniqueId = (() => {
-	let id = 0;
-
-	return () => id++;
-})();
+export const getUniqueId = () => {
+	return String(Math.floor(Math.random() * 1_000_000_000));
+};
