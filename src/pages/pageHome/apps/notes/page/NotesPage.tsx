@@ -34,7 +34,7 @@ export const NotesPage = () => {
 
 		pager.pushPage(
 			<Pager.Page id={String(note.id)} title={note.title}>
-				<NotesContent>{note.text}</NotesContent>
+				<NotesContent title={note.title} text={note.text} />
 			</Pager.Page>
 		);
 	};
