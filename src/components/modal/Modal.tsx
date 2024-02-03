@@ -17,7 +17,11 @@ interface Props {
 }
 
 export const Modal = ({ isVisible = true, text, iconName, buttonContentA, buttonCallbackA, buttonContentB, buttonCallbackB, onClickBackground }: Props) => {
-	const handleOnClick = () => {
+	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
+		if (e.target !== e.currentTarget) {
+			return;
+		}
+
 		onClickBackground?.();
 	};
 

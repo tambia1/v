@@ -39,9 +39,8 @@ export const NotesPage = () => {
 		notes.setNote(id, newNotes[id].title, newNotes[id].text);
 	};
 
-	const handleOnClickRemoveNote = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, noteId: string) => {
-		event.stopPropagation();
-
+	const handleOnClickRemoveNote = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, noteId: string) => {
+		e.stopPropagation();
 		setNoteIdToRemove(noteId);
 	};
 
@@ -49,6 +48,7 @@ export const NotesPage = () => {
 		const newNotes = structuredClone(notes.data);
 		delete newNotes[noteIdToRemove];
 		notes.setNotes(newNotes);
+		setNoteIdToRemove("");
 	};
 
 	const cancelRemoveNote = () => {

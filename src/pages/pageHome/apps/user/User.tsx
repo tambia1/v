@@ -99,7 +99,11 @@ export const User = () => {
 		setMessage({ state: "", message: "" });
 	};
 
-	const handleOnClickBackground = () => {
+	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
+		if (e.target !== e.currentTarget) {
+			return;
+		}
+
 		bar.onClickclose();
 	};
 
