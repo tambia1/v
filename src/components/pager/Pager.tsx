@@ -25,7 +25,7 @@ export interface IPagerItem {
 }
 
 export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
-export type ICallback = (pagerItem?: IPagerItem) => void;
+export type ICallback = (key?: string, pagerItem?: IPagerItem) => void;
 
 export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const { theme } = useThemeContext();
@@ -71,21 +71,21 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 
 	const onAnimationStart = (pagerItem: IPagerItem) => {
 		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](pagerItem));
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](pagerItem));
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, pagerItem));
 		}
 	};
 
 	const onAnimationEnd = (pagerItem: IPagerItem) => {
 		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](pagerItem));
+			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](k, pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			Object.keys(listeners.popEnd).forEach((k) => listeners.popEnd[k](pagerItem));
+			Object.keys(listeners.popEnd).forEach((k) => listeners.popEnd[k](k, pagerItem));
 		}
 
 		if (pagerItem.pageAnimation === "moveFromCenterToRight") {
