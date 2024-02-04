@@ -23,7 +23,7 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	const pager = usePager();
 
 	useEffect(() => {
-		return pager.addListener("popStart", "", handleOnPagerAction);
+		return pager.addListener("popStart", "1", handleOnPagerAction);
 	}, []);
 
 	const focusElement = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -36,8 +36,6 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	};
 
 	const handleOnClickSave = () => {
-		console.log("aaa - 0", editedText);
-
 		notes.setNote(id, editedTitle, editedText);
 		pager.popPage();
 	};
@@ -50,9 +48,7 @@ export const NotesContent = ({ id, title, text }: Props) => {
 		setEditedText(event.currentTarget.textContent || "");
 	};
 
-	const handleOnPagerAction = (key?: string, pagerItem?: IPagerItem) => {
-		console.log("aaa - 1", editedText);
-	};
+	const handleOnPagerAction = (_?: string, __?: IPagerItem) => {};
 
 	return (
 		<S.NotesContent>

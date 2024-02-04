@@ -2,14 +2,13 @@ import { useState } from "react";
 import * as S from "./Pager.styles";
 import { Item } from "./components/item/Item";
 import { PagerContext } from "./hooks/UsePager";
-import { IAnimationState, IAnimationType } from "./components/item/Item.styles";
+import { IAnimationState } from "./components/item/Item.styles";
 import { Icon } from "../../icons/Icon";
 import { Page, IPage } from "./components/page/Page";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 
 interface Props {
 	children?: IPage;
-	animtionType?: IAnimationType;
 	onPushStart?: ICallback;
 	onPushEnd?: ICallback;
 	onPopStart?: ICallback;
@@ -27,7 +26,7 @@ export interface IPagerItem {
 export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
 export type ICallback = (key?: string, pagerItem?: IPagerItem) => void;
 
-export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
+export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const { theme } = useThemeContext();
 	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
 	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
@@ -147,7 +146,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 					</S.Back>
 					<S.Header>
 						{pagerItems.map((pagerItem) => (
-							<Item key={pagerItem.page.props.id} animationType={animtionType} animation={pagerItem.titleAnimation}>
+							<Item key={pagerItem.page.props.id} animation={pagerItem.titleAnimation}>
 								{pagerItem.page.props.title}
 							</Item>
 						))}
@@ -155,13 +154,7 @@ export const Pager = ({ children, animtionType = "slide", onPushStart, onPushEnd
 				</S.Headers>
 				<S.Bodies>
 					{pagerItems.map((pagerItem) => (
-						<Item
-							key={pagerItem.page.props.id}
-							animationType={animtionType}
-							animation={pagerItem.pageAnimation}
-							onAnimationStart={() => onAnimationStart(pagerItem)}
-							onAnimationEnd={() => onAnimationEnd(pagerItem)}
-						>
+						<Item key={pagerItem.page.props.id} animation={pagerItem.pageAnimation} onAnimationStart={() => onAnimationStart(pagerItem)} onAnimationEnd={() => onAnimationEnd(pagerItem)}>
 							{pagerItem.page.props.children}
 						</Item>
 					))}
