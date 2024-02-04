@@ -1,157 +1,83 @@
 import styled, { css, keyframes } from "styled-components";
 
-const goToCenter1 = keyframes`
+const goToCenter = keyframes`
 	0% {transform: translateX(0%);}
 	100% {transform: translateX(0%);}
 `;
 
-const moveFromCenterToLeft1 = keyframes`
+const moveFromCenterToLeft = keyframes`
 	0% {transform: translateX(0%);}
 	100% {transform: translateX(-100%);}
 `;
 
-const moveFromCenterToRight1 = keyframes`
+const moveFromCenterToRight = keyframes`
 	0% {transform: translateX(0%);}
 	100% {transform: translateX(100%);}
 `;
 
-const moveFromLeftToCenter1 = keyframes`
+const moveFromLeftToCenter = keyframes`
 	0% {transform: translateX(-100%);}
 	100% {transform: translateX(0%);}
 `;
 
-const moveFromRightToCenter1 = keyframes`
+const moveFromRightToCenter = keyframes`
 	0% {transform: translateX(100%);}
 	100% {transform: translateX(0%);}
 `;
 
-const hideFromCenter1 = keyframes`
+const hideFromCenter = keyframes`
 	0% {opacity: 1;}
 	100% {opacity: 0;}
 `;
 
-const showInCenter1 = keyframes`
+const showInCenter = keyframes`
 	0% {opacity: 0;}
 	100% {opacity: 1;}
 `;
 
-const goToCenter2 = keyframes`
-	0% {opacity: 1; z-index: 0;}
-	100% {opacity: 1; z-index: 0;}
-`;
-
-const moveFromCenterToLeft2 = keyframes`
-	0% {opacity: 1; z-index: 1;}
-	100% {opacity: 0; z-index: 0;}
-`;
-
-const moveFromCenterToRight2 = keyframes`
-	0% {opacity: 1; z-index: 1;}
-	100% {opacity: 0; z-index: 0;}
-`;
-
-const moveFromLeftToCenter2 = keyframes`
-	0% {opacity: 0; z-index: 0;}
-	100% {opacity: 1; z-index: 1;}
-`;
-
-const moveFromRightToCenter2 = keyframes`
-	0% {opacity: 0; z-index: 0;}
-	100% {opacity: 1; z-index: 1;}
-`;
-
-const hideFromCenter2 = keyframes`
-	0% {opacity: 1; z-index: 1;}
-	100% {opacity: 0; z-index: 0;}
-`;
-
-const showInCenter2 = keyframes`
-	0% {opacity: 0; z-index: 0;}
-	100% {opacity: 1; z-index: 1;}
-`;
-
 const Animations = {
-	slide: {
-		goToCenter: css`
-			animation: ${goToCenter1} 0s both;
-		`,
-		goFromLeftToCenter: css`
-			animation: ${moveFromLeftToCenter1} 0s both;
-		`,
-		moveFromLeftToCenter: css`
-			animation: ${moveFromLeftToCenter1} 0.3s both;
-		`,
-		goFromCenterToLeft: css`
-			animation: ${moveFromCenterToLeft1} 0s both;
-		`,
-		moveFromCenterToLeft: css`
-			animation: ${moveFromCenterToLeft1} 0.3s both;
-		`,
-		goFromCenterToRight: css`
-			animation: ${moveFromCenterToRight1} 0s both;
-		`,
-		moveFromCenterToRight: css`
-			animation: ${moveFromCenterToRight1} 0.3s both;
-		`,
-		goFromRightToCenter: css`
-			animation: ${moveFromRightToCenter1} 0s both;
-		`,
-		moveFromRightToCenter: css`
-			animation: ${moveFromRightToCenter1} 0.3s both;
-		`,
-		hideFromCenter: css`
-			animation: ${hideFromCenter1} 0.3s both;
-		`,
-		showInCenter: css`
-			animation: ${showInCenter1} 0.3s both;
-		`,
-	},
-
-	show: {
-		goToCenter: css`
-			animation: ${goToCenter2} 0s both;
-		`,
-		goFromLeftToCenter: css`
-			animation: ${moveFromLeftToCenter2} 0s both;
-		`,
-		moveFromLeftToCenter: css`
-			animation: ${moveFromLeftToCenter2} 0.3s both;
-		`,
-		goFromCenterToLeft: css`
-			animation: ${moveFromCenterToLeft2} 0s both;
-		`,
-		moveFromCenterToLeft: css`
-			animation: ${moveFromCenterToLeft2} 0.3s both;
-		`,
-		goFromCenterToRight: css`
-			animation: ${moveFromCenterToRight2} 0s both;
-		`,
-		moveFromCenterToRight: css`
-			animation: ${moveFromCenterToRight2} 0.3s both;
-		`,
-		goFromRightToCenter: css`
-			animation: ${moveFromRightToCenter2} 0s both;
-		`,
-		moveFromRightToCenter: css`
-			animation: ${moveFromRightToCenter2} 0.3s both;
-		`,
-		hideFromCenter: css`
-			animation: ${hideFromCenter2} 0.3s both;
-		`,
-		showInCenter: css`
-			animation: ${showInCenter2} 0.3s both;
-		`,
-	},
+	goToCenter: css`
+		animation: ${goToCenter} 0s both;
+	`,
+	goFromLeftToCenter: css`
+		animation: ${moveFromLeftToCenter} 0s both;
+	`,
+	goFromCenterToLeft: css`
+		animation: ${moveFromCenterToLeft} 0s both;
+	`,
+	goFromCenterToRight: css`
+		animation: ${moveFromCenterToRight} 0s both;
+	`,
+	goFromRightToCenter: css`
+		animation: ${moveFromRightToCenter} 0s both;
+	`,
+	moveFromLeftToCenter: css`
+		animation: ${moveFromLeftToCenter} 0.3s both;
+	`,
+	moveFromCenterToLeft: css`
+		animation: ${moveFromCenterToLeft} 0.3s both;
+	`,
+	moveFromCenterToRight: css`
+		animation: ${moveFromCenterToRight} 0.3s both;
+	`,
+	moveFromRightToCenter: css`
+		animation: ${moveFromRightToCenter} 0.3s both;
+	`,
+	hideFromCenter: css`
+		animation: ${hideFromCenter} 0.3s both;
+	`,
+	showInCenter: css`
+		animation: ${showInCenter} 0.3s both;
+	`,
 } as const;
 
-export type IAnimationState = keyof typeof Animations.slide;
-export type IAnimationType = keyof typeof Animations;
+export type IAnimationState = keyof typeof Animations;
 
-export const Item = styled.div<{ $animationType: IAnimationType; $animationState: IAnimationState }>`
+export const Item = styled.div<{ $animationState: IAnimationState }>`
 	flex-shrink: 0;
 	width: 100%;
 	height: 100%;
 	position: absolute;
 
-	${(props) => Animations[props.$animationType][props.$animationState]}
+	${(props) => Animations[props.$animationState]}
 `;

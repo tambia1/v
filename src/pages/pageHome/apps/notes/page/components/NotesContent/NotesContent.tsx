@@ -3,7 +3,9 @@ import { useNotesStore } from "../../../store/UseNotesStore";
 import * as S from "./NotesContent.styles";
 import { useTranslation } from "react-i18next";
 import { lang } from "@src/locales/i18n";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePager } from "@src/components/pager/hooks/UsePager";
+import { IPagerItem } from "@src/components/pager/Pager";
 
 interface Props {
 	id: string;
@@ -18,6 +20,12 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	const [editedTitle, setEditedTitle] = useState(title);
 	const [editedText, setEditedText] = useState(text);
 
+	const pager = usePager();
+
+	useEffect(() => {
+		return pager.addListener("popStart", "1", handleOnPagerAction);
+	}, []);
+
 	const focusElement = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		const clickedElement = event.currentTarget;
 
@@ -29,6 +37,7 @@ export const NotesContent = ({ id, title, text }: Props) => {
 
 	const handleOnClickSave = () => {
 		notes.setNote(id, editedTitle, editedText);
+		pager.popPage();
 	};
 
 	const handleTitleChange = (event: React.FormEvent<HTMLDivElement>) => {
@@ -38,6 +47,8 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	const handleTextChange = (event: React.FormEvent<HTMLDivElement>) => {
 		setEditedText(event.currentTarget.textContent || "");
 	};
+
+	const handleOnPagerAction = (_?: string, __?: IPagerItem) => {};
 
 	return (
 		<S.NotesContent>

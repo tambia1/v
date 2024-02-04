@@ -7,7 +7,7 @@ import { lang } from "@src/locales/i18n";
 export const ClashRoyale = () => {
 	return (
 		<S.ClashRoyale>
-			<Pager animtionType="show">
+			<Pager>
 				<Pager.Page id="app" title={<T>{lang.clashRoyale.title}</T>}>
 					<ClashRoyaleMenu />
 				</Pager.Page>

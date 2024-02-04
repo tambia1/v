@@ -16,7 +16,7 @@ export const usePager = () => {
 	const context = useContext(PagerContext);
 
 	if (!context) {
-		throw new Error("Pager must be rendered as a child component");
+		throw new Error("usePager must be rendered as a child component");
 	}
 
 	return context;
