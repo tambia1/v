@@ -12,7 +12,7 @@ export const Calculator = () => {
 			return;
 		}
 
-		let newNumber = String(number) + String(arg);
+		const newNumber = String(number) + String(arg);
 
 		setNumber(newNumber);
 		setDisplay(String(parseFloat(newNumber)));

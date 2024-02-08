@@ -49,7 +49,7 @@ export const bezier1D = (t: number, arrayPoints: number[]) => {
 };
 
 export const bezierND = function (t: number, arrayPoints: number[][]) {
-	let arrayResults = [];
+	const arrayResults = [];
 
 	for (let i = 0; i < arrayPoints.length; i++) {
 		arrayResults[i] = bezier1D(t, arrayPoints[i]);

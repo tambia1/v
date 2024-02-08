@@ -1,6 +1,12 @@
 import React from "react";
 
-export const reactStringReplace = (text: string, regexp: RegExp, matchCallback: (matches: RegExpMatchArray) => React.ReactNode) => {
+interface Props {
+	text: string;
+	regexp: RegExp;
+	matchCallback: (matches: RegExpMatchArray) => React.ReactNode;
+}
+
+export const reactStringReplace = ({ text, regexp, matchCallback }: Props) => {
 	const result: React.ReactNode[] = [];
 
 	const matches = text.matchAll(regexp);

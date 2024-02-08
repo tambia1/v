@@ -521,10 +521,10 @@ export class Unit {
 
 		ctx.globalAlpha = this.animationAlpha.results[0];
 
-		let sprite = types[this.type].states[this.state][0] + this.sprite;
+		const sprite = types[this.type].states[this.state][0] + this.sprite;
 
-		let col = Math.floor(sprite % this.spriteCols);
-		let row = Math.floor(sprite / this.spriteCols);
+		const col = Math.floor(sprite % this.spriteCols);
+		const row = Math.floor(sprite / this.spriteCols);
 
 		ctx.drawImage(this.image, col * this.spriteSize + 2, row * this.spriteSize + 2, this.spriteSize - 4, this.spriteSize - 4, this.cx - 5, this.cy - 5, this.ww + 10, this.hh + 10);
 
@@ -539,7 +539,7 @@ export class Unit {
 	public drawLife(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		let lifeWidth = ((this.ww - 40) / this.lifeMax) * this.life;
+		const lifeWidth = ((this.ww - 40) / this.lifeMax) * this.life;
 
 		ctx.beginPath();
 		ctx.fillStyle = this.lifeFillStyle;
@@ -737,7 +737,7 @@ export class Unit {
 			this.shoot.update(timeDif);
 		}
 
-		let spriteMax = types[this.type].states[this.state][1] - types[this.type].states[this.state][0] + 1;
+		const spriteMax = types[this.type].states[this.state][1] - types[this.type].states[this.state][0] + 1;
 		this.sprite = Math.min(this.sprite + timeDif / this.spriteTime, spriteMax) % spriteMax;
 	}
 }

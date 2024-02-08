@@ -22,7 +22,7 @@ export const UtilsCanvas = {
 	},
 
 	putPixel: (ctx: CanvasRenderingContext2D, image: ImageData, x: number, y: number, r: number, g: number, b: number, a: number) => {
-		let index = 4 * (ctx.canvas.width * y + x);
+		const index = 4 * (ctx.canvas.width * y + x);
 
 		image.data[index + 0] = r;
 		image.data[index + 1] = g;

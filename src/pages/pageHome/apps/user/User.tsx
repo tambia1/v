@@ -34,27 +34,31 @@ export const User = () => {
 	useEffect(() => {
 		if (!storeLogin.token) {
 			setMessage({ state: "", message: "" });
+
 			return;
 		}
 
 		if (queryUser.isLoading) {
 			setMessage({ state: "idle", message: "Loading user data..." });
+
 			return;
 		}
 
 		if (queryUser.data?.error !== 0) {
 			setMessage({ state: "error", message: t(lang.user.welcome) });
+
 			return;
 		}
 
 		if (queryUser.data?.firstName && queryUser.data?.lastName) {
 			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName }) });
+
 			return;
 		}
 	}, [queryUser.isLoading, storeLogin.token]);
 
 	const refetchQueryUser = () => {
-		if (!!storeLogin.token) {
+		if (storeLogin.token) {
 			queryUser.refetch();
 		}
 	};
@@ -62,6 +66,7 @@ export const User = () => {
 	const handleOnClickLogin = async () => {
 		if (!email || !password) {
 			setMessage({ state: "error", message: "Invalid name or password" });
+
 			return;
 		}
 

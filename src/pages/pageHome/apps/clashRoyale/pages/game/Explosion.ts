@@ -84,8 +84,8 @@ export class Explosion {
 		if (this.sprite < this.frames) {
 			ctx.save();
 
-			let col = Math.floor(this.sprite % this.cols);
-			let row = Math.floor(this.sprite / this.cols);
+			const col = Math.floor(this.sprite % this.cols);
+			const row = Math.floor(this.sprite / this.cols);
 
 			ctx.drawImage(this.image, col * this.size, row * this.size, this.size, this.size, this.cx, this.cy, this.w, this.h);
 

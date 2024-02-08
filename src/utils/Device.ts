@@ -4,7 +4,7 @@ const preventIosDoubleClickToZoom = () => {
 	document.addEventListener(
 		"touchend",
 		function (e) {
-			let now = new Date().getTime();
+			const now = new Date().getTime();
 			if (now - lastTouchEnd <= 300) {
 				e.preventDefault();
 			}
@@ -15,7 +15,7 @@ const preventIosDoubleClickToZoom = () => {
 };
 
 const preventDesktopContextMenu = () => {
-	let deviceType = typeof window.orientation !== "undefined" || navigator.userAgent.indexOf("Mobile") !== -1 ? "Mobile" : "Desktop";
+	const deviceType = typeof window.orientation !== "undefined" || navigator.userAgent.indexOf("Mobile") !== -1 ? "Mobile" : "Desktop";
 
 	if (deviceType == "Desktop") {
 		document.body.onselectstart = function () {

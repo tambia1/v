@@ -193,7 +193,7 @@ export class Animation {
 	}
 
 	private static bezier2D(t: number, arrayPoints: number[][]): number[] {
-		let arrayResults: number[] = [];
+		const arrayResults: number[] = [];
 
 		for (let i = 0; i < arrayPoints.length; i++) {
 			arrayResults[i] = Animation.bezier1D(t, arrayPoints[i]);
@@ -430,16 +430,19 @@ export class Animation {
 
 	public static rotate3dX(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
 		a = (a * Math.PI) / 180;
+
 		return { x: x, y: y * Math.cos(a) - z * Math.sin(a), z: y * Math.sin(a) + z * Math.cos(a) };
 	}
 
 	public static rotate3dY(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
 		a = (a * Math.PI) / 180;
+
 		return { x: z * Math.sin(a) + x * Math.cos(a), y: y, z: z * Math.cos(a) - x * Math.sin(a) };
 	}
 
 	public static rotate3dZ(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
 		a = (a * Math.PI) / 180;
+
 		return { x: x * Math.cos(a) - y * Math.sin(a), y: x * Math.sin(a) + y * Math.cos(a), z: z };
 	}
 
@@ -448,6 +451,7 @@ export class Animation {
 		arr = Animation.rotate3dZ(arr.x, arr.y, arr.z, c);
 		arr = Animation.rotate3dY(arr.x, arr.y, arr.z, b);
 		arr = Animation.rotate3dX(arr.x, arr.y, arr.z, a);
+
 		return arr;
 	}
 
@@ -461,6 +465,7 @@ export class Animation {
 
 		if (element) {
 			observer.observe(element);
+
 			return observer;
 		} else {
 			return null;

@@ -152,7 +152,7 @@ export class Castle {
 		if (this.life > 0 && this.lifeMax > 0) {
 			ctx.save();
 
-			let lifeWidth = ((this.w - 20) / this.lifeMax) * this.life;
+			const lifeWidth = ((this.w - 20) / this.lifeMax) * this.life;
 
 			ctx.beginPath();
 			ctx.fillStyle = this.lifeFillStyle;

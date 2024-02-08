@@ -105,7 +105,7 @@ export const Desktop = () => {
 						<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
 						{apps.map((app) => {
-							if (app.authType === "both" || (app.authType === "loggedIn" && !!storeLogin.token) || (app.authType === "loggedOut" && !!!storeLogin.token)) {
+							if (app.authType === "both" || (app.authType === "loggedIn" && !!storeLogin.token) || (app.authType === "loggedOut" && !storeLogin.token)) {
 								return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
 							}
 

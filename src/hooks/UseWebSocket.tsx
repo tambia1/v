@@ -5,7 +5,7 @@ export interface TypeWebSocketSend {
 }
 
 export interface TypeWebSocketMessage {
-	[key: string]: any;
+	[key: string]: {};
 }
 
 export const useWebSocket = <TypeWebSocketMessageCustom,>(url: string) => {
@@ -36,7 +36,7 @@ export const useWebSocket = <TypeWebSocketMessageCustom,>(url: string) => {
 		};
 
 		ws.onmessage = (e) => {
-			let data: any = null;
+			let data: {} = {};
 
 			try {
 				data = JSON.parse(e.data);

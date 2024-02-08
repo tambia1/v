@@ -47,8 +47,8 @@ export const UtilsTouch = {
 			boundingX = div.getBoundingClientRect().left + window.scrollX + 0.5;
 			boundingY = div.getBoundingClientRect().top + window.scrollY + 0.5;
 
-			let x = Math.floor(getX(e) - boundingX);
-			let y = Math.floor(getY(e) - boundingY);
+			const x = Math.floor(getX(e) - boundingX);
+			const y = Math.floor(getY(e) - boundingY);
 
 			xx = x;
 			yy = y;
@@ -58,19 +58,19 @@ export const UtilsTouch = {
 			onTouchStart?.(e, xx, yy, x, y, 0);
 
 			//mouse move
-			let mouseMoveListener = (e: TouchEvent | MouseEvent) => {
+			const mouseMoveListener = (e: TouchEvent | MouseEvent) => {
 				// e.preventDefault();
 
 				if (status == "down" || status == "move") {
 					status = "move";
 					div.setAttribute("isPressed", "true");
 
-					let x = Math.floor(getX(e) - boundingX);
-					let y = Math.floor(getY(e) - boundingY);
+					const x = Math.floor(getX(e) - boundingX);
+					const y = Math.floor(getY(e) - boundingY);
 
 					timeEnd = new Date().getTime();
 
-					let time = timeEnd - timeStart;
+					const time = timeEnd - timeStart;
 
 					onTouchMove?.(e, xx, yy, x, y, time);
 				}
@@ -79,15 +79,15 @@ export const UtilsTouch = {
 			document.addEventListener(MOUSE_MOVE, mouseMoveListener, { passive: false });
 
 			//mouse up
-			let mouseUpListener = (e: TouchEvent | MouseEvent) => {
+			const mouseUpListener = (e: TouchEvent | MouseEvent) => {
 				// e.preventDefault();
 
-				let x = Math.floor(getX(e) - boundingX);
-				let y = Math.floor(getY(e) - boundingY);
+				const x = Math.floor(getX(e) - boundingX);
+				const y = Math.floor(getY(e) - boundingY);
 
 				timeEnd = new Date().getTime();
 
-				let time = timeEnd - timeStart;
+				const time = timeEnd - timeStart;
 
 				if (status == "down" || status == "move") {
 					status = "up";
@@ -105,7 +105,7 @@ export const UtilsTouch = {
 			document.addEventListener(MOUSE_UP, mouseUpListener, { passive: false });
 
 			//mouse out
-			let mouseOutListener = () => {
+			const mouseOutListener = () => {
 				// e.preventDefault();
 
 				if (status == "down") {
@@ -117,7 +117,7 @@ export const UtilsTouch = {
 			document.addEventListener(MOUSE_OUT, mouseOutListener, { passive: false });
 
 			//mouse enter
-			let mouseEnterListener = () => {
+			const mouseEnterListener = () => {
 				// e.preventDefault();
 
 				if (status == "out") {

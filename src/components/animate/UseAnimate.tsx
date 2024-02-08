@@ -11,7 +11,7 @@ export const useAnimate = (initialAnimation: IAnimation): MutableRefObject<IAnim
 
 	useEffect(() => {
 		ref.current.play(initialAnimation);
-	}, []);
+	}, [initialAnimation]);
 
 	return ref;
 };

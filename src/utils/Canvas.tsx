@@ -4,7 +4,7 @@ export const getCanvas = (canvasElement: HTMLCanvasElement | null) => {
 	const ctx = canvas?.getContext("2d");
 
 	const resizeObserver = new ResizeObserver((entries) => {
-		let rect = entries[0].target;
+		const rect = entries[0].target;
 
 		console.log(rect);
 
@@ -18,15 +18,15 @@ export const getCanvas = (canvasElement: HTMLCanvasElement | null) => {
 };
 
 export const hex2rgba = (hexa: string) => {
-	let r = parseInt(hexa.slice(1, 3), 16);
-	let g = parseInt(hexa.slice(3, 5), 16);
-	let b = parseInt(hexa.slice(5, 7), 16);
-	let a = parseInt(hexa.slice(7, 9), 16) / 255;
+	const r = parseInt(hexa.slice(1, 3), 16);
+	const g = parseInt(hexa.slice(3, 5), 16);
+	const b = parseInt(hexa.slice(5, 7), 16);
+	const a = parseInt(hexa.slice(7, 9), 16) / 255;
 
 	return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
 };
 
-export const drawCube = (ctx: any, x: number, y: number, wx: number, wy: number, h: number, color1: string, color2: string, color3: string, color4: string) => {
+export const drawCube = (ctx: CanvasRenderingContext2D, x: number, y: number, wx: number, wy: number, h: number, color1: string, color2: string, color3: string, color4: string) => {
 	color1 = hex2rgba(color1);
 	color2 = hex2rgba(color2);
 	color3 = hex2rgba(color3);

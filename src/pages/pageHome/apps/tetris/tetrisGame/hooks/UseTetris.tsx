@@ -283,6 +283,7 @@ const getRandomNumber = (min: number, max: number) => {
 const getRandomPieceNumber = () => {
 	const min = 1;
 	const max = pieces.length - 1;
+
 	return getRandomNumber(min, max);
 };
 
@@ -343,7 +344,7 @@ const isCanPutPieceOnBoard = (board: number[][], piece: number[][], x: number, y
 };
 
 const rotatePieceToLeft = (piece: number[][]) => {
-	let newPiece = cloneMatrix(piece);
+	const newPiece = cloneMatrix(piece);
 
 	for (let i = 0; i < piece.length; i++) {
 		for (let j = 0; j < piece[i].length; j++) {
@@ -398,7 +399,7 @@ const removeBoardFullLines = (board: number[][]) => {
 };
 
 const getBoardFullLines = (board: number[][]) => {
-	let fullLines = [];
+	const fullLines = [];
 
 	for (let i = board.length - 1; i >= 0; i--) {
 		let isLineFull = true;

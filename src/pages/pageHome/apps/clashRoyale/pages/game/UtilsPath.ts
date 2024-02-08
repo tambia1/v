@@ -10,7 +10,7 @@ const findClosestXYOfValue = (x1: number, y1: number, value: number, grid: numbe
 	for (let y = 0; y < grid.length; y++) {
 		for (let x = 0; x < grid[y].length; x++) {
 			if (grid[y][x] == value) {
-				let distance = getDistance(x1, y1, x, y);
+				const distance = getDistance(x1, y1, x, y);
 
 				if (distance < distanceMin) {
 					x2 = x;
@@ -37,16 +37,16 @@ type IStack = {
 };
 
 const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[][]) => {
-	let calcDistance = (x1: number, y1: number, x2: number, y2: number) => {
+	const calcDistance = (x1: number, y1: number, x2: number, y2: number) => {
 		return Math.abs(x1 - x2) + Math.abs(y1 - y2);
 	};
 
-	let calcNeighbours = (x: number, y: number, stack: IStack) => {
+	const calcNeighbours = (x: number, y: number, stack: IStack) => {
 		for (let i = -1; i <= 1; i++) {
 			for (let j = -1; j <= 1; j++) {
 				if (stack[x + j + "," + (y + i)] == undefined && grid[y + i]?.[x + j] != undefined) {
-					let d1 = calcDistance(x1, y1, x + j, y + i);
-					let d2 = calcDistance(x2, y2, x + j, y + i);
+					const d1 = calcDistance(x1, y1, x + j, y + i);
+					const d2 = calcDistance(x2, y2, x + j, y + i);
 
 					if (grid[y + i][x + j] == 0 || d2 == 0) {
 						stack[x + j + "," + (y + i)] = { x: x + j, y: y + i, d1, d2, v: false, px: x, py: y };
@@ -56,11 +56,11 @@ const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[]
 		}
 	};
 
-	let getNextStack = (stack: IStack) => {
+	const getNextStack = (stack: IStack) => {
 		let nextStack = null;
 		let maxd2 = Number.MAX_VALUE;
 
-		for (let k in stack) {
+		for (const k in stack) {
 			if (stack[k].v == false && stack[k].d2 <= maxd2) {
 				nextStack = stack[k];
 				maxd2 = stack[k].d2;
@@ -70,7 +70,7 @@ const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[]
 		return nextStack;
 	};
 
-	let stack: IStack = {};
+	const stack: IStack = {};
 	calcNeighbours(x1, y1, stack);
 
 	let nextStack = null;
@@ -84,7 +84,7 @@ const findPath = (x1: number, y1: number, x2: number, y2: number, grid: number[]
 		}
 	} while ((nextStack?.x != x2 || nextStack?.y != y2) && nextStack != null);
 
-	let path = [];
+	const path = [];
 
 	do {
 		if (nextStack != null) {

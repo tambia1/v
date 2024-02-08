@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { usePager } from "@src/components/pager/hooks/UsePager";
-import { IPagerItem } from "@src/components/pager/Pager";
 
 interface Props {
 	id: string;
@@ -48,7 +47,7 @@ export const NotesContent = ({ id, title, text }: Props) => {
 		setEditedText(event.currentTarget.textContent || "");
 	};
 
-	const handleOnPagerAction = (_?: string, __?: IPagerItem) => {};
+	const handleOnPagerAction = () => {};
 
 	return (
 		<S.NotesContent>

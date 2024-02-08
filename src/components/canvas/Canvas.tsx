@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { IXY } from "./Canvas.types";
 
 interface Props {
@@ -8,28 +8,31 @@ interface Props {
 export const Canvas = ({ draw }: Props) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-	const handleOnResize = (entries: ResizeObserverEntry[]) => {
-		if (!canvasRef.current) {
-			return;
-		}
+	const handleOnResize = useCallback(
+		(entries: ResizeObserverEntry[]) => {
+			if (!canvasRef.current) {
+				return;
+			}
 
-		const canvas = canvasRef.current!;
-		const ctx = canvas.getContext("2d")!;
+			const canvas = canvasRef.current!;
+			const ctx = canvas.getContext("2d")!;
 
-		canvas.width = entries[0].contentRect.width;
-		canvas.height = entries[0].contentRect.height - 5;
+			canvas.width = entries[0].contentRect.width;
+			canvas.height = entries[0].contentRect.height - 5;
 
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx.scale(1, 1);
-		ctx.translate(0.0, 0.0);
-		ctx.lineWidth = 1;
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.scale(1, 1);
+			ctx.translate(0.0, 0.0);
+			ctx.lineWidth = 1;
 
-		ctx.save();
+			ctx.save();
 
-		draw(ctx);
+			draw(ctx);
 
-		ctx.restore();
-	};
+			ctx.restore();
+		},
+		[draw]
+	);
 
 	useEffect(() => {
 		const parent = canvasRef.current!.parentElement!;
@@ -42,7 +45,7 @@ export const Canvas = ({ draw }: Props) => {
 				resizeObserver.unobserve(parent);
 			}
 		};
-	}, []);
+	}, [handleOnResize]);
 
 	return <canvas ref={canvasRef} width={100} height={100} />;
 };

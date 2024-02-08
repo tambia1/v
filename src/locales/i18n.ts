@@ -38,7 +38,7 @@ i18n.use(initReactI18next).init({
 export type ILang = GetTypeAsObjectPath<IResources["en"]["translation"], "">;
 
 export const lang: ILang = (function (language: IResources["en"]["translation"]) {
-	const get = (v: string | { [key: string]: any }, str: string): {} | string => {
+	const get = (v: string | { [key: string]: string | {} }, str: string): {} | string => {
 		if (v instanceof Object) {
 			const obj: { [key: string]: {} } = {};
 

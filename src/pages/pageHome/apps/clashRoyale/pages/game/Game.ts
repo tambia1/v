@@ -59,7 +59,7 @@ export class Game {
 		this.canvas = document.createElement("canvas");
 		this.board.appendChild(this.canvas);
 
-		let dpr = window.devicePixelRatio || 1;
+		const dpr = window.devicePixelRatio || 1;
 
 		this.canvas.width = this.board.offsetWidth * dpr;
 		this.canvas.height = this.board.offsetHeight * dpr;
@@ -102,11 +102,11 @@ export class Game {
 			}
 		}
 
-		let gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
-		let gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
+		const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
+		const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
 
 		//add castles
-		let castlesType: { [K in IPlayerType]: number } = {
+		const castlesType: { [K in IPlayerType]: number } = {
 			good: 1,
 			bad: 2,
 		};
@@ -114,9 +114,9 @@ export class Game {
 		for (let i = 0; i < this.players.length; i++) {
 			for (let j = 0; j < this.players[i].getCastles().length; j++) {
 				if (this.players[i].getCastles()[j].getLife() > 0) {
-					let castleX = Math.floor((this.players[i].getCastles()[j].getX() - this.grid.x1) / gw);
-					let castleY = Math.floor((this.players[i].getCastles()[j].getY() - this.grid.y1) / gh);
-					let castleType = castlesType[this.players[i].getType()];
+					const castleX = Math.floor((this.players[i].getCastles()[j].getX() - this.grid.x1) / gw);
+					const castleY = Math.floor((this.players[i].getCastles()[j].getY() - this.grid.y1) / gh);
+					const castleType = castlesType[this.players[i].getType()];
 
 					this.adapter[castleY][castleX] = castleType;
 				}
@@ -164,7 +164,7 @@ export class Game {
 						continue;
 					}
 
-					let isStackPressed = this.players[i].getStacks()[j]?.isXYInsideUnit(x, y);
+					const isStackPressed = this.players[i].getStacks()[j]?.isXYInsideUnit(x, y);
 
 					if (isStackPressed == true) {
 						isStackSelected = true;
@@ -203,7 +203,7 @@ export class Game {
 		let isSafe = true;
 
 		a: for (let i = 0; i < this.players.length; i++) {
-			b: for (let j = 0; j < this.players[i].getCastles().length; j++) {
+			for (let j = 0; j < this.players[i].getCastles().length; j++) {
 				if (this.players[i].getType() == "bad" && this.players[i].getCastles()[j].isXYInsideWeaponRange(x, y) == true && this.players[i].getCastles()[j].getLife() > 0) {
 					isSafe = false;
 					break a;
@@ -221,7 +221,7 @@ export class Game {
 		this.timeNow = performance.now();
 		this.timeDif = this.timeNow - this.timeOld;
 
-		let fps = 60;
+		const fps = 60;
 
 		if (this.timeDif < 1000 / fps) {
 			return;
@@ -264,28 +264,28 @@ export class Game {
 	}
 
 	private updateUnitsMove(timeDif: number) {
-		let castlesToAttack: { [K in IPlayerType]: number } = {
+		const castlesToAttack: { [K in IPlayerType]: number } = {
 			good: 2,
 			bad: 1,
 		};
 
-		let gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
-		let gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
+		const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
+		const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
 
 		for (let i = 0; i < this.players.length; i++) {
 			for (let j = 0; j < this.players[i].getUnits().length; j++) {
 				if (this.players[i].getUnits()[j].getIsAttacking() == false) {
-					let m = timeDif / this.players[i].getUnits()[j].getMoveSpeed();
+					const m = timeDif / this.players[i].getUnits()[j].getMoveSpeed();
 
 					// let oldX = this.players[i].getUnits()[j].getX();
-					let oldY = this.players[i].getUnits()[j].getY();
+					const oldY = this.players[i].getUnits()[j].getY();
 
 					let x = Math.round((this.players[i].getUnits()[j].getX() - this.grid.x1) / gw);
 					let y = Math.round((this.players[i].getUnits()[j].getY() - this.grid.y1) / gh);
 
-					let castleToAttack = castlesToAttack[this.players[i].getType()];
-					let castle = UtilsPath.findClosestXYOfValue(x, y, castleToAttack, this.adapter);
-					let path = UtilsPath.findPath(x, y, castle.x, castle.y, this.adapter);
+					const castleToAttack = castlesToAttack[this.players[i].getType()];
+					const castle = UtilsPath.findClosestXYOfValue(x, y, castleToAttack, this.adapter);
+					const path = UtilsPath.findPath(x, y, castle.x, castle.y, this.adapter);
 
 					x = (path[2]?.x || path[1].x) * gw + this.grid.x1;
 					y = (path[2]?.y || path[1].x) * gh + this.grid.y1;
@@ -329,16 +329,16 @@ export class Game {
 					continue;
 				}
 
-				let playerAUnitsAndCastles = [...this.players[a].getUnits(), ...this.players[a].getCastles()];
-				let playerBUnitsAndCastles = [...this.players[b].getUnits(), ...this.players[b].getCastles()];
+				const playerAUnitsAndCastles = [...this.players[a].getUnits(), ...this.players[a].getCastles()];
+				const playerBUnitsAndCastles = [...this.players[b].getUnits(), ...this.players[b].getCastles()];
 
 				for (let i = 0; i < playerAUnitsAndCastles.length; i++) {
 					for (let j = 0; j < playerBUnitsAndCastles.length; j++) {
 						if (playerAUnitsAndCastles[i].getLife() > 0 && playerAUnitsAndCastles[i].isXYInsideWeaponRange(playerBUnitsAndCastles[j].getX(), playerBUnitsAndCastles[j].getY()) == true) {
 							playerAUnitsAndCastles[i].startAttacking(playerBUnitsAndCastles[j].getX(), playerBUnitsAndCastles[j].getY());
 
-							let weaponSpeed = timeDif / playerAUnitsAndCastles[i].getWeaponSpeed();
-							let weaponDamage = weaponSpeed * playerAUnitsAndCastles[i].getWeaponDamage();
+							const weaponSpeed = timeDif / playerAUnitsAndCastles[i].getWeaponSpeed();
+							const weaponDamage = weaponSpeed * playerAUnitsAndCastles[i].getWeaponDamage();
 
 							playerBUnitsAndCastles[j].setLife(Math.max(playerBUnitsAndCastles[j].getLife() - weaponDamage, 0));
 
@@ -395,7 +395,7 @@ export class Game {
 
 	private updateGameOver(_timeDif: number) {
 		//get winner
-		let playersStillAlive = [];
+		const playersStillAlive = [];
 
 		for (let i = 0; i < this.players.length; i++) {
 			let isAllCastlesRuined = true;
@@ -423,15 +423,15 @@ export class Game {
 		for (let i = 0; i < this.players.length; i++) {
 			if (this.players[i].getType() == "bad") {
 				if (this.players[i].getStackSelected() == -1) {
-					let j = UtilsMath.getRandomNumber(1, this.players[i].getStacks().length - 1);
+					const j = UtilsMath.getRandomNumber(1, this.players[i].getStacks().length - 1);
 
 					if (this.players[i].getStacks()[j] != null) {
 						this.players[i].setStackSelected(j);
 						this.players[i].getStacks()[j]?.setScale(this.players[i].getStacks()[j]?.getScale() || 0, Player.STACK_SCALE_SELECTED, 300);
 					}
 				} else {
-					let x = UtilsMath.getRandomNumber(this.grid.x1, this.grid.x2);
-					let y = UtilsMath.getRandomNumber(this.grid.y1, this.grid.y2 / 2.2);
+					const x = UtilsMath.getRandomNumber(this.grid.x1, this.grid.x2);
+					const y = UtilsMath.getRandomNumber(this.grid.y1, this.grid.y2 / 2.2);
 
 					this.players[i].putSelectedStackOnGrid(x, y);
 				}
@@ -440,7 +440,7 @@ export class Game {
 	}
 
 	private draw() {
-		let ctx = this.canvas.getContext("2d");
+		const ctx = this.canvas.getContext("2d");
 
 		if (ctx != null) {
 			ctx.save();
@@ -460,7 +460,7 @@ export class Game {
 	}
 
 	private drawInit(ctx: CanvasRenderingContext2D) {
-		let dpr = window.devicePixelRatio || 1;
+		const dpr = window.devicePixelRatio || 1;
 		ctx.scale(dpr, dpr);
 
 		ctx.clearRect(0, 0, ctx.canvas.offsetWidth, ctx.canvas.offsetHeight);
@@ -547,8 +547,8 @@ export class Game {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 
-		let minutes = Math.floor(this.timeLeft / 60);
-		let seconds = Math.floor(this.timeLeft % 60);
+		const minutes = Math.floor(this.timeLeft / 60);
+		const seconds = Math.floor(this.timeLeft % 60);
 
 		ctx.fillText(minutes + ":" + (seconds < 10 ? "0" : "") + seconds, 420, 170);
 

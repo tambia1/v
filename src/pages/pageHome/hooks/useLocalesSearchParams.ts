@@ -18,5 +18,5 @@ export const useLocalesSearchParams = ({ onChange }: Props) => {
 			searchParams.delete("language");
 			setSearchParams(searchParams, { replace: true });
 		}
-	}, [searchParams]);
+	}, [onChange, searchParams, setSearchParams]);
 };

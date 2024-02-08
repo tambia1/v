@@ -100,7 +100,7 @@ export class Player {
 		this.decks = [];
 
 		while (deck.length > 0) {
-			let j = UtilsMath.getRandomNumber(0, deck.length - 1);
+			const j = UtilsMath.getRandomNumber(0, deck.length - 1);
 			this.decks.push(deck[j]);
 
 			deck.splice(j, 1);
@@ -168,10 +168,10 @@ export class Player {
 	public drawElixir(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		let x = 125;
-		let y = this.type == "good" ? 650 : 95;
-		let w = 430 - x;
-		let h = 10;
+		const x = 125;
+		const y = this.type == "good" ? 650 : 95;
+		const w = 430 - x;
+		const h = 10;
 
 		for (let i = 0; i < 10; i++) {
 			ctx.drawImage(Player.imageElixirBg, 0, 0, 145, 31, x + i * Math.floor(w / 10), y, Math.floor(w / 10), h);
@@ -193,7 +193,7 @@ export class Player {
 		}
 
 		for (let i = 1; i < this.stacks.length; i++) {
-			let unit = this.stacks[i];
+			const unit = this.stacks[i];
 
 			if (unit != null) {
 				unit.drawImage(ctx);
@@ -235,11 +235,11 @@ export class Player {
 	}
 
 	private getUnitFromDeck() {
-		let type = this.decks.shift();
+		const type = this.decks.shift();
 
 		if (type != null) {
 			{
-				let unit = new Unit(type);
+				const unit = new Unit(type);
 
 				unit.setLifeColor(styles[this.type].lifeStrokeStyle, styles[this.type].lifeFillStyle);
 				this.decks.push(type);
@@ -253,7 +253,7 @@ export class Player {
 
 	public putSelectedStackOnGrid(x: number, y: number) {
 		if (this.stackSelected != -1) {
-			let unit = this.stacks[this.stackSelected];
+			const unit = this.stacks[this.stackSelected];
 
 			if (unit != null && this.elixir >= unit.getElixirNeeded()) {
 				this.stacks[this.stackSelected] = null;
@@ -329,7 +329,7 @@ export class Player {
 	public updateStackLoading(_timeDif: number) {
 		for (let i = 1; i < this.stacks.length; i++) {
 			if (this.stacks[i] != null) {
-				let loading = this.elixir / this.stacks[i]!.getElixirNeeded();
+				const loading = this.elixir / this.stacks[i]!.getElixirNeeded();
 
 				this.stacks[i]!.setLoading(loading);
 			}
