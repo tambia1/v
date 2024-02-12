@@ -1,6 +1,6 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { QueryResult } from "./Query.types";
-import { sendLogin, sendLogout } from "./Api1";
+import { sendLogin, sendLogout } from "./Api";
 import { IRole } from "@src/pages/pageHome/components/desktop/Desktop.types";
 
 interface MutateLoginProps {
