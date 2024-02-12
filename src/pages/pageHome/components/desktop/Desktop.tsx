@@ -14,8 +14,8 @@ import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "../../apps/settings/page/components/theme/store/useThemeStore";
-import { useStoreLogin } from "@src/stores/StoreLogin";
-import { QueryUser } from "@src/queries/QueryUser";
+import { useStoreLogin } from "@src/pages/pageHome/apps/user/stores/StoreLogin";
+import { QueryUser } from "@src/pages/pageHome/apps/user/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { AppButton } from "./components/appButton/AppButton";
@@ -105,7 +105,7 @@ export const Desktop = () => {
 						<Animate useAnimate={animateApp}>{currentApp}</Animate>
 
 						{apps.map((app) => {
-							if (app.authType === "both" || (app.authType === "loggedIn" && !!storeLogin.token) || (app.authType === "loggedOut" && !storeLogin.token)) {
+							if (app.roles.includes(storeLogin.role)) {
 								return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
 							}
 

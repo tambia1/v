@@ -1,4 +1,4 @@
-import { getUniqueId } from "./Id";
+import { getUniqueId } from "./UniqueId";
 
 test("getId() generates unique IDs", () => {
 	const id0 = getUniqueId();

@@ -9,7 +9,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { Modal } from "@src/components/modal/Modal";
 import { useNotesStore } from "../store/UseNotesStore";
-import { getUniqueId } from "@src/utils/Id";
+import { getUniqueId } from "@src/utils/UniqueId";
 
 export const NotesPage = () => {
 	const pager = usePager();

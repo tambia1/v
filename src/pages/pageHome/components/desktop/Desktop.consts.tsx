@@ -1,5 +1,5 @@
 import { T } from "@src/locales/T";
-import { IAppId } from "./Desktop.types";
+import { IAppId, IRole } from "./Desktop.types";
 import { lang } from "@src/locales/i18n";
 import { Settings } from "../../apps/settings/Settings";
 import { Tetris } from "../../apps/tetris/Tetris";
@@ -19,24 +19,24 @@ const Calculator = lazy(() => import("../../apps/calculator/Calculator").then((m
 
 interface IApp {
 	id: IAppId;
-	authType: "loggedIn" | "loggedOut" | "both";
+	roles: IRole[];
 	title: React.ReactNode;
 	icon: IAppIcon;
 	component: React.ReactElement;
 }
 
 export const apps: IApp[] = [
-	{ id: "settings", authType: "both", title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
-	{ id: "user", authType: "loggedIn", title: <T>{lang.user.title}</T>, icon: "userLoggedIn", component: <User /> },
-	{ id: "user", authType: "loggedOut", title: <T>{lang.user.title}</T>, icon: "userLoggedOut", component: <User /> },
-	{ id: "notes", authType: "both", title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
-	{ id: "calculator", authType: "both", title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
-	{ id: "camera", authType: "both", title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
-	{ id: "clock", authType: "both", title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
-	{ id: "tetris", authType: "loggedIn", title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
-	{ id: "snake", authType: "loggedIn", title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
-	{ id: "clashRoyale", authType: "loggedIn", title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
-	{ id: "test", authType: "loggedIn", title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
-	{ id: "testDropDown", authType: "loggedIn", title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
-	{ id: "testTable", authType: "loggedIn", title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
+	{ id: "settings", roles: ["admin", "user", "guest"], title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
+	{ id: "user", roles: ["admin", "user"], title: <T>{lang.user.title}</T>, icon: "userLoggedIn", component: <User /> },
+	{ id: "user", roles: ["guest"], title: <T>{lang.user.title}</T>, icon: "userLoggedOut", component: <User /> },
+	{ id: "notes", roles: ["admin", "user", "guest"], title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
+	{ id: "calculator", roles: ["admin", "user", "guest"], title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
+	{ id: "camera", roles: ["admin", "user", "guest"], title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
+	{ id: "clock", roles: ["admin", "user", "guest"], title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
+	{ id: "tetris", roles: ["admin", "user"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
+	{ id: "snake", roles: ["admin", "user"], title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
+	{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
+	{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
+	{ id: "testDropDown", roles: ["admin"], title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
+	{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
 ];

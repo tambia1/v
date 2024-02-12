@@ -1,9 +1,9 @@
 import * as S from "./User.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { QueryLogin } from "@src/queries/QueryLogin";
-import { QueryUser } from "@src/queries/QueryUser";
-import { useStoreLogin } from "@src/stores/StoreLogin";
+import { QueryLogin } from "@src/pages/pageHome/apps/user/queries/QueryLogin";
+import { QueryUser } from "@src/pages/pageHome/apps/user/queries/QueryUser";
+import { useStoreLogin } from "@src/pages/pageHome/apps/user/stores/StoreLogin";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useBar } from "../../components/desktop/hooks/UseBar";
@@ -16,13 +16,13 @@ export const User = () => {
 	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
 	const bar = useBar();
 
-	const mutateLogin = QueryLogin.mutateLogin({
+	const mutateLogin = QueryLogin.login({
 		onSuccess: () => {
 			refetchQueryUser();
 		},
 	});
 
-	const mutateLogout = QueryLogin.mutateLogout({
+	const mutateLogout = QueryLogin.logout({
 		onSuccess: () => {
 			refetchQueryUser();
 		},
@@ -75,9 +75,9 @@ export const User = () => {
 		setState("idle");
 
 		if (mutateResult.error === 0) {
-			storeLogin.setToken(mutateResult.token);
+			storeLogin.setData(mutateResult.token, mutateResult.role);
 		} else {
-			storeLogin.setToken("");
+			storeLogin.setData("", "guest");
 			setMessage({ state: "error", message: "Invalid name or password" });
 		}
 	};
@@ -88,7 +88,7 @@ export const User = () => {
 		setState("idle");
 
 		if (mutateResult.error === 0) {
-			storeLogin.setToken("");
+			storeLogin.setData("", "guest");
 			setEmail("");
 			setPassword("");
 		}

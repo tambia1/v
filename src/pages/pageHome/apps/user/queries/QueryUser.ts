@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QueryResult } from "./Query.types";
-import { getUser } from "./api";
+import { getUser } from "./Api1";
 
 export interface QueryUserResult extends QueryResult {
 	firstName: string;
