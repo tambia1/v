@@ -113,6 +113,8 @@ export const IconTheme = styled.div`
 	color: ${(props) => props.theme.color.normalFg};
 	transition: all 0.3s ease;
 
+	cursor: pointer;
+
 	&:active {
 		color: ${(props) => props.theme.color.normalFgActive};
 	}

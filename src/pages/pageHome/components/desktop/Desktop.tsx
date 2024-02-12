@@ -93,6 +93,8 @@ export const Desktop = () => {
 	};
 
 	const handleOnClickChangeTheme = (themeName: IThemeName) => {
+		setTheme(themes[themeName]);
+
 		searchParams.set("theme", themeName);
 		setSearchParams(searchParams, { replace: true });
 	};
