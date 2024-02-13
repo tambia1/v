@@ -17,7 +17,7 @@ export const Animate = ({ useAnimate, children, ...rest }: Props) => {
 	const refResolve = useRef<IResolve>();
 
 	const play = (animation: S.IAnimation): Promise<void> => {
-		setAnimation(() => animation);
+		setAnimation(animation);
 
 		return new Promise<void>((resolve: IResolve) => {
 			refResolve.current = resolve;

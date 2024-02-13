@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useCallback, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { Icon } from "@src/icons/Icon";
@@ -39,21 +39,21 @@ export const Desktop = () => {
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
 
 	useLocalesSearchParams({
-		onChange: (language: ILanguageName) => {
+		onChange: useCallback((language: ILanguageName) => {
 			i18n.changeLanguage(language);
-		},
+		}, []),
 	});
 
 	useThemesSearchParams({
-		onChange: (themeName: ITheme["themeName"]) => {
+		onChange: useCallback((themeName: ITheme["themeName"]) => {
 			setTheme(themes[themeName]);
-		},
+		}, []),
 	});
 
 	useBarSearchParams({
-		onChange: (barPosition: S.IBarPosition) => {
+		onChange: useCallback((barPosition: S.IBarPosition) => {
 			setBar({ isReady: true, position: barPosition });
-		},
+		}, []),
 	});
 
 	const handleOnClickApplication = (appId: IAppId) => {
