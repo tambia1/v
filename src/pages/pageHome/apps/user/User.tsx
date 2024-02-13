@@ -118,11 +118,11 @@ export const User = () => {
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
 				<S.EmailBox>
 					<S.EmailImage iconName="iconUser" />
-					<S.EmailInput placeholder={t(lang.user.email)} onChange={handleEmailChange} value={email} disabled={!!storeLogin.token} />
+					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={email} disabled={!!storeLogin.token} />
 				</S.EmailBox>
 				<S.PasswordBox>
 					<S.PasswordImage iconName="iconLock" />
-					<S.PasswordInput placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={password} disabled={!!storeLogin.token} />
+					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={password} disabled={!!storeLogin.token} />
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
