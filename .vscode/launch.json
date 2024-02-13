@@ -62,6 +62,30 @@
 			"command": "npm run deploy",
 			"request": "launch",
 			"type": "node-terminal"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "Update npm",
+			"command": "npm install -g npm stable",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "Update node",
+			"command": "npm install -g node stable",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
 		}
 	]
 }
