@@ -1,7 +1,6 @@
 import { ReactNode, useCallback, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
-import { Icon } from "@src/icons/Icon";
 import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
@@ -22,6 +21,7 @@ import { AppButton } from "./components/appButton/AppButton";
 import { Suspension } from "@src/components/suspension/Suspension";
 import { Promises } from "@src/services/Promises";
 import { BarContext } from "./hooks/UseBar";
+import { Bar } from "./components/bar/Bar";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -118,23 +118,14 @@ export const Desktop = () => {
 			</BarContext.Provider>
 
 			<S.Bar>
-				<S.IconClose onClick={handleOnClickClose} $isVisible={isVisibleButtonClose}>
-					<Icon iconName="iconXCircle" size={theme.size.l} />
-				</S.IconClose>
-
-				<S.Username>
-					{queryUser.data?.firstName ? (
-						<S.Success>{queryUser.data?.firstName}</S.Success>
-					) : (
-						<S.Error>
-							<T>{lang.home.guest}</T>
-						</S.Error>
-					)}
-				</S.Username>
-
-				<S.IconTheme>
-					{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => handleOnClickChangeTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => handleOnClickChangeTheme("light")} />}
-				</S.IconTheme>
+				<Bar
+					theme={theme}
+					userName={queryUser.data?.firstName ? queryUser.data.firstName : <T>{lang.home.guest}</T>}
+					userNameType={queryUser.data?.firstName ? "success" : "error"}
+					onClickButtonClose={handleOnClickClose}
+					isVisibleButtonClose={isVisibleButtonClose}
+					onClickButtonTheme={handleOnClickChangeTheme}
+				/>
 			</S.Bar>
 		</S.Container>
 	);
