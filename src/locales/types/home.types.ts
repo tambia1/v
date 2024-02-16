@@ -78,4 +78,8 @@ export type IHome = {
 	testTable: {
 		title: string;
 	};
+
+	testTransition: {
+		title: string;
+	};
 };

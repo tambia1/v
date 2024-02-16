@@ -13,6 +13,7 @@ import { IAppIcon } from "./components/appButton/AppButton.styles";
 import { User } from "../../apps/user/User";
 import { Snake } from "../../apps/snake/Snake";
 import { ClashRoyale } from "../../apps/clashRoyale/ClashRoyale";
+import { TestTransition } from "../../apps/testTransition/TestTransition";
 
 const Notes = lazy(() => import("../../apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("../../apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
@@ -39,4 +40,5 @@ export const apps: IApp[] = [
 	{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
 	{ id: "testSelect", roles: ["admin"], title: <T>{lang.testSelect.title}</T>, icon: "photos", component: <TestSelect /> },
 	{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
+	{ id: "testTransition", roles: ["admin", "guest"], title: <T>{lang.testTransition.title}</T>, icon: "photos", component: <TestTransition /> },
 ];

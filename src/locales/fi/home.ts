@@ -78,4 +78,8 @@ export const translation: IHome = {
 	testTable: {
 		title: "Test Table",
 	},
+
+	testTransition: {
+		title: "Test Transition",
+	},
 };

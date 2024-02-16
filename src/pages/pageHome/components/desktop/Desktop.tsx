@@ -7,7 +7,7 @@ import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearch
 import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
 import { IAppId } from "./Desktop.types";
-import { apps } from "./Desktop.consts";
+import { apps } from "./Desktop.apps";
 import { Animate } from "@src/components/animate/Animate";
 import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
