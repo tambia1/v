@@ -18,9 +18,9 @@ export const TestSelect = () => {
 			<Space />
 
 			<Select selectedIndex={selectedIndex} onClickItem={onClickItem}>
-				<Select.Item>Item 0 {selectedIndex === 0 && <S.IconCheck />}</Select.Item>
-				<Select.Item>Item 1 {selectedIndex === 1 && <S.IconCheck />}</Select.Item>
-				<Select.Item>Item 2 {selectedIndex === 2 && <S.IconCheck />}</Select.Item>
+				<Select.Item>Item 0</Select.Item>
+				<Select.Item>Item 1</Select.Item>
+				<Select.Item>Item 2</Select.Item>
 			</Select>
 		</S.TestSelect>
 	);
