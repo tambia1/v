@@ -5,11 +5,11 @@ import { data } from "./Data";
 import { Select } from "@src/components/select/Select";
 
 export const TestTable = () => {
-	const [selectIndex, setSelectIndex] = useState(1);
-	const [tableType, setTableType] = useState<IType>("movable");
+	const [selectIndex, setSelectIndex] = useState(0);
+	const [tableType, setTableType] = useState<IType>("horizontal");
 
 	const onClickSelect = (index: number) => {
-		const map: IType[] = ["movable", "transformed"];
+		const map: IType[] = ["horizontal", "vertical"];
 
 		setSelectIndex(index);
 		setTableType(map[index]);
@@ -18,8 +18,8 @@ export const TestTable = () => {
 	return (
 		<S.TestTable>
 			<Select selectedIndex={selectIndex} onClickItem={onClickSelect}>
-				<Select.Item>Movable</Select.Item>
-				<Select.Item>Transformed</Select.Item>
+				<Select.Item>Horizontal</Select.Item>
+				<Select.Item>Vertical</Select.Item>
 			</Select>
 
 			<S.TableContainer>

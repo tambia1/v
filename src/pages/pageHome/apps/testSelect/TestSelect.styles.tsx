@@ -1,3 +1,4 @@
+import { Icon } from "@src/icons/Icon";
 import styled from "styled-components";
 
 export const TestSelect = styled.div`
@@ -11,4 +12,10 @@ export const TestSelect = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
+`;
+
+export const IconCheck = styled(Icon).attrs({
+	iconName: "iconCheck",
+})`
+	margin-left: auto;
 `;

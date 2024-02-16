@@ -6,7 +6,7 @@ type IData = {
 	rows: ReactNode[][];
 };
 
-export type IType = "movable" | "transformed";
+export type IType = "horizontal" | "vertical";
 
 interface Props {
 	type: IType;
@@ -16,7 +16,7 @@ interface Props {
 export const Table = ({ data, type }: Props) => {
 	return (
 		<S.Table data-type={type}>
-			{type === "movable" && (
+			{type === "horizontal" && (
 				<S.TableContainer>
 					<S.TableCols>
 						<S.TableRow>
@@ -37,7 +37,7 @@ export const Table = ({ data, type }: Props) => {
 				</S.TableContainer>
 			)}
 
-			{type === "transformed" && (
+			{type === "vertical" && (
 				<>
 					{data.rows.map((row, i) => (
 						<S.TableContainer key={i}>
