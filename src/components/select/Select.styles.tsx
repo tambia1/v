@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DropDown = styled.div`
+export const Select = styled.div`
 	width: 20rem;
 	position: relative;
 `;

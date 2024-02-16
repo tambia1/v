@@ -66,7 +66,7 @@ export type IHome = {
 		title: string;
 	};
 
-	testDropDown: {
+	testSelect: {
 		title: string;
 		item0: string;
 		item1: string;

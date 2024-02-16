@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import * as S from "./DropDown.styles";
+import * as S from "./Select.styles";
 import { List } from "./components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { Item } from "./components/item/Item";
@@ -10,7 +10,7 @@ interface Props {
 	onClickItem: (index: number) => void;
 }
 
-export const DropDown = ({ children, selectedIndex, onClickItem }: Props) => {
+export const Select = ({ children, selectedIndex, onClickItem }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleOnClickButton = () => {
@@ -23,7 +23,7 @@ export const DropDown = ({ children, selectedIndex, onClickItem }: Props) => {
 	};
 
 	return (
-		<S.DropDown>
+		<S.Select>
 			<List>
 				<List.Cell onClick={handleOnClickButton}>
 					<List.Cell.CellCenter>{children[selectedIndex]}</List.Cell.CellCenter>
@@ -48,8 +48,8 @@ export const DropDown = ({ children, selectedIndex, onClickItem }: Props) => {
 					))}
 				</List>
 			</S.ListContainer>
-		</S.DropDown>
+		</S.Select>
 	);
 };
 
-DropDown.Item = Item;
+Select.Item = Item;

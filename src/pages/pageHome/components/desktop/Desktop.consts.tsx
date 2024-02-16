@@ -4,7 +4,7 @@ import { lang } from "@src/locales/i18n";
 import { Settings } from "../../apps/settings/Settings";
 import { Tetris } from "../../apps/tetris/Tetris";
 import { Test } from "../../apps/test/Test";
-import { TestDropDown } from "../../apps/testDropDown/TestDropDown";
+import { TestSelect } from "../../apps/testSelect/TestSelect";
 import { TestTable } from "../../apps/testTable/TestTable";
 import { Camera } from "../../apps/camera/Camera";
 import { lazy } from "react";
@@ -37,6 +37,6 @@ export const apps: IApp[] = [
 	{ id: "snake", roles: ["admin", "user"], title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
 	{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 	{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "weather", component: <Test /> },
-	{ id: "testDropDown", roles: ["admin"], title: <T>{lang.testDropDown.title}</T>, icon: "photos", component: <TestDropDown /> },
+	{ id: "testSelect", roles: ["admin"], title: <T>{lang.testSelect.title}</T>, icon: "photos", component: <TestSelect /> },
 	{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
 ];

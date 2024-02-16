@@ -66,8 +66,8 @@ export const translation: IHome = {
 		title: "Test",
 	},
 
-	testDropDown: {
-		title: "Test DropDown",
+	testSelect: {
+		title: "Test Select",
 		item0: "Item 0",
 		item1: "Item 1",
 		item2: "Item 2",

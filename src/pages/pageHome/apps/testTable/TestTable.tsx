@@ -2,25 +2,25 @@ import { useState } from "react";
 import { IType, Table } from "@src/components/table/Table";
 import * as S from "./TestTable.styles";
 import { data } from "./Data";
-import { DropDown } from "@src/components/dropDown/DropDown";
+import { Select } from "@src/components/select/Select";
 
 export const TestTable = () => {
-	const [dropDownIndex, setDropDownIndex] = useState(1);
+	const [selectIndex, setSelectIndex] = useState(1);
 	const [tableType, setTableType] = useState<IType>("movable");
 
-	const onClickDropDown = (index: number) => {
+	const onClickSelect = (index: number) => {
 		const map: IType[] = ["movable", "transformed"];
 
-		setDropDownIndex(index);
+		setSelectIndex(index);
 		setTableType(map[index]);
 	};
 
 	return (
 		<S.TestTable>
-			<DropDown selectedIndex={dropDownIndex} onClickItem={onClickDropDown}>
-				<DropDown.Item>Movable</DropDown.Item>
-				<DropDown.Item>Transformed</DropDown.Item>
-			</DropDown>
+			<Select selectedIndex={selectIndex} onClickItem={onClickSelect}>
+				<Select.Item>Movable</Select.Item>
+				<Select.Item>Transformed</Select.Item>
+			</Select>
 
 			<S.TableContainer>
 				<Table data={data} type={tableType} />
