@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import * as S from "./Paging.styles";
 import { ITouch, useTouch } from "@src/hooks/UseTouch";
 
@@ -10,16 +10,10 @@ export const Paging = ({ children: pages }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
 	const [pageIndex, setPageIndex] = useState(0);
-	const [pageState, setPageState] = useState<S.IPageState>("go");
-	const [translateX, setTranslateX] = useState(0);
 
 	useTouch({
 		ref: refPages,
-		onTouch: (props) => onTouch(props),
-	});
-
-	const onTouch = useCallback(
-		({ xStart, xMove, xEnd, status }: ITouch) => {
+		onTouch: ({ xStart, xMove, xEnd, status }: ITouch) => {
 			const divPagesPanel = refPagesPanel.current;
 
 			if (!divPagesPanel) {
@@ -39,12 +33,9 @@ export const Paging = ({ children: pages }: Props) => {
 					gap >>= 2;
 				}
 
-				//set state to go (prevent css animation while we are draging)
-				setPageState("go");
-
 				//set transform/transition
 				const gapInPercent = (gap / divPagesPanel.clientWidth) * 100;
-				setTranslateX(-pageIndex * 100 + gapInPercent);
+				translate(refPagesPanel.current, -pageIndex * 100 + gapInPercent, false);
 			}
 
 			if (status === "up") {
@@ -64,18 +55,21 @@ export const Paging = ({ children: pages }: Props) => {
 					index = pageIndex - 1;
 				}
 
-				setPageState("move");
 				setPageIndex(index);
-				setTranslateX(-index * 100);
+				translate(refPagesPanel.current, -index * 100, true);
 			}
 		},
-		[refPagesPanel.current]
-	);
+	});
+
+	const translate = (div: HTMLDivElement, x: number, isAnimated: boolean) => {
+		div.style.transition = isAnimated ? "transform 0.3s cubic-bezier(0.2, 0.6, 0.6, 1) 0s" : "";
+		div.style.transform = `translate3d(${x}% , 0px, 0px)`;
+	};
 
 	return (
 		<S.Paging>
 			<S.Pages ref={refPages}>
-				<S.PagesPanel ref={refPagesPanel} $pageState={pageState} $translateX={translateX}>
+				<S.PagesPanel ref={refPagesPanel}>
 					{pages.map((page, index) => (
 						<S.Page key={index}>{page}</S.Page>
 					))}

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Paging = styled.div`
 	width: 100%;
@@ -19,23 +19,11 @@ export const Pages = styled.div`
 	overflow: hidden;
 `;
 
-export const PagesPanel = styled.div<{ $pageState: IPageState; $translateX: number }>`
+export const PagesPanel = styled.div`
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: row;
-
-	${(props) => {
-		if (props.$pageState === "move") {
-			return css`
-				transition: transform 0.3s cubic-bezier(0.2, 0.6, 0.6, 1) 0s;
-			`;
-		}
-
-		return null;
-	}}
-
-	transform: translate3d(${(props) => props.$translateX}% , 0px, 0px);
 `;
 
 export const Page = styled.div`
