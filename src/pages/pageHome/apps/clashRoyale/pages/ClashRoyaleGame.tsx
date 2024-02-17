@@ -1,8 +1,13 @@
 import { useEffect, useRef } from "react";
 import * as S from "./ClashRoyaleGame.styles";
 import { Game } from "./game/Game";
+import { IType as IArenaType } from "./game/Arena";
 
-export const ClashRoyaleGame = () => {
+interface Props {
+	arenaType: IArenaType;
+}
+
+export const ClashRoyaleGame = ({ arenaType }: Props) => {
 	const refBoard = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -11,7 +16,7 @@ export const ClashRoyaleGame = () => {
 				board: refBoard.current,
 				goodPlayerName: "Player Good",
 				badPlayerName: "Player Bad",
-				arenaType: "arena1",
+				arenaType: arenaType,
 				onGameOver: () => {
 					//on game over
 				},

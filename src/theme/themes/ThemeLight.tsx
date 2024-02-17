@@ -50,6 +50,17 @@ export const themeLight: ITheme = {
 		errorFgDisabled: "#959595",
 		errorBgDisabled: "#c12e2a",
 
+		warningFg: "#ffffff",
+		warningBg: "#fac536",
+		warningFgHover: "#ffffff",
+		warningBgHover: "#ca8526",
+		warningFgActive: "#ffffff",
+		warningBgActive: "#9a6516",
+		warningFgSelected: "#ffffff",
+		warningBgSelected: "#ca8526",
+		warningFgDisabled: "#959595",
+		warningBgDisabled: "#ca8526",
+
 		shadow: "#00000066",
 
 		boxColor1: "#ffffff",

@@ -19,6 +19,14 @@ export const Bar = ({ theme, userName, userNameType, onClickButtonClose, onClick
 				<Icon iconName="iconXCircle" size={theme.size.l} />
 			</S.IconClose>
 
+			<S.IconHide onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
+				<Icon iconName="iconXCircle" size={theme.size.l} />
+			</S.IconHide>
+
+			<S.IconMinimize onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
+				<Icon iconName="iconXCircle" size={theme.size.l} />
+			</S.IconMinimize>
+
 			<S.Username>
 				{userNameType === "success" && <S.Success>{userName}</S.Success>}
 				{userNameType === "error" && <S.Error>{userName}</S.Error>}

@@ -27,7 +27,7 @@ export const Headers = styled.div`
 	}
 `;
 
-export const Bodies = styled.div`
+export const Pages = styled.div`
 	width: 100%;
 	height: 100%;
 	display: flex;

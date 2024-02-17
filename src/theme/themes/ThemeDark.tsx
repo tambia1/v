@@ -29,7 +29,7 @@ export const themeDark: ITheme = {
 		accentBgDisabled: "#265a87",
 
 		successFg: "#2a2a2a",
-		successBg: "#5cb85c",
+		successBg: "#336633",
 		successFgHover: "#2a2a2a",
 		successBgHover: "#7cc67c",
 		successFgActive: "#2a2a2a",
@@ -40,7 +40,7 @@ export const themeDark: ITheme = {
 		successBgDisabled: "#87cb87",
 
 		errorFg: "#2a2a2a",
-		errorBg: "#d9534f",
+		errorBg: "#632424",
 		errorFgHover: "#2a2a2a",
 		errorBgHover: "#e17875",
 		errorFgActive: "#2a2a2a",
@@ -49,6 +49,17 @@ export const themeDark: ITheme = {
 		errorBgSelected: "#e48481",
 		errorFgDisabled: "#959595",
 		errorBgDisabled: "#c12e2a",
+
+		warningFg: "#2a2a2a",
+		warningBg: "#87691D",
+		warningFgHover: "#2a2a2a",
+		warningBgHover: "#ca8526",
+		warningFgActive: "#2a2a2a",
+		warningBgActive: "#9a6516",
+		warningFgSelected: "#2a2a2a",
+		warningBgSelected: "#ca8526",
+		warningFgDisabled: "#959595",
+		warningBgDisabled: "#ca8526",
 
 		shadow: "#ffffff66",
 
