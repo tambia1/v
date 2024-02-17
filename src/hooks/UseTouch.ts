@@ -151,5 +151,5 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 			document.removeEventListener(MOUSE_OUT, mouseOutListener);
 			document.removeEventListener(MOUSE_ENTER, mouseEnterListener);
 		};
-	}, [ref, ref.current]);
+	}, [ref.current]);
 };
