@@ -25,7 +25,7 @@ export const Splash = ({ onFinish }: Props) => {
 			await animateTitle.current.play("appear");
 			await animateProgress.current.play("appear");
 
-			const timeStart = new Date().getTime();
+			const timeStart = Date.now();
 
 			const arr = [...Object.values(Icons), ...backgroundImages.map((item) => item.light), ...backgroundImages.map((item) => item.dark)];
 
@@ -38,8 +38,8 @@ export const Splash = ({ onFinish }: Props) => {
 
 			await animateProgress.current.play("disappear");
 
-			const timeEnd = new Date().getTime();
-			const timeToWait = Math.max(0, 1500 - (timeEnd - timeStart));
+			const timeEnd = Date.now();
+			const timeToWait = Math.max(0, 500 - (timeEnd - timeStart));
 
 			await Promises.sleep(timeToWait);
 
