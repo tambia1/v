@@ -29,6 +29,68 @@ export const IconClose = styled.div<{ $isVisible: boolean }>`
 	color: ${(props) => props.theme.color.normalFg};
 	transition: all 0.3s ease;
 
+	& svg {
+		fill: ${(props) => props.theme.color.errorBg};
+	}
+
+	&:active {
+		color: ${(props) => props.theme.color.normalFgActive};
+	}
+
+	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+	cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "none")};
+	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
+`;
+
+export const IconHide = styled.div<{ $isVisible: boolean }>`
+	position: absolute;
+	width: 4rem;
+	height: 4rem;
+	top: 0rem;
+	left: 3rem;
+
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 50%;
+	color: ${(props) => props.theme.color.normalFg};
+	transition: all 0.3s ease;
+
+	& svg {
+		fill: ${(props) => props.theme.color.warningBg};
+	}
+
+	&:active {
+		color: ${(props) => props.theme.color.normalFgActive};
+	}
+
+	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+	cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "none")};
+	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
+`;
+
+export const IconMinimize = styled.div<{ $isVisible: boolean }>`
+	position: absolute;
+	width: 4rem;
+	height: 4rem;
+	top: 0rem;
+	left: 6rem;
+
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+
+	border-radius: 50%;
+	color: ${(props) => props.theme.color.normalFg};
+	transition: all 0.3s ease;
+
+	& svg {
+		fill: ${(props) => props.theme.color.successBg};
+	}
+
 	&:active {
 		color: ${(props) => props.theme.color.normalFgActive};
 	}

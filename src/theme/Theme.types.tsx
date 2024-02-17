@@ -54,6 +54,17 @@ export interface ITheme {
 		errorFgDisabled: string;
 		errorBgDisabled: string;
 
+		warningFg: string;
+		warningBg: string;
+		warningFgHover: string;
+		warningBgHover: string;
+		warningFgActive: string;
+		warningBgActive: string;
+		warningFgSelected: string;
+		warningBgSelected: string;
+		warningFgDisabled: string;
+		warningBgDisabled: string;
+
 		shadow: string;
 
 		boxColor1: string;
