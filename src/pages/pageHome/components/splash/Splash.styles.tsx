@@ -20,12 +20,6 @@ export const Splash = styled.div`
 	z-index: 1;
 `;
 
-export const LogoContainer = styled.div`
-	position: relative;
-	width: 10rem;
-	height: 10rem;
-`;
-
 export const Logo = styled.div`
 	background-image: url(${logo});
 	background-size: contain;
@@ -41,12 +35,6 @@ export const Version = styled.div`
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
-`;
-
-export const ProgressContainer = styled.div`
-	position: relative;
-	width: 10rem;
-	height: 10rem;
 `;
 
 export const Progress = styled.div`
