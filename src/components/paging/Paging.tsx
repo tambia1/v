@@ -4,9 +4,10 @@ import { ITouch, useTouch } from "@src/hooks/UseTouch";
 
 interface Props {
 	children: ReactNode[];
+	onChange: (pageIndex: number) => void;
 }
 
-export const Paging = ({ children: pages }: Props) => {
+export const Paging = ({ children: pages, onChange }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
 	const [pageIndex, setPageIndex] = useState(0);
@@ -49,14 +50,15 @@ export const Paging = ({ children: pages }: Props) => {
 					} else if (gap > divPagesPanel.clientWidth >> 1) {
 						index = pageIndex - 1;
 					}
-				} else if (direction == -1) {
+				} else if (direction == -1 && pageIndex < pages.length - 1) {
 					index = pageIndex + 1;
-				} else if (direction == 1) {
+				} else if (direction == 1 && pageIndex > 0) {
 					index = pageIndex - 1;
 				}
 
 				setPageIndex(index);
 				translate(refPagesPanel.current, -index * 100, true);
+				onChange(index);
 			}
 		},
 		deps: [pageIndex, setPageIndex, refPagesPanel.current],

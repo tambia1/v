@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import bg from "./game/images/misc/bg.webp";
 import splash0 from "./game/images/misc/splash_0.png";
 import splash1 from "./game/images/misc/splash_1.png";
@@ -7,6 +7,14 @@ import buttonYellow from "./game/images/misc/button_yellow.png";
 import arenaIcon1 from "./game/images/arenas/arenaIcon1.png";
 import arenaIcon2 from "./game/images/arenas/arenaIcon2.png";
 import arenaIcon3 from "./game/images/arenas/arenaIcon3.png";
+import arenaIcon4 from "./game/images/arenas/arenaIcon4.png";
+import arenaIcon5 from "./game/images/arenas/arenaIcon5.png";
+import arenaIcon6 from "./game/images/arenas/arenaIcon6.png";
+import arenaIcon7 from "./game/images/arenas/arenaIcon7.png";
+import arenaIcon8 from "./game/images/arenas/arenaIcon8.png";
+import arenaIcon9 from "./game/images/arenas/arenaIcon9.png";
+import arenaIcon10 from "./game/images/arenas/arenaIcon10.png";
+import arenaIcon11 from "./game/images/arenas/arenaIcon11.png";
 
 export const ClashRoyaleMenu = styled.div`
 	width: 100%;
@@ -61,7 +69,7 @@ export const ButtonStart = styled.button<{ $isVisible: boolean }>`
 	outline: none;
 	cursor: pointer;
 	position: absolute;
-	bottom: 100px;
+	bottom: 80px;
 	width: 150px;
 	height: 76px;
 	background-image: url(${buttonYellow});
@@ -91,11 +99,12 @@ export const PagingContainer = styled.div`
 	bottom: 0;
 
 	height: 250px;
-	bottom: 200px;
+	bottom: 180px;
+	border-radius: 1rem;
 	top: auto;
 `;
 
-export const PagingItem1 = styled.div`
+export const PagingItem = css`
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -104,32 +113,59 @@ export const PagingItem1 = styled.div`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50%;
+`;
 
+export const PagingItem1 = styled.div`
+	${PagingItem}
 	background-image: url(${arenaIcon1});
 `;
 
 export const PagingItem2 = styled.div`
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 50%;
-
+	${PagingItem}
 	background-image: url(${arenaIcon2});
 `;
 
 export const PagingItem3 = styled.div`
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 50%;
-
+	${PagingItem}
 	background-image: url(${arenaIcon3});
+`;
+
+export const PagingItem4 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon4});
+`;
+
+export const PagingItem5 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon5});
+`;
+
+export const PagingItem6 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon6});
+`;
+
+export const PagingItem7 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon7});
+`;
+
+export const PagingItem8 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon8});
+`;
+
+export const PagingItem9 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon9});
+`;
+
+export const PagingItem10 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon10});
+`;
+
+export const PagingItem11 = styled.div`
+	${PagingItem}
+	background-image: url(${arenaIcon11});
 `;
