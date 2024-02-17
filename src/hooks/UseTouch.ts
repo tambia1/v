@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from "react";
+import { DependencyList, RefObject, useEffect } from "react";
 
 export type IStatus = "down" | "move" | "up" | "out";
 export type ITouch = {
@@ -15,10 +15,11 @@ export type ITouch = {
 
 interface Props {
 	ref: RefObject<HTMLElement>;
-	onTouch?: (touch: ITouch) => void;
+	onTouch: (touch: ITouch) => void;
+	deps?: DependencyList | undefined;
 }
 
-export const useTouch = ({ ref, onTouch }: Props) => {
+export const useTouch = ({ ref, onTouch, deps }: Props) => {
 	useEffect(() => {
 		const div = ref.current;
 
@@ -75,7 +76,7 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 
 			const time = 0;
 
-			onTouch?.({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
+			onTouch({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
 
 			document.addEventListener(MOUSE_MOVE, mouseMoveListener, { passive: false });
 			document.addEventListener(MOUSE_UP, mouseUpListener, { passive: false });
@@ -99,7 +100,7 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 
 				const time = timeEnd - timeStart;
 
-				onTouch?.({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
+				onTouch({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
 			}
 		};
 
@@ -121,7 +122,7 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 				status = "out";
 			}
 
-			onTouch?.({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
+			onTouch({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
 		};
 
 		const mouseOutListener = () => {
@@ -151,5 +152,5 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 			document.removeEventListener(MOUSE_OUT, mouseOutListener);
 			document.removeEventListener(MOUSE_ENTER, mouseEnterListener);
 		};
-	}, [ref.current]);
+	}, [ref.current, deps]);
 };

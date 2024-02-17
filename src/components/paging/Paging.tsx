@@ -59,6 +59,7 @@ export const Paging = ({ children: pages }: Props) => {
 				translate(refPagesPanel.current, -index * 100, true);
 			}
 		},
+		deps: [pageIndex, setPageIndex, refPagesPanel.current],
 	});
 
 	const translate = (div: HTMLDivElement, x: number, isAnimated: boolean) => {
