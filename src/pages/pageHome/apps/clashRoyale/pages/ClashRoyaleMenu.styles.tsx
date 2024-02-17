@@ -5,6 +5,8 @@ import splash1 from "./game/images/misc/splash_1.png";
 import splash2 from "./game/images/misc/splash_2.png";
 import buttonYellow from "./game/images/misc/button_yellow.png";
 import arenaIcon1 from "./game/images/arenas/arenaIcon1.png";
+import arenaIcon2 from "./game/images/arenas/arenaIcon2.png";
+import arenaIcon3 from "./game/images/arenas/arenaIcon3.png";
 
 export const ClashRoyaleMenu = styled.div`
 	width: 100%;
@@ -79,7 +81,7 @@ export const ButtonStart = styled.button<{ $isVisible: boolean }>`
 	}
 `;
 
-export const Paging = styled.div`
+export const PagingContainer = styled.div`
 	overflow: hidden;
 	background-position: 0px 0px;
 	position: absolute;
@@ -93,7 +95,7 @@ export const Paging = styled.div`
 	top: auto;
 `;
 
-export const PagingItem = styled.div`
+export const PagingItem1 = styled.div`
 	position: absolute;
 	top: 0;
 	bottom: 0;
@@ -104,4 +106,30 @@ export const PagingItem = styled.div`
 	background-position: 50%;
 
 	background-image: url(${arenaIcon1});
+`;
+
+export const PagingItem2 = styled.div`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50%;
+
+	background-image: url(${arenaIcon2});
+`;
+
+export const PagingItem3 = styled.div`
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50%;
+
+	background-image: url(${arenaIcon3});
 `;
