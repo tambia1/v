@@ -21,7 +21,7 @@ export const Transition = ({ children }: Props) => {
 			animateA.current.play("show");
 			await animateB.current.play("hide");
 
-			animateA.current.play("disappearAndRemove");
+			animateA.current.play("disappear");
 			await animateB.current.play("appear");
 		};
 
