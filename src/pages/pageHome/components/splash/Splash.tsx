@@ -51,14 +51,18 @@ export const Splash = ({ onFinish }: Props) => {
 
 	return (
 		<S.Splash>
-			<Animate useAnimate={animateTitle}>
-				<S.Logo />
-			</Animate>
-			<Animate useAnimate={animateProgress}>
-				<S.Progress>
-					<Progress progress={progress} />
-				</S.Progress>
-			</Animate>
+			<S.LogoContainer>
+				<Animate useAnimate={animateTitle}>
+					<S.Logo />
+				</Animate>
+			</S.LogoContainer>
+			<S.ProgressContainer>
+				<Animate useAnimate={animateProgress}>
+					<S.Progress>
+						<Progress progress={progress} />
+					</S.Progress>
+				</Animate>
+			</S.ProgressContainer>
 			<S.Version>{version}</S.Version>
 		</S.Splash>
 	);

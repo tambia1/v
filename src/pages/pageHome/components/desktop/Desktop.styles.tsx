@@ -19,6 +19,12 @@ export const AppsContainer = styled.div`
 	width: auto;
 	height: 100%;
 	padding: 1rem;
+	position: relative;
+`;
+
+export const App = styled.div`
+	position: absolute;
+	inset: 0 0 0 0;
 `;
 
 export const Bar = styled.div`

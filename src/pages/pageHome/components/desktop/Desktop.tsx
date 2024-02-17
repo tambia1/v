@@ -104,7 +104,11 @@ export const Desktop = () => {
 			<BarContext.Provider value={{ onClickclose: handleOnClickClose }}>
 				<S.Apps>
 					<S.AppsContainer>
-						<Animate useAnimate={animateApp}>{currentApp}</Animate>
+						{currentApp && (
+							<S.App>
+								<Animate useAnimate={animateApp}>{currentApp}</Animate>
+							</S.App>
+						)}
 
 						{apps.map((app) => {
 							if (app.roles.includes(storeLogin.role)) {

@@ -15,11 +15,9 @@ export const PageHome = styled.div`
 export const Desktop = styled.div`
 	position: absolute;
 	inset: 0 0 0 0;
-	display: grid;
 `;
 
 export const Splash = styled.div`
 	position: absolute;
 	inset: 0 0 0 0;
-	display: grid;
 `;
