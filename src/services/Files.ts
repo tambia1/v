@@ -1,5 +1,5 @@
-const downloadImages = async (urls: string[]) => {
-	await Promise.all(
+const downloadImages = (urls: string[]) => {
+	return Promise.all(
 		urls.map(
 			(url) =>
 				new Promise<void>((resolve) => {

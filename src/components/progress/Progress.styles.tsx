@@ -9,9 +9,11 @@ export const Progress = styled.div`
 	background-color: transparent;
 	border: 1px solid ${({ theme }) => theme.color.normalBg};
 `;
-
-export const ProgressValue = styled.div<{ $width: number }>`
-	width: ${({ $width }) => `${$width}%`};
+export const ProgressValue = styled.div.attrs<{ $width: number }>((props) => ({
+	style: {
+		width: `${props.$width}%`,
+	},
+}))`
 	height: 100%;
 	position: relative;
 	border-radius: 100rem;

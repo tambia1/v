@@ -15,12 +15,16 @@ export const PageHome = () => {
 
 	return (
 		<S.PageHome>
-			<Animate useAnimate={animateHome}>
-				<Desktop />
-			</Animate>
-			<Animate useAnimate={animateSplash}>
-				<Splash onFinish={handleSplashOnFinish} />
-			</Animate>
+			<S.Desktop>
+				<Animate useAnimate={animateHome}>
+					<Desktop />
+				</Animate>
+			</S.Desktop>
+			<S.Splash>
+				<Animate useAnimate={animateSplash}>
+					<Splash onFinish={handleSplashOnFinish} />
+				</Animate>
+			</S.Splash>
 		</S.PageHome>
 	);
 };

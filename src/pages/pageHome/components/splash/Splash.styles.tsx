@@ -1,4 +1,3 @@
-import { Animate } from "@src/components/animate/Animate";
 import styled from "styled-components";
 import logo from "./assets/logo.png";
 
@@ -21,7 +20,7 @@ export const Splash = styled.div`
 	z-index: 1;
 `;
 
-export const Logo = styled(Animate)`
+export const Logo = styled.div`
 	position: relative;
 	background-image: url(${logo});
 	background-size: contain;
@@ -37,4 +36,8 @@ export const Version = styled.div`
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
+`;
+
+export const Progress = styled.div`
+	margin-top: 1rem;
 `;
