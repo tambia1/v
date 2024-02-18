@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const Transition = styled.div`
-	position: relative;
-`;
+export const Transition = styled.div``;
 
-export const Child = styled.div`
-	position: absolute;
-`;
+export const Child = styled.div``;

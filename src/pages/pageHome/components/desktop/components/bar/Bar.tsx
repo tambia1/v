@@ -20,11 +20,11 @@ export const Bar = ({ theme, userName, userNameType, onClickButtonClose, onClick
 			</S.IconClose>
 
 			<S.IconHide onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
-				<Icon iconName="iconXCircle" size={theme.size.l} />
+				<Icon iconName="iconMinusCircle" size={theme.size.l} />
 			</S.IconHide>
 
 			<S.IconMinimize onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
-				<Icon iconName="iconXCircle" size={theme.size.l} />
+				<Icon iconName="iconPlayCircle" size={theme.size.l} />
 			</S.IconMinimize>
 
 			<S.Username>

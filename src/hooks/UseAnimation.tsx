@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useLayoutEffect, useRef } from "react";
 import "./UseAnimation.css";
 
 const Animations = {
@@ -28,7 +28,7 @@ type IResolve = (value: void | PromiseLike<void>) => void;
 export const useAnimation = (ref: RefObject<HTMLElement>) => {
 	const refResolve = useRef<IResolve>();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const div = ref.current;
 
 		if (!div) {

@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useState } from "react";
+import { ReactNode, useCallback, useRef, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
@@ -8,8 +8,6 @@ import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
 import { IAppId } from "./Desktop.types";
 import { apps } from "./Desktop.apps";
-import { Animate } from "@src/components/animate/Animate";
-import { useAnimate } from "@src/components/animate/UseAnimate";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { useThemeStore } from "../../apps/settings/page/components/theme/store/useThemeStore";
@@ -22,6 +20,7 @@ import { Suspension } from "@src/components/suspension/Suspension";
 import { Promises } from "@src/services/Promises";
 import { BarContext } from "./hooks/UseBar";
 import { Bar } from "./components/bar/Bar";
+import { useAnimation } from "@src/hooks/UseAnimation";
 
 export const Desktop = () => {
 	const { theme } = useThemeContext();
@@ -29,11 +28,12 @@ export const Desktop = () => {
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 	const [bar, setBar] = useState<{ isReady: boolean; position: S.IBarPosition }>({ isReady: false, position: "top" });
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
-	const animateApp = useAnimate("hide");
 	const { setTheme } = useThemeContext();
 	const { i18n } = useTranslation();
 	const themeStore = useThemeStore();
 	const [loadingAppId, setLoadingAppId] = useState("");
+	const refApp = useRef(null);
+	const animationApp = useAnimation(refApp);
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
@@ -75,7 +75,9 @@ export const Desktop = () => {
 					}
 
 					setLoadingAppId("");
-					animateApp.current.play("appear");
+
+					await animationApp.play("hide");
+					await animationApp.play("appear");
 				}}
 			>
 				{app.component}
@@ -88,7 +90,7 @@ export const Desktop = () => {
 
 	const handleOnClickClose = async () => {
 		setIsVisibleButtonClose(false);
-		await animateApp.current.play("disappear");
+		await animationApp.play("disappear");
 		setCurrentApp(null);
 	};
 
@@ -104,11 +106,7 @@ export const Desktop = () => {
 			<BarContext.Provider value={{ onClickclose: handleOnClickClose }}>
 				<S.Apps>
 					<S.AppsContainer>
-						{currentApp && (
-							<S.App>
-								<Animate useAnimate={animateApp}>{currentApp}</Animate>
-							</S.App>
-						)}
+						<S.AppContainer ref={refApp}>{currentApp && <S.App>{currentApp}</S.App>}</S.AppContainer>
 
 						{apps.map((app) => {
 							if (app.roles.includes(storeLogin.role)) {

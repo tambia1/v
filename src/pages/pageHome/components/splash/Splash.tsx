@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import * as S from "./Splash.styles";
 import { version } from "@src/../package.json";
 import { Files } from "@src/services/Files";
@@ -15,19 +15,17 @@ interface Props {
 export const Splash = ({ onFinish }: Props) => {
 	const refLogo = useRef(null);
 	const refProgress = useRef(null);
-	const animateTitle = useAnimation(refLogo);
-	const animateProgress = useAnimation(refProgress);
+	const animationTitle = useAnimation(refLogo);
+	const animationProgress = useAnimation(refProgress);
 	const [progress, setProgress] = useState(0);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const start = async () => {
-			animateTitle.play("hide");
-			animateProgress.play("hide");
+			animationTitle.play("hide");
+			animationProgress.play("hide");
 
-			await Promises.sleep(300);
-
-			await animateTitle.play("appear");
-			await animateProgress.play("appear");
+			await animationTitle.play("appear");
+			await animationProgress.play("appear");
 
 			const timeStart = Date.now();
 
@@ -41,7 +39,7 @@ export const Splash = ({ onFinish }: Props) => {
 
 			setProgress(100);
 
-			await animateProgress.play("disappear");
+			await animationProgress.play("disappear");
 
 			const timeEnd = Date.now();
 			const timeToWait = Math.max(0, 500 - (timeEnd - timeStart));

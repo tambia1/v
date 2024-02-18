@@ -1,7 +1,6 @@
-import { useEffect, ReactNode, useState } from "react";
+import { ReactNode, useState, useRef, useLayoutEffect } from "react";
 import * as S from "./Transition.styles";
-import { Animate } from "../animate/Animate";
-import { useAnimate } from "../animate/UseAnimate";
+import { useAnimation } from "@src/hooks/UseAnimation";
 
 interface Props {
 	children?: ReactNode;
@@ -10,19 +9,22 @@ interface Props {
 export const Transition = ({ children }: Props) => {
 	const [childA, setChildA] = useState<ReactNode>(children);
 	const [childB, setChildB] = useState<ReactNode>(children);
-	const animateA = useAnimate("hide");
-	const animateB = useAnimate("show");
 
-	useEffect(() => {
+	const refA = useRef(null);
+	const refB = useRef(null);
+	const animationA = useAnimation(refA);
+	const animationB = useAnimation(refB);
+
+	useLayoutEffect(() => {
 		const run = async () => {
 			setChildA(childB);
 			setChildB(children);
 
-			animateA.current.play("show");
-			await animateB.current.play("hide");
+			animationA.play("show");
+			await animationB.play("hide");
 
-			animateA.current.play("disappear");
-			await animateB.current.play("appear");
+			animationA.play("disappear");
+			await animationB.play("appear");
 		};
 
 		run();
@@ -30,13 +32,8 @@ export const Transition = ({ children }: Props) => {
 
 	return (
 		<S.Transition>
-			<Animate useAnimate={animateA}>
-				<S.Child>{childA}</S.Child>
-			</Animate>
-
-			<Animate useAnimate={animateB}>
-				<S.Child>{childB}</S.Child>
-			</Animate>
+			<S.Child>{childA}</S.Child>
+			<S.Child>{childB}</S.Child>
 		</S.Transition>
 	);
 };

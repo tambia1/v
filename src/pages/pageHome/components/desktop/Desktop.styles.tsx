@@ -22,6 +22,12 @@ export const AppsContainer = styled.div`
 	position: relative;
 `;
 
+export const AppContainer = styled.div`
+	position: absolute;
+	inset: 0 0 0 0;
+	pointer-events: none;
+`;
+
 export const App = styled.div`
 	position: absolute;
 	inset: 0 0 0 0;

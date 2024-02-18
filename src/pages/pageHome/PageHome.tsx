@@ -1,34 +1,41 @@
 import * as S from "./PageHome.styles";
-import { Animate } from "@src/components/animate/Animate";
-import { useAnimate } from "@src/components/animate/UseAnimate";
 import { Splash } from "./components/splash/Splash";
 import { Desktop } from "./components/desktop/Desktop";
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
+import { useAnimation } from "@src/hooks/UseAnimation";
 
 export const PageHome = () => {
-	const animateSplash = useAnimate("appear");
-	const animateHome = useAnimate("hide");
+	const refSplash = useRef(null);
+	const refDesktop = useRef(null);
+	const animationSplash = useAnimation(refSplash);
+	const animationDesktop = useAnimation(refDesktop);
+
 	const [showSlash, setShowSplash] = useState(true);
 
+	useLayoutEffect(() => {
+		const run = async () => {
+			await animationDesktop.play("hide");
+			await animationSplash.play("appear");
+		};
+
+		run();
+	}, []);
+
 	const handleSplashOnFinish = async () => {
-		await animateHome.current.play("show");
-		await animateSplash.current.play("disappear");
+		await animationDesktop.play("show");
+		await animationSplash.play("disappear");
 
 		setShowSplash(false);
 	};
 
 	return (
 		<S.PageHome>
-			<S.Desktop>
-				<Animate useAnimate={animateHome}>
-					<Desktop />
-				</Animate>
+			<S.Desktop ref={refDesktop}>
+				<Desktop />
 			</S.Desktop>
 			{showSlash && (
-				<S.Splash>
-					<Animate useAnimate={animateSplash}>
-						<Splash onFinish={handleSplashOnFinish} />
-					</Animate>
+				<S.Splash ref={refSplash}>
+					<Splash onFinish={handleSplashOnFinish} />
 				</S.Splash>
 			)}
 		</S.PageHome>
