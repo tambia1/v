@@ -1,21 +1,22 @@
 import { RefObject, useEffect, useRef } from "react";
+import "./UseAnimation.css";
 
 const Animations = {
 	none: "",
 	show: `
-	  animation: show linear 0s both;
+	  animation: useAnimationShow linear 0s both;
 	  pointer-events: all;
 	`,
 	hide: `
-	  animation: hide linear 0s both;
+	  animation: useAnimationHide linear 0s both;
 	  pointer-events: none;
 	`,
 	appear: `
-	  animation: appear ease 0.3s both;
+	  animation: useAnimationAppear ease 0.3s both;
 	  pointer-events: all;
 	`,
 	disappear: `
-	  animation: disappear ease 0.3s both;
+	  animation: useAnimationDisappear ease 0.3s both;
 	  pointer-events: none;
 	`,
 } as const;
