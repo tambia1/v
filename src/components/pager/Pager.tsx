@@ -154,7 +154,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 				</S.Headers>
 				<S.Pages>
 					{pagerItems.map((pagerItem) => (
-						<Item key={pagerItem.page.props.id} animation={pagerItem.pageAnimation} onAnimationStart={() => onAnimationStart(pagerItem)} onAnimationEnd={() => onAnimationEnd(pagerItem)}>
+						<Item key={pagerItem.page.props.id} animation={pagerItem.pageAnimation} onAnimStart={() => onAnimationStart(pagerItem)} onAnimEnd={() => onAnimationEnd(pagerItem)}>
 							{pagerItem.page.props.children}
 						</Item>
 					))}

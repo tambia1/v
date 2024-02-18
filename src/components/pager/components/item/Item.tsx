@@ -4,19 +4,19 @@ import * as S from "./Item.styles";
 interface Props {
 	animation: S.IAnimationState;
 	children?: ReactNode;
-	onAnimationStart?: () => void;
-	onAnimationEnd?: () => void;
+	onAnimStart?: () => void;
+	onAnimEnd?: () => void;
 }
 
-export const Item = ({ children, animation, onAnimationStart, onAnimationEnd }: Props) => {
+export const Item = ({ children, animation, onAnimStart: onStart, onAnimEnd: onEnd }: Props) => {
 	const handleOnAnimationStart = (e: React.AnimationEvent) => {
 		e.stopPropagation();
-		onAnimationStart?.();
+		onStart?.();
 	};
 
 	const handleOnAnimationEnd = (e: React.AnimationEvent) => {
 		e.stopPropagation();
-		onAnimationEnd?.();
+		onEnd?.();
 	};
 
 	return (
