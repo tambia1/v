@@ -40,7 +40,7 @@ export const Splash = ({ onFinish }: Props) => {
 			setProgress(100);
 
 			const timeEnd = Date.now();
-			const timeToWait = Math.max(0, 500 - (timeEnd - timeStart)) + 700;
+			const timeToWait = Math.max(0, 500 - (timeEnd - timeStart)) + 500;
 			await Promises.sleep(timeToWait);
 
 			await animationProgress.play("disappear");
