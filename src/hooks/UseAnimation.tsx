@@ -35,12 +35,13 @@ export const useAnimation = (ref: RefObject<HTMLElement>) => {
 			return;
 		}
 
-		const onAnimationStart = (e: AnimationEvent) => {
-			e.stopPropagation();
+		const onAnimationStart = (_e: AnimationEvent) => {
+			// e.stopPropagation();
 		};
 
-		const onAnimationEnd = (e: AnimationEvent) => {
-			e.stopPropagation();
+		const onAnimationEnd = (_e: AnimationEvent) => {
+			// e.stopPropagation();
+
 			refResolve.current?.();
 			refResolve.current = undefined;
 		};
