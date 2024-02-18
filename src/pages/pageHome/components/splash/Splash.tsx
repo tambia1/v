@@ -34,7 +34,8 @@ export const Splash = ({ onFinish }: Props) => {
 			const arr = [...Object.values(Icons), ...backgroundImages.map((item) => item.light), ...backgroundImages.map((item) => item.dark)];
 
 			for (let i = 0; i < arr.length; i++) {
-				await Files.downloadImages([arr[i]]);
+				const urls = (Array.isArray(arr[i]) ? arr[i] : [arr[i]]) as string[];
+				await Files.downloadImages(urls);
 				setProgress((i / (arr.length - 1)) * 100);
 			}
 
