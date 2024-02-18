@@ -14,8 +14,8 @@ export const PageHome = () => {
 
 	useLayoutEffect(() => {
 		const run = async () => {
-			await animationDesktop.play("hide");
-			await animationSplash.play("appear");
+			animationDesktop.play("hide");
+			animationSplash.play("show");
 		};
 
 		run();
