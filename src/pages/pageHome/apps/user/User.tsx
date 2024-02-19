@@ -147,6 +147,10 @@ export const User = () => {
 						</>
 					)}
 				</S.ButtonBox>
+				<S.Notes>
+					<span>a, a</span>
+					<span>b, b</span>
+				</S.Notes>
 			</S.Box>
 		</S.User>
 	);

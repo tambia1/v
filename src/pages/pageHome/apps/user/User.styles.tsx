@@ -34,8 +34,8 @@ export const Box = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	gap: 2rem;
-	padding: 4rem;
+	gap: 1rem;
+	padding: 3rem;
 
 	border-radius: 2rem;
 
@@ -199,4 +199,11 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	border-radius: 50%;
 	background-repeat: no-repeat;
 	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
+`;
+
+export const Notes = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	color: #666666;
 `;
