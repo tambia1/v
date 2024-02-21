@@ -61,7 +61,7 @@ export const themeLight: ITheme = {
 		warningFgDisabled: "#959595",
 		warningBgDisabled: "#ca8526",
 
-		shadow: "2px 2px 4px",
+		shadow: "1px 1px 4px",
 
 		boxColor1: "#ffffff",
 		boxColor2: "#ced9e8",

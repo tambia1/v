@@ -61,7 +61,7 @@ export const themeDark: ITheme = {
 		warningFgDisabled: "#959595",
 		warningBgDisabled: "#ca8526",
 
-		shadow: "0px 0px 5px",
+		shadow: "1px 1px 4px",
 
 		boxColor1: "#959595",
 		boxColor2: "#ced9e8",
