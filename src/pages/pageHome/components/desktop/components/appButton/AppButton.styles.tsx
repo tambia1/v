@@ -37,7 +37,7 @@ export const Image = styled.div<{ $appIcon: IAppIcon }>`
 	background-image: url(${({ $appIcon }) => appIcons[$appIcon]});
 	background-size: contain;
 	background-repeat: no-repeat;
-	box-shadow: 0px 0px 5px ${(props) => props.theme.color.shadow};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
 	border-radius: 15px;
 `;
 

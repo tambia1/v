@@ -42,13 +42,13 @@ export const Box = styled.div`
 	overflow: hidden;
 
 	background-image: linear-gradient(135deg, ${(props) => props.theme.color.boxColor1}, ${(props) => props.theme.color.boxColor2});
-	box-shadow: ${(props) => props.theme.color.boxShadow1} ${(props) => props.theme.color.boxColor3};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
 `;
 
 export const EmailBox = styled.div`
 	display: flex;
 	flex-direction: row;
-	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 	border-radius: 5rem;
 `;
 
@@ -78,7 +78,7 @@ export const EmailInput = styled.input`
 export const PasswordBox = styled.div`
 	display: flex;
 	flex-direction: row;
-	box-shadow: ${(props) => props.theme.color.boxColor2} ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 	border-radius: 5rem;
 `;
 
@@ -119,7 +119,7 @@ export const ButtonLogin = styled(Button)`
 	color: ${(props) => props.theme.color.boxColor1};
 	text-shadow: none;
 	border: solid 1px ${(props) => props.theme.color.boxColor4};
-	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 
 	&:active {
 		background-color: ${(props) => props.theme.color.boxColor4};
@@ -134,7 +134,7 @@ export const ButtonLogout = styled(Button)`
 	color: ${(props) => props.theme.color.boxColor1};
 	text-shadow: none;
 	border: solid 1px ${(props) => props.theme.color.boxColor8};
-	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor8};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor8};
 
 	&:active {
 		background-color: ${(props) => props.theme.color.boxColor8};
@@ -198,7 +198,7 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	background-size: 125%;
 	border-radius: 50%;
 	background-repeat: no-repeat;
-	box-shadow: ${(props) => props.theme.color.boxShadow2} ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 `;
 
 export const Notes = styled.div`

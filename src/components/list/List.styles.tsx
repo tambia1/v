@@ -11,6 +11,6 @@ export const List = styled.div`
 
 	overflow: auto;
 
-	box-shadow: 0 0 0.5rem 0 ${(props) => props.theme.color.shadow};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
 	border-radius: 1rem;
 `;

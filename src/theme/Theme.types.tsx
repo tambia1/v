@@ -75,8 +75,6 @@ export interface ITheme {
 		boxColor6: string;
 		boxColor7: string;
 		boxColor8: string;
-		boxShadow1: string;
-		boxShadow2: string;
 	};
 
 	size: {
