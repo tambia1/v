@@ -20,12 +20,14 @@ export const AppsContainer = styled.div`
 	height: 100%;
 	padding: 1rem;
 	position: relative;
+	z-index: 0;
 `;
 
 export const AppContainer = styled.div`
 	position: absolute;
 	inset: 0 0 0 0;
 	pointer-events: none;
+	z-index: 1;
 `;
 
 export const App = styled.div`
