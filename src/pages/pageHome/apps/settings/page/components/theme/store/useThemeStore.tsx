@@ -7,7 +7,7 @@ interface Props {
 }
 
 const initialState = {
-	backgroundImageIndex: 0,
+	backgroundImageIndex: 1,
 };
 
 export const useThemeStore = create<Props>()(
