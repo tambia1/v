@@ -10,11 +10,22 @@ import { useBar } from "../../components/desktop/hooks/UseBar";
 
 export const User = () => {
 	const { t } = useTranslation();
-	const [state, setState] = useState<"idle" | "loader">("idle");
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
+
+	const [data, setData] = useState({
+		email: {
+			value: "",
+			disabled: false,
+		},
+		password: {
+			value: "",
+			disabled: false,
+		},
+	});
+
 	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
 	const bar = useBar();
+
+	const [loaderState, setLoaderState] = useState<"idle" | "loader">("idle");
 
 	const mutateLogin = QueryLogin.login({
 		onSuccess: () => {
@@ -57,6 +68,24 @@ export const User = () => {
 		}
 	}, [queryUser.isLoading, storeLogin.token]);
 
+	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
+		if (e.target !== e.currentTarget) {
+			return;
+		}
+
+		bar.onClickclose();
+	};
+
+	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setData({ ...data, email: { ...data.email, value: e.target.value } });
+		setMessage({ state: "", message: "" });
+	};
+
+	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setData({ ...data, password: { ...data.password, value: e.target.value } });
+		setMessage({ state: "", message: "" });
+	};
+
 	const refetchQueryUser = () => {
 		if (storeLogin.token) {
 			queryUser.refetch();
@@ -64,15 +93,15 @@ export const User = () => {
 	};
 
 	const handleOnClickLogin = async () => {
-		if (!email || !password) {
+		if (!data.email.value || !data.password.value) {
 			setMessage({ state: "error", message: "Invalid name or password" });
 
 			return;
 		}
 
-		setState("loader");
-		const mutateResult = await mutateLogin({ email: email, password: password });
-		setState("idle");
+		setLoaderState("loader");
+		const mutateResult = await mutateLogin({ email: data.email.value, password: data.password.value });
+		setLoaderState("idle");
 
 		if (mutateResult.error === 0) {
 			storeLogin.setData(mutateResult.token, mutateResult.role);
@@ -83,33 +112,14 @@ export const User = () => {
 	};
 
 	const handleOnClickLogout = async () => {
-		setState("loader");
+		setLoaderState("loader");
 		const mutateResult = await mutateLogout({ token: storeLogin.token });
-		setState("idle");
+		setLoaderState("idle");
 
 		if (mutateResult.error === 0) {
 			storeLogin.setData("", "guest");
-			setEmail("");
-			setPassword("");
+			setData({ ...data, email: { ...data.email, value: "" }, password: { ...data.password, value: "" } });
 		}
-	};
-
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setEmail(e.target.value);
-		setMessage({ state: "", message: "" });
-	};
-
-	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setPassword(e.target.value);
-		setMessage({ state: "", message: "" });
-	};
-
-	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
-		if (e.target !== e.currentTarget) {
-			return;
-		}
-
-		bar.onClickclose();
 	};
 
 	return (
@@ -118,11 +128,11 @@ export const User = () => {
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
 				<S.EmailBox>
 					<S.EmailImage iconName="iconUser" />
-					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={email} disabled={!!storeLogin.token} />
+					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={data.email.value} disabled={!!storeLogin.token} />
 				</S.EmailBox>
 				<S.PasswordBox>
 					<S.PasswordImage iconName="iconLock" />
-					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={password} disabled={!!storeLogin.token} />
+					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={data.password.value} disabled={!!storeLogin.token} />
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
@@ -137,7 +147,7 @@ export const User = () => {
 					)}
 				</S.ButtonBox>
 				<S.ButtonBox>
-					{state === "loader" ? (
+					{loaderState === "loader" ? (
 						<S.Loader iconName="iconLoader" />
 					) : (
 						<>

@@ -29,7 +29,7 @@ export const Splash = ({ onFinish }: Props) => {
 
 			const timeStart = Date.now();
 
-			const arr = [...Object.values(Icons), ...backgroundImages.map((item) => item.light), ...backgroundImages.map((item) => item.dark)];
+			const arr = [Object.values(Icons), ...backgroundImages.map((item) => item.light), ...backgroundImages.map((item) => item.dark)];
 
 			for (let i = 0; i < arr.length; i++) {
 				const urls = (Array.isArray(arr[i]) ? arr[i] : [arr[i]]) as string[];
