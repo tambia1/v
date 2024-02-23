@@ -9,7 +9,7 @@ export const Apps = styled.div`
 	position: relative;
 	width: 100%;
 	height: 100%;
-	display: block;
+	display: inline-grid;
 	gap: 0.5rem;
 	color: ${(props) => props.theme.color.normalFg};
 	opacity: 0;
@@ -17,7 +17,7 @@ export const Apps = styled.div`
 
 export const AppsContainer = styled.div`
 	width: auto;
-	height: 100%;
+	height: auto;
 	padding: 1rem;
 	position: relative;
 	z-index: 0;
@@ -33,6 +33,7 @@ export const AppContainer = styled.div`
 export const App = styled.div`
 	position: absolute;
 	inset: 0 0 0 0;
+	z-index: 1;
 `;
 
 export const Bar = styled.div`
