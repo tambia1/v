@@ -22,7 +22,7 @@ export const App = () => {
 
 	return (
 		<I18nextProvider i18n={i18n}>
-			<BrowserRouter basename="/os">
+			<BrowserRouter basename="/v">
 				<QueryClientProvider client={queryClient}>
 					<GlobalStyle />
 					<Theme>
