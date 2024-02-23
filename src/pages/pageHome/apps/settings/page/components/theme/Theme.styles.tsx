@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import lightBackground1 from "./background/theme1/bg_0.png";
+import lightBackground1 from "./background/theme1/bg_0.jpg";
 import lightBackground2 from "./background/theme2/bg_0.jpg";
 import lightBackground3 from "./background/theme3/bg_0.jpg";
 import lightBackground4 from "./background/theme4/bg_0.jpg";
@@ -7,7 +7,7 @@ import lightBackground5 from "./background/theme5/bg_0.jpg";
 import lightBackground6 from "./background/theme6/bg_0.jpg";
 import lightBackground7 from "./background/theme7/bg_0.jpg";
 import lightBackground8 from "./background/theme8/bg_0.jpg";
-import darkBackground1 from "./background/theme1/bg_0_dark.png";
+import darkBackground1 from "./background/theme1/bg_0_dark.jpg";
 import darkBackground2 from "./background/theme2/bg_0_dark.jpg";
 import darkBackground3 from "./background/theme3/bg_0_dark.jpg";
 import darkBackground4 from "./background/theme4/bg_0_dark.jpg";
