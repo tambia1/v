@@ -34,6 +34,7 @@ jobs:
 
             - name: Install Dependencies
               run: npm install
+              working-directory: ./apps/app
 
             - name: Deploy to GitHub Pages
               id: deployment
