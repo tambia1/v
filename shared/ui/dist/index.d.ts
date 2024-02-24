@@ -1,1 +1,1 @@
-export * from './index.html'
+export * from './src/lib/index'

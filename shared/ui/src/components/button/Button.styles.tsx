@@ -6,8 +6,7 @@ export const Button = styled.button`
 	justify-content: center;
 	outline: none;
 	cursor: pointer;
-	/* background-image: linear-gradient(to top, #d8d9db 0%, #ffffff 80%, #fdfdfd 100%); */
-	background-color: red;
+	background-image: linear-gradient(to top, #d8d9db 0%, #ffffff 80%, #fdfdfd 100%);
 	border-radius: 100em;
 	border: 1px solid #8f9092;
 	color: #606060;

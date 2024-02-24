@@ -1,5 +1,5 @@
 {
-	"name": "ui",
+	"name": "@v/ui",
 	"private": true,
 	"version": "1.0.1",
 	"type": "module",
@@ -11,7 +11,8 @@
 		"test": "vitest",
 		"coverage": "vitest watch --coverage",
 		"deploy": "gh-pages -d ./dist",
-		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
 	},
 	"dependencies": {
 		"@tanstack/react-query": "5.22.2",
@@ -59,13 +60,13 @@
 	"files": [
 		"dist"
 	],
-	"main": "./dist/my-lib.umd.js",
-	"module": "./dist/my-lib.es.js",
+	"module": "./dist/ui.js",
+	"main": "./dist/ui.umd.cjs",
 	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/my-lib.es.js",
-			"require": "./dist/my-lib.umd.js"
+			"import": "./dist/ui.js",
+			"require": "./dist/ui.js"
 		}
 	}
 }

@@ -38,7 +38,6 @@ export default defineConfig({
 		alias: {
 			"@src": path.resolve(__dirname, "./src"),
 			"@assets": path.resolve(__dirname, "./src/assets"),
-			"@pages": path.resolve(__dirname, "./src/pages"),
 			"@components": path.resolve(__dirname, "./src/components"),
 		},
 	},
@@ -65,10 +64,8 @@ export default defineConfig({
 
 	build: {
 		lib: {
-			entry: path.resolve(__dirname, "src/lib/index.ts"),
-			name: "MyLib",
-			formats: ["es", "umd"],
-			fileName: (format) => `my-lib.${format}.js`,
+			entry: "./src/lib/index.ts",
+			name: "ui",
 		},
 		rollupOptions: {
 			external: ["react", "react-dom", "styled-components"],
