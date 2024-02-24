@@ -1,7 +1,7 @@
 {
 	"name": "v",
 	"private": true,
-	"version": "1.0.41",
+	"version": "1.0.42",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -10,7 +10,7 @@
 		"preview": "vite preview --port 8081",
 		"test": "vitest",
 		"coverage": "vitest watch --coverage",
-		"deploy": "gh-pages -d ./apps/app/dist",
+		"deploy": "gh-pages -d ./dist",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
 	"dependencies": {
