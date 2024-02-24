@@ -10,7 +10,7 @@
 		"preview": "vite preview --port 8081",
 		"test": "vitest",
 		"coverage": "vitest watch --coverage",
-		"deploy": "gh-pages -d dist",
+		"deploy": "gh-pages -d ./packages/app/dist",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
 	"dependencies": {
