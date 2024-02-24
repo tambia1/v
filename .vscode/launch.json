@@ -74,8 +74,15 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "Run start ui",
+			"name": "start ui",
 			"command": "npm run start",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/shared/ui/"
+		},
+		{
+			"name": "build ui",
+			"command": "npm run build",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/shared/ui/"
