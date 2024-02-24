@@ -33,8 +33,8 @@ export const Text = styled.div`
 
 export const Version = styled.div`
 	position: absolute;
-	bottom: 1rem;
-	right: 1rem;
+	bottom: 2rem;
+	right: 2rem;
 `;
 
 export const Progress = styled.div`
