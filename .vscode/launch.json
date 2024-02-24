@@ -23,49 +23,62 @@
 			"command": "npm i",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/app/"
+			"cwd": "${workspaceFolder}/apps/app/"
 		},
 		{
 			"name": "Run start",
 			"command": "npm run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/app/"
+			"cwd": "${workspaceFolder}/apps/app/"
 		},
 		{
 			"name": "Run test",
 			"command": "npm run test",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/app/"
+			"cwd": "${workspaceFolder}/apps/app/"
 		},
 		{
 			"name": "Run coverage",
 			"command": "npm run coverage",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/app/"
+			"cwd": "${workspaceFolder}/apps/app/"
 		},
 		{
 			"name": "Run build",
 			"command": "npm run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/app/"
+			"cwd": "${workspaceFolder}/apps/app/"
 		},
 		{
 			"name": "Run preview",
 			"command": "npm run preview",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/app/"
+			"cwd": "${workspaceFolder}/apps/app/"
 		},
 		{
 			"name": "Run deploy",
 			"command": "npm run deploy",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/app/"
+			"cwd": "${workspaceFolder}/apps/app/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "Run start ui",
+			"command": "npm run start",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/shared/ui/"
 		},
 		{
 			"name": "---------------------------------",
