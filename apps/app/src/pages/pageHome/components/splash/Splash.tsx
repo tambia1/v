@@ -2,13 +2,10 @@ import { useLayoutEffect, useRef, useState } from "react";
 import * as S from "./Splash.styles";
 import { version } from "@src/../package.json";
 import { Files } from "@src/services/Files";
-import { Icons } from "@src/icons/Icon.types";
-import { backgroundImages } from "../../apps/settings/page/components/theme/Theme.styles";
 import { Promises } from "@src/services/Promises";
 import { Progress } from "@src/components/progress/Progress";
 import { useAnimation } from "@src/hooks/UseAnimation";
-import userLoggedIn from "@pages/pageHome/apps/user/assets/userLoggedIn.png";
-import userLoggedOut from "@pages/pageHome/apps/user/assets/userLoggedOut.png";
+import { getImagesToCache } from "./Splash.utils";
 
 interface Props {
 	onFinish: () => void;
@@ -17,26 +14,26 @@ interface Props {
 export const Splash = ({ onFinish }: Props) => {
 	const refLogo = useRef(null);
 	const refProgress = useRef(null);
-	const animationTitle = useAnimation(refLogo);
+	const animationLogo = useAnimation(refLogo);
 	const animationProgress = useAnimation(refProgress);
 	const [progress, setProgress] = useState(0);
 
 	useLayoutEffect(() => {
 		const start = async () => {
-			animationTitle.play("hide");
+			animationLogo.play("hide");
 			animationProgress.play("hide");
 
-			await animationTitle.play("appear");
+			await animationLogo.play("appear");
 			await animationProgress.play("appear");
 
 			const timeStart = Date.now();
 
-			const arr = [Object.values(Icons), ...backgroundImages.map((item) => item.light), ...backgroundImages.map((item) => item.dark), [userLoggedIn, userLoggedOut]];
+			const imagesToCache = getImagesToCache();
 
-			for (let i = 0; i < arr.length; i++) {
-				const urls = (Array.isArray(arr[i]) ? arr[i] : [arr[i]]) as string[];
+			for (let i = 0; i < imagesToCache.length; i++) {
+				const urls = (Array.isArray(imagesToCache[i]) ? imagesToCache[i] : [imagesToCache[i]]) as string[];
 				await Files.downloadImages(urls);
-				setProgress((i / (arr.length - 1)) * 100);
+				setProgress((i / (imagesToCache.length - 1)) * 100);
 			}
 
 			setProgress(100);
