@@ -7,6 +7,7 @@ import { useStoreLogin } from "@src/pages/pageHome/apps/user/stores/StoreLogin";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useBar } from "../../components/desktop/hooks/UseBar";
+import { Promises } from "@src/services/Promises";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -63,6 +64,10 @@ export const User = () => {
 
 		if (queryUser.data?.firstName && queryUser.data?.lastName) {
 			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName }) });
+
+			Promises.sleep(1500).then(() => {
+				bar.onClickclose();
+			});
 
 			return;
 		}
