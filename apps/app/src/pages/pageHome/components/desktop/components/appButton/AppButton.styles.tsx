@@ -12,7 +12,7 @@ import userLoggedIn from "./assets/userLoggedIn.png";
 import userLoggedOut from "./assets/userLoggedOut.png";
 import snake from "./assets/snake.png";
 
-const appIcons = {
+export const appIcons = {
 	settings,
 	calculator,
 	camera,
