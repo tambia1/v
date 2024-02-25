@@ -7,6 +7,8 @@ import { backgroundImages } from "../../apps/settings/page/components/theme/Them
 import { Promises } from "@src/services/Promises";
 import { Progress } from "@src/components/progress/Progress";
 import { useAnimation } from "@src/hooks/UseAnimation";
+import userLoggedIn from "@pages/pageHome/apps/user/assets/userLoggedIn.png";
+import userLoggedOut from "@pages/pageHome/apps/user/assets/userLoggedOut.png";
 
 interface Props {
 	onFinish: () => void;
@@ -29,7 +31,7 @@ export const Splash = ({ onFinish }: Props) => {
 
 			const timeStart = Date.now();
 
-			const arr = [Object.values(Icons), ...backgroundImages.map((item) => item.light), ...backgroundImages.map((item) => item.dark)];
+			const arr = [Object.values(Icons), ...backgroundImages.map((item) => item.light), ...backgroundImages.map((item) => item.dark), [userLoggedIn, userLoggedOut]];
 
 			for (let i = 0; i < arr.length; i++) {
 				const urls = (Array.isArray(arr[i]) ? arr[i] : [arr[i]]) as string[];
