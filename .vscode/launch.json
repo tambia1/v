@@ -19,6 +19,25 @@
 			}
 		},
 		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "packages install",
+			"command": "npm i",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
 			"name": "app install",
 			"command": "npm i",
 			"request": "launch",

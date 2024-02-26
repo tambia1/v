@@ -5,5 +5,5 @@ import userLoggedOut from "@pages/pageHome/apps/user/assets/userLoggedOut.png";
 import { appIcons } from "../desktop/components/appButton/AppButton.styles";
 
 export const getImagesToCache = () => {
-	return [Object.values(Icons), backgroundImages.map((item) => item.light), backgroundImages.map((item) => item.dark), [userLoggedIn, userLoggedOut], appIcons];
+	return [Object.values(Icons), backgroundImages.map((item) => item.light), backgroundImages.map((item) => item.dark), [userLoggedIn, userLoggedOut], Object.values(appIcons)];
 };
