@@ -27,7 +27,7 @@
 		"react-svg": "16.1.33",
 		"styled-components": "5.3.6",
 		"zustand": "4.4.7",
-		"@v/ui": "1.0.2"
+		"@v/ui": "1.0.8"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "6.4.2",

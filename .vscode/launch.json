@@ -19,7 +19,7 @@
 			}
 		},
 		{
-			"name": "Run install",
+			"name": "app install",
 			"command": "npm i",
 			"request": "launch",
 			"type": "node-terminal",

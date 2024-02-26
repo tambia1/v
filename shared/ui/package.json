@@ -1,7 +1,7 @@
 {
 	"name": "@v/ui",
 	"private": true,
-	"version": "1.0.2",
+	"version": "1.0.8",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -60,13 +60,13 @@
 	"files": [
 		"dist"
 	],
-	"module": "./dist/ui.js",
-	"main": "./dist/ui.umd.cjs",
+	"module": "./dist/lib.es.js",
+	"main": "./dist/lib.umd.cjs",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"import": "./dist/ui.js",
-			"require": "./dist/ui.js",
-			"types": "./dist/index.d.ts"
+			"import": "./dist/lib.es.js",
+			"require": "./dist/lib.umd.js"
 		}
 	}
 }

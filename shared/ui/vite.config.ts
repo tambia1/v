@@ -66,6 +66,8 @@ export default defineConfig({
 		lib: {
 			entry: "./src/lib/index.ts",
 			name: "ui",
+			formats: ["es", "umd"],
+			fileName: (format) => `lib.${format}.js`,
 		},
 		rollupOptions: {
 			external: ["react", "react-dom", "styled-components"],
