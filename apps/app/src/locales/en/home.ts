@@ -55,6 +55,10 @@ export const translation: IHome = {
 		title: "Snake",
 	},
 
+	ninja: {
+		title: "Ninja",
+	},
+
 	clashRoyale: {
 		title: "Clash Royale",
 		start: "START",

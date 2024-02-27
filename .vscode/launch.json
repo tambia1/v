@@ -93,6 +93,33 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "appNinja install",
+			"command": "npm i",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/appNinja/"
+		},
+		{
+			"name": "appNinja start",
+			"command": "npm run start",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/appNinja/"
+		},
+		{
+			"name": "appNinja build",
+			"command": "npm run build",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/appNinja/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
 			"name": "ui install",
 			"command": "npm i",
 			"request": "launch",

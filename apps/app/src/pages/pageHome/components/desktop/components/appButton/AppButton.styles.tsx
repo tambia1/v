@@ -6,6 +6,7 @@ import notes from "./assets/notes.png";
 import photos from "./assets/photos.png";
 import weather from "./assets/weather.png";
 import tetris from "./assets/tetris.png";
+import ninja from "./assets/ninja.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 import clock from "./assets/clock.png";
 import userLoggedIn from "./assets/userLoggedIn.png";
@@ -20,6 +21,7 @@ export const appIcons = {
 	photos,
 	weather,
 	tetris,
+	ninja,
 	clashRoyale,
 	clock,
 	userLoggedIn,

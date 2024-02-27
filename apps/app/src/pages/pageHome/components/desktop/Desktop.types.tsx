@@ -7,6 +7,7 @@ export type IAppId =
 	| "notes"
 	| "tetris"
 	| "snake"
+	| "ninja"
 	| "clashRoyale"
 	| "test"
 	| "testSelect"
