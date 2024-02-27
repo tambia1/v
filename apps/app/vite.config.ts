@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
+import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
 	base: "/v",
@@ -26,6 +27,15 @@ export default defineConfig({
 
 		checker({
 			typescript: true,
+		}),
+
+		federation({
+			name: "app",
+			remotes: {
+				remoteNinja: "http://localhost:5001/v/assets/remote.js",
+			},
+			exposes: {},
+			shared: ["react"],
 		}),
 	],
 

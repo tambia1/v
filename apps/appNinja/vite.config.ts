@@ -5,6 +5,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
+import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
 	base: "/v",
@@ -27,14 +28,21 @@ export default defineConfig({
 		checker({
 			typescript: true,
 		}),
+
+		federation({
+			name: "remote",
+			filename: "remote.js",
+			transformFileTypes: ["ts", "tsx"],
+			exposes: {
+				"./App": "./src/App.tsx",
+			},
+			shared: ["react"],
+		}),
 	],
 
 	resolve: {
 		alias: {
 			"@src": path.resolve(__dirname, "./src"),
-			"@assets": path.resolve(__dirname, "./src/assets"),
-			"@pages": path.resolve(__dirname, "./src/pages"),
-			"@components": path.resolve(__dirname, "./src/components"),
 		},
 	},
 
@@ -59,33 +67,17 @@ export default defineConfig({
 	},
 
 	build: {
-		rollupOptions: {
-			output: {
-				chunkFileNames: "assets/js/[name]-[hash].js",
-				entryFileNames: "assets/js/[name]-[hash].js",
+		target: "es2022",
+		minify: false,
+		cssCodeSplit: false,
+	},
 
-				assetFileNames: ({ name }) => {
-					if (/manifest/.test(name ?? "")) {
-						return "[name]-[hash][extname]";
-					}
-
-					if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? "")) {
-						return "assets/images/[name]-[hash][extname]";
-					}
-
-					if (/\.css$/.test(name ?? "")) {
-						return "assets/css/[name]-[hash][extname]";
-					}
-
-					return "assets/[name]-[hash][extname]";
-				},
-
-				manualChunks: (id) => {
-					if (id.includes("node_modules")) return "node";
-
-					return "";
-				},
-			},
+	preview: {
+		host: "localhost",
+		port: 5001,
+		strictPort: true,
+		headers: {
+			"Access-Control-Allow-Origin": "*",
 		},
 	},
 });

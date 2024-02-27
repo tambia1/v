@@ -14,7 +14,7 @@ import { User } from "../../apps/user/User";
 import { Snake } from "../../apps/snake/Snake";
 import { ClashRoyale } from "../../apps/clashRoyale/ClashRoyale";
 import { TestTransition } from "../../apps/testTransition/TestTransition";
-import { Ninja } from "../../apps/ninja/Ninja";
+import Ninja from "remoteNinja/App";
 
 const Notes = lazy(() => import("../../apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("../../apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
