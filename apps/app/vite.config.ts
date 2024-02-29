@@ -30,12 +30,9 @@ export default defineConfig({
 		}),
 
 		federation({
-			name: "app",
 			remotes: {
 				remoteNinja: "http://localhost:5001/v/assets/remote.js",
 			},
-			exposes: {},
-			shared: ["react"],
 		}),
 	],
 

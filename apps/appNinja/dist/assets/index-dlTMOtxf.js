@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports, App } from "./__federation_expose_App-CHSPOJHz.js";
+import { j as jsxRuntimeExports, Ninja } from "./__federation_expose_Ninja-BXXbZiYZ.js";
 import { r as reactExports } from "./__federation_shared_react-DZMtjlAa.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
@@ -7264,4 +7264,11 @@ var m = reactDomExports;
   client.createRoot = m.createRoot;
   client.hydrateRoot = m.hydrateRoot;
 }
+const App = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Hello world" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Ninja, {})
+  ] });
+};
 client.createRoot(document.getElementById("root")).render(/* @__PURE__ */ jsxRuntimeExports.jsx(App, {}));
+//# sourceMappingURL=index-dlTMOtxf.js.map

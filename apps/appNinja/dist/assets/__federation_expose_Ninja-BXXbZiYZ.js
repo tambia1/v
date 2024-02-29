@@ -30,10 +30,11 @@ reactJsxRuntime_production_min.jsxs = q;
   jsxRuntime.exports = reactJsxRuntime_production_min;
 }
 var jsxRuntimeExports = jsxRuntime.exports;
-const App = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: "Hello ninja 1" });
+const Ninja = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: "Hello ninja 6" });
 };
 export {
-  App,
+  Ninja,
   jsxRuntimeExports as j
 };
+//# sourceMappingURL=__federation_expose_Ninja-BXXbZiYZ.js.map

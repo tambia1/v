@@ -1,3 +1,10 @@
+import { Ninja } from "./Ninja";
+
 export const App = () => {
-	return <>Hello ninja 1</>;
+	return (
+		<>
+			<h1>Hello world</h1>
+			<Ninja />
+		</>
+	);
 };

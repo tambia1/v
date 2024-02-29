@@ -30,11 +30,10 @@ export default defineConfig({
 		}),
 
 		federation({
-			name: "remote",
+			name: "appNinja",
 			filename: "remote.js",
-			transformFileTypes: ["ts", "tsx"],
 			exposes: {
-				"./App": "./src/App.tsx",
+				"./Ninja": "./src/Ninja.tsx",
 			},
 			shared: ["react"],
 		}),
@@ -67,17 +66,9 @@ export default defineConfig({
 	},
 
 	build: {
-		target: "es2022",
+		target: "ESNext",
 		minify: false,
 		cssCodeSplit: false,
-	},
-
-	preview: {
-		host: "localhost",
-		port: 5001,
-		strictPort: true,
-		headers: {
-			"Access-Control-Allow-Origin": "*",
-		},
+		sourcemap: true,
 	},
 });

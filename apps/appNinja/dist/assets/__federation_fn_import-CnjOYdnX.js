@@ -420,3 +420,4 @@ function __vite__mapDeps(indexes) {
   }
   return indexes.map((i) => __vite__mapDeps.viteFileDeps[i])
 }
+//# sourceMappingURL=__federation_fn_import-CnjOYdnX.js.map

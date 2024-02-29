@@ -293,3 +293,4 @@ export {
   index as default,
   reactExports as r
 };
+//# sourceMappingURL=__federation_shared_react-DZMtjlAa.js.map
