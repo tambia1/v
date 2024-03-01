@@ -5,7 +5,8 @@
 			"@src/*": ["./src/*"],
 			"@assets/*": ["./src/assets/*"],
 			"@pages/*": ["./src/pages/*"],
-			"@components/*": ["./src/components/*"]
+			"@components/*": ["./src/components/*"],
+			"@apps/*": ["./src/pages/pageHome/components/desktop/apps/*"]
 		},
 		"target": "ESNext",
 		"useDefineForClassFields": true,

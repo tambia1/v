@@ -1,13 +1,13 @@
 import * as S from "./User.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { QueryLogin } from "@src/pages/pageHome/apps/user/queries/QueryLogin";
-import { QueryUser } from "@src/pages/pageHome/apps/user/queries/QueryUser";
-import { useStoreLogin } from "@src/pages/pageHome/apps/user/stores/StoreLogin";
+import { QueryLogin } from "@apps/user/queries/QueryLogin";
+import { QueryUser } from "@apps/user/queries/QueryUser";
+import { useStoreLogin } from "@apps/user/stores/StoreLogin";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useBar } from "../../components/desktop/hooks/UseBar";
 import { Promises } from "@src/services/Promises";
+import { useBar } from "./../../hooks/UseBar";
 
 export const User = () => {
 	const { t } = useTranslation();

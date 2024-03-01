@@ -1,7 +1,7 @@
 import { Icons } from "@src/icons/Icon.types";
-import { backgroundImages } from "../../apps/settings/page/components/theme/Theme.styles";
-import userLoggedIn from "@pages/pageHome/apps/user/assets/userLoggedIn.png";
-import userLoggedOut from "@pages/pageHome/apps/user/assets/userLoggedOut.png";
+import { backgroundImages } from "./../desktop/apps/settings/page/components/theme/Theme.styles";
+import userLoggedIn from "@apps/user/assets/userLoggedIn.png";
+import userLoggedOut from "@apps/user/assets/userLoggedOut.png";
 import { appIcons } from "../desktop/components/appButton/AppButton.styles";
 
 export const getImagesToCache = () => {
