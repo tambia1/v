@@ -3,7 +3,7 @@ const exportSet = /* @__PURE__ */ new Set(["Module", "__esModule", "default", "_
 let moduleMap = {
   "./Ninja": () => {
     dynamicLoadingCss(["style-C-IwAYTQ.css"], false, "./Ninja");
-    return __federation_import("./__federation_expose_Ninja-BIhzkRH9.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
+    return __federation_import("./__federation_expose_Ninja-w0A359Jy.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
   }
 };
 const seen = {};

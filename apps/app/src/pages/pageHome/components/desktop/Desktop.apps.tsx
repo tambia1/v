@@ -14,13 +14,10 @@ import { User } from "../../apps/user/User";
 import { Snake } from "../../apps/snake/Snake";
 import { ClashRoyale } from "../../apps/clashRoyale/ClashRoyale";
 import { TestTransition } from "../../apps/testTransition/TestTransition";
-import { Ninja } from "remoteNinja/Ninja";
 
 const Notes = lazy(() => import("../../apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("../../apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
-// const Ninja = lazy(() => import("remoteNinja/Ninja").then((module) => ({ default: module.Ninja })));
-// const Ninja = lazy(() => import("remoteNinja/Ninja").then((module) => ({ Ninja: module.Ninja })));
-// const Ninja = lazy<any>(() => import("remoteNinja/Ninja").then((module) => ({ default: { Ninja: module.default } })));
+const Ninja = lazy(() => import("remoteNinja/Ninja").then((module) => ({ default: module.Ninja })));
 
 interface IApp {
 	id: IAppId;

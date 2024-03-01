@@ -35,6 +35,7 @@ const Ninja = () => {
 };
 export {
   Ninja,
+  Ninja as default,
   jsxRuntimeExports as j
 };
-//# sourceMappingURL=__federation_expose_Ninja-BIhzkRH9.js.map
+//# sourceMappingURL=__federation_expose_Ninja-w0A359Jy.js.map

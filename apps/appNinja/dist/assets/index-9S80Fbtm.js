@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports, Ninja } from "./__federation_expose_Ninja-BIhzkRH9.js";
+import { j as jsxRuntimeExports, Ninja } from "./__federation_expose_Ninja-w0A359Jy.js";
 import { r as reactExports } from "./__federation_shared_react-DZMtjlAa.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
@@ -7271,4 +7271,4 @@ const App = () => {
   ] });
 };
 client.createRoot(document.getElementById("root")).render(/* @__PURE__ */ jsxRuntimeExports.jsx(App, {}));
-//# sourceMappingURL=index-D357wxmP.js.map
+//# sourceMappingURL=index-9S80Fbtm.js.map
