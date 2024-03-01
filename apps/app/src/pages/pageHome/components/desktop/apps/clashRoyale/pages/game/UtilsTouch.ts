@@ -7,25 +7,25 @@ export const UtilsTouch = {
 		onTouchCancel,
 	}: {
 		div: HTMLElement;
-		onTouchStart?: (e: TouchEvent | MouseEvent, xx: number, yy: number, x: number, y: number, time: number) => void;
-		onTouchMove?: (e: TouchEvent | MouseEvent, xx: number, yy: number, x: number, y: number, time: number) => void;
-		onTouchEnd?: (e: TouchEvent | MouseEvent, xx: number, yy: number, x: number, y: number, time: number) => void;
-		onTouchCancel?: (e: TouchEvent | MouseEvent, xx: number, yy: number, x: number, y: number, time: number) => void;
+		onTouchStart?: (e: TouchEvent | MouseEvent, sx: number, sy: number, x: number, y: number, time: number) => void;
+		onTouchMove?: (e: TouchEvent | MouseEvent, sx: number, sy: number, x: number, y: number, time: number) => void;
+		onTouchEnd?: (e: TouchEvent | MouseEvent, sx: number, sy: number, x: number, y: number, time: number) => void;
+		onTouchCancel?: (e: TouchEvent | MouseEvent, sx: number, sy: number, x: number, y: number, time: number) => void;
 	}) {
 		//detect touch device
-		const isTouchDevice = "ontouchstart" in window ? true : false;
+		const isTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.maxTouchPoints > 0;
 
-		const MOUSE_DOWN = isTouchDevice ? "touchstart" : "mousedown";
-		const MOUSE_MOVE = isTouchDevice ? "touchmove" : "mousemove";
-		const MOUSE_UP = isTouchDevice ? "touchend" : "mouseup";
+		const MOUSE_DOWN = isTouchScreen ? "touchstart" : "mousedown";
+		const MOUSE_MOVE = isTouchScreen ? "touchmove" : "mousemove";
+		const MOUSE_UP = isTouchScreen ? "touchend" : "mouseup";
 		const MOUSE_ENTER = "mouseenter";
 		const MOUSE_OUT = "mouseout";
 
 		let status: "" | "down" | "move" | "up" | "out" = "";
 		let boundingX: number = 0;
 		let boundingY: number = 0;
-		let xx: number = 0;
-		let yy: number = 0;
+		let sx: number = 0;
+		let sy: number = 0;
 		let timeStart: number = 0;
 		let timeEnd: number = 0;
 
@@ -50,12 +50,12 @@ export const UtilsTouch = {
 			const x = Math.floor(getX(e) - boundingX);
 			const y = Math.floor(getY(e) - boundingY);
 
-			xx = x;
-			yy = y;
+			sx = x;
+			sy = y;
 
 			timeStart = new Date().getTime();
 
-			onTouchStart?.(e, xx, yy, x, y, 0);
+			onTouchStart?.(e, sx, sy, x, y, 0);
 
 			//mouse move
 			const mouseMoveListener = (e: TouchEvent | MouseEvent) => {
@@ -72,7 +72,7 @@ export const UtilsTouch = {
 
 					const time = timeEnd - timeStart;
 
-					onTouchMove?.(e, xx, yy, x, y, time);
+					onTouchMove?.(e, sx, sy, x, y, time);
 				}
 			};
 
@@ -93,12 +93,12 @@ export const UtilsTouch = {
 					status = "up";
 					div.setAttribute("isPressed", "false");
 
-					onTouchEnd?.(e, xx, yy, x, y, time);
+					onTouchEnd?.(e, sx, sy, x, y, time);
 				}
 
 				if (status == "out") {
 					status = "";
-					onTouchCancel?.(e, xx, yy, x, y, time);
+					onTouchCancel?.(e, sx, sy, x, y, time);
 				}
 			};
 

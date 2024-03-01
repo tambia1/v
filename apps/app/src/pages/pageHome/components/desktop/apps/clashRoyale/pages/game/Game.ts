@@ -68,12 +68,12 @@ export class Game {
 	private initTouches() {
 		UtilsTouch.listenToTouches({
 			div: this.canvas,
-			onTouchEnd: (_e, _x, _y, xx, yy, _time) => {
+			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				//up
-				if (this.isXYInsideGrid(xx, yy) == false) {
-					this.selectStack(xx, yy);
-				} else if (this.isXYInsideSafeArea(xx, yy) == true) {
-					this.putSelectedStackOnGrid(xx, yy);
+				if (this.isXYInsideGrid(x, y) == false) {
+					this.selectStack(x, y);
+				} else if (this.isXYInsideSafeArea(x, y) == true) {
+					this.putSelectedStackOnGrid(x, y);
 				}
 			},
 		});
