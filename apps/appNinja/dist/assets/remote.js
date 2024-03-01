@@ -2,8 +2,8 @@ import { _ as __vitePreload } from "./preload-helper-CARphzHV.js";
 const exportSet = /* @__PURE__ */ new Set(["Module", "__esModule", "default", "_export_sfc"]);
 let moduleMap = {
   "./Ninja": () => {
-    dynamicLoadingCss(["style-Dw2i0t1-.css"], false, "./Ninja");
-    return __federation_import("./__federation_expose_Ninja-BXXbZiYZ.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
+    dynamicLoadingCss(["style-C-IwAYTQ.css"], false, "./Ninja");
+    return __federation_import("./__federation_expose_Ninja-BIhzkRH9.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
   }
 };
 const seen = {};

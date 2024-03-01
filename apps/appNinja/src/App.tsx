@@ -1,4 +1,4 @@
-import { Ninja } from "./Ninja";
+import { Ninja } from "./ninja/Ninja";
 
 export const App = () => {
 	return (

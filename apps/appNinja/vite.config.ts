@@ -33,7 +33,7 @@ export default defineConfig({
 			name: "appNinja",
 			filename: "remote.js",
 			exposes: {
-				"./Ninja": "./src/Ninja.tsx",
+				"./Ninja": "./src/ninja/Ninja.tsx",
 			},
 			shared: ["react"],
 		}),
