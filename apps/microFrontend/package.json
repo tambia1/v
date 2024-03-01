@@ -1,13 +1,13 @@
 {
-	"name": "v",
+	"name": "app_ninja",
 	"private": true,
-	"version": "1.0.48",
+	"version": "1.0.0",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
-		"start": "vite --host --port 5000",
+		"start": "vite --host --port 5001 --strictPort",
 		"build": "tsc && vite build",
-		"preview": "vite preview --port 5000",
+		"preview": "tsc && vite build && vite preview --port 5001 --strictPort",
 		"test": "vitest",
 		"coverage": "vitest watch --coverage",
 		"deploy": "gh-pages -d ./dist",

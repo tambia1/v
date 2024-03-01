@@ -55,11 +55,19 @@ export type IHome = {
 		title: string;
 	};
 
+	ninja: {
+		title: string;
+	};
+
 	clashRoyale: {
 		title: string;
 		start: string;
 		back: string;
 		loading: string;
+	};
+
+	mfe: {
+		title: string;
 	};
 
 	test: {

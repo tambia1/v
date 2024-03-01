@@ -30,18 +30,18 @@ export default defineConfig({
 		}),
 
 		federation({
-			remotes: {
-				remoteMicroFrontend: "http://localhost:5001/v/assets/remote.js",
+			name: "microFrontend",
+			filename: "remote.js",
+			exposes: {
+				"./Mfe": "./src/mfe/Mfe.tsx",
 			},
+			shared: ["react"],
 		}),
 	],
 
 	resolve: {
 		alias: {
 			"@src": path.resolve(__dirname, "./src"),
-			"@assets": path.resolve(__dirname, "./src/assets"),
-			"@pages": path.resolve(__dirname, "./src/pages"),
-			"@components": path.resolve(__dirname, "./src/components"),
 		},
 	},
 
@@ -66,33 +66,9 @@ export default defineConfig({
 	},
 
 	build: {
-		rollupOptions: {
-			output: {
-				chunkFileNames: "assets/js/[name]-[hash].js",
-				entryFileNames: "assets/js/[name]-[hash].js",
-
-				assetFileNames: ({ name }) => {
-					if (/manifest/.test(name ?? "")) {
-						return "[name]-[hash][extname]";
-					}
-
-					if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? "")) {
-						return "assets/images/[name]-[hash][extname]";
-					}
-
-					if (/\.css$/.test(name ?? "")) {
-						return "assets/css/[name]-[hash][extname]";
-					}
-
-					return "assets/[name]-[hash][extname]";
-				},
-
-				manualChunks: (id) => {
-					if (id.includes("node_modules")) return "node";
-
-					return "";
-				},
-			},
-		},
+		target: "ESNext",
+		minify: false,
+		cssCodeSplit: false,
+		sourcemap: true,
 	},
 });

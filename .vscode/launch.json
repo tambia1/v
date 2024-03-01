@@ -3,16 +3,16 @@
 	"compounds": [
 		{
 			"name": "Run project",
-			"configurations": ["Launch Edge 8080", "app start"],
+			"configurations": ["Launch Edge 5000", "app start", "microFrontend preview"],
 			"stopAll": true
 		}
 	],
 	"configurations": [
 		{
-			"name": "Launch Edge 8080",
+			"name": "Launch Edge 5000",
 			"type": "msedge",
 			"request": "launch",
-			"url": "http://localhost:8080",
+			"url": "http://localhost:5000",
 			"webRoot": "${workspaceFolder}/apps/app",
 			"sourceMapPathOverrides": {
 				"\\mnt\\c\\*": "C:/*"
@@ -85,6 +85,40 @@
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/app/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "microFrontend install",
+			"command": "npm i",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
+		},
+		{
+			"name": "microFrontend start",
+			"command": "npm run start",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
+		},
+		{
+			"name": "microFrontend build",
+			"command": "npm run build",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
+		},
+		{
+			"name": "microFrontend preview",
+			"command": "npm run preview",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
 		},
 		{
 			"name": "---------------------------------",

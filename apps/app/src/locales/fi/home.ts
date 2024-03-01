@@ -55,11 +55,19 @@ export const translation: IHome = {
 		title: "Snake",
 	},
 
+	ninja: {
+		title: "Ninja",
+	},
+
 	clashRoyale: {
 		title: "Clash Royale",
 		start: "ALKAA",
 		back: "TAKAISIN",
 		loading: "LADATAAN...",
+	},
+
+	mfe: {
+		title: "Micro Frontend",
 	},
 
 	test: {
