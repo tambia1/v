@@ -3,7 +3,7 @@
 	"compounds": [
 		{
 			"name": "Run project",
-			"configurations": ["Launch Edge 5000", "app start", "appNinja preview"],
+			"configurations": ["Launch Edge 5000", "app start", "microFrontend preview"],
 			"stopAll": true
 		}
 	],
@@ -93,32 +93,32 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "appNinja install",
+			"name": "microFrontend install",
 			"command": "npm i",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/appNinja/"
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
 		},
 		{
-			"name": "appNinja start",
+			"name": "microFrontend start",
 			"command": "npm run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/appNinja/"
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
 		},
 		{
-			"name": "appNinja build",
+			"name": "microFrontend build",
 			"command": "npm run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/appNinja/"
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
 		},
 		{
-			"name": "appNinja preview",
+			"name": "microFrontend preview",
 			"command": "npm run preview",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/appNinja/"
+			"cwd": "${workspaceFolder}/apps/microFrontend/"
 		},
 		{
 			"name": "---------------------------------",

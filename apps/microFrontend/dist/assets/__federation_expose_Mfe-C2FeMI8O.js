@@ -30,12 +30,12 @@ reactJsxRuntime_production_min.jsxs = q;
   jsxRuntime.exports = reactJsxRuntime_production_min;
 }
 var jsxRuntimeExports = jsxRuntime.exports;
-const Ninja = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "ninja", children: "Hello ninja 1" });
+const Mfe = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mfe", children: "Hello Micro Frontend" });
 };
 export {
-  Ninja,
-  Ninja as default,
+  Mfe,
+  Mfe as default,
   jsxRuntimeExports as j
 };
-//# sourceMappingURL=__federation_expose_Ninja-w0A359Jy.js.map
+//# sourceMappingURL=__federation_expose_Mfe-C2FeMI8O.js.map

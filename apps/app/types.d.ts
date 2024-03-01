@@ -1,4 +1,4 @@
-declare module "remoteNinja/Ninja" {
-	export const Ninja: () => JSX.Element;
-	export default Ninja;
+declare module "remoteMicroFrontend/Mfe" {
+	export const Mfe: () => JSX.Element;
+	export default Mfe;
 }

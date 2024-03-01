@@ -30,10 +30,10 @@ export default defineConfig({
 		}),
 
 		federation({
-			name: "appNinja",
+			name: "microFrontend",
 			filename: "remote.js",
 			exposes: {
-				"./Ninja": "./src/ninja/Ninja.tsx",
+				"./Mfe": "./src/mfe/Mfe.tsx",
 			},
 			shared: ["react"],
 		}),

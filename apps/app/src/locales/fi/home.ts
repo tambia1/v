@@ -66,6 +66,10 @@ export const translation: IHome = {
 		loading: "LADATAAN...",
 	},
 
+	mfe: {
+		title: "Micro Frontend",
+	},
+
 	test: {
 		title: "Test",
 	},

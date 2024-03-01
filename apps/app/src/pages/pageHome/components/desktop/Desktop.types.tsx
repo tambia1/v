@@ -9,6 +9,7 @@ export type IAppId =
 	| "snake"
 	| "ninja"
 	| "clashRoyale"
+	| "mfe"
 	| "test"
 	| "testSelect"
 	| "testTree"

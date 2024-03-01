@@ -66,6 +66,10 @@ export type IHome = {
 		loading: string;
 	};
 
+	mfe: {
+		title: string;
+	};
+
 	test: {
 		title: string;
 	};
