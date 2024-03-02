@@ -52,9 +52,9 @@ export const EmailBox = styled.div`
 	border-radius: 5rem;
 `;
 
-export const EmailImage = styled(Icon)`
+export const EmailImage = styled(Icon)<{ disabled: boolean }>`
 	width: 2rem;
-	background-color: ${(props) => props.theme.color.boxColor4};
+	background-color: ${(props) => (props.disabled ? props.theme.color.boxColor2 : props.theme.color.boxColor4)};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 `;
@@ -82,9 +82,9 @@ export const PasswordBox = styled.div`
 	border-radius: 5rem;
 `;
 
-export const PasswordImage = styled(Icon)`
+export const PasswordImage = styled(Icon)<{ disabled: boolean }>`
 	width: 2rem;
-	background-color: ${(props) => props.theme.color.boxColor4};
+	background-color: ${(props) => (props.disabled ? props.theme.color.boxColor2 : props.theme.color.boxColor4)};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 `;

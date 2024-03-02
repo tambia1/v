@@ -7,7 +7,6 @@ export const Paging = styled.div`
 	flex-direction: column;
 	position: relative;
 	overflow: hidden;
-	background-color: #ffffff33;
 `;
 
 export type IPageState = "go" | "move";

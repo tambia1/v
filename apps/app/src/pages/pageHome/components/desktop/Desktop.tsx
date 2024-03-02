@@ -22,6 +22,8 @@ import { BarContext } from "./hooks/UseBar";
 import { Bar } from "./components/bar/Bar";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { Modal } from "@src/components/modal/Modal";
+import { Paging } from "@src/components/paging/Paging";
+import { getAppsGroups } from "./Desktop.utils";
 
 export const Desktop = () => {
 	const { t } = useTranslation();
@@ -40,6 +42,8 @@ export const Desktop = () => {
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
+
+	const appsGroups = getAppsGroups(apps, storeLogin.role);
 
 	useLocalesSearchParams({
 		onChange: useCallback((language: ILanguageName) => {
@@ -60,7 +64,7 @@ export const Desktop = () => {
 	});
 
 	const handleOnClickApplication = (appId: IAppId) => {
-		const app = apps.find((app) => app.id === appId)!;
+		const app = apps.flat().find((app) => app.id === appId)!;
 
 		const timeStart = Date.now();
 		let isLoading = false;
@@ -126,13 +130,17 @@ export const Desktop = () => {
 					<S.AppsContainer>
 						<S.AppContainer ref={refApp}>{currentApp && <S.App>{currentApp}</S.App>}</S.AppContainer>
 
-						{apps.map((app) => {
-							if (app.roles.includes(storeLogin.role)) {
-								return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
-							}
-
-							return null;
-						})}
+						<Paging onChange={(_pageIndex) => {}}>
+							{appsGroups.map((appsGroup, i) => {
+								return (
+									<S.AppGroup key={i}>
+										{appsGroup.map((app) => {
+											return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
+										})}
+									</S.AppGroup>
+								);
+							})}
+						</Paging>
 					</S.AppsContainer>
 				</S.Apps>
 			</BarContext.Provider>

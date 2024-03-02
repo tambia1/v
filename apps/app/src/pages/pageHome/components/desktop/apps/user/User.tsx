@@ -6,7 +6,6 @@ import { QueryUser } from "@apps/user/queries/QueryUser";
 import { useStoreLogin } from "@apps/user/stores/StoreLogin";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Promises } from "@src/services/Promises";
 import { useBar } from "./../../hooks/UseBar";
 
 export const User = () => {
@@ -64,10 +63,6 @@ export const User = () => {
 
 		if (queryUser.data?.firstName && queryUser.data?.lastName) {
 			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName }) });
-
-			Promises.sleep(1500).then(() => {
-				bar.onClickclose();
-			});
 
 			return;
 		}
@@ -132,12 +127,12 @@ export const User = () => {
 			<S.Box>
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
 				<S.EmailBox>
-					<S.EmailImage iconName="iconUser" />
-					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={data.email.value} disabled={!!storeLogin.token} />
+					<S.EmailImage iconName="iconUser" disabled={!!storeLogin.token || loaderState === "loader"} />
+					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={data.email.value} disabled={!!storeLogin.token || loaderState === "loader"} />
 				</S.EmailBox>
 				<S.PasswordBox>
-					<S.PasswordImage iconName="iconLock" />
-					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={data.password.value} disabled={!!storeLogin.token} />
+					<S.PasswordImage iconName="iconLock" disabled={!!storeLogin.token || loaderState === "loader"} />
+					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={data.password.value} disabled={!!storeLogin.token || loaderState === "loader"} />
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{storeLogin.token === "" && (

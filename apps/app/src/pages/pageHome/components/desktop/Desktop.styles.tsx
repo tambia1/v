@@ -18,9 +18,13 @@ export const Apps = styled.div`
 export const AppsContainer = styled.div`
 	width: auto;
 	height: auto;
-	padding: 1rem;
 	position: relative;
 	z-index: 0;
+`;
+
+export const AppGroup = styled.div`
+	position: absolute;
+	inset: 1rem;
 `;
 
 export const AppContainer = styled.div`
