@@ -36,7 +36,6 @@ const Icon = css<{ $isVisible: boolean }>`
 export const IconClose = styled.div<{ $isVisible: boolean }>`
 	${Icon}
 	left: 0rem;
-	transition: all 0.3s ease 0s;
 
 	& svg {
 		fill: ${(props) => props.theme.color.errorBg};
@@ -50,7 +49,6 @@ export const IconClose = styled.div<{ $isVisible: boolean }>`
 export const IconHide = styled.div<{ $isVisible: boolean }>`
 	${Icon}
 	left: 3rem;
-	transition: all 0.3s ease 0.05s;
 
 	& svg {
 		fill: ${(props) => props.theme.color.warningBg};
@@ -64,7 +62,6 @@ export const IconHide = styled.div<{ $isVisible: boolean }>`
 export const IconMinimize = styled.div<{ $isVisible: boolean }>`
 	${Icon}
 	left: 6rem;
-	transition: all 0.3s ease 0.1s;
 
 	& svg {
 		fill: ${(props) => props.theme.color.successBg};
