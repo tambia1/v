@@ -1,8 +1,8 @@
 import { ReactElement, ReactNode } from "react";
-import * as S from "./Modal.styles";
 import { Box } from "./components/box/Box";
 import { IconsName } from "./components/box/components/content/components/icon/Icon.styles";
 import { Button } from "../button/Button";
+import { Compose } from "./components/compose/Compose";
 
 interface Props {
 	children?: ReactNode;
@@ -26,25 +26,21 @@ export const Modal = ({ isVisible = true, text, iconName, buttonContentA, button
 	};
 
 	return (
-		<>
-			{isVisible && (
-				<Modal.Compose onClick={handleOnClick}>
-					<Modal.Box.Compose>
-						<Modal.Box.Content.Compose>
-							{iconName && <Modal.Box.Content.Icon iconName={iconName} />}
-							{text && <Modal.Box.Content.Text>{text}</Modal.Box.Content.Text>}
-						</Modal.Box.Content.Compose>
+		<Modal.Compose onClick={handleOnClick} isVisible={isVisible}>
+			<Modal.Box.Compose>
+				<Modal.Box.Content.Compose>
+					{iconName && <Modal.Box.Content.Icon iconName={iconName} />}
+					{text && <Modal.Box.Content.Text>{text}</Modal.Box.Content.Text>}
+				</Modal.Box.Content.Compose>
 
-						<Modal.Box.Buttons>
-							{buttonContentA && <Button onClick={buttonCallbackA}>{buttonContentA}</Button>}
-							{buttonContentB && <Button onClick={buttonCallbackB}>{buttonContentB}</Button>}
-						</Modal.Box.Buttons>
-					</Modal.Box.Compose>
-				</Modal.Compose>
-			)}
-		</>
+				<Modal.Box.Buttons>
+					{buttonContentA && <Button onClick={buttonCallbackA}>{buttonContentA}</Button>}
+					{buttonContentB && <Button onClick={buttonCallbackB}>{buttonContentB}</Button>}
+				</Modal.Box.Buttons>
+			</Modal.Box.Compose>
+		</Modal.Compose>
 	);
 };
 
-Modal.Compose = S.Modal;
+Modal.Compose = Compose;
 Modal.Box = Box;

@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useRef, useState } from "react";
+import { ErrorInfo, ReactNode, useCallback, useRef, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
@@ -21,8 +21,10 @@ import { Promises } from "@src/services/Promises";
 import { BarContext } from "./hooks/UseBar";
 import { Bar } from "./components/bar/Bar";
 import { useAnimation } from "@src/hooks/UseAnimation";
+import { Modal } from "@src/components/modal/Modal";
 
 export const Desktop = () => {
+	const { t } = useTranslation();
 	const { theme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
@@ -34,6 +36,7 @@ export const Desktop = () => {
 	const [loadingAppId, setLoadingAppId] = useState("");
 	const refApp = useRef(null);
 	const animationApp = useAnimation(refApp);
+	const [isErrorLoadingComponent, setIsErrorLoadingComponent] = useState(false);
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
@@ -62,9 +65,15 @@ export const Desktop = () => {
 		const timeStart = Date.now();
 		let isLoading = false;
 
+		console.log("appComponent");
+
 		const appComponent = (
 			<Suspension
 				onFallbackStart={() => {
+					setLoadingAppId(app.id);
+					isLoading = true;
+				}}
+				onFallbackEnd={() => {
 					setLoadingAppId(app.id);
 					isLoading = true;
 				}}
@@ -78,6 +87,10 @@ export const Desktop = () => {
 
 					await animationApp.play("hide");
 					await animationApp.play("appear");
+				}}
+				onError={(_error: Error, _errorInfo: ErrorInfo) => {
+					setLoadingAppId("");
+					setIsErrorLoadingComponent(true);
 				}}
 			>
 				{app.component}
@@ -99,6 +112,11 @@ export const Desktop = () => {
 
 		searchParams.set("theme", themeName);
 		setSearchParams(searchParams, { replace: true });
+	};
+
+	const handleLoadingError = () => {
+		handleOnClickClose();
+		setIsErrorLoadingComponent(false);
 	};
 
 	return (
@@ -129,6 +147,15 @@ export const Desktop = () => {
 					onClickButtonTheme={handleOnClickChangeTheme}
 				/>
 			</S.Bar>
+
+			<Modal
+				isVisible={isErrorLoadingComponent}
+				iconName="info"
+				text={t(lang.misc.error)}
+				onClickBackground={handleLoadingError}
+				buttonContentA={t(lang.misc.ok)}
+				buttonCallbackA={handleLoadingError}
+			></Modal>
 		</S.Container>
 	);
 };

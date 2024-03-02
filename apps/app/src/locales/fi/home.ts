@@ -9,6 +9,7 @@ export const translation: IHome = {
 		ok: "OK",
 		cancel: "Peruuttaa",
 		areYouSure: "Oletko varma ?",
+		error: "Tapahtui virhe, yritä myöhemmin uudelleen.",
 	},
 
 	splash: {

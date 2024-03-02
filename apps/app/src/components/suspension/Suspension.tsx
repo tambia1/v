@@ -1,5 +1,6 @@
-import { useEffect, Suspense, ReactNode, useRef } from "react";
+import { useEffect, Suspense, ReactNode, useRef, ErrorInfo } from "react";
 import { SuspensionFallback } from "./SuspensionFallback";
+import ErrorBoundary from "./ErrorBoundary";
 
 interface Props {
 	children?: ReactNode;
@@ -7,9 +8,10 @@ interface Props {
 	onEnd?: () => void;
 	onFallbackStart?: () => void;
 	onFallbackEnd?: () => void;
+	onError?: (error: Error, errorInfo: ErrorInfo) => void;
 }
 
-export const Suspension = ({ children, onStart, onEnd, onFallbackStart, onFallbackEnd }: Props) => {
+export const Suspension = ({ children, onStart, onEnd, onFallbackStart, onFallbackEnd, onError }: Props) => {
 	const ref = useRef(0);
 
 	useEffect(() => {
@@ -31,5 +33,13 @@ export const Suspension = ({ children, onStart, onEnd, onFallbackStart, onFallba
 		onEnd?.();
 	};
 
-	return <Suspense fallback={<SuspensionFallback onFallbackStart={handleOnFallbackStart} onFallbackEnd={handleOnFallbackEnd} />}>{children}</Suspense>;
+	const handleOnError = (error: Error, errorInfo: ErrorInfo) => {
+		onError?.(error, errorInfo);
+	};
+
+	return (
+		<ErrorBoundary onError={handleOnError}>
+			<Suspense fallback={<SuspensionFallback onFallbackStart={handleOnFallbackStart} onFallbackEnd={handleOnFallbackEnd} />}>{children}</Suspense>
+		</ErrorBoundary>
+	);
 };

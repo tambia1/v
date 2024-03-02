@@ -9,6 +9,7 @@ export type IHome = {
 		ok: string;
 		cancel: string;
 		areYouSure: string;
+		error: string;
 	};
 
 	splash: {
