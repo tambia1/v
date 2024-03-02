@@ -1,6 +1,6 @@
 import * as S from "./SettingsPage.styles";
-import { usePager } from "@src/components/pager/hooks/UsePager";
-import { Pager } from "@src/components/pager/Pager";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Navigator } from "@src/components/navigator/Navigator";
 import { Language } from "./components/language/Language";
 import { Theme } from "./components/theme/Theme";
 import { Layout } from "./components/layout/Layout";
@@ -11,37 +11,37 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 
 export const SettingsPage = () => {
-	const pager = usePager();
+	const navigator = useNavigator();
 
 	const handleOnClickLanguage = () => {
-		pager.pushPage(
-			<Pager.Page id="language" title={<T>{lang.settings.language.title}</T>}>
+		navigator.pushPage(
+			<Navigator.Page id="language" title={<T>{lang.settings.language.title}</T>}>
 				<Language />
-			</Pager.Page>
+			</Navigator.Page>
 		);
 	};
 
 	const handleOnClickTheme = () => {
-		pager.pushPage(
-			<Pager.Page id="theme" title={<T>{lang.settings.theme.title}</T>}>
+		navigator.pushPage(
+			<Navigator.Page id="theme" title={<T>{lang.settings.theme.title}</T>}>
 				<Theme />
-			</Pager.Page>
+			</Navigator.Page>
 		);
 	};
 
 	const handleOnClickLayout = () => {
-		pager.pushPage(
-			<Pager.Page id="bar" title={<T>{lang.settings.layout.title}</T>}>
+		navigator.pushPage(
+			<Navigator.Page id="bar" title={<T>{lang.settings.layout.title}</T>}>
 				<Layout />
-			</Pager.Page>
+			</Navigator.Page>
 		);
 	};
 
 	const handleOnClickAbout = () => {
-		pager.pushPage(
-			<Pager.Page id="about" title={<T>{lang.settings.about.title}</T>}>
+		navigator.pushPage(
+			<Navigator.Page id="about" title={<T>{lang.settings.about.title}</T>}>
 				<About />
-			</Pager.Page>
+			</Navigator.Page>
 		);
 	};
 

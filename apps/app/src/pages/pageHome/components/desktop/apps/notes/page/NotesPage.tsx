@@ -1,6 +1,6 @@
 import * as S from "./NotesPage.styles";
-import { usePager } from "@src/components/pager/hooks/UsePager";
-import { Pager } from "@src/components/pager/Pager";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Navigator } from "@src/components/navigator/Navigator";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { useState } from "react";
@@ -12,7 +12,7 @@ import { useNotesStore } from "../store/UseNotesStore";
 import { getUniqueId } from "@src/utils/UniqueId";
 
 export const NotesPage = () => {
-	const pager = usePager();
+	const pager = useNavigator();
 	const notes = useNotesStore();
 	const [noteIdToRemove, setNoteIdToRemove] = useState("");
 
@@ -20,9 +20,9 @@ export const NotesPage = () => {
 		const note = notes.data[noteId];
 
 		pager.pushPage(
-			<Pager.Page id={String(note.id)} title={note.title}>
+			<Navigator.Page id={String(note.id)} title={note.title}>
 				<NotesContent id={note.id} title={note.title} text={note.text} />
-			</Pager.Page>
+			</Navigator.Page>
 		);
 	};
 

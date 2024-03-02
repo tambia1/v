@@ -1,7 +1,7 @@
 import { useState } from "react";
-import * as S from "./Pager.styles";
+import * as S from "./Navigator.styles";
 import { Item } from "./components/item/Item";
-import { PagerContext } from "./hooks/UsePager";
+import { NavigatorContext } from "./hooks/UseNavigator";
 import { IAnimationState } from "./components/item/Item.styles";
 import { Icon } from "../../icons/Icon";
 import { Page, IPage } from "./components/page/Page";
@@ -17,18 +17,18 @@ interface Props {
 	onClose?: ICallback;
 }
 
-export interface IPagerItem {
+export interface INavigatorItem {
 	page: IPage;
 	pageAnimation: IAnimationState;
 	titleAnimation: IAnimationState;
 }
 
 export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
-export type ICallback = (key?: string, pagerItem?: IPagerItem) => void;
+export type ICallback = (key?: string, navigatorItem?: INavigatorItem) => void;
 
-export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
+export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const { theme } = useThemeContext();
-	const [pagerItems, setPagerItems] = useState<IPagerItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
+	const [navigatorItems, setNavigatorItems] = useState<INavigatorItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
 	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
 		pushStart: onPushStart ? { pager: onPushStart } : {},
 		pushEnd: onPushEnd ? { pager: onPushEnd } : {},
@@ -39,7 +39,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 	});
 
 	const pushPage = (page: IPage) => {
-		setPagerItems((prevPages) => {
+		setNavigatorItems((prevPages) => {
 			const newPages = prevPages.map((page) => ({ ...page, pageAnimation: "moveFromCenterToLeft" as IAnimationState, titleAnimation: "hideFromCenter" as IAnimationState }));
 
 			return [
@@ -54,7 +54,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 	};
 
 	const popPage = () => {
-		setPagerItems((prevPages) => {
+		setNavigatorItems((prevPages) => {
 			const newPages = [...prevPages];
 
 			if (newPages.length >= 2) {
@@ -68,27 +68,27 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 		});
 	};
 
-	const onAnimationStart = (pagerItem: IPagerItem) => {
-		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, pagerItem));
+	const onAnimationStart = (navigatorItem: INavigatorItem) => {
+		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, navigatorItem));
 		}
 
-		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, pagerItem));
+		if (navigatorItem.pageAnimation === "moveFromCenterToRight" || navigatorItem.pageAnimation === "goFromCenterToRight") {
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, navigatorItem));
 		}
 	};
 
-	const onAnimationEnd = (pagerItem: IPagerItem) => {
-		if (pagerItem.pageAnimation === "moveFromRightToCenter" || pagerItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](k, pagerItem));
+	const onAnimationEnd = (navigatorItem: INavigatorItem) => {
+		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
+			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](k, navigatorItem));
 		}
 
-		if (pagerItem.pageAnimation === "moveFromCenterToRight" || pagerItem.pageAnimation === "goFromCenterToRight") {
-			Object.keys(listeners.popEnd).forEach((k) => listeners.popEnd[k](k, pagerItem));
+		if (navigatorItem.pageAnimation === "moveFromCenterToRight" || navigatorItem.pageAnimation === "goFromCenterToRight") {
+			Object.keys(listeners.popEnd).forEach((k) => listeners.popEnd[k](k, navigatorItem));
 		}
 
-		if (pagerItem.pageAnimation === "moveFromCenterToRight") {
-			setPagerItems((prevPages) => [...prevPages.slice(0, -1)]);
+		if (navigatorItem.pageAnimation === "moveFromCenterToRight") {
+			setNavigatorItems((prevPages) => [...prevPages.slice(0, -1)]);
 		}
 	};
 
@@ -98,7 +98,7 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 	};
 
 	const goHome = () => {
-		setPagerItems((prevPages) => {
+		setNavigatorItems((prevPages) => {
 			const newPages = [prevPages[0]];
 
 			if (newPages.length >= 2) {
@@ -133,35 +133,35 @@ export const Pager = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, 
 	};
 
 	return (
-		<PagerContext.Provider value={{ pages: pagerItems, pushPage, popPage, goHome, addListener, removeListener }}>
-			<S.Pager data-items={pagerItems.length}>
+		<NavigatorContext.Provider value={{ pages: navigatorItems, pushPage, popPage, goHome, addListener, removeListener }}>
+			<S.Navigator data-items={navigatorItems.length}>
 				<S.Headers>
 					<S.Back>
-						<S.BackContainer onClick={handleClose} $isVisible={onClose !== undefined && pagerItems.length === 1}>
+						<S.BackContainer onClick={handleClose} $isVisible={onClose !== undefined && navigatorItems.length === 1}>
 							<Icon iconName="iconX" size={theme.size.l} />
 						</S.BackContainer>
-						<S.BackContainer onClick={handleBack} $isVisible={pagerItems.length > 1}>
+						<S.BackContainer onClick={handleBack} $isVisible={navigatorItems.length > 1}>
 							<Icon iconName="iconChevronLeft" size={theme.size.l} />
 						</S.BackContainer>
 					</S.Back>
 					<S.Header>
-						{pagerItems.map((pagerItem) => (
-							<Item key={pagerItem.page.props.id} animation={pagerItem.titleAnimation}>
-								{pagerItem.page.props.title}
+						{navigatorItems.map((navigatorItem) => (
+							<Item key={navigatorItem.page.props.id} animation={navigatorItem.titleAnimation}>
+								{navigatorItem.page.props.title}
 							</Item>
 						))}
 					</S.Header>
 				</S.Headers>
 				<S.Pages>
-					{pagerItems.map((pagerItem) => (
-						<Item key={pagerItem.page.props.id} animation={pagerItem.pageAnimation} onAnimStart={() => onAnimationStart(pagerItem)} onAnimEnd={() => onAnimationEnd(pagerItem)}>
-							{pagerItem.page.props.children}
+					{navigatorItems.map((navigatorItem) => (
+						<Item key={navigatorItem.page.props.id} animation={navigatorItem.pageAnimation} onAnimStart={() => onAnimationStart(navigatorItem)} onAnimEnd={() => onAnimationEnd(navigatorItem)}>
+							{navigatorItem.page.props.children}
 						</Item>
 					))}
 				</S.Pages>
-			</S.Pager>
-		</PagerContext.Provider>
+			</S.Navigator>
+		</NavigatorContext.Provider>
 	);
 };
 
-Pager.Page = Page;
+Navigator.Page = Page;

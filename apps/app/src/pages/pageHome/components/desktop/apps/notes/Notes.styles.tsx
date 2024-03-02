@@ -1,4 +1,4 @@
-import { Headers } from "@src/components/pager/Pager.styles";
+import { Headers } from "@src/components/navigator/Navigator.styles";
 import styled from "styled-components";
 
 export const Notes = styled.div`

@@ -4,7 +4,7 @@ import * as S from "./NotesContent.styles";
 import { useTranslation } from "react-i18next";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
-import { usePager } from "@src/components/pager/hooks/UsePager";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 
 interface Props {
 	id: string;
@@ -19,7 +19,7 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	const [editedTitle, setEditedTitle] = useState(title);
 	const [editedText, setEditedText] = useState(text);
 
-	const pager = usePager();
+	const pager = useNavigator();
 
 	useEffect(() => {
 		return pager.addListener("popStart", "1", handleOnPagerAction);

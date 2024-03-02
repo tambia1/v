@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { IPage } from "../components/page/Page";
-import { IAction, ICallback, IPagerItem } from "../Pager";
+import { IAction, ICallback, INavigatorItem } from "../Navigator";
 
-export const PagerContext = createContext<{
-	pages: IPagerItem[];
+export const NavigatorContext = createContext<{
+	pages: INavigatorItem[];
 	pushPage: (page: IPage) => void;
 	popPage: () => void;
 	goHome: () => void;
@@ -12,11 +12,11 @@ export const PagerContext = createContext<{
 	removeListener: (action: IAction, key: string) => void;
 } | null>(null);
 
-export const usePager = () => {
-	const context = useContext(PagerContext);
+export const useNavigator = () => {
+	const context = useContext(NavigatorContext);
 
 	if (!context) {
-		throw new Error("usePager must be rendered as a child component");
+		throw new Error("useNavigator must be rendered as a child component");
 	}
 
 	return context;
