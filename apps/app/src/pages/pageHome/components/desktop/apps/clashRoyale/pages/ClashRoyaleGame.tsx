@@ -14,8 +14,8 @@ export const ClashRoyaleGame = ({ arenaType }: Props) => {
 		if (refBoard.current) {
 			const game = new Game({
 				board: refBoard.current,
-				goodPlayerName: "Player Good",
-				badPlayerName: "Player Bad",
+				goodPlayerName: "Player Green",
+				badPlayerName: "Player Red",
 				arenaType: arenaType,
 				onGameOver: () => {
 					//on game over
