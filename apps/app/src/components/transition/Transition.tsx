@@ -32,8 +32,8 @@ export const Transition = ({ children }: Props) => {
 
 	return (
 		<S.Transition>
-			<S.Child>{childA}</S.Child>
-			<S.Child>{childB}</S.Child>
+			<S.Child ref={refA}>{childA}</S.Child>
+			<S.Child ref={refB}>{childB}</S.Child>
 		</S.Transition>
 	);
 };

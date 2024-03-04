@@ -14,5 +14,11 @@ export const TestTransition = styled.div`
 `;
 
 export const ElementContainer = styled.div`
-	margin-top: 10rem;
+	margin-top: 2rem;
+`;
+
+export const SwitchContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
 `;

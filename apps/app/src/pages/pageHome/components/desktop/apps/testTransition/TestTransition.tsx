@@ -1,26 +1,28 @@
 import { useState } from "react";
 import * as S from "./TestTransition.styles";
-import { Select } from "@src/components/select/Select";
 import { Transition } from "@src/components/transition/Transition";
+import { Switch, SwitchState } from "@src/components/switch/Switch";
+import { Text } from "@src/components/text/Text";
 
 export const TestTransition = () => {
-	const [selectIndex, setSelectIndex] = useState(0);
+	const [switchState, setSwitchState] = useState<SwitchState>("left");
 
-	const onClickSelect = (index: number) => {
-		setSelectIndex(index);
+	const onClickSwitch = (switchState: SwitchState) => {
+		setSwitchState(switchState === "left" ? "right" : "left");
 	};
 
 	return (
 		<S.TestTransition>
-			<Select selectedIndex={selectIndex} onClickItem={onClickSelect}>
-				<Select.Item>Element 1</Select.Item>
-				<Select.Item>Element 2</Select.Item>
-			</Select>
+			<S.SwitchContainer>
+				<Text>Element 1</Text>
+				<Switch switchState={switchState} onClickSwitch={onClickSwitch} />
+				<Text>Element 2</Text>
+			</S.SwitchContainer>
 
 			<S.ElementContainer>
 				<Transition>
-					{selectIndex === 0 && <>This is a sample text</>}
-					{selectIndex === 1 && <>abcd efg</>}
+					{switchState === "left" && <>This is a sample text</>}
+					{switchState === "right" && <>abcd efg</>}
 				</Transition>
 			</S.ElementContainer>
 		</S.TestTransition>
