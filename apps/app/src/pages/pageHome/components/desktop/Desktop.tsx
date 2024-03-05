@@ -40,6 +40,7 @@ export const Desktop = () => {
 	const animationApp = useAnimation(refApp);
 	const [isErrorLoadingComponent, setIsErrorLoadingComponent] = useState(false);
 	const [isShakeMode, setIsShakeMode] = useState(false);
+	const [isVisibleButtonStopShake, setIsVisibleButtonStopShake] = useState(false);
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
@@ -126,6 +127,12 @@ export const Desktop = () => {
 
 	const handleLongPressApplication = () => {
 		setIsShakeMode(true);
+		setIsVisibleButtonStopShake(true);
+	};
+
+	const handleOnClickStopShake = () => {
+		setIsShakeMode(false);
+		setIsVisibleButtonStopShake(false);
 	};
 
 	return (
@@ -169,6 +176,8 @@ export const Desktop = () => {
 					onClickButtonClose={handleOnClickClose}
 					isVisibleButtonClose={isVisibleButtonClose}
 					onClickButtonTheme={handleOnClickChangeTheme}
+					onClickButtonAction={handleOnClickStopShake}
+					isVisibleButtonAction={isVisibleButtonStopShake}
 				/>
 			</S.Bar>
 

@@ -108,10 +108,7 @@ export const Username = styled.div`
 	justify-content: center;
 
 	border-radius: 50%;
-	color: ${(props) => props.theme.color.normalFg};
 	transition: all 0.3s ease;
-
-	color: ${(props) => props.theme.color.successBg};
 	white-space: nowrap;
 `;
 
@@ -121,4 +118,17 @@ export const Success = styled.div`
 
 export const Error = styled.div`
 	color: ${(props) => props.theme.color.errorBg};
+`;
+
+export const IconAction = styled.div<{ $isVisible: boolean }>`
+	${Icon}
+	left: 0rem;
+
+	& svg {
+		color: ${(props) => props.theme.color.accentBg};
+	}
+
+	&:active {
+		color: ${(props) => props.theme.color.accentBgActive};
+	}
 `;

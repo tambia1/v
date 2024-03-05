@@ -7,12 +7,14 @@ interface Props {
 	theme: ITheme;
 	userName: ReactNode;
 	userNameType: "success" | "error";
-	onClickButtonClose: () => void;
 	onClickButtonTheme: (themeName: IThemeName) => void;
+	onClickButtonClose: () => void;
 	isVisibleButtonClose: boolean;
+	onClickButtonAction: () => void;
+	isVisibleButtonAction: boolean;
 }
 
-export const Bar = ({ theme, userName, userNameType, onClickButtonClose, onClickButtonTheme, isVisibleButtonClose }: Props) => {
+export const Bar = ({ theme, userName, userNameType, onClickButtonClose, onClickButtonTheme, isVisibleButtonClose, onClickButtonAction, isVisibleButtonAction }: Props) => {
 	return (
 		<S.Container>
 			<S.IconClose onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
@@ -26,6 +28,10 @@ export const Bar = ({ theme, userName, userNameType, onClickButtonClose, onClick
 			<S.IconMinimize onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
 				<Icon iconName="iconPlayCircle" size={theme.size.l} />
 			</S.IconMinimize>
+
+			<S.IconAction onClick={onClickButtonAction} $isVisible={isVisibleButtonAction}>
+				<Icon iconName="iconCheck" size={theme.size.l} />
+			</S.IconAction>
 
 			<S.Username>
 				{userNameType === "success" && <S.Success>{userName}</S.Success>}
