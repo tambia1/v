@@ -18,7 +18,7 @@ export const themeLight: ITheme = {
 		normalBgDisabled: "#ebebeb",
 
 		accentFg: "#ffffff",
-		accentBg: "#e4eefa",
+		accentBg: "#4c7ebb",
 		accentFgHover: "#ffffff",
 		accentBgHover: "#296293",
 		accentFgActive: "#ffffff",
