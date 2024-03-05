@@ -14,7 +14,7 @@
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "5.24.1",
+		"@tanstack/react-query": "5.25.0",
 		"@v/ui": "1.0.8",
 		"i18next": "23.10.0",
 		"i18next-browser-languagedetector": "7.2.0",
