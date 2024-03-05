@@ -43,7 +43,7 @@ export const Image = styled.div<{ $appIcon: IAppIcon }>`
 	border-radius: 15px;
 `;
 
-export const AppButton = styled.div<{ $isLoading: boolean }>`
+export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean }>`
 	display: inline-flex;
 	align-items: center;
 	justify-content: start;
@@ -68,8 +68,6 @@ export const AppButton = styled.div<{ $isLoading: boolean }>`
 	${(props) =>
 		props.$isLoading &&
 		css`
-			animation: bounce 1.5s infinite;
-
 			@keyframes bounce {
 				0%,
 				20%,
@@ -84,6 +82,88 @@ export const AppButton = styled.div<{ $isLoading: boolean }>`
 				60% {
 					transform: translate3d(0, -10px, 0);
 				}
+			}
+
+			animation: bounce 1.5s infinite;
+		`}
+
+	${(props) =>
+		props.$isShakeMode &&
+		css`
+			@keyframes shake_1 {
+				0% {
+					transform: rotateZ(0deg);
+				}
+				33% {
+					transform: rotateZ(-4deg);
+				}
+				66% {
+					transform: rotateZ(4deg);
+				}
+				100% {
+					transform: rotateZ(0deg);
+				}
+			}
+
+			&:nth-child(4n + 1) {
+				animation: shake_1 0.3s linear infinite normal forwards;
+			}
+
+			@keyframes shake_2 {
+				0% {
+					transform: rotateZ(0deg);
+				}
+				33% {
+					transform: rotateZ(4deg);
+				}
+				66% {
+					transform: rotateZ(-4deg);
+				}
+				100% {
+					transform: rotateZ(0deg);
+				}
+			}
+
+			&:nth-child(4n + 2) {
+				animation: shake_2 0.3s linear infinite normal forwards;
+			}
+
+			@keyframes shake_3 {
+				0% {
+					transform: rotateZ(4deg);
+				}
+				33% {
+					transform: rotateZ(0deg);
+				}
+				66% {
+					transform: rotateZ(-4deg);
+				}
+				100% {
+					transform: rotateZ(4deg);
+				}
+			}
+
+			&:nth-child(4n + 3) {
+				animation: shake_3 0.3s linear infinite normal forwards;
+			}
+
+			@keyframes shake_4 {
+				0% {
+					transform: rotateZ(-4deg);
+				}
+				33% {
+					transform: rotateZ(0deg);
+				}
+				66% {
+					transform: rotateZ(4deg);
+				}
+				100% {
+					transform: rotateZ(-4deg);
+				}
+			}
+
+			&:nth-child(4n + 4) {
+				animation: shake_4 0.3s linear infinite normal forwards;
 			}
 		`}
 `;

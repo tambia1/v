@@ -39,6 +39,7 @@ export const Desktop = () => {
 	const refApp = useRef(null);
 	const animationApp = useAnimation(refApp);
 	const [isErrorLoadingComponent, setIsErrorLoadingComponent] = useState(false);
+	const [isShakeMode, setIsShakeMode] = useState(false);
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
@@ -123,6 +124,10 @@ export const Desktop = () => {
 		setIsErrorLoadingComponent(false);
 	};
 
+	const handleLongPressApplication = () => {
+		setIsShakeMode(true);
+	};
+
 	return (
 		<S.Container $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
 			<BarContext.Provider value={{ onClickclose: handleOnClickClose }}>
@@ -135,7 +140,18 @@ export const Desktop = () => {
 								return (
 									<S.AppGroup key={i}>
 										{appsGroup.map((app) => {
-											return <AppButton key={app.id} id={app.id} title={app.title} icon={app.icon} onClick={handleOnClickApplication} isLoading={app.id === loadingAppId} />;
+											return (
+												<AppButton
+													key={app.id}
+													id={app.id}
+													title={app.title}
+													icon={app.icon}
+													onClick={handleOnClickApplication}
+													onLongPress={handleLongPressApplication}
+													isLoading={app.id === loadingAppId}
+													isShakeMode={isShakeMode}
+												/>
+											);
 										})}
 									</S.AppGroup>
 								);
