@@ -38,7 +38,7 @@ export const Bar = ({ theme, userName, userNameType, onClickButtonClose, onClick
 				{userNameType === "error" && <S.Error>{userName}</S.Error>}
 			</S.Username>
 
-			<S.IconTheme>
+			<S.IconTheme $isVisible={true}>
 				{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => onClickButtonTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => onClickButtonTheme("light")} />}
 			</S.IconTheme>
 		</S.Container>

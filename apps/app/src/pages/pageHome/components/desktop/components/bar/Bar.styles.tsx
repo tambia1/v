@@ -72,23 +72,13 @@ export const IconMinimize = styled.div<{ $isVisible: boolean }>`
 	}
 `;
 
-export const IconTheme = styled.div`
-	position: absolute;
-	width: 4rem;
-	height: 4rem;
-	bottom: 0rem;
+export const IconTheme = styled.div<{ $isVisible: boolean }>`
+	${Icon}
 	right: 0rem;
 
-	display: flex;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center;
-
-	border-radius: 50%;
-	color: ${(props) => props.theme.color.normalFg};
-	transition: all 0.3s ease;
-
-	cursor: pointer;
+	& svg {
+		fill: ${(props) => props.theme.color.normalBg};
+	}
 
 	&:active {
 		color: ${(props) => props.theme.color.normalFgActive};
