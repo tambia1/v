@@ -46,32 +46,6 @@ export const IconClose = styled.div<{ $isVisible: boolean }>`
 	}
 `;
 
-export const IconHide = styled.div<{ $isVisible: boolean }>`
-	${Icon}
-	left: 3rem;
-
-	& svg {
-		fill: ${(props) => props.theme.color.warningBg};
-	}
-
-	&:active {
-		color: ${(props) => props.theme.color.normalFgActive};
-	}
-`;
-
-export const IconMinimize = styled.div<{ $isVisible: boolean }>`
-	${Icon}
-	left: 6rem;
-
-	& svg {
-		fill: ${(props) => props.theme.color.successBg};
-	}
-
-	&:active {
-		color: ${(props) => props.theme.color.normalFgActive};
-	}
-`;
-
 export const IconTheme = styled.div<{ $isVisible: boolean }>`
 	${Icon}
 	right: 0rem;
@@ -108,17 +82,4 @@ export const Success = styled.div`
 
 export const Error = styled.div`
 	color: ${(props) => props.theme.color.errorBg};
-`;
-
-export const IconAction = styled.div<{ $isVisible: boolean }>`
-	${Icon}
-	left: 0rem;
-
-	& svg {
-		color: ${(props) => props.theme.color.accentBg};
-	}
-
-	&:active {
-		color: ${(props) => props.theme.color.accentBgActive};
-	}
 `;

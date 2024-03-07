@@ -10,28 +10,14 @@ interface Props {
 	onClickButtonTheme: (themeName: IThemeName) => void;
 	onClickButtonClose: () => void;
 	isVisibleButtonClose: boolean;
-	onClickButtonAction: () => void;
-	isVisibleButtonAction: boolean;
 }
 
-export const Bar = ({ theme, userName, userNameType, onClickButtonClose, onClickButtonTheme, isVisibleButtonClose, onClickButtonAction, isVisibleButtonAction }: Props) => {
+export const Bar = ({ theme, userName, userNameType, onClickButtonTheme, onClickButtonClose, isVisibleButtonClose }: Props) => {
 	return (
 		<S.Container>
 			<S.IconClose onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
 				<Icon iconName="iconXCircle" size={theme.size.l} />
 			</S.IconClose>
-
-			<S.IconHide onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
-				<Icon iconName="iconMinusCircle" size={theme.size.l} />
-			</S.IconHide>
-
-			<S.IconMinimize onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
-				<Icon iconName="iconPlayCircle" size={theme.size.l} />
-			</S.IconMinimize>
-
-			<S.IconAction onClick={onClickButtonAction} $isVisible={isVisibleButtonAction}>
-				<Icon iconName="iconCheck" size={theme.size.l} />
-			</S.IconAction>
 
 			<S.Username>
 				{userNameType === "success" && <S.Success>{userName}</S.Success>}

@@ -113,7 +113,7 @@ export const Desktop = () => {
 		setCurrentApp(null);
 	};
 
-	const handleOnClickChangeTheme = (themeName: IThemeName) => {
+	const handleOnClickTheme = (themeName: IThemeName) => {
 		setTheme(themes[themeName]);
 
 		searchParams.set("theme", themeName);
@@ -173,11 +173,9 @@ export const Desktop = () => {
 					theme={theme}
 					userName={queryUser.data?.firstName ? queryUser.data.firstName : <T>{lang.home.guest}</T>}
 					userNameType={queryUser.data?.firstName ? "success" : "error"}
+					onClickButtonTheme={handleOnClickTheme}
 					onClickButtonClose={handleOnClickClose}
 					isVisibleButtonClose={isVisibleButtonClose}
-					onClickButtonTheme={handleOnClickChangeTheme}
-					onClickButtonAction={handleOnClickStopShake}
-					isVisibleButtonAction={isVisibleButtonStopShake}
 				/>
 			</S.Bar>
 
