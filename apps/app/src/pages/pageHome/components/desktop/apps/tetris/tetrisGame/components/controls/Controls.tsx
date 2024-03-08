@@ -11,6 +11,12 @@ interface Props {
 export const Controls = ({ onClickUpLeft, onClickUpRight, onClickLeft, onClickDown, onClickRight }: Props) => {
 	const isTouchDevice = "ontouchstart" in window ? true : false;
 
+	const onDown = (onClickUpLeft: () => void) => {
+		return {
+			[isTouchDevice ? "onTouchStart" : "onMouseDown"]: onClickUpLeft,
+		};
+	};
+
 	return (
 		<>
 			<div className="mat">
@@ -23,26 +29,26 @@ export const Controls = ({ onClickUpLeft, onClickUpRight, onClickLeft, onClickDo
 					<div className="col hor-align-center">
 						<div className="mat control-buttons">
 							<div className="row">
-								<div className="col" onMouseDown={() => !isTouchDevice && onClickUpLeft} onTouchStart={() => isTouchDevice && onClickUpLeft}>
+								<div className="col" {...onDown(onClickUpLeft)}>
 									<Box color={-1}>&#x21B0;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" onMouseDown={() => !isTouchDevice && onClickUpRight} onTouchStart={() => isTouchDevice && onClickUpRight}>
+								<div className="col" {...onDown(onClickUpRight)}>
 									<Box color={-1}>&#x21B1;</Box>
 								</div>
 							</div>
-							<div className="row">
-								<div className="col" onMouseDown={() => !isTouchDevice && onClickLeft} onTouchStart={() => isTouchDevice && onClickLeft}>
+							<div className="row margin-top-1">
+								<div className="col" {...onDown(onClickLeft)}>
 									<Box color={-1}>&larr;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" onMouseDown={() => !isTouchDevice && onClickRight} onTouchStart={() => isTouchDevice && onClickRight}>
+								<div className="col" {...onDown(onClickRight)}>
 									<Box color={-1}>&rarr;</Box>
 								</div>
 							</div>
-							<div className="row">
+							<div className="row margin-top-1">
 								<div className="col"></div>
-								<div className="col" onMouseDown={() => !isTouchDevice && onClickDown} onTouchStart={() => isTouchDevice && onClickDown}>
+								<div className="col" {...onDown(onClickDown)}>
 									<Box color={-1}>&darr;</Box>
 								</div>
 								<div className="col"></div>
