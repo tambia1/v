@@ -8,8 +8,8 @@ interface Props {
 	onClickRight: () => void;
 }
 
-export const Controls = (props: Props) => {
-	const { onClickUpLeft, onClickUpRight, onClickLeft, onClickDown, onClickRight } = props;
+export const Controls = ({ onClickUpLeft, onClickUpRight, onClickLeft, onClickDown, onClickRight }: Props) => {
+	const isTouchDevice = "ontouchstart" in window ? true : false;
 
 	return (
 		<>
@@ -23,26 +23,26 @@ export const Controls = (props: Props) => {
 					<div className="col hor-align-center">
 						<div className="mat control-buttons">
 							<div className="row">
-								<div className="col" onMouseDown={onClickUpLeft} onTouchStart={onClickUpLeft}>
+								<div className="col" onMouseDown={() => !isTouchDevice && onClickUpLeft} onTouchStart={() => isTouchDevice && onClickUpLeft}>
 									<Box color={-1}>&#x21B0;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" onMouseDown={onClickUpRight} onTouchStart={onClickUpRight}>
+								<div className="col" onMouseDown={() => !isTouchDevice && onClickUpRight} onTouchStart={() => isTouchDevice && onClickUpRight}>
 									<Box color={-1}>&#x21B1;</Box>
 								</div>
 							</div>
 							<div className="row">
-								<div className="col" onMouseDown={onClickLeft} onTouchStart={onClickLeft}>
+								<div className="col" onMouseDown={() => !isTouchDevice && onClickLeft} onTouchStart={() => isTouchDevice && onClickLeft}>
 									<Box color={-1}>&larr;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" onMouseDown={onClickRight} onTouchStart={onClickRight}>
+								<div className="col" onMouseDown={() => !isTouchDevice && onClickRight} onTouchStart={() => isTouchDevice && onClickRight}>
 									<Box color={-1}>&rarr;</Box>
 								</div>
 							</div>
 							<div className="row">
 								<div className="col"></div>
-								<div className="col" onMouseDown={onClickDown} onTouchStart={onClickDown}>
+								<div className="col" onMouseDown={() => !isTouchDevice && onClickDown} onTouchStart={() => isTouchDevice && onClickDown}>
 									<Box color={-1}>&darr;</Box>
 								</div>
 								<div className="col"></div>
