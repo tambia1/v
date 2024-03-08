@@ -159,6 +159,7 @@ export const Desktop = () => {
 
 			<S.Bar>
 				<Bar
+					barPosition={bar.position}
 					userName={queryUser.data?.firstName ? queryUser.data.firstName : <T>{lang.home.guest}</T>}
 					userNameType={queryUser.data?.firstName ? "success" : "error"}
 					onClickButtonTheme={handleOnClickTheme}

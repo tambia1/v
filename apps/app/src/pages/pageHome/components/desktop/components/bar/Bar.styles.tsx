@@ -1,8 +1,5 @@
 import styled, { css } from "styled-components";
-
-export type IBarPosition = "top" | "bottom" | "left" | "right";
-
-export const PAGE_BAR_SIZE = "4rem";
+import { IBarPosition } from "../../Desktop.styles";
 
 export const Container = styled.div`
 	position: absolute;
@@ -18,7 +15,6 @@ const Icon = css<{ $isVisible: boolean }>`
 	position: absolute;
 	width: 4rem;
 	height: 4rem;
-	top: 0rem;
 
 	display: flex;
 	flex-shrink: 0;
@@ -34,9 +30,9 @@ const Icon = css<{ $isVisible: boolean }>`
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
 `;
 
-export const IconClose = styled.div<{ $isVisible: boolean }>`
+export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
 	${Icon}
-	left: 0rem;
+	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `bottom: 0rem;` : `left: 0rem`)};
 
 	& svg {
 		fill: ${(props) => props.theme.color.errorBg};
@@ -47,9 +43,9 @@ export const IconClose = styled.div<{ $isVisible: boolean }>`
 	}
 `;
 
-export const IconTheme = styled.div<{ $isVisible: boolean }>`
+export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
 	${Icon}
-	right: 0rem;
+	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `top: 0rem;` : `right: 0rem`)};
 
 	& svg {
 		fill: ${(props) => props.theme.color.normalBg};

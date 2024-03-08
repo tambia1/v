@@ -3,8 +3,10 @@ import * as S from "./Bar.styles";
 import { IThemeName } from "@src/theme/Theme.types";
 import { ReactNode } from "react";
 import { useThemeContext } from "@src/theme/UseThemeContext";
+import { IBarPosition } from "../../Desktop.styles";
 
 interface Props {
+	barPosition: IBarPosition;
 	onClickButtonTheme: (themeName: IThemeName) => void;
 	isVisibleButtonClose: boolean;
 	onClickButtonClose: () => void;
@@ -12,12 +14,12 @@ interface Props {
 	userNameType: "success" | "error";
 }
 
-export const Bar = ({ onClickButtonTheme, onClickButtonClose, isVisibleButtonClose, userName, userNameType }: Props) => {
+export const Bar = ({ barPosition, onClickButtonTheme, onClickButtonClose, isVisibleButtonClose, userName, userNameType }: Props) => {
 	const { theme } = useThemeContext();
 
 	return (
 		<S.Container>
-			<S.IconClose onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>
+			<S.IconClose onClick={onClickButtonClose} $isVisible={isVisibleButtonClose} $barPosition={barPosition}>
 				<Icon iconName="iconXCircle" size={theme.size.l} />
 			</S.IconClose>
 
@@ -26,7 +28,7 @@ export const Bar = ({ onClickButtonTheme, onClickButtonClose, isVisibleButtonClo
 				{userNameType === "error" && <S.Error>{userName}</S.Error>}
 			</S.Username>
 
-			<S.IconTheme $isVisible={true}>
+			<S.IconTheme $isVisible={true} $barPosition={barPosition}>
 				{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => onClickButtonTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => onClickButtonTheme("light")} />}
 			</S.IconTheme>
 		</S.Container>
