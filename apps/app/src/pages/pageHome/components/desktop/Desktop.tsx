@@ -65,6 +65,10 @@ export const Desktop = () => {
 	});
 
 	const handleOnClickApplication = (appId: IAppId) => {
+		if (isShakeMode) {
+			return;
+		}
+
 		const app = apps.flat().find((app) => app.id === appId)!;
 		const timeStart = Date.now();
 		let isLoading = false;

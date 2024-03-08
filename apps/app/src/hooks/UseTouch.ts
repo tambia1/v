@@ -1,6 +1,6 @@
 import { DependencyList, RefObject, useEffect } from "react";
 
-export type IStatus = "down" | "move" | "up" | "out";
+export type IStatus = "down" | "move" | "up" | "out" | "long";
 export type ITouch = {
 	e: TouchEvent | MouseEvent;
 	xStart: number;
@@ -34,6 +34,7 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 		const MOUSE_UP = isTouchDevice ? "touchend" : "mouseup";
 		const MOUSE_ENTER = "mouseenter";
 		const MOUSE_OUT = "mouseout";
+		const LONG_PRESS_MS = 700;
 
 		let status: IStatus;
 		let boundingX: number = 0;
@@ -46,6 +47,7 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 		let yEnd: number = 0;
 		let timeStart: number = 0;
 		let timeEnd: number = 0;
+		let longPressTimeout: NodeJS.Timeout;
 
 		const getX = (e: TouchEvent | MouseEvent) => {
 			return (e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0;
@@ -56,8 +58,6 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 		};
 
 		const mouseDownListener = (e: TouchEvent | MouseEvent) => {
-			// e.preventDefault();
-
 			status = "down";
 
 			boundingX = div.getBoundingClientRect().left + window.scrollX + 0.5;
@@ -78,6 +78,10 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 
 			onTouch({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
 
+			longPressTimeout = setTimeout(() => {
+				onTouch({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status: "long" });
+			}, LONG_PRESS_MS);
+
 			document.addEventListener(MOUSE_MOVE, mouseMoveListener, { passive: false });
 			document.addEventListener(MOUSE_UP, mouseUpListener, { passive: false });
 			document.addEventListener(MOUSE_OUT, mouseOutListener, { passive: false });
@@ -85,8 +89,6 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 		};
 
 		const mouseMoveListener = (e: TouchEvent | MouseEvent) => {
-			// e.preventDefault();
-
 			if (status == "down" || status == "move") {
 				status = "move";
 
@@ -105,8 +107,6 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 		};
 
 		const mouseUpListener = (e: TouchEvent | MouseEvent) => {
-			// e.preventDefault();
-
 			xEnd = Math.floor(getX(e) - boundingX);
 			yEnd = Math.floor(getY(e) - boundingY);
 
@@ -123,19 +123,17 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 			}
 
 			onTouch({ e, xStart, yStart, xMove, yMove, xEnd, yEnd, time, status });
+
+			clearTimeout(longPressTimeout);
 		};
 
 		const mouseOutListener = () => {
-			// e.preventDefault();
-
 			if (status == "down") {
 				status = "out";
 			}
 		};
 
 		const mouseEnterListener = () => {
-			// e.preventDefault();
-
 			if (status == "out") {
 				status = "down";
 			}

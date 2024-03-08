@@ -1,7 +1,7 @@
-import useLongPress from "@src/hooks/UseLongPress";
+import { ITouch, useTouch } from "@src/hooks/UseTouch";
 import { IAppId } from "../../Desktop.types";
 import * as S from "./AppButton.styles";
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 
 interface Props {
 	id: IAppId;
@@ -14,18 +14,22 @@ interface Props {
 }
 
 export const AppButton = ({ id, title, icon, onClick, onLongPress, isLoading, isShakeMode }: Props) => {
-	const handleOnLongPress = () => {
-		onLongPress?.(id);
-	};
+	const refButton = useRef<HTMLDivElement>(null);
 
-	const handleOnClick = () => {
-		onClick?.(id);
-	};
-
-	const longPressEvent = useLongPress({ onLongPress: handleOnLongPress, onClick: handleOnClick });
+	useTouch({
+		ref: refButton,
+		onTouch: ({ status, time }: ITouch) => {
+			if (status === "long") {
+				onLongPress?.(id);
+			} else if (status === "up" && time < 700) {
+				onClick?.(id);
+			}
+		},
+		deps: [refButton.current],
+	});
 
 	return (
-		<S.AppButton $isLoading={isLoading} $isShakeMode={isShakeMode} {...longPressEvent}>
+		<S.AppButton ref={refButton} $isLoading={isLoading} $isShakeMode={isShakeMode}>
 			<S.Image $appIcon={icon} />
 			<S.Title>{title}</S.Title>
 		</S.AppButton>
