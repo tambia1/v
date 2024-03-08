@@ -24,10 +24,10 @@ import { useAnimation } from "@src/hooks/UseAnimation";
 import { Modal } from "@src/components/modal/Modal";
 import { Paging } from "@src/components/paging/Paging";
 import { getAppsGroups } from "./Desktop.utils";
+import { BarDoneCancel } from "./components/barDoneCancel/BarDoneCancel";
 
 export const Desktop = () => {
 	const { t } = useTranslation();
-	const { theme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
 	const [bar, setBar] = useState<{ isReady: boolean; position: S.IBarPosition }>({ isReady: false, position: "top" });
@@ -40,7 +40,6 @@ export const Desktop = () => {
 	const animationApp = useAnimation(refApp);
 	const [isErrorLoadingComponent, setIsErrorLoadingComponent] = useState(false);
 	const [isShakeMode, setIsShakeMode] = useState(false);
-	const [isVisibleButtonStopShake, setIsVisibleButtonStopShake] = useState(false);
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
@@ -67,11 +66,8 @@ export const Desktop = () => {
 
 	const handleOnClickApplication = (appId: IAppId) => {
 		const app = apps.flat().find((app) => app.id === appId)!;
-
 		const timeStart = Date.now();
 		let isLoading = false;
-
-		console.log("appComponent");
 
 		const appComponent = (
 			<Suspension
@@ -79,14 +75,9 @@ export const Desktop = () => {
 					setLoadingAppId(app.id);
 					isLoading = true;
 				}}
-				onFallbackEnd={() => {
-					setLoadingAppId(app.id);
-					isLoading = true;
-				}}
 				onEnd={async () => {
 					if (isLoading) {
-						const timeEnd = Date.now();
-						await Promises.sleep(1500 - (timeEnd - timeStart));
+						await Promises.sleep(1500 - (Date.now() - timeStart));
 					}
 
 					setLoadingAppId("");
@@ -127,12 +118,10 @@ export const Desktop = () => {
 
 	const handleLongPressApplication = () => {
 		setIsShakeMode(true);
-		setIsVisibleButtonStopShake(true);
 	};
 
-	const handleOnClickStopShake = () => {
+	const handleOnClickDone = () => {
 		setIsShakeMode(false);
-		setIsVisibleButtonStopShake(false);
 	};
 
 	return (
@@ -170,13 +159,14 @@ export const Desktop = () => {
 
 			<S.Bar>
 				<Bar
-					theme={theme}
 					userName={queryUser.data?.firstName ? queryUser.data.firstName : <T>{lang.home.guest}</T>}
 					userNameType={queryUser.data?.firstName ? "success" : "error"}
 					onClickButtonTheme={handleOnClickTheme}
 					onClickButtonClose={handleOnClickClose}
 					isVisibleButtonClose={isVisibleButtonClose}
 				/>
+
+				{isShakeMode && <BarDoneCancel isVisibleButtonDone={isShakeMode} onClickButtonDone={handleOnClickDone} />}
 			</S.Bar>
 
 			<Modal

@@ -1,18 +1,20 @@
 import { Icon } from "@src/icons/Icon";
 import * as S from "./Bar.styles";
-import { ITheme, IThemeName } from "@src/theme/Theme.types";
+import { IThemeName } from "@src/theme/Theme.types";
 import { ReactNode } from "react";
+import { useThemeContext } from "@src/theme/UseThemeContext";
 
 interface Props {
-	theme: ITheme;
+	onClickButtonTheme: (themeName: IThemeName) => void;
+	isVisibleButtonClose: boolean;
+	onClickButtonClose: () => void;
 	userName: ReactNode;
 	userNameType: "success" | "error";
-	onClickButtonTheme: (themeName: IThemeName) => void;
-	onClickButtonClose: () => void;
-	isVisibleButtonClose: boolean;
 }
 
-export const Bar = ({ theme, userName, userNameType, onClickButtonTheme, onClickButtonClose, isVisibleButtonClose }: Props) => {
+export const Bar = ({ onClickButtonTheme, onClickButtonClose, isVisibleButtonClose, userName, userNameType }: Props) => {
+	const { theme } = useThemeContext();
+
 	return (
 		<S.Container>
 			<S.IconClose onClick={onClickButtonClose} $isVisible={isVisibleButtonClose}>

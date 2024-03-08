@@ -1,9 +1,5 @@
 import styled, { css } from "styled-components";
 
-export type IBarPosition = "top" | "bottom" | "left" | "right";
-
-export const PAGE_BAR_SIZE = "4rem";
-
 export const Container = styled.div`
 	position: absolute;
 	overflow: hidden;
@@ -34,12 +30,12 @@ const Icon = css<{ $isVisible: boolean }>`
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
 `;
 
-export const IconClose = styled.div<{ $isVisible: boolean }>`
+export const IconDone = styled.div<{ $isVisible: boolean }>`
 	${Icon}
 	left: 0rem;
 
 	& svg {
-		fill: ${(props) => props.theme.color.errorBg};
+		stroke: ${(props) => props.theme.color.successBg};
 	}
 
 	&:active {
@@ -47,40 +43,15 @@ export const IconClose = styled.div<{ $isVisible: boolean }>`
 	}
 `;
 
-export const IconTheme = styled.div<{ $isVisible: boolean }>`
+export const IconCancel = styled.div<{ $isVisible: boolean }>`
 	${Icon}
-	right: 0rem;
+	left: 4rem;
 
 	& svg {
-		fill: ${(props) => props.theme.color.normalBg};
+		stroke: ${(props) => props.theme.color.errorBg};
 	}
 
 	&:active {
 		opacity: 0.5;
 	}
-`;
-
-export const Username = styled.div`
-	position: absolute;
-	width: 4rem;
-	height: 4rem;
-	bottom: 0rem;
-	right: 5rem;
-
-	display: flex;
-	flex-shrink: 0;
-	align-items: center;
-	justify-content: center;
-
-	border-radius: 50%;
-	transition: all 0.3s ease;
-	white-space: nowrap;
-`;
-
-export const Success = styled.div`
-	color: ${(props) => props.theme.color.successBg};
-`;
-
-export const Error = styled.div`
-	color: ${(props) => props.theme.color.errorBg};
 `;
