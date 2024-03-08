@@ -23,26 +23,26 @@ export const Controls = (props: Props) => {
 					<div className="col hor-align-center">
 						<div className="mat control-buttons">
 							<div className="row">
-								<div className="col" onClick={onClickUpLeft}>
+								<div className="col" onMouseDown={onClickUpLeft}>
 									<Box color={-1}>&#x21B0;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" onClick={onClickUpRight}>
+								<div className="col" onMouseDown={onClickUpRight}>
 									<Box color={-1}>&#x21B1;</Box>
 								</div>
 							</div>
 							<div className="row">
-								<div className="col" onClick={onClickLeft}>
+								<div className="col" onMouseDown={onClickLeft}>
 									<Box color={-1}>&larr;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" onClick={onClickRight}>
+								<div className="col" onMouseDown={onClickRight}>
 									<Box color={-1}>&rarr;</Box>
 								</div>
 							</div>
 							<div className="row">
 								<div className="col"></div>
-								<div className="col" onClick={onClickDown}>
+								<div className="col" onMouseDown={onClickDown}>
 									<Box color={-1}>&darr;</Box>
 								</div>
 								<div className="col"></div>
