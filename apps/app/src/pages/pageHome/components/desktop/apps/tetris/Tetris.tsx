@@ -60,7 +60,7 @@ export const Tetris = () => {
 		<S.Tetris>
 			<div className="mat">
 				<div className="row">
-					<div className="col">
+					<div className="col hor-align-center">
 						<TetrisGame
 							board={tetris1.board}
 							next={tetris1.next}
@@ -78,7 +78,7 @@ export const Tetris = () => {
 						<h3>{warState == WarState.End ? "Game Over" : ""}</h3>
 					</div>
 				</div>
-				<div className="row">
+				<div className="row hor-align-center">
 					<div className="start-button ">
 						<div className="col hor-align-center margin-top-1">
 							<h3>
@@ -89,8 +89,8 @@ export const Tetris = () => {
 						</div>
 					</div>
 				</div>
-				<div className="row">
-					<div className="start-button ">
+				<div className="row hor-align-center">
+					<div className="start-button">
 						<div className="col hor-align-center margin-top-1">{warState == WarState.Wait ? <Button onClick={startWar}>Start</Button> : <></>}</div>
 					</div>
 				</div>

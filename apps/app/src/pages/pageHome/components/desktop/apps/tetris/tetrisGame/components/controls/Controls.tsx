@@ -27,28 +27,28 @@ export const Controls = ({ onClickUpLeft, onClickUpRight, onClickLeft, onClickDo
 				</div>
 				<div className="row">
 					<div className="col hor-align-center">
-						<div className="mat control-buttons">
-							<div className="row">
-								<div className="col" {...onDown(onClickUpLeft)}>
+						<div className="mat control-buttons gap-1">
+							<div className="row gap-1">
+								<div className="col " {...onDown(onClickUpLeft)}>
 									<Box color={-1}>&#x21B0;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" {...onDown(onClickUpRight)}>
+								<div className="col " {...onDown(onClickUpRight)}>
 									<Box color={-1}>&#x21B1;</Box>
 								</div>
 							</div>
-							<div className="row margin-top-1">
-								<div className="col" {...onDown(onClickLeft)}>
+							<div className="row gap-1">
+								<div className="col " {...onDown(onClickLeft)}>
 									<Box color={-1}>&larr;</Box>
 								</div>
 								<div className="col"></div>
-								<div className="col" {...onDown(onClickRight)}>
+								<div className="col " {...onDown(onClickRight)}>
 									<Box color={-1}>&rarr;</Box>
 								</div>
 							</div>
-							<div className="row margin-top-1">
+							<div className="row gap-1">
 								<div className="col"></div>
-								<div className="col" {...onDown(onClickDown)}>
+								<div className="col " {...onDown(onClickDown)}>
 									<Box color={-1}>&darr;</Box>
 								</div>
 								<div className="col"></div>
