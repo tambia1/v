@@ -13,9 +13,9 @@ export const Camera = () => {
 				audio: false,
 				video: {
 					facingMode: { exact: "environment" },
-					width: { min: 800, max: 800 },
-					height: { min: 600, max: 600 },
-					aspectRatio: 3 / 4,
+					width: { min: 1080, max: 1080 },
+					height: { min: 1080, max: 1080 },
+					aspectRatio: 1,
 				},
 			});
 
