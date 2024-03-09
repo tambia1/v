@@ -45,16 +45,17 @@ export const Box = styled.div`
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
 `;
 
-export const EmailBox = styled.div`
+export const EmailBox = styled.div<{ disabled: boolean }>`
 	display: flex;
 	flex-direction: row;
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 	border-radius: 5rem;
+	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
-export const EmailImage = styled(Icon)<{ disabled: boolean }>`
+export const EmailImage = styled(Icon)`
 	width: 2rem;
-	background-color: ${(props) => (props.disabled ? props.theme.color.boxColor2 : props.theme.color.boxColor4)};
+	background-color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 `;
@@ -75,16 +76,17 @@ export const EmailInput = styled.input`
 	}
 `;
 
-export const PasswordBox = styled.div`
+export const PasswordBox = styled.div<{ disabled: boolean }>`
 	display: flex;
 	flex-direction: row;
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 	border-radius: 5rem;
+	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
-export const PasswordImage = styled(Icon)<{ disabled: boolean }>`
+export const PasswordImage = styled(Icon)`
 	width: 2rem;
-	background-color: ${(props) => (props.disabled ? props.theme.color.boxColor2 : props.theme.color.boxColor4)};
+	background-color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 `;

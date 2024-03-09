@@ -28,6 +28,7 @@ export type IHome = {
 		login: string;
 		logout: string;
 		welcome: string;
+		loading: string;
 	};
 
 	calculator: {

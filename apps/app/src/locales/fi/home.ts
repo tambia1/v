@@ -28,6 +28,7 @@ export const translation: IHome = {
 		login: "Sisään",
 		logout: "ulos",
 		welcome: "Tervetuloa {{firstName}} {{lastName}}!",
+		loading: "Ladataan käyttäjätietoja...",
 	},
 
 	calculator: {

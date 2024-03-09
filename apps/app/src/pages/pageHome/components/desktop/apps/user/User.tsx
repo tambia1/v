@@ -50,7 +50,7 @@ export const User = () => {
 		}
 
 		if (queryUser.isLoading) {
-			setMessage({ state: "idle", message: "Loading user data..." });
+			setMessage({ state: "idle", message: t(lang.user.loading) });
 
 			return;
 		}
@@ -126,12 +126,12 @@ export const User = () => {
 		<S.User onClick={handleOnClickBackground}>
 			<S.Box>
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
-				<S.EmailBox>
-					<S.EmailImage iconName="iconUser" disabled={!!storeLogin.token || loaderState === "loader"} />
+				<S.EmailBox disabled={!!storeLogin.token || loaderState === "loader"}>
+					<S.EmailImage iconName="iconUser" />
 					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={data.email.value} disabled={!!storeLogin.token || loaderState === "loader"} />
 				</S.EmailBox>
-				<S.PasswordBox>
-					<S.PasswordImage iconName="iconLock" disabled={!!storeLogin.token || loaderState === "loader"} />
+				<S.PasswordBox disabled={!!storeLogin.token || loaderState === "loader"}>
+					<S.PasswordImage iconName="iconLock" />
 					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={data.password.value} disabled={!!storeLogin.token || loaderState === "loader"} />
 				</S.PasswordBox>
 				<S.ButtonBox>
