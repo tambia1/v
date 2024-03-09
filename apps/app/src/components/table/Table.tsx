@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import * as S from "./Table.styles";
 
-type IData = {
+export type IData = {
 	cols: ReactNode[];
 	rows: ReactNode[][];
 };

@@ -31,12 +31,10 @@ export const TableRow = styled.tr`
 export const TableCellData = styled.td`
 	white-space: nowrap;
 	font-weight: normal;
-	width: 50%;
 `;
 
 export const TableCellHead = styled.td`
 	white-space: nowrap;
 	font-weight: normal;
-	width: 50%;
 	font-weight: bold;
 `;

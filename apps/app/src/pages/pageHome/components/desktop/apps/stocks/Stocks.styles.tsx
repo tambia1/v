@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Test = styled.div`
+export const Stocks = styled.div`
 	width: 100%;
 	height: 100%;
 
@@ -11,4 +11,9 @@ export const Test = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
+`;
+
+export const CompanyName = styled.div`
+	color: ${(props) => props.theme.color.normalFg};
+	margin: 1rem;
 `;

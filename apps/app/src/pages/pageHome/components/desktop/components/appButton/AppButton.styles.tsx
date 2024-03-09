@@ -12,6 +12,7 @@ import clock from "./assets/clock.png";
 import userLoggedIn from "./assets/userLoggedIn.png";
 import userLoggedOut from "./assets/userLoggedOut.png";
 import snake from "./assets/snake.png";
+import stocks from "./assets/stocks.webp";
 
 export const appIcons = {
 	settings,
@@ -27,6 +28,7 @@ export const appIcons = {
 	userLoggedIn,
 	userLoggedOut,
 	snake,
+	stocks,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;

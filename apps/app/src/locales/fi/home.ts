@@ -49,6 +49,10 @@ export const translation: IHome = {
 		save: "Tallentaa",
 	},
 
+	stocks: {
+		title: "Osakkeet",
+	},
+
 	tetris: {
 		title: "Tetris",
 	},

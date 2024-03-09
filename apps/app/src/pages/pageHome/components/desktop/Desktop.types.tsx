@@ -5,6 +5,7 @@ export type IAppId =
 	| "camera"
 	| "clock"
 	| "notes"
+	| "stocks"
 	| "tetris"
 	| "ninja"
 	| "clashRoyale"

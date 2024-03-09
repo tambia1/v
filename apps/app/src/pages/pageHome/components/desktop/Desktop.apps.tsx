@@ -14,6 +14,7 @@ import { User } from "@apps/user/User";
 import { ClashRoyale } from "@apps/clashRoyale/ClashRoyale";
 import { TestTransition } from "@apps/testTransition/TestTransition";
 import { Ninja } from "@apps/ninja/Ninja";
+import { Stocks } from "./apps/stocks/Stocks";
 
 const Mfe = lazy(() => import("remoteMicroFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -37,6 +38,7 @@ export const apps: IApp[][] = [
 		{ id: "calculator", roles: ["admin", "user", "guest"], title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", roles: ["admin", "user", "guest"], title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
 		{ id: "clock", roles: ["admin", "user", "guest"], title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
+		{ id: "stocks", roles: ["admin", "user", "guest"], title: <T>{lang.stocks.title}</T>, icon: "stocks", component: <Stocks /> },
 		{ id: "tetris", roles: ["admin", "user"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },

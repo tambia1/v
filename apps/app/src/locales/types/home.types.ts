@@ -49,6 +49,10 @@ export type IHome = {
 		save: string;
 	};
 
+	stocks: {
+		title: string;
+	};
+
 	tetris: {
 		title: string;
 	};
