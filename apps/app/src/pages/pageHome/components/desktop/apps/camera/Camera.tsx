@@ -13,8 +13,8 @@ export const Camera = () => {
 				audio: false,
 				video: {
 					facingMode: { exact: "environment" },
-					width: { min: 1080, max: 1080 },
-					height: { min: 1080, max: 1080 },
+					width: { ideal: 1080 },
+					height: { ideal: 1080 },
 					aspectRatio: 1,
 				},
 			});
@@ -46,8 +46,12 @@ export const Camera = () => {
 		<S.Camera>
 			<Text>Camera:</Text>
 			<S.Video ref={videoRef} autoPlay playsInline />
+
 			<Text>Picture:</Text>
-			<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
+			<S.ImageContainer>
+				<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
+			</S.ImageContainer>
+
 			<S.Buttons>
 				<Button onClick={handleCamera}>Start Camera</Button>
 				<Button onClick={handleCapture}>Take Picture</Button>

@@ -6,7 +6,6 @@ export type IAppId =
 	| "clock"
 	| "notes"
 	| "tetris"
-	| "snake"
 	| "ninja"
 	| "clashRoyale"
 	| "mfe"

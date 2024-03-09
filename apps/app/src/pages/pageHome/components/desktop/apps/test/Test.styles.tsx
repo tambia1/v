@@ -7,7 +7,6 @@ export const Test = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	padding: 1rem;
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
