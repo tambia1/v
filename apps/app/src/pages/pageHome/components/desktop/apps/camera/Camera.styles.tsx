@@ -16,7 +16,7 @@ export const Camera = styled.div`
 export const Image = styled.img`
 	position: relative;
 	width: 100%;
-	height: 30rem;
+	height: 20rem;
 
 	background-color: ${(props) => props.theme.color.normalBg};
 
@@ -36,7 +36,7 @@ export const Video = styled.video`
 	display: block;
 	position: relative;
 	width: 100%;
-	height: 30rem;
+	height: 20rem;
 	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
