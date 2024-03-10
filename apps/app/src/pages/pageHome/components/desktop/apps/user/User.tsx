@@ -7,6 +7,7 @@ import { useStoreLogin } from "@apps/user/stores/StoreLogin";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useBar } from "./../../hooks/UseBar";
+import { Loader } from "@src/components/loader/Loader";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -148,7 +149,7 @@ export const User = () => {
 				</S.ButtonBox>
 				<S.ButtonBox>
 					{loaderState === "loader" ? (
-						<S.Loader iconName="iconLoader" />
+						<Loader />
 					) : (
 						<>
 							{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}

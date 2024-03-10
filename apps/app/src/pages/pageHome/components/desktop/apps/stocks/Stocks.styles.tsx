@@ -13,7 +13,19 @@ export const Stocks = styled.div`
 	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
 
+export const LoaderContainer = styled.div`
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
+
 export const CompanyName = styled.div`
 	color: ${(props) => props.theme.color.normalFg};
 	margin: 1rem;
+`;
+
+export const Refresh = styled.div`
+	cursor: pointer;
 `;

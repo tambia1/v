@@ -153,20 +153,9 @@ export const StateBox = styled.div`
 	align-items: center;
 `;
 
-export const Loader = styled(Icon)`
+export const Loader = styled.div`
 	width: 2rem;
 	height: 2rem;
-	color: ${(props) => props.theme.color.boxColor4};
-	animation: spin 3s linear infinite;
-
-	@keyframes spin {
-		0% {
-			rotate: 0deg;
-		}
-		100% {
-			rotate: 360deg;
-		}
-	}
 `;
 
 export const Idle = styled.div`
