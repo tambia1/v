@@ -21,11 +21,6 @@ export const LoaderContainer = styled.div`
 	align-items: center;
 `;
 
-export const CompanyName = styled.div`
-	color: ${(props) => props.theme.color.normalFg};
-	margin: 1rem;
-`;
-
 export const Refresh = styled.div`
 	cursor: pointer;
 `;
