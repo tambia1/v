@@ -5,12 +5,25 @@ import { Loader } from "@src/components/loader/Loader";
 import { Icon } from "@src/icons/Icon";
 
 export const Stocks = () => {
-	const query = QueryStocks.symbols({}, { enabled: true });
+	const query = QueryStocks.stocks({}, { enabled: true });
 
-	const tableData: IData = {
-		cols: ["Symbol", "Name", "Currency", "Exchange", "Mic Code", "Country", "Type"],
-		rows: [...Object.values(query.data?.data || []).map((item) => Object.values(item))],
-	};
+	const tables: { symbol: string; data: IData }[] = [];
+
+	if (query.data) {
+		const items = Object.values(query.data);
+
+		items.forEach((item) => {
+			if (item.status === "ok") {
+				tables.push({
+					symbol: item.meta.symbol,
+					data: {
+						cols: ["Datetime", "Open", "High", "Low", "Close", "Volume"],
+						rows: item.values.map((value) => Object.values(value)),
+					},
+				});
+			}
+		});
+	}
 
 	return (
 		<S.Stocks>
@@ -24,9 +37,14 @@ export const Stocks = () => {
 				<Icon iconName="iconRotateCcw" onClick={() => query.refetch()} />
 			</S.Refresh>
 
-			<>
-				<Table data={tableData} type="horizontal" />
-			</>
+			<S.TablesContainer>
+				{Object.values(tables).map((table) => (
+					<S.Table key={table.symbol}>
+						<S.Symbol>{table.symbol}</S.Symbol>
+						<Table data={table.data} type="horizontal" />
+					</S.Table>
+				))}
+			</S.TablesContainer>
 		</S.Stocks>
 	);
 };

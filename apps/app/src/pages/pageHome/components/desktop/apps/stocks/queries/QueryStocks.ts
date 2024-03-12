@@ -69,7 +69,7 @@ const stocks = (props: QueryStocksProps, options?: Partial<UseQueryOptions<Query
 	return useQuery({
 		queryKey: ["stocks", { ...props }],
 		queryFn: async () => {
-			const response = await fetch(`https://api.twelvedata.com/time_series?symbol=AAPL&interval=1min&apikey=${API_KEY}`);
+			const response = await fetch(`https://api.twelvedata.com/time_series?symbol=USD,GLD,EUR,AAPL&interval=1min&apikey=${API_KEY}`);
 
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
