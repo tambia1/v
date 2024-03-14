@@ -6,30 +6,11 @@ import { Symbol } from "./components/about/Symbol";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { IStockOk, QueryStocks } from "../queries/QueryStocks";
-import { IData } from "@src/components/table/Table";
 
 export const StocksPage = () => {
 	const navigator = useNavigator();
 
 	const query = QueryStocks.stocks({}, { enabled: true });
-
-	// const tables: { symbol: string; data: IData }[] = [];
-
-	// if (query.data) {
-	// 	const items = Object.values(query.data);
-
-	// 	items.forEach((item) => {
-	// 		if (item.status === "ok") {
-	// 			tables.push({
-	// 				symbol: item.meta.symbol,
-	// 				data: {
-	// 					cols: ["Datetime", "Open", "High", "Low", "Close", "Volume"],
-	// 					rows: item.values.map((value) => Object.values(value)),
-	// 				},
-	// 			});
-	// 		}
-	// 	});
-	// }
 
 	const handleOnSymbol = (stock: IStockOk) => {
 		navigator.pushPage(

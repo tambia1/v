@@ -20,18 +20,6 @@ export const Symbol = ({ stock }: Props) => {
 		stock.values.map((item, i) => [i, Number(item.high)]),
 	];
 
-	// items.forEach((item) => {
-	// 	if (item.status === "ok") {
-	// 		tables.push({
-	// 			symbol: item.meta.symbol,
-	// 			data: {
-	// 				cols: ["Datetime", "Open", "High", "Low", "Close", "Volume"],
-	// 				rows: item.values.map((value) => Object.values(value)),
-	// 			},
-	// 		});
-	// 	}
-	// });
-
 	return (
 		<S.Symbol>
 			<Text size="l">{t(lang.stocks.symbol, { symbol: stock.meta.symbol })}</Text>
