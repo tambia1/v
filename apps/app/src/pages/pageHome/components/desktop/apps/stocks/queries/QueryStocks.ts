@@ -33,34 +33,36 @@ const symbols = (props: QuerySymbolsProps, options?: Partial<UseQueryOptions<Que
 	});
 };
 
+export type IStockOk = {
+	status: "ok";
+	meta: {
+		symbol: string;
+		interval: string;
+		currency: string;
+		exchange_timezone: string;
+		exchange: string;
+		mic_code: string;
+		type: string;
+	};
+	values: {
+		datetime: string;
+		open: string;
+		high: string;
+		low: string;
+		close: string;
+		volume: string;
+	}[];
+};
+
+export type IStockError = {
+	status: "error";
+	message: string;
+	code: number;
+	meta: { [K: string]: string };
+};
+
 export interface QueryStocksResult {
-	[K: string]:
-		| {
-				status: "ok";
-				meta: {
-					symbol: string;
-					interval: string;
-					currency: string;
-					exchange_timezone: string;
-					exchange: string;
-					mic_code: string;
-					type: string;
-				};
-				values: {
-					datetime: string;
-					open: string;
-					high: string;
-					low: string;
-					close: string;
-					volume: string;
-				}[];
-		  }
-		| {
-				status: "error";
-				message: string;
-				code: number;
-				meta: { [K: string]: string };
-		  };
+	[K: string]: IStockOk | IStockError;
 }
 
 interface QueryStocksProps {}

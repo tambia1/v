@@ -5,7 +5,7 @@ import { List } from "@src/components/list/List";
 import { Symbol } from "./components/about/Symbol";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { QueryStocks } from "../queries/QueryStocks";
+import { IStockOk, QueryStocks } from "../queries/QueryStocks";
 import { IData } from "@src/components/table/Table";
 
 export const StocksPage = () => {
@@ -13,28 +13,28 @@ export const StocksPage = () => {
 
 	const query = QueryStocks.stocks({}, { enabled: true });
 
-	const tables: { symbol: string; data: IData }[] = [];
+	// const tables: { symbol: string; data: IData }[] = [];
 
-	if (query.data) {
-		const items = Object.values(query.data);
+	// if (query.data) {
+	// 	const items = Object.values(query.data);
 
-		items.forEach((item) => {
-			if (item.status === "ok") {
-				tables.push({
-					symbol: item.meta.symbol,
-					data: {
-						cols: ["Datetime", "Open", "High", "Low", "Close", "Volume"],
-						rows: item.values.map((value) => Object.values(value)),
-					},
-				});
-			}
-		});
-	}
+	// 	items.forEach((item) => {
+	// 		if (item.status === "ok") {
+	// 			tables.push({
+	// 				symbol: item.meta.symbol,
+	// 				data: {
+	// 					cols: ["Datetime", "Open", "High", "Low", "Close", "Volume"],
+	// 					rows: item.values.map((value) => Object.values(value)),
+	// 				},
+	// 			});
+	// 		}
+	// 	});
+	// }
 
-	const handleOnSymbol = (symbol: string, data: IData) => {
+	const handleOnSymbol = (stock: IStockOk) => {
 		navigator.pushPage(
-			<Navigator.Page id={symbol} title={symbol}>
-				<Symbol symbol={symbol} data={data} />
+			<Navigator.Page id={stock.meta.symbol} title={stock.meta.symbol}>
+				<Symbol stock={stock} />
 			</Navigator.Page>
 		);
 	};
@@ -46,11 +46,13 @@ export const StocksPage = () => {
 			</List.Section>
 
 			<List>
-				{Object.values(tables).map((table) => (
-					<List.Cell key={table.symbol} onClick={() => handleOnSymbol(table.symbol, table.data)}>
-						<List.Cell.Text>{table.symbol}</List.Cell.Text>
-					</List.Cell>
-				))}
+				{Object.values(query.data || {})
+					.filter((stock) => stock.status === "ok")
+					.map((stock) => (
+						<List.Cell key={stock.meta.symbol} onClick={() => handleOnSymbol(stock as IStockOk)}>
+							<List.Cell.Text>{stock.meta.symbol}</List.Cell.Text>
+						</List.Cell>
+					))}
 			</List>
 		</S.StocksPage>
 	);

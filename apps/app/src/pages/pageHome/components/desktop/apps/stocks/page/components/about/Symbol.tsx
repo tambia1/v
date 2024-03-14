@@ -1,25 +1,43 @@
-import { IData } from "@src/components/table/Table";
 import * as S from "./Symbol.styles";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
 import { Chart } from "@src/components/chart/Chart";
+import { IStockOk } from "../../../queries/QueryStocks";
 
 interface Props {
-	symbol: string;
-	data: IData;
+	stock: IStockOk;
 }
 
-export const Symbol = ({ symbol, data }: Props) => {
+export const Symbol = ({ stock }: Props) => {
 	const { t } = useTranslation();
-	console.log("Translated text:", t(lang.stocks.symbol, { symbol: symbol }));
+	console.log("Translated text:", t(lang.stocks.symbol, { symbol: stock.meta.symbol }));
+
+	const data: number[][][] = [
+		stock.values.map((item, i) => [i, Number(item.open)]),
+		stock.values.map((item, i) => [i, Number(item.close)]),
+		stock.values.map((item, i) => [i, Number(item.low)]),
+		stock.values.map((item, i) => [i, Number(item.high)]),
+	];
+
+	// items.forEach((item) => {
+	// 	if (item.status === "ok") {
+	// 		tables.push({
+	// 			symbol: item.meta.symbol,
+	// 			data: {
+	// 				cols: ["Datetime", "Open", "High", "Low", "Close", "Volume"],
+	// 				rows: item.values.map((value) => Object.values(value)),
+	// 			},
+	// 		});
+	// 	}
+	// });
 
 	return (
 		<S.Symbol>
-			<Text size="l">{t(lang.stocks.symbol, { symbol: symbol })}</Text>
+			<Text size="l">{t(lang.stocks.symbol, { symbol: stock.meta.symbol })}</Text>
 
 			<S.Chart>
-				<Chart data={data.rows as number[][]} />
+				<Chart data={data} />
 			</S.Chart>
 		</S.Symbol>
 	);

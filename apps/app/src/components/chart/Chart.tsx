@@ -4,7 +4,7 @@ import * as C from "../canvas/Canvas.utils";
 import * as S from "./Chart.styles";
 
 interface Props {
-	data: number[][];
+	data: number[][][];
 }
 
 export const Chart = ({ data }: Props) => {
@@ -12,10 +12,6 @@ export const Chart = ({ data }: Props) => {
 		const w = ctx.canvas.width;
 		const h = ctx.canvas.height;
 		const g = 20;
-
-		const minValue = Math.min(...data.map((item) => item[1]));
-		const maxValue = Math.max(...data.map((item) => item[1]));
-		const r = (h - g) / (maxValue - minValue);
 
 		const axisX: IXY[] = [
 			{ x: 0, y: h - g },
@@ -48,12 +44,19 @@ export const Chart = ({ data }: Props) => {
 			C.drawLines(ctx, points, "#999999");
 		}
 
-		const points: IXY[] = [];
 		for (let i = 0; i < data.length; i++) {
-			points.push({ x: g + i * (w / data.length), y: h - (data[i][1] - minValue) * r - g });
-		}
+			const minValue = Math.min(...data[i].map((item) => item[1]));
+			const maxValue = Math.max(...data[i].map((item) => item[1]));
+			const r = (h - g) / (maxValue - minValue);
 
-		C.drawLines(ctx, points, "#5dee2d");
+			const points: IXY[] = [];
+
+			for (let j = 0; j < data[i].length; j++) {
+				points.push({ x: g + j * (w / data[i].length), y: h - (data[i][j][1] - minValue) * r - g });
+			}
+
+			C.drawLines(ctx, points, "#5dee2d");
+		}
 
 		C.drawGradient(ctx, 0, h, w, 0);
 	};
