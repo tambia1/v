@@ -10,3 +10,9 @@ export const Symbol = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 `;
+
+export const Chart = styled.div`
+	width: 100%;
+	height: 30rem;
+	margin-top: 1rem;
+`;
