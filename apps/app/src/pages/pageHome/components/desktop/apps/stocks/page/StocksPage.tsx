@@ -6,6 +6,7 @@ import { Stock } from "./components/stock/Stock";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { IStockOk, QueryStocks } from "../queries/QueryStocks";
+import { Loader } from "@src/components/loader/Loader";
 
 export const StocksPage = () => {
 	const navigator = useNavigator();
@@ -22,6 +23,8 @@ export const StocksPage = () => {
 
 	return (
 		<S.StocksPage>
+			<S.Loader>{query.isLoading && <Loader />}</S.Loader>
+
 			<List.Section>
 				<T>{lang.stocks.title}</T>
 			</List.Section>

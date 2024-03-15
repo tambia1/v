@@ -10,3 +10,12 @@ export const StocksPage = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 `;
+
+export const Loader = styled.div`
+	width: auto;
+	height: 2rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
