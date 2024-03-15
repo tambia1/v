@@ -2,7 +2,7 @@ import * as S from "./StocksPage.styles";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { List } from "@src/components/list/List";
-import { Symbol } from "./components/about/Symbol";
+import { Stock } from "./components/stock/Stock";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { IStockOk, QueryStocks } from "../queries/QueryStocks";
@@ -15,7 +15,7 @@ export const StocksPage = () => {
 	const handleOnSymbol = (stock: IStockOk) => {
 		navigator.pushPage(
 			<Navigator.Page id={stock.meta.symbol} title={stock.meta.symbol}>
-				<Symbol stock={stock} />
+				<Stock stock={stock} />
 			</Navigator.Page>
 		);
 	};

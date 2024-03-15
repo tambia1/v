@@ -55,7 +55,7 @@ export const translation: IHome = {
 
 	stocks: {
 		title: "Stocks",
-		symbol: "Symbol: {{symbol}}",
+		exchange: "Exchange: {{exchange}}",
 	},
 
 	snake: {

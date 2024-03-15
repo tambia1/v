@@ -51,7 +51,7 @@ export type IHome = {
 
 	stocks: {
 		title: string;
-		symbol: string;
+		exchange: string;
 	};
 
 	tetris: {

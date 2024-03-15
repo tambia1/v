@@ -51,7 +51,7 @@ export const translation: IHome = {
 
 	stocks: {
 		title: "Osakkeet",
-		symbol: "Symboli: {{symbol}}",
+		exchange: "Symboli: {{symbol}}",
 	},
 
 	tetris: {
