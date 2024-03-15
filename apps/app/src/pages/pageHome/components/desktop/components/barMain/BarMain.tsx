@@ -1,5 +1,5 @@
 import { Icon } from "@src/icons/Icon";
-import * as S from "./Bar.styles";
+import * as S from "./BarMain.styles";
 import { IThemeName } from "@src/theme/Theme.types";
 import { ReactNode } from "react";
 import { useThemeContext } from "@src/theme/UseThemeContext";
@@ -14,7 +14,7 @@ interface Props {
 	userNameType: "success" | "error";
 }
 
-export const Bar = ({ barPosition, onClickButtonTheme, onClickButtonClose, isVisibleButtonClose, userName, userNameType }: Props) => {
+export const BarMain = ({ barPosition, onClickButtonTheme, onClickButtonClose, isVisibleButtonClose, userName, userNameType }: Props) => {
 	const { theme } = useThemeContext();
 
 	return (

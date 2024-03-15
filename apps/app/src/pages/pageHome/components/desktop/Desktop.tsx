@@ -19,7 +19,7 @@ import { AppButton } from "./components/appButton/AppButton";
 import { Suspension } from "@src/components/suspension/Suspension";
 import { Promises } from "@src/services/Promises";
 import { BarContext } from "./hooks/UseBar";
-import { Bar } from "./components/bar/Bar";
+import { BarMain } from "./components/barMain/BarMain";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { Modal } from "@src/components/modal/Modal";
 import { Paging } from "@src/components/paging/Paging";
@@ -128,6 +128,10 @@ export const Desktop = () => {
 		setIsShakeMode(false);
 	};
 
+	const handleOnClickCancel = () => {
+		setIsShakeMode(false);
+	};
+
 	return (
 		<S.Container $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
 			<BarContext.Provider value={{ onClickclose: handleOnClickClose }}>
@@ -162,7 +166,7 @@ export const Desktop = () => {
 			</BarContext.Provider>
 
 			<S.Bar>
-				<Bar
+				<BarMain
 					barPosition={bar.position}
 					userName={queryUser.data?.firstName ? queryUser.data.firstName : <T>{lang.home.guest}</T>}
 					userNameType={queryUser.data?.firstName ? "success" : "error"}
@@ -171,7 +175,7 @@ export const Desktop = () => {
 					isVisibleButtonClose={isVisibleButtonClose}
 				/>
 
-				{isShakeMode && <BarDoneCancel isVisibleButtonDone={isShakeMode} onClickButtonDone={handleOnClickDone} />}
+				{isShakeMode && <BarDoneCancel isVisibleButtonDone={isShakeMode} onClickButtonDone={handleOnClickDone} isVisibleButtonCancel={isShakeMode} onClickButtonCancel={handleOnClickCancel} />}
 			</S.Bar>
 
 			<Modal

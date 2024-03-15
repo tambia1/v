@@ -45,7 +45,7 @@ export const IconDone = styled.div<{ $isVisible: boolean }>`
 
 export const IconCancel = styled.div<{ $isVisible: boolean }>`
 	${Icon}
-	left: 4rem;
+	right: 0rem;
 
 	& svg {
 		stroke: ${(props) => props.theme.color.errorBg};
