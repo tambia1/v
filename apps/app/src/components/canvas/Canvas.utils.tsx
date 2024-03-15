@@ -25,6 +25,30 @@ export const drawLines = (ctx: CanvasRenderingContext2D, points: IXY[], strokeSt
 	ctx.restore();
 };
 
+export const fillLines = (ctx: CanvasRenderingContext2D, points: IXY[], strokeStyle: string, fillStyle: string) => {
+	if (points.length < 2) {
+		return;
+	}
+
+	ctx.save();
+	ctx.strokeStyle = strokeStyle;
+	ctx.fillStyle = fillStyle;
+
+	ctx.beginPath();
+	ctx.moveTo(points[0].x, points[0].y);
+
+	for (let i = 1; i < points.length; i++) {
+		ctx.lineTo(points[i].x, points[i].y);
+	}
+
+	ctx.closePath();
+
+	ctx.stroke();
+	ctx.fill();
+
+	ctx.restore();
+};
+
 export const drawCircles = (ctx: CanvasRenderingContext2D, points: IXY[], radius: number, strokeStyle: string, fillStyle: string) => {
 	ctx.save();
 
@@ -88,9 +112,9 @@ export const drawText = (
 export const drawGradient = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) => {
 	ctx.save();
 
-	const grd = ctx.createLinearGradient(0, 0, 200, 0);
-	grd.addColorStop(0, "red");
-	grd.addColorStop(1, "white");
+	const grd = ctx.createLinearGradient(0, 0, 0, h);
+	grd.addColorStop(0, "#00ff00");
+	grd.addColorStop(1, "transparent");
 
 	ctx.fillStyle = grd;
 	ctx.fillRect(x, y, w, h);

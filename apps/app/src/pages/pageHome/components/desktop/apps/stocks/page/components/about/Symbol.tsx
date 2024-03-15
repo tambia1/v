@@ -14,22 +14,10 @@ export const Symbol = ({ stock }: Props) => {
 	console.log("Translated text:", t(lang.stocks.symbol, { symbol: stock.meta.symbol }));
 
 	const lines: ILine[] = [
-		// {
-		// 	color: "#00ff00",
-		// 	data: stock.values.map((item, i) => [i, Number(item.open)]),
-		// },
 		{
 			color: "#ff0000",
 			data: stock.values.map((item, i) => [i, Number(item.close)]),
 		},
-		// {
-		// 	color: "#0000ff",
-		// 	data: stock.values.map((item, i) => [i, Number(item.high)]),
-		// },
-		// {
-		// 	color: "#ff00ff",
-		// 	data: stock.values.map((item, i) => [i, Number(item.low)]),
-		// },
 	];
 
 	return (

@@ -63,7 +63,11 @@ export const Chart = ({ lines }: Props) => {
 			C.drawLines(ctx, points, lines[i].color);
 		}
 
-		C.drawGradient(ctx, 0, h, w, 0);
+		const minValue = Math.min(...lines[0].data.map((item) => item[1]));
+		const maxValue = Math.max(...lines[0].data.map((item) => item[1]));
+
+		C.drawText(ctx, maxValue.toFixed(3).toString(), w - g - 50, g);
+		C.drawText(ctx, minValue.toFixed(3).toString(), w - g - 50, h - g);
 	};
 
 	return (
