@@ -23,7 +23,7 @@ export const StocksPage = () => {
 	return (
 		<S.StocksPage>
 			<List.Section>
-				<T>{lang.settings.apearance}</T>
+				<T>{lang.stocks.title}</T>
 			</List.Section>
 
 			<List>

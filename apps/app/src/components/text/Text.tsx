@@ -1,8 +1,9 @@
+import { ReactNode } from "react";
 import * as S from "./Text.styles";
 import { ITheme } from "@src/theme/Theme.types";
 
 interface Props {
-	children: string | string[];
+	children?: ReactNode;
 	size?: keyof ITheme["size"];
 	color?: keyof ITheme["color"];
 	bgcolor?: keyof ITheme["color"];
