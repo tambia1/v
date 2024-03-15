@@ -9,7 +9,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { Modal } from "@src/components/modal/Modal";
 import { useNotesStore } from "../store/UseNotesStore";
-import { getUniqueId } from "@src/utils/UniqueId";
+import { Text } from "@src/components/text/Text";
 
 export const NotesPage = () => {
 	const pager = useNavigator();
@@ -28,11 +28,12 @@ export const NotesPage = () => {
 
 	const handleOnClickAddNote = () => {
 		const newNotes = structuredClone(notes.data);
-		const id = getUniqueId();
+		const date = new Date();
+		const id = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
 		newNotes[id] = {
-			id: String(id),
-			title: "Untitled " + String(id),
+			id: id,
+			title: "My Note " + id,
 			text: "Text",
 		};
 
@@ -65,26 +66,24 @@ export const NotesPage = () => {
 			</List.Section>
 
 			<List>
-				{Object.keys(notes.data)
-					.sort()
-					.map((noteId) => (
-						<List.Cell
-							key={noteId}
-							onClick={() => {
-								handleOnClickNote(noteId);
-							}}
-						>
-							<S.CellGrid>
-								<Icon
-									iconName="iconMinusCircle"
-									onClick={(e) => {
-										handleOnClickRemoveNote(e, noteId);
-									}}
-								/>
-								<T>{notes.data[noteId].title}</T>
-							</S.CellGrid>
-						</List.Cell>
-					))}
+				{Object.keys(notes.data).map((noteId) => (
+					<List.Cell
+						key={noteId}
+						onClick={() => {
+							handleOnClickNote(noteId);
+						}}
+					>
+						<S.CellGrid>
+							<Icon
+								iconName="iconMinusCircle"
+								onClick={(e) => {
+									handleOnClickRemoveNote(e, noteId);
+								}}
+							/>
+							<Text>{notes.data[noteId].title}</Text>
+						</S.CellGrid>
+					</List.Cell>
+				))}
 			</List>
 
 			<Modal
