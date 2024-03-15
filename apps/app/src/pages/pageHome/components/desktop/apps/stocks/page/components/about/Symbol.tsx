@@ -4,18 +4,20 @@ import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
 import { Chart, ILine } from "@src/components/chart/Chart";
 import { IStockOk } from "../../../queries/QueryStocks";
+import { useTheme } from "styled-components";
 
 interface Props {
 	stock: IStockOk;
 }
 
 export const Symbol = ({ stock }: Props) => {
+	const theme = useTheme();
 	const { t } = useTranslation();
 	console.log("Translated text:", t(lang.stocks.symbol, { symbol: stock.meta.symbol }));
 
 	const lines: ILine[] = [
 		{
-			color: "#ff0000",
+			color: theme.color.successBg,
 			data: stock.values.map((item, i) => [i, Number(item.close)]),
 		},
 	];

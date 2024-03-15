@@ -1,3 +1,4 @@
+import { useTheme } from "styled-components";
 import { Canvas } from "../canvas/Canvas";
 import { IXY } from "../canvas/Canvas.types";
 import * as C from "../canvas/Canvas.utils";
@@ -13,28 +14,23 @@ interface Props {
 }
 
 export const Chart = ({ lines }: Props) => {
+	const theme = useTheme();
+
 	const draw = (ctx: CanvasRenderingContext2D) => {
 		const w = ctx.canvas.width;
 		const h = ctx.canvas.height;
-		const g = 20;
 
 		const axisX: IXY[] = [
-			{ x: 0, y: h - g },
-			{ x: w, y: h - g },
-		];
-
-		const axisY: IXY[] = [
-			{ x: g, y: 0 },
-			{ x: g, y: h },
+			{ x: 0, y: h },
+			{ x: w, y: h },
 		];
 
 		C.drawLines(ctx, axisX, "#000000");
-		C.drawLines(ctx, axisY, "#000000");
 
 		for (let i = 100; i < w; i += 100) {
 			const points: IXY[] = [
-				{ x: g + i, y: 0 },
-				{ x: g + i, y: h },
+				{ x: i, y: 0 },
+				{ x: i, y: h },
 			];
 
 			C.drawLines(ctx, points, "#999999");
@@ -42,8 +38,8 @@ export const Chart = ({ lines }: Props) => {
 
 		for (let i = 100; i < w; i += 100) {
 			const points: IXY[] = [
-				{ x: 0, y: h - g - i },
-				{ x: w, y: h - g - i },
+				{ x: 0, y: h - i },
+				{ x: w, y: h - i },
 			];
 
 			C.drawLines(ctx, points, "#999999");
@@ -52,13 +48,35 @@ export const Chart = ({ lines }: Props) => {
 		for (let i = 0; i < lines.length; i++) {
 			const minValue = Math.min(...lines[i].data.map((item) => item[1]));
 			const maxValue = Math.max(...lines[i].data.map((item) => item[1]));
-			const r = (h - g) / (maxValue - minValue);
+			const r = h / (maxValue - minValue);
 
 			const points: IXY[] = [];
 
 			for (let j = 0; j < lines[i].data.length; j++) {
-				points.push({ x: g + j * (w / lines[i].data.length), y: h - (lines[i].data[j][1] - minValue) * r - g });
+				points.push({ x: j * (w / (lines[i].data.length - 1)), y: h - (lines[i].data[j][1] - minValue) * r });
 			}
+
+			const grd = ctx.createLinearGradient(0, -h / 2, 0, h);
+			grd.addColorStop(0, lines[i].color);
+			grd.addColorStop(1, "transparent");
+
+			ctx.save();
+			ctx.fillStyle = grd;
+			ctx.strokeStyle = "transparent";
+			ctx.beginPath();
+			ctx.moveTo(points[0].x, points[0].y);
+
+			for (let i = 1; i < points.length; i++) {
+				ctx.lineTo(points[i].x, points[i].y);
+			}
+
+			ctx.lineTo(points.at(-1)?.x || 0, h);
+			ctx.lineTo(0, h);
+
+			ctx.closePath();
+			ctx.stroke();
+			ctx.fill();
+			ctx.restore();
 
 			C.drawLines(ctx, points, lines[i].color);
 		}
@@ -66,8 +84,8 @@ export const Chart = ({ lines }: Props) => {
 		const minValue = Math.min(...lines[0].data.map((item) => item[1]));
 		const maxValue = Math.max(...lines[0].data.map((item) => item[1]));
 
-		C.drawText(ctx, maxValue.toFixed(3).toString(), w - g - 50, g);
-		C.drawText(ctx, minValue.toFixed(3).toString(), w - g - 50, h - g);
+		C.drawText(ctx, maxValue.toFixed(3).toString(), w - 50, 5, { textBaseline: "top", fillStyle: theme.color.normalFg });
+		C.drawText(ctx, minValue.toFixed(3).toString(), w - 50, h - 5, { textBaseline: "bottom", fillStyle: theme.color.normalFg });
 	};
 
 	return (

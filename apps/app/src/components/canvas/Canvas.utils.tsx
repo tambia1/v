@@ -84,13 +84,13 @@ export const drawText = (
 	x: number,
 	y: number,
 	options?: {
-		fillStyle: string | CanvasGradient | CanvasPattern;
-		shadow: string;
-		shadowOffsetX: number;
-		shadowOffsetY: number;
-		shadowBlur: number;
-		textAlign: CanvasTextAlign;
-		textBaseline: CanvasTextBaseline;
+		fillStyle?: string | CanvasGradient | CanvasPattern;
+		shadow?: string;
+		shadowOffsetX?: number;
+		shadowOffsetY?: number;
+		shadowBlur?: number;
+		textAlign?: CanvasTextAlign;
+		textBaseline?: CanvasTextBaseline;
 	}
 ) => {
 	ctx.save();
