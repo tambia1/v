@@ -3,11 +3,16 @@ import { IXY } from "../canvas/Canvas.types";
 import * as C from "../canvas/Canvas.utils";
 import * as S from "./Chart.styles";
 
+export type ILine = {
+	color: string;
+	data: number[][];
+};
+
 interface Props {
-	data: number[][][];
+	lines: ILine[];
 }
 
-export const Chart = ({ data }: Props) => {
+export const Chart = ({ lines }: Props) => {
 	const draw = (ctx: CanvasRenderingContext2D) => {
 		const w = ctx.canvas.width;
 		const h = ctx.canvas.height;
@@ -44,18 +49,18 @@ export const Chart = ({ data }: Props) => {
 			C.drawLines(ctx, points, "#999999");
 		}
 
-		for (let i = 0; i < data.length; i++) {
-			const minValue = Math.min(...data[i].map((item) => item[1]));
-			const maxValue = Math.max(...data[i].map((item) => item[1]));
+		for (let i = 0; i < lines.length; i++) {
+			const minValue = Math.min(...lines[i].data.map((item) => item[1]));
+			const maxValue = Math.max(...lines[i].data.map((item) => item[1]));
 			const r = (h - g) / (maxValue - minValue);
 
 			const points: IXY[] = [];
 
-			for (let j = 0; j < data[i].length; j++) {
-				points.push({ x: g + j * (w / data[i].length), y: h - (data[i][j][1] - minValue) * r - g });
+			for (let j = 0; j < lines[i].data.length; j++) {
+				points.push({ x: g + j * (w / lines[i].data.length), y: h - (lines[i].data[j][1] - minValue) * r - g });
 			}
 
-			C.drawLines(ctx, points, "#5dee2d");
+			C.drawLines(ctx, points, lines[i].color);
 		}
 
 		C.drawGradient(ctx, 0, h, w, 0);
@@ -63,7 +68,7 @@ export const Chart = ({ data }: Props) => {
 
 	return (
 		<S.Container>
-			<Canvas draw={draw} deps={data} />
+			<Canvas draw={draw} deps={lines} />
 		</S.Container>
 	);
 };
