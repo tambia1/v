@@ -70,7 +70,7 @@ export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopE
 
 	const onAnimationStart = (navigatorItem: INavigatorItem) => {
 		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, navigatorItem));
+			Object.keys(listeners.pushStart).forEach((k) => listeners.popStart[k](k, navigatorItem));
 		}
 
 		if (navigatorItem.pageAnimation === "moveFromCenterToRight" || navigatorItem.pageAnimation === "goFromCenterToRight") {
