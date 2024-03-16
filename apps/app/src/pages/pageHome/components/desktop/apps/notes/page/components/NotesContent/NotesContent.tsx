@@ -3,8 +3,10 @@ import { useNotesStore } from "../../../store/UseNotesStore";
 import * as S from "./NotesContent.styles";
 import { useTranslation } from "react-i18next";
 import { lang } from "@src/locales/i18n";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Modal } from "@src/components/modal/Modal";
+import { T } from "@src/locales/T";
 
 interface Props {
 	id: string;
@@ -16,13 +18,15 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	const { t } = useTranslation();
 	const notes = useNotesStore();
 
-	const [editedTitle, setEditedTitle] = useState(title);
-	const [editedText, setEditedText] = useState(text);
+	const refTitle = useRef<HTMLDivElement>(null);
+	const refText = useRef<HTMLDivElement>(null);
 
-	const pager = useNavigator();
+	const navigator = useNavigator();
+
+	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	useEffect(() => {
-		return pager.addListener("popStart", "1", handleOnPagerAction);
+		return navigator.addListener("popStart", "1", handleOnNavigatorAction);
 	}, []);
 
 	const focusElement = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -35,29 +39,51 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	};
 
 	const handleOnClickSave = () => {
-		notes.setNote(id, editedTitle, editedText);
-		pager.popPage();
+		const newTitle = refTitle.current?.textContent || "";
+		const newText = refText.current?.textContent || "";
+
+		if (newTitle !== title || newText !== text) {
+			setIsModalVisible(true);
+
+			return;
+		}
+
+		notes.setNote(id, newText, newTitle);
+		navigator.popPage();
 	};
 
-	const handleTitleChange = (event: React.FormEvent<HTMLDivElement>) => {
-		setEditedTitle(event.currentTarget.textContent || "");
+	const cancelSaveNote = () => {
+		setIsModalVisible(false);
 	};
 
-	const handleTextChange = (event: React.FormEvent<HTMLDivElement>) => {
-		setEditedText(event.currentTarget.textContent || "");
+	const performSaveNote = () => {
+		setIsModalVisible(false);
 	};
 
-	const handleOnPagerAction = () => {};
+	const handleOnNavigatorAction = () => {};
 
 	return (
 		<S.NotesContent>
-			<S.Title contentEditable onClick={focusElement} onInput={handleTitleChange}>
-				{editedTitle}
+			<S.Title ref={refTitle} contentEditable onClick={focusElement}>
+				{title}
 			</S.Title>
-			<S.Content contentEditable onClick={focusElement} onInput={handleTextChange}>
-				{editedText}
+
+			<S.Content ref={refText} contentEditable onClick={focusElement}>
+				{text}
 			</S.Content>
+
 			<Button onClick={handleOnClickSave}>{t(lang.notes.save)}</Button>
+
+			<Modal
+				isVisible={isModalVisible}
+				iconName="question"
+				text={<T>{lang.misc.areYouSure}</T>}
+				onClickBackground={cancelSaveNote}
+				buttonContentA={<T>{lang.misc.yes}</T>}
+				buttonCallbackA={performSaveNote}
+				buttonContentB={<T>{lang.misc.no}</T>}
+				buttonCallbackB={cancelSaveNote}
+			/>
 		</S.NotesContent>
 	);
 };

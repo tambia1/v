@@ -7,13 +7,13 @@ import { useState } from "react";
 import { IType as IArenaType } from "./game/Arena";
 
 export const ClashRoyaleMenu = () => {
-	const pager = useNavigator();
+	const navigator = useNavigator();
 	const [pageIndex, setPageIndex] = useState(0);
 
 	const Arenas: IArenaType[] = ["arena1", "arena2", "arena3", "arena4", "arena5", "arena6", "arena7", "arena8", "arena9", "arena10", "arena11"];
 
 	const handleOnClickStart = () => {
-		pager.pushPage(
+		navigator.pushPage(
 			<Navigator.Page id={"game"} title={"Game"}>
 				<ClashRoyaleGame arenaType={Arenas[pageIndex]} />
 			</Navigator.Page>

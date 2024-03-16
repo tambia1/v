@@ -36,6 +36,7 @@ export const Content = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;
+	flex-grow: 1;
 	overflow: auto;
 	box-shadow: 0 0 0.5rem 0 #00000066;
 	border-radius: 1rem;

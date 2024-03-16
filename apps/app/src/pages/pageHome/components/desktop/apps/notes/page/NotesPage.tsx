@@ -12,14 +12,14 @@ import { useNotesStore } from "../store/UseNotesStore";
 import { Text } from "@src/components/text/Text";
 
 export const NotesPage = () => {
-	const pager = useNavigator();
-	const notes = useNotesStore();
+	const navigator = useNavigator();
+	const notesStore = useNotesStore();
 	const [noteIdToRemove, setNoteIdToRemove] = useState("");
 
 	const handleOnClickNote = (noteId: string) => {
-		const note = notes.data[noteId];
+		const note = notesStore.data[noteId];
 
-		pager.pushPage(
+		navigator.pushPage(
 			<Navigator.Page id={String(note.id)} title={note.title}>
 				<NotesContent id={note.id} title={note.title} text={note.text} />
 			</Navigator.Page>
@@ -27,7 +27,7 @@ export const NotesPage = () => {
 	};
 
 	const handleOnClickAddNote = () => {
-		const newNotes = structuredClone(notes.data);
+		const newNotes = structuredClone(notesStore.data);
 		const date = new Date();
 		const id = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 
@@ -37,7 +37,7 @@ export const NotesPage = () => {
 			text: "Text",
 		};
 
-		notes.setNote(id, newNotes[id].title, newNotes[id].text);
+		notesStore.setNote(id, newNotes[id].title, newNotes[id].text);
 	};
 
 	const handleOnClickRemoveNote = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, noteId: string) => {
@@ -46,9 +46,9 @@ export const NotesPage = () => {
 	};
 
 	const performRemoveNote = () => {
-		const newNotes = structuredClone(notes.data);
+		const newNotes = structuredClone(notesStore.data);
 		delete newNotes[noteIdToRemove];
-		notes.setNotes(newNotes);
+		notesStore.setNotes(newNotes);
 		setNoteIdToRemove("");
 	};
 
@@ -66,7 +66,7 @@ export const NotesPage = () => {
 			</List.Section>
 
 			<List>
-				{Object.keys(notes.data).map((noteId) => (
+				{Object.keys(notesStore.data).map((noteId) => (
 					<List.Cell
 						key={noteId}
 						onClick={() => {
@@ -80,7 +80,7 @@ export const NotesPage = () => {
 									handleOnClickRemoveNote(e, noteId);
 								}}
 							/>
-							<Text>{notes.data[noteId].title}</Text>
+							<Text>{notesStore.data[noteId].title}</Text>
 						</S.CellGrid>
 					</List.Cell>
 				))}
