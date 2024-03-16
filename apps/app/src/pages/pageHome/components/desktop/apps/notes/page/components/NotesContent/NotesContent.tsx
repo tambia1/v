@@ -39,7 +39,7 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	useEffect(() => {
-		navigator.addListener("back", "NotesContent", () => handleOnNavigatorAction(content));
+		navigator.addListener("back", "NotesContent", handleOnNavigatorAction);
 
 		return () => {
 			navigator.removeListener("popStart", "NotesContent");
@@ -61,8 +61,8 @@ export const NotesContent = ({ id, title, text }: Props) => {
 		setIsModalVisible(false);
 	};
 
-	const handleOnNavigatorAction = (newContent: IContent) => {
-		if (newContent.isChanged) {
+	const handleOnNavigatorAction = () => {
+		if (content.isChanged) {
 			setIsModalVisible(true);
 
 			return false;

@@ -16,7 +16,6 @@ export const Title = styled.textarea`
 	width: auto;
 	height: auto;
 	max-width: 40rem;
-	height: auto;
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;
@@ -26,13 +25,14 @@ export const Title = styled.textarea`
 	padding: 1rem;
 	outline: 0px solid transparent;
 	background-color: ${(props) => props.theme.color.normalBg};
+	resize: none;
+	border: none;
 `;
 
 export const Content = styled.textarea`
 	width: auto;
 	height: auto;
 	min-height: 5rem;
-	height: auto;
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;
@@ -43,6 +43,8 @@ export const Content = styled.textarea`
 	padding: 1rem;
 	outline: 0px solid transparent;
 	background-color: ${(props) => props.theme.color.normalBg};
+	resize: none;
+	border: none;
 `;
 
 export const Buttons = styled.div<{ $isVisible: boolean }>`
