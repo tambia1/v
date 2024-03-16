@@ -12,7 +12,7 @@ export const NotesContent = styled.div`
 	box-sizing: border-box;
 `;
 
-export const Title = styled.div`
+export const Title = styled.textarea`
 	width: auto;
 	height: auto;
 	max-width: 40rem;
@@ -28,7 +28,7 @@ export const Title = styled.div`
 	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
-export const Content = styled.div`
+export const Content = styled.textarea`
 	width: auto;
 	height: auto;
 	min-height: 5rem;
@@ -43,4 +43,12 @@ export const Content = styled.div`
 	padding: 1rem;
 	outline: 0px solid transparent;
 	background-color: ${(props) => props.theme.color.normalBg};
+`;
+
+export const Buttons = styled.div<{ $isVisible: boolean }>`
+	display: flex;
+	flex-direction: row;
+	height: auto;
+	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+	transition: all 0.3s ease;
 `;

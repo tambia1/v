@@ -24,7 +24,7 @@ export interface INavigatorItem {
 }
 
 export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
-export type ICallback = (key?: string, navigatorItem?: INavigatorItem) => void;
+export type ICallback = (key: string) => boolean;
 
 export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const { theme } = useThemeContext();
@@ -39,6 +39,8 @@ export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopE
 	});
 
 	const pushPage = (page: IPage) => {
+		Object.keys(listeners.pushStart).forEach((k) => listeners.popStart[k](k));
+
 		setNavigatorItems((prevPages) => {
 			const newPages = prevPages.map((page) => ({ ...page, pageAnimation: "moveFromCenterToLeft" as IAnimationState, titleAnimation: "hideFromCenter" as IAnimationState }));
 
@@ -70,21 +72,20 @@ export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopE
 
 	const onAnimationStart = (navigatorItem: INavigatorItem) => {
 		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.pushStart).forEach((k) => listeners.popStart[k](k, navigatorItem));
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k));
 		}
-
 		if (navigatorItem.pageAnimation === "moveFromCenterToRight" || navigatorItem.pageAnimation === "goFromCenterToRight") {
-			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k, navigatorItem));
+			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k));
 		}
 	};
 
 	const onAnimationEnd = (navigatorItem: INavigatorItem) => {
 		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](k, navigatorItem));
+			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](k));
 		}
 
 		if (navigatorItem.pageAnimation === "moveFromCenterToRight" || navigatorItem.pageAnimation === "goFromCenterToRight") {
-			Object.keys(listeners.popEnd).forEach((k) => listeners.popEnd[k](k, navigatorItem));
+			Object.keys(listeners.popEnd).forEach((k) => listeners.popEnd[k](k));
 		}
 
 		if (navigatorItem.pageAnimation === "moveFromCenterToRight") {
@@ -93,8 +94,15 @@ export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopE
 	};
 
 	const handleBack = () => {
-		popPage();
-		Object.keys(listeners.back).forEach((k) => listeners.back[k]());
+		let result = true;
+
+		Object.keys(listeners.back).forEach((k) => {
+			result = result && listeners.back[k](k);
+		});
+
+		if (result) {
+			popPage();
+		}
 	};
 
 	const goHome = () => {
@@ -111,17 +119,15 @@ export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopE
 			return newPages;
 		});
 
-		Object.keys(listeners.back).forEach((k) => listeners.back[k]());
+		Object.keys(listeners.back).forEach((k) => listeners.back[k](k));
 	};
 
 	const handleClose = () => {
-		Object.keys(listeners.close).forEach((k) => listeners.close[k]());
+		Object.keys(listeners.close).forEach((k) => listeners.close[k](k));
 	};
 
 	const addListener = (action: IAction, key: string, callback: ICallback) => {
-		if (!listeners[action][key]) {
-			setListeners({ ...listeners, [action]: { ...listeners[action], [key]: callback } });
-		}
+		setListeners({ ...listeners, [action]: { ...listeners[action], [key]: callback } });
 	};
 
 	const removeListener = (action: IAction, key: string) => {

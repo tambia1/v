@@ -3,10 +3,18 @@ import { useNotesStore } from "../../../store/UseNotesStore";
 import * as S from "./NotesContent.styles";
 import { useTranslation } from "react-i18next";
 import { lang } from "@src/locales/i18n";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Modal } from "@src/components/modal/Modal";
 import { T } from "@src/locales/T";
+
+interface IContent {
+	newTitle: string;
+	newText: string;
+	oldTitle: string;
+	oldText: string;
+	isChanged: boolean;
+}
 
 interface Props {
 	id: string;
@@ -18,71 +26,79 @@ export const NotesContent = ({ id, title, text }: Props) => {
 	const { t } = useTranslation();
 	const notes = useNotesStore();
 
-	const refTitle = useRef<HTMLDivElement>(null);
-	const refText = useRef<HTMLDivElement>(null);
+	const [content, setContent] = useState<IContent>({
+		newTitle: title,
+		newText: text,
+		oldTitle: title,
+		oldText: text,
+		isChanged: false,
+	});
 
 	const navigator = useNavigator();
 
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	useEffect(() => {
-		return navigator.addListener("popStart", "1", handleOnNavigatorAction);
-	}, []);
+		navigator.addListener("back", "NotesContent", () => handleOnNavigatorAction(content));
 
-	const focusElement = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-		const clickedElement = event.currentTarget;
-
-		if (clickedElement) {
-			clickedElement.blur();
-			clickedElement.focus();
-		}
-	};
+		return () => {
+			navigator.removeListener("popStart", "NotesContent");
+		};
+	}, [content]);
 
 	const handleOnClickSave = () => {
-		const newTitle = refTitle.current?.textContent || "";
-		const newText = refText.current?.textContent || "";
+		notes.setNote(id, content.newTitle, content.newText);
+		setContent({ ...content, oldTitle: content.newTitle, oldText: content.newText, isChanged: false });
+	};
 
-		if (newTitle !== title || newText !== text) {
-			setIsModalVisible(true);
-
-			return;
-		}
-
-		notes.setNote(id, newText, newTitle);
+	const performExit = () => {
+		setIsModalVisible(false);
+		setContent({ ...content, isChanged: false });
 		navigator.popPage();
 	};
 
-	const cancelSaveNote = () => {
+	const cancelExit = () => {
 		setIsModalVisible(false);
 	};
 
-	const performSaveNote = () => {
-		setIsModalVisible(false);
+	const handleOnNavigatorAction = (newContent: IContent) => {
+		if (newContent.isChanged) {
+			setIsModalVisible(true);
+
+			return false;
+		}
+
+		return true;
 	};
 
-	const handleOnNavigatorAction = () => {};
+	const handleTitlChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
+		const value = e.currentTarget.value;
+		setContent({ ...content, newTitle: value, isChanged: value !== content.oldTitle });
+	};
+
+	const handleTextChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
+		const value = e.currentTarget.value;
+		setContent({ ...content, newText: value, isChanged: value !== content.oldText });
+	};
 
 	return (
 		<S.NotesContent>
-			<S.Title ref={refTitle} contentEditable onClick={focusElement}>
-				{title}
-			</S.Title>
+			<S.Title value={content.newTitle} onInput={handleTitlChange} />
+			<S.Content value={content.newText} onInput={handleTextChange} />
 
-			<S.Content ref={refText} contentEditable onClick={focusElement}>
-				{text}
-			</S.Content>
-
-			<Button onClick={handleOnClickSave}>{t(lang.notes.save)}</Button>
+			<S.Buttons $isVisible={content.isChanged}>
+				<Button onClick={handleOnClickSave}>{t(lang.notes.save)}</Button>
+			</S.Buttons>
 
 			<Modal
 				isVisible={isModalVisible}
 				iconName="question"
 				text={<T>{lang.misc.areYouSure}</T>}
-				onClickBackground={cancelSaveNote}
+				onClickBackground={cancelExit}
 				buttonContentA={<T>{lang.misc.yes}</T>}
-				buttonCallbackA={performSaveNote}
+				buttonCallbackA={performExit}
 				buttonContentB={<T>{lang.misc.no}</T>}
-				buttonCallbackB={cancelSaveNote}
+				buttonCallbackB={cancelExit}
 			/>
 		</S.NotesContent>
 	);
