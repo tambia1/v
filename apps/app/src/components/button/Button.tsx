@@ -1,12 +1,16 @@
 import React from "react";
 import * as S from "./Button.styles";
 
-interface Props extends React.ComponentPropsWithoutRef<"button"> {}
+export type IVariant = "styled" | "full" | "stroke" | "link";
 
-export const Button = (props: Props) => {
+interface Props extends React.ComponentPropsWithoutRef<"button"> {
+	varian?: IVariant;
+}
+
+export const Button = ({ children, varian = "styled", ...rest }: Props) => {
 	return (
-		<S.Button className={props.className} onClick={(e) => props.onClick?.(e)} disabled={props.disabled}>
-			{props.children}
+		<S.Button {...rest} $variant={varian}>
+			{children}
 		</S.Button>
 	);
 };
