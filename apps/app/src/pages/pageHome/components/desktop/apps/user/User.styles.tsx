@@ -177,8 +177,8 @@ export const Error = styled.div`
 `;
 
 export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
-	width: 10rem;
-	height: 10rem;
+	width: 7rem;
+	height: 7rem;
 	display: flex;
 	flex-direction: column;
 	flex-shrink: 0;
