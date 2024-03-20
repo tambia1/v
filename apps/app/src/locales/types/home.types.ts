@@ -54,6 +54,10 @@ export type IHome = {
 		exchange: string;
 	};
 
+	store: {
+		title: string;
+	};
+
 	tetris: {
 		title: string;
 	};

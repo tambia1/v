@@ -54,6 +54,10 @@ export const translation: IHome = {
 		exchange: "Symboli: {{symbol}}",
 	},
 
+	store: {
+		title: "Store",
+	},
+
 	tetris: {
 		title: "Tetris",
 	},

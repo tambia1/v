@@ -13,6 +13,7 @@ import userLoggedIn from "./assets/userLoggedIn.png";
 import userLoggedOut from "./assets/userLoggedOut.png";
 import snake from "./assets/snake.png";
 import stocks from "./assets/stocks.webp";
+import store from "./assets/store.png";
 
 export const appIcons = {
 	settings,
@@ -25,6 +26,7 @@ export const appIcons = {
 	ninja,
 	clashRoyale,
 	clock,
+	store,
 	userLoggedIn,
 	userLoggedOut,
 	snake,

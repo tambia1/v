@@ -58,6 +58,10 @@ export const translation: IHome = {
 		exchange: "Exchange: {{exchange}}",
 	},
 
+	store: {
+		title: "Store",
+	},
+
 	snake: {
 		title: "Snake",
 	},
