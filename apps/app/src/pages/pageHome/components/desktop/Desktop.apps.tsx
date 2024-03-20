@@ -16,6 +16,7 @@ import { TestTransition } from "@apps/testTransition/TestTransition";
 import { Ninja } from "@apps/ninja/Ninja";
 import { Stocks } from "./apps/stocks/Stocks";
 import { Store } from "./apps/store/Store";
+import { Frame } from "./apps/frame/Frame";
 
 const Mfe = lazy(() => import("remoteMicroFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -52,4 +53,5 @@ export const apps: IApp[][] = [
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "photos", component: <TestTransition /> },
 		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "photos", component: <Mfe /> },
 	],
+	[{ id: "excalidraw", roles: ["admin", "user", "guest"], title: "Excalidraw", icon: "photos", component: <Frame title="CNN" url={"https://excalidraw.com/"} /> }],
 ];

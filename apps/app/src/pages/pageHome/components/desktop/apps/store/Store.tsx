@@ -1,5 +1,48 @@
 import * as S from "./Store.styles";
 
+type IStore = {
+	name: string;
+	apps: IApp[];
+};
+
+type IApp = {
+	name: string;
+	url: string;
+	icon: string;
+};
+
+const store: IStore[] = [
+	{
+		name: "News",
+		apps: [
+			{
+				name: "Excalidraw",
+				url: "https://excalidraw.com/",
+				icon: "https://styles.redditmedia.com/t5_6f8nh5/styles/communityIcon_8l0jfnqfbrnb1.png",
+			},
+		],
+	},
+];
+
 export const Store = () => {
-	return <S.Store>Store</S.Store>;
+	const handleOnClickAppIcon = (app: IApp) => {
+		console.log("aaa", app.name);
+	};
+
+	return (
+		<S.Store>
+			{store.map((group) => (
+				<S.Group key={group.name}>
+					<S.Title>{group.name}</S.Title>
+
+					{group.apps.map((app) => (
+						<S.App key={app.name}>
+							<S.AppIcon url={app.icon} onClick={() => handleOnClickAppIcon(app)}></S.AppIcon>
+							<S.AppName>{app.name}</S.AppName>
+						</S.App>
+					))}
+				</S.Group>
+			))}
+		</S.Store>
+	);
 };

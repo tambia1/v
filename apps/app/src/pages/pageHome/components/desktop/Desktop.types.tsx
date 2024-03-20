@@ -16,7 +16,8 @@ export type IAppId =
 	| "testTree"
 	| "testTabs"
 	| "testTable"
-	| "testTransition";
+	| "testTransition"
+	| "excalidraw";
 
 export type IRole = "guest" | "user" | "admin";
 export type IAuth = "loggedIn" | "loggedOut";
