@@ -44,7 +44,7 @@ export const Desktop = () => {
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
 
-	const storeApps = StoreApps.getState();
+	const storeApps = StoreApps();
 	const externalApps = getExternalApps(storeApps.apps);
 
 	const allApps: IApp[][] = [...apps, externalApps];
@@ -132,10 +132,6 @@ export const Desktop = () => {
 		setIsShakeMode(false);
 	};
 
-	const handleOnClickCancel = () => {
-		setIsShakeMode(false);
-	};
-
 	return (
 		<S.Container $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
 			<BarContext.Provider value={{ onClickclose: handleOnClickClose }}>
@@ -179,7 +175,7 @@ export const Desktop = () => {
 					isVisibleButtonClose={isVisibleButtonClose}
 				/>
 
-				{isShakeMode && <BarDoneCancel isVisibleButtonDone={isShakeMode} onClickButtonDone={handleOnClickDone} isVisibleButtonCancel={isShakeMode} onClickButtonCancel={handleOnClickCancel} />}
+				{isShakeMode && <BarDoneCancel isVisibleButtonDone={isShakeMode} onClickButtonDone={handleOnClickDone} />}
 			</S.Bar>
 
 			<Modal

@@ -1,6 +1,8 @@
 import { ITouch, useTouch } from "@src/hooks/UseTouch";
 import * as S from "./AppButton.styles";
 import { ReactNode, useRef } from "react";
+import { Icon } from "@src/icons/Icon";
+import { StoreApps } from "../../stores/StoreApps";
 
 interface Props {
 	id: string;
@@ -14,6 +16,8 @@ interface Props {
 
 export const AppButton = ({ id, title, icon, onClick, onLongPress, isLoading, isShakeMode }: Props) => {
 	const refButton = useRef<HTMLDivElement>(null);
+	const storeApps = StoreApps();
+	const isExternalApp = storeApps.apps.findIndex((item) => item.name === id) >= 0;
 
 	useTouch({
 		ref: refButton,
@@ -27,10 +31,20 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isLoading, is
 		deps: [refButton.current],
 	});
 
+	const handleDeleteApp = () => {
+		if (storeApps.apps.find((item) => item.name === id)) {
+			storeApps.setData([...storeApps.apps.filter((item) => item.name !== id)]);
+		}
+	};
+
 	return (
 		<S.AppButton ref={refButton} $isLoading={isLoading} $isShakeMode={isShakeMode}>
 			<S.Image $appIcon={icon} />
 			<S.Title>{title}</S.Title>
+
+			<S.ImageDeleteApp $isShakeMode={isShakeMode && isExternalApp} onClick={handleDeleteApp}>
+				<Icon iconName="iconMinusCircle" />
+			</S.ImageDeleteApp>
 		</S.AppButton>
 	);
 };

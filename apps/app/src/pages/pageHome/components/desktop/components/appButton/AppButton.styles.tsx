@@ -60,6 +60,7 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	height: 8rem;
 	overflow: hidden;
 	border-radius: 0.5rem;
+	position: relative;
 
 	transition: all 0.3s ease;
 
@@ -178,4 +179,18 @@ export const Title = styled.div`
 	font-size: ${(props) => props.theme.size.s};
 	text-align: center;
 	word-break: normal;
+`;
+
+export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`
+	width: 3rem;
+	height: 3rem;
+	position: absolute;
+	top: 0rem;
+	left: 0rem;
+
+	& svg {
+		fill: ${(props) => props.theme.color.errorBg};
+	}
+
+	display: ${(props) => (props.$isShakeMode ? "flex" : "none")};
 `;

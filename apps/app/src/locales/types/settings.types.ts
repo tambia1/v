@@ -24,7 +24,6 @@ export type ISettings = {
 			left: string;
 			right: string;
 		};
-		store: string;
 		about: {
 			title: string;
 			text: string;

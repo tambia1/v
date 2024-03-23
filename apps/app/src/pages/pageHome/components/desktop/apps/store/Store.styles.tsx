@@ -1,5 +1,6 @@
 import { Text } from "@src/components/text/Text";
 import styled from "styled-components";
+import imageBg from "./assets/bg.jpg";
 
 export const Store = styled.div`
 	width: 100%;
@@ -12,6 +13,9 @@ export const Store = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
+
+	background-image: url(${imageBg});
+	background-size: cover;
 `;
 
 export const Title = styled(Text).attrs({ size: "l" })``;
