@@ -56,6 +56,8 @@ export type IHome = {
 
 	store: {
 		title: string;
+		saveApp: string;
+		alreadySaved: string;
 	};
 
 	tetris: {

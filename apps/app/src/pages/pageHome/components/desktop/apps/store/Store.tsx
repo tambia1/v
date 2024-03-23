@@ -46,16 +46,21 @@ const store: IStore[] = [
 
 export const Store = () => {
 	const storeApps = StoreApps();
-	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [isModalSaveVisible, setIsModalSaveVisible] = useState(false);
+	const [isModalExistVisible, setIsModalExistVisible] = useState(false);
 	const [selectedApp, setSelectedApp] = useState<IApp | null>(null);
 
 	const handleOnClickAppIcon = (app: IApp) => {
-		setIsModalVisible(true);
-		setSelectedApp(app);
+		if (storeApps.apps.find((item) => item.name === app.name)) {
+			setIsModalExistVisible(true);
+		} else {
+			setIsModalSaveVisible(true);
+			setSelectedApp(app);
+		}
 	};
 
 	const handleSaveNo = () => {
-		setIsModalVisible(false);
+		setIsModalSaveVisible(false);
 		setSelectedApp(null);
 	};
 
@@ -64,7 +69,12 @@ export const Store = () => {
 			storeApps.setData([...storeApps.apps, selectedApp]);
 		}
 
-		setIsModalVisible(false);
+		setIsModalSaveVisible(false);
+		setSelectedApp(null);
+	};
+
+	const handleExistOk = () => {
+		setIsModalExistVisible(false);
 		setSelectedApp(null);
 	};
 
@@ -85,16 +95,23 @@ export const Store = () => {
 				))}
 			</S.Store>
 			<Modal
-				isVisible={isModalVisible}
+				isVisible={isModalSaveVisible}
 				iconName="question"
-				text={<T>{lang.misc.areYouSure}</T>}
+				text={<T>{lang.store.saveApp}</T>}
 				onClickBackground={handleSaveNo}
 				buttonContentA={<T>{lang.misc.yes}</T>}
 				buttonCallbackA={handleSaveYes}
 				buttonContentB={<T>{lang.misc.no}</T>}
 				buttonCallbackB={handleSaveNo}
 			/>
-			|
+			<Modal
+				isVisible={isModalExistVisible}
+				iconName="info"
+				text={<T>{lang.store.alreadySaved}</T>}
+				onClickBackground={handleSaveNo}
+				buttonContentA={<T>{lang.misc.ok}</T>}
+				buttonCallbackA={handleExistOk}
+			/>
 		</>
 	);
 };

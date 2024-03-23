@@ -60,6 +60,8 @@ export const translation: IHome = {
 
 	store: {
 		title: "Store",
+		saveApp: "Save application to desktop?",
+		alreadySaved: "Application is already on dektop.",
 	},
 
 	snake: {

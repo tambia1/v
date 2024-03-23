@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-interface IApp {
+export interface IApp {
 	name: string;
 	url: string;
 	icon: string;

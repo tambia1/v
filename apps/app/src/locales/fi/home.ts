@@ -56,6 +56,8 @@ export const translation: IHome = {
 
 	store: {
 		title: "Store",
+		saveApp: "Tallenna sovellus työpöydälle?",
+		alreadySaved: "Sovellus on jo työpöydällä.",
 	},
 
 	tetris: {

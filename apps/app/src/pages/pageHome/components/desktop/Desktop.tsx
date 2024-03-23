@@ -6,7 +6,7 @@ import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSear
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
-import { apps } from "./Desktop.apps";
+import { IApp, apps } from "./Desktop.apps";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/page/components/theme/store/ThemeStore";
@@ -22,8 +22,9 @@ import { BarMain } from "./components/barMain/BarMain";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { Modal } from "@src/components/modal/Modal";
 import { Paging } from "@src/components/paging/Paging";
-import { getAppsGroups } from "./Desktop.utils";
+import { getExternalApps, removeAppsNotFittingByRoles as getAppsByRoles } from "./Desktop.utils";
 import { BarDoneCancel } from "./components/barDoneCancel/BarDoneCancel";
+import { StoreApps } from "./stores/StoreApps";
 
 export const Desktop = () => {
 	const { t } = useTranslation();
@@ -43,7 +44,11 @@ export const Desktop = () => {
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
 
-	const appsGroups = getAppsGroups(apps, storeLogin.role);
+	const storeApps = StoreApps.getState();
+	const externalApps = getExternalApps(storeApps.apps);
+
+	const allApps: IApp[][] = [...apps, externalApps];
+	const appsByRole = getAppsByRoles(allApps, storeLogin.role);
 
 	useLocalesSearchParams({
 		onChange: useCallback((language: ILanguageName) => {
@@ -68,7 +73,7 @@ export const Desktop = () => {
 			return;
 		}
 
-		const app = apps.flat().find((app) => app.id === appId)!;
+		const app = allApps.flat().find((app) => app.id === appId)!;
 		const timeStart = Date.now();
 		let isLoading = false;
 
@@ -139,7 +144,7 @@ export const Desktop = () => {
 						<S.AppContainer ref={refApp}>{currentApp && <S.App>{currentApp}</S.App>}</S.AppContainer>
 
 						<Paging onChange={(_pageIndex) => {}}>
-							{appsGroups.map((appsGroup, i) => {
+							{appsByRole.map((appsGroup, i) => {
 								return (
 									<S.AppGroup key={i}>
 										{appsGroup.map((app) => {
