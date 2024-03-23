@@ -1,14 +1,13 @@
 import { ITouch, useTouch } from "@src/hooks/UseTouch";
-import { IAppId } from "../../Desktop.types";
 import * as S from "./AppButton.styles";
 import { ReactNode, useRef } from "react";
 
 interface Props {
-	id: IAppId;
+	id: string;
 	title: ReactNode;
 	icon: S.IAppIcon | string;
-	onClick: (id: IAppId) => void;
-	onLongPress: (id: IAppId) => void;
+	onClick: (id: string) => void;
+	onLongPress: (id: string) => void;
 	isLoading: boolean;
 	isShakeMode: boolean;
 }

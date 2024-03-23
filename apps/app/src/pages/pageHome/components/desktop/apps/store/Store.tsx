@@ -1,3 +1,4 @@
+import { StoreApps } from "../../stores/StoreApps";
 import * as S from "./Store.styles";
 
 type IStore = {
@@ -40,8 +41,10 @@ const store: IStore[] = [
 ];
 
 export const Store = () => {
+	const storeApps = StoreApps();
+
 	const handleOnClickAppIcon = (app: IApp) => {
-		console.log("aaa", app.name);
+		storeApps.setData([...storeApps.apps, app]);
 	};
 
 	return (

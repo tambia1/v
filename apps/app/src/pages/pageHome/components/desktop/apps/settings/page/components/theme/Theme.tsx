@@ -6,12 +6,12 @@ import { IThemeName, themes } from "@src/theme/Theme.types";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
-import { useThemeStore } from "./store/useThemeStore";
+import { ThemeStore } from "./store/ThemeStore";
 
 export const Theme = () => {
 	const { theme, setTheme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
-	const themeStore = useThemeStore();
+	const themeStore = ThemeStore();
 
 	const handleOnClickTheme = (themeName: IThemeName) => {
 		setTheme(themes[themeName]);

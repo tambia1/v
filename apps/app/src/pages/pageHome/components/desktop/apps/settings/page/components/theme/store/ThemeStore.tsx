@@ -10,7 +10,7 @@ const initialState = {
 	backgroundImageIndex: 1,
 };
 
-export const useThemeStore = create<Props>()(
+export const ThemeStore = create<Props>()(
 	persist(
 		(set) => ({
 			...initialState,

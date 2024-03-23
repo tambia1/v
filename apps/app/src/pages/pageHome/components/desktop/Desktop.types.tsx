@@ -1,25 +1,2 @@
-export type IAppId =
-	| "settings"
-	| "user"
-	| "calculator"
-	| "camera"
-	| "clock"
-	| "notes"
-	| "stocks"
-	| "store"
-	| "tetris"
-	| "ninja"
-	| "clashRoyale"
-	| "mfe"
-	| "test"
-	| "testSelect"
-	| "testTree"
-	| "testTabs"
-	| "testTable"
-	| "testTransition"
-	| "excalidraw"
-	| "theSun"
-	| "newYorkTimes";
-
 export type IRole = "guest" | "user" | "admin";
 export type IAuth = "loggedIn" | "loggedOut";

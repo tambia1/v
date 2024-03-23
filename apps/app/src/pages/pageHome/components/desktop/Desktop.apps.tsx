@@ -1,5 +1,5 @@
 import { T } from "@src/locales/T";
-import { IAppId, IRole } from "./Desktop.types";
+import { IRole } from "./Desktop.types";
 import { lang } from "@src/locales/i18n";
 import { Settings } from "@apps/settings/Settings";
 import { Tetris } from "@apps/tetris/Tetris";
@@ -17,6 +17,7 @@ import { Ninja } from "@apps/ninja/Ninja";
 import { Stocks } from "./apps/stocks/Stocks";
 import { Store } from "./apps/store/Store";
 import { Frame } from "./apps/frame/Frame";
+import { StoreApps } from "./stores/StoreApps";
 
 const Mfe = lazy(() => import("remoteMicroFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -24,12 +25,24 @@ const Notes = lazy(() => import("@apps/notes/Notes").then((module) => ({ default
 const Calculator = lazy(() => import("@apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
 
 export interface IApp {
-	id: IAppId;
+	id: string;
 	roles: IRole[];
 	title: React.ReactNode;
 	icon: IAppIcon | string;
 	component: React.ReactElement;
 }
+
+const storeApps = StoreApps.getState();
+const externalApps = storeApps.apps.map(
+	(app) =>
+		({
+			id: app.name,
+			roles: ["admin", "user", "guest"],
+			title: app.name,
+			icon: app.icon,
+			component: <Frame title={app.name} url={app.url} />,
+		} as IApp)
+);
 
 export const apps: IApp[][] = [
 	[
@@ -53,27 +66,5 @@ export const apps: IApp[][] = [
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "photos", component: <TestTransition /> },
 		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "photos", component: <Mfe /> },
 	],
-	[
-		{
-			id: "excalidraw",
-			roles: ["admin", "user", "guest"],
-			title: "Excalidraw",
-			icon: "https://imgs.search.brave.com/Dam2dYG0KAUwY2CDwOvZ9NFgf8A8jY3PkJmUThZspT4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iZXN0/b2Zqcy5vcmcvbG9n/b3MvZXhjYWxpZHJh/dy5kYXJrLnN2Zw.svg",
-			component: <Frame title="CNN" url={"https://excalidraw.com/"} />,
-		},
-		{
-			id: "theSun",
-			roles: ["admin", "user", "guest"],
-			title: "THE Sun",
-			icon: "https://www.thesun.co.uk/wp-content/themes/thesun/images/sunmasthead.svg",
-			component: <Frame title="THE Sun" url={"https://www.thesun.co.uk/"} />,
-		},
-		{
-			id: "newYorkTimes",
-			roles: ["admin", "user", "guest"],
-			title: "New York Times",
-			icon: "https://assets.website-files.com/5ee732bebd9839b494ff27cd/5ef0851a79b5307a5f3dc780_the-new-york-times-logo.jpg",
-			component: <Frame title="THE Sun" url={"https://www.nytimes.com/"} />,
-		},
-	],
+	[...externalApps],
 ];

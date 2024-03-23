@@ -6,11 +6,10 @@ import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSear
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
-import { IAppId } from "./Desktop.types";
 import { apps } from "./Desktop.apps";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
-import { useThemeStore } from "@apps/settings/page/components/theme/store/useThemeStore";
+import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/page/components/theme/store/ThemeStore";
 import { useStoreLogin } from "@apps/user/stores/StoreLogin";
 import { QueryUser } from "@apps/user/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
@@ -34,7 +33,7 @@ export const Desktop = () => {
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
 	const { setTheme } = useThemeContext();
 	const { i18n } = useTranslation();
-	const themeStore = useThemeStore();
+	const themeStore = ThemeStore();
 	const [loadingAppId, setLoadingAppId] = useState("");
 	const refApp = useRef(null);
 	const animationApp = useAnimation(refApp);
@@ -64,7 +63,7 @@ export const Desktop = () => {
 		}, []),
 	});
 
-	const handleOnClickApplication = (appId: IAppId) => {
+	const handleOnClickApplication = (appId: string) => {
 		if (isShakeMode) {
 			return;
 		}
