@@ -9,9 +9,11 @@ import { Icon } from "@src/icons/Icon";
 import { About } from "./components/about/About";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { StoreApps } from "../../../stores/StoreApps";
 
 export const SettingsPage = () => {
 	const navigator = useNavigator();
+	const storeApps = StoreApps.getState();
 
 	const handleOnClickLanguage = () => {
 		navigator.pushPage(
@@ -35,6 +37,10 @@ export const SettingsPage = () => {
 				<Layout />
 			</Navigator.Page>
 		);
+	};
+
+	const handleOnClickStore = () => {
+		storeApps.setData([]);
 	};
 
 	const handleOnClickAbout = () => {
@@ -86,6 +92,10 @@ export const SettingsPage = () => {
 					<List.Cell.Arrow>
 						<Icon iconName="iconChevronRight" />
 					</List.Cell.Arrow>
+				</List.Cell>
+
+				<List.Cell onClick={handleOnClickStore}>
+					<T>{lang.settings.store}</T>
 				</List.Cell>
 
 				<List.Cell onClick={handleOnClickAbout}>

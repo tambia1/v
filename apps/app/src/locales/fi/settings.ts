@@ -27,6 +27,7 @@ export const translation: ISettings = {
 			left: "Vasen",
 			right: "Oikein",
 		},
+		store: "Tyhjennä sovellukset kaupasta",
 		about: {
 			title: "Noin",
 			text: `App Version: ${version}`,
