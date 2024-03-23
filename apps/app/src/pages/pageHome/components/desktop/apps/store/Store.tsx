@@ -30,6 +30,11 @@ const store: IStore[] = [
 				url: "https://www.thesun.co.uk/",
 				icon: "https://www.thesun.co.uk/wp-content/themes/thesun/images/sunmasthead.svg",
 			},
+			{
+				name: "The New York Times",
+				url: "https://www.nytimes.com/",
+				icon: "https://assets.website-files.com/5ee732bebd9839b494ff27cd/5ef0851a79b5307a5f3dc780_the-new-york-times-logo.jpg",
+			},
 		],
 	},
 ];

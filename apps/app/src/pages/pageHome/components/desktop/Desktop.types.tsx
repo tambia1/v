@@ -18,7 +18,8 @@ export type IAppId =
 	| "testTable"
 	| "testTransition"
 	| "excalidraw"
-	| "theSun";
+	| "theSun"
+	| "newYorkTimes";
 
 export type IRole = "guest" | "user" | "admin";
 export type IAuth = "loggedIn" | "loggedOut";

@@ -68,5 +68,12 @@ export const apps: IApp[][] = [
 			icon: "https://www.thesun.co.uk/wp-content/themes/thesun/images/sunmasthead.svg",
 			component: <Frame title="THE Sun" url={"https://www.thesun.co.uk/"} />,
 		},
+		{
+			id: "newYorkTimes",
+			roles: ["admin", "user", "guest"],
+			title: "New York Times",
+			icon: "https://assets.website-files.com/5ee732bebd9839b494ff27cd/5ef0851a79b5307a5f3dc780_the-new-york-times-logo.jpg",
+			component: <Frame title="THE Sun" url={"https://www.nytimes.com/"} />,
+		},
 	],
 ];
