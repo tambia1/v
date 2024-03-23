@@ -184,7 +184,7 @@ export const Desktop = () => {
 				onClickBackground={handleLoadingError}
 				buttonContentA={t(lang.misc.ok)}
 				buttonCallbackA={handleLoadingError}
-			></Modal>
+			/>
 		</S.Container>
 	);
 };

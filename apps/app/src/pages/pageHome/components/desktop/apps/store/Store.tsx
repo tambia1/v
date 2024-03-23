@@ -1,5 +1,9 @@
+import { Modal } from "@src/components/modal/Modal";
 import { StoreApps } from "../../stores/StoreApps";
 import * as S from "./Store.styles";
+import { useState } from "react";
+import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 
 type IStore = {
 	name: string;
@@ -42,25 +46,55 @@ const store: IStore[] = [
 
 export const Store = () => {
 	const storeApps = StoreApps();
+	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [selectedApp, setSelectedApp] = useState<IApp | null>(null);
 
 	const handleOnClickAppIcon = (app: IApp) => {
-		storeApps.setData([...storeApps.apps, app]);
+		setIsModalVisible(true);
+		setSelectedApp(app);
+	};
+
+	const handleSaveNo = () => {
+		setIsModalVisible(false);
+		setSelectedApp(null);
+	};
+
+	const handleSaveYes = () => {
+		if (selectedApp) {
+			storeApps.setData([...storeApps.apps, selectedApp]);
+		}
+
+		setIsModalVisible(false);
+		setSelectedApp(null);
 	};
 
 	return (
-		<S.Store>
-			{store.map((group) => (
-				<S.Group key={group.name}>
-					<S.Title>{group.name}</S.Title>
+		<>
+			<S.Store>
+				{store.map((group) => (
+					<S.Group key={group.name}>
+						<S.Title>{group.name}</S.Title>
 
-					{group.apps.map((app) => (
-						<S.App key={app.name}>
-							<S.AppIcon url={app.icon} onClick={() => handleOnClickAppIcon(app)}></S.AppIcon>
-							<S.AppName>{app.name}</S.AppName>
-						</S.App>
-					))}
-				</S.Group>
-			))}
-		</S.Store>
+						{group.apps.map((app) => (
+							<S.App key={app.name}>
+								<S.AppIcon url={app.icon} onClick={() => handleOnClickAppIcon(app)}></S.AppIcon>
+								<S.AppName>{app.name}</S.AppName>
+							</S.App>
+						))}
+					</S.Group>
+				))}
+			</S.Store>
+			<Modal
+				isVisible={isModalVisible}
+				iconName="question"
+				text={<T>{lang.misc.areYouSure}</T>}
+				onClickBackground={handleSaveNo}
+				buttonContentA={<T>{lang.misc.yes}</T>}
+				buttonCallbackA={handleSaveYes}
+				buttonContentB={<T>{lang.misc.no}</T>}
+				buttonCallbackB={handleSaveNo}
+			/>
+			|
+		</>
 	);
 };
