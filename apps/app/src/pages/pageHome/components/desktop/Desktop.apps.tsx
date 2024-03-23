@@ -27,7 +27,7 @@ export interface IApp {
 	id: IAppId;
 	roles: IRole[];
 	title: React.ReactNode;
-	icon: IAppIcon;
+	icon: IAppIcon | string;
 	component: React.ReactElement;
 }
 
@@ -53,5 +53,20 @@ export const apps: IApp[][] = [
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "photos", component: <TestTransition /> },
 		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "photos", component: <Mfe /> },
 	],
-	[{ id: "excalidraw", roles: ["admin", "user", "guest"], title: "Excalidraw", icon: "photos", component: <Frame title="CNN" url={"https://excalidraw.com/"} /> }],
+	[
+		{
+			id: "excalidraw",
+			roles: ["admin", "user", "guest"],
+			title: "Excalidraw",
+			icon: "https://imgs.search.brave.com/Dam2dYG0KAUwY2CDwOvZ9NFgf8A8jY3PkJmUThZspT4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9iZXN0/b2Zqcy5vcmcvbG9n/b3MvZXhjYWxpZHJh/dy5kYXJrLnN2Zw.svg",
+			component: <Frame title="CNN" url={"https://excalidraw.com/"} />,
+		},
+		{
+			id: "theSun",
+			roles: ["admin", "user", "guest"],
+			title: "THE Sun",
+			icon: "https://www.thesun.co.uk/wp-content/themes/thesun/images/sunmasthead.svg",
+			component: <Frame title="THE Sun" url={"https://www.thesun.co.uk/"} />,
+		},
+	],
 ];

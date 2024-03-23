@@ -35,14 +35,16 @@ export const appIcons = {
 
 export type IAppIcon = keyof typeof appIcons;
 
-export const Image = styled.div<{ $appIcon: IAppIcon }>`
+export const Image = styled.div<{ $appIcon: IAppIcon | string }>`
 	border-radius: 0.5rem;
 	width: 5rem;
 	height: 5rem;
 	flex-shrink: 0;
-	background-image: url(${({ $appIcon }) => appIcons[$appIcon]});
+	background-image: url(${({ $appIcon }) => appIcons[$appIcon as IAppIcon] || $appIcon});
 	background-size: contain;
 	background-repeat: no-repeat;
+	background-position: 50%;
+	background-color: ${(props) => props.theme.color.normalBg};
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
 	border-radius: 15px;
 `;

@@ -6,7 +6,7 @@ import { ReactNode, useRef } from "react";
 interface Props {
 	id: IAppId;
 	title: ReactNode;
-	icon: S.IAppIcon;
+	icon: S.IAppIcon | string;
 	onClick: (id: IAppId) => void;
 	onLongPress: (id: IAppId) => void;
 	isLoading: boolean;

@@ -35,6 +35,8 @@ export const AppIcon = styled.div<{ url: string }>`
 	background-image: url(${(props) => props.url});
 	background-size: contain;
 	background-repeat: no-repeat;
+	background-position: 50%;
+	background-color: ${(props) => props.theme.color.normalBg};
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
 	border-radius: 15px;
 	cursor: pointer;

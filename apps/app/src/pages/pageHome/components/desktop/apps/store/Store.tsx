@@ -13,12 +13,22 @@ type IApp = {
 
 const store: IStore[] = [
 	{
-		name: "News",
+		name: "Apps",
 		apps: [
 			{
 				name: "Excalidraw",
 				url: "https://excalidraw.com/",
 				icon: "https://styles.redditmedia.com/t5_6f8nh5/styles/communityIcon_8l0jfnqfbrnb1.png",
+			},
+		],
+	},
+	{
+		name: "News",
+		apps: [
+			{
+				name: "THE Sun",
+				url: "https://www.thesun.co.uk/",
+				icon: "https://www.thesun.co.uk/wp-content/themes/thesun/images/sunmasthead.svg",
 			},
 		],
 	},
