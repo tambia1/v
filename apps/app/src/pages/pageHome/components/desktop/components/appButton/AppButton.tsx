@@ -25,24 +25,26 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isLoading, is
 			if (status === "long") {
 				onLongPress?.(id);
 			} else if (status === "up" && time < 700) {
+				if (isShakeMode && isExternalApp) {
+					if (storeApps.apps.find((item) => item.name === id)) {
+						storeApps.setData([...storeApps.apps.filter((item) => item.name !== id)]);
+					}
+
+					return;
+				}
+
 				onClick?.(id);
 			}
 		},
 		deps: [refButton.current],
 	});
 
-	const handleDeleteApp = () => {
-		if (storeApps.apps.find((item) => item.name === id)) {
-			storeApps.setData([...storeApps.apps.filter((item) => item.name !== id)]);
-		}
-	};
-
 	return (
 		<S.AppButton ref={refButton} $isLoading={isLoading} $isShakeMode={isShakeMode}>
 			<S.Image $appIcon={icon} />
 			<S.Title>{title}</S.Title>
 
-			<S.ImageDeleteApp $isShakeMode={isShakeMode && isExternalApp} onClick={handleDeleteApp}>
+			<S.ImageDeleteApp $isShakeMode={isShakeMode && isExternalApp}>
 				<Icon iconName="iconMinusCircle" />
 			</S.ImageDeleteApp>
 		</S.AppButton>
