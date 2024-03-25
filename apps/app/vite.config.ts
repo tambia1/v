@@ -3,7 +3,7 @@
 
 import react from "@vitejs/plugin-react";
 import path from "path";
-import { defineConfig } from "vite";
+import { PluginOption, defineConfig, Plugin } from "vite";
 import checker from "vite-plugin-checker";
 import federation from "@originjs/vite-plugin-federation";
 
@@ -23,11 +23,11 @@ export default defineConfig({
 					],
 				],
 			},
-		}),
+		}) as PluginOption,
 
 		checker({
 			typescript: true,
-		}),
+		}) as unknown as Plugin,
 
 		federation({
 			remotes: {
