@@ -63,8 +63,9 @@ export const Camera = () => {
 			<S.Image ref={refImg} $image={capturedImage ? capturedImage : ""} />
 
 			<S.Buttons>
-				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.xl} onClick={handleCamera} />}
 				{cameraState === "play" && <Icon iconName="iconPauseCircle" size={theme.size.xl} onClick={handleCapture} />}
+				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.xl} onClick={handleCamera} />}
+				{cameraState === "pause" && <Icon iconName="iconSave" size={theme.size.xl} onClick={handleCamera} />}
 			</S.Buttons>
 		</S.Camera>
 	);

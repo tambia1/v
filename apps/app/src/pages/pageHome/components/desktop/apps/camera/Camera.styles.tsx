@@ -1,3 +1,4 @@
+import { Icon } from "@src/icons/Icon.styles";
 import styled from "styled-components";
 
 export const Camera = styled.div`
@@ -36,9 +37,15 @@ export const Buttons = styled.div`
 	inset: auto 0 0 0;
 	display: flex;
 	justify-content: center;
+	gap: 1rem;
 	margin-bottom: 3rem;
 
-	& svg {
+	& ${Icon}[data-name='iconSave'] svg {
+		stroke: ${(props) => props.theme.color.normalFg};
+		fill: ${(props) => props.theme.color.successBg};
+	}
+
+	& ${Icon} svg {
 		stroke: ${(props) => props.theme.color.normalFg};
 		fill: ${(props) => props.theme.color.errorBg};
 	}
