@@ -20,30 +20,15 @@ export const Video = styled.video`
 	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
-export const ImageContainer = styled.div`
+export const Image = styled.div<{ $image: string }>`
 	position: absolute;
 	display: flex;
-	justify-content: center;
-	position: relative;
 	width: 100%;
 	height: 100%;
-	background-color: transparent;
-`;
-
-export const Image = styled.img`
-	position: relative;
-	width: 100%;
-	height: 100%;
-
-	&[alt]:after {
-		display: block;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		content: "";
-		position: absolute;
-	}
+	background-image: url(${(props) => `"${props.$image}"`});
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 50%;
 `;
 
 export const Buttons = styled.div`
@@ -57,4 +42,15 @@ export const Buttons = styled.div`
 		stroke: ${(props) => props.theme.color.normalFg};
 		fill: ${(props) => props.theme.color.errorBg};
 	}
+`;
+
+export const Loader = styled.div`
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	z-index: 1;
 `;

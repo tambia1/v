@@ -2,16 +2,19 @@ import * as S from "./Camera.styles";
 import { useRef, useState } from "react";
 import { Icon } from "@src/icons/Icon";
 import { useTheme } from "styled-components";
+import { Loader } from "@src/components/loader/Loader";
 
 export const Camera = () => {
 	const theme = useTheme();
 	const [capturedImage, setCapturedImage] = useState<string | null>(null);
 	const [cameraState, setCameraState] = useState<"play" | "pause">("pause");
+	const [isLoading, setIsLoading] = useState(false);
 	const refVideo = useRef<HTMLVideoElement>(null);
 	const refImg = useRef<HTMLImageElement>(null);
 
 	const handleCamera = async () => {
 		try {
+			setIsLoading(true);
 			const stream = await navigator.mediaDevices.getUserMedia({
 				audio: false,
 				video: {},
@@ -20,32 +23,11 @@ export const Camera = () => {
 			if (refVideo.current) {
 				refVideo.current.srcObject = stream;
 
-				const adjustImageSize = () => {
-					if (!refVideo.current || !refImg.current) {
-						return;
-					}
-
-					const containerWidth = refVideo.current.clientWidth;
-					const containerHeight = refVideo.current.clientHeight;
-
-					if (containerWidth / containerHeight > refImg.current.naturalWidth / refImg.current.naturalHeight) {
-						refImg.current.style.width = containerWidth + "px";
-						refImg.current.style.height = "auto";
-					} else {
-						refImg.current.style.width = "auto";
-						refImg.current.style.height = containerHeight + "px";
-					}
-				};
-
-				if (refVideo.current && refImg.current) {
-					refImg.current.addEventListener("resize", adjustImageSize);
-					adjustImageSize();
-				}
-
 				setCapturedImage(null);
-
 				setCameraState("play");
 			}
+
+			setIsLoading(false);
 		} catch (error) {
 			console.error("Error accessing camera:", error);
 		}
@@ -71,10 +53,14 @@ export const Camera = () => {
 
 	return (
 		<S.Camera>
+			{isLoading && (
+				<S.Loader>
+					<Loader size="xl" />
+				</S.Loader>
+			)}
+
 			<S.Video ref={refVideo} autoPlay playsInline />
-			<S.ImageContainer>
-				<S.Image ref={refImg} src={capturedImage ? capturedImage : ""} alt="Captured" />
-			</S.ImageContainer>
+			<S.Image ref={refImg} $image={capturedImage ? capturedImage : ""} />
 
 			<S.Buttons>
 				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.xl} onClick={handleCamera} />}
