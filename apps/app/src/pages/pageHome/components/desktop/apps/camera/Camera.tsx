@@ -1,26 +1,50 @@
-import { Button } from "@src/components/button/Button";
 import * as S from "./Camera.styles";
-import { Text } from "@src/components/text/Text";
 import { useRef, useState } from "react";
+import { Icon } from "@src/icons/Icon";
+import { useTheme } from "styled-components";
 
 export const Camera = () => {
+	const theme = useTheme();
 	const [capturedImage, setCapturedImage] = useState<string | null>(null);
-	const videoRef = useRef<HTMLVideoElement>(null);
+	const [cameraState, setCameraState] = useState<"play" | "pause">("pause");
+	const refVideo = useRef<HTMLVideoElement>(null);
+	const refImg = useRef<HTMLImageElement>(null);
 
 	const handleCamera = async () => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({
 				audio: false,
-				video: {
-					facingMode: { exact: "environment" },
-					width: { ideal: 1080 },
-					height: { ideal: 1080 },
-					aspectRatio: 1,
-				},
+				video: {},
 			});
 
-			if (videoRef.current) {
-				videoRef.current.srcObject = stream;
+			if (refVideo.current) {
+				refVideo.current.srcObject = stream;
+
+				const adjustImageSize = () => {
+					if (!refVideo.current || !refImg.current) {
+						return;
+					}
+
+					const containerWidth = refVideo.current.clientWidth;
+					const containerHeight = refVideo.current.clientHeight;
+
+					if (containerWidth / containerHeight > refImg.current.naturalWidth / refImg.current.naturalHeight) {
+						refImg.current.style.width = containerWidth + "px";
+						refImg.current.style.height = "auto";
+					} else {
+						refImg.current.style.width = "auto";
+						refImg.current.style.height = containerHeight + "px";
+					}
+				};
+
+				if (refVideo.current && refImg.current) {
+					refImg.current.addEventListener("resize", adjustImageSize);
+					adjustImageSize();
+				}
+
+				setCapturedImage(null);
+
+				setCameraState("play");
 			}
 		} catch (error) {
 			console.error("Error accessing camera:", error);
@@ -28,33 +52,33 @@ export const Camera = () => {
 	};
 
 	const handleCapture = () => {
-		if (videoRef.current) {
+		if (refVideo.current) {
 			const canvas = document.createElement("canvas");
-			canvas.width = videoRef.current.videoWidth;
-			canvas.height = videoRef.current.videoHeight;
+			canvas.width = refVideo.current.videoWidth;
+			canvas.height = refVideo.current.videoHeight;
+
 			const context = canvas.getContext("2d");
 
 			if (context) {
-				context.drawImage(videoRef.current, 0, 0, videoRef.current.videoWidth, videoRef.current.videoHeight);
+				context.drawImage(refVideo.current, 0, 0, refVideo.current.videoWidth, refVideo.current.videoHeight);
 				const imageUrl = canvas.toDataURL("image/png");
 				setCapturedImage(imageUrl);
 			}
+
+			setCameraState("pause");
 		}
 	};
 
 	return (
 		<S.Camera>
-			<Text>Camera:</Text>
-			<S.Video ref={videoRef} autoPlay playsInline />
-
-			<Text>Picture:</Text>
+			<S.Video ref={refVideo} autoPlay playsInline />
 			<S.ImageContainer>
-				<S.Image src={capturedImage ? capturedImage : ""} alt="Captured" />
+				<S.Image ref={refImg} src={capturedImage ? capturedImage : ""} alt="Captured" />
 			</S.ImageContainer>
 
 			<S.Buttons>
-				<Button onClick={handleCamera}>Start Camera</Button>
-				<Button onClick={handleCapture}>Take Picture</Button>
+				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.xl} onClick={handleCamera} />}
+				{cameraState === "play" && <Icon iconName="iconPauseCircle" size={theme.size.xl} onClick={handleCapture} />}
 			</S.Buttons>
 		</S.Camera>
 	);

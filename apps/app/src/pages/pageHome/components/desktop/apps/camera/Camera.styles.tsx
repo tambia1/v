@@ -7,26 +7,33 @@ export const Camera = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.normalBg};
+`;
+
+export const Video = styled.video`
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
 export const ImageContainer = styled.div`
+	position: absolute;
 	display: flex;
 	justify-content: center;
 	position: relative;
 	width: 100%;
-	height: 20rem;
+	height: 100%;
+	background-color: transparent;
 `;
 
 export const Image = styled.img`
 	position: relative;
 	width: 100%;
 	height: 100%;
-
-	background-color: ${(props) => props.theme.color.normalBg};
 
 	&[alt]:after {
 		display: block;
@@ -35,22 +42,19 @@ export const Image = styled.img`
 		width: 100%;
 		height: 100%;
 		content: "";
-		background-color: ${(props) => props.theme.color.normalBg};
 		position: absolute;
 	}
 `;
 
-export const Video = styled.video`
-	display: block;
-	position: relative;
-	width: 100%;
-	height: 20rem;
-	background-color: ${(props) => props.theme.color.normalBg};
-`;
-
 export const Buttons = styled.div`
+	position: absolute;
+	inset: auto 0 0 0;
 	display: flex;
-	height: auto;
-	justify-content: space-between;
-	margin-top: auto;
+	justify-content: center;
+	margin-bottom: 3rem;
+
+	& svg {
+		stroke: ${(props) => props.theme.color.normalFg};
+		fill: ${(props) => props.theme.color.errorBg};
+	}
 `;
