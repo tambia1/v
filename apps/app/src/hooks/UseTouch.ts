@@ -50,7 +50,7 @@ export const useTouch = ({ ref, onTouch, deps }: Props) => {
 		let longPressTimeout: NodeJS.Timeout;
 
 		const getX = (e: TouchEvent | MouseEvent) => {
-			return (e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0;
+			return (e as TouchEvent).changedTouches?.[0]?.pageX || (e as MouseEvent).pageX || 0;
 		};
 
 		const getY = (e: TouchEvent | MouseEvent) => {
