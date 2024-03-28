@@ -37,7 +37,7 @@ export const Buttons = styled.div`
 	inset: auto 0 0 0;
 	display: flex;
 	justify-content: center;
-	gap: 1rem;
+	gap: 4rem;
 	margin-bottom: 3rem;
 
 	& ${Icon}[data-name='iconSave'] svg {
