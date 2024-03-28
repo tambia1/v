@@ -45,6 +45,11 @@ export const Buttons = styled.div`
 		fill: ${(props) => props.theme.color.successBg};
 	}
 
+	& ${Icon}[data-name='iconCamera'] svg {
+		stroke: ${(props) => props.theme.color.normalFg};
+		fill: ${(props) => props.theme.color.warningBg};
+	}
+
 	& ${Icon} svg {
 		stroke: ${(props) => props.theme.color.normalFg};
 		fill: ${(props) => props.theme.color.errorBg};

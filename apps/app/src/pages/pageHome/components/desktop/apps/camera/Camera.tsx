@@ -4,6 +4,8 @@ import { Icon } from "@src/icons/Icon";
 import { useTheme } from "styled-components";
 import { Loader } from "@src/components/loader/Loader";
 
+type ICameraFacingMode = "user" | "environment";
+
 export const Camera = () => {
 	const theme = useTheme();
 	const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -11,13 +13,15 @@ export const Camera = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const refVideo = useRef<HTMLVideoElement>(null);
 	const refImg = useRef<HTMLImageElement>(null);
+	const [cameraFacingMode, setCameraFacingMode] = useState<ICameraFacingMode>("environment");
 
-	const handleCamera = async () => {
+	const getCameraStream = async (cameraFacingMode: ICameraFacingMode) => {
 		try {
-			setIsLoading(true);
 			const stream = await navigator.mediaDevices.getUserMedia({
 				audio: false,
-				video: {},
+				video: {
+					facingMode: cameraFacingMode,
+				},
 			});
 
 			if (refVideo.current) {
@@ -26,11 +30,22 @@ export const Camera = () => {
 				setCapturedImage(null);
 				setCameraState("play");
 			}
-
-			setIsLoading(false);
 		} catch (error) {
 			console.error("Error accessing camera:", error);
 		}
+	};
+
+	const handleCamera = async () => {
+		setIsLoading(true);
+		await getCameraStream(cameraFacingMode);
+		setIsLoading(false);
+	};
+
+	const handleCameraFace = async () => {
+		const newCameraFacingMode = cameraFacingMode === "user" ? "environment" : "user";
+
+		setCameraFacingMode(newCameraFacingMode);
+		await getCameraStream(newCameraFacingMode);
 	};
 
 	const handleCapture = () => {
@@ -64,6 +79,7 @@ export const Camera = () => {
 
 			<S.Buttons>
 				{cameraState === "play" && <Icon iconName="iconPauseCircle" size={theme.size.xl} onClick={handleCapture} />}
+				{cameraState === "play" && <Icon iconName="iconCamera" size={theme.size.xl} onClick={handleCameraFace} />}
 				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.xl} onClick={handleCamera} />}
 				{cameraState === "pause" && capturedImage && <Icon iconName="iconSave" size={theme.size.xl} onClick={handleCamera} />}
 			</S.Buttons>
