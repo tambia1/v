@@ -2,7 +2,7 @@ import { Icons } from "@src/icons/Icon.types";
 import { backgroundImages } from "./../desktop/apps/settings/page/components/theme/Theme.styles";
 import userLoggedIn from "@apps/user/assets/userLoggedIn.png";
 import userLoggedOut from "@apps/user/assets/userLoggedOut.png";
-import { appIcons } from "../desktop/components/appButton/AppButton.styles";
+import { appIcons as DesktopButtonsIcons } from "../desktop/components/appButton/AppButton.styles";
 import storeBg from "@apps/store/assets/bg.jpg";
 import ModalIconsCheck from "@components/modal/components/box/components/content/components/icon/assets/Check.png";
 import ModalIconsClose from "@components/modal/components/box/components/content/components/icon/assets/Close.png";
@@ -16,7 +16,7 @@ export const getImagesToCache = () => {
 		backgroundImages.map((item) => item.light),
 		backgroundImages.map((item) => item.dark),
 		[userLoggedIn, userLoggedOut],
-		Object.values(appIcons),
+		Object.values(DesktopButtonsIcons),
 		storeBg,
 		[ModalIconsCheck, ModalIconsClose, ModalIconsError, ModalIconsInfo, ModalIconsQuestion],
 	];
