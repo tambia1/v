@@ -13,10 +13,12 @@ import { z } from "zod";
 export const User = () => {
 	const { t } = useTranslation();
 
+	const bar = useBar();
+
 	const emailSchema = z.string().min(1).max(5);
 	const passwordSchema = z.string().min(1).max(5);
 
-	const [data, setData] = useState({
+	const [inputData, setInputData] = useState({
 		email: {
 			value: "",
 			disabled: false,
@@ -28,9 +30,7 @@ export const User = () => {
 	});
 
 	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
-	const bar = useBar();
-
-	const [loaderState, setLoaderState] = useState<"idle" | "loader">("idle");
+	const [isLoading, setIsLoading] = useState(false);
 
 	const mutateLogin = QueryLogin.login({
 		onSuccess: () => {
@@ -44,35 +44,30 @@ export const User = () => {
 		},
 	});
 
+	const [isLoginPerformed, setIsLoginPerformed] = useState(false);
+
 	const storeLogin = useStoreLogin();
-	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
+	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: false });
 
 	useEffect(() => {
-		if (!storeLogin.token) {
-			setMessage({ state: "", message: "" });
-
-			return;
-		}
-
 		if (queryUser.isLoading) {
 			setMessage({ state: "idle", message: t(lang.user.loading) });
 
 			return;
 		}
 
-		if (queryUser.data?.error !== 0) {
-			setMessage({ state: "error", message: t(lang.user.welcome) });
+		if (queryUser.data?.error === 0) {
+			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data.firstName, lastName: queryUser.data.lastName }) });
+
+			if (isLoginPerformed) {
+				setTimeout(() => {
+					bar.onClickclose();
+				}, 1000);
+			}
 
 			return;
 		}
-
-		if (queryUser.data?.firstName && queryUser.data?.lastName) {
-			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName }) });
-			setTimeout(() => bar.onClickclose, 1000);
-
-			return;
-		}
-	}, [queryUser.isLoading, storeLogin.token]);
+	}, [queryUser.isLoading, storeLogin.token, queryUser.data?.error, isLoginPerformed]);
 
 	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
@@ -83,12 +78,12 @@ export const User = () => {
 	};
 
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setData({ ...data, email: { ...data.email, value: e.target.value } });
+		setInputData({ ...inputData, email: { ...inputData.email, value: e.target.value } });
 		setMessage({ state: "", message: "" });
 	};
 
 	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setData({ ...data, password: { ...data.password, value: e.target.value } });
+		setInputData({ ...inputData, password: { ...inputData.password, value: e.target.value } });
 		setMessage({ state: "", message: "" });
 	};
 
@@ -99,8 +94,8 @@ export const User = () => {
 	};
 
 	const handleOnClickLogin = async () => {
-		const emailSchemaResult = emailSchema.safeParse(data.email.value);
-		const passwordSchemaResult = passwordSchema.safeParse(data.password.value);
+		const emailSchemaResult = emailSchema.safeParse(inputData.email.value);
+		const passwordSchemaResult = passwordSchema.safeParse(inputData.password.value);
 
 		if (!emailSchemaResult.success || !passwordSchemaResult.success) {
 			setMessage({ state: "error", message: "Invalid name or password" });
@@ -108,12 +103,14 @@ export const User = () => {
 			return;
 		}
 
-		setLoaderState("loader");
-		const mutateResult = await mutateLogin({ email: data.email.value, password: data.password.value });
-		setLoaderState("idle");
+		setIsLoading(true);
+		setIsLoginPerformed(true);
+		const mutateResult = await mutateLogin({ email: inputData.email.value, password: inputData.password.value });
+		setIsLoading(false);
 
 		if (mutateResult.error === 0) {
 			storeLogin.setData(mutateResult.token, mutateResult.role);
+			queryUser.refetch();
 		} else {
 			storeLogin.setData("", "guest");
 			setMessage({ state: "error", message: "Invalid name or password" });
@@ -121,13 +118,17 @@ export const User = () => {
 	};
 
 	const handleOnClickLogout = async () => {
-		setLoaderState("loader");
-		const mutateResult = await mutateLogout({ token: storeLogin.token });
-		setLoaderState("idle");
+		setMessage({ state: "idle", message: "" });
 
-		if (mutateResult.error === 0) {
-			storeLogin.setData("", "guest");
-			setData({ ...data, email: { ...data.email, value: "" }, password: { ...data.password, value: "" } });
+		setIsLoading(true);
+		const mutateResult = await mutateLogout({ token: storeLogin.token });
+		setIsLoading(false);
+
+		storeLogin.setData("", "guest");
+		setInputData({ ...inputData, email: { ...inputData.email, value: "", disabled: false }, password: { ...inputData.password, value: "", disabled: false } });
+
+		if (mutateResult.error !== 0) {
+			setMessage({ state: "error", message: "An error has occured while logout" });
 		}
 	};
 
@@ -135,13 +136,13 @@ export const User = () => {
 		<S.User onClick={handleOnClickBackground}>
 			<S.Box>
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
-				<S.EmailBox disabled={!!storeLogin.token || loaderState === "loader"}>
+				<S.EmailBox disabled={!!storeLogin.token || isLoading}>
 					<S.EmailImage iconName="iconUser" />
-					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={data.email.value} disabled={!!storeLogin.token || loaderState === "loader"} />
+					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={inputData.email.value} disabled={!!storeLogin.token || isLoading} />
 				</S.EmailBox>
-				<S.PasswordBox disabled={!!storeLogin.token || loaderState === "loader"}>
+				<S.PasswordBox disabled={!!storeLogin.token || isLoading}>
 					<S.PasswordImage iconName="iconLock" />
-					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={data.password.value} disabled={!!storeLogin.token || loaderState === "loader"} />
+					<S.PasswordInput type="password" placeholder={t(lang.user.password)} onChange={handlePasswordChange} value={inputData.password.value} disabled={!!storeLogin.token || isLoading} />
 				</S.PasswordBox>
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
@@ -156,15 +157,11 @@ export const User = () => {
 					)}
 				</S.ButtonBox>
 				<S.ButtonBox>
-					{loaderState === "loader" ? (
-						<Loader />
-					) : (
-						<>
-							{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}
-							{message.state === "error" && <S.Error>{message.message}</S.Error>}
-							{message.state === "success" && <S.Success>{message.message}</S.Success>}
-						</>
-					)}
+					{isLoading && <Loader />}
+
+					{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}
+					{message.state === "error" && <S.Error>{message.message}</S.Error>}
+					{message.state === "success" && <S.Success>{message.message}</S.Success>}
 				</S.ButtonBox>
 				<S.Notes>
 					<span>a, a</span>
