@@ -8,9 +8,13 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useBar } from "./../../hooks/UseBar";
 import { Loader } from "@src/components/loader/Loader";
+import { z } from "zod";
 
 export const User = () => {
 	const { t } = useTranslation();
+
+	const emailSchema = z.string().min(1).max(5);
+	const passwordSchema = z.string().min(1).max(5);
 
 	const [data, setData] = useState({
 		email: {
@@ -64,6 +68,7 @@ export const User = () => {
 
 		if (queryUser.data?.firstName && queryUser.data?.lastName) {
 			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data?.firstName, lastName: queryUser.data?.lastName }) });
+			setTimeout(() => bar.onClickclose, 1000);
 
 			return;
 		}
@@ -94,7 +99,10 @@ export const User = () => {
 	};
 
 	const handleOnClickLogin = async () => {
-		if (!data.email.value || !data.password.value) {
+		const emailSchemaResult = emailSchema.safeParse(data.email.value);
+		const passwordSchemaResult = passwordSchema.safeParse(data.password.value);
+
+		if (!emailSchemaResult.success || !passwordSchemaResult.success) {
 			setMessage({ state: "error", message: "Invalid name or password" });
 
 			return;
