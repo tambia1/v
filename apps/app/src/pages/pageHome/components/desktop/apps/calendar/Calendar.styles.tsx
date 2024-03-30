@@ -43,10 +43,10 @@ export const YearText = styled.div<{ $selected: boolean }>`
 `;
 
 export const Months = styled.div`
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 	gap: 1rem;
+	padding: 1rem;
 `;
 
 export const Month = styled.div`
@@ -69,7 +69,6 @@ export const MonthBox = styled.div`
 	margin-top: 5px;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	grid-gap: 3px;
 `;
 
