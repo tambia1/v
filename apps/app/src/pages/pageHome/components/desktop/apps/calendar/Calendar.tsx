@@ -9,8 +9,8 @@ export const Calendar = () => {
 
 	const shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-	const startYear = 2020;
-	const endYear = startYear + 10;
+	const startYear = currentYear - 1;
+	const endYear = currentYear + 9;
 
 	const years = Array.from({ length: endYear - startYear + 1 }, (_, index) => startYear + index);
 	const months = Array.from({ length: 12 }, (_, index) => index);
@@ -22,14 +22,8 @@ export const Calendar = () => {
 			return;
 		}
 
-		const timeout = setTimeout(() => {
-			handleOnClickToday();
-		}, 500);
-
-		return () => {
-			clearTimeout(timeout);
-		};
-	}, []);
+		handleOnClickToday();
+	}, [refYear.current]);
 
 	const handleOnClickToday = () => {
 		if (!refYear.current) {
