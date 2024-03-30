@@ -1,6 +1,7 @@
 import { execSync } from "child_process";
-import { version } from "./package.json";
 import * as process from "process";
+import * as fs from "fs";
+import * as path from "path";
 
 function increaseVersion() {
 	try {
@@ -20,7 +21,7 @@ function runBuild() {
 	}
 }
 
-function commitAndPush() {
+function commitAndPush(version) {
 	try {
 		execSync("git add .", { stdio: "inherit" });
 		execSync(`git commit -m "Build ${version}"`, { stdio: "inherit" });
@@ -35,10 +36,19 @@ function commitAndPush() {
 	}
 }
 
-function release() {
-	increaseVersion();
-	runBuild();
-	commitAndPush();
+function getPackageVersion() {
+	const packageJsonPath = path.join(new URL("../../package.json", import.meta.url).pathname);
+	const packageJsonContent = fs.readFileSync(packageJsonPath, "utf-8");
+	const packageJson = JSON.parse(packageJsonContent);
+
+	return packageJson.version;
 }
 
-release();
+function release(process) {
+	increaseVersion();
+	runBuild();
+	const version = getPackageVersion();
+	commitAndPush(version);
+}
+
+release(process);

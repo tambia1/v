@@ -1,7 +1,7 @@
 {
 	"name": "v",
 	"private": true,
-	"version": "1.1.25",
+	"version": "1.1.26",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -12,7 +12,7 @@
 		"coverage": "vitest watch --coverage",
 		"deploy": "gh-pages -d ./dist",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"release": "node release.js"
+		"release": "node ./src/scripts/release.js"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "5.28.9",
