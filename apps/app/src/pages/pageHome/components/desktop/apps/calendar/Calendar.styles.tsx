@@ -46,12 +46,12 @@ export const Months = styled.div`
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	gap: 1rem;
 `;
 
 export const Month = styled.div`
 	display: inline-flex;
 	flex-direction: column;
-	margin: 10px;
 `;
 
 export const MonthText = styled.div<{ $selected: boolean }>`
@@ -74,7 +74,7 @@ export const MonthBox = styled.div`
 `;
 
 export const DayText = styled.div<{ $selected: boolean }>`
-	font-size: 100%;
+	font-size: 80%;
 	padding: 1px;
 	display: inline-flex;
 	justify-content: center;
