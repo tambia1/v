@@ -62,6 +62,10 @@ export const translation: IHome = {
 		title: "Chat",
 	},
 
+	calendar: {
+		title: "Calendar",
+	},
+
 	store: {
 		title: "Store",
 		saveApp: "Save application to desktop?",

@@ -58,6 +58,10 @@ export type IHome = {
 		title: string;
 	};
 
+	calendar: {
+		title: string;
+	};
+
 	store: {
 		title: string;
 		saveApp: string;

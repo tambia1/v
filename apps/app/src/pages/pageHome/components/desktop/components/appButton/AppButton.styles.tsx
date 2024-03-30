@@ -15,10 +15,12 @@ import snake from "./assets/snake.png";
 import stocks from "./assets/stocks.webp";
 import store from "./assets/store.png";
 import chat from "./assets/chat.png";
+import calendar from "./assets/calendar.png";
 
 export const appIcons = {
 	settings,
 	calculator,
+	calendar,
 	camera,
 	notes,
 	photos,
