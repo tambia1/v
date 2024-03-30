@@ -60,6 +60,7 @@ export type IHome = {
 
 	calendar: {
 		title: string;
+		today: string;
 	};
 
 	store: {

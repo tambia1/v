@@ -64,6 +64,7 @@ export const translation: IHome = {
 
 	calendar: {
 		title: "Calendar",
+		today: "Today",
 	},
 
 	store: {

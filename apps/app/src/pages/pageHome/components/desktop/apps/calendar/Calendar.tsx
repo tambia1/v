@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as S from "./Calendar.styles";
+import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 
 export const Calendar = () => {
 	const currentDate = new Date();
@@ -70,7 +72,7 @@ export const Calendar = () => {
 
 			<S.Buttons>
 				<S.ButtonToday variant="link" onClick={handleOnClickToday}>
-					Today
+					<T>{lang.calendar.today}</T>
 				</S.ButtonToday>
 			</S.Buttons>
 		</S.Calendar>

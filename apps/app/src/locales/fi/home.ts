@@ -60,6 +60,7 @@ export const translation: IHome = {
 
 	calendar: {
 		title: "Kalenteri",
+		today: "Tänään",
 	},
 
 	store: {
