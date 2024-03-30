@@ -54,6 +54,10 @@ export const translation: IHome = {
 		exchange: "Symboli: {{symbol}}",
 	},
 
+	chat: {
+		title: "Chat",
+	},
+
 	store: {
 		title: "Store",
 		saveApp: "Tallenna sovellus työpöydälle?",

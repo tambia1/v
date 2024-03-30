@@ -54,6 +54,10 @@ export type IHome = {
 		exchange: string;
 	};
 
+	chat: {
+		title: string;
+	};
+
 	store: {
 		title: string;
 		saveApp: string;
