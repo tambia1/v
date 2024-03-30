@@ -9,7 +9,7 @@ const sizes: { [K in keyof ITheme["size"]]: string } = {
 	xl: "150%",
 };
 
-export const Container = styled.div<{ $size?: keyof ITheme["size"]; $color?: keyof ITheme["color"]; $bgcolor?: keyof ITheme["color"] }>`
+export const Text = styled.div<{ $size?: keyof ITheme["size"]; $color?: keyof ITheme["color"]; $bgcolor?: keyof ITheme["color"] }>`
 	color: ${({ theme, $color }) => ($color ? theme.color[$color] : "inherit")};
 	background-color: ${({ theme, $bgcolor }) => ($bgcolor ? theme.color[$bgcolor] : "inherit")};
 	font-size: ${({ $size }) => sizes[$size || "m"]};

@@ -9,10 +9,10 @@ interface Props {
 	bgcolor?: keyof ITheme["color"];
 }
 
-export const Text = ({ children, size = "m", color = "normalFg", bgcolor = "transparent" }: Props) => {
+export const Text = ({ children, size = "m", color = "normalFg", bgcolor = "transparent", ...rest }: Props) => {
 	return (
-		<S.Container $size={size} $color={color} $bgcolor={bgcolor}>
+		<S.Text $size={size} $color={color} $bgcolor={bgcolor} {...rest}>
 			{children}
-		</S.Container>
+		</S.Text>
 	);
 };

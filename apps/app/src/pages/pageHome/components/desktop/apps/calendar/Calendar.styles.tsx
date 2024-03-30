@@ -1,3 +1,4 @@
+import { Button } from "@src/components/button/Button";
 import styled, { css } from "styled-components";
 
 export const Calendar = styled.div`
@@ -7,24 +8,30 @@ export const Calendar = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	padding: 1rem;
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
-
-	overflow: auto;
 `;
 
 export const Line = styled.div`
-	background-color: #333333;
+	background-color: #999999;
 	height: 1px;
 	margin: 10px;
 `;
 
-export const Year = styled.div``;
+export const Years = styled.div`
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+`;
+
+export const Year = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
 
 export const YearText = styled.div<{ $selected: boolean }>`
-	font-size: 200%;
+	font-size: 250%;
 	font-weight: bold;
 	margin: 10px;
 
@@ -35,6 +42,12 @@ export const YearText = styled.div<{ $selected: boolean }>`
 		`}
 `;
 
+export const Months = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+`;
+
 export const Month = styled.div`
 	display: inline-flex;
 	flex-direction: column;
@@ -42,7 +55,7 @@ export const Month = styled.div`
 `;
 
 export const MonthText = styled.div<{ $selected: boolean }>`
-	font-size: 120%;
+	font-size: 180%;
 	font-weight: bold;
 
 	${(props) =>
@@ -57,11 +70,11 @@ export const MonthBox = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-	grid-gap: 2px;
+	grid-gap: 3px;
 `;
 
 export const DayText = styled.div<{ $selected: boolean }>`
-	font-size: 80%;
+	font-size: 100%;
 	padding: 1px;
 	display: inline-flex;
 	justify-content: center;
@@ -74,4 +87,17 @@ export const DayText = styled.div<{ $selected: boolean }>`
 			background-color: #ff4500;
 			border-radius: 50px;
 		`}
+`;
+
+export const Buttons = styled.div`
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	background-color: ${(props) => props.theme.color.normalBg};
+`;
+
+export const ButtonToday = styled(Button)`
+	&& {
+		color: #ff4500;
+	}
 `;

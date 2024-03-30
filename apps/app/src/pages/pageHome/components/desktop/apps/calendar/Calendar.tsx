@@ -23,7 +23,7 @@ export const Calendar = () => {
 		}
 
 		const timeout = setTimeout(() => {
-			refYear.current?.scrollIntoView({ behavior: "smooth", inline: "start" });
+			handleOnClickToday();
 		}, 500);
 
 		return () => {
@@ -31,37 +31,54 @@ export const Calendar = () => {
 		};
 	}, []);
 
+	const handleOnClickToday = () => {
+		if (!refYear.current) {
+			return;
+		}
+
+		refYear.current?.scrollIntoView({ behavior: "smooth", inline: "start" });
+	};
+
 	return (
 		<S.Calendar>
-			{years.map((year) => (
-				<S.Year key={year} ref={year === currentYear ? refYear : null}>
-					<S.YearText $selected={year === currentYear}>{year}</S.YearText>
-					<S.Line />
+			<S.Years>
+				{years.map((year) => (
+					<S.Year key={year} ref={year === currentYear ? refYear : null}>
+						<S.YearText $selected={year === currentYear}>{year}</S.YearText>
+						<S.Line />
+						<S.Months>
+							{months.map((month) => {
+								const daysInMonth = new Date(year, month + 1, 0).getDate();
+								const startingDay = new Date(year, month, 1).getDay();
 
-					{months.map((month) => {
-						const daysInMonth = new Date(year, month + 1, 0).getDate();
-						const startingDay = new Date(year, month, 1).getDay();
+								return (
+									<S.Month key={month}>
+										<S.MonthText $selected={year === currentYear && month + 1 === currentMonth}>{shortMonths[month]}</S.MonthText>
 
-						return (
-							<S.Month key={month}>
-								<S.MonthText $selected={year === currentYear && month + 1 === currentMonth}>{shortMonths[month]}</S.MonthText>
+										<S.MonthBox>
+											{Array.from({ length: startingDay }, (_, index) => (
+												<S.DayText key={`empty-${index}`} $selected={false}></S.DayText>
+											))}
 
-								<S.MonthBox>
-									{Array.from({ length: startingDay }, (_, index) => (
-										<S.DayText key={`empty-${index}`} $selected={false}></S.DayText>
-									))}
+											{Array.from({ length: daysInMonth }, (_, index) => (
+												<S.DayText key={`day-${index}`} $selected={year === currentYear && month + 1 === currentMonth && index + 1 === currentDay}>
+													{index + 1}
+												</S.DayText>
+											))}
+										</S.MonthBox>
+									</S.Month>
+								);
+							})}
+						</S.Months>
+					</S.Year>
+				))}
+			</S.Years>
 
-									{Array.from({ length: daysInMonth }, (_, index) => (
-										<S.DayText key={`day-${index}`} $selected={year === currentYear && month + 1 === currentMonth && index + 1 === currentDay}>
-											{index + 1}
-										</S.DayText>
-									))}
-								</S.MonthBox>
-							</S.Month>
-						);
-					})}
-				</S.Year>
-			))}
+			<S.Buttons>
+				<S.ButtonToday variant="link" onClick={handleOnClickToday}>
+					Today
+				</S.ButtonToday>
+			</S.Buttons>
 		</S.Calendar>
 	);
 };

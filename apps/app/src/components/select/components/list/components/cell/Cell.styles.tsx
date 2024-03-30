@@ -1,4 +1,4 @@
-import { Container as Text } from "@src/components/text/Text.styles";
+import { Text as Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
 export const Content = styled.div`
