@@ -1,16 +1,6 @@
 import { execSync } from "child_process";
 import * as process from "process";
 import * as fs from "fs";
-import * as path from "path";
-
-function increaseVersion() {
-	try {
-		execSync("npm version patch", { stdio: "inherit" });
-	} catch (error) {
-		console.error(`Error increasing version: ${error}`);
-		process.exit(1);
-	}
-}
 
 function runBuild() {
 	try {
@@ -36,19 +26,33 @@ function commitAndPush(version) {
 	}
 }
 
-function getPackageVersion() {
-	const packageJsonPath = path.join(new URL("../../package.json", import.meta.url).pathname);
-	const packageJsonContent = fs.readFileSync(packageJsonPath, "utf-8");
-	const packageJson = JSON.parse(packageJsonContent);
+function readPackage() {
+	let fileContent = fs.readFileSync("./package.json", "utf8");
+	const json = JSON.parse(fileContent);
 
-	return packageJson.version;
+	return json;
 }
 
-function release(process) {
-	increaseVersion();
+function savePackage(json) {
+	fs.writeFileSync("./package.json", JSON.stringify(json, null, 4), "utf8");
+}
+
+function incrementVersion(version) {
+	let [_, major, minor, patch] = (version + "").match(/(\d+)\.?(\d+)\.?(\d+)/);
+
+	patch = parseInt(patch) + 1;
+
+	return `${major}.${minor}.${patch}`;
+}
+
+function release() {
+	const packageJson = readPackage();
+	const oldVersion = packageJson.version;
+	const newVerion = incrementVersion(oldVersion);
+	packageJson.version = newVerion;
+	savePackage(packageJson);
 	runBuild();
-	const version = getPackageVersion();
-	commitAndPush(version);
+	commitAndPush(newVerion);
 }
 
-release(process);
+release();
