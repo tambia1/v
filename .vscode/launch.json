@@ -80,11 +80,18 @@
 			"cwd": "${workspaceFolder}/apps/app/"
 		},
 		{
-			"name": "app  deploy",
+			"name": "app deploy",
 			"command": "npm run deploy",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/app/"
+		},
+		{
+			"name": "app release",
+			"command": "npm run release",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/app/src/"
 		},
 		{
 			"name": "---------------------------------",
