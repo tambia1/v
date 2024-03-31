@@ -33,7 +33,7 @@ export const Year = styled.div`
 export const YearText = styled.div<{ $selected: boolean }>`
 	font-size: 250%;
 	font-weight: bold;
-	margin: 9px;
+	margin: 10px;
 
 	${(props) =>
 		props.$selected &&
@@ -44,7 +44,7 @@ export const YearText = styled.div<{ $selected: boolean }>`
 
 export const Months = styled.div`
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
 	gap: 1rem;
 	padding: 1rem;
 `;
