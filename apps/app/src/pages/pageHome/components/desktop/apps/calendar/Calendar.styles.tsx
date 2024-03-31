@@ -33,7 +33,7 @@ export const Year = styled.div`
 export const YearText = styled.div<{ $selected: boolean }>`
 	font-size: 250%;
 	font-weight: bold;
-	margin: 10px;
+	margin: 9px;
 
 	${(props) =>
 		props.$selected &&
