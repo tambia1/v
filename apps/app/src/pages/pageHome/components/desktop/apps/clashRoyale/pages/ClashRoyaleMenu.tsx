@@ -2,7 +2,7 @@ import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import * as S from "./ClashRoyaleMenu.styles";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { ClashRoyaleGame } from "./ClashRoyaleGame";
-import { Paging } from "@src/components/paging/Paging";
+import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
 import { IType as IArenaType } from "./game/Arena";
 
@@ -26,7 +26,7 @@ export const ClashRoyaleMenu = () => {
 				<S.Bg />
 				<S.Splash>
 					<S.PagingContainer>
-						<Paging onChange={(pageIndex) => setPageIndex(pageIndex)}>
+						<Pager onChange={(pageIndex) => setPageIndex(pageIndex)}>
 							<S.PagingItem1 />
 							<S.PagingItem2 />
 							<S.PagingItem3 />
@@ -38,7 +38,7 @@ export const ClashRoyaleMenu = () => {
 							<S.PagingItem9 />
 							<S.PagingItem10 />
 							<S.PagingItem11 />
-						</Paging>
+						</Pager>
 					</S.PagingContainer>
 					<S.ButtonStart $isVisible={true} onClick={handleOnClickStart}>
 						START

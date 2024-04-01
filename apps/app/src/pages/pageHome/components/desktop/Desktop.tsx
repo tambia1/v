@@ -21,7 +21,7 @@ import { BarContext } from "./hooks/UseBar";
 import { BarMain } from "./components/barMain/BarMain";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { Modal } from "@src/components/modal/Modal";
-import { Paging } from "@src/components/paging/Paging";
+import { Pager } from "@src/components/pager/Pager";
 import { getExternalApps, removeAppsNotFittingByRoles as getAppsByRoles } from "./Desktop.utils";
 import { BarDoneCancel } from "./components/barDoneCancel/BarDoneCancel";
 import { StoreApps } from "./stores/StoreApps";
@@ -139,7 +139,7 @@ export const Desktop = () => {
 					<S.AppsContainer>
 						<S.AppContainer ref={refApp}>{currentApp && <S.App>{currentApp}</S.App>}</S.AppContainer>
 
-						<Paging onChange={(_pageIndex) => {}}>
+						<Pager onChange={(_pageIndex) => {}}>
 							{appsByRole.map((appsGroup, i) => {
 								return (
 									<S.AppGroup key={i}>
@@ -160,7 +160,7 @@ export const Desktop = () => {
 									</S.AppGroup>
 								);
 							})}
-						</Paging>
+						</Pager>
 					</S.AppsContainer>
 				</S.Apps>
 			</BarContext.Provider>

@@ -1,5 +1,5 @@
 import { ReactNode, useRef, useState } from "react";
-import * as S from "./Paging.styles";
+import * as S from "./Pager.styles";
 import { ITouch, useTouch } from "@src/hooks/UseTouch";
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
 	onChange: (pageIndex: number) => void;
 }
 
-export const Paging = ({ children: pages, onChange }: Props) => {
+export const Pager = ({ children: pages, onChange }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
 	const [pageIndex, setPageIndex] = useState(0);
@@ -70,7 +70,7 @@ export const Paging = ({ children: pages, onChange }: Props) => {
 	};
 
 	return (
-		<S.Paging>
+		<S.Pager>
 			<S.Pages ref={refPages}>
 				<S.PagesPanel ref={refPagesPanel}>
 					{pages.map((page, index) => (
@@ -78,11 +78,12 @@ export const Paging = ({ children: pages, onChange }: Props) => {
 					))}
 				</S.PagesPanel>
 			</S.Pages>
+
 			<S.Dots>
 				{pages.map((_, index) => (
 					<S.Dot key={index} $isSelected={pageIndex === index} />
 				))}
 			</S.Dots>
-		</S.Paging>
+		</S.Pager>
 	);
 };
