@@ -1,7 +1,7 @@
 import { ErrorInfo, ReactNode, useCallback, useRef, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
-import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
+import { ITheme, themes } from "@src/theme/Theme.types";
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
@@ -112,7 +112,7 @@ export const Desktop = () => {
 		setCurrentApp(null);
 	};
 
-	const handleOnClickTheme = (themeName: IThemeName) => {
+	const handleOnClickTheme = (themeName: ITheme["themeName"]) => {
 		setTheme(themes[themeName]);
 
 		searchParams.set("theme", themeName);

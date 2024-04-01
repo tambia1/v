@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import ImageBgLight from "./assets/bgLight.png";
 import ImageBgDark from "./assets/bgDark.png";
-import { IThemeName } from "@src/theme/Theme.types";
+import { ITheme } from "@src/theme/Theme.types";
 
-const BgImages: { [K in IThemeName]: string } = {
+const BgImages: { [K in ITheme["themeName"]]: string } = {
 	light: ImageBgLight,
 	dark: ImageBgDark,
 };

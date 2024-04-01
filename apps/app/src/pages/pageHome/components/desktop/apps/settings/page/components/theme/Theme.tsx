@@ -2,7 +2,7 @@ import * as S from "./Theme.styles";
 import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { useThemeContext } from "@src/theme/UseThemeContext";
-import { IThemeName, themes } from "@src/theme/Theme.types";
+import { ITheme, themes } from "@src/theme/Theme.types";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";
@@ -13,7 +13,7 @@ export const Theme = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const themeStore = ThemeStore();
 
-	const handleOnClickTheme = (themeName: IThemeName) => {
+	const handleOnClickTheme = (themeName: ITheme["themeName"]) => {
 		setTheme(themes[themeName]);
 
 		searchParams.set("theme", themeName);
