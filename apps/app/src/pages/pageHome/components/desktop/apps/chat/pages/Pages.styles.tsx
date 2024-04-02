@@ -1,4 +1,12 @@
 import styled from "styled-components";
+import ImageBgLight from "./components/talk/assets/bgLight.png";
+import ImageBgDark from "./components/talk/assets/bgDark.png";
+import { ITheme } from "@src/theme/Theme.types";
+
+const BgImages: { [K in ITheme["themeName"]]: string } = {
+	light: ImageBgLight,
+	dark: ImageBgDark,
+};
 
 export const Pages = styled.div`
 	width: auto;
@@ -9,4 +17,8 @@ export const Pages = styled.div`
 
 	padding: 1rem;
 	box-sizing: border-box;
+
+	background-image: url(${(props) => BgImages[props.theme.themeName]});
+	background-position: 50%;
+	background-size: cover;
 `;
