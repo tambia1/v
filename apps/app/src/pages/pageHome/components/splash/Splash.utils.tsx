@@ -1,5 +1,5 @@
 import { Icons } from "@src/icons/Icon.types";
-import { backgroundImages } from "./../desktop/apps/settings/page/components/theme/Theme.styles";
+import { backgroundImages } from "./../desktop/apps/settings/pages/components/theme/Theme.styles";
 import userLoggedIn from "@apps/user/assets/userLoggedIn.png";
 import userLoggedOut from "@apps/user/assets/userLoggedOut.png";
 import { appIcons as DesktopButtonsIcons } from "../desktop/components/appButton/AppButton.styles";

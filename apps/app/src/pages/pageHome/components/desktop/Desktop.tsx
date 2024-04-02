@@ -9,7 +9,7 @@ import { useBarSearchParams } from "../../hooks/useBarSearchParams";
 import { IApp, apps } from "./Desktop.apps";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
-import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/page/components/theme/store/ThemeStore";
+import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/pages/components/theme/store/ThemeStore";
 import { useStoreLogin } from "@apps/user/stores/StoreLogin";
 import { QueryUser } from "@apps/user/queries/QueryUser";
 import { lang } from "@src/locales/i18n";

@@ -17,7 +17,18 @@ export const Chat = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.normalBg};
+`;
+
+export const Write = styled.div`
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	box-sizing: border-box;
+
 	background-image: url(${(props) => BgImages[props.theme.themeName]});
 	background-position: 50%;
 	background-size: cover;
