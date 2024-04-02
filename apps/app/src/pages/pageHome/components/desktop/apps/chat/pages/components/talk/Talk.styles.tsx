@@ -21,3 +21,11 @@ export const Talk = styled.div`
 	background-position: 50%;
 	background-size: cover;
 `;
+
+export const Messages = styled.div`
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	height: 100%;
+	padding: 1rem;
+`;
