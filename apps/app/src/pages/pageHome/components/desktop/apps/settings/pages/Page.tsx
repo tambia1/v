@@ -1,4 +1,4 @@
-import * as S from "./SettingsPage.styles";
+import * as S from "./Pages.styles";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { Language } from "./components/language/Language";
@@ -10,7 +10,7 @@ import { About } from "./components/about/About";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 
-export const SettingsPage = () => {
+export const Pages = () => {
 	const navigator = useNavigator();
 
 	const handleOnClickLanguage = () => {
@@ -46,7 +46,7 @@ export const SettingsPage = () => {
 	};
 
 	return (
-		<S.SettingsPage>
+		<S.Pages>
 			<List.Section>
 				<T>{lang.settings.apearance}</T>
 			</List.Section>
@@ -92,6 +92,6 @@ export const SettingsPage = () => {
 					<T>{lang.settings.about.title}</T>
 				</List.Cell>
 			</List>
-		</S.SettingsPage>
+		</S.Pages>
 	);
 };

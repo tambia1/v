@@ -55,7 +55,7 @@ export const translation: IHome = {
 	},
 
 	chat: {
-		title: "Chat",
+		title: "Puhua",
 	},
 
 	calendar: {
