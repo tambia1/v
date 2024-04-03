@@ -17,7 +17,6 @@ export const Message = styled.textarea`
 	height: auto;
 	overflow: auto;
 	box-shadow: 0 0 0.5rem 0 #00000066;
-	padding: 0.5rem;
 	outline: 0px solid transparent;
 	background-color: ${(props) => props.theme.color.normalBg};
 	resize: none;
@@ -27,7 +26,7 @@ export const Message = styled.textarea`
 	border-width: 4px;
 	border-style: solid;
 
-	padding: 0;
-	border-radius: 8px;
+	padding: 0 0.5rem;
+	border-radius: 0.8rem;
 	font-size: 18px;
 `;
