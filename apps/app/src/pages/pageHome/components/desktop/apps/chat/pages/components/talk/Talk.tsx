@@ -3,7 +3,7 @@ import { MessageBar } from "./messageBar/MessageBar";
 import { useState } from "react";
 import { BubbleMe } from "./bubbleMe/BubbleMe";
 import { BubbleOther } from "./bubbleOther/BubbleOther";
-import { randomUUID } from "crypto";
+import { getUniqueId } from "@src/utils/UniqueId";
 
 type IMessage = {
 	id: string;
@@ -16,21 +16,21 @@ type IMessage = {
 export const Talk = () => {
 	const [messages, setMessages] = useState<IMessage[]>([
 		{
-			id: randomUUID(),
+			id: getUniqueId(),
 			senderId: "1",
 			time: Date.now(),
 			content: "Hi, how are you doing?",
 			status: "sent",
 		},
 		{
-			id: randomUUID(),
+			id: getUniqueId(),
 			senderId: "0",
 			time: Date.now(),
 			content: "Great, and you?",
 			status: "sent",
 		},
 		{
-			id: randomUUID(),
+			id: getUniqueId(),
 			senderId: "1",
 			time: Date.now(),
 			content: "Splendid!",
@@ -40,7 +40,7 @@ export const Talk = () => {
 
 	const handleOnClickSend = (content: string) => {
 		const message: IMessage = {
-			id: randomUUID(),
+			id: getUniqueId(),
 			senderId: "0",
 			time: Date.now(),
 			content,

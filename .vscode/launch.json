@@ -134,6 +134,19 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "WebSocket Server",
+			"command": "node WebSocketServer.js",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/app/src/pages/pageHome/components/desktop/apps/chat/server/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
 			"name": "ui install",
 			"command": "npm i",
 			"request": "launch",
