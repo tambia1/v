@@ -14,8 +14,3 @@ export const BubbleMeMessage = styled.div`
 	margin-top: 0.5rem;
 	margin-bottom: 0.5rem;
 `;
-
-export const BubbleMeStatus = styled.div`
-	text-align: end;
-	color: #666666;
-`;

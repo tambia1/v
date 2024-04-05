@@ -1,4 +1,5 @@
 export type IClient = { clientId: string; clientName: string };
+export type IContent = { messageId: string; time: number; clientId: string; clientName: string; message: string };
 
 export type IMessage =
 	| {
@@ -17,7 +18,7 @@ export type IMessage =
 			clientName: string;
 	  }
 	| {
-			action: "CLIENTS";
+			action: "NAMES";
 			clients: IClient[];
 	  }
 	| {
@@ -28,4 +29,8 @@ export type IMessage =
 			contentId: string;
 			content: string;
 			status: "SENT" | "DELIVERED" | "READ";
+	  }
+	| {
+			action: "MESSAGES";
+			messages: IContent[];
 	  };

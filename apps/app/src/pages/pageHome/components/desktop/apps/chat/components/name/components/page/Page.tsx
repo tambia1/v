@@ -8,7 +8,7 @@ import { lang } from "@src/locales/i18n";
 import { useWebSocket } from "../../../../webSocket/UseWebSocket";
 import { StoreChat } from "../../stores/StoreChat";
 import { useState } from "react";
-import { IClient, IMessage } from "../../../../Chat.types";
+import { IClient, IContent, IMessage } from "../../../../Chat.types";
 
 export const Page = () => {
 	const navigator = useNavigator();
@@ -16,8 +16,9 @@ export const Page = () => {
 
 	const { sendMessage } = useWebSocket({ url: "ws://localhost:8080", onMessage: (message) => handleOnMessage(message) });
 
-	const [clients, setCLients] = useState<IClient[]>([]);
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "" });
+	const [clients, setCLients] = useState<IClient[]>([]);
+	const [messages, setMessages] = useState<IContent[]>([]);
 
 	const handleOnMessage = (message: string) => {
 		const data: IMessage = JSON.parse(message);
@@ -27,8 +28,16 @@ export const Page = () => {
 			sendMessage({ action: "NAME", clientName: storeChat.name });
 		}
 
-		if (data.action === "CONNECTION" || data.action === "CLIENTS") {
+		if (data.action === "CONNECTION") {
 			setCLients(data.clients);
+		}
+
+		if (data.action === "NAMES") {
+			setCLients(data.clients);
+		}
+
+		if (data.action === "MESSAGES") {
+			setMessages(data.messages);
 		}
 
 		console.log("onMessage", message);
@@ -37,7 +46,7 @@ export const Page = () => {
 	const handleOnClickCell = (_client: IClient) => {
 		navigator.pushPage(
 			<Navigator.Page id="talk" title={"Group"}>
-				<Talk client={client} sendMessage={sendMessage} />
+				<Talk client={client} sendMessage={sendMessage} messages={messages} />
 			</Navigator.Page>
 		);
 	};

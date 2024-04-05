@@ -4,9 +4,12 @@ const action = {
 	CONNECTED: "CONNECTED",
 	CONNECTION: "CONNECTION",
 	NAME: "NAME",
-	CLIENTS: "CLIENTS",
+	NAMES: "NAMES",
 	MESSAGE: "MESSAGE",
+	MESSAGES: "MESSAGES",
 };
+
+const messages = [];
 
 const wss = new WebSocketServer({ port: 8080 });
 
@@ -64,7 +67,7 @@ wss.on("connection", (ws, req) => {
 
 				wss.clients.forEach((client) => {
 					if (client.readyState === WebSocket.OPEN) {
-						client.send(JSON.stringify({ action: action.CLIENTS, clients: clients }));
+						client.send(JSON.stringify({ action: action.NAMES, clients: clients }));
 					}
 				});
 
@@ -72,9 +75,13 @@ wss.on("connection", (ws, req) => {
 			}
 
 			case action.MESSAGE: {
+				const content = { messageId: getUniqueId(), time: Date.now(), clientId: ws.clientId, clientName: ws.clientName, message: data.message };
+
+				messages.push(content);
+
 				wss.clients.forEach((client) => {
 					if (client != ws && client.readyState === WebSocket.OPEN) {
-						client.send(JSON.stringify({ action: action.MESSAGE, messageId: getUniqueId(), time: Date.now(), clientId: ws.clientId, clientName: ws.clientName, message: data.message }));
+						client.send(JSON.stringify({ action: action.MESSAGES, messages: messages }));
 					}
 				});
 
