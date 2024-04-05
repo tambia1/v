@@ -22,3 +22,11 @@ export const Page = styled.div`
 	background-position: 50%;
 	background-size: cover;
 `;
+
+export const ClientName = styled.span`
+	color: ${(props) => props.theme.color.normalFg};
+`;
+
+export const ClientId = styled.span`
+	color: ${(props) => props.theme.color.normalFgDisabled};
+`;

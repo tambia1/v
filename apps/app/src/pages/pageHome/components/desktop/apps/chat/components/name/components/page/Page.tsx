@@ -51,7 +51,7 @@ export const Page = () => {
 			<List>
 				{clients.map((client) => (
 					<List.Cell key={client.clientId} onClick={() => handleOnClickCell(client)}>
-						{client.clientName} {client.clientId}
+						<S.ClientName>{client.clientName}</S.ClientName> <S.ClientId>{client.clientId}</S.ClientId>
 					</List.Cell>
 				))}
 			</List>

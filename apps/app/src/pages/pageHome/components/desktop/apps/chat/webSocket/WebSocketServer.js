@@ -53,12 +53,12 @@ wss.on("connection", (ws, req) => {
 			return;
 		}
 
-		logCyan("Client sent message: " + JSON.stringify(data));
+		logYellow("Client sent message: " + JSON.stringify(data));
 
 		//send to all clients the message (except to himself)
 		switch (data.action) {
 			case action.NAME: {
-				ws.clientName = data.name;
+				ws.clientName = data.clientName;
 
 				const clients = [...wss.clients].map((client) => ({ clientId: client.clientId, clientName: client.clientName }));
 
