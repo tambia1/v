@@ -1,12 +1,13 @@
 ﻿import WebSocket, { WebSocketServer } from "ws";
 
-const action = {
+const actionSend = {
 	CONNECTED: "CONNECTED",
-	CONNECTION: "CONNECTION",
+	UPDATE: "UPDATE",
+};
+
+const actionGet = {
 	NAME: "NAME",
-	NAMES: "NAMES",
 	MESSAGE: "MESSAGE",
-	MESSAGES: "MESSAGES",
 };
 
 const messages = [];
@@ -23,16 +24,10 @@ wss.on("connection", (ws, req) => {
 	logBlue("client connected, id: " + ws.clientId + ", ip: " + ip);
 
 	//send to the client his id
-	ws.send(JSON.stringify({ action: action.CONNECTED, clientId: ws.clientId, clientName: ws.clientName }));
+	ws.send(JSON.stringify({ action: actionSend.CONNECTED, clientId: ws.clientId, clientName: ws.clientName }));
 
 	//send to all clients that we have new connection
-	const clients = [...wss.clients].map((client) => ({ clientId: client.clientId, clientName: client.clientName }));
-
-	wss.clients.forEach((client) => {
-		if (client.readyState === WebSocket.OPEN) {
-			client.send(JSON.stringify({ action: action.CONNECTION, clientId: ws.clientId, clientName: ws.clientName, clients: clients }));
-		}
-	});
+	updateAllClients();
 
 	//on error
 	ws.on("error", (err) => {
@@ -56,34 +51,22 @@ wss.on("connection", (ws, req) => {
 			return;
 		}
 
-		logYellow("Client sent message: " + JSON.stringify(data));
+		logYellow("Client sent message: " + ws.clientId + " " + JSON.stringify(data));
 
 		//send to all clients the message (except to himself)
 		switch (data.action) {
-			case action.NAME: {
+			case actionGet.NAME: {
 				ws.clientName = data.clientName;
 
-				const clients = [...wss.clients].map((client) => ({ clientId: client.clientId, clientName: client.clientName }));
-
-				wss.clients.forEach((client) => {
-					if (client.readyState === WebSocket.OPEN) {
-						client.send(JSON.stringify({ action: action.NAMES, clients: clients }));
-					}
-				});
+				updateAllClients();
 
 				break;
 			}
 
-			case action.MESSAGE: {
-				const content = { messageId: getUniqueId(), time: Date.now(), clientId: ws.clientId, clientName: ws.clientName, message: data.message };
+			case actionGet.MESSAGE: {
+				messages.push({ messageId: getUniqueId(), time: Date.now(), clientId: ws.clientId, clientName: ws.clientName, message: data.message });
 
-				messages.push(content);
-
-				wss.clients.forEach((client) => {
-					if (client != ws && client.readyState === WebSocket.OPEN) {
-						client.send(JSON.stringify({ action: action.MESSAGES, messages: messages }));
-					}
-				});
+				updateAllClients();
 
 				break;
 			}
@@ -91,7 +74,15 @@ wss.on("connection", (ws, req) => {
 	});
 });
 
-logGreen("WebSockets Server Running");
+function updateAllClients() {
+	const clients = [...wss.clients].map((client) => ({ clientId: client.clientId, clientName: client.clientName }));
+
+	wss.clients.forEach((client) => {
+		if (client.readyState === WebSocket.OPEN) {
+			client.send(JSON.stringify({ action: actionSend.UPDATE, clients, messages }));
+		}
+	});
+}
 
 function getUniqueId() {
 	const getRandomNumber = () => {
@@ -134,3 +125,5 @@ function logPurple(message) {
 function logCyan(message) {
 	log(36, message);
 }
+
+logGreen("WebSockets Server Running");

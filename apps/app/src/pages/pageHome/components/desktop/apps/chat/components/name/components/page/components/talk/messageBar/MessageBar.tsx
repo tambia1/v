@@ -5,12 +5,11 @@ import { useState } from "react";
 import { lang } from "@src/locales/i18n";
 
 interface Props {
-	message: string;
 	onClickSend: (content: string) => void;
 }
 
-export const MessageBar = ({ message, onClickSend }: Props) => {
-	const [content, setContent] = useState<string>(message);
+export const MessageBar = ({ onClickSend }: Props) => {
+	const [content, setContent] = useState<string>("");
 
 	const handleTextChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
 		setContent(e.currentTarget.value);
@@ -23,7 +22,7 @@ export const MessageBar = ({ message, onClickSend }: Props) => {
 
 	return (
 		<S.MessageBar>
-			<S.Message onChange={handleTextChange} />
+			<S.Message value={content} onChange={handleTextChange} />
 			<Button variant="full" onClick={handleOnClickSend}>
 				<T>{lang.chat.send}</T>
 			</Button>

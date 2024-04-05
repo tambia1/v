@@ -6,41 +6,39 @@ import { Talk } from "./components/talk/Talk";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useWebSocket } from "../../../../webSocket/UseWebSocket";
-import { StoreChat } from "../../stores/StoreChat";
 import { useState } from "react";
-import { IClient, IContent, IMessage } from "../../../../Chat.types";
+import { IClient, IMessage, IDataGet } from "../../../../Chat.types";
 
-export const Page = () => {
+interface Props {
+	name: string;
+}
+
+export const Page = ({ name }: Props) => {
 	const navigator = useNavigator();
-	const storeChat = StoreChat();
 
 	const { sendMessage } = useWebSocket({ url: "ws://localhost:8080", onMessage: (message) => handleOnMessage(message) });
 
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "" });
-	const [clients, setCLients] = useState<IClient[]>([]);
-	const [messages, setMessages] = useState<IContent[]>([]);
+	const [clients, setClients] = useState<IClient[]>([]);
+	const [messages, setMessages] = useState<IMessage[]>([]);
 
-	const handleOnMessage = (message: string) => {
-		const data: IMessage = JSON.parse(message);
-
+	const handleOnMessage = (data: IDataGet) => {
 		if (data.action === "CONNECTED") {
-			setClient({ clientId: data.clientId, clientName: storeChat.name });
-			sendMessage({ action: "NAME", clientName: storeChat.name });
+			setClient({ clientId: data.clientId, clientName: name });
+
+			sendMessage({ action: "NAME", clientName: name });
 		}
 
-		if (data.action === "CONNECTION") {
-			setCLients(data.clients);
-		}
+		if (data.action === "UPDATE") {
+			const myClient = data.clients.find((item) => item.clientId === client.clientId);
 
-		if (data.action === "NAMES") {
-			setCLients(data.clients);
-		}
+			if (myClient) {
+				setClient({ ...client, clientName: myClient.clientName });
+			}
 
-		if (data.action === "MESSAGES") {
+			setClients(data.clients);
 			setMessages(data.messages);
 		}
-
-		console.log("onMessage", message);
 	};
 
 	const handleOnClickCell = (_client: IClient) => {

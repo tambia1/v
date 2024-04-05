@@ -1,36 +1,24 @@
 export type IClient = { clientId: string; clientName: string };
-export type IContent = { messageId: string; time: number; clientId: string; clientName: string; message: string };
+export type IMessage = { messageId: string; time: number; clientId: string; clientName: string; message: string };
 
-export type IMessage =
+export type IDataGet =
 	| {
 			action: "CONNECTED";
 			clientId: string;
 			clientName: string;
 	  }
 	| {
-			action: "CONNECTION";
-			clientId: string;
-			clientName: string;
+			action: "UPDATE";
 			clients: IClient[];
-	  }
+			messages: IMessage[];
+	  };
+
+export type IDataSend =
 	| {
 			action: "NAME";
 			clientName: string;
 	  }
 	| {
-			action: "NAMES";
-			clients: IClient[];
-	  }
-	| {
 			action: "MESSAGE";
-			clientId: string;
-			clientName: string;
-			time: number;
-			contentId: string;
-			content: string;
-			status: "SENT" | "DELIVERED" | "READ";
-	  }
-	| {
-			action: "MESSAGES";
-			messages: IContent[];
+			message: string;
 	  };

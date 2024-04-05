@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import { IMessage } from "../Chat.types";
+import { IDataGet, IDataSend } from "../Chat.types";
 
 interface Props {
 	url: string;
-	onMessage: (message: string) => void;
+	onMessage: (data: IDataGet) => void;
 }
 
 export const useWebSocket = ({ url, onMessage }: Props) => {
@@ -14,7 +14,7 @@ export const useWebSocket = ({ url, onMessage }: Props) => {
 
 		ws.onopen = () => console.log("Connected to WebSocket server");
 		ws.onclose = () => console.log("Disconnected from WebSocket server");
-		ws.onmessage = (event) => onMessage(event.data as string);
+		ws.onmessage = (event) => onMessage(JSON.parse(event.data as string));
 
 		refWs.current = ws;
 
@@ -23,9 +23,9 @@ export const useWebSocket = ({ url, onMessage }: Props) => {
 		};
 	}, [url]);
 
-	const sendMessage = (message: IMessage) => {
+	const sendMessage = (data: IDataSend) => {
 		if (refWs.current) {
-			refWs.current.send(JSON.stringify(message));
+			refWs.current.send(JSON.stringify(data));
 		} else {
 			console.error("WebSocket connection not established.");
 		}
