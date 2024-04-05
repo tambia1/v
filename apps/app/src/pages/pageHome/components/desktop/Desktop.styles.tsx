@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { backgroundImages } from "@apps/settings/pages/components/theme/Theme.styles";
+import { backgroundImages } from "@apps/settings/components/page/components/theme/Theme.styles";
 
 export type IBarPosition = "top" | "bottom" | "left" | "right";
 

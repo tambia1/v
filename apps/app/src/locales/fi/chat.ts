@@ -4,5 +4,7 @@ export const translation: IChat = {
 	chat: {
 		title: "Puhua",
 		talks: "Puhuu",
+		send: "Lähettää",
+		set: "Aseta",
 	},
 };
