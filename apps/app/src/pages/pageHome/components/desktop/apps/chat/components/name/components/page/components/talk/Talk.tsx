@@ -10,17 +10,26 @@ interface Props {
 	sendMessage: (message: IDataSend) => void;
 }
 
+let count = 0;
+
 export const Talk = ({ client, messages, sendMessage }: Props) => {
 	const handleOnClickSend = (message: string) => {
-		sendMessage({ action: "MESSAGE", message });
+		if (message.trim().length > 0) {
+			sendMessage({ action: "MESSAGE", message });
+		}
 	};
+
+	console.log("Talk", count++);
 
 	return (
 		<S.Talk>
 			<S.Messages>
-				{messages.map((message) =>
-					message.clientId === client.clientId ? <BubbleMe key={message.clientId} content={message.message} /> : <BubbleOther key={message.clientId} content={message.message} />
-				)}
+				{messages.map((message) => (
+					<S.Message key={message.messageId}>
+						{message.clientId === client.clientId && <BubbleMe key={message.messageId} content={message.message} />}
+						{message.clientId !== client.clientId && <BubbleOther key={message.messageId} content={message.message} />}
+					</S.Message>
+				))}
 			</S.Messages>
 
 			<MessageBar onClickSend={handleOnClickSend} />

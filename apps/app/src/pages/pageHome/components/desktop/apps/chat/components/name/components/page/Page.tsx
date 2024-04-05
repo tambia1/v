@@ -13,6 +13,8 @@ interface Props {
 	name: string;
 }
 
+let count = 0;
+
 export const Page = ({ name }: Props) => {
 	const navigator = useNavigator();
 
@@ -26,7 +28,9 @@ export const Page = ({ name }: Props) => {
 		if (data.action === "CONNECTED") {
 			setClient({ clientId: data.clientId, clientName: name });
 
-			sendMessage({ action: "NAME", clientName: name });
+			if (name.trim().length > 0) {
+				sendMessage({ action: "NAME", clientName: name });
+			}
 		}
 
 		if (data.action === "UPDATE") {
@@ -48,6 +52,8 @@ export const Page = ({ name }: Props) => {
 			</Navigator.Page>
 		);
 	};
+
+	console.log("Page", count++);
 
 	return (
 		<S.Page>

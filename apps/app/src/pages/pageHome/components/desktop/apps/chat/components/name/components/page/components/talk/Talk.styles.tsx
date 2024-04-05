@@ -29,3 +29,7 @@ export const Messages = styled.div`
 	height: 100%;
 	padding: 1rem;
 `;
+
+export const Message = styled.div`
+	display: block;
+`;

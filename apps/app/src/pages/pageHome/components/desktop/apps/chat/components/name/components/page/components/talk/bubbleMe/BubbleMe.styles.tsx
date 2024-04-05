@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BubbleMe = styled.div`
 	background-color: #aaffaa;
 	margin: 1rem;
-	border-radius: 0.8rem;
+	border-radius: 2rem;
 	color: #333333;
 	padding: 0.5rem;
 	margin-left: 5rem;
@@ -11,6 +11,5 @@ export const BubbleMe = styled.div`
 `;
 
 export const BubbleMeMessage = styled.div`
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
+	margin: 0.5rem 1rem;
 `;
