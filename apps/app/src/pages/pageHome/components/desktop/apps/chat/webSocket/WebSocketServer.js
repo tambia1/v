@@ -66,6 +66,10 @@ wss.on("connection", (ws, req) => {
 			case actionGet.MESSAGE: {
 				messages.push({ messageId: getUniqueId(), time: Date.now(), clientId: ws.clientId, clientName: ws.clientName, message: data.message });
 
+				if (messages.length > 10) {
+					message.shift();
+				}
+
 				updateAllClients();
 
 				break;
