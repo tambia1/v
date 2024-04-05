@@ -34,6 +34,11 @@ export const stores: IStore[] = [
 				url: "https://www.nbcnews.com/latest-stories",
 				icon: "https://clipground.com/images/nbc-news-logo-6.jpg",
 			},
+			{
+				name: "PBS Space Time - What if Humans Are NOT Earth's First Civilization?",
+				url: "https://www.youtube.com/embed/vyEWLhOfLgQ",
+				icon: "https://yt3.ggpht.com/b6JwZU9KF2dIt06sct2fAmw1Ki9pJRDQHQ0lPR9LfSe9KjuV_xN1rsYWrTb_VDyvVKx3WixupUQ=s88-c-k-c0x00ffffff-no-rj",
+			},
 		],
 	},
 ];
