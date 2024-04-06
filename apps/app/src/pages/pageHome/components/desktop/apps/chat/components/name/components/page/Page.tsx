@@ -17,7 +17,7 @@ interface Props {
 export const Page = ({ name }: Props) => {
 	const navigator = useNavigator();
 
-	const { sendMessage } = useWebSocket({ url: "ws://[2a06:c701:9c57:5300:f5b9:c76e:b8c7:b7c6]:8080", onMessage: (message) => handleOnMessage(message) });
+	const { sendMessage } = useWebSocket({ url: "ws://localhost:8080", onMessage: (message) => handleOnMessage(message) });
 
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "" });
 	const [clients, setClients] = useState<IClient[]>([]);
