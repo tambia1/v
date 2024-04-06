@@ -42,7 +42,7 @@ export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopE
 		Object.keys(listeners.pushStart).forEach((k) => listeners.popStart[k](k));
 
 		setNavigatorItems((prevPages) => {
-			const newPages = prevPages.map((page) => ({ ...page, pageAnimation: "moveFromCenterToLeft" as IAnimationState, titleAnimation: "hideFromCenter" as IAnimationState }));
+			const newPages = prevPages.map((prevPage) => ({ ...prevPage, pageAnimation: "moveFromCenterToLeft" as IAnimationState, titleAnimation: "hideFromCenter" as IAnimationState }));
 
 			return [
 				...newPages,

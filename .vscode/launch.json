@@ -3,13 +3,13 @@
 	"compounds": [
 		{
 			"name": "Run project",
-			"configurations": ["Launch Edge 5000", "app start", "microFrontend preview"],
+			"configurations": ["launch edge 5000", "app start", "microFrontend preview", "web socket server"],
 			"stopAll": true
 		}
 	],
 	"configurations": [
 		{
-			"name": "Launch Edge 5000",
+			"name": "launch edge 5000",
 			"type": "msedge",
 			"request": "launch",
 			"url": "http://localhost:5000",
@@ -126,6 +126,19 @@
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/microFrontend/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "web socket server",
+			"command": "node WebSocketServer.js",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/apps/app/src/pages/pageHome/components/desktop/apps/chat/webSocket/"
 		},
 		{
 			"name": "---------------------------------",

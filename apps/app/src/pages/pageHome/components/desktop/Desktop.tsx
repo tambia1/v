@@ -1,7 +1,7 @@
 import { ErrorInfo, ReactNode, useCallback, useRef, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
-import { ITheme, IThemeName, themes } from "@src/theme/Theme.types";
+import { ITheme, themes } from "@src/theme/Theme.types";
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { useSearchParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import { useBarSearchParams } from "../../hooks/useBarSearchParams";
 import { IApp, apps } from "./Desktop.apps";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
-import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/page/components/theme/store/ThemeStore";
+import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/theme/store/ThemeStore";
 import { useStoreLogin } from "@apps/user/stores/StoreLogin";
 import { QueryUser } from "@apps/user/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
@@ -112,7 +112,7 @@ export const Desktop = () => {
 		setCurrentApp(null);
 	};
 
-	const handleOnClickTheme = (themeName: IThemeName) => {
+	const handleOnClickTheme = (themeName: ITheme["themeName"]) => {
 		setTheme(themes[themeName]);
 
 		searchParams.set("theme", themeName);

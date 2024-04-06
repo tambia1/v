@@ -1,3 +1,9 @@
 export const getUniqueId = () => {
-	return String(Math.floor(Math.random() * 1_000_000_000));
+	const getRandomNumber = () => {
+		return Math.floor(Math.random() * 1_000_0)
+			.toString()
+			.padStart(4, "0");
+	};
+
+	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
 };
