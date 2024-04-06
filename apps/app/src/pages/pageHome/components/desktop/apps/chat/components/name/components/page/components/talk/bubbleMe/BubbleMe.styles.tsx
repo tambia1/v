@@ -12,4 +12,6 @@ export const BubbleMe = styled.div`
 
 export const BubbleMeMessage = styled.div`
 	margin: 0.5rem 1rem;
+	white-space: pre-line;
+	max-width: 10rem;
 `;

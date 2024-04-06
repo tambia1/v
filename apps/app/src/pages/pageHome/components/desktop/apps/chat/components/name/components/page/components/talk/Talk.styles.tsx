@@ -31,5 +31,5 @@ export const Messages = styled.div`
 `;
 
 export const Message = styled.div`
-	display: block;
+	display: flex;
 `;
