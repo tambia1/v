@@ -7,13 +7,12 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useWebSocket } from "../../../../webSocket/UseWebSocket";
 import { useState } from "react";
-import { IClient, IMessage, IDataGet } from "../../../../Chat.types";
+import { IClient, IDataGet } from "../../../../Chat.types";
+import { useStoreTalk } from "../../stores/StoreTalk";
 
 interface Props {
 	name: string;
 }
-
-let count = 0;
 
 export const Page = ({ name }: Props) => {
 	const navigator = useNavigator();
@@ -22,7 +21,8 @@ export const Page = ({ name }: Props) => {
 
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "" });
 	const [clients, setClients] = useState<IClient[]>([]);
-	const [messages, setMessages] = useState<IMessage[]>([]);
+
+	const storeTalk = useStoreTalk();
 
 	const handleOnMessage = (data: IDataGet) => {
 		if (data.action === "CONNECTED") {
@@ -30,6 +30,7 @@ export const Page = ({ name }: Props) => {
 
 			if (name.trim().length > 0) {
 				sendMessage({ action: "NAME", clientName: name });
+				storeTalk.setClient({ clientId: data.clientId, clientName: name });
 			}
 		}
 
@@ -38,22 +39,21 @@ export const Page = ({ name }: Props) => {
 
 			if (myClient) {
 				setClient({ ...client, clientName: myClient.clientName });
+				storeTalk.setClient({ clientId: myClient.clientId, clientName: myClient.clientName });
 			}
 
 			setClients(data.clients);
-			setMessages(data.messages);
+			storeTalk.setMessages(data.messages);
 		}
 	};
 
 	const handleOnClickCell = (_client: IClient) => {
 		navigator.pushPage(
 			<Navigator.Page id="talk" title={"Group"}>
-				<Talk client={client} sendMessage={sendMessage} messages={messages} />
+				<Talk sendMessage={sendMessage} />
 			</Navigator.Page>
 		);
 	};
-
-	console.log("Page", count++);
 
 	return (
 		<S.Page>
