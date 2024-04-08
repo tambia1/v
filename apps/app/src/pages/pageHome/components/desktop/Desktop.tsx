@@ -25,6 +25,7 @@ import { Pager } from "@src/components/pager/Pager";
 import { getExternalApps, removeAppsNotFittingByRoles as getAppsByRoles } from "./Desktop.utils";
 import { BarDoneCancel } from "./components/barDoneCancel/BarDoneCancel";
 import { StoreApps } from "./stores/StoreApps";
+import { Transition } from "@src/components/transition/Transition";
 
 export const Desktop = () => {
 	const { t } = useTranslation();
@@ -175,7 +176,7 @@ export const Desktop = () => {
 					isVisibleButtonClose={isVisibleButtonClose}
 				/>
 
-				{isShakeMode && <BarDoneCancel isVisibleButtonDone={isShakeMode} onClickButtonDone={handleOnClickDone} />}
+				<Transition>{isShakeMode && <BarDoneCancel isVisibleButtonDone={isShakeMode} onClickButtonDone={handleOnClickDone} />}</Transition>
 			</S.Bar>
 
 			<Modal
