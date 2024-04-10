@@ -34,6 +34,16 @@ export const stores: IStore[] = [
 				url: "https://www.nbcnews.com/latest-stories",
 				icon: "https://clipground.com/images/nbc-news-logo-6.jpg",
 			},
+		],
+	},
+	{
+		name: "YouTube",
+		apps: [
+			{
+				name: "The Planets In Our Solar System",
+				url: "https://www.youtube.com/embed/lcZTcfdZ3Ow",
+				icon: "https://yt3.ggpht.com/ytc/AIdro_mfo6P2gCstJ5MIxzW_ssCpxB7_KwKkB6xQhqz3xX33Qg=s88-c-k-c0x00ffffff-no-rj",
+			},
 			{
 				name: "PBS Space Time - What if Humans Are NOT Earth's First Civilization?",
 				url: "https://www.youtube.com/embed/vyEWLhOfLgQ",
