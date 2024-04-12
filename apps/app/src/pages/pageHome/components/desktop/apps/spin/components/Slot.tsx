@@ -8,9 +8,10 @@ interface Props {
 	items: string[];
 	slotState: ISlotState;
 	setSlotState: Dispatch<SetStateAction<ISlotState>>;
+	selectedItem: number;
 }
 
-export const Slot = ({ items, slotState, setSlotState }: Props) => {
+export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) => {
 	const refAnimation = useRef<Animation>(new Animation());
 	const refSlotScroller = useRef<HTMLDivElement>(null);
 	const slotItems = [...items, ...items, ...items];
@@ -90,9 +91,11 @@ export const Slot = ({ items, slotState, setSlotState }: Props) => {
 	};
 
 	const slotSlowing = () => {
+		const extraTimeToSpin = 50 * (items.length - selectedItem);
+
 		refAnimation.current.setAnimation({
-			time: 600,
-			points: [[0, 100, 0]],
+			time: 600 + extraTimeToSpin,
+			points: [[0, 0 + 100 * (items.length - selectedItem)]],
 			timing: Animation.TIMING_EASE_OUT,
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
@@ -104,7 +107,7 @@ export const Slot = ({ items, slotState, setSlotState }: Props) => {
 			},
 			callbacks: [
 				{
-					position: 600,
+					position: 600 + extraTimeToSpin,
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						refAnimation.current.pause();
