@@ -8,14 +8,17 @@ interface Props {
 	items: string[];
 	slotState: ISlotState;
 	setSlotState: Dispatch<SetStateAction<ISlotState>>;
-	selectedItem: number;
+	stopItem: number;
 }
 
-export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) => {
+export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 	const refAnimation = useRef<Animation>(new Animation());
 	const refSlotScroller = useRef<HTMLDivElement>(null);
-	const slotItems = [...items, ...items, ...items];
-	const itemSpinTime = 100;
+
+	const slotItems = [...items, ...items, ...items].reverse();
+
+	const ITEM_SPIN_TIME = 100;
+	const ITEMS_BEOFRE_STOP = 2;
 
 	useEffect(() => {
 		refAnimation.current = new Animation();
@@ -37,7 +40,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 
 	const slotStarting = () => {
 		refAnimation.current.setAnimation({
-			time: itemSpinTime * 3,
+			time: ITEM_SPIN_TIME * 3,
 			points: [[0, -100, 0]],
 			timing: Animation.TIMING_EASE_IN,
 			direction: Animation.DIRECTION_FORWARD,
@@ -50,7 +53,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 			},
 			callbacks: [
 				{
-					position: itemSpinTime * 3,
+					position: ITEM_SPIN_TIME * 3,
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						slotSpinning();
@@ -64,8 +67,8 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 
 	const slotSpinning = () => {
 		refAnimation.current.setAnimation({
-			time: itemSpinTime * items.length,
-			points: [[0, 100 * items.length]],
+			time: ITEM_SPIN_TIME * items.length,
+			points: [[refAnimation.current.results[0], refAnimation.current.results[0] + 100 * items.length]],
 			timing: Animation.TIMING_LINEAR,
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
@@ -77,11 +80,11 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 			},
 			callbacks: [
 				{
-					position: itemSpinTime * items.length,
+					position: ITEM_SPIN_TIME * items.length,
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						if (_result.repeat === 1) {
-							slotSlowing();
+							slotWaiting();
 						}
 					},
 				},
@@ -91,12 +94,43 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 		refAnimation.current.resume();
 	};
 
-	const slotSlowing = () => {
-		const extraTimeToSpin = 50 * (items.length - selectedItem);
+	const slotWaiting = () => {
+		let itemsToKeepSpinning = stopItem - ITEMS_BEOFRE_STOP + items.length;
+
+		while (itemsToKeepSpinning < 0) {
+			itemsToKeepSpinning += items.length;
+		}
 
 		refAnimation.current.setAnimation({
-			time: itemSpinTime * items.length + extraTimeToSpin,
-			points: [[0, 0 + 100 * (items.length - selectedItem)]],
+			time: ITEM_SPIN_TIME * itemsToKeepSpinning,
+			points: [[refAnimation.current.results[0] - 100 * items.length, refAnimation.current.results[0] - 100 * items.length + 100 * itemsToKeepSpinning]],
+			timing: Animation.TIMING_LINEAR,
+			direction: Animation.DIRECTION_FORWARD,
+			delay: 0,
+			isCyclic: false,
+			isDelayOnRepeat: false,
+			repeat: 1,
+			onCalculate: (_result: ICallbackResult) => {
+				updateSlotScroller(true);
+			},
+			callbacks: [
+				{
+					position: ITEM_SPIN_TIME * itemsToKeepSpinning,
+					direction: Animation.DIRECTION_FORWARD,
+					callback: (_result: ICallbackResult) => {
+						slotSlowing();
+					},
+				},
+			],
+		});
+
+		refAnimation.current.resume();
+	};
+
+	const slotSlowing = () => {
+		refAnimation.current.setAnimation({
+			time: ITEM_SPIN_TIME * ITEMS_BEOFRE_STOP * 2,
+			points: [[refAnimation.current.results[0] - 100 * items.length, refAnimation.current.results[0] - 100 * items.length + 100 * ITEMS_BEOFRE_STOP]],
 			timing: Animation.TIMING_EASE_OUT,
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
@@ -108,7 +142,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 			},
 			callbacks: [
 				{
-					position: itemSpinTime * items.length + extraTimeToSpin,
+					position: ITEM_SPIN_TIME * ITEMS_BEOFRE_STOP * 2,
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						refAnimation.current.pause();
@@ -123,7 +157,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 
 	const updateSlotScroller = (isBlure: boolean) => {
 		if (refSlotScroller.current) {
-			refSlotScroller.current.style.top = `${-100 * items.length + refAnimation.current.results[0]}%`;
+			refSlotScroller.current.style.top = `${-100 * (items.length + items.length - 1) + refAnimation.current.results[0]}%`;
 			refSlotScroller.current.style.filter = isBlure ? `blur(2px)` : "blur(0px)";
 		}
 	};
