@@ -14,6 +14,7 @@ export const Spin = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background: radial-gradient(circle, rgba(163, 101, 168, 1) 0%, rgba(38, 7, 66, 1) 75%);
 `;
 
 export const SlotMachine = styled.div`
@@ -32,7 +33,7 @@ export const SlotMachine = styled.div`
 	z-index: 1;
 `;
 
-export const Slot = styled.div`
+export const Slot_1 = styled.div`
 	width: 21rem;
 	height: 7.4rem;
 	display: flex;
@@ -42,5 +43,4 @@ export const Slot = styled.div`
 	left: 14.6rem;
 	z-index: 0;
 	border-radius: 0.3rem;
-	overflow: hidden;
 `;
