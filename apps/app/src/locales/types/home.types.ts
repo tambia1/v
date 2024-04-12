@@ -69,6 +69,10 @@ export type IHome = {
 		alreadySaved: string;
 	};
 
+	spin: {
+		title: string;
+	};
+
 	tetris: {
 		title: string;
 	};

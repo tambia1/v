@@ -73,6 +73,10 @@ export const translation: IHome = {
 		alreadySaved: "Application is already on dektop.",
 	},
 
+	spin: {
+		title: "Spin",
+	},
+
 	snake: {
 		title: "Snake",
 	},

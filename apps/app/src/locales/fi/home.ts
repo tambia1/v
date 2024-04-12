@@ -73,6 +73,10 @@ export const translation: IHome = {
 		title: "Tetris",
 	},
 
+	spin: {
+		title: "Pyöritä",
+	},
+
 	snake: {
 		title: "Snake",
 	},
