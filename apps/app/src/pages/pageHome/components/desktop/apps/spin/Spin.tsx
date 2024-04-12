@@ -3,7 +3,8 @@ import * as S from "./Spin.styles";
 import { ISlotState, Slot } from "./components/Slot";
 
 export const Spin = () => {
-	const slotItems = ["A", "B", "C"];
+	const slotItems = ["A", "B", "C", "D", "E", "F"];
+	// const slotItems = ["A", "B"];
 	const [slotState, setSlotState] = useState<ISlotState>("stop");
 
 	const handleOnClickSpin = () => {
@@ -16,7 +17,7 @@ export const Spin = () => {
 		<S.Spin onClick={handleOnClickSpin}>
 			<S.SlotMachine>
 				<S.Slot_1>
-					<Slot items={slotItems} slotState={slotState} setSlotState={setSlotState} selectedItem={5} />
+					<Slot items={slotItems} slotState={slotState} setSlotState={setSlotState} selectedItem={0} />
 				</S.Slot_1>
 			</S.SlotMachine>
 		</S.Spin>

@@ -15,6 +15,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 	const refAnimation = useRef<Animation>(new Animation());
 	const refSlotScroller = useRef<HTMLDivElement>(null);
 	const slotItems = [...items, ...items, ...items];
+	const itemSpinTime = 100;
 
 	useEffect(() => {
 		refAnimation.current = new Animation();
@@ -36,7 +37,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 
 	const slotStarting = () => {
 		refAnimation.current.setAnimation({
-			time: 300,
+			time: itemSpinTime * 3,
 			points: [[0, -100, 0]],
 			timing: Animation.TIMING_EASE_IN,
 			direction: Animation.DIRECTION_FORWARD,
@@ -49,7 +50,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 			},
 			callbacks: [
 				{
-					position: 300,
+					position: itemSpinTime * 3,
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						slotSpinning();
@@ -63,7 +64,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 
 	const slotSpinning = () => {
 		refAnimation.current.setAnimation({
-			time: 600,
+			time: itemSpinTime * items.length,
 			points: [[0, 100 * items.length]],
 			timing: Animation.TIMING_LINEAR,
 			direction: Animation.DIRECTION_FORWARD,
@@ -76,7 +77,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 			},
 			callbacks: [
 				{
-					position: 600,
+					position: itemSpinTime * items.length,
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						if (_result.repeat === 1) {
@@ -94,7 +95,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 		const extraTimeToSpin = 50 * (items.length - selectedItem);
 
 		refAnimation.current.setAnimation({
-			time: 600 + extraTimeToSpin,
+			time: itemSpinTime * items.length + extraTimeToSpin,
 			points: [[0, 0 + 100 * (items.length - selectedItem)]],
 			timing: Animation.TIMING_EASE_OUT,
 			direction: Animation.DIRECTION_FORWARD,
@@ -107,7 +108,7 @@ export const Slot = ({ items, slotState, setSlotState, selectedItem }: Props) =>
 			},
 			callbacks: [
 				{
-					position: 600 + extraTimeToSpin,
+					position: itemSpinTime * items.length + extraTimeToSpin,
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						refAnimation.current.pause();
