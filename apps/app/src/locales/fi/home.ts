@@ -116,4 +116,8 @@ export const translation: IHome = {
 	testTransition: {
 		title: "Test Transition",
 	},
+
+	testAnimation: {
+		title: "Test Animation",
+	},
 };

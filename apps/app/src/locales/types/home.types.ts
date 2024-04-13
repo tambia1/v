@@ -116,4 +116,8 @@ export type IHome = {
 	testTransition: {
 		title: string;
 	};
+
+	testAnimation: {
+		title: string;
+	};
 };

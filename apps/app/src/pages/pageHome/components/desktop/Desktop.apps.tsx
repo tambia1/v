@@ -19,6 +19,7 @@ import { Store } from "./apps/store/Store";
 import { Chat } from "./apps/chat/Chat";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Spin } from "./apps/spin/Spin";
+import { TestAnimation } from "./apps/testAnimation/TestAnimation";
 
 const Mfe = lazy(() => import("remoteMicroFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -56,6 +57,7 @@ export const apps: IApp[][] = [
 		{ id: "testSelect", roles: ["admin"], title: <T>{lang.testSelect.title}</T>, icon: "photos", component: <TestSelect /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "photos", component: <TestTransition /> },
+		{ id: "testAnimation", roles: ["admin", "guest"], title: <T>{lang.testAnimation.title}</T>, icon: "photos", component: <TestAnimation /> },
 		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "photos", component: <Mfe /> },
 	],
 ];
