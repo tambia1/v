@@ -1,6 +1,6 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./TestAnimation.styles";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Animation, ICallbackResult } from "@src/utils/Animation";
 
 export const TestAnimation = () => {
@@ -9,6 +9,8 @@ export const TestAnimation = () => {
 	// animationPool.addAnimation('rect_2', new system.animation([[0, 1000], [500, 0, 500]], [0, 90, 100], 10000, 1, 0, 1, rect_2_callback, []));
 	// animationPool.addAnimation('rect_3', new system.animation([[0, 1000], [300, 300]], [0, 10, 50, 90, 100], 10000, 1, 5000, 2, rect_3_callback, []));
 	// animationPool.addAnimation('rect_4', new system.animation([[0, 1000], [350, 350]], [0, 100], 10000, 1, 5000, 2, rect_4_callback, []));
+
+	const [count, setCount] = useState(0);
 
 	const refAnimations = useRef<Animation[]>([]);
 
@@ -32,6 +34,10 @@ export const TestAnimation = () => {
 			timing: Animation.TIMING_LINEAR,
 			isDelayOnRepeat: false,
 			onCalculate: (result: ICallbackResult) => {
+				console.log("aaa", count);
+
+				setCount((prevCount) => prevCount + 1);
+
 				if (refRect0.current) {
 					refRect0.current.style.left = result.results[0] + "px";
 					refRect0.current.style.top = result.results[1] + "px";
@@ -61,11 +67,13 @@ export const TestAnimation = () => {
 		refAnimations.current[0].reset();
 	};
 
+	console.log("aaa");
+
 	return (
 		<S.TestAnimation>
 			<Text size="l">Test Animation</Text>
 
-			<S.Rect>
+			<S.Rect key={count}>
 				<S.ButtonStart onClick={handleStartAnimation}>START</S.ButtonStart>
 				<S.ButtonStop onClick={handleStopAnimation}>STOP</S.ButtonStop>
 				<S.ButtonReset onClick={handleResetAnimation}>RESET</S.ButtonReset>
