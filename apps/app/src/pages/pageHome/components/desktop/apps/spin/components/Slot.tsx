@@ -16,17 +16,39 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 	const refAnimation = useRef<Animation>(new Animation());
 	const refSlotScroller = useRef<HTMLDivElement>(null);
 
-	const slotItems = [...items, ...items, ...items].reverse();
+	const slotItems = [...items, ...items].reverse();
 
 	const ITEM_SPIN_TIME = 100;
-	const ITEMS_BEOFRE_STOP = 2;
 
 	useEffect(() => {
-		refAnimation.current = new Animation();
+		refAnimation.current = new Animation({
+			time: ITEM_SPIN_TIME * (items.length + stopItem - startItem),
+			points: [[startItem, items.length + stopItem]],
+			timing: Animation.TIMING_LINEAR,
+			direction: Animation.DIRECTION_FORWARD,
+			delay: 0,
+			isCyclic: false,
+			isDelayOnRepeat: false,
+			repeat: 1,
+			onCalculate: (_result: ICallbackResult) => {
+				updateSlotScroller(0);
+			},
+			callbacks: [
+				{
+					position: ITEM_SPIN_TIME * (items.length + stopItem - startItem),
+					direction: Animation.DIRECTION_FORWARD,
+					callback: (_result: ICallbackResult) => {
+						if (_result.repeat === 1) {
+							refAnimation.current.pause();
+							setSlotState("stop");
+						}
+					},
+				},
+			],
+		});
+
 		refAnimation.current.startLoop();
 		refAnimation.current.pause();
-
-		updateSlotScroller(0);
 
 		return () => {
 			refAnimation.current.stopLoop();
@@ -35,130 +57,14 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 
 	useEffect(() => {
 		if (slotState === "spin") {
-			slotStarting();
+			refAnimation.current.reset();
+			refAnimation.current.resume();
 		}
 	}, [slotState]);
 
-	const slotStarting = () => {
-		refAnimation.current.setAnimation({
-			time: ITEM_SPIN_TIME * 3,
-			points: [[startItem, startItem - 1, startItem]],
-			timing: Animation.TIMING_EASE_IN,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isCyclic: false,
-			isDelayOnRepeat: false,
-			repeat: 1,
-			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(0);
-			},
-			callbacks: [
-				{
-					position: ITEM_SPIN_TIME * 3,
-					direction: Animation.DIRECTION_FORWARD,
-					callback: (_result: ICallbackResult) => {
-						slotSpinning();
-					},
-				},
-			],
-		});
-
-		refAnimation.current.resume();
-	};
-
-	const slotSpinning = () => {
-		refAnimation.current.setAnimation({
-			time: ITEM_SPIN_TIME * items.length,
-			points: [[refAnimation.current.results[0], refAnimation.current.results[0] + items.length]],
-			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isCyclic: false,
-			isDelayOnRepeat: false,
-			repeat: 4,
-			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(2);
-			},
-			callbacks: [
-				{
-					position: ITEM_SPIN_TIME * items.length,
-					direction: Animation.DIRECTION_FORWARD,
-					callback: (_result: ICallbackResult) => {
-						if (_result.repeat === 1) {
-							slotWaiting();
-						}
-					},
-				},
-			],
-		});
-
-		refAnimation.current.resume();
-	};
-
-	const slotWaiting = () => {
-		let itemsToKeepSpinning = stopItem - ITEMS_BEOFRE_STOP + items.length;
-
-		while (itemsToKeepSpinning < 0) {
-			itemsToKeepSpinning += items.length;
-		}
-
-		refAnimation.current.setAnimation({
-			time: ITEM_SPIN_TIME * itemsToKeepSpinning,
-			points: [[refAnimation.current.results[0] - 1 * items.length, refAnimation.current.results[0] - items.length + itemsToKeepSpinning]],
-			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isCyclic: false,
-			isDelayOnRepeat: false,
-			repeat: 1,
-			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(2);
-			},
-			callbacks: [
-				{
-					position: ITEM_SPIN_TIME * itemsToKeepSpinning,
-					direction: Animation.DIRECTION_FORWARD,
-					callback: (_result: ICallbackResult) => {
-						slotSlowing();
-					},
-				},
-			],
-		});
-
-		refAnimation.current.resume();
-	};
-
-	const slotSlowing = () => {
-		refAnimation.current.setAnimation({
-			time: ITEM_SPIN_TIME * ITEMS_BEOFRE_STOP * 2,
-			points: [[refAnimation.current.results[0] - 1 * items.length, refAnimation.current.results[0] - items.length + ITEMS_BEOFRE_STOP]],
-			timing: Animation.TIMING_EASE_OUT,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isCyclic: false,
-			isDelayOnRepeat: false,
-			repeat: 1,
-			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(0);
-			},
-			callbacks: [
-				{
-					position: ITEM_SPIN_TIME * ITEMS_BEOFRE_STOP * 2,
-					direction: Animation.DIRECTION_FORWARD,
-					callback: (_result: ICallbackResult) => {
-						refAnimation.current.pause();
-						setSlotState("stop");
-					},
-				},
-			],
-		});
-
-		refAnimation.current.resume();
-	};
-
 	const updateSlotScroller = (blur: number) => {
 		if (refSlotScroller.current) {
-			refSlotScroller.current.style.top = `${100 * refAnimation.current.results[0] - 100 * (items.length - 1)}%`;
+			refSlotScroller.current.style.top = `${100 * refAnimation.current.results[0] - 100 * (items.length + items.length - 1)}%`;
 			refSlotScroller.current.style.filter = `blur(${blur}px)`;
 		}
 	};
