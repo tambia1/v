@@ -8,10 +8,11 @@ interface Props {
 	items: string[];
 	slotState: ISlotState;
 	setSlotState: Dispatch<SetStateAction<ISlotState>>;
+	startItem: number;
 	stopItem: number;
 }
 
-export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
+export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Props) => {
 	const refAnimation = useRef<Animation>(new Animation());
 	const refSlotScroller = useRef<HTMLDivElement>(null);
 
@@ -25,7 +26,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 		refAnimation.current.startLoop();
 		refAnimation.current.pause();
 
-		updateSlotScroller(false);
+		updateSlotScroller(0);
 
 		return () => {
 			refAnimation.current.stopLoop();
@@ -41,7 +42,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 	const slotStarting = () => {
 		refAnimation.current.setAnimation({
 			time: ITEM_SPIN_TIME * 3,
-			points: [[0, -100, 0]],
+			points: [[startItem, startItem - 1, startItem]],
 			timing: Animation.TIMING_EASE_IN,
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
@@ -49,7 +50,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 			isDelayOnRepeat: false,
 			repeat: 1,
 			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(false);
+				updateSlotScroller(0);
 			},
 			callbacks: [
 				{
@@ -68,7 +69,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 	const slotSpinning = () => {
 		refAnimation.current.setAnimation({
 			time: ITEM_SPIN_TIME * items.length,
-			points: [[refAnimation.current.results[0], refAnimation.current.results[0] + 100 * items.length]],
+			points: [[refAnimation.current.results[0], refAnimation.current.results[0] + items.length]],
 			timing: Animation.TIMING_LINEAR,
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
@@ -76,7 +77,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 			isDelayOnRepeat: false,
 			repeat: 4,
 			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(true);
+				updateSlotScroller(2);
 			},
 			callbacks: [
 				{
@@ -103,7 +104,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 
 		refAnimation.current.setAnimation({
 			time: ITEM_SPIN_TIME * itemsToKeepSpinning,
-			points: [[refAnimation.current.results[0] - 100 * items.length, refAnimation.current.results[0] - 100 * items.length + 100 * itemsToKeepSpinning]],
+			points: [[refAnimation.current.results[0] - 1 * items.length, refAnimation.current.results[0] - items.length + itemsToKeepSpinning]],
 			timing: Animation.TIMING_LINEAR,
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
@@ -111,7 +112,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 			isDelayOnRepeat: false,
 			repeat: 1,
 			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(true);
+				updateSlotScroller(2);
 			},
 			callbacks: [
 				{
@@ -130,7 +131,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 	const slotSlowing = () => {
 		refAnimation.current.setAnimation({
 			time: ITEM_SPIN_TIME * ITEMS_BEOFRE_STOP * 2,
-			points: [[refAnimation.current.results[0] - 100 * items.length, refAnimation.current.results[0] - 100 * items.length + 100 * ITEMS_BEOFRE_STOP]],
+			points: [[refAnimation.current.results[0] - 1 * items.length, refAnimation.current.results[0] - items.length + ITEMS_BEOFRE_STOP]],
 			timing: Animation.TIMING_EASE_OUT,
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
@@ -138,7 +139,7 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 			isDelayOnRepeat: false,
 			repeat: 1,
 			onCalculate: (_result: ICallbackResult) => {
-				updateSlotScroller(false);
+				updateSlotScroller(0);
 			},
 			callbacks: [
 				{
@@ -155,10 +156,10 @@ export const Slot = ({ items, stopItem, slotState, setSlotState }: Props) => {
 		refAnimation.current.resume();
 	};
 
-	const updateSlotScroller = (isBlure: boolean) => {
+	const updateSlotScroller = (blur: number) => {
 		if (refSlotScroller.current) {
-			refSlotScroller.current.style.top = `${-100 * (items.length + items.length - 1) + refAnimation.current.results[0]}%`;
-			refSlotScroller.current.style.filter = isBlure ? `blur(2px)` : "blur(0px)";
+			refSlotScroller.current.style.top = `${100 * refAnimation.current.results[0] - 100 * (items.length - 1)}%`;
+			refSlotScroller.current.style.filter = `blur(${blur}px)`;
 		}
 	};
 

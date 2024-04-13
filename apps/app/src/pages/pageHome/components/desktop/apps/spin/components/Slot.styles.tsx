@@ -10,7 +10,7 @@ export const Slot = styled.div`
 
 	background-color: ${(props) => props.theme.color.normalBg};
 
-	overflow: hidden;
+	/* overflow: hidden; */
 `;
 
 export const SlotScroller = styled.div<{ $numberOfItems: number }>`
