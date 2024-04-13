@@ -24,7 +24,7 @@ export const TestAnimation = () => {
 				[0, 500],
 				[500, 0, 500],
 			],
-			time: 1000,
+			time: 10000,
 			delay: 0,
 			direction: Animation.DIRECTION_FORWARD,
 			isCyclic: false,
@@ -70,7 +70,7 @@ export const TestAnimation = () => {
 				<S.ButtonStop onClick={handleStopAnimation}>STOP</S.ButtonStop>
 				<S.ButtonReset onClick={handleResetAnimation}>RESET</S.ButtonReset>
 
-				<S.RectInfo0 />
+				<S.RectInfo0>{refAnimations.current[0]?.results[0]}</S.RectInfo0>
 				<S.RectInfo1 />
 				<S.RectInfo2 />
 				<S.RectInfo3 />
