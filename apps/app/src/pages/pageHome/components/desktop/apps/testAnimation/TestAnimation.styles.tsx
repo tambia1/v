@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 import { Button } from "@components/button/Button";
 
+export const colors = ["red", "green", "blue", "yellow", "purple"];
+
 export const TestAnimation = styled.div`
 	width: 100%;
 	height: 100%;

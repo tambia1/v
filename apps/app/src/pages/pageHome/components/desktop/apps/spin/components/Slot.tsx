@@ -47,11 +47,11 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 			],
 		});
 
-		refAnimation.current.startLoop();
+		// refAnimation.current.startLoop();
 		refAnimation.current.pause();
 
 		return () => {
-			refAnimation.current.stopLoop();
+			// refAnimation.current.stopLoop();
 		};
 	}, []);
 

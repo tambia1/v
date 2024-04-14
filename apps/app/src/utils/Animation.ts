@@ -70,10 +70,6 @@ export class Animation {
 
 	private isCyclic: boolean;
 
-	private isLooping: boolean;
-	private requestAnimationFrameId: number | null;
-	private requestAnimationFrameFunction: (() => void) | null;
-
 	public results: number[];
 
 	constructor({
@@ -119,10 +115,6 @@ export class Animation {
 		this.currentRepeat = this.repeat;
 
 		this.isCyclic = isCyclic;
-
-		this.isLooping = false;
-		this.requestAnimationFrameId = null;
-		this.requestAnimationFrameFunction = null;
 
 		this.results = [];
 
@@ -408,28 +400,6 @@ export class Animation {
 		this.calculateResults();
 	}
 
-	public startLoop(): void {
-		this.requestAnimationFrameFunction = () => {
-			this.calculate();
-
-			if (this.isLooping == true && this.requestAnimationFrameFunction) {
-				this.requestAnimationFrameId = window.requestAnimationFrame(this.requestAnimationFrameFunction);
-			}
-		};
-
-		this.isLooping = true;
-		this.requestAnimationFrameFunction();
-	}
-
-	public stopLoop() {
-		this.isLooping = false;
-
-		if (this.requestAnimationFrameId) {
-			window.cancelAnimationFrame(this.requestAnimationFrameId);
-			this.requestAnimationFrameId = null;
-		}
-	}
-
 	public static rotate3dX(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
 		a = (a * Math.PI) / 180;
 
@@ -472,5 +442,33 @@ export class Animation {
 		} else {
 			return null;
 		}
+	}
+}
+
+export class AnimationLooper {
+	private animations: Animation[];
+	private requestAnimationFrameId: number;
+
+	constructor() {
+		this.animations = [];
+		this.requestAnimationFrameId = 0;
+	}
+
+	public setAnimations(animations: Animation[]): void {
+		this.animations = animations;
+	}
+
+	public startLoop(): void {
+		const requestAnimationFrameFunction = () => {
+			this.animations.forEach((animation) => animation.calculate());
+
+			this.requestAnimationFrameId = window.requestAnimationFrame(requestAnimationFrameFunction);
+		};
+
+		requestAnimationFrameFunction();
+	}
+
+	public stopLoop() {
+		window.cancelAnimationFrame(this.requestAnimationFrameId);
 	}
 }

@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./TestAnimation.styles";
-import { useEffect, useRef, useState } from "react";
-import { Animation, ICallbackResult } from "@src/utils/Animation";
+import { useEffect, useState } from "react";
+import { Animation, AnimationLooper, ICallbackResult } from "@src/utils/Animation";
 
 export const TestAnimation = () => {
 	// animationPool.addAnimation('rect_0', new system.animation([[0, 1000], [500, 0, 500]], [0, 50, 100], 10000, 1, 0, 1, rect_0_callback, []));
@@ -10,18 +10,12 @@ export const TestAnimation = () => {
 	// animationPool.addAnimation('rect_3', new system.animation([[0, 1000], [300, 300]], [0, 10, 50, 90, 100], 10000, 1, 5000, 2, rect_3_callback, []));
 	// animationPool.addAnimation('rect_4', new system.animation([[0, 1000], [350, 350]], [0, 100], 10000, 1, 5000, 2, rect_4_callback, []));
 
-	const [count, setCount] = useState(0);
-
-	const refAnimations = useRef<Animation[]>([]);
-
-	const refRect0 = useRef<HTMLDivElement>(null);
-	const refRect1 = useRef<HTMLDivElement>(null);
-	const refRect2 = useRef<HTMLDivElement>(null);
-	const refRect3 = useRef<HTMLDivElement>(null);
-	const refRect4 = useRef<HTMLDivElement>(null);
+	const [animations, setAnimations] = useState<Animation[]>([]);
+	const [animationLooper] = useState<AnimationLooper>(new AnimationLooper());
+	const [results, setResults] = useState<ICallbackResult[]>([]);
 
 	useEffect(() => {
-		const Animation0 = new Animation({
+		const animation0 = new Animation({
 			points: [
 				[0, 500],
 				[500, 0, 500],
@@ -34,61 +28,160 @@ export const TestAnimation = () => {
 			timing: Animation.TIMING_LINEAR,
 			isDelayOnRepeat: false,
 			onCalculate: (result: ICallbackResult) => {
-				console.log("aaa", count);
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[0] = result;
 
-				setCount((prevCount) => prevCount + 1);
-
-				if (refRect0.current) {
-					refRect0.current.style.left = result.results[0] + "px";
-					refRect0.current.style.top = result.results[1] + "px";
-				}
+					return newResults;
+				});
 			},
 			callbacks: [],
 		});
 
-		Animation0.startLoop();
+		const animation1 = new Animation({
+			points: [
+				[0, 500],
+				[500, 0, 500],
+			],
+			time: 10000,
+			delay: 0,
+			direction: Animation.DIRECTION_FORWARD,
+			isCyclic: false,
+			repeat: 1,
+			timing: Animation.TIMING_EASE,
+			isDelayOnRepeat: false,
+			onCalculate: (result: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[1] = result;
 
-		refAnimations.current.push(Animation0);
+					return newResults;
+				});
+			},
+			callbacks: [],
+		});
+
+		const animation2 = new Animation({
+			points: [
+				[0, 500],
+				[500, 0, 500],
+			],
+			time: 10000,
+			delay: 0,
+			direction: Animation.DIRECTION_FORWARD,
+			isCyclic: false,
+			repeat: 1,
+			timing: Animation.TIMING_EASE_IN,
+			isDelayOnRepeat: false,
+			onCalculate: (result: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[2] = result;
+
+					return newResults;
+				});
+			},
+			callbacks: [],
+		});
+
+		const animation3 = new Animation({
+			points: [
+				[0, 500],
+				[500, 0, 500],
+			],
+			time: 10000,
+			delay: 0,
+			direction: Animation.DIRECTION_FORWARD,
+			isCyclic: false,
+			repeat: 1,
+			timing: Animation.TIMING_EASE_OUT,
+			isDelayOnRepeat: false,
+			onCalculate: (result: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[3] = result;
+
+					return newResults;
+				});
+			},
+			callbacks: [],
+		});
+
+		const animation4 = new Animation({
+			points: [
+				[0, 500],
+				[500, 0, 500],
+			],
+			time: 10000 / 3,
+			delay: 0,
+			direction: Animation.DIRECTION_FORWARD,
+			isCyclic: true,
+			repeat: 3,
+			timing: Animation.TIMING_EASE,
+			isDelayOnRepeat: false,
+			onCalculate: (result: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[4] = result;
+
+					return newResults;
+				});
+			},
+			callbacks: [],
+		});
+
+		setAnimations([animation0, animation1, animation2, animation3, animation4]);
+
+		animationLooper.setAnimations([animation0, animation1, animation2, animation3, animation4]);
+		animationLooper.startLoop();
 
 		return () => {
-			Animation0.stopLoop();
+			animationLooper.stopLoop();
 		};
 	}, []);
 
 	const handleStartAnimation = () => {
-		refAnimations.current[0].resume();
+		animations.forEach((animation) => animation.resume());
 	};
 
 	const handleStopAnimation = () => {
-		refAnimations.current[0].pause();
+		animations.forEach((animation) => animation.pause());
 	};
 
 	const handleResetAnimation = () => {
-		refAnimations.current[0].reset();
+		animations.forEach((animation) => animation.reset());
 	};
-
-	console.log("aaa");
 
 	return (
 		<S.TestAnimation>
 			<Text size="l">Test Animation</Text>
 
-			<S.Rect key={count}>
+			<S.Rect>
 				<S.ButtonStart onClick={handleStartAnimation}>START</S.ButtonStart>
 				<S.ButtonStop onClick={handleStopAnimation}>STOP</S.ButtonStop>
 				<S.ButtonReset onClick={handleResetAnimation}>RESET</S.ButtonReset>
 
-				<S.RectInfo0>{refAnimations.current[0]?.results[0]}</S.RectInfo0>
-				<S.RectInfo1 />
-				<S.RectInfo2 />
-				<S.RectInfo3 />
-				<S.RectInfo4 />
+				<S.RectInfo0>
+					{results[0]?.results[0].toFixed(2).padStart(6, "0")} , {results[0]?.results[1].toFixed(2).padStart(6, "0")} , TIMING_LINEAR
+				</S.RectInfo0>
+				<S.RectInfo1>
+					{results[1]?.results[0].toFixed(2).padStart(6, "0")} , {results[1]?.results[1].toFixed(2).padStart(6, "0")} , TIMING_EASE
+				</S.RectInfo1>
+				<S.RectInfo2>
+					{results[2]?.results[0].toFixed(2).padStart(6, "0")} , {results[2]?.results[1].toFixed(2).padStart(6, "0")} , TIMING_EASE_IN
+				</S.RectInfo2>
+				<S.RectInfo3>
+					{results[3]?.results[0].toFixed(2).padStart(6, "0")} , {results[3]?.results[1].toFixed(2).padStart(6, "0")} , TIMING_EASE_OUT
+				</S.RectInfo3>
+				<S.RectInfo4>
+					{results[4]?.results[0].toFixed(2).padStart(6, "0")} , {results[4]?.results[1].toFixed(2).padStart(6, "0")} , TIMING_EASE , repeat
+				</S.RectInfo4>
 
-				<S.Rect0 ref={refRect0} />
-				<S.Rect1 ref={refRect1} />
-				<S.Rect2 ref={refRect2} />
-				<S.Rect3 ref={refRect3} />
-				<S.Rect4 ref={refRect4} />
+				<S.Rect0 style={{ left: results[0]?.results[0], top: results[0]?.results[1] }} />
+				<S.Rect1 style={{ left: results[1]?.results[0], top: results[1]?.results[1] }} />
+				<S.Rect2 style={{ left: results[2]?.results[0], top: results[2]?.results[1] }} />
+				<S.Rect3 style={{ left: results[3]?.results[0], top: results[3]?.results[1] }} />
+				<S.Rect4 style={{ left: results[4]?.results[0], top: results[4]?.results[1] }} />
 			</S.Rect>
 		</S.TestAnimation>
 	);
