@@ -1,3 +1,4 @@
+import { getRandomNumber } from "../../../../../../../../utils/Random";
 import { UtilsTouch } from "../../../clashRoyale/pages/game/UtilsTouch";
 import imageApple from "./images/apple.png";
 import imageBanana from "./images/banana.png";
@@ -15,7 +16,6 @@ import imageSplashPurple from "./images/splashPurple.png";
 import imageSplashRed from "./images/splashRed.png";
 import imageSplashYellow from "./images/splashYellow.png";
 import { UtilsImage } from "../../../clashRoyale/pages/game/UtilsImage";
-import { UtilsMath } from "../../../clashRoyale/pages/game/UtilsMath";
 import { Fruit } from "./Fruit";
 // import sounds from "./sounds/sounds.mp3";
 
@@ -133,31 +133,13 @@ export class Game {
 		window.cancelAnimationFrame(this.requestAnimationFrameId);
 	}
 
-	public pauseGame() {
-		this.gameState = "paused";
-
-		//pause all fruits
-		for (let i = 0; i < this.arrFruit.length; i++) {
-			this.arrFruit[i].animation.stopLoop();
-		}
-	}
-
-	public resumeGame() {
-		this.gameState = "playing";
-
-		//resume all fruits
-		for (let i = 0; i < this.arrFruit.length; i++) {
-			this.arrFruit[i].animation.startLoop();
-		}
-	}
-
 	private createFruitAnimation() {
-		const numberOfFruits = UtilsMath.getRandomNumber(1, 5);
+		const numberOfFruits = getRandomNumber(1, 5);
 
 		this.arrFruit = new Array(numberOfFruits);
 
 		for (let i = 0; i < this.arrFruit.length; i++) {
-			const fruitImageIndex = UtilsMath.getRandomNumber(0, Game.arrImages.length - 1);
+			const fruitImageIndex = getRandomNumber(0, Game.arrImages.length - 1);
 
 			this.arrFruit[i] = new Fruit({
 				canvas: this.canvas,

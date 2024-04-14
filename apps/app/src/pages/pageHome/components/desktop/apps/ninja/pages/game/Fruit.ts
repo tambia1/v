@@ -1,6 +1,6 @@
-import { UtilsMath } from "../../../clashRoyale/pages/game/UtilsMath";
-import { Animation } from "../../../clashRoyale/pages/game/Animation";
+import { getRandomNumber } from "@src/utils/Random";
 import { IFruitType } from "./Game";
+import { Animation, AnimationLooper } from "@src/utils/Animation";
 
 type IProps = {
 	canvas: HTMLCanvasElement;
@@ -16,6 +16,7 @@ export class Fruit {
 	private fruitSplashImage: HTMLImageElement;
 	private callback: () => void;
 	public animation: Animation;
+	public animationLooper: AnimationLooper;
 	public isSplashed: boolean;
 	private splashX: number;
 	private splashY: number;
@@ -31,11 +32,11 @@ export class Fruit {
 		this.splashY = 0;
 
 		// 	//create new route
-		const x1 = UtilsMath.getRandomNumber(0, canvas.width);
-		const x2 = UtilsMath.getRandomNumber(0, canvas.width - 64);
+		const x1 = getRandomNumber(0, canvas.width);
+		const x2 = getRandomNumber(0, canvas.width - 64);
 		const y1 = canvas.height;
-		const y2 = UtilsMath.getRandomNumber(-canvas.height, 0);
-		const time = UtilsMath.getRandomNumber(2000, 3000);
+		const y2 = getRandomNumber(-canvas.height, 0);
+		const time = getRandomNumber(2000, 3000);
 
 		this.animation = new Animation({
 			time: time,
@@ -61,8 +62,10 @@ export class Fruit {
 			],
 		});
 
-		this.animation.startLoop();
 		this.animation.resume();
+
+		this.animationLooper = new AnimationLooper();
+		this.animationLooper.setAnimations([this.animation]);
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

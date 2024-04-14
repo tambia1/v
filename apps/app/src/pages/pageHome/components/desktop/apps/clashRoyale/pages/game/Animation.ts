@@ -68,10 +68,6 @@ export class Animation {
 
 	private isCyclic: boolean;
 
-	private isLooping: boolean;
-	private requestAnimationFrameId: number | null;
-	private requestAnimationFrameFunction: (() => void) | null;
-
 	public results: number[];
 
 	constructor({
@@ -117,10 +113,6 @@ export class Animation {
 		this.currentRepeat = this.repeat;
 
 		this.isCyclic = isCyclic;
-
-		this.isLooping = false;
-		this.requestAnimationFrameId = null;
-		this.requestAnimationFrameFunction = null;
 
 		this.results = [];
 
@@ -404,28 +396,6 @@ export class Animation {
 
 		// calculate results
 		this.calculateResults();
-	}
-
-	public startLoop(): void {
-		this.requestAnimationFrameFunction = () => {
-			this.calculate();
-
-			if (this.isLooping == true && this.requestAnimationFrameFunction) {
-				this.requestAnimationFrameId = window.requestAnimationFrame(this.requestAnimationFrameFunction);
-			}
-		};
-
-		this.isLooping = true;
-		this.requestAnimationFrameFunction();
-	}
-
-	public stopLoop() {
-		this.isLooping = false;
-
-		if (this.requestAnimationFrameId) {
-			window.cancelAnimationFrame(this.requestAnimationFrameId);
-			this.requestAnimationFrameId = null;
-		}
 	}
 
 	public static rotate3dX(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {

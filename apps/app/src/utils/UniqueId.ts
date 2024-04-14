@@ -5,5 +5,5 @@ export const getUniqueId = () => {
 			.padStart(4, "0");
 	};
 
-	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
+	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
 };
