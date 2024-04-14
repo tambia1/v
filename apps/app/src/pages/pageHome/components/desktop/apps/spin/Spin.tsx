@@ -21,7 +21,7 @@ export const Spin = () => {
 		<S.Spin onClick={handleOnClickSpin}>
 			<S.SlotMachine>
 				<S.Slot_1>
-					<Slot slotState={slotState} setSlotState={setSlotState} items={slotItems} startItem={0} stopItem={0} />
+					<Slot slotState={slotState} setSlotState={setSlotState} items={slotItems} startItem={0} stopItem={3} />
 				</S.Slot_1>
 			</S.SlotMachine>
 		</S.Spin>

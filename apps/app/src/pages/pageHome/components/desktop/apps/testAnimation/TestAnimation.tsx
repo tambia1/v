@@ -4,12 +4,6 @@ import { useEffect, useState } from "react";
 import { Animation, AnimationLooper, ICallbackResult } from "@src/utils/Animation";
 
 export const TestAnimation = () => {
-	// animationPool.addAnimation('rect_0', new system.animation([[0, 1000], [500, 0, 500]], [0, 50, 100], 10000, 1, 0, 1, rect_0_callback, []));
-	// animationPool.addAnimation('rect_1', new system.animation([[0, 1000], [500, 0, 500]], [0, 10, 100], 10000, 1, 0, 1, rect_1_callback, []));
-	// animationPool.addAnimation('rect_2', new system.animation([[0, 1000], [500, 0, 500]], [0, 90, 100], 10000, 1, 0, 1, rect_2_callback, []));
-	// animationPool.addAnimation('rect_3', new system.animation([[0, 1000], [300, 300]], [0, 10, 50, 90, 100], 10000, 1, 5000, 2, rect_3_callback, []));
-	// animationPool.addAnimation('rect_4', new system.animation([[0, 1000], [350, 350]], [0, 100], 10000, 1, 5000, 2, rect_4_callback, []));
-
 	const [animations, setAnimations] = useState<Animation[]>([]);
 	const [animationLooper] = useState<AnimationLooper>(new AnimationLooper());
 	const [results, setResults] = useState<ICallbackResult[]>([]);
