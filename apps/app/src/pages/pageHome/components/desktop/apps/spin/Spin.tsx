@@ -4,11 +4,6 @@ import { ISlotState, Slot } from "./components/Slot";
 
 export const Spin = () => {
 	const slotItems = ["A", "B", "C", "D", "E", "F"];
-	// const slotItems = ["A", "B", "C", "D", "E"];
-	// const slotItems = ["A", "B", "C", "D"];
-	// const slotItems = ["A", "B", "C"];
-	// const slotItems = ["A", "B"];
-	// const slotItems = ["A"];
 	const [slotState, setSlotState] = useState<ISlotState>("stop");
 
 	const handleOnClickSpin = () => {
