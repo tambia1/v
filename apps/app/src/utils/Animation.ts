@@ -391,13 +391,13 @@ export class Animation {
 		this.currentDelay = this.delay;
 		this.currentRepeat = this.repeat;
 
-		// also reset all callbacks counters because we finished animation cycle
+		// reset all callbacks counters because we finished animation cycle
 		for (let i = 0; i < this.callbacks.length; i++) {
 			this.callbacksCounters[i] = 0;
 		}
 
 		// calculate results
-		this.calculateResults();
+		this.calculate();
 	}
 
 	public static rotate3dX(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
@@ -448,10 +448,12 @@ export class Animation {
 export class AnimationLooper {
 	private animations: Animation[];
 	private requestAnimationFrameId: number;
+	private isLooping: boolean;
 
 	constructor() {
 		this.animations = [];
 		this.requestAnimationFrameId = 0;
+		this.isLooping = true;
 	}
 
 	public setAnimations(animations: Animation[]): void {
@@ -462,13 +464,17 @@ export class AnimationLooper {
 		const requestAnimationFrameFunction = () => {
 			this.animations.forEach((animation) => animation.calculate());
 
-			this.requestAnimationFrameId = window.requestAnimationFrame(requestAnimationFrameFunction);
+			if (this.isLooping == true) {
+				this.requestAnimationFrameId = window.requestAnimationFrame(requestAnimationFrameFunction);
+			}
 		};
 
+		this.isLooping = true;
 		requestAnimationFrameFunction();
 	}
 
 	public stopLoop() {
+		this.isLooping = false;
 		window.cancelAnimationFrame(this.requestAnimationFrameId);
 	}
 }

@@ -22,7 +22,6 @@ export const SlotScroller = styled.div<{ $numberOfItems: number }>`
 	top: 0;
 
 	filter: blur(0px);
-	transition: filter 0.3s ease 0s;
 `;
 
 export const Item = styled.div<{ $numberOfItems: number }>`

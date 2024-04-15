@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import * as S from "./Slot.styles";
 import { Animation, AnimationLooper, ICallbackResult } from "@src/utils/Animation";
 
@@ -13,36 +13,49 @@ interface Props {
 }
 
 export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Props) => {
-	const [animationTop] = useState<Animation>(new Animation());
-	const [animationBlur] = useState<Animation>(new Animation());
+	const [animation] = useState<Animation>(new Animation());
 	const [animationLooper] = useState<AnimationLooper>(new AnimationLooper());
 
-	const refSlotScroller = useRef<HTMLDivElement>(null);
-
-	const slotItems = [...items, ...items].reverse();
+	const [slotItems, setSlotItems] = useState<string[]>([]);
+	const [result, setResult] = useState<number[]>([0, 0]);
 
 	const ITEM_SPIN_TIME = 100;
 
 	useEffect(() => {
-		animationTop.setAnimation({
-			time: ITEM_SPIN_TIME * (items.length + stopItem - startItem),
-			points: [[startItem, items.length + stopItem]],
-			timing: Animation.TIMING_LINEAR,
+		let newSlotItems: string[] = [...items];
+
+		while (newSlotItems.length < 20) {
+			newSlotItems = [...newSlotItems, ...items];
+		}
+
+		newSlotItems = [...newSlotItems, ...items];
+
+		newSlotItems = newSlotItems.reverse();
+		setSlotItems(newSlotItems);
+
+		animation.setAnimation({
+			time: ITEM_SPIN_TIME * (newSlotItems.length + stopItem - startItem),
+			points: [
+				[startItem, newSlotItems.length - items.length + stopItem],
+				[0, 5, 0],
+			],
+			timing: [0, -10, 50, 110, 100],
 			direction: Animation.DIRECTION_FORWARD,
 			delay: 0,
 			isCyclic: false,
 			isDelayOnRepeat: false,
-			repeat: Math.ceil(10 / items.length),
-			onCalculate: (_result: ICallbackResult) => {
-				updateTop();
+			repeat: 1,
+			onCalculate: (result: ICallbackResult) => {
+				setResult(() => [result.results[0], result.results[1]]);
 			},
 			callbacks: [
 				{
-					position: ITEM_SPIN_TIME * (items.length + stopItem - startItem),
+					position: ITEM_SPIN_TIME * (newSlotItems.length + stopItem - startItem),
 					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
 						if (_result.repeat === 1) {
-							animationTop.pause();
+							animation.pause();
+							animationLooper.stopLoop();
 							setSlotState("stop");
 						}
 					},
@@ -50,67 +63,34 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 			],
 		});
 
-		animationBlur.setAnimation({
-			time: ITEM_SPIN_TIME * (items.length + stopItem - startItem + Math.ceil(10 / items.length)),
-			points: [[0, 7, 0]],
-			timing: Animation.TIMING_EASE,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isCyclic: false,
-			isDelayOnRepeat: false,
-			repeat: 1,
-			onCalculate: (_result: ICallbackResult) => {
-				updateBlur();
-			},
-			callbacks: [
-				{
-					position: ITEM_SPIN_TIME * (items.length + stopItem - startItem + Math.ceil(10 / items.length)),
-					direction: Animation.DIRECTION_FORWARD,
-					callback: (_result: ICallbackResult) => {
-						if (_result.repeat === 1) {
-							animationBlur.pause();
-						}
-					},
-				},
-			],
-		});
-
-		animationLooper.setAnimations([animationTop, animationBlur]);
-		animationLooper.startLoop();
+		animation.reset();
+		animationLooper.setAnimations([animation]);
 
 		return () => {
+			animation.pause();
 			animationLooper.stopLoop();
 		};
 	}, []);
 
 	useEffect(() => {
 		if (slotState === "spin") {
-			animationTop.reset();
-			animationTop.resume();
-			animationBlur.reset();
-			animationBlur.resume();
+			animation.reset();
+			animation.resume();
+			animationLooper.startLoop();
 		}
 	}, [slotState]);
 
-	const updateTop = () => {
-		if (refSlotScroller.current) {
-			refSlotScroller.current.style.top = `${100 * animationTop.results[0] - 100 * (items.length + items.length - 1)}%`;
-		}
-	};
-
-	const updateBlur = () => {
-		console.log("blur", animationBlur.results[0]);
-
-		if (refSlotScroller.current) {
-			refSlotScroller.current.style.filter = `blur(${animationBlur.results[0]}px)`;
-		}
-	};
-
 	return (
 		<S.Slot>
-			<S.SlotScroller ref={refSlotScroller} $numberOfItems={items.length}>
+			<S.SlotScroller
+				$numberOfItems={slotItems.length}
+				style={{
+					top: `${-100 * (slotItems.length - 1) + 100 * result[0]}%`,
+					filter: `blur(${result[1]}px)`,
+				}}
+			>
 				{slotItems.map((item, index) => (
-					<S.Item key={index} $numberOfItems={items.length}>
+					<S.Item key={index} $numberOfItems={slotItems.length}>
 						{item}
 					</S.Item>
 				))}
