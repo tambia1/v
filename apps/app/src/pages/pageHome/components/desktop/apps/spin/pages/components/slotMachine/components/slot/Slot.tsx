@@ -70,7 +70,7 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 			animation.pause();
 			animationLooper.stopLoop();
 		};
-	}, []);
+	}, [startItem, stopItem]);
 
 	useEffect(() => {
 		if (slotState === "spin") {

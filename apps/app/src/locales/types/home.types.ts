@@ -71,6 +71,9 @@ export type IHome = {
 
 	spin: {
 		title: string;
+		add: string;
+		choice: string;
+		ready: string;
 	};
 
 	tetris: {

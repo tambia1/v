@@ -26,3 +26,10 @@ export const CellGrid = styled.div`
 		cursor: pointer;
 	}
 `;
+
+export const Buttons = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	margin-top: 2rem;
+`;

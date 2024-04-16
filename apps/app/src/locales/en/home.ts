@@ -75,6 +75,9 @@ export const translation: IHome = {
 
 	spin: {
 		title: "Spin",
+		add: "Add",
+		choice: "Choice",
+		ready: "Ready",
 	},
 
 	snake: {
