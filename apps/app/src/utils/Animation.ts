@@ -1,3 +1,5 @@
+// version: 1.0.0
+
 export type ICallback = {
 	position: number;
 	direction: number;
@@ -389,13 +391,13 @@ export class Animation {
 		this.currentDelay = this.delay;
 		this.currentRepeat = this.repeat;
 
-		// also reset all callbacks counters because we finished animation cycle
+		// reset all callbacks counters because we finished animation cycle
 		for (let i = 0; i < this.callbacks.length; i++) {
 			this.callbacksCounters[i] = 0;
 		}
 
 		// calculate results
-		this.calculateResults();
+		this.calculate();
 	}
 
 	public static rotate3dX(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
@@ -440,5 +442,39 @@ export class Animation {
 		} else {
 			return null;
 		}
+	}
+}
+
+export class AnimationLooper {
+	private animations: Animation[];
+	private requestAnimationFrameId: number;
+	private isLooping: boolean;
+
+	constructor() {
+		this.animations = [];
+		this.requestAnimationFrameId = 0;
+		this.isLooping = true;
+	}
+
+	public setAnimations(animations: Animation[]): void {
+		this.animations = animations;
+	}
+
+	public startLoop(): void {
+		const requestAnimationFrameFunction = () => {
+			this.animations.forEach((animation) => animation.calculate());
+
+			if (this.isLooping == true) {
+				this.requestAnimationFrameId = window.requestAnimationFrame(requestAnimationFrameFunction);
+			}
+		};
+
+		this.isLooping = true;
+		requestAnimationFrameFunction();
+	}
+
+	public stopLoop() {
+		this.isLooping = false;
+		window.cancelAnimationFrame(this.requestAnimationFrameId);
 	}
 }

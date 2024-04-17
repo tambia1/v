@@ -1,6 +1,6 @@
 import * as S from "./Notes.styles";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { NotesPage } from "./page/NotesPage";
+import { NotesPage } from "./pages/NotesPage";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 

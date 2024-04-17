@@ -18,6 +18,8 @@ import { Stocks } from "./apps/stocks/Stocks";
 import { Store } from "./apps/store/Store";
 import { Chat } from "./apps/chat/Chat";
 import { Calendar } from "./apps/calendar/Calendar";
+import { Spin } from "./apps/spin/Spin";
+import { TestAnimation } from "./apps/testAnimation/TestAnimation";
 
 const Mfe = lazy(() => import("remoteMicroFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -45,6 +47,7 @@ export const apps: IApp[][] = [
 		{ id: "stocks", roles: ["admin", "user", "guest"], title: <T>{lang.stocks.title}</T>, icon: "stocks", component: <Stocks /> },
 		{ id: "chat", roles: ["admin", "user", "guest"], title: <T>{lang.chat.title}</T>, icon: "chat", component: <Chat /> },
 		{ id: "store", roles: ["admin", "user", "guest"], title: <T>{lang.store.title}</T>, icon: "store", component: <Store /> },
+		{ id: "spin", roles: ["admin", "user", "guest"], title: <T>{lang.spin.title}</T>, icon: "spin", component: <Spin /> },
 		{ id: "tetris", roles: ["admin", "user"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
@@ -54,6 +57,7 @@ export const apps: IApp[][] = [
 		{ id: "testSelect", roles: ["admin"], title: <T>{lang.testSelect.title}</T>, icon: "photos", component: <TestSelect /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "photos", component: <TestTransition /> },
+		{ id: "testAnimation", roles: ["admin", "guest"], title: <T>{lang.testAnimation.title}</T>, icon: "photos", component: <TestAnimation /> },
 		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "photos", component: <Mfe /> },
 	],
 ];

@@ -73,6 +73,12 @@ export const translation: IHome = {
 		alreadySaved: "Application is already on dektop.",
 	},
 
+	spin: {
+		title: "Spin",
+		add: "Add Choice",
+		ready: "Ready",
+	},
+
 	snake: {
 		title: "Snake",
 	},
@@ -111,5 +117,9 @@ export const translation: IHome = {
 
 	testTransition: {
 		title: "Test Transition",
+	},
+
+	testAnimation: {
+		title: "Test Animation",
 	},
 };

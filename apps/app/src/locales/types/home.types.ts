@@ -69,6 +69,12 @@ export type IHome = {
 		alreadySaved: string;
 	};
 
+	spin: {
+		title: string;
+		add: string;
+		ready: string;
+	};
+
 	tetris: {
 		title: string;
 	};
@@ -110,6 +116,10 @@ export type IHome = {
 	};
 
 	testTransition: {
+		title: string;
+	};
+
+	testAnimation: {
 		title: string;
 	};
 };
