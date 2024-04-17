@@ -8,7 +8,7 @@ export const Spin = () => {
 	return (
 		<S.Spin>
 			<Navigator>
-				<Navigator.Page id="app" title={<T>{lang.notes.title}</T>}>
+				<Navigator.Page id="app" title={<T>{lang.spin.title}</T>}>
 					<SpinPage />
 				</Navigator.Page>
 			</Navigator>

@@ -14,7 +14,7 @@ export const Spin = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
-	background: radial-gradient(circle, rgba(163, 101, 168, 1) 0%, rgba(38, 7, 66, 1) 75%);
+	background: radial-gradient(circle, ${(props) => props.theme.color.normalBg} 0%, ${(props) => props.theme.color.accentBg} 75%);
 `;
 
 export const SlotMachine = styled.div`

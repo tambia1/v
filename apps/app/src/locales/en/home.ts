@@ -75,8 +75,7 @@ export const translation: IHome = {
 
 	spin: {
 		title: "Spin",
-		add: "Add",
-		choice: "Choice",
+		add: "Add Choice",
 		ready: "Ready",
 	},
 

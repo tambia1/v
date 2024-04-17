@@ -17,9 +17,18 @@ export const useSpinStore = create<Props>()(
 			setData: (data: string[]) => set(() => ({ data })),
 		}),
 		{
-			version: 1,
+			version: 3,
 			name: "spin",
 			storage: createJSONStorage(() => localStorage),
+			migrate: (persistedState: unknown, version: number) => {
+				const oldData = persistedState as string[];
+
+				if (version !== 3) {
+					return { data: ["Pizza", "Pasta", "Salad"] };
+				}
+
+				return oldData;
+			},
 		}
 	)
 );

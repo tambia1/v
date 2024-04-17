@@ -25,6 +25,11 @@ export const CellGrid = styled.div`
 		color: ${(props) => props.theme.color.normalFgHover};
 		cursor: pointer;
 	}
+
+	& span:hover {
+		color: ${(props) => props.theme.color.normalFgHover};
+		cursor: pointer;
+	}
 `;
 
 export const Buttons = styled.div`
@@ -32,4 +37,10 @@ export const Buttons = styled.div`
 	display: flex;
 	flex-direction: row;
 	margin-top: 2rem;
+`;
+
+export const Input = styled.input`
+	width: 100%;
+	border: none;
+	background-color: transparent;
 `;

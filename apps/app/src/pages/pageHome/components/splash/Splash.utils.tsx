@@ -4,11 +4,14 @@ import userLoggedIn from "@apps/user/assets/userLoggedIn.png";
 import userLoggedOut from "@apps/user/assets/userLoggedOut.png";
 import { appIcons as DesktopButtonsIcons } from "../desktop/components/appButton/AppButton.styles";
 import storeBg from "@apps/store/assets/bg.jpg";
-import ModalIconsCheck from "@components/modal/components/box/components/content/components/icon/assets/Check.png";
-import ModalIconsClose from "@components/modal/components/box/components/content/components/icon/assets/Close.png";
-import ModalIconsError from "@components/modal/components/box/components/content/components/icon/assets/Error.png";
-import ModalIconsInfo from "@components/modal/components/box/components/content/components/icon/assets/Info.png";
-import ModalIconsQuestion from "@components/modal/components/box/components/content/components/icon/assets/Question.png";
+import modalIconsCheck from "@components/modal/components/box/components/content/components/icon/assets/Check.png";
+import modalIconsClose from "@components/modal/components/box/components/content/components/icon/assets/Close.png";
+import modalIconsError from "@components/modal/components/box/components/content/components/icon/assets/Error.png";
+import modalIconsInfo from "@components/modal/components/box/components/content/components/icon/assets/Info.png";
+import modalIconsQuestion from "@components/modal/components/box/components/content/components/icon/assets/Question.png";
+import spinBg from "@apps/spin/pages/components/slotMachine/assets/bg.png";
+import ninjaGrass from "@apps/ninja/pages/game/images/grass.png";
+import ninjaBoard from "@apps/ninja/pages/game/images/board.jpg";
 
 export const getImagesToCache = () => {
 	return [
@@ -17,7 +20,9 @@ export const getImagesToCache = () => {
 		backgroundImages.map((item) => item.dark),
 		[userLoggedIn, userLoggedOut],
 		Object.values(DesktopButtonsIcons),
+		[modalIconsCheck, modalIconsClose, modalIconsError, modalIconsInfo, modalIconsQuestion],
 		storeBg,
-		[ModalIconsCheck, ModalIconsClose, ModalIconsError, ModalIconsInfo, ModalIconsQuestion],
+		spinBg,
+		[ninjaBoard, ninjaGrass],
 	];
 };
