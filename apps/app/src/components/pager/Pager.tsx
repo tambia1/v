@@ -5,9 +5,10 @@ import { ITouch, useTouch } from "@src/hooks/UseTouch";
 interface Props {
 	children: ReactNode[];
 	onChange: (pageIndex: number) => void;
+	disabled?: boolean;
 }
 
-export const Pager = ({ children: pages, onChange }: Props) => {
+export const Pager = ({ children: pages, onChange, disabled = false }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
 	const [pageIndex, setPageIndex] = useState(0);
@@ -15,6 +16,10 @@ export const Pager = ({ children: pages, onChange }: Props) => {
 	useTouch({
 		ref: refPages,
 		onTouch: ({ xStart, xMove, xEnd, status }: ITouch) => {
+			if (disabled) {
+				return;
+			}
+
 			const divPagesPanel = refPagesPanel.current;
 
 			if (!divPagesPanel) {
