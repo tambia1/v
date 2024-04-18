@@ -40,7 +40,7 @@ export const themeDark: ITheme = {
 		successBgDisabled: "#87cb87",
 
 		errorFg: "#2a2a2a",
-		errorBg: "#632424",
+		errorBg: "#935454",
 		errorFgHover: "#2a2a2a",
 		errorBgHover: "#e17875",
 		errorFgActive: "#2a2a2a",
