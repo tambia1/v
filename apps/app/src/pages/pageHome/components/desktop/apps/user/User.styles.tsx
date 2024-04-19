@@ -35,7 +35,7 @@ export const Box = styled.div`
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
-	padding: 3rem;
+	padding: 2rem;
 
 	border-radius: 2rem;
 
@@ -46,6 +46,7 @@ export const Box = styled.div`
 `;
 
 export const EmailBox = styled.div<{ disabled: boolean }>`
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
@@ -58,9 +59,11 @@ export const EmailImage = styled(Icon)`
 	background-color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
+	flex-shrink: 0;
 `;
 
 export const EmailInput = styled.input`
+	width: 100%;
 	border: solid 1px ${(props) => props.theme.color.boxColor4};
 	border-left: none;
 	border-radius: 0 5rem 5rem 0;
@@ -77,6 +80,7 @@ export const EmailInput = styled.input`
 `;
 
 export const PasswordBox = styled.div<{ disabled: boolean }>`
+	width: 100%;
 	display: flex;
 	flex-direction: row;
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
@@ -85,13 +89,16 @@ export const PasswordBox = styled.div<{ disabled: boolean }>`
 `;
 
 export const PasswordImage = styled(Icon)`
+	width: 100%;
 	width: 2rem;
 	background-color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
+	flex-shrink: 0;
 `;
 
 export const PasswordInput = styled.input`
+	width: 100%;
 	border: solid 1px ${(props) => props.theme.color.boxColor4};
 	border-left: none;
 	border-radius: 0 5rem 5rem 0;
@@ -197,4 +204,21 @@ export const Notes = styled.div`
 	display: flex;
 	flex-direction: column;
 	color: #666666;
+`;
+
+export const GoogleBox = styled.div<{ disabled: boolean }>`
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	border-radius: 5rem;
+	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+`;
+
+export const GoogleImage = styled(Icon)`
+	width: 100%;
+	width: 2rem;
+	color: ${(props) => props.theme.color.boxColor4};
+	padding: 0.5rem;
+	flex-shrink: 0;
+	cursor: pointer;
 `;

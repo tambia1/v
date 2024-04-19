@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useBar } from "./../../hooks/UseBar";
 import { Loader } from "@src/components/loader/Loader";
 import { z } from "zod";
+import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -48,6 +49,11 @@ export const User = () => {
 
 	const storeLogin = useStoreLogin();
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: false });
+
+	const performGoogleLogin = useGoogleLogin({
+		onSuccess: (tokenResponse) => console.log("google login success", tokenResponse),
+		onError: (errorResponse) => console.log("google login error", errorResponse),
+	});
 
 	useEffect(() => {
 		if (queryUser.isLoading) {
@@ -132,6 +138,10 @@ export const User = () => {
 		}
 	};
 
+	const handleGoogleLogin = () => {
+		performGoogleLogin();
+	};
+
 	return (
 		<S.User onClick={handleOnClickBackground}>
 			<S.Box>
@@ -151,6 +161,20 @@ export const User = () => {
 						autoComplete="off"
 					/>
 				</S.PasswordBox>
+				<S.GoogleBox disabled={!!storeLogin.token || isLoading}>
+					<S.GoogleImage iconName="iconGoogle" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconApple" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconFacebook" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />
+					<GoogleLogin
+						onSuccess={(credentialResponse) => {
+							console.log(credentialResponse);
+						}}
+						onError={() => {
+							console.log("Login Failed");
+						}}
+					/>
+				</S.GoogleBox>
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
 						<S.ButtonLogin onClick={handleOnClickLogin}>

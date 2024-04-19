@@ -289,6 +289,9 @@ import iconZapOff from "./assets/zap-off.svg";
 import iconZap from "./assets/zap.svg";
 import iconZoomIn from "./assets/zoom-in.svg";
 import iconZoomOut from "./assets/zoom-out.svg";
+import iconGoogle from "./assets/google.svg";
+import iconApple from "./assets/apple.svg";
+import iconMicrosoft from "./assets/microsoft.svg";
 
 export const Icons = {
 	"": "",
@@ -583,6 +586,9 @@ export const Icons = {
 	iconZap,
 	iconZoomIn,
 	iconZoomOut,
+	iconGoogle,
+	iconApple,
+	iconMicrosoft,
 } as const;
 
 export type IIconName = keyof typeof Icons;
