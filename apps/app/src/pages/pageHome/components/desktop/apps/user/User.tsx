@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { useBar } from "./../../hooks/UseBar";
 import { Loader } from "@src/components/loader/Loader";
 import { z } from "zod";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -51,8 +51,12 @@ export const User = () => {
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: false });
 
 	const performGoogleLogin = useGoogleLogin({
-		onSuccess: (tokenResponse) => console.log("google login success", tokenResponse),
-		onError: (errorResponse) => console.log("google login error", errorResponse),
+		onSuccess: (tokenResponse) => {
+			storeLogin.setData(tokenResponse.access_token, "user");
+		},
+		onError: (_errorResponse) => {
+			storeLogin.setData("", "guest");
+		},
 	});
 
 	useEffect(() => {
@@ -146,35 +150,31 @@ export const User = () => {
 		<S.User onClick={handleOnClickBackground}>
 			<S.Box>
 				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
+
 				<S.EmailBox disabled={!!storeLogin.token || isLoading}>
 					<S.EmailImage iconName="iconUser" />
-					<S.EmailInput type="text" placeholder={t(lang.user.email)} onChange={handleEmailChange} value={inputData.email.value} disabled={!!storeLogin.token || isLoading} autoComplete="off" />
+					<S.EmailInput
+						type="text"
+						placeholder={t(lang.user.email) + " (a, b)"}
+						onChange={handleEmailChange}
+						value={inputData.email.value}
+						disabled={!!storeLogin.token || isLoading}
+						autoComplete="off"
+					/>
 				</S.EmailBox>
+
 				<S.PasswordBox disabled={!!storeLogin.token || isLoading}>
 					<S.PasswordImage iconName="iconLock" />
 					<S.PasswordInput
 						type="password"
-						placeholder={t(lang.user.password)}
+						placeholder={t(lang.user.password) + " (a, b)"}
 						onChange={handlePasswordChange}
 						value={inputData.password.value}
 						disabled={!!storeLogin.token || isLoading}
 						autoComplete="off"
 					/>
 				</S.PasswordBox>
-				<S.GoogleBox disabled={!!storeLogin.token || isLoading}>
-					<S.GoogleImage iconName="iconGoogle" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconApple" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconFacebook" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />
-					<GoogleLogin
-						onSuccess={(credentialResponse) => {
-							console.log(credentialResponse);
-						}}
-						onError={() => {
-							console.log("Login Failed");
-						}}
-					/>
-				</S.GoogleBox>
+
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
 						<S.ButtonLogin onClick={handleOnClickLogin}>
@@ -187,6 +187,14 @@ export const User = () => {
 						</S.ButtonLogout>
 					)}
 				</S.ButtonBox>
+
+				<S.GoogleBox disabled={!!storeLogin.token || isLoading}>
+					<S.GoogleImage iconName="iconGoogle" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconApple" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconFacebook" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />
+				</S.GoogleBox>
+
 				<S.ButtonBox>
 					{isLoading && <Loader />}
 
@@ -194,6 +202,7 @@ export const User = () => {
 					{message.state === "error" && <S.Error>{message.message}</S.Error>}
 					{message.state === "success" && <S.Success>{message.message}</S.Success>}
 				</S.ButtonBox>
+
 				<S.Notes>
 					<span>a, a</span>
 					<span>b, b</span>
