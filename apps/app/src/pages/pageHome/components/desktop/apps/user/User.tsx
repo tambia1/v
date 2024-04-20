@@ -175,6 +175,13 @@ export const User = () => {
 					/>
 				</S.PasswordBox>
 
+				<S.GoogleBox disabled={!!storeLogin.token || isLoading}>
+					<S.GoogleImage iconName="iconGoogle" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconApple" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconFacebook" onClick={handleGoogleLogin} />
+					<S.GoogleImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />
+				</S.GoogleBox>
+
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
 						<S.ButtonLogin onClick={handleOnClickLogin}>
@@ -188,25 +195,13 @@ export const User = () => {
 					)}
 				</S.ButtonBox>
 
-				<S.GoogleBox disabled={!!storeLogin.token || isLoading}>
-					<S.GoogleImage iconName="iconGoogle" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconApple" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconFacebook" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />
-				</S.GoogleBox>
-
-				<S.ButtonBox>
+				<S.MessagesBox>
 					{isLoading && <Loader />}
 
 					{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}
 					{message.state === "error" && <S.Error>{message.message}</S.Error>}
 					{message.state === "success" && <S.Success>{message.message}</S.Success>}
-				</S.ButtonBox>
-
-				<S.Notes>
-					<span>a, a</span>
-					<span>b, b</span>
-				</S.Notes>
+				</S.MessagesBox>
 			</S.Box>
 		</S.User>
 	);

@@ -115,11 +115,12 @@ export const PasswordInput = styled.input`
 `;
 
 export const ButtonBox = styled.div`
-	height: 2rem;
+	width: 100%;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: end;
 `;
 
 export const ButtonLogin = styled(Button)`
@@ -199,13 +200,6 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 `;
 
-export const Notes = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	color: #666666;
-`;
-
 export const GoogleBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
 	display: flex;
@@ -215,10 +209,18 @@ export const GoogleBox = styled.div<{ disabled: boolean }>`
 `;
 
 export const GoogleImage = styled(Icon)`
-	width: 100%;
 	width: 2rem;
 	color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	flex-shrink: 0;
 	cursor: pointer;
+`;
+
+export const MessagesBox = styled.div`
+	width: 100%;
+	height: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 `;
