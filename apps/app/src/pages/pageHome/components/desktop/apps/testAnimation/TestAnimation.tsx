@@ -11,7 +11,7 @@ export const TestAnimation = () => {
 	useEffect(() => {
 		const animation0 = new Animation({
 			points: [
-				[0, 500],
+				[0, 300],
 				[500, 0, 500],
 			],
 			time: 10000,
@@ -34,7 +34,7 @@ export const TestAnimation = () => {
 
 		const animation1 = new Animation({
 			points: [
-				[0, 500],
+				[0, 300],
 				[500, 0, 500],
 			],
 			time: 10000,
@@ -57,7 +57,7 @@ export const TestAnimation = () => {
 
 		const animation2 = new Animation({
 			points: [
-				[0, 500],
+				[0, 300],
 				[500, 0, 500],
 			],
 			time: 10000,
@@ -80,7 +80,7 @@ export const TestAnimation = () => {
 
 		const animation3 = new Animation({
 			points: [
-				[0, 500],
+				[0, 300],
 				[500, 0, 500],
 			],
 			time: 10000,
@@ -103,7 +103,7 @@ export const TestAnimation = () => {
 
 		const animation4 = new Animation({
 			points: [
-				[0, 500],
+				[0, 300],
 				[500, 0, 500],
 			],
 			time: 10000 / 3,
