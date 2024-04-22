@@ -4,6 +4,8 @@ import { Desktop } from "./components/desktop/Desktop";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useAnimation } from "@src/hooks/UseAnimation";
 
+import { version, dependencies } from "@src/../package.json";
+
 export const PageHome = () => {
 	const refSplash = useRef(null);
 	const refDesktop = useRef(null);
@@ -29,7 +31,7 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.PageHome>
+		<S.PageHome data-app-version={`${version}`} data-ui-version={`${dependencies["@v/ui"]}`}>
 			<S.Desktop ref={refDesktop}>
 				<Desktop />
 			</S.Desktop>

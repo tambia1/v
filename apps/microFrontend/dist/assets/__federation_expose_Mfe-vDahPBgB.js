@@ -30,12 +30,13 @@ reactJsxRuntime_production_min.jsxs = q;
   jsxRuntime.exports = reactJsxRuntime_production_min;
 }
 var jsxRuntimeExports = jsxRuntime.exports;
+const version = "1.0.0";
 const Mfe = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mfe", children: "Hello Micro Frontend" });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-mfe-version": `${version}}`, className: "mfe", children: "Hello Micro Frontend" });
 };
 export {
   Mfe,
   Mfe as default,
   jsxRuntimeExports as j
 };
-//# sourceMappingURL=__federation_expose_Mfe-C2FeMI8O.js.map
+//# sourceMappingURL=__federation_expose_Mfe-vDahPBgB.js.map

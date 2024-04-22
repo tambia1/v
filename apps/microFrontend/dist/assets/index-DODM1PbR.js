@@ -1,4 +1,4 @@
-import { j as jsxRuntimeExports, Mfe } from "./__federation_expose_Mfe-C2FeMI8O.js";
+import { j as jsxRuntimeExports, Mfe } from "./__federation_expose_Mfe-vDahPBgB.js";
 import { r as reactExports } from "./__federation_shared_react-DZMtjlAa.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
@@ -7271,4 +7271,4 @@ const App = () => {
   ] });
 };
 client.createRoot(document.getElementById("root")).render(/* @__PURE__ */ jsxRuntimeExports.jsx(App, {}));
-//# sourceMappingURL=index-BHF-Uwmr.js.map
+//# sourceMappingURL=index-DODM1PbR.js.map
