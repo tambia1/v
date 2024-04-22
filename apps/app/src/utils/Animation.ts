@@ -1,4 +1,4 @@
-// version: 1.0.0
+// version: 1.0.1
 
 export type ICallback = {
 	position: number;
@@ -161,29 +161,15 @@ export class Animation {
 	}
 
 	private static bezier1D(t: number, arrayPoints: number[]): number {
-		let arrayResults = 0;
+		const map: { [K: number]: number } = {
+			2: Animation.bezier_2(t, arrayPoints[0], arrayPoints[1]),
+			3: Animation.bezier_3(t, arrayPoints[0], arrayPoints[1], arrayPoints[2]),
+			4: Animation.bezier_4(t, arrayPoints[0], arrayPoints[1], arrayPoints[2], arrayPoints[3]),
+			5: Animation.bezier_5(t, arrayPoints[0], arrayPoints[1], arrayPoints[2], arrayPoints[3], arrayPoints[4]),
+			6: Animation.bezier_6(t, arrayPoints[0], arrayPoints[1], arrayPoints[2], arrayPoints[3], arrayPoints[4], arrayPoints[5]),
+		};
 
-		switch (arrayPoints.length) {
-			case 2:
-				arrayResults = Animation.bezier_2(t, arrayPoints[0], arrayPoints[1]);
-				break;
-			case 3:
-				arrayResults = Animation.bezier_3(t, arrayPoints[0], arrayPoints[1], arrayPoints[2]);
-				break;
-			case 4:
-				arrayResults = Animation.bezier_4(t, arrayPoints[0], arrayPoints[1], arrayPoints[2], arrayPoints[3]);
-				break;
-			case 5:
-				arrayResults = Animation.bezier_5(t, arrayPoints[0], arrayPoints[1], arrayPoints[2], arrayPoints[3], arrayPoints[4]);
-				break;
-			case 6:
-				arrayResults = Animation.bezier_6(t, arrayPoints[0], arrayPoints[1], arrayPoints[2], arrayPoints[3], arrayPoints[4], arrayPoints[5]);
-				break;
-			default:
-				throw new Error("Error in Animation.bezier1D(): too many points.");
-		}
-
-		return arrayResults;
+		return map[arrayPoints.length];
 	}
 
 	private static bezier2D(t: number, arrayPoints: number[][]): number[] {
