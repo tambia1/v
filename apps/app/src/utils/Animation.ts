@@ -8,7 +8,9 @@ export type ICallback = {
 export type ICallbackResult = {
 	animation: Animation;
 	results: number[];
+	routes: number[][];
 	time: number;
+	timing: number[];
 	positionInPoints: number;
 	positionInPercent: number;
 	isRunning: boolean;
@@ -18,7 +20,7 @@ type Props = {
 	routes: number[][];
 	time: number;
 	timing: number[];
-	onCalculate: ((result: ICallbackResult) => void) | null;
+	onCalculate: ((callbackResult: ICallbackResult) => void) | null;
 	callbacks: ICallback[];
 };
 
@@ -38,7 +40,7 @@ export class Animation {
 
 	private isRunning: boolean;
 
-	private onCalculate: ((result: ICallbackResult) => void) | null;
+	private onCalculate: ((callbackResult: ICallbackResult) => void) | null;
 
 	private callbacks: ICallback[];
 	private callbacksCounters: number[];
@@ -132,8 +134,8 @@ export class Animation {
 		return arrayResults;
 	}
 
-	public setAnimation({ routes: points, time, timing, onCalculate, callbacks }: Props): void {
-		this.routes = points;
+	public setAnimation({ routes, time, timing, onCalculate, callbacks }: Props): void {
+		this.routes = routes;
 		this.timing = timing;
 		this.time = time !== 0 ? time : 0.0000000001;
 
@@ -153,6 +155,11 @@ export class Animation {
 		}
 
 		this.calculateResults();
+	}
+
+	public setRoutes(routes: Props["routes"]): void {
+		this.routes = routes;
+		this.reset();
 	}
 
 	public calculate(): void {
@@ -188,7 +195,9 @@ export class Animation {
 		const callbackResult: ICallbackResult = {
 			animation: this,
 			results: this.results,
+			routes: this.routes,
 			time: this.time,
+			timing: this.timing,
 			positionInPoints: this.getPositionInPoints(),
 			positionInPercent: this.getPositionInPercent(),
 			isRunning: this.isRunning,

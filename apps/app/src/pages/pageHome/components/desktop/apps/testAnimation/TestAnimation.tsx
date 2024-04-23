@@ -1,12 +1,13 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./TestAnimation.styles";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Animation, AnimationLooper, ICallbackResult } from "@src/utils/Animation";
 
 export const TestAnimation = () => {
 	const [animations, setAnimations] = useState<Animation[]>([]);
 	const [animationLooper] = useState<AnimationLooper>(new AnimationLooper());
 	const [results, setResults] = useState<ICallbackResult[]>([]);
+	const animation4Counter = useRef(0);
 
 	useEffect(() => {
 		const animation0 = new Animation({
@@ -16,10 +17,10 @@ export const TestAnimation = () => {
 			],
 			time: 10000,
 			timing: Animation.TIMING_LINEAR,
-			onCalculate: (result: ICallbackResult) => {
+			onCalculate: (callbackResult: ICallbackResult) => {
 				setResults((prevResults) => {
 					const newResults = [...prevResults];
-					newResults[0] = result;
+					newResults[0] = callbackResult;
 
 					return newResults;
 				});
@@ -27,9 +28,107 @@ export const TestAnimation = () => {
 			callbacks: [],
 		});
 
-		setAnimations([animation0]);
+		const animation1 = new Animation({
+			routes: [
+				[0, 300],
+				[500, 0, 500],
+			],
+			time: 10000,
+			timing: Animation.TIMING_EASE,
+			onCalculate: (callbackResult: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[1] = callbackResult;
 
-		animationLooper.setAnimations([animation0]);
+					return newResults;
+				});
+			},
+			callbacks: [],
+		});
+
+		const animation2 = new Animation({
+			routes: [
+				[0, 300],
+				[500, 0, 500],
+			],
+			time: 10000,
+			timing: Animation.TIMING_EASE_IN,
+			onCalculate: (callbackResult: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[2] = callbackResult;
+
+					return newResults;
+				});
+			},
+			callbacks: [],
+		});
+
+		const animation3 = new Animation({
+			routes: [
+				[0, 300],
+				[500, 0, 500],
+			],
+			time: 10000,
+			timing: Animation.TIMING_EASE_OUT,
+			onCalculate: (callbackResult: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[3] = callbackResult;
+
+					return newResults;
+				});
+			},
+			callbacks: [],
+		});
+
+		const animation4 = new Animation({
+			routes: [
+				[0, 300],
+				[500, 0, 500],
+			],
+			time: 10000 / 3,
+			timing: Animation.TIMING_EASE,
+			onCalculate: (callbackResult: ICallbackResult) => {
+				setResults((prevResults) => {
+					const newResults = [...prevResults];
+					newResults[4] = callbackResult;
+
+					return newResults;
+				});
+			},
+			callbacks: [
+				{
+					position: 10000 / 3,
+					callback: (callbackResult: ICallbackResult) => {
+						if (animation4Counter.current === 0) {
+							callbackResult.animation.setRoutes([
+								[300, 0],
+								[500, 0, 500],
+							]);
+						}
+
+						if (animation4Counter.current === 1) {
+							callbackResult.animation.setRoutes([
+								[0, 300],
+								[500, 0, 500],
+							]);
+						}
+
+						if (animation4Counter.current < 2) {
+							callbackResult.animation.resume();
+						}
+
+						animation4Counter.current++;
+					},
+				},
+			],
+		});
+
+		const animationList = [animation0, animation1, animation2, animation3, animation4];
+		setAnimations(animationList);
+
+		animationLooper.setAnimations(animationList);
 		animationLooper.startLoop();
 
 		return () => {
