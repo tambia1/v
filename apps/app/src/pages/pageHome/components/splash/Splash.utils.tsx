@@ -9,7 +9,7 @@ import modalIconsClose from "@components/modal/components/box/components/content
 import modalIconsError from "@components/modal/components/box/components/content/components/icon/assets/Error.png";
 import modalIconsInfo from "@components/modal/components/box/components/content/components/icon/assets/Info.png";
 import modalIconsQuestion from "@components/modal/components/box/components/content/components/icon/assets/Question.png";
-import spinBg from "@apps/spin/pages/components/slotMachine/assets/bg.png";
+import slotMachine from "@apps/spin/pages/components/slotMachine/assets/slotMachine.png";
 import ninjaGrass from "@apps/ninja/pages/game/images/grass.png";
 import ninjaBoard from "@apps/ninja/pages/game/images/board.jpg";
 
@@ -22,7 +22,7 @@ export const getImagesToCache = () => {
 		Object.values(DesktopButtonsIcons),
 		[modalIconsCheck, modalIconsClose, modalIconsError, modalIconsInfo, modalIconsQuestion],
 		storeBg,
-		spinBg,
+		slotMachine,
 		[ninjaBoard, ninjaGrass],
 	];
 };

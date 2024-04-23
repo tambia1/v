@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import bg from "./assets/bg.png";
+import slotMachine from "./assets/slotMachine.png";
 
 export const Spin = styled.div`
 	width: 100%;
@@ -14,7 +14,6 @@ export const Spin = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
-	background: radial-gradient(circle, ${(props) => props.theme.color.normalBg} 0%, ${(props) => props.theme.color.accentBg} 75%);
 `;
 
 export const SlotMachine = styled.div`
@@ -24,7 +23,7 @@ export const SlotMachine = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	background-image: url(${bg});
+	background-image: url(${slotMachine});
 	background-position: 50%;
 	background-size: cover;
 
