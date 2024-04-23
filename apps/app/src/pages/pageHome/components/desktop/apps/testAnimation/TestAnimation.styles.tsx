@@ -85,6 +85,12 @@ export const RectInfo4 = styled.div`
 	color: purple;
 `;
 
+export const RectInfo5 = styled.div`
+	${RectInfoCommon};
+	top: 110px;
+	color: purple;
+`;
+
 const RectCommon = css`
 	position: absolute;
 	width: 10px;
@@ -116,4 +122,9 @@ export const Rect3 = styled.div`
 export const Rect4 = styled.div`
 	${RectCommon};
 	background-color: purple;
+`;
+
+export const Rect5 = styled.div`
+	${RectCommon};
+	background-color: cyan;
 `;
