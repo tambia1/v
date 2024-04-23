@@ -177,9 +177,6 @@ export const User = () => {
 
 				<S.GoogleBox disabled={!!storeLogin.token || isLoading}>
 					<S.GoogleImage iconName="iconGoogle" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconApple" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconFacebook" onClick={handleGoogleLogin} />
-					<S.GoogleImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />
 				</S.GoogleBox>
 
 				<S.ButtonBox>
