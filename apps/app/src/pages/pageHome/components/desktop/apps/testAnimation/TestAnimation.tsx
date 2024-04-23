@@ -10,17 +10,12 @@ export const TestAnimation = () => {
 
 	useEffect(() => {
 		const animation0 = new Animation({
-			points: [
+			routes: [
 				[0, 300],
 				[500, 0, 500],
 			],
 			time: 10000,
-			delay: 0,
-			direction: Animation.DIRECTION_FORWARD,
-			isCyclic: false,
-			repeat: 1,
 			timing: Animation.TIMING_LINEAR,
-			isDelayOnRepeat: false,
 			onCalculate: (result: ICallbackResult) => {
 				setResults((prevResults) => {
 					const newResults = [...prevResults];
@@ -32,101 +27,9 @@ export const TestAnimation = () => {
 			callbacks: [],
 		});
 
-		const animation1 = new Animation({
-			points: [
-				[0, 300],
-				[500, 0, 500],
-			],
-			time: 10000,
-			delay: 0,
-			direction: Animation.DIRECTION_FORWARD,
-			isCyclic: false,
-			repeat: 1,
-			timing: Animation.TIMING_EASE,
-			isDelayOnRepeat: false,
-			onCalculate: (result: ICallbackResult) => {
-				setResults((prevResults) => {
-					const newResults = [...prevResults];
-					newResults[1] = result;
+		setAnimations([animation0]);
 
-					return newResults;
-				});
-			},
-			callbacks: [],
-		});
-
-		const animation2 = new Animation({
-			points: [
-				[0, 300],
-				[500, 0, 500],
-			],
-			time: 10000,
-			delay: 0,
-			direction: Animation.DIRECTION_FORWARD,
-			isCyclic: false,
-			repeat: 1,
-			timing: Animation.TIMING_EASE_IN,
-			isDelayOnRepeat: false,
-			onCalculate: (result: ICallbackResult) => {
-				setResults((prevResults) => {
-					const newResults = [...prevResults];
-					newResults[2] = result;
-
-					return newResults;
-				});
-			},
-			callbacks: [],
-		});
-
-		const animation3 = new Animation({
-			points: [
-				[0, 300],
-				[500, 0, 500],
-			],
-			time: 10000,
-			delay: 0,
-			direction: Animation.DIRECTION_FORWARD,
-			isCyclic: false,
-			repeat: 1,
-			timing: Animation.TIMING_EASE_OUT,
-			isDelayOnRepeat: false,
-			onCalculate: (result: ICallbackResult) => {
-				setResults((prevResults) => {
-					const newResults = [...prevResults];
-					newResults[3] = result;
-
-					return newResults;
-				});
-			},
-			callbacks: [],
-		});
-
-		const animation4 = new Animation({
-			points: [
-				[0, 300],
-				[500, 0, 500],
-			],
-			time: 10000 / 3,
-			delay: 0,
-			direction: Animation.DIRECTION_FORWARD,
-			isCyclic: true,
-			repeat: 3,
-			timing: Animation.TIMING_EASE,
-			isDelayOnRepeat: false,
-			onCalculate: (result: ICallbackResult) => {
-				setResults((prevResults) => {
-					const newResults = [...prevResults];
-					newResults[4] = result;
-
-					return newResults;
-				});
-			},
-			callbacks: [],
-		});
-
-		setAnimations([animation0, animation1, animation2, animation3, animation4]);
-
-		animationLooper.setAnimations([animation0, animation1, animation2, animation3, animation4]);
+		animationLooper.setAnimations([animation0]);
 		animationLooper.startLoop();
 
 		return () => {
@@ -134,7 +37,7 @@ export const TestAnimation = () => {
 		};
 	}, []);
 
-	const handleStartAnimation = () => {
+	const handleResumeAnimation = () => {
 		animations.forEach((animation) => animation.resume());
 	};
 
@@ -151,7 +54,7 @@ export const TestAnimation = () => {
 			<Text size="l">Test Animation</Text>
 
 			<S.Rect>
-				<S.ButtonStart onClick={handleStartAnimation}>START</S.ButtonStart>
+				<S.ButtonResume onClick={handleResumeAnimation}>RESUME</S.ButtonResume>
 				<S.ButtonStop onClick={handleStopAnimation}>STOP</S.ButtonStop>
 				<S.ButtonReset onClick={handleResetAnimation}>RESET</S.ButtonReset>
 

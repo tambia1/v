@@ -61,15 +61,10 @@ export class Explosion {
 
 		this.animation.setAnimation({
 			time: this.time,
-			points: [[0, this.frames]],
+			routes: [[0, this.frames]],
 			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
-			callbacks: [{ position: this.time, direction: Animation.DIRECTION_FORWARD, callback: this.onExplosionFinish }],
+			callbacks: [{ position: this.time, callback: this.onExplosionFinish }],
 		});
 		this.animation.setPositionInPercent(100);
 		this.animation.pause();

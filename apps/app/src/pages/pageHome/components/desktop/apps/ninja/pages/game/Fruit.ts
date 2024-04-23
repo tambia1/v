@@ -40,21 +40,15 @@ export class Fruit {
 
 		this.animation = new Animation({
 			time: time,
-			points: [
+			routes: [
 				[x1, x2],
 				[y1, y2, y1],
 			],
 			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
 			callbacks: [
 				{
 					position: time,
-					direction: Animation.DIRECTION_FORWARD,
 					callback: () => {
 						this.callback();
 					},

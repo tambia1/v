@@ -35,7 +35,7 @@ const ButtonCommon = css`
 	cursor: pointer;
 `;
 
-export const ButtonStart = styled(Button)`
+export const ButtonResume = styled(Button)`
 	${ButtonCommon};
 	top: 10px;
 `;

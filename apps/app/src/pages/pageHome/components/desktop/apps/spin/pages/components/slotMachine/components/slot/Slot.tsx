@@ -35,29 +35,21 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 
 		animation.setAnimation({
 			time: ITEM_SPIN_TIME * (newSlotItems.length + stopItem - startItem),
-			points: [
+			routes: [
 				[startItem, newSlotItems.length - items.length + stopItem],
 				[0, 5, 0],
 			],
 			timing: [0, -10, 50, 110, 100],
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isCyclic: false,
-			isDelayOnRepeat: false,
-			repeat: 1,
 			onCalculate: (result: ICallbackResult) => {
 				setResult(() => [result.results[0], result.results[1]]);
 			},
 			callbacks: [
 				{
 					position: ITEM_SPIN_TIME * (newSlotItems.length + stopItem - startItem),
-					direction: Animation.DIRECTION_FORWARD,
 					callback: (_result: ICallbackResult) => {
-						if (_result.repeat === 1) {
-							animation.pause();
-							animationLooper.stopLoop();
-							setSlotState("stop");
-						}
+						animation.pause();
+						animationLooper.stopLoop();
+						setSlotState("stop");
 					},
 				},
 			],

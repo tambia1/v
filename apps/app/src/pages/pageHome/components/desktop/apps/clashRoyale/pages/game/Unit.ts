@@ -627,13 +627,8 @@ export class Unit {
 	public setOpacity(alpha1: number, alpha2: number, time: number) {
 		this.animationAlpha.setAnimation({
 			time: time,
-			points: [[alpha1, alpha2]],
+			routes: [[alpha1, alpha2]],
 			timing: Animation.TIMING_EASE_OUT,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
 			callbacks: [],
 		});
@@ -649,13 +644,8 @@ export class Unit {
 
 		this.animationScale.setAnimation({
 			time: time,
-			points: [[scale1, scale2]],
+			routes: [[scale1, scale2]],
 			timing: Animation.TIMING_EASE_OUT,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
 			callbacks: [],
 		});

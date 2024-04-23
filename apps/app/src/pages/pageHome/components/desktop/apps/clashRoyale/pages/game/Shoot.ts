@@ -113,18 +113,12 @@ export class Shoot {
 
 		this.animationExplosionFire.setAnimation({
 			time: this.fireTime,
-			points: [[this.fireFrameStart, this.fireFrameEnd]],
+			routes: [[this.fireFrameStart, this.fireFrameEnd]],
 			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
 			callbacks: [
 				{
 					position: this.fireTime,
-					direction: Animation.DIRECTION_FORWARD,
 					callback: () => {
 						this.handleOnFireEnd();
 					},
@@ -134,19 +128,14 @@ export class Shoot {
 
 		this.animationExplosionFly.setAnimation({
 			time: this.flyTime,
-			points: [[this.flyFramesStart, this.flyFramesEnd]],
+			routes: [[this.flyFramesStart, this.flyFramesEnd]],
 			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 999,
-			isCyclic: true,
 			onCalculate: null,
 			callbacks: [
 				{
 					position: this.flyTime,
-					direction: Animation.DIRECTION_FORWARD,
-					callback: () => {
+					callback: (result) => {
+						result.animation.resume();
 						this.handleOnFlyEnd();
 					},
 				},
@@ -155,18 +144,12 @@ export class Shoot {
 
 		this.animationExplosionExplode.setAnimation({
 			time: this.explodeTime,
-			points: [[this.explodeFramesStart, this.explodeFramesEnd]],
+			routes: [[this.explodeFramesStart, this.explodeFramesEnd]],
 			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
 			callbacks: [
 				{
 					position: this.explodeTime,
-					direction: Animation.DIRECTION_FORWARD,
 					callback: () => {
 						this.handleOnExplodeEnd();
 					},
@@ -180,21 +163,15 @@ export class Shoot {
 		this.moveTime = this.flyTime;
 		this.animationMove.setAnimation({
 			time: this.moveTime,
-			points: [
+			routes: [
 				[0, 0],
 				[0, 0],
 			],
 			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: this.fireTime,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
 			callbacks: [
 				{
 					position: this.moveTime,
-					direction: Animation.DIRECTION_FORWARD,
 					callback: () => {
 						this.handleOnMoveEnd();
 					},
@@ -254,22 +231,20 @@ export class Shoot {
 
 		this.animationMove.setAnimation({
 			time: this.moveTime,
-			points: [
+			routes: [
 				[x1, x2],
 				[y1, y2],
 			],
 			timing: Animation.TIMING_LINEAR,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: this.fireTime,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
-			callbacks: [{ position: this.moveTime, direction: Animation.DIRECTION_FORWARD, callback: this.handleOnMoveEnd }],
+			callbacks: [{ position: this.moveTime, callback: this.handleOnMoveEnd }],
 		});
 
 		this.animationMove.reset();
-		this.animationMove.resume();
+
+		setTimeout(() => {
+			this.animationMove.resume();
+		}, this.fireTime);
 	}
 
 	public stop() {

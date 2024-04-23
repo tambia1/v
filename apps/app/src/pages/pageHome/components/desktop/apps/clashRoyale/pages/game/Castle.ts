@@ -216,16 +216,12 @@ export class Castle {
 
 		this.animationWeaponRangeAlpha.setAnimation({
 			time,
-			points: [[alpha1, alpha2]],
+			routes: [[alpha1, alpha2]],
 			timing: Animation.TIMING_EASE_OUT,
-			direction: Animation.DIRECTION_FORWARD,
-			delay: 0,
-			isDelayOnRepeat: false,
-			repeat: 0,
-			isCyclic: false,
 			onCalculate: null,
 			callbacks: [],
 		});
+
 		this.animationWeaponRangeAlpha.resume();
 	}
 
