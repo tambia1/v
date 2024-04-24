@@ -31,7 +31,7 @@ export default defineConfig({
 
 		federation({
 			remotes: {
-				remoteMicroFrontend: "http://localhost:5001/v/assets/remote.js",
+				remoteFrontend: "http://localhost:5001/v/assets/remote.js",
 			},
 		}),
 	],

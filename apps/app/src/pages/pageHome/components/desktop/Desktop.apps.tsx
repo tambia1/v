@@ -21,7 +21,7 @@ import { Calendar } from "./apps/calendar/Calendar";
 import { Spin } from "./apps/spin/Spin";
 import { TestAnimation } from "./apps/testAnimation/TestAnimation";
 
-const Mfe = lazy(() => import("remoteMicroFrontend/Mfe").then((module) => ({ default: module.Mfe })));
+const Mfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
 const Notes = lazy(() => import("@apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("@apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));

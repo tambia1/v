@@ -1,5 +1,5 @@
 import "./Mfe.css";
-import { version } from "./../../package.json";
+import { version } from "../../package.json";
 
 export const Mfe = () => {
 	return (

@@ -30,7 +30,7 @@ export default defineConfig({
 		}),
 
 		federation({
-			name: "microFrontend",
+			name: "frontend",
 			filename: "remote.js",
 			exposes: {
 				"./Mfe": "./src/mfe/Mfe.tsx",

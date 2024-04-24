@@ -1,4 +1,4 @@
-declare module "remoteMicroFrontend/Mfe" {
+declare module "remoteFrontend/Mfe" {
 	export const Mfe: () => JSX.Element;
 	export default Mfe;
 }

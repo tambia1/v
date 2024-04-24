@@ -20,7 +20,7 @@ const dynamicLoadingCss = (cssFilePaths, dontAppendStylesToHead, exposeItemName)
       return;
     seen[href] = true;
     if (dontAppendStylesToHead) {
-      const key = "css__microFrontend__" + exposeItemName;
+      const key = "css__frontend__" + exposeItemName;
       if (window[key] == null)
         window[key] = [];
       window[key].push(href);
