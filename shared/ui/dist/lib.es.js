@@ -15,7 +15,7 @@ function ue() {
   if (kr)
     return D;
   kr = 1;
-  var p = xr, y = Symbol.for("react.element"), C = Symbol.for("react.fragment"), k = Object.prototype.hasOwnProperty, A = p.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, $ = { key: !0, ref: !0, __self: !0, __source: !0 };
+  var p = xr, m = Symbol.for("react.element"), C = Symbol.for("react.fragment"), k = Object.prototype.hasOwnProperty, A = p.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, $ = { key: !0, ref: !0, __self: !0, __source: !0 };
   function P(E, s, T) {
     var v, g = {}, _ = null, I = null;
     T !== void 0 && (_ = "" + T), s.key !== void 0 && (_ = "" + s.key), s.ref !== void 0 && (I = s.ref);
@@ -24,7 +24,7 @@ function ue() {
     if (E && E.defaultProps)
       for (v in s = E.defaultProps, s)
         g[v] === void 0 && (g[v] = s[v]);
-    return { $$typeof: y, type: E, key: _, ref: I, props: g, _owner: A.current };
+    return { $$typeof: m, type: E, key: _, ref: I, props: g, _owner: A.current };
   }
   return D.Fragment = C, D.jsx = P, D.jsxs = P, D;
 }
@@ -41,7 +41,7 @@ var F = {};
 var Tr;
 function ce() {
   return Tr || (Tr = 1, process.env.NODE_ENV !== "production" && function() {
-    var p = xr, y = Symbol.for("react.element"), C = Symbol.for("react.portal"), k = Symbol.for("react.fragment"), A = Symbol.for("react.strict_mode"), $ = Symbol.for("react.profiler"), P = Symbol.for("react.provider"), E = Symbol.for("react.context"), s = Symbol.for("react.forward_ref"), T = Symbol.for("react.suspense"), v = Symbol.for("react.suspense_list"), g = Symbol.for("react.memo"), _ = Symbol.for("react.lazy"), I = Symbol.for("react.offscreen"), Z = Symbol.iterator, Or = "@@iterator";
+    var p = xr, m = Symbol.for("react.element"), C = Symbol.for("react.portal"), k = Symbol.for("react.fragment"), A = Symbol.for("react.strict_mode"), $ = Symbol.for("react.profiler"), P = Symbol.for("react.provider"), E = Symbol.for("react.context"), s = Symbol.for("react.forward_ref"), T = Symbol.for("react.suspense"), v = Symbol.for("react.suspense_list"), g = Symbol.for("react.memo"), _ = Symbol.for("react.lazy"), I = Symbol.for("react.offscreen"), Z = Symbol.iterator, Or = "@@iterator";
     function wr(r) {
       if (r === null || typeof r != "object")
         return null;
@@ -237,29 +237,29 @@ function ce() {
           }), typeof Reflect == "object" && Reflect.construct) {
             try {
               Reflect.construct(n, []);
-            } catch (m) {
-              o = m;
+            } catch (y) {
+              o = y;
             }
             Reflect.construct(r, [], n);
           } else {
             try {
               n.call();
-            } catch (m) {
-              o = m;
+            } catch (y) {
+              o = y;
             }
             r.call(n.prototype);
           }
         } else {
           try {
             throw Error();
-          } catch (m) {
-            o = m;
+          } catch (y) {
+            o = y;
           }
           r();
         }
-      } catch (m) {
-        if (m && o && typeof m.stack == "string") {
-          for (var t = m.stack.split(`
+      } catch (y) {
+        if (y && o && typeof y.stack == "string") {
+          for (var t = y.stack.split(`
 `), d = o.stack.split(`
 `), u = t.length - 1, c = d.length - 1; u >= 1 && c >= 0 && t[u] !== d[c]; )
             c--;
@@ -423,7 +423,7 @@ function ce() {
     var Xr = function(r, e, a, o, i, l, n) {
       var t = {
         // This tag allows us to uniquely identify this as a React Element
-        $$typeof: y,
+        $$typeof: m,
         // Built-in properties that belong on the element
         type: r,
         key: e,
@@ -478,7 +478,7 @@ function ce() {
     var G;
     G = !1;
     function K(r) {
-      return typeof r == "object" && r !== null && r.$$typeof === y;
+      return typeof r == "object" && r !== null && r.$$typeof === m;
     }
     function hr() {
       {
@@ -503,7 +503,7 @@ Check your code at ` + e + ":" + a + ".";
         return "";
       }
     }
-    var mr = {};
+    var yr = {};
     function re(r) {
       {
         var e = hr();
@@ -516,15 +516,15 @@ Check the top-level render call using <` + a + ">.");
         return e;
       }
     }
-    function yr(r, e) {
+    function mr(r, e) {
       {
         if (!r._store || r._store.validated || r.key != null)
           return;
         r._store.validated = !0;
         var a = re(e);
-        if (mr[a])
+        if (yr[a])
           return;
-        mr[a] = !0;
+        yr[a] = !0;
         var o = "";
         r && r._owner && r._owner !== J.current && (o = " It was passed a child from " + h(r._owner.type) + "."), O(r), f('Each child in a list should have a unique "key" prop.%s%s See https://reactjs.org/link/warning-keys for more information.', a, o), O(null);
       }
@@ -536,7 +536,7 @@ Check the top-level render call using <` + a + ">.");
         if (q(r))
           for (var a = 0; a < r.length; a++) {
             var o = r[a];
-            K(o) && yr(o, e);
+            K(o) && mr(o, e);
           }
         else if (K(r))
           r._store && (r._store.validated = !0);
@@ -544,7 +544,7 @@ Check the top-level render call using <` + a + ">.");
           var i = wr(r);
           if (typeof i == "function" && i !== r.entries)
             for (var l = i.call(r), n; !(n = l.next()).done; )
-              K(n.value) && yr(n.value, e);
+              K(n.value) && mr(n.value, e);
         }
       }
     }
@@ -594,7 +594,7 @@ Check the top-level render call using <` + a + ">.");
           var d = Qr(i);
           d ? t += d : t += hr();
           var u;
-          r === null ? u = "null" : q(r) ? u = "array" : r !== void 0 && r.$$typeof === y ? (u = "<" + (h(r.type) || "Unknown") + " />", t = " Did you accidentally export a JSX literal instead of a component?") : u = typeof r, f("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", u, t);
+          r === null ? u = "null" : q(r) ? u = "array" : r !== void 0 && r.$$typeof === m ? (u = "<" + (h(r.type) || "Unknown") + " />", t = " Did you accidentally export a JSX literal instead of a component?") : u = typeof r, f("React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: %s.%s", u, t);
         }
         var c = Zr(r, e, a, i, l);
         if (c == null)
@@ -629,12 +629,12 @@ process.env.NODE_ENV === "production" ? X.exports = ue() : X.exports = ce();
 var se = X.exports;
 const fe = le.button.withConfig({
   displayName: "Button",
-  componentId: "sc-n2xprm-0"
+  componentId: "sc-1q8kq34-0"
 })(["display:flex;align-items:center;justify-content:center;outline:none;cursor:pointer;border:none;", " ", "  ", ""], (p) => p.$variant === "full" && H(["--label-color:hsl(0,0%,100%);--background-color:hsl(230,60%,50%);--border-color:hsl(230,60%,50%);color:var(--label-color);background-color:var(--background-color);border-color:var(--border-color);border-width:4px;border-style:solid;padding:10px 64px;border-radius:8px;font-size:18px;&:hover{--background-hover-color:hsl(230,60%,55%);background-color:var(--background-hover-color);}&:active{--background-active-color:hsl(230,60%,60%);background-color:var(--background-active-color);}&:disabled{--label-disabled-color:hsl(0,0%,100%);--background-disabled-color:hsl(0,0%,63%);--border-disabled-color:hsl(0,0%,63%);color:var(--label-disabled-color);background-color:var(--background-disabled-color);border-color:var(--border-disabled-color);}"]), (p) => p.$variant === "stroke" && H(["--label-color:hsl(230,60%,50%);--background-color:hsl(0,0%,100%);--border-color:hsl(230,60%,50%);color:var(--label-color);background-color:var(--background-color);border-color:var(--border-color);border-width:4px;border-style:solid;padding:10px 64px;border-radius:8px;font-size:18px;&:hover{--background-hover-color:hsl(230,55%,80%);background-color:var(--background-hover-color);}&:active{--background-active-color:hsl(230,55%,85%);background-color:var(--background-active-color);}&:disabled{--label-disabled-color:hsl(0,0%,63%);--background-disabled-color-color:hsl(0,0%,100%);--border-disabled-color:hsl(0,0%,63%);color:var(--label-disabled-color);background-color:var(--background-disabled-color);border-color:var(--border-disabled-color);}"]), (p) => p.$variant === "link" && H(["--label-color:hsl(230,60%,50%);--background-color:hsla(0,0%,0%,0);color:var(--label-color);background-color:var(--background-color);font-size:18px;&:hover{--label-color:hsl(230,55%,80%);color:var(--label-color);}&:active{--label-color:hsl(230,55%,85%);color:var(--label-color);}&:disabled{--label-color:hsl(0,0%,63%);color:var(--label-color);}"])), be = ({
   children: p,
-  varian: y = "full",
+  varian: m = "full",
   ...C
-}) => /* @__PURE__ */ se.jsx(fe, { ...C, $variant: y, children: p });
+}) => /* @__PURE__ */ se.jsx(fe, { ...C, $variant: m, children: p });
 export {
   be as Button
 };

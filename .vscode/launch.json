@@ -13,7 +13,7 @@
 			"type": "msedge",
 			"request": "launch",
 			"url": "http://localhost:5000",
-			"webRoot": "${workspaceFolder}/apps/app",
+			"webRoot": "${workspaceFolder}/app",
 			"sourceMapPathOverrides": {
 				"\\mnt\\c\\*": "C:/*"
 			}
@@ -42,56 +42,56 @@
 			"command": "npm i",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/"
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "app start",
 			"command": "npm run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/"
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "app test",
 			"command": "npm run test",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/"
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "app coverage",
 			"command": "npm run coverage",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/"
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "app build",
 			"command": "npm run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/"
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "app preview",
 			"command": "npm run preview",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/"
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "app deploy",
 			"command": "npm run deploy",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/"
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "app release",
 			"command": "npm run release",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/src/"
+			"cwd": "${workspaceFolder}/app/src/"
 		},
 		{
 			"name": "---------------------------------",
@@ -104,28 +104,28 @@
 			"command": "npm i",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/frontend/"
+			"cwd": "${workspaceFolder}/frontend/"
 		},
 		{
 			"name": "frontend start",
 			"command": "npm run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/frontend/"
+			"cwd": "${workspaceFolder}/frontend/"
 		},
 		{
 			"name": "frontend build",
 			"command": "npm run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/frontend/"
+			"cwd": "${workspaceFolder}/frontend/"
 		},
 		{
 			"name": "frontend preview",
 			"command": "npm run preview",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/frontend/"
+			"cwd": "${workspaceFolder}/frontend/"
 		},
 		{
 			"name": "---------------------------------",
@@ -138,7 +138,7 @@
 			"command": "node WebSocketServer.js",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/app/src/pages/pageHome/components/desktop/apps/chat/webSocket/"
+			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/chat/webSocket/"
 		},
 		{
 			"name": "---------------------------------",
