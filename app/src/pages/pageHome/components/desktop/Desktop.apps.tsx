@@ -51,6 +51,7 @@ export const apps: IApp[][] = [
 		{ id: "tetris", roles: ["admin", "user"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
+		{ id: "mfe", roles: ["admin", "guest"], title: <T>{lang.mfe.title}</T>, icon: "photos", component: <Mfe /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "photos", component: <Test /> },
@@ -58,6 +59,5 @@ export const apps: IApp[][] = [
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "photos", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "photos", component: <TestTransition /> },
 		{ id: "testAnimation", roles: ["admin", "guest"], title: <T>{lang.testAnimation.title}</T>, icon: "photos", component: <TestAnimation /> },
-		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "photos", component: <Mfe /> },
 	],
 ];

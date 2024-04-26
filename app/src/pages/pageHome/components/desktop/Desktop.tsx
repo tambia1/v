@@ -79,6 +79,10 @@ export const Desktop = () => {
 
 		const appComponent = (
 			<Suspension
+				onStart={async () => {
+					isLoading = false;
+					await animationApp.play("hide");
+				}}
 				onFallbackStart={() => {
 					setLoadingAppId(app.id);
 					isLoading = true;
@@ -89,8 +93,8 @@ export const Desktop = () => {
 					}
 
 					setLoadingAppId("");
+					isLoading = false;
 
-					await animationApp.play("hide");
 					await animationApp.play("appear");
 				}}
 				onError={(_error: Error, _errorInfo: ErrorInfo) => {
