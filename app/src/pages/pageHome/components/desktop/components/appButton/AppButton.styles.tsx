@@ -17,6 +17,7 @@ import store from "./assets/store.png";
 import chat from "./assets/chat.png";
 import calendar from "./assets/calendar.png";
 import spin from "./assets/spin.png";
+import test from "./assets/test.png";
 
 export const appIcons = {
 	settings,
@@ -37,6 +38,7 @@ export const appIcons = {
 	stocks,
 	chat,
 	spin,
+	test,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;

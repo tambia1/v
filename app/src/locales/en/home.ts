@@ -122,4 +122,8 @@ export const translation: IHome = {
 	testAnimation: {
 		title: "Test Animation",
 	},
+
+	testGraphQl: {
+		title: "Test GraphQL",
+	},
 };

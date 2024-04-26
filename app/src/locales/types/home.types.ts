@@ -122,4 +122,8 @@ export type IHome = {
 	testAnimation: {
 		title: string;
 	};
+
+	testGraphQl: {
+		title: string;
+	};
 };
