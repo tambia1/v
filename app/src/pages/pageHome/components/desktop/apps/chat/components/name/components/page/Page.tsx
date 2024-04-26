@@ -5,7 +5,7 @@ import { List } from "@src/components/list/List";
 import { Talk } from "./components/talk/Talk";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { useWebSocket } from "../../../../webSocket/UseWebSocket";
+import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import { useState } from "react";
 import { IClient, IDataGet } from "../../../../Chat.types";
 import { useStoreTalk } from "../../stores/StoreTalk";
