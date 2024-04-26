@@ -20,6 +20,7 @@ import { Chat } from "./apps/chat/Chat";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Spin } from "./apps/spin/Spin";
 import { TestAnimation } from "./apps/testAnimation/TestAnimation";
+import { GraphQl } from "./apps/testGraphQl/GraphQl";
 
 const Mfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -51,7 +52,7 @@ export const apps: IApp[][] = [
 		{ id: "tetris", roles: ["admin", "user"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
-		{ id: "testGraphQl", roles: ["admin", "guest"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <TestAnimation /> },
+		{ id: "testGraphQl", roles: ["admin", "guest"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <GraphQl /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },

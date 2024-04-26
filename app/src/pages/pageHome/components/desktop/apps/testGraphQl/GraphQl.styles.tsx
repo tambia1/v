@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Test = styled.div`
+export const GraphQl = styled.div`
 	width: 100%;
 	height: 100%;
 
