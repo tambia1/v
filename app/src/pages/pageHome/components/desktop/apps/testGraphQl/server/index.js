@@ -11,37 +11,44 @@ const resolvers = {
 		game(_parent, args) {
 			return db.games.find((game) => game.id === args.id);
 		},
-		reviews() {
-			return db.reviews;
-		},
-		review(_parent, args) {
-			return db.reviews.find((review) => review.id === args.id);
-		},
+
 		authors() {
 			return db.authors;
 		},
 		author(_parent, args) {
 			return db.authors.find((author) => author.id === args.id);
 		},
+
+		reviews() {
+			return db.reviews;
+		},
+		review(_parent, args) {
+			return db.reviews.find((review) => review.id === args.id);
+		},
 	},
+
 	Game: {
 		reviews(parent) {
 			return db.reviews.filter((r) => r.gameId === parent.id);
 		},
 	},
+
 	Author: {
 		reviews(parent) {
 			return db.reviews.filter((r) => r.authorId === parent.id);
 		},
 	},
+
 	Review: {
-		author(parent) {
-			return db.authors.find((a) => a.id === parent.authorId);
-		},
 		game(parent) {
-			return db.authors.find((g) => g.id === parent.gameId);
+			return db.games.find((g) => g.id === parent.id);
+		},
+
+		author(parent) {
+			return db.authors.find((a) => a.id === parent.id);
 		},
 	},
+
 	Mutation: {
 		deleteGame(_parent, args) {
 			db.games = db.games.filter((g) => g.id !== args.id);

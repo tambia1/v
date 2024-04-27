@@ -9,13 +9,14 @@ const GET_GAMES = gql`
 			title
 			reviews {
 				id
+				rating
 			}
 		}
 	}
 `;
 
 export const Games = () => {
-	const { loading, error, data } = useQuery<{ games: { id: string; title: string; reviews: { id: string }[] }[] }>(GET_GAMES);
+	const { loading, error, data } = useQuery<{ games: { id: string; title: string; reviews: { id: string; rating: number }[] }[] }>(GET_GAMES);
 
 	return (
 		<S.Games>
@@ -34,6 +35,9 @@ export const Games = () => {
 							<S.Space />
 							<Text color="accentFg">reviews: </Text>
 							<Text color="normalFg">[{game.reviews.map((review) => review.id).toString()}]</Text>
+							<S.Space />
+							<Text color="accentFg">ratings: </Text>
+							<Text color="normalFg">[{game.reviews.map((review) => review.rating).toString()}]</Text>
 						</S.Row>
 					))}
 				</S.Table>

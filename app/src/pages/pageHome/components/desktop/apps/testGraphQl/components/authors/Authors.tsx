@@ -9,13 +9,14 @@ const GET_AUTHORS = gql`
 			name
 			reviews {
 				id
+				rating
 			}
 		}
 	}
 `;
 
 export const Authors = () => {
-	const { loading, error, data } = useQuery<{ authors: { id: string; name: string; reviews: { id: string }[] }[] }>(GET_AUTHORS);
+	const { loading, error, data } = useQuery<{ authors: { id: string; name: string; reviews: { id: string; rating: number }[] }[] }>(GET_AUTHORS);
 
 	return (
 		<S.Authors>
@@ -34,6 +35,9 @@ export const Authors = () => {
 							<S.Space />
 							<Text color="accentFg">reviews: </Text>
 							<Text color="normalFg">[{author.reviews.map((review) => review.id).toString()}]</Text>
+							<S.Space />
+							<Text color="accentFg">ratings: </Text>
+							<Text color="normalFg">[{author.reviews.map((review) => review.rating).toString()}]</Text>
 						</S.Row>
 					))}
 				</S.Table>

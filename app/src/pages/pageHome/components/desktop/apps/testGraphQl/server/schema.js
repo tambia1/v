@@ -6,18 +6,18 @@ export const typeDefs = `#graphql
         reviews: [Review!]
     }
 
+    type Author {
+        id: ID!
+        name: String!
+        reviews: [Review!]
+    }
+
     type Review {
         id: ID!
         rating: Int!
         content: String!
         game: Game!
         author: Author!
-    }
-
-    type Author {
-        id: ID!
-        name: String!
-        reviews: [Review!]
     }
 
     type Query {
