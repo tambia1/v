@@ -49,7 +49,10 @@
 			"command": "npm run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
+			"cwd": "${workspaceFolder}/app/",
+			"env": {
+				"NODE_ENV": "development"
+			}
 		},
 		{
 			"name": "app test",
@@ -145,7 +148,10 @@
 			"command": "node index.js",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testGraphQl/server/"
+			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testGraphQl/server/",
+			"env": {
+				"NODE_ENV": "development"
+			}
 		},
 		{
 			"name": "---------------------------------",

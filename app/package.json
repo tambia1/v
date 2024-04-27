@@ -15,9 +15,11 @@
         "release": "node ./src/scripts/release.js"
     },
     "dependencies": {
+        "@apollo/client": "^3.10.1",
         "@react-oauth/google": "^0.12.1",
         "@tanstack/react-query": "5.29.2",
         "@v/shared-ui": "file:../@v/shared-ui",
+        "graphql": "^16.8.1",
         "i18next": "23.11.2",
         "i18next-browser-languagedetector": "7.2.1",
         "localforage": "1.10.0",
