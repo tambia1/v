@@ -3,6 +3,7 @@ import * as S from "./GraphQl.styles";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Games } from "./components/games/Games";
 import { Authors } from "./components/authors/Authors";
+import { Reviews } from "./components/reviews/Reviews";
 
 const client = new ApolloClient({
 	uri: "http://localhost:4000/",
@@ -22,6 +23,9 @@ export const GraphQl = () => {
 
 				<S.Space />
 				<Authors />
+
+				<S.Space />
+				<Reviews />
 			</S.GraphQl>
 		</ApolloProvider>
 	);
