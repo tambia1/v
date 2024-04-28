@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Games } from "./components/games/Games";
 import { Authors } from "./components/authors/Authors";
 import { Reviews } from "./components/reviews/Reviews";
+import { Game } from "./components/game/Game";
 
 const client = new ApolloClient({
 	uri: "http://localhost:4000/",
@@ -26,6 +27,9 @@ export const GraphQlApolloClient = () => {
 
 				<S.Space />
 				<Reviews />
+
+				<S.Space />
+				<Game />
 			</ApolloProvider>
 		</S.GraphQlApolloClient>
 	);
