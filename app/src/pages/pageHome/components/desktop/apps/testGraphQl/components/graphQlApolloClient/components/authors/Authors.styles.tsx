@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Reviews = styled.div`
+export const Authors = styled.div`
 	width: 100%;
 	height: auto;
 
@@ -20,7 +20,7 @@ export const Table = styled.div`
 export const Row = styled.div`
 	display: flex;
 	flex-direction: row;
-	gap: 0rem;
+	gap: 0.5rem;
 `;
 
 export const Space = styled.div`

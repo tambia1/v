@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const GraphQl = styled.div`
+export const GraphQlApolloClient = styled.div`
 	width: 100%;
 	height: 100%;
 
@@ -13,12 +13,7 @@ export const GraphQl = styled.div`
 	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
 
-export const Container = styled.div`
-	width: 100%;
-	height: auto;
-
-	display: flex;
-	flex-direction: column;
-
-	gap: 5rem;
+export const Space = styled.div`
+	width: 1rem;
+	height: 1rem;
 `;

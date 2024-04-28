@@ -1,24 +1,29 @@
 import styled from "styled-components";
 
-export const GraphQl = styled.div`
-	width: 100%;
-	height: 100%;
-
-	display: flex;
-	flex-direction: column;
-
-	padding: 1rem;
-	box-sizing: border-box;
-
-	background-color: ${(props) => props.theme.color.normalBgSelected};
-`;
-
-export const Container = styled.div`
+export const Reviews = styled.div`
 	width: 100%;
 	height: auto;
 
 	display: flex;
 	flex-direction: column;
 
-	gap: 5rem;
+	box-sizing: border-box;
+
+	background-color: ${(props) => props.theme.color.normalBgSelected};
+`;
+
+export const Table = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
+export const Row = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+`;
+
+export const Space = styled.div`
+	width: 1rem;
+	height: 1rem;
 `;
