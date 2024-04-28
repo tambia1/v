@@ -1,27 +1,10 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Reviews.styles";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_REVIEWS = gql`
-	query GetReviews {
-		reviews {
-			id
-			rating
-			content
-			game {
-				id
-				title
-			}
-			author {
-				id
-				name
-			}
-		}
-	}
-`;
+import { useQuery } from "@apollo/client";
+import { GET_REVIEWS, IReviews } from "../../graphql/queires/reviews.query";
 
 export const Reviews = () => {
-	const { loading, error, data } = useQuery<{ reviews: { id: string; rating: string; content: string; game: { id: string; title: string }; author: { id: string; name: string } }[] }>(GET_REVIEWS);
+	const { loading, error, data } = useQuery<IReviews>(GET_REVIEWS);
 
 	return (
 		<S.Reviews>

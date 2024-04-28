@@ -14,8 +14,8 @@ const client = new ApolloClient({
 
 export const GraphQl = () => {
 	return (
-		<ApolloProvider client={client}>
-			<S.GraphQl>
+		<S.GraphQl>
+			<ApolloProvider client={client}>
 				<Text size="l">GraphQL</Text>
 
 				<S.Space />
@@ -26,7 +26,7 @@ export const GraphQl = () => {
 
 				<S.Space />
 				<Reviews />
-			</S.GraphQl>
-		</ApolloProvider>
+			</ApolloProvider>
+		</S.GraphQl>
 	);
 };

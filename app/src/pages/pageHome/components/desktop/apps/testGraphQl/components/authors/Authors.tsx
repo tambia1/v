@@ -1,22 +1,10 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Authors.styles";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_AUTHORS = gql`
-	query GetAuthors {
-		authors {
-			id
-			name
-			reviews {
-				id
-				rating
-			}
-		}
-	}
-`;
+import { useQuery } from "@apollo/client";
+import { GET_AUTHORS, IAuthors } from "../../graphql/queires/authors.query";
 
 export const Authors = () => {
-	const { loading, error, data } = useQuery<{ authors: { id: string; name: string; reviews: { id: string; rating: number }[] }[] }>(GET_AUTHORS);
+	const { loading, error, data } = useQuery<IAuthors>(GET_AUTHORS);
 
 	return (
 		<S.Authors>
