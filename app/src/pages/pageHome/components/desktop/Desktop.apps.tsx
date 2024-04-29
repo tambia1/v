@@ -52,7 +52,6 @@ export const apps: IApp[][] = [
 		{ id: "tetris", roles: ["admin", "user"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
-		{ id: "testGraphQl", roles: ["admin", "guest"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <GraphQl /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
@@ -60,6 +59,7 @@ export const apps: IApp[][] = [
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "test", component: <TestTransition /> },
 		{ id: "testAnimation", roles: ["admin"], title: <T>{lang.testAnimation.title}</T>, icon: "test", component: <TestAnimation /> },
+		{ id: "testGraphQl", roles: ["admin"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <GraphQl /> },
 		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <Mfe /> },
 	],
 ];
