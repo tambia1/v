@@ -9,11 +9,7 @@ export const GameDelete = () => {
 	const [deleteGame] = useMutation(DELETE_GAME);
 
 	const handleDeleteGame = async () => {
-		try {
-			await deleteGame({ variables: { id: "1" }, refetchQueries: [{ query: GET_GAMES }] });
-		} catch (error) {
-			console.log("error", error);
-		}
+		await deleteGame({ variables: { id: "1" }, refetchQueries: [{ query: GET_GAMES }] });
 	};
 
 	return (

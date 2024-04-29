@@ -4,6 +4,7 @@ export type IGame = {
 	game: {
 		id: string;
 		title: string;
+		platforms?: string[];
 	};
 };
 
@@ -12,6 +13,7 @@ export const GET_GAME = gql`
 		game(id: $id) {
 			id
 			title
+			platforms
 		}
 	}
 `;

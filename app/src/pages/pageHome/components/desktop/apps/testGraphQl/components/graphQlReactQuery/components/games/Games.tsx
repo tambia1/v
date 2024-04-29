@@ -2,9 +2,14 @@ import { Text } from "@src/components/text/Text";
 import * as S from "./Games.styles";
 import { GET_GAMES, IGames } from "../../graphql/queires/games.query";
 import { useGraphQlQuery } from "../../graphql/graphQlQuery";
+import { Button } from "@src/components/button/Button";
 
 export const Games = () => {
-	const { isLoading, error, data } = useGraphQlQuery<IGames>("games", GET_GAMES);
+	const { isLoading, error, data, refetch } = useGraphQlQuery<IGames>("games", GET_GAMES);
+
+	const hanldeOnClickRefetch = () => {
+		refetch();
+	};
 
 	return (
 		<S.Games>
@@ -30,6 +35,7 @@ export const Games = () => {
 					))}
 				</S.Table>
 			)}
+			<Button onClick={hanldeOnClickRefetch}>Refetch</Button>
 		</S.Games>
 	);
 };

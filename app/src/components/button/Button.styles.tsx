@@ -49,12 +49,14 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			background-color: var(--background-color);
 			border-color: var(--border-color);
 
-			border-width: 4px;
+			border-width: 0.2rem;
 			border-style: solid;
 
-			padding: 10px 20px;
-			border-radius: 8px;
-			font-size: 18px;
+			padding: 0.5em 1em 0.5em 1em;
+			border-radius: 0.5rem;
+			font-size: 100%;
+
+			width: fit-content;
 
 			&:hover {
 				--background-hover-color: hsl(230, 60%, 55%);
@@ -87,12 +89,14 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			background-color: var(--background-color);
 			border-color: var(--border-color);
 
-			border-width: 4px;
+			border-width: 0.2rem;
 			border-style: solid;
 
-			padding: 10px 20px;
-			border-radius: 8px;
-			font-size: 18px;
+			padding: 0.5em 1em 0.5em 1em;
+			border-radius: 0.5rem;
+			font-size: 100%;
+
+			width: fit-content;
 
 			&:hover {
 				--background-hover-color: hsl(230, 55%, 80%);
@@ -124,12 +128,14 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			background-color: var(--background-color);
 			border-color: transparent;
 
-			border-width: 4px;
+			border-width: 0.2rem;
 			border-style: solid;
 
-			padding: 10px 20px;
-			border-radius: 8px;
-			font-size: 18px;
+			padding: 0.5em 1em 0.5em 1em;
+			border-radius: 0.5rem;
+			font-size: 100%;
+
+			width: fit-content;
 
 			&:hover {
 				--label-color: hsl(230, 55%, 80%);

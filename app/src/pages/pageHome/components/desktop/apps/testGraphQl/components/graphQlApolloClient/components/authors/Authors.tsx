@@ -2,9 +2,14 @@ import { Text } from "@src/components/text/Text";
 import * as S from "./Authors.styles";
 import { useQuery } from "@apollo/client";
 import { GET_AUTHORS, IAuthors } from "../../graphql/queires/authors.query";
+import { Button } from "@src/components/button/Button";
 
 export const Authors = () => {
-	const { loading, error, data } = useQuery<IAuthors>(GET_AUTHORS);
+	const { loading, error, data, refetch } = useQuery<IAuthors>(GET_AUTHORS);
+
+	const hanldeOnClickRefetch = () => {
+		refetch();
+	};
 
 	return (
 		<S.Authors>
@@ -30,6 +35,7 @@ export const Authors = () => {
 					))}
 				</S.Table>
 			)}
+			<Button onClick={hanldeOnClickRefetch}>Refetch</Button>
 		</S.Authors>
 	);
 };

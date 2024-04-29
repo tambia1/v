@@ -8,15 +8,12 @@ import { GET_GAMES, IGames } from "../../graphql/queires/games.query";
 
 export const GameDelete = () => {
 	const mutation = useGraphQlMutation(DELETE_GAME);
+
 	const { refetch } = useGraphQlQuery<IGames>("games", GET_GAMES);
 
 	const handleDeleteGame = async () => {
-		try {
-			await mutation({ id: "1" });
-			refetch();
-		} catch (error) {
-			console.log("error", error);
-		}
+		await mutation({ id: "1" });
+		refetch();
 	};
 
 	return (

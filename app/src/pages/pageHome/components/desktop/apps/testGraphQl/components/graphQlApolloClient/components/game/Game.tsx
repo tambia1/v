@@ -20,6 +20,9 @@ export const Game = () => {
 					<S.Space />
 					<Text color="accentFg">title: </Text>
 					<Text color="normalFg">{data.game.title}</Text>
+					<S.Space />
+					<Text color="accentFg">platforms: </Text>
+					<Text color="normalFg">{data.game.platforms}</Text>
 				</S.Row>
 			)}
 		</S.Game>

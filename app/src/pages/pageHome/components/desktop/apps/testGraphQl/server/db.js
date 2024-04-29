@@ -1,9 +1,9 @@
 let games = [
-	{ id: "1", title: "Zelda", platform: ["Switch"] },
-	{ id: "2", title: "Final Fantasy 7", platform: ["PS5", "Xbox"] },
-	{ id: "3", title: "Elden Ring", platform: ["PS5", "Xbox", "PC"] },
-	{ id: "4", title: "Mario", platform: ["Switch"] },
-	{ id: "5", title: "Pokimon", platform: ["PS5", "Xbox", "PC"] },
+	{ id: "1", title: "Zelda", platforms: ["Switch"] },
+	{ id: "2", title: "Final Fantasy 7", platforms: ["PS5", "Xbox"] },
+	{ id: "3", title: "Elden Ring", platforms: ["PS5", "Xbox", "PC"] },
+	{ id: "4", title: "Mario", platforms: ["Switch"] },
+	{ id: "5", title: "Pokimon", platforms: ["PS5", "Xbox", "PC"] },
 ];
 
 let authors = [
