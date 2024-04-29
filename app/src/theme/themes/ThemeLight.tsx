@@ -1,4 +1,5 @@
 import { ITheme } from "../Theme.types";
+import imageBg from "./assets/themeLight/bg.jpg";
 
 export const themeLight: ITheme = {
 	themeName: "light",
@@ -79,5 +80,9 @@ export const themeLight: ITheme = {
 		m: "1.5rem",
 		l: "2.0rem",
 		xl: "2.5rem",
+	},
+
+	images: {
+		bg: imageBg,
 	},
 };

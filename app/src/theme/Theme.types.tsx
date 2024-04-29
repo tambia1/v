@@ -83,4 +83,8 @@ export interface ITheme {
 		l: string;
 		xl: string;
 	};
+
+	images: {
+		bg: string;
+	};
 }

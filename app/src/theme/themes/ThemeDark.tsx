@@ -1,4 +1,5 @@
 import { ITheme } from "../Theme.types";
+import imageBg from "./assets/themeDark/bg.jpg";
 
 export const themeDark: ITheme = {
 	themeName: "dark",
@@ -79,5 +80,9 @@ export const themeDark: ITheme = {
 		m: "1.5rem",
 		l: "2.0rem",
 		xl: "2.5rem",
+	},
+
+	images: {
+		bg: imageBg,
 	},
 };
