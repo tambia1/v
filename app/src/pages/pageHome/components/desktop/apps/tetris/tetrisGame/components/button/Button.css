@@ -12,7 +12,6 @@
 	transition: all 0.2s ease;
 	padding: 0.5em 1em 0.5em 1em;
 	box-sizing: border-box;
-	margin: 3px;
 	min-width: 7em;
 	white-space: nowrap;
 }

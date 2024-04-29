@@ -20,7 +20,6 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			transition: all 0.1s ease;
 			padding: 0.5em 1em 0.5em 1em;
 			box-sizing: border-box;
-			margin: 3px;
 			min-width: 5em;
 			width: fit-content;
 			white-space: nowrap;
