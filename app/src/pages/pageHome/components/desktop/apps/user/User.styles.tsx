@@ -174,13 +174,13 @@ export const Idle = styled.div`
 
 export const Success = styled.div`
 	height: 2rem;
-	color: ${(props) => props.theme.color.successBg};
+	color: ${(props) => props.theme.color.successFg};
 	white-space: nowrap;
 `;
 
 export const Error = styled.div`
 	height: 2rem;
-	color: ${(props) => props.theme.color.errorBg};
+	color: ${(props) => props.theme.color.errorFg};
 	white-space: nowrap;
 `;
 

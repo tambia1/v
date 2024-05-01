@@ -74,9 +74,9 @@ export const Username = styled.div`
 `;
 
 export const Success = styled.div`
-	color: ${(props) => props.theme.color.successBg};
+	color: ${(props) => props.theme.color.successFg};
 `;
 
 export const Error = styled.div`
-	color: ${(props) => props.theme.color.errorBg};
+	color: ${(props) => props.theme.color.errorFg};
 `;
