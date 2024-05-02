@@ -1,7 +1,6 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { QueryResult } from "./Query.types";
-import { sendLogin, sendLogout } from "./Api";
-import { IRole } from "@src/pages/pageHome/components/desktop/Desktop.types";
+import { sendLogin, sendLogout, sendToken } from "./Api";
 
 interface MutateLoginProps {
 	email: string;
@@ -10,7 +9,6 @@ interface MutateLoginProps {
 
 export interface MutateLoginResult extends QueryResult {
 	token: string;
-	role: IRole;
 }
 
 const login = (options?: UseMutationOptions<MutateLoginResult, Error, MutateLoginProps, unknown>) => {
@@ -37,7 +35,23 @@ const logout = (options?: UseMutationOptions<MutateLogoutResult, Error, MutateLo
 	return mutateAsync;
 };
 
+interface MutateTokenProps {
+	token: string;
+}
+
+export interface MutateTokenResult extends QueryResult {}
+
+const token = (options?: UseMutationOptions<MutateTokenResult, Error, MutateTokenProps, unknown>) => {
+	const { mutateAsync } = useMutation({
+		...options,
+		mutationFn: (props: MutateTokenProps) => sendToken(props.token),
+	});
+
+	return mutateAsync;
+};
+
 export const QueryLogin = {
 	login,
 	logout,
+	token,
 };

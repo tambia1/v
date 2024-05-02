@@ -1,11 +1,11 @@
 import { Promises } from "@src/services/Promises";
-import { MutateLoginResult, MutateLogoutResult } from "./QueryLogin";
+import { MutateLoginResult, MutateLogoutResult, MutateTokenResult } from "./QueryLogin";
 import { QueryUserResult } from "./QueryUser";
-import { IRole } from "@src/pages/pageHome/components/desktop/Desktop.types";
+import { IUser } from "@src/pages/pageHome/components/desktop/Desktop.types";
 
 const DELAY = 2000;
 
-const dbUsers: { [userId in string]: { email: string; password: string; firstName: string; lastName: string; role: IRole } } = {
+const dbUsers: { [userId in string]: IUser } = {
 	user_1: {
 		email: "a",
 		password: "a",
@@ -35,7 +35,6 @@ export const sendLogin = async (email: string, password: string): Promise<Mutate
 		error: 0,
 		message: "",
 		token: "",
-		role: "guest",
 	};
 
 	if (!userId) {
@@ -45,9 +44,7 @@ export const sendLogin = async (email: string, password: string): Promise<Mutate
 		const token = "token_" + Math.floor(Math.random() * 1_000_000);
 
 		dbTokens[token] = { userId, time: Date.now() };
-
 		result.token = token;
-		result.role = dbUsers[userId].role;
 	}
 
 	return result;
@@ -71,6 +68,28 @@ export const sendLogout = async (token: string): Promise<MutateLogoutResult> => 
 	return result;
 };
 
+export const sendToken = async (token: string): Promise<MutateTokenResult> => {
+	await Promises.sleep(DELAY);
+
+	const userId = Object.keys(dbUsers).find((userId) => dbUsers[userId].email === "a" && dbUsers[userId].password === "a");
+
+	const result: MutateLoginResult = {
+		error: 0,
+		message: "",
+		token: "",
+	};
+
+	if (!userId) {
+		result.error = 1;
+		result.message = "invalid name or password";
+	} else {
+		dbTokens[token] = { userId, time: Date.now() };
+		result.token = token;
+	}
+
+	return result;
+};
+
 export const getUser = async (token: string): Promise<QueryUserResult> => {
 	await Promises.sleep(DELAY);
 
@@ -80,6 +99,7 @@ export const getUser = async (token: string): Promise<QueryUserResult> => {
 		firstName: "",
 		lastName: "",
 		email: "",
+		role: "guest",
 	};
 
 	if (!token) {
@@ -97,6 +117,7 @@ export const getUser = async (token: string): Promise<QueryUserResult> => {
 		result.firstName = dbUsers[userId].firstName;
 		result.lastName = dbUsers[userId].lastName;
 		result.email = dbUsers[userId].email;
+		result.role = dbUsers[userId].role;
 	}
 
 	return result;

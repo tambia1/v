@@ -4,11 +4,13 @@ import { create } from "zustand";
 interface State {
 	token: string;
 	role: IRole;
-	setData: (token: string, role: IRole) => void;
+	setToken: (token: string) => void;
+	setRole: (role: IRole) => void;
 }
 
 export const useStoreLogin = create<State>()((set) => ({
 	token: "",
 	role: "guest",
-	setData: (token: string, role: IRole) => set(() => ({ token, role })),
+	setToken: (token: string) => set(() => ({ token })),
+	setRole: (role: IRole) => set(() => ({ role })),
 }));

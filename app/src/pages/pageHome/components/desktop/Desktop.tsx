@@ -17,7 +17,7 @@ import { T } from "@src/locales/T";
 import { AppButton } from "./components/appButton/AppButton";
 import { Suspension } from "@src/components/suspension/Suspension";
 import { Promises } from "@src/services/Promises";
-import { BarContext } from "./hooks/UseBar";
+import { BarMainContext } from "./hooks/UseBarMain";
 import { BarMain } from "./components/barMain/BarMain";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { Modal } from "@src/components/modal/Modal";
@@ -138,7 +138,7 @@ export const Desktop = () => {
 
 	return (
 		<S.Container $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
-			<BarContext.Provider value={{ onClickclose: handleOnClickClose }}>
+			<BarMainContext.Provider value={{ onClickClose: handleOnClickClose }}>
 				<S.Apps>
 					<S.AppsContainer>
 						<S.AppContainer ref={refApp}>{currentApp && <S.App>{currentApp}</S.App>}</S.AppContainer>
@@ -167,7 +167,7 @@ export const Desktop = () => {
 						</Pager>
 					</S.AppsContainer>
 				</S.Apps>
-			</BarContext.Provider>
+			</BarMainContext.Provider>
 
 			<S.Bar>
 				<BarMain
