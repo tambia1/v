@@ -200,7 +200,7 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
 `;
 
-export const GoogleBox = styled.div<{ disabled: boolean }>`
+export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -208,7 +208,7 @@ export const GoogleBox = styled.div<{ disabled: boolean }>`
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
-export const GoogleImage = styled(Icon)`
+export const SocialLoginImage = styled(Icon)`
 	width: 2rem;
 	color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;

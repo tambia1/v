@@ -1,7 +1,7 @@
 {
     "name": "v",
     "private": true,
-    "version": "1.1.65",
+    "version": "1.1.66",
     "type": "module",
     "homepage": "https://tambia1.github.io",
     "scripts": {

@@ -177,10 +177,6 @@ export const User = () => {
 					/>
 				</S.PasswordBox>
 
-				<S.GoogleBox disabled={!!storeLogin.token || isLoading}>
-					<S.GoogleImage iconName="iconGoogle" onClick={handleGoogleLogin} />
-				</S.GoogleBox>
-
 				<S.ButtonBox>
 					{storeLogin.token === "" && (
 						<S.ButtonLogin onClick={handleOnClickDirectLogin} disabled={isLoading}>
@@ -193,6 +189,13 @@ export const User = () => {
 						</S.ButtonLogout>
 					)}
 				</S.ButtonBox>
+
+				<S.SocialLoginleBox disabled={!!storeLogin.token || isLoading}>
+					<S.SocialLoginImage iconName="iconGoogle" onClick={handleGoogleLogin} />
+					<S.SocialLoginImage iconName="iconFacebook" onClick={handleGoogleLogin} />
+					<S.SocialLoginImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />
+					<S.SocialLoginImage iconName="iconApple" onClick={handleGoogleLogin} />
+				</S.SocialLoginleBox>
 
 				<S.MessagesBox>
 					{isLoading && <Loader />}
