@@ -43,14 +43,10 @@ export const User = () => {
 
 	const performGoogleLogin = useGoogleLogin({
 		onSuccess: (tokenResponse) => {
-			storeLogin.setToken(tokenResponse.access_token);
-			storeLogin.setRole("guest");
-
-			console.log("google", tokenResponse);
+			onLoginSuccess(tokenResponse.access_token);
 		},
 		onError: (_errorResponse) => {
-			storeLogin.setToken("");
-			storeLogin.setRole("guest");
+			onLoginError();
 		},
 	});
 
@@ -72,7 +68,7 @@ export const User = () => {
 
 			return;
 		}
-	}, [queryUser.isLoading, storeLogin.token, queryUser.data?.error, isLoginPerformed]);
+	}, [queryUser.isLoading, queryUser.data?.error, isLoginPerformed]);
 
 	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
