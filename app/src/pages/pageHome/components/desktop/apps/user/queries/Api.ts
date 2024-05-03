@@ -77,6 +77,9 @@ export const sendToken = async (token: string): Promise<MutateTokenResult> => {
 
 	console.log("aaa", response);
 
+	const userInfo = await response.json();
+	console.log("bbb", userInfo);
+
 	const userId = Object.keys(dbUsers).find((userId) => dbUsers[userId].email === "a" && dbUsers[userId].password === "a");
 
 	const result: MutateLoginResult = {
