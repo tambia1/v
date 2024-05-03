@@ -8,7 +8,7 @@ import { Game } from "./components/game/Game";
 import { GameDelete } from "./components/gameDelete/GameDelete";
 
 const client = new ApolloClient({
-	uri: "http://localhost:6001/",
+	uri: "http://localhost:5003/",
 	cache: new InMemoryCache({
 		addTypename: false,
 	}),

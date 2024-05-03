@@ -14,7 +14,7 @@ function log(color, message) {
 	console.log("\u001b[" + color + "m" + message + "\u001b[0m");
 }
 
-const PORT = 6000;
+const PORT = 5002;
 
 const actionSend = {
 	CONNECTED: "CONNECTED",

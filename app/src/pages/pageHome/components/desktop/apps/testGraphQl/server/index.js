@@ -17,7 +17,7 @@ function log(color, message) {
 	console.log("\u001b[" + color + "m" + message + "\u001b[0m");
 }
 
-const PORT = 6001;
+const PORT = 5003;
 
 const resolvers = {
 	Query: {

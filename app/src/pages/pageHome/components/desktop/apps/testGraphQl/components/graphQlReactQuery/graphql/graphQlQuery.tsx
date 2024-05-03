@@ -3,7 +3,7 @@ import { DocumentNode } from "graphql";
 import request, { Variables } from "graphql-request";
 
 export const useGraphQlQuery = <T,>(key: string, query: DocumentNode, variables?: Variables) => {
-	const url = "http://localhost:6001/";
+	const url = "http://localhost:5003/";
 
 	return useQuery({
 		queryKey: [key],
