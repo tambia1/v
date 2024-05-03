@@ -69,7 +69,13 @@ export const sendLogout = async (token: string): Promise<MutateLogoutResult> => 
 };
 
 export const sendToken = async (token: string): Promise<MutateTokenResult> => {
-	await Promises.sleep(DELAY);
+	const response = await fetch("https://www.googleapis.com/oauth2/v3/userinfo", {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
+
+	console.log("aaa", response);
 
 	const userId = Object.keys(dbUsers).find((userId) => dbUsers[userId].email === "a" && dbUsers[userId].password === "a");
 

@@ -1,5 +1,21 @@
 ﻿import WebSocket, { WebSocketServer } from "ws";
 
+const COLOR = {
+	grey: 30,
+	red: 31,
+	green: 32,
+	yellow: 33,
+	blue: 34,
+	purple: 35,
+	cyan: 36,
+};
+
+function log(color, message) {
+	console.log("\u001b[" + color + "m" + message + "\u001b[0m");
+}
+
+const PORT = 6000;
+
 const actionSend = {
 	CONNECTED: "CONNECTED",
 	UPDATE: "UPDATE",
@@ -12,7 +28,7 @@ const actionGet = {
 
 const messages = [];
 
-const wss = new WebSocketServer({ port: 8080 });
+const wss = new WebSocketServer({ port: PORT });
 
 wss.on("connection", (ws, req) => {
 	const ip = req.socket.remoteAddress;
@@ -21,7 +37,7 @@ wss.on("connection", (ws, req) => {
 	ws.clientTime = Date.now();
 	ws.clientName = ws.clientId;
 
-	logBlue("client connected, id: " + ws.clientId + ", ip: " + ip);
+	log(COLOR.blue, "client connected, id: " + ws.clientId + ", ip: " + ip);
 
 	//send to the client his id
 	ws.send(JSON.stringify({ action: actionSend.CONNECTED, clientId: ws.clientId, clientName: ws.clientName }));
@@ -31,12 +47,12 @@ wss.on("connection", (ws, req) => {
 
 	//on error
 	ws.on("error", (err) => {
-		logRed("error: " + err);
+		log(COLOR.red, "error: " + err);
 	});
 
 	//on client disconnect
 	ws.on("client disconnect", () => {
-		logCyan("disconnect");
+		log(COLOR.cyan, "disconnect");
 	});
 
 	//on message from client
@@ -46,12 +62,12 @@ wss.on("connection", (ws, req) => {
 		try {
 			data = JSON.parse(message);
 		} catch (error) {
-			logRed("Client sent invalid message" + message);
+			log(COLOR.red, "Client sent invalid message" + message);
 
 			return;
 		}
 
-		logYellow("Client sent message: " + ws.clientId + " " + JSON.stringify(data));
+		log(COLOR.yellow, "Client sent message: " + ws.clientId + " " + JSON.stringify(data));
 
 		//send to all clients the message (except to himself)
 		switch (data.action) {
@@ -98,36 +114,4 @@ function getUniqueId() {
 	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
 }
 
-function log(color, message) {
-	console.log("\u001b[" + color + "m" + message + "\u001b[0m");
-}
-
-function logGrey(message) {
-	log(30, message);
-}
-
-function logRed(message) {
-	log(31, message);
-}
-
-function logGreen(message) {
-	log(32, message);
-}
-
-function logYellow(message) {
-	log(33, message);
-}
-
-function logBlue(message) {
-	log(34, message);
-}
-
-function logPurple(message) {
-	log(35, message);
-}
-
-function logCyan(message) {
-	log(36, message);
-}
-
-logGreen("WebSockets Server Running");
+log(COLOR.green, `WebSockets server running at port ${PORT}`);

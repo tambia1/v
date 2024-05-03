@@ -3,6 +3,22 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema.js";
 import db from "./db.js";
 
+const COLOR = {
+	grey: 30,
+	red: 31,
+	green: 32,
+	yellow: 33,
+	blue: 34,
+	purple: 35,
+	cyan: 36,
+};
+
+function log(color, message) {
+	console.log("\u001b[" + color + "m" + message + "\u001b[0m");
+}
+
+const PORT = 6001;
+
 const resolvers = {
 	Query: {
 		games() {
@@ -85,7 +101,7 @@ const server = new ApolloServer({
 });
 
 const { url } = await startStandaloneServer(server, {
-	listen: { port: 4000 },
+	listen: { port: PORT },
 });
 
-console.log("GraphQL server ready at port 4000");
+log(COLOR.green, `GraphQL server running at port ${PORT}`);
