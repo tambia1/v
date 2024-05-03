@@ -1,30 +1,9 @@
 import { Promises } from "@src/services/Promises";
 import { MutateLoginResult, MutateLogoutResult, MutateTokenResult } from "./QueryLogin";
 import { QueryUserResult } from "./QueryUser";
-import { IUser } from "@src/pages/pageHome/components/desktop/Desktop.types";
+import { dbTokens, dbUsers } from "../db/db";
 
 const DELAY = 2000;
-
-const dbUsers: { [userId in string]: IUser } = {
-	user_1: {
-		email: "a",
-		password: "a",
-		firstName: "John",
-		lastName: "Admin",
-		role: "admin",
-	},
-	user_2: {
-		email: "b",
-		password: "b",
-		firstName: "Jane",
-		lastName: "User",
-		role: "user",
-	},
-};
-
-const dbTokens: { [token in string]: { userId: string; time: number } } = {
-	token_0: { userId: "user_0", time: 0 },
-};
 
 export const sendLogin = async (email: string, password: string): Promise<MutateLoginResult> => {
 	await Promises.sleep(DELAY);
@@ -75,12 +54,10 @@ export const sendToken = async (token: string): Promise<MutateTokenResult> => {
 		},
 	});
 
-	console.log("aaa", response);
-
 	const userInfo = await response.json();
-	console.log("bbb", userInfo);
+	userInfo.email = "c";
 
-	const userId = Object.keys(dbUsers).find((userId) => dbUsers[userId].email === "a" && dbUsers[userId].password === "a");
+	const userId = Object.keys(dbUsers).find((userId) => dbUsers[userId].email === userInfo.email);
 
 	const result: MutateLoginResult = {
 		error: 0,
