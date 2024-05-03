@@ -3,7 +3,7 @@ import { MutateLoginResult, MutateLogoutResult, MutateTokenResult } from "./Quer
 import { QueryUserResult } from "./QueryUser";
 import { dbTokens, dbUsers } from "../db/db";
 
-const DELAY = 2000;
+const DELAY = 1000;
 
 export const sendLogin = async (email: string, password: string): Promise<MutateLoginResult> => {
 	await Promises.sleep(DELAY);
