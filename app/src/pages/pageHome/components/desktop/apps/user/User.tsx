@@ -45,6 +45,8 @@ export const User = () => {
 		onSuccess: (tokenResponse) => {
 			storeLogin.setToken(tokenResponse.access_token);
 			storeLogin.setRole("guest");
+
+			console.log("google", tokenResponse);
 		},
 		onError: (_errorResponse) => {
 			storeLogin.setToken("");
