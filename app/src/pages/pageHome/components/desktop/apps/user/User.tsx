@@ -35,6 +35,7 @@ export const User = () => {
 
 	const mutateLogin = QueryLogin.login();
 	const mutateLogout = QueryLogin.logout();
+	const mutateToken = QueryLogin.token();
 
 	const [isLoginPerformed, setIsLoginPerformed] = useState(false);
 
@@ -42,8 +43,19 @@ export const User = () => {
 	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: false });
 
 	const performGoogleLogin = useGoogleLogin({
-		onSuccess: (tokenResponse) => {
-			onLoginSuccess(tokenResponse.access_token);
+		onSuccess: async (tokenResponse) => {
+			const token = tokenResponse.access_token;
+
+			setIsLoading(true);
+			setIsLoginPerformed(true);
+			const mutateResult = await mutateToken({ token });
+			setIsLoading(false);
+
+			if (mutateResult.error === 0) {
+				onLoginSuccess(token);
+			} else {
+				onLoginError();
+			}
 		},
 		onError: (_errorResponse) => {
 			onLoginError();
