@@ -12,6 +12,9 @@ import modalIconsQuestion from "@components/modal/components/box/components/cont
 import slotMachine from "@apps/spin/pages/components/slotMachine/assets/slotMachine.png";
 import ninjaGrass from "@apps/ninja/pages/game/images/grass.png";
 import ninjaBoard from "@apps/ninja/pages/game/images/board.jpg";
+import speedometer from "@apps/speed/images/speedometer.png";
+import speddCaliper from "@apps/speed/images/caliper.png";
+import speedCompass from "@apps/speed/images/compass.png";
 
 export const getImagesToCache = () => {
 	return [
@@ -24,5 +27,6 @@ export const getImagesToCache = () => {
 		storeBg,
 		slotMachine,
 		[ninjaBoard, ninjaGrass],
+		[speedometer, speddCaliper, speedCompass],
 	];
 };
