@@ -126,4 +126,8 @@ export const translation: IHome = {
 	testGraphQl: {
 		title: "Test GraphQL",
 	},
+
+	speed: {
+		title: "Speed",
+	},
 };

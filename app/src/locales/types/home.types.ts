@@ -94,6 +94,10 @@ export type IHome = {
 		loading: string;
 	};
 
+	speed: {
+		title: string;
+	};
+
 	mfe: {
 		title: string;
 	};

@@ -64,7 +64,7 @@ export const translation: IHome = {
 	},
 
 	store: {
-		title: "Store",
+		title: "Kauppa",
 		saveApp: "Tallenna sovellus työpöydälle?",
 		alreadySaved: "Sovellus on jo työpöydällä.",
 	},
@@ -125,5 +125,9 @@ export const translation: IHome = {
 
 	testGraphQl: {
 		title: "Test GraphQL",
+	},
+
+	speed: {
+		title: "Nopeus",
 	},
 };
