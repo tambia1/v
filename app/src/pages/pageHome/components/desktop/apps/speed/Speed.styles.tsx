@@ -346,7 +346,7 @@ export const IndicatorLngDisabled = styled.div`
 	top: 133px;
 	left: 13px;
 	background-color: #ffffff;
-	clip: rect(0px, 50px, 62px, 0px);
+	overflow: hidden;
 `;
 
 export const IndicatorLngEnabled = styled.div<{ $top: string }>`
@@ -366,7 +366,7 @@ export const IndicatorAccurecyDisabled = styled.div`
 	top: 36px;
 	left: 268px;
 	background-color: #ffffff;
-	clip: rect(0px, 50px, 62px, 0px);
+	overflow: hidden;
 `;
 
 export const IndicatorAccurecyEnabled = styled.div<{ $top: string }>`
@@ -385,7 +385,7 @@ export const IndicatorAltDisabled = styled.div`
 	top: 133px;
 	left: 268px;
 	background-color: #ffffff;
-	clip: rect(0px, 50px, 62px, 0px);
+	overflow: hidden;
 `;
 export const IndicatorAltEnabled = styled.div<{ $top: string }>`
 	position: absolute;
