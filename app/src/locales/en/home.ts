@@ -94,6 +94,10 @@ export const translation: IHome = {
 		loading: "LOADING...",
 	},
 
+	speed: {
+		title: "Speed",
+	},
+
 	mfe: {
 		title: "Micro Frontend",
 	},
@@ -127,7 +131,7 @@ export const translation: IHome = {
 		title: "Test GraphQL",
 	},
 
-	speed: {
-		title: "Speed",
+	testCube: {
+		title: "Test Cube",
 	},
 };

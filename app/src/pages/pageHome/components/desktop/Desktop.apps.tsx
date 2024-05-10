@@ -20,8 +20,9 @@ import { Chat } from "./apps/chat/Chat";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Spin } from "./apps/spin/Spin";
 import { TestAnimation } from "./apps/testAnimation/TestAnimation";
-import { GraphQl } from "./apps/testGraphQl/GraphQl";
+import { TestGraphQl } from "./apps/testGraphQl/GraphQl";
 import { Speed } from "./apps/speed/Speed";
+import { TestCube } from "./apps/testCube/TestCube";
 
 const Mfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -57,12 +58,13 @@ export const apps: IApp[][] = [
 		{ id: "clashRoyale", roles: ["admin", "user"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 	],
 	[
+		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <Mfe /> },
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
 		{ id: "testSelect", roles: ["admin"], title: <T>{lang.testSelect.title}</T>, icon: "test", component: <TestSelect /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "test", component: <TestTransition /> },
 		{ id: "testAnimation", roles: ["admin"], title: <T>{lang.testAnimation.title}</T>, icon: "test", component: <TestAnimation /> },
-		{ id: "testGraphQl", roles: ["admin"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <GraphQl /> },
-		{ id: "mfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <Mfe /> },
+		{ id: "testGraphQl", roles: ["admin"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <TestGraphQl /> },
+		{ id: "testCube", roles: ["admin", "guest"], title: <T>{lang.testCube.title}</T>, icon: "test", component: <TestCube /> },
 	],
 ];

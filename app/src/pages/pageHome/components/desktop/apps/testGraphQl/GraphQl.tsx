@@ -2,13 +2,13 @@ import * as S from "./GraphQl.styles";
 import { GraphQlApolloClient } from "./components/graphQlApolloClient/GraphQlApolloClient";
 import { GraphQlReactQuery } from "./components/graphQlReactQuery/GraphQlReactQuery";
 
-export const GraphQl = () => {
+export const TestGraphQl = () => {
 	return (
-		<S.GraphQl>
+		<S.TestGraphQl>
 			<S.Container>
 				<GraphQlApolloClient />
 				<GraphQlReactQuery />
 			</S.Container>
-		</S.GraphQl>
+		</S.TestGraphQl>
 	);
 };

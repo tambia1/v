@@ -130,4 +130,8 @@ export type IHome = {
 	testGraphQl: {
 		title: string;
 	};
+
+	testCube: {
+		title: string;
+	};
 };
