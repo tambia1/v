@@ -3,7 +3,6 @@ import { Splash } from "./components/splash/Splash";
 import { Desktop } from "./components/desktop/Desktop";
 import { useLayoutEffect, useRef, useState } from "react";
 import { useAnimation } from "@src/hooks/UseAnimation";
-
 import { version, dependencies } from "@src/../package.json";
 
 export const PageHome = () => {
