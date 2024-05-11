@@ -18,7 +18,6 @@ export const Container = styled.div<{ $width: number; $height: number; $depth: n
 	transform-style: preserve-3d;
 	transform: translateX(${(props) => props.$x}px) translateY(${(props) => props.$y}px) translateZ(${(props) => props.$z}px) rotateX(${(props) => props.$rotateX}deg)
 		rotateY(${(props) => props.$rotateY}deg) rotateZ(${(props) => props.$rotateZ}deg);
-	transition: all 1s;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -27,17 +26,11 @@ export const Container = styled.div<{ $width: number; $height: number; $depth: n
 const Face = css`
 	position: absolute;
 
-	border: 1px solid #000000;
-	font-size: 40px;
-	font-weight: bold;
-	color: white;
-
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 	transform-origin: 50% 50%;
-	transition: all 1s;
 `;
 
 export const Front = styled.div<{ $width: number; $height: number; $depth: number }>`

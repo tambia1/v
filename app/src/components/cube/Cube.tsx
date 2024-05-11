@@ -13,8 +13,6 @@ interface Props {
 }
 
 export const Cube = ({ width, height, depth, x, y, z, rotateX, rotateY, rotateZ }: Props) => {
-	console.log(width, height, depth);
-
 	return (
 		<S.Cube>
 			<S.Scene $width={width} $height={height}>
