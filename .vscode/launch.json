@@ -103,6 +103,19 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "app createApp",
+			"command": "node createApp.js",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/scripts/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
 			"name": "frontend install",
 			"command": "npm i",
 			"request": "launch",
