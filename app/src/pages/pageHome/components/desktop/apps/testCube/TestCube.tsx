@@ -6,6 +6,8 @@ import { Cube } from "@src/components/cube/Cube";
 import { Slider } from "@src/components/slider/Slider";
 import { useState } from "react";
 
+// test
+
 export const TestCube = () => {
 	const [sliderValue, setSliderValue] = useState({
 		width: 0.5,
