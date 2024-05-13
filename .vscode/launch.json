@@ -3,7 +3,7 @@
 	"compounds": [
 		{
 			"name": "Run project",
-			"configurations": ["launch edge 5000", "app start", "frontend preview", "websocket server", "graphql server"],
+			"configurations": ["launch edge 5000", "app start", "frontend preview", "websocket server", "graphql server", "redis server"],
 			"stopAll": true
 		}
 	],
@@ -162,6 +162,16 @@
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testGraphQl/server/",
+			"env": {
+				"NODE_ENV": "development"
+			}
+		},
+		{
+			"name": "redis server",
+			"command": "node index.js",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testRedis/server/",
 			"env": {
 				"NODE_ENV": "development"
 			}
