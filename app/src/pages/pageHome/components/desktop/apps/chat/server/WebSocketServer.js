@@ -1,18 +1,5 @@
 ﻿import WebSocket, { WebSocketServer } from "ws";
-
-const COLOR = {
-	grey: 30,
-	red: 31,
-	green: 32,
-	yellow: 33,
-	blue: 34,
-	purple: 35,
-	cyan: 36,
-};
-
-function log(color, message) {
-	console.log("\u001b[" + color + "m" + message + "\u001b[0m");
-}
+import { log, colors } from "./log.js";
 
 const PORT = 5002;
 
@@ -37,7 +24,7 @@ wss.on("connection", (ws, req) => {
 	ws.clientTime = Date.now();
 	ws.clientName = ws.clientId;
 
-	log(COLOR.blue, "client connected, id: " + ws.clientId + ", ip: " + ip);
+	log(colors.blue, "client connected, id: " + ws.clientId + ", ip: " + ip);
 
 	//send to the client his id
 	ws.send(JSON.stringify({ action: actionSend.CONNECTED, clientId: ws.clientId, clientName: ws.clientName }));
@@ -47,12 +34,12 @@ wss.on("connection", (ws, req) => {
 
 	//on error
 	ws.on("error", (err) => {
-		log(COLOR.red, "error: " + err);
+		log(colors.red, "error: " + err);
 	});
 
 	//on client disconnect
 	ws.on("client disconnect", () => {
-		log(COLOR.cyan, "disconnect");
+		log(colors.cyan, "disconnect");
 	});
 
 	//on message from client
@@ -62,12 +49,12 @@ wss.on("connection", (ws, req) => {
 		try {
 			data = JSON.parse(message);
 		} catch (error) {
-			log(COLOR.red, "Client sent invalid message" + message);
+			log(colors.red, "Client sent invalid message" + message);
 
 			return;
 		}
 
-		log(COLOR.yellow, "Client sent message: " + ws.clientId + " " + JSON.stringify(data));
+		log(colors.yellow, "Client sent message: " + ws.clientId + " " + JSON.stringify(data));
 
 		//send to all clients the message (except to himself)
 		switch (data.action) {
@@ -114,4 +101,4 @@ function getUniqueId() {
 	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
 }
 
-log(COLOR.green, `WebSockets server running at port ${PORT}`);
+log(colors.green, `WebSockets server running at port ${PORT}`);

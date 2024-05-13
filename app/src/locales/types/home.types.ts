@@ -134,4 +134,8 @@ export type IHome = {
 	testCube: {
 		title: string;
 	};
+
+	testRedis: {
+		title: string;
+	};
 };

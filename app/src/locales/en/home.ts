@@ -134,4 +134,8 @@ export const translation: IHome = {
 	testCube: {
 		title: "Test Cube",
 	},
+
+	testRedis: {
+		title: "Test Redis",
+	},
 };
