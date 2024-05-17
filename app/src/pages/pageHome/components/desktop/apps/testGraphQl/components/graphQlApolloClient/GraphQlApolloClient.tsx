@@ -35,6 +35,8 @@ export const GraphQlApolloClient = () => {
 
 				<S.Space />
 				<GameAdd />
+
+				<S.Space />
 				<GameDelete />
 			</ApolloProvider>
 		</S.GraphQlApolloClient>

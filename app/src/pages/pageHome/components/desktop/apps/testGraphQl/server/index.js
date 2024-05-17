@@ -61,7 +61,7 @@ const resolvers = {
 		addGame(_parent, args) {
 			const game = {
 				...args.game,
-				id: ~~(Math.random() * 1000),
+				id: String(~~(Math.random() * 1000)),
 			};
 
 			db.games.push(game);
