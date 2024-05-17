@@ -1,10 +1,10 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./GameDelete.styles";
 import { Button } from "@src/components/button/Button";
-import { useGraphQlMutation } from "../../graphql/graphQlMutation";
-import { DELETE_GAME } from "../../graphql/queires/gameDelete.query";
-import { useGraphQlQuery } from "../../graphql/graphQlQuery";
-import { GET_GAMES, IGames } from "../../graphql/queires/games.query";
+import { useGraphQlMutation } from "../../graphql/helpers/graphQlMutation";
+import { DELETE_GAME } from "../../graphql/gameDelete.mutation";
+import { useGraphQlQuery } from "../../graphql/helpers/graphQlQuery";
+import { GET_GAMES, IGames } from "../../graphql/games.query";
 
 export const GameDelete = () => {
 	const mutation = useGraphQlMutation(DELETE_GAME);

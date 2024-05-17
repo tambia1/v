@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Games.styles";
-import { GET_GAMES, IGames } from "../../graphql/queires/games.query";
-import { useGraphQlQuery } from "../../graphql/graphQlQuery";
+import { GET_GAMES, IGames } from "../../graphql/games.query";
+import { useGraphQlQuery } from "../../graphql/helpers/graphQlQuery";
 import { Button } from "@src/components/button/Button";
 
 export const Games = () => {

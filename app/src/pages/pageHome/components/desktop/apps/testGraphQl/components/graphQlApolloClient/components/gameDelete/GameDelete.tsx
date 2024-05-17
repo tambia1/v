@@ -2,8 +2,8 @@ import { Text } from "@src/components/text/Text";
 import * as S from "./GameDelete.styles";
 import { useMutation } from "@apollo/client";
 import { Button } from "@src/components/button/Button";
-import { DELETE_GAME } from "../../graphql/queires/gameDelete.query";
-import { GET_GAMES } from "../../graphql/queires/games.query";
+import { DELETE_GAME } from "../../graphql/gameDelete.mutation";
+import { GET_GAMES } from "../../graphql/games.query";
 
 export const GameDelete = () => {
 	const [deleteGame] = useMutation(DELETE_GAME);

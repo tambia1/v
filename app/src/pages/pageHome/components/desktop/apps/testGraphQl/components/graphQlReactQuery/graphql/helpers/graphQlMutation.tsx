@@ -3,7 +3,7 @@ import { DocumentNode } from "graphql";
 import { request, Variables } from "graphql-request";
 
 export const useGraphQlMutation = <T,>(query: DocumentNode) => {
-	const url = "http://localhost:6001/";
+	const url = "http://localhost:5003/";
 
 	const { mutateAsync } = useMutation({
 		mutationFn: async (variables?: Variables) => {

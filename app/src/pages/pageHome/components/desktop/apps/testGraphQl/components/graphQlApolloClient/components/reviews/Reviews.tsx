@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Reviews.styles";
 import { useQuery } from "@apollo/client";
-import { GET_REVIEWS, IReviews } from "../../graphql/queires/reviews.query";
+import { GET_REVIEWS, IReviews } from "../../graphql/reviews.query";
 import { Button } from "@src/components/button/Button";
 
 export const Reviews = () => {

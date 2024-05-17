@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Authors.styles";
 import { useQuery } from "@apollo/client";
-import { GET_AUTHORS, IAuthors } from "../../graphql/queires/authors.query";
+import { GET_AUTHORS, IAuthors } from "../../graphql/authors.query";
 import { Button } from "@src/components/button/Button";
 
 export const Authors = () => {

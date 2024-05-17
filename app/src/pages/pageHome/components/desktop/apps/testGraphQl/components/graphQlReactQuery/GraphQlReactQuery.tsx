@@ -6,6 +6,7 @@ import { Reviews } from "./components/reviews/Reviews";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Game } from "./components/game/Game";
 import { GameDelete } from "./components/gameDelete/GameDelete";
+import { GameAdd } from "./components/gameAdd/GameAdd";
 
 const client = new QueryClient();
 
@@ -28,6 +29,7 @@ export const GraphQlReactQuery = () => {
 				<Game />
 
 				<S.Space />
+				<GameAdd />
 				<GameDelete />
 			</QueryClientProvider>
 		</S.GraphQlReactQuery>

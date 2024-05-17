@@ -6,6 +6,7 @@ import { Authors } from "./components/authors/Authors";
 import { Reviews } from "./components/reviews/Reviews";
 import { Game } from "./components/game/Game";
 import { GameDelete } from "./components/gameDelete/GameDelete";
+import { GameAdd } from "./components/gameAdd/GameAdd";
 
 const client = new ApolloClient({
 	uri: "http://localhost:5003/",
@@ -33,6 +34,7 @@ export const GraphQlApolloClient = () => {
 				<Game />
 
 				<S.Space />
+				<GameAdd />
 				<GameDelete />
 			</ApolloProvider>
 		</S.GraphQlApolloClient>

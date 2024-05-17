@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Authors.styles";
-import { GET_AUTHORS, IAuthors } from "../../graphql/queires/authors.query";
-import { useGraphQlQuery } from "../../graphql/graphQlQuery";
+import { GET_AUTHORS, IAuthors } from "../../graphql/authors.query";
+import { useGraphQlQuery } from "../../graphql/helpers/graphQlQuery";
 import { Button } from "@src/components/button/Button";
 
 export const Authors = () => {

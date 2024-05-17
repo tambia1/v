@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Reviews.styles";
-import { GET_REVIEWS, IReviews } from "../../graphql/queires/reviews.query";
-import { useGraphQlQuery } from "../../graphql/graphQlQuery";
+import { GET_REVIEWS, IReviews } from "../../graphql/reviews.query";
+import { useGraphQlQuery } from "../../graphql/helpers/graphQlQuery";
 
 export const Reviews = () => {
 	const { isLoading, error, data } = useGraphQlQuery<IReviews>("reviews", GET_REVIEWS);

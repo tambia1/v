@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import * as S from "./Game.styles";
 import { useQuery } from "@apollo/client";
-import { GET_GAME, IGame } from "../../graphql/queires/game.query";
+import { GET_GAME, IGame } from "../../graphql/game.query";
 
 export const Game = () => {
 	const { loading, error, data } = useQuery<IGame>(GET_GAME, {
