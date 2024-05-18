@@ -4,7 +4,7 @@ import { version } from "../../package.json";
 export const Mfe = () => {
 	return (
 		<div data-mfe-version={`${version}}`} className="mfe">
-			Hello Micro Frontend
+			Hello Micro Frontend 1
 		</div>
 	);
 };
