@@ -12,26 +12,17 @@ const client = new QueryClient();
 
 export const GraphQlReactQuery = () => {
 	return (
-		<S.GraphQlReactQuery>
-			<QueryClientProvider client={client}>
+		<QueryClientProvider client={client}>
+			<S.GraphQlReactQuery>
 				<Text size="l">GraphQL ReactQuery</Text>
 
-				<S.Space />
 				<Games />
-
-				<S.Space />
 				<Authors />
-
-				<S.Space />
 				<Reviews />
-
-				<S.Space />
 				<Game />
-
-				<S.Space />
 				<GameAdd />
 				<GameDelete />
-			</QueryClientProvider>
-		</S.GraphQlReactQuery>
+			</S.GraphQlReactQuery>
+		</QueryClientProvider>
 	);
 };

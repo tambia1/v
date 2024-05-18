@@ -17,28 +17,17 @@ const client = new ApolloClient({
 
 export const GraphQlApolloClient = () => {
 	return (
-		<S.GraphQlApolloClient>
-			<ApolloProvider client={client}>
+		<ApolloProvider client={client}>
+			<S.GraphQlApolloClient>
 				<Text size="l">GraphQL ApolloClient</Text>
 
-				<S.Space />
 				<Games />
-
-				<S.Space />
 				<Authors />
-
-				<S.Space />
 				<Reviews />
-
-				<S.Space />
 				<Game />
-
-				<S.Space />
 				<GameAdd />
-
-				<S.Space />
 				<GameDelete />
-			</ApolloProvider>
-		</S.GraphQlApolloClient>
+			</S.GraphQlApolloClient>
+		</ApolloProvider>
 	);
 };

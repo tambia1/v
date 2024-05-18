@@ -11,9 +11,6 @@ export const GraphQlApolloClient = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
-`;
 
-export const Space = styled.div`
-	width: 1rem;
-	height: 1rem;
+	gap: 1rem;
 `;
