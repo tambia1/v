@@ -32,11 +32,11 @@ reactJsxRuntime_production_min.jsxs = q;
 var jsxRuntimeExports = jsxRuntime.exports;
 const version = "1.0.0";
 const Mfe = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-mfe-version": `${version}}`, className: "mfe", children: "Hello Micro Frontend 2" });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-mfe-version": `${version}}`, className: "mfe", children: "Hello Micro Frontend Test" });
 };
 export {
   Mfe,
   Mfe as default,
   jsxRuntimeExports as j
 };
-//# sourceMappingURL=__federation_expose_Mfe-DuskXFNY.js.map
+//# sourceMappingURL=__federation_expose_Mfe-D2QRLAui.js.map
