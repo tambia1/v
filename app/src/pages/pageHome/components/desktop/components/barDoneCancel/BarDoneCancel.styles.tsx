@@ -35,7 +35,7 @@ export const IconDone = styled.div<{ $isVisible: boolean }>`
 	left: 0rem;
 
 	& svg {
-		stroke: ${(props) => props.theme.color.successBg};
+		stroke: ${(props) => props.theme.color.successFg};
 	}
 
 	&:active {
@@ -48,7 +48,7 @@ export const IconCancel = styled.div<{ $isVisible: boolean }>`
 	right: 0rem;
 
 	& svg {
-		stroke: ${(props) => props.theme.color.errorBg};
+		stroke: ${(props) => props.theme.color.errorFg};
 	}
 
 	&:active {
