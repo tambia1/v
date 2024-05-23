@@ -8,6 +8,7 @@ import { Page, IPage } from "./components/page/Page";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 
 interface Props {
+	className?: string | undefined;
 	children?: IPage;
 	onPushStart?: ICallback;
 	onPushEnd?: ICallback;
@@ -26,7 +27,7 @@ export interface INavigatorItem {
 export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
 export type ICallback = (key: string) => boolean;
 
-export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
+export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const { theme } = useThemeContext();
 	const [navigatorItems, setNavigatorItems] = useState<INavigatorItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
 	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
@@ -140,7 +141,7 @@ export const Navigator = ({ children, onPushStart, onPushEnd, onPopStart, onPopE
 
 	return (
 		<NavigatorContext.Provider value={{ pages: navigatorItems, pushPage, popPage, goHome, addListener, removeListener }}>
-			<S.Navigator data-items={navigatorItems.length}>
+			<S.Navigator className={className} data-items={navigatorItems.length}>
 				<S.Headers>
 					<S.Back>
 						<S.BackContainer onClick={handleClose} $isVisible={onClose !== undefined && navigatorItems.length === 1}>

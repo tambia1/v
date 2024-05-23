@@ -3,12 +3,13 @@ import * as S from "./Pager.styles";
 import { ITouch, useTouch } from "@src/hooks/UseTouch";
 
 interface Props {
+	className?: string | undefined;
 	children: ReactNode[];
 	onChange: (pageIndex: number) => void;
 	disabled?: boolean;
 }
 
-export const Pager = ({ children: pages, onChange, disabled = false }: Props) => {
+export const Pager = ({ className, children: pages, onChange, disabled = false }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
 	const [pageIndex, setPageIndex] = useState(0);
@@ -75,7 +76,7 @@ export const Pager = ({ children: pages, onChange, disabled = false }: Props) =>
 	};
 
 	return (
-		<S.Pager>
+		<S.Pager className={className}>
 			<S.Pages ref={refPages}>
 				<S.PagesPanel ref={refPagesPanel}>
 					{pages.map((page, index) => (

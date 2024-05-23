@@ -2,10 +2,11 @@ import { ITheme } from "@src/theme/Theme.types";
 import * as S from "./Loader.styles";
 
 interface Props {
+	className?: string | undefined;
 	size?: keyof ITheme["size"];
 	color?: keyof ITheme["color"];
 }
 
-export const Loader = (props: Props) => {
-	return <S.Loader iconName="iconLoader" color={props.color || "normalFg"} size={props.size || "m"} />;
+export const Loader = ({ className, color = "normalFg", size = "m" }: Props) => {
+	return <S.Loader className={className} iconName="iconLoader" color={color} size={size} />;
 };

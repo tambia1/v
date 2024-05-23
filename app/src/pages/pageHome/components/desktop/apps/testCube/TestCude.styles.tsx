@@ -1,3 +1,4 @@
+import { Slider } from "@src/components/slider/Slider";
 import styled from "styled-components";
 
 export const TestCube = styled.div`
@@ -11,4 +12,8 @@ export const TestCube = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
+`;
+
+export const SliderComponent = styled(Slider)`
+	background-color: red;
 `;

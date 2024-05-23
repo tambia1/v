@@ -10,10 +10,11 @@ export type ILine = {
 };
 
 interface Props {
+	className?: string | undefined;
 	lines: ILine[];
 }
 
-export const Chart = ({ lines }: Props) => {
+export const Chart = ({ className, lines }: Props) => {
 	const theme = useTheme();
 
 	const draw = (ctx: CanvasRenderingContext2D) => {
@@ -89,7 +90,7 @@ export const Chart = ({ lines }: Props) => {
 	};
 
 	return (
-		<S.Container>
+		<S.Container className={className}>
 			<Canvas draw={draw} deps={lines} />
 		</S.Container>
 	);

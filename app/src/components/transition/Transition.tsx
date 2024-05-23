@@ -3,10 +3,11 @@ import * as S from "./Transition.styles";
 import { useAnimation } from "@src/hooks/UseAnimation";
 
 interface Props {
+	className?: string | undefined;
 	children?: ReactNode;
 }
 
-export const Transition = ({ children }: Props) => {
+export const Transition = ({ className, children }: Props) => {
 	const [childA, setChildA] = useState<ReactNode>(children);
 	const [childB, setChildB] = useState<ReactNode>(children);
 
@@ -31,7 +32,7 @@ export const Transition = ({ children }: Props) => {
 	}, [children]);
 
 	return (
-		<S.Transition>
+		<S.Transition className={className}>
 			<S.Child ref={refA}>{childA}</S.Child>
 			<S.Child ref={refB}>{childB}</S.Child>
 		</S.Transition>

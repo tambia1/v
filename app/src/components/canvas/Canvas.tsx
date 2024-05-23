@@ -1,11 +1,12 @@
 import { DependencyList, useCallback, useEffect, useRef } from "react";
 
 interface Props {
+	className?: string | undefined;
 	draw: (ctx: CanvasRenderingContext2D) => void;
 	deps?: DependencyList | undefined;
 }
 
-export const Canvas = ({ draw, deps }: Props) => {
+export const Canvas = ({ className, draw, deps }: Props) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
 	const handleOnResize = useCallback(
@@ -47,5 +48,5 @@ export const Canvas = ({ draw, deps }: Props) => {
 		};
 	}, [handleOnResize]);
 
-	return <canvas ref={canvasRef} width={100} height={100} />;
+	return <canvas className={className} ref={canvasRef} width={100} height={100} />;
 };

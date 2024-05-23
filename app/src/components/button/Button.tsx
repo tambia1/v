@@ -4,12 +4,13 @@ import * as S from "./Button.styles";
 export type IVariant = "styled" | "full" | "stroke" | "link";
 
 interface Props extends React.ComponentPropsWithoutRef<"button"> {
+	className?: string | undefined;
 	variant?: IVariant;
 }
 
-export const Button = ({ children, variant: varian = "styled", ...rest }: Props) => {
+export const Button = ({ className, children, variant: varian = "styled", ...rest }: Props) => {
 	return (
-		<S.Button $variant={varian} {...rest}>
+		<S.Button className={className} $variant={varian} {...rest}>
 			{children}
 		</S.Button>
 	);

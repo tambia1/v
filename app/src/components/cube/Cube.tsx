@@ -1,6 +1,7 @@
 import * as S from "./Cube.styles";
 
 interface Props {
+	className?: string | undefined;
 	width: number;
 	height: number;
 	depth: number;
@@ -12,9 +13,9 @@ interface Props {
 	rotateZ: number;
 }
 
-export const Cube = ({ width, height, depth, x, y, z, rotateX, rotateY, rotateZ }: Props) => {
+export const Cube = ({ className, width, height, depth, x, y, z, rotateX, rotateY, rotateZ }: Props) => {
 	return (
-		<S.Cube>
+		<S.Cube className={className}>
 			<S.Scene $width={width} $height={height}>
 				<S.Container $width={width} $height={height} $depth={depth} $x={x} $y={y} $z={z} $rotateX={rotateX} $rotateY={rotateY} $rotateZ={rotateZ}>
 					<S.Front $width={width} $height={height} $depth={depth}></S.Front>

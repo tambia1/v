@@ -5,12 +5,13 @@ import { Icon } from "@src/icons/Icon";
 import { Item } from "./components/item/Item";
 
 interface Props {
+	className?: string | undefined;
 	children: ReactNode[];
 	selectedIndex: number;
 	onClickItem: (index: number) => void;
 }
 
-export const Select = ({ children, selectedIndex, onClickItem }: Props) => {
+export const Select = ({ className, children, selectedIndex, onClickItem }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleOnClickButton = () => {
@@ -23,7 +24,7 @@ export const Select = ({ children, selectedIndex, onClickItem }: Props) => {
 	};
 
 	return (
-		<S.Select>
+		<S.Select className={className}>
 			<List>
 				<List.Cell onClick={handleOnClickButton}>
 					<List.Cell.CellCenter>{children[selectedIndex]}</List.Cell.CellCenter>

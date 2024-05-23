@@ -9,13 +9,14 @@ export type IData = {
 export type IType = "horizontal" | "vertical";
 
 interface Props {
+	className?: string | undefined;
 	type: IType;
 	data: IData;
 }
 
-export const Table = ({ data, type }: Props) => {
+export const Table = ({ className, data, type }: Props) => {
 	return (
-		<S.Table data-type={type}>
+		<S.Table className={className} data-type={type}>
 			{type === "horizontal" && (
 				<S.TableContainer>
 					<S.TableCols>

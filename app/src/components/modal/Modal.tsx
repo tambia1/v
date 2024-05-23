@@ -5,6 +5,7 @@ import { Button } from "../button/Button";
 import { Compose } from "./components/compose/Compose";
 
 interface Props {
+	className?: string | undefined;
 	children?: ReactNode;
 	isVisible?: boolean;
 	text?: ReactElement | string;
@@ -16,7 +17,7 @@ interface Props {
 	onClickBackground?: () => void;
 }
 
-export const Modal = ({ isVisible = true, text, iconName, buttonContentA, buttonCallbackA, buttonContentB, buttonCallbackB, onClickBackground }: Props) => {
+export const Modal = ({ className, isVisible = true, text, iconName, buttonContentA, buttonCallbackA, buttonContentB, buttonCallbackB, onClickBackground }: Props) => {
 	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
 			return;
@@ -26,7 +27,7 @@ export const Modal = ({ isVisible = true, text, iconName, buttonContentA, button
 	};
 
 	return (
-		<Modal.Compose onClick={handleOnClick} isVisible={isVisible}>
+		<Modal.Compose className={className} onClick={handleOnClick} isVisible={isVisible}>
 			<Modal.Box.Compose>
 				<Modal.Box.Content.Compose>
 					{iconName && <Modal.Box.Content.Icon iconName={iconName} />}
