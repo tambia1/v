@@ -1,8 +1,8 @@
-import { _ as __vitePreload } from "./preload-helper-CARphzHV.js";
+import { _ as __vitePreload } from "./preload-helper-DoOiozHA.js";
 const exportSet = /* @__PURE__ */ new Set(["Module", "__esModule", "default", "_export_sfc"]);
 let moduleMap = {
   "./Mfe": () => {
-    dynamicLoadingCss(["style-CxXuIG4D.css"], false, "./Mfe");
+    dynamicLoadingCss(["style-CHmI8080.css"], false, "./Mfe");
     return __federation_import("./__federation_expose_Mfe-D2QRLAui.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
   }
 };

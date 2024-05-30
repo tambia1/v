@@ -3,7 +3,7 @@
 	"compounds": [
 		{
 			"name": "Run project",
-			"configurations": ["launch edge 5000", "app start", "frontend preview", "websocket server", "graphql server", "redis server"],
+			"configurations": ["launch brave 5000", "app start", "frontend preview", "websocket server", "graphql server", "redis server"],
 			"stopAll": true
 		}
 	],
@@ -14,6 +14,17 @@
 			"request": "launch",
 			"url": "http://localhost:5000",
 			"webRoot": "${workspaceFolder}/app",
+			"sourceMapPathOverrides": {
+				"\\mnt\\c\\*": "C:/*"
+			}
+		},
+		{
+			"name": "launch brave 5000",
+			"type": "pwa-chrome",
+			"request": "launch",
+			"url": "http://localhost:5000",
+			"webRoot": "${workspaceFolder}/app",
+			"runtimeExecutable": "/usr/bin/brave-browser",
 			"sourceMapPathOverrides": {
 				"\\mnt\\c\\*": "C:/*"
 			}

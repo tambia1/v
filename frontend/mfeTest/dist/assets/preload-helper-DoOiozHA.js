@@ -6,7 +6,7 @@ const seen = {};
 const __vitePreload = function preload(baseModule, deps, importerUrl) {
   let promise = Promise.resolve();
   if (deps && deps.length > 0) {
-    const links = document.getElementsByTagName("link");
+    document.getElementsByTagName("link");
     promise = Promise.all(deps.map((dep) => {
       dep = assetsURL(dep);
       if (dep in seen)
@@ -14,15 +14,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
       seen[dep] = true;
       const isCss = dep.endsWith(".css");
       const cssSelector = isCss ? '[rel="stylesheet"]' : "";
-      const isBaseRelative = !!importerUrl;
-      if (isBaseRelative) {
-        for (let i = links.length - 1; i >= 0; i--) {
-          const link2 = links[i];
-          if (link2.href === dep && (!isCss || link2.rel === "stylesheet")) {
-            return;
-          }
-        }
-      } else if (document.querySelector(`link[href="${dep}"]${cssSelector}`)) {
+      if (document.querySelector(`link[href="${dep}"]${cssSelector}`)) {
         return;
       }
       const link = document.createElement("link");
@@ -53,4 +45,4 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
 export {
   __vitePreload as _
 };
-//# sourceMappingURL=preload-helper-CARphzHV.js.map
+//# sourceMappingURL=preload-helper-DoOiozHA.js.map
