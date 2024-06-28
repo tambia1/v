@@ -24,7 +24,7 @@
 			"request": "launch",
 			"url": "http://localhost:5000",
 			"webRoot": "${workspaceFolder}/app",
-			"runtimeExecutable": "/usr/bin/brave-browser",
+			"runtimeExecutable": "/usr/bin/brave-browser-stable",
 			"sourceMapPathOverrides": {
 				"\\mnt\\c\\*": "C:/*"
 			}
