@@ -114,7 +114,62 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "app createApp",
+			"name": "playwright runs the end-to-end tests",
+			"command": "npx playwright test",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright starts the interactive UI mode",
+			"command": "npx playwright test --ui",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright runs the tests only on Desktop Chrome",
+			"command": "npx playwright test --project=chromium",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright runs the tests in a specific file",
+			"command": "npx playwright test example",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright runs the tests in debug mode",
+			"command": "npx playwright test --debug",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright auto generate tests with Codegen",
+			"command": "npx playwright codegen",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright show report",
+			"command": "npx playwright show-report",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "app create v application",
 			"command": "node createApp.js",
 			"request": "launch",
 			"type": "node-terminal",
