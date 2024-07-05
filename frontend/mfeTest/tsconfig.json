@@ -7,12 +7,13 @@
 			"@pages/*": ["./src/pages/*"],
 			"@components/*": ["./src/components/*"]
 		},
+
 		"target": "ESNext",
 		"useDefineForClassFields": true,
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"allowJs": false,
 		"skipLibCheck": true,
-		"esModuleInterop": false,
+		"esModuleInterop": true,
 		"allowSyntheticDefaultImports": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
@@ -25,8 +26,9 @@
 		"sourceMap": true,
 		"types": ["vitest/globals"],
 		"noUnusedParameters": true,
-		"noUnusedLocals": true
+		"noUnusedLocals": true,
+		"composite": true
 	},
 	"include": ["src", "**/*.ts", "**/*.d.ts", "**/*.tsx"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+	"exclude": ["node_modules", "vite.config.ts", "tsconfig.json"]
 }
