@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import * as S from "./text.styles";
 
-interface Props {
+export interface Props {
 	children?: ReactNode;
 }
 

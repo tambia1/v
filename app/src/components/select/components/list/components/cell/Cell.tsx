@@ -4,7 +4,7 @@ import { CellCenter } from "./components/cellCenter/CellCenter";
 import * as S from "./Cell.styles";
 import { ReactNode, HTMLProps } from "react";
 
-interface Props extends HTMLProps<HTMLDivElement> {
+export interface Props extends HTMLProps<HTMLDivElement> {
 	$isEnabled?: boolean;
 	$isSelected?: boolean;
 	children?: ReactNode;

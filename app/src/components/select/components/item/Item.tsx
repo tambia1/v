@@ -1,7 +1,7 @@
 import * as S from "./Item.styles";
 import { ReactNode } from "react";
 
-interface Props {
+export interface Props {
 	children: ReactNode;
 }
 

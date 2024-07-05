@@ -2,7 +2,7 @@ import * as S from "./List.styles";
 import { ReactNode } from "react";
 import { Cell } from "./components/cell/Cell";
 
-interface Props {
+export interface Props {
 	children?: ReactNode;
 }
 

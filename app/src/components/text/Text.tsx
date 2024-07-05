@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import * as S from "./Text.styles";
 import { ITheme } from "@src/theme/Theme.types";
 
-interface Props {
+export interface Props {
 	className?: string | undefined;
 	children?: ReactNode;
 	size?: keyof ITheme["size"];

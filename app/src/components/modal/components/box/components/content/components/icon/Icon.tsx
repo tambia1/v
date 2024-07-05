@@ -1,6 +1,6 @@
 import * as S from "./Icon.styles";
 
-interface Props {
+export interface Props {
 	iconName: S.IconsName;
 }
 

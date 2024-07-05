@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import * as S from "./Compose.styles";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	children: ReactNode;
 	isVisible: boolean;
 }

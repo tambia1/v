@@ -3,7 +3,7 @@ import * as S from "./Button.styles";
 
 export type IVariant = "styled" | "full" | "stroke" | "link";
 
-interface Props extends React.ComponentPropsWithoutRef<"button"> {
+export interface Props extends React.ComponentPropsWithoutRef<"button"> {
 	className?: string | undefined;
 	variant?: IVariant;
 }

@@ -3,7 +3,7 @@ import * as S from "./Box.styles";
 import { Buttons } from "./components/buttons/Buttons";
 import { Content } from "./components/content/Content";
 
-interface Props {
+export interface Props {
 	children?: ReactNode;
 }
 

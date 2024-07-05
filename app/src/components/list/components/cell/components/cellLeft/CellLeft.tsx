@@ -1,7 +1,7 @@
 import * as S from "./CellLeft.styles";
 import { ReactNode } from "react";
 
-interface Props {
+export interface Props {
 	children?: ReactNode;
 }
 

@@ -2,7 +2,7 @@ import * as S from "./Icon.styles";
 import { ReactSVG } from "react-svg";
 import { Icons, IIconName } from "./Icon.types";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string | undefined;
 	iconName: IIconName;
 	size?: string;

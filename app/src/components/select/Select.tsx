@@ -4,7 +4,7 @@ import { List } from "./components/list/List";
 import { Icon } from "@src/icons/Icon";
 import { Item } from "./components/item/Item";
 
-interface Props {
+export interface Props {
 	className?: string | undefined;
 	children: ReactNode[];
 	selectedIndex: number;
