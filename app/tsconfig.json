@@ -26,8 +26,9 @@
 		"sourceMap": true,
 		"types": ["vitest/globals"],
 		"noUnusedParameters": true,
-		"noUnusedLocals": true
+		"noUnusedLocals": true,
+		"composite": true
 	},
-	"include": ["src", "**/*.ts", "**/*.d.ts", "**/*.tsx"],
-	"references": [{ "path": "./tsconfig.node.json" }]
+	"include": ["src", "**/*.ts", "**/*.d.ts", "**/*.tsx", "vite.config.ts"],
+	"exclude": ["node_modules", "./app/vite.config.ts", "./app/tsconfig.json"]
 }
