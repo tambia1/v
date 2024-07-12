@@ -138,4 +138,8 @@ export const translation: IHome = {
 	testRedis: {
 		title: "Test Redis",
 	},
+
+	testTree: {
+		title: "Test Tree",
+	},
 };

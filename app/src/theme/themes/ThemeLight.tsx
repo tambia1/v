@@ -20,8 +20,8 @@ export const themeLight: ITheme = {
 
 		accentFg: "#4c7ebb",
 		accentBg: "#ffffff",
-		accentFgHover: "#296293",
-		accentBgHover: "#ffffff",
+		accentFgHover: "#89b2f3",
+		accentBgHover: "#f5f5f566",
 		accentFgActive: "#193d5b",
 		accentBgActive: "#ffffff",
 		accentFgSelected: "#265a87",

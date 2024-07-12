@@ -138,4 +138,8 @@ export type IHome = {
 	testRedis: {
 		title: string;
 	};
+
+	testTree: {
+		title: string;
+	};
 };
