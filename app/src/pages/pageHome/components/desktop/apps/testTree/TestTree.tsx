@@ -33,8 +33,8 @@ const renderFolder = (props: Folder) => {
 				setState(props.isExpanded);
 			}}
 		>
-			{props.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
 			{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
+			{props.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
 			<S.TreeFolderContent>{props.content}</S.TreeFolderContent>
 		</S.TreeFolder>
 	);
@@ -183,7 +183,7 @@ const TreeFolder = ({ node }: { node: Folder }) => {
 };
 
 const TreeItem = ({ node }: { node: Item }) => {
-	return <div>{node.render(node)}</div>;
+	return <div style={{ paddingLeft: 0 }}>{node.render(node)}</div>;
 };
 
 export const TestTree = () => {
