@@ -11,6 +11,8 @@ export const TestTreeView = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
+
+	overflow-y: auto;
 `;
 
 export const Tree = styled.div`

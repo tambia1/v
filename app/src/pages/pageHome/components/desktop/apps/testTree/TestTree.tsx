@@ -22,9 +22,32 @@ type Item = {
 
 type Node = Folder | Item;
 
+const selectItems = (node: Node) => {
+	if (node.type === "item") {
+		node.isSelected = true;
+	} else {
+		node.data.forEach((node) => selectItems(node));
+	}
+};
+
+const getIsAllItemsSelected = (nodes: Node[]): boolean => {
+	for (const node of nodes) {
+		if (node.type === "item") {
+			if (!node.isSelected) {
+				return false;
+			}
+		} else if (node.type === "folder") {
+			if (!getIsAllItemsSelected(node.data)) {
+				return false;
+			}
+		}
+	}
+
+	return true;
+};
 const renderFolder = (props: Folder) => {
 	const [_, setState] = useState(props.isExpanded);
-	const isAllSelected = false;
+	const isAllSelected = getIsAllItemsSelected(props.data);
 
 	return (
 		<S.TreeFolder
@@ -132,28 +155,31 @@ const nodes: Node[] = [
 		render: renderFolder,
 		data: [
 			{
-				type: "folder",
-				content: "Folder 2-0",
-				isExpanded: true,
-				render: renderFolder,
-				data: [
-					{
-						type: "item",
-						content: "item 2-0-0",
-						isSelected: false,
-						render: renderItem,
-					},
-					{
-						type: "item",
-						content: "item 2-0-1",
-						isSelected: false,
-						render: renderItem,
-					},
-				],
+				type: "item",
+				content: "item 2-0",
+				isSelected: false,
+				render: renderItem,
+			},
+			{
+				type: "item",
+				content: "item 2-1",
+				isSelected: false,
+				render: renderItem,
 			},
 		],
 	},
 ];
+
+for (let i = 0; i < 1000; i++) {
+	if (nodes[2].type === "folder") {
+		nodes[2].data.push({
+			type: "item",
+			content: `item 2-${2 + i}`,
+			isSelected: false,
+			render: renderItem,
+		});
+	}
+}
 
 interface Props {
 	nodes: Node[];
