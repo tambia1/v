@@ -173,6 +173,7 @@ const TreeFolder = ({ node }: { node: Folder }) => {
 	return (
 		<div>
 			<div>{node.render(node)}</div>
+
 			{node.isExpanded && (
 				<div style={{ paddingLeft: 20 }}>
 					<Tree nodes={node.data} />
