@@ -2,7 +2,7 @@ import { Text } from "@src/components/text/Text";
 import * as S from "./TestTree.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { ReactNode, useState } from "react";
+import { Dispatch, ReactNode, SetStateAction, useState } from "react";
 import { Icon } from "@src/icons/Icon";
 
 type Folder = {
@@ -10,7 +10,7 @@ type Folder = {
 	isExpanded: boolean;
 	content: string;
 	data: Node[];
-	render: (props: Folder) => ReactNode;
+	render: (props: Folder, count: number, setCount: Dispatch<SetStateAction<number>>) => ReactNode;
 };
 
 type Item = {
@@ -22,7 +22,9 @@ type Item = {
 
 type Node = Folder | Item;
 
-const renderFolder = (props: Folder) => {
+const renderFolder = (props: Folder, count: number, setCount: Dispatch<SetStateAction<number>>) => {
+	const isAllSelected = false;
+
 	return (
 		<S.TreeFolder>
 			{props.isExpanded ? (
@@ -30,6 +32,7 @@ const renderFolder = (props: Folder) => {
 					iconName="iconChevronUp"
 					onClick={() => {
 						props.isExpanded = false;
+						setCount(count + 1);
 					}}
 				/>
 			) : (
@@ -37,10 +40,11 @@ const renderFolder = (props: Folder) => {
 					iconName="iconChevronDown"
 					onClick={() => {
 						props.isExpanded = true;
+						setCount(count + 1);
 					}}
 				/>
 			)}
-			{props.isExpanded ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
+			{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
 			<S.TreeFolderContent>{props.content}</S.TreeFolderContent>
 		</S.TreeFolder>
 	);
@@ -158,22 +162,22 @@ interface Props {
 	nodes: Node[];
 }
 
-const Tree = (props: Props) => {
-	const [nodes, setNodes] = useState(props.nodes);
+const Tree = ({ nodes }: Props) => {
+	const [count, setCount] = useState(0);
 
 	return (
-		<S.Tree>
+		<S.Tree key={count}>
 			{nodes.map((node, index) => (
-				<div key={index}>{node.type === "folder" ? <TreeFolder node={node} /> : <TreeItem node={node} />}</div>
+				<div key={index}>{node.type === "folder" ? <TreeFolder node={node} count={count} setCount={setCount} /> : <TreeItem node={node} />}</div>
 			))}
 		</S.Tree>
 	);
 };
 
-const TreeFolder = ({ node }: { node: Folder }) => {
+const TreeFolder = ({ node, count, setCount }: { node: Folder; count: number; setCount: Dispatch<SetStateAction<number>> }) => {
 	return (
 		<div>
-			<div>{node.render(node)}</div>
+			<div>{node.render(node, count, setCount)}</div>
 			{node.isExpanded && (
 				<div style={{ paddingLeft: 20 }}>
 					<Tree nodes={node.data} />
