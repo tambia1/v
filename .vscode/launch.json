@@ -27,7 +27,8 @@
 			"runtimeExecutable": "/usr/bin/brave-browser-stable",
 			"sourceMapPathOverrides": {
 				"\\mnt\\c\\*": "C:/*"
-			}
+			},
+			"sourceMaps": true
 		},
 		{
 			"name": "---------------------------------",

@@ -9,7 +9,7 @@ type Folder = {
 	type: "folder";
 	isExpanded: boolean;
 	content: string;
-	data: Node[];
+	nodes: Node[];
 	render: (props: Folder) => ReactNode;
 };
 
@@ -22,22 +22,24 @@ type Item = {
 
 type Node = Folder | Item;
 
-const selectItems = (node: Node) => {
-	if (node.type === "item") {
-		node.isSelected = true;
-	} else {
-		node.data.forEach((node) => selectItems(node));
-	}
+const selectItems = (nodes: Node[], isSelected: boolean) => {
+	nodes.forEach((node) => {
+		if (node.type === "item") {
+			node.isSelected = isSelected;
+		} else {
+			selectItems(node.nodes, isSelected);
+		}
+	});
 };
 
-const getIsAllItemsSelected = (nodes: Node[]): boolean => {
+const isItemsSeleted = (nodes: Node[]): boolean => {
 	for (const node of nodes) {
 		if (node.type === "item") {
 			if (!node.isSelected) {
 				return false;
 			}
 		} else if (node.type === "folder") {
-			if (!getIsAllItemsSelected(node.data)) {
+			if (!isItemsSeleted(node.nodes)) {
 				return false;
 			}
 		}
@@ -45,32 +47,40 @@ const getIsAllItemsSelected = (nodes: Node[]): boolean => {
 
 	return true;
 };
+
 const renderFolder = (props: Folder) => {
-	const [_, setState] = useState(props.isExpanded);
-	const isAllSelected = getIsAllItemsSelected(props.data);
+	const [state, setState] = useState(0);
+	const isAllSelected = isItemsSeleted(props.nodes);
 
 	return (
 		<S.TreeFolder
 			onClick={() => {
-				props.isExpanded = !props.isExpanded;
-				setState(props.isExpanded);
+				selectItems(props.nodes, !isAllSelected);
+				setState(state + 1);
 			}}
 		>
+			<div
+				onClick={() => {
+					props.isExpanded = !props.isExpanded;
+					setState(state + 1);
+				}}
+			>
+				{props.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
+			</div>
 			{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
-			{props.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
 			<S.TreeFolderContent>{props.content}</S.TreeFolderContent>
 		</S.TreeFolder>
 	);
 };
 
 const renderItem = (props: Item) => {
-	const [_, setState] = useState(props.isSelected);
+	const [state, setState] = useState(0);
 
 	return (
 		<S.TreeItem
 			onClick={() => {
 				props.isSelected = !props.isSelected;
-				setState(props.isSelected);
+				setState(state + 1);
 			}}
 		>
 			{props.isSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
@@ -85,13 +95,13 @@ const nodes: Node[] = [
 		content: "Folder 0",
 		isExpanded: true,
 		render: renderFolder,
-		data: [
+		nodes: [
 			{
 				type: "folder",
 				content: "Folder 0-0",
 				isExpanded: true,
 				render: renderFolder,
-				data: [
+				nodes: [
 					{
 						type: "item",
 						content: "item 0-0-0",
@@ -125,13 +135,13 @@ const nodes: Node[] = [
 		isExpanded: true,
 		content: "Folder 1",
 		render: renderFolder,
-		data: [
+		nodes: [
 			{
 				type: "folder",
 				content: "Folder 1-0",
 				isExpanded: true,
 				render: renderFolder,
-				data: [
+				nodes: [
 					{
 						type: "item",
 						content: "item 1-0-0",
@@ -153,7 +163,7 @@ const nodes: Node[] = [
 		isExpanded: false,
 		content: "Folder 2",
 		render: renderFolder,
-		data: [
+		nodes: [
 			{
 				type: "item",
 				content: "item 2-0",
@@ -172,7 +182,7 @@ const nodes: Node[] = [
 
 for (let i = 0; i < 1000; i++) {
 	if (nodes[2].type === "folder") {
-		nodes[2].data.push({
+		nodes[2].nodes.push({
 			type: "item",
 			content: `item 2-${2 + i}`,
 			isSelected: false,
@@ -202,7 +212,7 @@ const TreeFolder = ({ node }: { node: Folder }) => {
 
 			{node.isExpanded && (
 				<div style={{ paddingLeft: 20 }}>
-					<Tree nodes={node.data} />
+					<Tree nodes={node.nodes} />
 				</div>
 			)}
 		</div>
