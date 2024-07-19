@@ -2,94 +2,113 @@ import { Text } from "@src/components/text/Text";
 import * as S from "./TestTree.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Icon } from "@src/icons/Icon";
+
+type Item = {
+	type: "item";
+	isSelected: boolean;
+	content: string;
+	render: (item: Item, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => ReactNode;
+};
 
 type Folder = {
 	type: "folder";
 	isExpanded: boolean;
 	content: string;
 	nodes: Node[];
-	render: (props: Folder) => ReactNode;
+	render: (folder: Folder, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => ReactNode;
 };
 
-type Item = {
-	type: "item";
-	isSelected: boolean;
-	content: string;
-	render: (props: Item) => ReactNode;
+type Node = Item | Folder;
+
+const renderItem: Item["render"] = (item: Item, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+	return (
+		<S.TreeItem
+			onClick={() => {
+				selectItem(item, !item.isSelected, originalNodes, setOriginalNodes);
+			}}
+		>
+			<S.TreeItemSelect>{item.isSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}</S.TreeItemSelect>
+			<S.TreeItemContent>{item.content}</S.TreeItemContent>
+		</S.TreeItem>
+	);
 };
 
-type Node = Folder | Item;
+const renderFolder: Folder["render"] = (folder: Folder, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+	const isAllSelected = isItemsSeleted(folder.nodes);
 
-const selectItems = (nodes: Node[], isSelected: boolean) => {
+	return (
+		<S.TreeFolder>
+			<S.TreeFolderHeader>
+				<S.TreeFolderExpand
+					onClick={() => {
+						expandItem(folder, !folder.isExpanded, originalNodes, setOriginalNodes);
+					}}
+				>
+					{folder.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
+				</S.TreeFolderExpand>
+				<S.TreeFolderSelect
+					onClick={() => {
+						selectItems(folder.nodes, !isAllSelected, originalNodes, setOriginalNodes);
+					}}
+				>
+					{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
+				</S.TreeFolderSelect>
+				<S.TreeFolderContent>{folder.content}</S.TreeFolderContent>
+			</S.TreeFolderHeader>
+			<S.TreeFolderBody>{folder.isExpanded && <TreeNode nodes={folder.nodes} originalNodes={originalNodes} setOriginalNodes={setOriginalNodes} />}</S.TreeFolderBody>
+		</S.TreeFolder>
+	);
+};
+
+const findNode = (nodeToFind: Node, nodes: Node[]) => {
+	nodes.forEach((node) => {
+		if (node.content === nodeToFind.content) {
+			return node;
+		} else if (node.type === "folder") {
+			return findNode(nodeToFind, node.nodes);
+		}
+	});
+
+	return null;
+};
+
+const expandItem = (folder: Folder, isExpanded: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+	folder.isExpanded = isExpanded;
+	setOriginalNodes([...originalNodes]);
+};
+
+const selectItem = (item: Item, isSelected: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+	item.isSelected = isSelected;
+	setOriginalNodes([...originalNodes]);
+};
+
+const selectItems = (nodes: Node[], isSelected: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
 	nodes.forEach((node) => {
 		if (node.type === "item") {
 			node.isSelected = isSelected;
 		} else {
-			selectItems(node.nodes, isSelected);
+			selectItems(node.nodes, isSelected, originalNodes, setOriginalNodes);
 		}
 	});
+
+	setOriginalNodes([...originalNodes]);
 };
 
 const isItemsSeleted = (nodes: Node[]): boolean => {
 	for (const node of nodes) {
-		if (node.type === "item") {
-			if (!node.isSelected) {
-				return false;
-			}
-		} else if (node.type === "folder") {
-			if (!isItemsSeleted(node.nodes)) {
-				return false;
-			}
+		if (node.type === "item" && !node.isSelected) {
+			return false;
+		} else if (node.type === "folder" && !isItemsSeleted(node.nodes)) {
+			return false;
 		}
 	}
 
 	return true;
 };
 
-const renderFolder = (props: Folder) => {
-	const [state, setState] = useState(0);
-	const isAllSelected = isItemsSeleted(props.nodes);
-
-	return (
-		<S.TreeFolder
-			onClick={() => {
-				selectItems(props.nodes, !isAllSelected);
-				setState(state + 1);
-			}}
-		>
-			<div
-				onClick={() => {
-					props.isExpanded = !props.isExpanded;
-					setState(state + 1);
-				}}
-			>
-				{props.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
-			</div>
-			{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
-			<S.TreeFolderContent>{props.content}</S.TreeFolderContent>
-		</S.TreeFolder>
-	);
-};
-
-const renderItem = (props: Item) => {
-	const [state, setState] = useState(0);
-
-	return (
-		<S.TreeItem
-			onClick={() => {
-				props.isSelected = !props.isSelected;
-				setState(state + 1);
-			}}
-		>
-			{props.isSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
-			<S.TreeItemContent>{props.content}</S.TreeItemContent>
-		</S.TreeItem>
-	);
-};
-
-const nodes: Node[] = [
+const data: Node[] = [
 	{
 		type: "folder",
 		content: "Folder 0",
@@ -181,8 +200,8 @@ const nodes: Node[] = [
 ];
 
 for (let i = 0; i < 1000; i++) {
-	if (nodes[2].type === "folder") {
-		nodes[2].nodes.push({
+	if (data[2].type === "folder") {
+		data[2].nodes.push({
 			type: "item",
 			content: `item 2-${2 + i}`,
 			isSelected: false,
@@ -195,42 +214,43 @@ interface Props {
 	nodes: Node[];
 }
 
-const Tree = ({ nodes }: Props) => {
+const Tree = (props: Props) => {
+	const [originalNodes, setOriginalNodes] = useState<Node[]>(props.nodes);
+
+	useEffect(() => {
+		setOriginalNodes(data);
+	}, [props.nodes]);
+
+	return <TreeNode nodes={originalNodes} originalNodes={originalNodes} setOriginalNodes={setOriginalNodes} />;
+};
+
+const TreeNode = ({ nodes, originalNodes, setOriginalNodes }: { nodes: Node[]; originalNodes: Node[]; setOriginalNodes: (nodes: Node[]) => void }) => {
 	return (
 		<S.Tree>
 			{nodes.map((node, index) => (
-				<div key={index}>{node.type === "folder" ? <TreeFolder node={node} /> : <TreeItem node={node} />}</div>
+				<S.TreeNode key={index}>
+					{node.type === "item" && node.render(node, originalNodes, setOriginalNodes)}
+					{node.type === "folder" && node.render(node, originalNodes, setOriginalNodes)}
+				</S.TreeNode>
 			))}
 		</S.Tree>
 	);
 };
 
-const TreeFolder = ({ node }: { node: Folder }) => {
-	return (
-		<div>
-			<div>{node.render(node)}</div>
-
-			{node.isExpanded && (
-				<div style={{ paddingLeft: 20 }}>
-					<Tree nodes={node.nodes} />
-				</div>
-			)}
-		</div>
-	);
-};
-
-const TreeItem = ({ node }: { node: Item }) => {
-	return <div style={{ paddingLeft: 0 }}>{node.render(node)}</div>;
-};
-
 export const TestTree = () => {
+	const [nodes, setNodes] = useState<Node[]>([]);
+
+	useEffect(() => {
+		setNodes(data);
+	}, []);
+
 	return (
-		<S.TestTreeView>
+		<S.TestTree>
 			<Text size="l">
 				<T>{lang.testTree.title}</T>
 			</Text>
 
 			<Tree nodes={nodes} />
-		</S.TestTreeView>
+		</S.TestTree>
 	);
 };

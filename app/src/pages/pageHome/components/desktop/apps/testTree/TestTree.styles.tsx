@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TestTreeView = styled.div`
+export const TestTree = styled.div`
 	width: 100%;
 	height: 100%;
 
@@ -23,11 +23,22 @@ export const Tree = styled.div`
 	background-color: ${(props) => props.theme.color.normalBg};
 `;
 
+export const TreeNode = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
+
 export const TreeFolder = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	gap: 0.5rem;
+`;
+
+export const TreeFolderHeader = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 0.5rem;
 
 	color: ${(props) => props.theme.color.accentFg};
 	background-color: ${(props) => props.theme.color.accentBg};
@@ -38,9 +49,18 @@ export const TreeFolder = styled.div`
 	}
 `;
 
-export const TreeFolderContent = styled.div``;
+export const TreeFolderBody = styled.div`
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding-left: 3rem;
+`;
 
-export const TreeFolderIcon = styled.div``;
+export const TreeFolderExpand = styled.div``;
+
+export const TreeFolderSelect = styled.div``;
+
+export const TreeFolderContent = styled.div``;
 
 export const TreeItem = styled.div`
 	display: flex;
@@ -59,4 +79,4 @@ export const TreeItem = styled.div`
 
 export const TreeItemContent = styled.div``;
 
-export const TreeItemIcon = styled.div``;
+export const TreeItemSelect = styled.div``;
