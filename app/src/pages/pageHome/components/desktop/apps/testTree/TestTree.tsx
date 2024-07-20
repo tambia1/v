@@ -299,7 +299,6 @@ export const TestTree = () => {
 						setTitle(value);
 
 						highlightItems(nodes, false, nodes, setNodes);
-
 						const nodesFounded = findNode(value, nodes);
 						highlightItems(nodesFounded, true, nodes, setNodes);
 					}}
