@@ -15,7 +15,7 @@ const useTreeContext = () => {
 	const context = useContext(TreeContext);
 
 	if (!context) {
-		throw new Error("useTree must be rendered as a child component");
+		throw new Error("useTreeContext must be rendered as a child component");
 	}
 
 	return context;
@@ -85,13 +85,11 @@ const renderFolder: Folder["render"] = (folder: Folder) => {
 
 const findNode = (text: string, nodes: Node[], result: Node[] = []): Node[] => {
 	nodes.forEach((node) => {
-		if (node.content.includes(text)) {
+		if (fuzzySearch(text, node.content).length > 0) {
 			result.push(node);
-		} else if (node.type === "folder") {
-			if (node.content === text) {
-				result.push(node);
-			}
+		}
 
+		if (node.type === "folder") {
 			findNode(text, node.nodes, result);
 		}
 	});
@@ -138,6 +136,7 @@ const highlightItems = (nodes: Node[], isHighlighted: boolean, originalNodes: No
 		if (node.type === "item") {
 			node.isHighlighted = isHighlighted;
 		} else {
+			node.isHighlighted = isHighlighted;
 			highlightItems(node.nodes, isHighlighted, originalNodes, setOriginalNodes);
 		}
 	});
@@ -261,6 +260,25 @@ for (let i = 0; i < 1000; i++) {
 	}
 }
 
+const fuzzySearch = (textToSearch: string, textToSearchInto: string) => {
+	const matches = [];
+
+	for (let i = 0, j = 0; i < textToSearch.length; i++) {
+		for (; j < textToSearchInto.length; j++) {
+			if (textToSearch[i].toLowerCase() == textToSearchInto[j].toLowerCase()) {
+				matches.push(j);
+				j++;
+
+				break;
+			}
+		}
+	}
+
+	const result = matches.length == textToSearch.length ? matches : [];
+
+	return result;
+};
+
 interface Props {
 	nodes: Node[];
 }
@@ -299,8 +317,13 @@ export const TestTree = () => {
 						setTitle(value);
 
 						highlightItems(nodes, false, nodes, setNodes);
+
 						const nodesFounded = findNode(value, nodes);
-						highlightItems(nodesFounded, true, nodes, setNodes);
+						nodesFounded.forEach((node) => {
+							node.isHighlighted = true;
+						});
+
+						setNodes([...nodes]);
 					}}
 				/>
 

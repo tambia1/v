@@ -61,7 +61,7 @@ export const TreeFolderExpand = styled.div``;
 export const TreeFolderSelect = styled.div``;
 
 export const TreeFolderContent = styled.div<{ highlighted: boolean }>`
-	${(props) => props.highlighted && `color: ${props.theme.color.normalFg};`}
+	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
 `;
 
 export const TreeItem = styled.div`
