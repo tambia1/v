@@ -60,7 +60,9 @@ export const TreeFolderExpand = styled.div``;
 
 export const TreeFolderSelect = styled.div``;
 
-export const TreeFolderContent = styled.div``;
+export const TreeFolderContent = styled.div<{ highlighted: boolean }>`
+	${(props) => props.highlighted && `color: ${props.theme.color.normalFg};`}
+`;
 
 export const TreeItem = styled.div`
 	display: flex;
@@ -77,6 +79,8 @@ export const TreeItem = styled.div`
 	}
 `;
 
-export const TreeItemContent = styled.div``;
+export const TreeItemContent = styled.div<{ highlighted: boolean }>`
+	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
+`;
 
 export const TreeItemSelect = styled.div``;

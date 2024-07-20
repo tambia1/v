@@ -2,40 +2,61 @@ import { Text } from "@src/components/text/Text";
 import * as S from "./TestTree.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { Icon } from "@src/icons/Icon";
+import { Input } from "@src/components/input/Input";
+
+const TreeContext = createContext<{
+	originalNodes: Node[];
+	setOriginalNodes: (nodes: Node[]) => void;
+} | null>(null);
+
+const useTreeContext = () => {
+	const context = useContext(TreeContext);
+
+	if (!context) {
+		throw new Error("useTree must be rendered as a child component");
+	}
+
+	return context;
+};
 
 type Item = {
 	type: "item";
 	isSelected: boolean;
+	isHighlighted: boolean;
 	content: string;
-	render: (item: Item, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => ReactNode;
+	render: (item: Item) => ReactNode;
 };
 
 type Folder = {
 	type: "folder";
 	isExpanded: boolean;
+	isHighlighted: boolean;
 	content: string;
 	nodes: Node[];
-	render: (folder: Folder, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => ReactNode;
+	render: (folder: Folder) => ReactNode;
 };
 
 type Node = Item | Folder;
 
-const renderItem: Item["render"] = (item: Item, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+const renderItem: Item["render"] = (item: Item) => {
+	const treeContext = useTreeContext();
+
 	return (
 		<S.TreeItem
 			onClick={() => {
-				selectItem(item, !item.isSelected, originalNodes, setOriginalNodes);
+				selectItem(item, !item.isSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
 			}}
 		>
 			<S.TreeItemSelect>{item.isSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}</S.TreeItemSelect>
-			<S.TreeItemContent>{item.content}</S.TreeItemContent>
+			<S.TreeItemContent highlighted={item.isHighlighted}>{item.content}</S.TreeItemContent>
 		</S.TreeItem>
 	);
 };
 
-const renderFolder: Folder["render"] = (folder: Folder, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+const renderFolder: Folder["render"] = (folder: Folder) => {
+	const treeContext = useTreeContext();
 	const isAllSelected = isItemsSeleted(folder.nodes);
 
 	return (
@@ -43,35 +64,39 @@ const renderFolder: Folder["render"] = (folder: Folder, originalNodes: Node[], s
 			<S.TreeFolderHeader>
 				<S.TreeFolderExpand
 					onClick={() => {
-						expandItem(folder, !folder.isExpanded, originalNodes, setOriginalNodes);
+						expandItem(folder, !folder.isExpanded, treeContext.originalNodes, treeContext.setOriginalNodes);
 					}}
 				>
 					{folder.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
 				</S.TreeFolderExpand>
 				<S.TreeFolderSelect
 					onClick={() => {
-						selectItems(folder.nodes, !isAllSelected, originalNodes, setOriginalNodes);
+						selectItems(folder.nodes, !isAllSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
 					}}
 				>
 					{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
 				</S.TreeFolderSelect>
-				<S.TreeFolderContent>{folder.content}</S.TreeFolderContent>
+				<S.TreeFolderContent highlighted={folder.isHighlighted}>{folder.content}</S.TreeFolderContent>
 			</S.TreeFolderHeader>
-			<S.TreeFolderBody>{folder.isExpanded && <TreeNode nodes={folder.nodes} originalNodes={originalNodes} setOriginalNodes={setOriginalNodes} />}</S.TreeFolderBody>
+			<S.TreeFolderBody>{folder.isExpanded && <Tree nodes={folder.nodes} />}</S.TreeFolderBody>
 		</S.TreeFolder>
 	);
 };
 
-const findNode = (nodeToFind: Node, nodes: Node[]) => {
+const findNode = (text: string, nodes: Node[], result: Node[] = []): Node[] => {
 	nodes.forEach((node) => {
-		if (node.content === nodeToFind.content) {
-			return node;
+		if (node.content.includes(text)) {
+			result.push(node);
 		} else if (node.type === "folder") {
-			return findNode(nodeToFind, node.nodes);
+			if (node.content === text) {
+				result.push(node);
+			}
+
+			findNode(text, node.nodes, result);
 		}
 	});
 
-	return null;
+	return result;
 };
 
 const expandItem = (folder: Folder, isExpanded: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
@@ -108,35 +133,52 @@ const isItemsSeleted = (nodes: Node[]): boolean => {
 	return true;
 };
 
+const highlightItems = (nodes: Node[], isHighlighted: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+	nodes.forEach((node) => {
+		if (node.type === "item") {
+			node.isHighlighted = isHighlighted;
+		} else {
+			highlightItems(node.nodes, isHighlighted, originalNodes, setOriginalNodes);
+		}
+	});
+
+	setOriginalNodes([...originalNodes]);
+};
+
 const data: Node[] = [
 	{
 		type: "folder",
 		content: "Folder 0",
 		isExpanded: true,
+		isHighlighted: false,
 		render: renderFolder,
 		nodes: [
 			{
 				type: "folder",
 				content: "Folder 0-0",
 				isExpanded: true,
+				isHighlighted: false,
 				render: renderFolder,
 				nodes: [
 					{
 						type: "item",
 						content: "item 0-0-0",
 						isSelected: false,
+						isHighlighted: false,
 						render: renderItem,
 					},
 					{
 						type: "item",
 						content: "item 0-0-1",
 						isSelected: true,
+						isHighlighted: false,
 						render: renderItem,
 					},
 					{
 						type: "item",
 						content: "item 0-0-2",
 						isSelected: false,
+						isHighlighted: false,
 						render: renderItem,
 					},
 				],
@@ -145,6 +187,7 @@ const data: Node[] = [
 				type: "item",
 				content: "item 0-1",
 				isSelected: true,
+				isHighlighted: false,
 				render: renderItem,
 			},
 		],
@@ -153,24 +196,28 @@ const data: Node[] = [
 		type: "folder",
 		isExpanded: true,
 		content: "Folder 1",
+		isHighlighted: false,
 		render: renderFolder,
 		nodes: [
 			{
 				type: "folder",
 				content: "Folder 1-0",
 				isExpanded: true,
+				isHighlighted: false,
 				render: renderFolder,
 				nodes: [
 					{
 						type: "item",
 						content: "item 1-0-0",
 						isSelected: false,
+						isHighlighted: false,
 						render: renderItem,
 					},
 					{
 						type: "item",
 						content: "item 1-0-1",
 						isSelected: false,
+						isHighlighted: false,
 						render: renderItem,
 					},
 				],
@@ -181,18 +228,21 @@ const data: Node[] = [
 		type: "folder",
 		isExpanded: false,
 		content: "Folder 2",
+		isHighlighted: false,
 		render: renderFolder,
 		nodes: [
 			{
 				type: "item",
 				content: "item 2-0",
 				isSelected: false,
+				isHighlighted: false,
 				render: renderItem,
 			},
 			{
 				type: "item",
 				content: "item 2-1",
 				isSelected: false,
+				isHighlighted: false,
 				render: renderItem,
 			},
 		],
@@ -205,6 +255,7 @@ for (let i = 0; i < 1000; i++) {
 			type: "item",
 			content: `item 2-${2 + i}`,
 			isSelected: false,
+			isHighlighted: false,
 			render: renderItem,
 		});
 	}
@@ -214,23 +265,13 @@ interface Props {
 	nodes: Node[];
 }
 
-const Tree = (props: Props) => {
-	const [originalNodes, setOriginalNodes] = useState<Node[]>(props.nodes);
-
-	useEffect(() => {
-		setOriginalNodes(data);
-	}, [props.nodes]);
-
-	return <TreeNode nodes={originalNodes} originalNodes={originalNodes} setOriginalNodes={setOriginalNodes} />;
-};
-
-const TreeNode = ({ nodes, originalNodes, setOriginalNodes }: { nodes: Node[]; originalNodes: Node[]; setOriginalNodes: (nodes: Node[]) => void }) => {
+const Tree = ({ nodes }: Props) => {
 	return (
 		<S.Tree>
 			{nodes.map((node, index) => (
 				<S.TreeNode key={index}>
-					{node.type === "item" && node.render(node, originalNodes, setOriginalNodes)}
-					{node.type === "folder" && node.render(node, originalNodes, setOriginalNodes)}
+					{node.type === "item" && node.render(node)}
+					{node.type === "folder" && node.render(node)}
 				</S.TreeNode>
 			))}
 		</S.Tree>
@@ -239,18 +280,33 @@ const TreeNode = ({ nodes, originalNodes, setOriginalNodes }: { nodes: Node[]; o
 
 export const TestTree = () => {
 	const [nodes, setNodes] = useState<Node[]>([]);
+	const [title, setTitle] = useState("");
 
 	useEffect(() => {
 		setNodes(data);
 	}, []);
 
 	return (
-		<S.TestTree>
-			<Text size="l">
-				<T>{lang.testTree.title}</T>
-			</Text>
+		<TreeContext.Provider value={{ originalNodes: nodes, setOriginalNodes: setNodes }}>
+			<S.TestTree>
+				<Text size="l">
+					<T>{lang.testTree.title}</T>
+				</Text>
 
-			<Tree nodes={nodes} />
-		</S.TestTree>
+				<Input
+					value={title}
+					onTextChange={(value: string) => {
+						setTitle(value);
+
+						highlightItems(nodes, false, nodes, setNodes);
+
+						const nodesFounded = findNode(value, nodes);
+						highlightItems(nodesFounded, true, nodes, setNodes);
+					}}
+				/>
+
+				<Tree nodes={nodes} />
+			</S.TestTree>
+		</TreeContext.Provider>
 	);
 };
