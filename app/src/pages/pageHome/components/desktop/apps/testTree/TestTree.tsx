@@ -229,20 +229,22 @@ const data: Node[] = [
 		content: "Folder 2",
 		isHighlighted: false,
 		render: renderFolder,
+		nodes: [],
+	},
+	{
+		type: "folder",
+		isExpanded: true,
+		content: "Folder 3",
+		isHighlighted: false,
+		render: renderFolder,
 		nodes: [
 			{
-				type: "item",
-				content: "item 2-0",
-				isSelected: false,
+				type: "folder",
+				content: "Folder 3-0",
+				isExpanded: false,
 				isHighlighted: false,
-				render: renderItem,
-			},
-			{
-				type: "item",
-				content: "item 2-1",
-				isSelected: false,
-				isHighlighted: false,
-				render: renderItem,
+				render: renderFolder,
+				nodes: [],
 			},
 		],
 	},
@@ -252,11 +254,25 @@ for (let i = 0; i < 1000; i++) {
 	if (data[2].type === "folder") {
 		data[2].nodes.push({
 			type: "item",
-			content: `item 2-${2 + i}`,
+			content: `item 2-${i}`,
 			isSelected: false,
 			isHighlighted: false,
 			render: renderItem,
 		});
+	}
+}
+
+for (let i = 0; i < 1000; i++) {
+	if (data[3].type === "folder") {
+		if (data[3].nodes[0].type === "folder") {
+			data[3].nodes[0].nodes.push({
+				type: "item",
+				content: `item 3-${i}`,
+				isSelected: false,
+				isHighlighted: false,
+				render: renderItem,
+			});
+		}
 	}
 }
 

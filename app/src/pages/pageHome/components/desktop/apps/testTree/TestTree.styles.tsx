@@ -32,7 +32,6 @@ export const TreeFolder = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: start;
-	gap: 0.5rem;
 `;
 
 export const TreeFolderHeader = styled.div`
