@@ -2,7 +2,7 @@ import { Text } from "@src/components/text/Text";
 import * as S from "./TestTree.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Icon } from "@src/icons/Icon";
 import { Input } from "@src/components/input/Input";
 
@@ -21,26 +21,28 @@ const useTreeContext = () => {
 	return context;
 };
 
-type Item = {
+type ItemType = {
 	type: "item";
 	isSelected: boolean;
 	isHighlighted: boolean;
 	content: string;
-	render: (item: Item) => ReactNode;
 };
 
-type Folder = {
+type FolderType = {
 	type: "folder";
 	isExpanded: boolean;
 	isHighlighted: boolean;
 	content: string;
 	nodes: Node[];
-	render: (folder: Folder) => ReactNode;
 };
 
-type Node = Item | Folder;
+type Node = ItemType | FolderType;
 
-const renderItem: Item["render"] = (item: Item) => {
+type ItemProps = {
+	item: ItemType;
+};
+
+const Item = ({ item }: ItemProps) => {
 	const treeContext = useTreeContext();
 
 	return (
@@ -55,7 +57,13 @@ const renderItem: Item["render"] = (item: Item) => {
 	);
 };
 
-const renderFolder: Folder["render"] = (folder: Folder) => {
+type FolderProps = {
+	folder: FolderType;
+	Item: ({ item }: ItemProps) => JSX.Element;
+	Folder: ({ folder, Item, Folder }: FolderProps) => JSX.Element;
+};
+
+const Folder = ({ folder, Item, Folder }: FolderProps) => {
 	const treeContext = useTreeContext();
 	const isAllSelected = isItemsSeleted(folder.nodes);
 
@@ -78,7 +86,7 @@ const renderFolder: Folder["render"] = (folder: Folder) => {
 				</S.TreeFolderSelect>
 				<S.TreeFolderContent highlighted={folder.isHighlighted}>{folder.content}</S.TreeFolderContent>
 			</S.TreeFolderHeader>
-			<S.TreeFolderBody>{folder.isExpanded && <Tree nodes={folder.nodes} />}</S.TreeFolderBody>
+			<S.TreeFolderBody>{folder.isExpanded && <Tree nodes={folder.nodes} Item={Item} Folder={Folder} />}</S.TreeFolderBody>
 		</S.TreeFolder>
 	);
 };
@@ -97,12 +105,12 @@ const findNode = (text: string, nodes: Node[], result: Node[] = []): Node[] => {
 	return result;
 };
 
-const expandItem = (folder: Folder, isExpanded: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+const expandItem = (folder: FolderType, isExpanded: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
 	folder.isExpanded = isExpanded;
 	setOriginalNodes([...originalNodes]);
 };
 
-const selectItem = (item: Item, isSelected: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
+const selectItem = (item: ItemType, isSelected: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
 	item.isSelected = isSelected;
 	setOriginalNodes([...originalNodes]);
 };
@@ -150,35 +158,30 @@ const data: Node[] = [
 		content: "Folder 0",
 		isExpanded: true,
 		isHighlighted: false,
-		render: renderFolder,
 		nodes: [
 			{
 				type: "folder",
 				content: "Folder 0-0",
 				isExpanded: true,
 				isHighlighted: false,
-				render: renderFolder,
 				nodes: [
 					{
 						type: "item",
 						content: "item 0-0-0",
 						isSelected: false,
 						isHighlighted: false,
-						render: renderItem,
 					},
 					{
 						type: "item",
 						content: "item 0-0-1",
 						isSelected: true,
 						isHighlighted: false,
-						render: renderItem,
 					},
 					{
 						type: "item",
 						content: "item 0-0-2",
 						isSelected: false,
 						isHighlighted: false,
-						render: renderItem,
 					},
 				],
 			},
@@ -187,7 +190,6 @@ const data: Node[] = [
 				content: "item 0-1",
 				isSelected: true,
 				isHighlighted: false,
-				render: renderItem,
 			},
 		],
 	},
@@ -196,28 +198,24 @@ const data: Node[] = [
 		isExpanded: true,
 		content: "Folder 1",
 		isHighlighted: false,
-		render: renderFolder,
 		nodes: [
 			{
 				type: "folder",
 				content: "Folder 1-0",
 				isExpanded: true,
 				isHighlighted: false,
-				render: renderFolder,
 				nodes: [
 					{
 						type: "item",
 						content: "item 1-0-0",
 						isSelected: false,
 						isHighlighted: false,
-						render: renderItem,
 					},
 					{
 						type: "item",
 						content: "item 1-0-1",
 						isSelected: false,
 						isHighlighted: false,
-						render: renderItem,
 					},
 				],
 			},
@@ -228,7 +226,6 @@ const data: Node[] = [
 		isExpanded: false,
 		content: "Folder 2",
 		isHighlighted: false,
-		render: renderFolder,
 		nodes: [],
 	},
 	{
@@ -236,14 +233,12 @@ const data: Node[] = [
 		isExpanded: true,
 		content: "Folder 3",
 		isHighlighted: false,
-		render: renderFolder,
 		nodes: [
 			{
 				type: "folder",
 				content: "Folder 3-0",
 				isExpanded: false,
 				isHighlighted: false,
-				render: renderFolder,
 				nodes: [],
 			},
 		],
@@ -257,7 +252,6 @@ for (let i = 0; i < 1000; i++) {
 			content: `item 2-${i}`,
 			isSelected: false,
 			isHighlighted: false,
-			render: renderItem,
 		});
 	}
 }
@@ -270,7 +264,6 @@ for (let i = 0; i < 1000; i++) {
 				content: `item 3-${i}`,
 				isSelected: false,
 				isHighlighted: false,
-				render: renderItem,
 			});
 		}
 	}
@@ -297,15 +290,17 @@ const fuzzySearch = (textToSearch: string, textToSearchInto: string) => {
 
 interface Props {
 	nodes: Node[];
+	Item: ({ item }: ItemProps) => JSX.Element;
+	Folder: ({ folder, Item, Folder }: FolderProps) => JSX.Element;
 }
 
-const Tree = ({ nodes }: Props) => {
+const Tree = ({ nodes, Item, Folder }: Props) => {
 	return (
 		<S.Tree>
 			{nodes.map((node, index) => (
 				<S.TreeNode key={index}>
-					{node.type === "item" && node.render(node)}
-					{node.type === "folder" && node.render(node)}
+					{node.type === "item" && <Item item={node} />}
+					{node.type === "folder" && <Folder folder={node} Item={Item} Folder={Folder} />}
 				</S.TreeNode>
 			))}
 		</S.Tree>
@@ -343,7 +338,7 @@ export const TestTree = () => {
 					}}
 				/>
 
-				<Tree nodes={nodes} />
+				<Tree nodes={nodes} Item={Item} Folder={Folder} />
 			</S.TestTree>
 		</TreeContext.Provider>
 	);
