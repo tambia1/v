@@ -57,9 +57,13 @@ export const TreeFolderBody = styled.div`
 	padding-left: 3rem;
 `;
 
-export const TreeFolderExpand = styled.div``;
+export const TreeFolderExpand = styled.div`
+	cursor: pointer;
+`;
 
-export const TreeFolderSelect = styled.div``;
+export const TreeFolderSelect = styled.div`
+	cursor: pointer;
+`;
 
 export const TreeFolderContent = styled.div<{ highlighted: boolean }>`
 	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
@@ -86,4 +90,6 @@ export const TreeItemContent = styled.div<{ highlighted: boolean }>`
 	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
 `;
 
-export const TreeItemSelect = styled.div``;
+export const TreeItemSelect = styled.div`
+	cursor: pointer;
+`;
