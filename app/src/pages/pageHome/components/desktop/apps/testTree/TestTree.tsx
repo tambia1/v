@@ -75,7 +75,7 @@ const Folder = ({ folder, Item, Folder }: FolderProps) => {
 						expandItem(folder, !folder.isExpanded, treeContext.originalNodes, treeContext.setOriginalNodes);
 					}}
 				>
-					{folder.isExpanded ? <Icon iconName="iconChevronUp" /> : <Icon iconName="iconChevronDown" />}
+					{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}
 				</S.TreeFolderExpand>
 				<S.TreeFolderSelect
 					onClick={() => {
