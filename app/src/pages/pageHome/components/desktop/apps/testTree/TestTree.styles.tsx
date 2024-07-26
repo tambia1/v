@@ -38,9 +38,11 @@ export const TreeFolderHeader = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	margin: 0.1rem;
+	padding: 0.5rem;
 
 	color: ${(props) => props.theme.color.accentFg};
-	background-color: ${(props) => props.theme.color.accentBg};
+	background-color: ${(props) => props.theme.color.normalBgActive};
 
 	&:hover {
 		color: ${(props) => props.theme.color.accentFgHover};
@@ -57,9 +59,7 @@ export const TreeFolderBody = styled.div`
 
 export const TreeFolderExpand = styled.div``;
 
-export const TreeFolderSelect = styled.div`
-	padding: 1rem 0rem;
-`;
+export const TreeFolderSelect = styled.div``;
 
 export const TreeFolderContent = styled.div<{ highlighted: boolean }>`
 	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
@@ -70,9 +70,11 @@ export const TreeItem = styled.div`
 	flex-direction: row;
 	align-items: center;
 	gap: 0.5rem;
+	margin: 0.1rem;
+	padding: 0.5rem;
 
 	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.normalBgActive};
 
 	&:hover {
 		color: ${(props) => props.theme.color.normalFgHover};
@@ -84,6 +86,4 @@ export const TreeItemContent = styled.div<{ highlighted: boolean }>`
 	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
 `;
 
-export const TreeItemSelect = styled.div`
-	padding: 1rem 0rem;
-`;
+export const TreeItemSelect = styled.div``;
