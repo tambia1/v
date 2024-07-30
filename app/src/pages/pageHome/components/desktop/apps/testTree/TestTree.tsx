@@ -5,6 +5,7 @@ import { lang } from "@src/locales/i18n";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Icon } from "@src/icons/Icon";
 import { Input } from "@src/components/input/Input";
+import { useDebounce } from "@src/hooks/UseDebounce";
 
 const TreeContext = createContext<{
 	originalNodes: Node[];
@@ -312,10 +313,20 @@ const Tree = ({ nodes, Item, Folder }: Props) => {
 export const TestTree = () => {
 	const [nodes, setNodes] = useState<Node[]>([]);
 	const [title, setTitle] = useState("");
+	const debouncedTitle = useDebounce(title, 500);
 
 	useEffect(() => {
 		setNodes(data);
 	}, []);
+
+	useEffect(() => {
+		highlightItems(nodes, false, nodes, setNodes);
+		const nodesFounded = findNode(debouncedTitle, nodes);
+		nodesFounded.forEach((node) => {
+			node.isHighlighted = true;
+		});
+		setNodes([...nodes]);
+	}, [debouncedTitle]);
 
 	return (
 		<TreeContext.Provider value={{ originalNodes: nodes, setOriginalNodes: setNodes }}>
@@ -328,15 +339,6 @@ export const TestTree = () => {
 					value={title}
 					onTextChange={(value: string) => {
 						setTitle(value);
-
-						highlightItems(nodes, false, nodes, setNodes);
-
-						const nodesFounded = findNode(value, nodes);
-						nodesFounded.forEach((node) => {
-							node.isHighlighted = true;
-						});
-
-						setNodes([...nodes]);
 					}}
 				/>
 
