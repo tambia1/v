@@ -320,11 +320,17 @@ export const TestTree = () => {
 	}, []);
 
 	useEffect(() => {
+		if (nodes.length === 0) {
+			return;
+		}
+
 		highlightItems(nodes, false, nodes, setNodes);
+
 		const nodesFounded = findNode(debouncedTitle, nodes);
 		nodesFounded.forEach((node) => {
 			node.isHighlighted = true;
 		});
+
 		setNodes([...nodes]);
 	}, [debouncedTitle]);
 
