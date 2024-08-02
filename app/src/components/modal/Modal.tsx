@@ -3,6 +3,7 @@ import { Box } from "./components/box/Box";
 import { IconsName } from "./components/box/components/content/components/icon/Icon.styles";
 import { Button } from "../button/Button";
 import { Compose } from "./components/compose/Compose";
+// import { useStoreModal } from "./stores/StoreModal";
 
 interface Props {
 	className?: string | undefined;
@@ -18,6 +19,8 @@ interface Props {
 }
 
 export const Modal = ({ className, isVisible = true, text, iconName, buttonContentA, buttonCallbackA, buttonContentB, buttonCallbackB, onClickBackground }: Props) => {
+	// const {isVisible, setIsVisible} = useStoreModal();
+
 	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
 			return;

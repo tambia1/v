@@ -248,30 +248,6 @@ const data: Node[] = [
 	},
 ];
 
-for (let i = 0; i < 1000; i++) {
-	if (data[2].type === "folder") {
-		data[2].nodes.push({
-			type: "item",
-			content: `item 2-${i}`,
-			isSelected: false,
-			isHighlighted: false,
-		});
-	}
-}
-
-for (let i = 0; i < 1000; i++) {
-	if (data[3].type === "folder") {
-		if (data[3].nodes[0].type === "folder") {
-			data[3].nodes[0].nodes.push({
-				type: "item",
-				content: `item 3-${i}`,
-				isSelected: false,
-				isHighlighted: false,
-			});
-		}
-	}
-}
-
 const fuzzySearch = (textToSearch: string, textToSearchInto: string) => {
 	const matches = [];
 
