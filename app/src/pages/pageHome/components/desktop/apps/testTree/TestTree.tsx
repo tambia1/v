@@ -71,37 +71,39 @@ const Folder = ({ folder, Item, Folder }: FolderProps) => {
 	const isAllSelected = isItemsSeleted(folder.nodes);
 
 	return (
-		<S.TreeFolder>
-			<S.TreeFolderHeader>
-				<S.TreeFolderExpand
-					onClick={() => {
-						expandItem(folder, !folder.isExpanded, treeContext);
-					}}
-				>
-					{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}
-				</S.TreeFolderExpand>
-				<S.TreeFolderSelect
-					onClick={() => {
-						selectItems(folder.nodes, !isAllSelected, treeContext);
-					}}
-				>
-					{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
-				</S.TreeFolderSelect>
-				<S.TreeFolderContent highlighted={folder.isHighlighted}>{folder.content}</S.TreeFolderContent>
-			</S.TreeFolderHeader>
-			<S.TreeFolderBody>
-				{folder.isExpanded && (
-					<S.Tree>
-						{folder.nodes.map((node, index) => (
-							<S.TreeNode key={index}>
-								{node.type === "item" && <Item item={node} />}
-								{node.type === "folder" && <Folder folder={node} Item={Item} Folder={Folder} />}
-							</S.TreeNode>
-						))}
-					</S.Tree>
-				)}
-			</S.TreeFolderBody>
-		</S.TreeFolder>
+		<S.Tree>
+			<S.TreeFolder>
+				<S.TreeFolderHeader>
+					<S.TreeFolderExpand
+						onClick={() => {
+							expandItem(folder, !folder.isExpanded, treeContext);
+						}}
+					>
+						{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}
+					</S.TreeFolderExpand>
+					<S.TreeFolderSelect
+						onClick={() => {
+							selectItems(folder.nodes, !isAllSelected, treeContext);
+						}}
+					>
+						{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
+					</S.TreeFolderSelect>
+					<S.TreeFolderContent highlighted={folder.isHighlighted}>{folder.content}</S.TreeFolderContent>
+				</S.TreeFolderHeader>
+				<S.TreeFolderBody>
+					{folder.isExpanded && (
+						<S.Tree>
+							{folder.nodes.map((node, index) => (
+								<S.TreeNode key={index}>
+									{node.type === "item" && <Item item={node} />}
+									{node.type === "folder" && <Folder folder={node} Item={Item} Folder={Folder} />}
+								</S.TreeNode>
+							))}
+						</S.Tree>
+					)}
+				</S.TreeFolderBody>
+			</S.TreeFolder>
+		</S.Tree>
 	);
 };
 
