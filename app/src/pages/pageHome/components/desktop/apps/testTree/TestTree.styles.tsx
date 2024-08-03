@@ -40,6 +40,7 @@ export const TreeFolderHeader = styled.div`
 	align-items: center;
 	margin: 0.1rem;
 	padding: 0.5rem;
+	gap: 0.5rem;
 
 	color: ${(props) => props.theme.color.accentFg};
 	background-color: ${(props) => props.theme.color.normalBgActive};
