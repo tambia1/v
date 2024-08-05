@@ -101,13 +101,9 @@ const data: NodeType[] = [
 ];
 
 export const TestTree = () => {
-	const [nodes, setNodes] = useState<NodeType[]>([]);
+	const [nodes, setNodes] = useState<NodeType[]>(data);
 	const [title, setTitle] = useState("");
 	const debouncedTitle = useDebounce(title, 500);
-
-	useEffect(() => {
-		setNodes(data);
-	}, []);
 
 	useEffect(() => {
 		if (nodes.length === 0) {
