@@ -289,6 +289,12 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "Update VSCode",
+			"command": "sudo apt update && sudo apt install code",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
 			"name": "---------------------------------",
 			"command": "",
 			"request": "launch",
