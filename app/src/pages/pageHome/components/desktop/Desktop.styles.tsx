@@ -25,6 +25,9 @@ export const AppsContainer = styled.div`
 export const AppGroup = styled.div`
 	position: absolute;
 	inset: 1rem;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+	align-content: start;
 `;
 
 export const AppContainer = styled.div`
