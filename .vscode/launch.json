@@ -151,7 +151,14 @@
 		},
 		{
 			"name": "playwright codegen",
-			"command": "npx playwright codegen",
+			"command": "npx playwright codegen http://localhost:5000/v",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright codegen har",
+			"command": "npx playwright codegen http://localhost:5000/v --save-har aaa.har",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/"
