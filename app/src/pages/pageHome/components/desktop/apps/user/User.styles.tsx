@@ -41,8 +41,9 @@ export const Box = styled.div`
 
 	overflow: hidden;
 
-	background-image: linear-gradient(135deg, ${(props) => props.theme.color.boxColor1}, ${(props) => props.theme.color.boxColor2});
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
+	background-image: linear-gradient(135deg, #ffffff11, #ffffff00);
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalBg};
+	backdrop-filter: blur(1rem);
 `;
 
 export const EmailBox = styled.div<{ disabled: boolean }>`
