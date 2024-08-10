@@ -122,8 +122,22 @@
 			"cwd": "${workspaceFolder}/app/"
 		},
 		{
-			"name": "playwright ui mode",
+			"name": "playwright test --headed",
+			"command": "npx playwright test --headed",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright test --ui",
 			"command": "npx playwright test --ui",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "playwright test --update-snapshots",
+			"command": "npx playwright test --update-snapshots",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/"
