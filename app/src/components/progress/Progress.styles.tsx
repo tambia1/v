@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Progress = styled.div`
 	width: 15rem;
 	height: 1.5rem;
-	padding: 0.1rem;
+	padding: 1px;
 	box-sizing: border-box;
 	border-radius: 100rem;
 	background-color: transparent;
