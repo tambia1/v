@@ -50,9 +50,11 @@ export default defineConfig({
 		globals: true,
 		environment: "jsdom",
 		css: true,
+		include: ["./src/**/*.test.{ts,tsx}"],
+		exclude: ["./playwright-tests/**", "**/node_modules/**"],
 		coverage: {
-			include: ["**", "./src/**/*.test.{ts,tsx}"],
-			exclude: ["./src/zzz/**"],
+			include: ["./src/**/*.test.{ts,tsx}"],
+			exclude: ["./playwright-tests/**", "**/node_modules/**"],
 			provider: "v8",
 			reporter: ["text", "json", "html"],
 			all: true,

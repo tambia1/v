@@ -1,5 +1,17 @@
 import { getUniqueId } from "./UniqueId";
 
+const originalConsoleLog = console.log;
+
+vi.resetAllMocks();
+
+vi.spyOn(console, "log").mockImplementation((...args) => {
+	originalConsoleLog("spyOn", args);
+});
+
+test("test spyOn", () => {
+	console.log("test a");
+});
+
 test("getId() generates unique IDs", () => {
 	const id0 = getUniqueId();
 	const id1 = getUniqueId();
