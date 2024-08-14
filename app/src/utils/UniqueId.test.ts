@@ -2,8 +2,6 @@ import { getUniqueId } from "./UniqueId";
 
 const originalConsoleLog = console.log;
 
-vi.resetAllMocks();
-
 vi.spyOn(console, "log").mockImplementation((...args) => {
 	originalConsoleLog("spyOn", args);
 });

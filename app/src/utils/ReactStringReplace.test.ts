@@ -1,12 +1,14 @@
 import { reactStringReplace } from "./ReactStringReplace";
 
-const originalConsoleLog = console.log;
+vi.mock("console", () => {
+	const originalConsoleLog = console.log;
 
-vi.mock("console", () => ({
-	log: vi.fn().mockImplementation((...args) => {
-		originalConsoleLog("mock", ...args);
-	}),
-}));
+	return {
+		log: vi.fn().mockImplementation((...args) => {
+			originalConsoleLog("mock", ...args);
+		}),
+	};
+});
 
 describe("replaceStringReact()", () => {
 	test("Test mock", () => {
