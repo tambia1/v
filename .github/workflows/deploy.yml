@@ -33,7 +33,7 @@ jobs:
                   path: './app/dist'
 
             - name: Install Dependencies
-              run: npm install
+              run: npm install --legacy-peer-deps
               working-directory: ./app
 
             - name: Deploy to GitHub Pages

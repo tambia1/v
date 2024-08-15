@@ -38,7 +38,7 @@
 		},
 		{
 			"name": "packages install",
-			"command": "npm i",
+			"command": "npm install --legacy-peer-deps",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/"
