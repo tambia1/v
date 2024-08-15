@@ -6,16 +6,18 @@ import { createClient } from "redis";
 import { exit } from "process";
 import dotenv from "dotenv";
 
-dotenv.config({ path: process.cwd() + "./../../../../../../../../.env" });
+dotenv.config({ path: "./.env" });
+
+const VITE_REDIS_PASSWORD = process.env.VITE_REDIS_PASSWORD;
 
 const HOST_NAME = "localhost";
 const PORT = 5004;
 
 const redis = createClient({
-	password: process.env.VITE_REDIS_PASSWORD,
+	password: VITE_REDIS_PASSWORD,
 	socket: {
-		host: "redis-17425.c241.us-east-1-4.ec2.redns.redis-cloud.com",
-		port: 17425,
+		host: "redis-10247.c226.eu-west-1-3.ec2.redns.redis-cloud.com",
+		port: 10247,
 	},
 });
 
