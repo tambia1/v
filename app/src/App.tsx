@@ -11,7 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Device } from "./utils/Device";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
-const clientId = "398139791252-ekovd5i9uemhcv5p9usduinvvah3uorq.apps.googleusercontent.com";
+const VITE_GOOGLE_AUTH = (import.meta.env.VITE_GOOGLE_AUTH || "") as string;
 
 export const App = () => {
 	const { i18n } = useTranslation();
@@ -24,7 +24,7 @@ export const App = () => {
 	}, []);
 
 	return (
-		<GoogleOAuthProvider clientId={clientId}>
+		<GoogleOAuthProvider clientId={VITE_GOOGLE_AUTH}>
 			<I18nextProvider i18n={i18n}>
 				<BrowserRouter basename="/v">
 					<QueryClientProvider client={queryClient}>
