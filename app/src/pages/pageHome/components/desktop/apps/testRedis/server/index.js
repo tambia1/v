@@ -10,7 +10,7 @@ dotenv.config({ path: "./.env" });
 
 const VITE_REDIS_PASSWORD = process.env.VITE_REDIS_PASSWORD;
 
-const HOST_NAME = "2a06:c701:9c56:3300:7eae:ac1c:5b9f:983c";
+const HOST = "2a06:c701:9c56:3300:d296:7032:edab:4e6b";
 const PORT = 5004;
 
 const redis = createClient({
@@ -59,8 +59,8 @@ const server = http.createServer(async (req, res) => {
 	}
 });
 
-server.listen(PORT, HOST_NAME, async () => {
-	log(colors.green, `Redis Server running at http://${HOST_NAME}:${PORT}/`);
+server.listen(PORT, HOST, async () => {
+	log(colors.green, `Redis Server running at http://${HOST}:${PORT}/`);
 
 	try {
 		const ping = await redis.ping();

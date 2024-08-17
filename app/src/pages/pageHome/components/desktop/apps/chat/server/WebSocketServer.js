@@ -1,6 +1,7 @@
 ﻿import WebSocket, { WebSocketServer } from "ws";
 import { log, colors } from "./log.js";
 
+const HOST = "2a06:c701:9c56:3300:d296:7032:edab:4e6b";
 const PORT = 5002;
 
 const actionSend = {
@@ -15,7 +16,7 @@ const actionGet = {
 
 const messages = [];
 
-const wss = new WebSocketServer({ port: PORT });
+const wss = new WebSocketServer({ host: HOST, port: PORT });
 
 wss.on("connection", (ws, req) => {
 	const ip = req.socket.remoteAddress;

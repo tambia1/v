@@ -10,6 +10,9 @@ import { useState } from "react";
 import { IClient, IDataGet } from "../../../../Chat.types";
 import { useStoreTalk } from "../../stores/StoreTalk";
 
+const HOST = "2a06:c701:9c56:3300:d296:7032:edab:4e6b";
+const PORT = 5002;
+
 interface Props {
 	name: string;
 }
@@ -17,7 +20,7 @@ interface Props {
 export const Page = ({ name }: Props) => {
 	const navigator = useNavigator();
 
-	const { sendMessage } = useWebSocket({ url: "ws://localhost:5002", onMessage: (message) => handleOnMessage(message) });
+	const { sendMessage } = useWebSocket({ url: `ws://[${HOST}]:${PORT}`, onMessage: (message) => handleOnMessage(message) });
 
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "" });
 	const [clients, setClients] = useState<IClient[]>([]);
