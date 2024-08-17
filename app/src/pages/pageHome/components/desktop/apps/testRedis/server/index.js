@@ -10,7 +10,7 @@ dotenv.config({ path: "./.env" });
 
 const VITE_REDIS_PASSWORD = process.env.VITE_REDIS_PASSWORD;
 
-const HOST_NAME = "localhost";
+const HOST_NAME = "2a06:c701:9c56:3300:7eae:ac1c:5b9f:983c";
 const PORT = 5004;
 
 const redis = createClient({
