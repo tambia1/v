@@ -29,21 +29,17 @@ export const Box = styled.div`
 	height: auto;
 	box-sizing: border-box;
 	color: ${(props) => props.theme.color.boxColor1};
-
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
 	padding: 2rem;
-
-	border-radius: 2rem;
-
 	overflow: hidden;
-
-	background-image: linear-gradient(135deg, #ffffff11, #ffffff00);
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalBg};
-	backdrop-filter: blur(1rem);
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 16px;
+	box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(0.5rem);
 `;
 
 export const EmailBox = styled.div<{ disabled: boolean }>`
