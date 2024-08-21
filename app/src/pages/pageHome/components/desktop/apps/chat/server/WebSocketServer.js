@@ -1,8 +1,9 @@
 ﻿import WebSocket, { WebSocketServer } from "ws";
 import { log, colors } from "./log.js";
+import config from "./../../../../../../../config.json" with { "type": "json" };
 
-const HOST = "2a06:c701:9c56:3300:d296:7032:edab:4e6b";
-const PORT = 5002;
+const HOST = config.host;
+const PORT = config.chat.port;
 
 const actionSend = {
 	CONNECTED: "CONNECTED",

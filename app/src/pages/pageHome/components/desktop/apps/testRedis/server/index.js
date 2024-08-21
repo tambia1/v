@@ -5,13 +5,14 @@ import url from "url";
 import { createClient } from "redis";
 import { exit } from "process";
 import dotenv from "dotenv";
+import config from "./../../../../../../../config.json" with { "type": "json" };
 
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: "./../../../../../../../../.env" });
+
+const HOST = config.host;
+const PORT = config.redis.port;
 
 const VITE_REDIS_PASSWORD = process.env.VITE_REDIS_PASSWORD;
-
-const HOST = "2a06:c701:9c56:3300:d296:7032:edab:4e6b";
-const PORT = 5004;
 
 const redis = createClient({
 	password: VITE_REDIS_PASSWORD,

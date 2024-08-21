@@ -3,8 +3,10 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { typeDefs } from "./schema.js";
 import db from "./db.js";
 import { log, colors } from "./log.js";
+import config from "./../../../../../../../config.json" with { "type": "json" };
 
-const PORT = 5003;
+const HOST = config.host;
+const PORT = config.graphQl.port;
 
 const resolvers = {
 	Query: {
@@ -88,7 +90,7 @@ const server = new ApolloServer({
 });
 
 const { url } = await startStandaloneServer(server, {
-	listen: { port: PORT },
+	listen: { host: HOST, port: PORT },
 });
 
 log(colors.green, `GraphQL server running at port ${PORT}`);

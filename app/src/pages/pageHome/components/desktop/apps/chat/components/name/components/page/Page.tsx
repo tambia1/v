@@ -9,9 +9,10 @@ import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import { useState } from "react";
 import { IClient, IDataGet } from "../../../../Chat.types";
 import { useStoreTalk } from "../../stores/StoreTalk";
+import config from "@src/config.json";
 
-const HOST = "2a06:c701:9c56:3300:d296:7032:edab:4e6b";
-const PORT = 5002;
+const HOST = config.host;
+const PORT = config.chat.port;
 
 interface Props {
 	name: string;
