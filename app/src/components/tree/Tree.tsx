@@ -69,13 +69,6 @@ export const FolderDefault = ({ folder, Item, Folder }: FolderProps) => {
 	return (
 		<S.TreeFolder>
 			<S.TreeFolderHeader>
-				<S.TreeFolderExpand
-					onClick={() => {
-						expandItem(folder, !folder.isExpanded, treeContext.originalNodes, treeContext.setOriginalNodes);
-					}}
-				>
-					{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}
-				</S.TreeFolderExpand>
 				<S.TreeFolderSelect
 					onClick={() => {
 						selectItems(folder.nodes, !isAllSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
@@ -83,6 +76,13 @@ export const FolderDefault = ({ folder, Item, Folder }: FolderProps) => {
 				>
 					{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
 				</S.TreeFolderSelect>
+				<S.TreeFolderExpand
+					onClick={() => {
+						expandItem(folder, !folder.isExpanded, treeContext.originalNodes, treeContext.setOriginalNodes);
+					}}
+				>
+					{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}
+				</S.TreeFolderExpand>
 				<S.TreeFolderContent highlighted={folder.isHighlighted}>{folder.content}</S.TreeFolderContent>
 			</S.TreeFolderHeader>
 			<S.TreeFolderBody>{folder.isExpanded && <Nodes nodes={folder.nodes} Item={Item} Folder={Folder} />}</S.TreeFolderBody>

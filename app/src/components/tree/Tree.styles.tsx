@@ -27,12 +27,12 @@ export const TreeFolderHeader = styled.div`
 	padding: 0.5rem;
 	gap: 0.5rem;
 
-	color: ${(props) => props.theme.color.accentFg};
-	background-color: ${(props) => props.theme.color.normalBgActive};
+	color: ${(props) => props.theme.color.normalFg};
+	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
-		color: ${(props) => props.theme.color.accentFgHover};
-		background-color: ${(props) => props.theme.color.accentBgHover};
+		color: ${(props) => props.theme.color.normalFgHover};
+		background-color: ${(props) => props.theme.color.normalBgHover};
 	}
 `;
 
@@ -64,7 +64,7 @@ export const TreeItem = styled.div`
 	padding: 0.5rem;
 
 	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBgActive};
+	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
 		color: ${(props) => props.theme.color.normalFgHover};

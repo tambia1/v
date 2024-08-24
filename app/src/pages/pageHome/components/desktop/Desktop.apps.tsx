@@ -69,6 +69,6 @@ export const apps: IApp[][] = [
 		{ id: "testGraphQl", roles: ["admin"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <TestGraphQl /> },
 		{ id: "testCube", roles: ["admin"], title: <T>{lang.testCube.title}</T>, icon: "test", component: <TestCube /> },
 		{ id: "testRedis", roles: ["admin"], title: <T>{lang.testRedis.title}</T>, icon: "test", component: <TestRedis /> },
-		{ id: "testTree", roles: ["admin"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestTree /> },
+		{ id: "testTree", roles: ["admin", "guest"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestTree /> },
 	],
 ];
