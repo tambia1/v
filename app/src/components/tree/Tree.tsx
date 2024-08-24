@@ -62,7 +62,7 @@ type FolderProps = {
 
 export const FolderDefault = ({ folder, Item, Folder }: FolderProps) => {
 	const treeContext = useTreeContext();
-	const isAllSelected = isItemsSelected(folder.nodes);
+	const itemsSelectionState = getItemsSelectionState(folder.nodes);
 
 	return (
 		<S.TreeFolder>
@@ -73,10 +73,12 @@ export const FolderDefault = ({ folder, Item, Folder }: FolderProps) => {
 			>
 				<S.TreeFolderSelect
 					onClick={() => {
-						selectItems(folder.nodes, !isAllSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
+						selectItems(folder.nodes, itemsSelectionState !== "none", treeContext.originalNodes, treeContext.setOriginalNodes);
 					}}
 				>
-					{isAllSelected ? <S.IconFolder iconName="iconCheckSquare" /> : <S.IconFolder iconName="iconSquare" />}
+					{itemsSelectionState === "none" && <S.IconFolder iconName="iconSquare" />}
+					{itemsSelectionState === "partial" && <S.IconFolder iconName="iconMinusSquare" />}
+					{itemsSelectionState === "all" && <S.IconFolder iconName="iconCheckSquare" />}
 				</S.TreeFolderSelect>
 				<S.TreeFolderExpand>{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}</S.TreeFolderExpand>
 				<S.TreeFolderContent highlighted={folder.isHighlighted}>{folder.content}</S.TreeFolderContent>
@@ -122,16 +124,40 @@ const selectItems = (nodes: NodeType[], isSelected: boolean, originalNodes: Node
 	setOriginalNodes([...originalNodes]);
 };
 
-const isItemsSelected = (nodes: NodeType[]): boolean => {
+type ItemSelectionState = "none" | "partial" | "all";
+
+const getItemsSelectionState = (nodes: NodeType[]): ItemSelectionState => {
+	let hasSelected = false;
+	let hasUnselected = false;
+
 	for (const node of nodes) {
-		if (node.type === "item" && !node.isSelected) {
-			return false;
-		} else if (node.type === "folder" && !isItemsSelected(node.nodes)) {
-			return false;
+		if (node.type === "item") {
+			if (node.isSelected) {
+				hasSelected = true;
+			} else {
+				hasUnselected = true;
+			}
+		} else if (node.type === "folder") {
+			const folderState = getItemsSelectionState(node.nodes);
+			if (folderState === "partial") {
+				return "partial";
+			} else if (folderState === "all") {
+				hasSelected = true;
+			} else {
+				hasUnselected = true;
+			}
+		}
+
+		if (hasSelected && hasUnselected) {
+			return "partial";
 		}
 	}
 
-	return true;
+	if (hasSelected) {
+		return "all";
+	} else {
+		return "none";
+	}
 };
 
 export const highlightItems = (nodes: NodeType[], isHighlighted: boolean, originalNodes: NodeType[], setOriginalNodes: (nodes: NodeType[]) => void) => {
