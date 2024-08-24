@@ -1,3 +1,4 @@
+import { Icon } from "@src/icons/Icon";
 import styled from "styled-components";
 
 export const Tree = styled.div`
@@ -78,4 +79,10 @@ export const TreeItemContent = styled.div<{ highlighted: boolean }>`
 
 export const TreeItemSelect = styled.div`
 	cursor: pointer;
+`;
+
+export const IconFolder = styled(Icon)`
+	& > div > div > svg {
+		stroke: ${(props) => props.theme.color.normalFgActive};
+	}
 `;

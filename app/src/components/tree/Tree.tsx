@@ -43,14 +43,12 @@ export const ItemDefault = ({ item }: ItemProps) => {
 	const treeContext = useTreeContext();
 
 	return (
-		<S.TreeItem>
-			<S.TreeItemSelect
-				onClick={() => {
-					selectItem(item, !item.isSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
-				}}
-			>
-				{item.isSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
-			</S.TreeItemSelect>
+		<S.TreeItem
+			onClick={() => {
+				selectItem(item, !item.isSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
+			}}
+		>
+			<S.TreeItemSelect>{item.isSelected ? <S.IconFolder iconName="iconCheckSquare" /> : <S.IconFolder iconName="iconSquare" />}</S.TreeItemSelect>
 			<S.TreeItemContent highlighted={item.isHighlighted}>{item.content}</S.TreeItemContent>
 		</S.TreeItem>
 	);
@@ -68,21 +66,19 @@ export const FolderDefault = ({ folder, Item, Folder }: FolderProps) => {
 
 	return (
 		<S.TreeFolder>
-			<S.TreeFolderHeader>
+			<S.TreeFolderHeader
+				onClick={() => {
+					expandItem(folder, !folder.isExpanded, treeContext.originalNodes, treeContext.setOriginalNodes);
+				}}
+			>
 				<S.TreeFolderSelect
 					onClick={() => {
 						selectItems(folder.nodes, !isAllSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
 					}}
 				>
-					{isAllSelected ? <Icon iconName="iconCheckSquare" /> : <Icon iconName="iconSquare" />}
+					{isAllSelected ? <S.IconFolder iconName="iconCheckSquare" /> : <S.IconFolder iconName="iconSquare" />}
 				</S.TreeFolderSelect>
-				<S.TreeFolderExpand
-					onClick={() => {
-						expandItem(folder, !folder.isExpanded, treeContext.originalNodes, treeContext.setOriginalNodes);
-					}}
-				>
-					{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}
-				</S.TreeFolderExpand>
+				<S.TreeFolderExpand>{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}</S.TreeFolderExpand>
 				<S.TreeFolderContent highlighted={folder.isHighlighted}>{folder.content}</S.TreeFolderContent>
 			</S.TreeFolderHeader>
 			<S.TreeFolderBody>{folder.isExpanded && <Nodes nodes={folder.nodes} Item={Item} Folder={Folder} />}</S.TreeFolderBody>
