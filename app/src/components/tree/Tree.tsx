@@ -43,16 +43,13 @@ export const ItemDefault = ({ item }: ItemProps) => {
 	const treeContext = useTreeContext();
 
 	return (
-		<S.TreeItem>
+		<S.TreeItem
+			onClick={() => {
+				selectItem(item, !item.isSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
+			}}
+		>
 			<S.TreeItemSelect>{item.isSelected ? <S.IconFolder iconName="iconCheckSquare" /> : <S.IconFolder iconName="iconSquare" />}</S.TreeItemSelect>
-			<S.TreeItemContent
-				highlighted={item.isHighlighted}
-				onClick={() => {
-					selectItem(item, !item.isSelected, treeContext.originalNodes, treeContext.setOriginalNodes);
-				}}
-			>
-				{item.content}
-			</S.TreeItemContent>
+			<S.TreeItemContent highlighted={item.isHighlighted}>{item.content}</S.TreeItemContent>
 		</S.TreeItem>
 	);
 };

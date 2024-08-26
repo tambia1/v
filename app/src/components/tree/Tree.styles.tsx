@@ -18,6 +18,7 @@ export const TreeFolder = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: start;
+	cursor: pointer;
 `;
 
 export const TreeFolderHeader = styled.div`
@@ -25,8 +26,6 @@ export const TreeFolderHeader = styled.div`
 	flex-direction: row;
 	align-items: center;
 	margin: 0.1rem;
-	padding: 0.5rem;
-	gap: 0.5rem;
 
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};
@@ -44,25 +43,23 @@ export const TreeFolderBody = styled.div`
 	padding-left: 3rem;
 `;
 
-export const TreeFolderExpand = styled.div`
-	cursor: pointer;
-`;
+export const TreeFolderExpand = styled.div``;
 
 export const TreeFolderSelect = styled.div`
+	padding: 0.5rem;
 	cursor: pointer;
 `;
 
 export const TreeFolderContent = styled.div<{ highlighted: boolean }>`
 	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
+	padding: 0.5rem;
 `;
 
 export const TreeItem = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 0.5rem;
 	margin: 0.1rem;
-	padding: 0.5rem;
 
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};
@@ -71,14 +68,17 @@ export const TreeItem = styled.div`
 		color: ${(props) => props.theme.color.normalFgHover};
 		background-color: ${(props) => props.theme.color.normalBgHover};
 	}
+
+	cursor: pointer;
 `;
 
 export const TreeItemContent = styled.div<{ highlighted: boolean }>`
 	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
+	padding: 0.5rem;
 `;
 
 export const TreeItemSelect = styled.div`
-	cursor: pointer;
+	padding: 0.5rem;
 `;
 
 export const IconFolder = styled(Icon)`
