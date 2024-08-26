@@ -118,7 +118,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			}
 		`} 
 
-	${(props) =>
+		${(props) =>
 		props.$variant === "link" &&
 		css`
 			--label-color: hsl(230, 60%, 50%);
@@ -152,4 +152,6 @@ export const Button = styled.button<{ $variant: IVariant }>`
 				color: var(--label-color);
 			}
 		`}
+
+		${(props) => props.$variant === "none" && css``}
 `;
