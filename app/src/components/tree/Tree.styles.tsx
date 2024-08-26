@@ -27,12 +27,12 @@ export const TreeFolderHeader = styled.div`
 	align-items: center;
 	margin: 0.1rem;
 
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.accentFg};
 	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
-		color: ${(props) => props.theme.color.normalFgHover};
-		background-color: ${(props) => props.theme.color.normalBgHover};
+		color: ${(props) => props.theme.color.accentFgHover};
+		background-color: ${(props) => props.theme.color.accentBgHover};
 	}
 `;
 

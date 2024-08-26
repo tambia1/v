@@ -18,10 +18,10 @@ export const themeLight: ITheme = {
 		normalFgDisabled: "#959595",
 		normalBgDisabled: "#ebebeb",
 
-		accentFg: "#4c7ebb",
+		accentFg: "#89b2f3",
 		accentBg: "#ffffff",
-		accentFgHover: "#89b2f3",
-		accentBgHover: "#f5f5f566",
+		accentFgHover: "#4c7ebb",
+		accentBgHover: "#dddddd",
 		accentFgActive: "#193d5b",
 		accentBgActive: "#ffffff",
 		accentFgSelected: "#265a87",
