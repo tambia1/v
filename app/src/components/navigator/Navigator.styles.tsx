@@ -66,7 +66,7 @@ export const BackContainer = styled.div<{ $isVisible: boolean }>`
 	align-items: center;
 	margin-left: 1rem;
 	border-radius: 1rem;
-	color: ${(props) => props.theme.color.accentFg};
+	color: ${(props) => props.theme.color.normalFg};
 	cursor: pointer;
 	transition: all 0.3s ease;
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
