@@ -18,11 +18,11 @@ export const User = () => {
 
 	const [inputData, setInputData] = useState({
 		email: {
-			value: "",
+			value: "a",
 			disabled: false,
 		},
 		password: {
-			value: "",
+			value: "a",
 			disabled: false,
 		},
 	});
