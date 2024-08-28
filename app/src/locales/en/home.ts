@@ -142,4 +142,8 @@ export const translation: IHome = {
 	testTree: {
 		title: "Test Tree",
 	},
+
+	testMenu: {
+		title: "Test Menu",
+	},
 };

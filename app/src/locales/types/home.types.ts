@@ -142,4 +142,8 @@ export type IHome = {
 	testTree: {
 		title: string;
 	};
+
+	testMenu: {
+		title: string;
+	};
 };
