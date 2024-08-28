@@ -29,6 +29,9 @@
 		"noUnusedLocals": true,
 		"composite": true
 	},
+	"ts-node": {
+		"esm": true
+	},
 	"include": ["src/**/*", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.d.ts", "**/*.json"],
 	"exclude": ["node_modules", "vite.config.ts", "tsconfig.json"]
 }

@@ -20,7 +20,7 @@ export const Talk = ({ sendMessage }: Props) => {
 
 	const handleOnClickSend = (message: string) => {
 		if (message.trim().length > 0) {
-			sendMessage({ action: "MESSAGE", message });
+			sendMessage({ action: "message", message });
 		}
 	};
 

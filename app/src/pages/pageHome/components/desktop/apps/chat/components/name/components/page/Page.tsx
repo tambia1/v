@@ -29,16 +29,16 @@ export const Page = ({ name }: Props) => {
 	const storeTalk = useStoreTalk();
 
 	const handleOnMessage = (data: IDataGet) => {
-		if (data.action === "CONNECTED") {
+		if (data.action === "connected") {
 			setClient({ clientId: data.clientId, clientName: name });
 
 			if (name.trim().length > 0) {
-				sendMessage({ action: "NAME", clientName: name });
+				sendMessage({ action: "name", clientName: name });
 				storeTalk.setClient({ clientId: data.clientId, clientName: name });
 			}
 		}
 
-		if (data.action === "UPDATE") {
+		if (data.action === "update") {
 			const myClient = data.clients.find((item) => item.clientId === client.clientId);
 
 			if (myClient) {

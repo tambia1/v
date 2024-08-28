@@ -3,22 +3,22 @@ export type IMessage = { messageId: string; time: number; clientId: string; clie
 
 export type IDataGet =
 	| {
-			action: "CONNECTED";
+			action: "connected";
 			clientId: string;
 			clientName: string;
 	  }
 	| {
-			action: "UPDATE";
+			action: "update";
 			clients: IClient[];
 			messages: IMessage[];
 	  };
 
 export type IDataSend =
 	| {
-			action: "NAME";
+			action: "name";
 			clientName: string;
 	  }
 	| {
-			action: "MESSAGE";
+			action: "message";
 			message: string;
 	  };
