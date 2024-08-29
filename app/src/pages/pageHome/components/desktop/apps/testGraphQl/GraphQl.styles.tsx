@@ -16,6 +16,11 @@ export const TestGraphQl = styled.div`
 	overflow-y: auto;
 `;
 
+export const Spacer = styled.div`
+	width: 100%;
+	height: 1rem;
+`;
+
 export const Container = styled.div`
 	width: 100%;
 	height: auto;

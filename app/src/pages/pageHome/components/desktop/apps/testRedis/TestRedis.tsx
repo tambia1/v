@@ -36,6 +36,8 @@ export const TestRedis = () => {
 				<T>{lang.testRedis.title}</T>
 			</Text>
 
+			<S.Spacer />
+
 			<Button onClick={handleOnClickSetKey}>Set key firstName</Button>
 			<Button onClick={handleOnClickGetKey}>Get key firstName</Button>
 

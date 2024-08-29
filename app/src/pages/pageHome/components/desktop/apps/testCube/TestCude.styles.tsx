@@ -14,6 +14,11 @@ export const TestCube = styled.div`
 	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
 
+export const Spacer = styled.div`
+	width: 100%;
+	height: 1rem;
+`;
+
 export const SliderComponent = styled(Slider)`
 	background-color: red;
 `;

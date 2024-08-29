@@ -15,6 +15,11 @@ export const TestTree = styled.div`
 	overflow-y: auto;
 `;
 
+export const Spacer = styled.div`
+	width: 100%;
+	height: 1rem;
+`;
+
 export const InputContainer = styled.div`
 	margin-top: 1rem;
 `;

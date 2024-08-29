@@ -189,6 +189,7 @@ export const Title = styled.div`
 	font-size: ${(props) => props.theme.size.s};
 	text-align: center;
 	word-break: normal;
+	white-space: pre-wrap;
 `;
 
 export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`

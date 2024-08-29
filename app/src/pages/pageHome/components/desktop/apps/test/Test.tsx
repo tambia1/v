@@ -9,6 +9,8 @@ export const Test = () => {
 			<Text size="l">
 				<T>{lang.test.title}</T>
 			</Text>
+
+			<S.Spacer />
 		</S.Test>
 	);
 };

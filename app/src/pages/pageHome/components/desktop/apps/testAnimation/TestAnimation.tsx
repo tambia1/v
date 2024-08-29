@@ -205,6 +205,8 @@ export const TestAnimation = () => {
 		<S.TestAnimation>
 			<Text size="l">Test Animation</Text>
 
+			<S.Spacer />
+
 			<S.Rect>
 				<S.ButtonResume onClick={handleResumeAnimation}>RESUME</S.ButtonResume>
 				<S.ButtonStop onClick={handleStopAnimation}>STOP</S.ButtonStop>

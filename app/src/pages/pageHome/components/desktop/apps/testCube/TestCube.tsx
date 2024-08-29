@@ -29,6 +29,8 @@ export const TestCube = () => {
 				<T>{lang.testCube.title}</T>
 			</Text>
 
+			<S.Spacer />
+
 			<Cube
 				width={sliderValue.width * 200}
 				height={sliderValue.height * 200}

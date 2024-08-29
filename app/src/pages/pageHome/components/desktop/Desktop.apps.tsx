@@ -26,6 +26,7 @@ import { TestCube } from "./apps/testCube/TestCube";
 import { TestRedis } from "./apps/testRedis/TestRedis";
 import { TestTree } from "./apps/testTree/TestTree";
 import { TestMenu } from "./apps/testMenu/TestMenu";
+import { TestCouner } from "./apps/testCounter/TestCouner";
 
 const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -71,6 +72,7 @@ export const apps: IApp[][] = [
 		{ id: "testCube", roles: ["admin"], title: <T>{lang.testCube.title}</T>, icon: "test", component: <TestCube /> },
 		{ id: "testRedis", roles: ["admin"], title: <T>{lang.testRedis.title}</T>, icon: "test", component: <TestRedis /> },
 		{ id: "testTree", roles: ["admin"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestTree /> },
-		{ id: "testMenu", roles: ["admin", "guest"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestMenu /> },
+		{ id: "testMenu", roles: ["admin", "guest"], title: <T>{lang.testMenu.title}</T>, icon: "test", component: <TestMenu /> },
+		{ id: "testCounter", roles: ["admin", "guest"], title: <T>{lang.testCounter.title}</T>, icon: "test", component: <TestCouner /> },
 	],
 ];

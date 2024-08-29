@@ -126,6 +126,8 @@ export const TestTree = () => {
 				<T>{lang.testTree.title}</T>
 			</Text>
 
+			<S.Spacer />
+
 			<S.InputContainer>
 				<Input
 					value={title}

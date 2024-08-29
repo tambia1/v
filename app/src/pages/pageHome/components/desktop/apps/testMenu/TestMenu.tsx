@@ -13,6 +13,8 @@ export const TestMenu = () => {
 				<T>{lang.testMenu.title}</T>
 			</Text>
 
+			<S.Spacer />
+
 			<Icon iconName="iconMenu" onClick={handleOnCLickMenu} />
 		</S.TestMenu>
 	);

@@ -107,7 +107,7 @@ export const translation: IHome = {
 	},
 
 	testSelect: {
-		title: "Test Select",
+		title: "Test\nSelect",
 		item0: "Item 0",
 		item1: "Item 1",
 		item2: "Item 2",
@@ -116,34 +116,38 @@ export const translation: IHome = {
 	},
 
 	testTable: {
-		title: "Test Table",
+		title: "Test\nTable",
 	},
 
 	testTransition: {
-		title: "Test Transition",
+		title: "Test\nTransition",
 	},
 
 	testAnimation: {
-		title: "Test Animation",
+		title: "Test\nAnimation",
 	},
 
 	testGraphQl: {
-		title: "Test GraphQL",
+		title: "Test\nGraphQL",
 	},
 
 	testCube: {
-		title: "Test Cube",
+		title: "Test\nCube",
 	},
 
 	testRedis: {
-		title: "Test Redis",
+		title: "Test\nRedis",
 	},
 
 	testTree: {
-		title: "Test Tree",
+		title: "Test\nTree",
 	},
 
 	testMenu: {
-		title: "Test Menu",
+		title: "Test\nMenu",
+	},
+
+	testCounter: {
+		title: "Test\nCounter",
 	},
 };

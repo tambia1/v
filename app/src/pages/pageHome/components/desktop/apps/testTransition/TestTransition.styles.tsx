@@ -13,6 +13,11 @@ export const TestTransition = styled.div`
 	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;
 
+export const Spacer = styled.div`
+	width: 100%;
+	height: 1rem;
+`;
+
 export const ElementContainer = styled.div`
 	margin-top: 2rem;
 `;

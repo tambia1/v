@@ -146,4 +146,8 @@ export type IHome = {
 	testMenu: {
 		title: string;
 	};
+
+	testCounter: {
+		title: string;
+	};
 };
