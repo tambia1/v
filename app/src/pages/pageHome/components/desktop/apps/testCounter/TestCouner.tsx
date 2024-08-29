@@ -13,7 +13,7 @@ export const TestCouner = () => {
 
 			<S.Spacer />
 
-			<Counter min={0} max={10} />
+			<Counter min={0} max={10} val={6} />
 		</S.TestCouner>
 	);
 };

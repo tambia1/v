@@ -10,4 +10,5 @@ export const Counter = styled.div`
 
 export const IconCounter = styled(Icon)`
 	cursor: pointer;
+	flex-shrink: 0;
 `;
