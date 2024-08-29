@@ -1,11 +1,11 @@
 import { Icon } from "@src/icons/Icon";
 import styled from "styled-components";
 
-export const Counter = styled.div`
+export const Compose = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1rem;
 `;
 
 export const IconCounter = styled(Icon)`

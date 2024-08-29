@@ -14,6 +14,22 @@ export const TestCouner = () => {
 			<S.Spacer />
 
 			<Counter min={0} max={10} val={6} />
+
+			<S.Spacer />
+
+			<Counter.Compose min={0} max={10} val={6}>
+				<Counter.Minus />
+				<Counter.Plus />
+				<Counter.Value />
+			</Counter.Compose>
+
+			<S.Spacer />
+
+			<Counter.Compose min={0} max={10} val={6}>
+				<Counter.Value />
+				<Counter.Plus />
+				<Counter.Minus />
+			</Counter.Compose>
 		</S.TestCouner>
 	);
 };
