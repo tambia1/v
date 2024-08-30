@@ -14,7 +14,7 @@ export const Compose = ({ children, val, min, max, ...rest }: Props) => {
 
 	return (
 		<S.Compose {...rest}>
-			<CounterContext.Provider value={{ value, setValue }}>{children}</CounterContext.Provider>
+			<CounterContext.Provider value={{ val: value, setVal: setValue, min, max }}>{children}</CounterContext.Provider>
 		</S.Compose>
 	);
 };

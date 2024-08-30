@@ -7,7 +7,7 @@ export const Value = () => {
 
 	return (
 		<S.Value>
-			<Text>{counterContext.value}</Text>
+			<Text>{counterContext.val}</Text>
 		</S.Value>
 	);
 };

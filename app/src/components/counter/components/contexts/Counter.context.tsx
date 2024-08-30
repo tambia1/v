@@ -1,8 +1,10 @@
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
 
 export const CounterContext = createContext<{
-	value: number;
-	setValue: Dispatch<SetStateAction<number>>;
+	min: number;
+	max: number;
+	val: number;
+	setVal: Dispatch<SetStateAction<number>>;
 } | null>(null);
 
 export const useCounterContext = () => {

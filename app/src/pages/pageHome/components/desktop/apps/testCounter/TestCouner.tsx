@@ -30,6 +30,14 @@ export const TestCouner = () => {
 				<Counter.Plus />
 				<Counter.Minus />
 			</Counter.Compose>
+
+			<S.Spacer />
+
+			<Counter.Compose min={0} max={10} val={6}>
+				<Counter.Plus.Compose iconName="iconPlusCircle" add={2} />
+				<Counter.Value />
+				<Counter.Minus.Compose iconName="iconMinusCircle" add={-2} />
+			</Counter.Compose>
 		</S.TestCouner>
 	);
 };
