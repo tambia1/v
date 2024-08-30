@@ -1,5 +1,5 @@
-import { ITheme } from "../Theme.types";
-import imageBg from "./assets/themeDark/bg.jpg";
+import { ITheme } from "../../Theme.types";
+import imageBg from "./assets/bg.jpg";
 
 export const themeDark: ITheme = {
 	themeName: "dark",

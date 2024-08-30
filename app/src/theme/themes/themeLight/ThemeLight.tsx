@@ -1,5 +1,5 @@
-import { ITheme } from "../Theme.types";
-import imageBg from "./assets/themeLight/bg.jpg";
+import { ITheme } from "../../Theme.types";
+import imageBg from "./assets/bg.jpg";
 
 export const themeLight: ITheme = {
 	themeName: "light",
