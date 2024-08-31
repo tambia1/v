@@ -1,3 +1,4 @@
+import { Icon } from "@src/icons/Icon";
 import styled from "styled-components";
 
 export const TestMenu = styled.div`
@@ -16,4 +17,9 @@ export const TestMenu = styled.div`
 export const Spacer = styled.div`
 	width: 100%;
 	height: 1rem;
+`;
+
+export const MenuIcon = styled(Icon)`
+	cursor: pointer;
+	padding: 0.5rem;
 `;
