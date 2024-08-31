@@ -10,33 +10,32 @@ import { useState } from "react";
 import { IClient, IDataGet } from "../../../../Chat.types";
 import { useStoreTalk } from "../../stores/StoreTalk";
 import config from "@src/config.json";
-import { StoreChat } from "../../stores/StoreChat";
 
 const HOST = config.host;
 const PORT = config.chat.port;
 
 interface Props {
 	name: string;
+	avatar: number;
 }
 
-export const Page = ({ name }: Props) => {
+export const Page = ({ name, avatar }: Props) => {
 	const navigator = useNavigator();
-	const storeChat = StoreChat();
 
 	const { sendMessage } = useWebSocket({ url: `ws://[${HOST}]:${PORT}`, onMessage: (message) => handleOnMessage(message) });
 
-	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "" });
+	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "", clientAvatar: 0 });
 	const [clients, setClients] = useState<IClient[]>([]);
 
 	const storeTalk = useStoreTalk();
 
 	const handleOnMessage = (data: IDataGet) => {
 		if (data.action === "connected") {
-			setClient({ clientId: data.clientId, clientName: name });
+			setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
 
 			if (name.trim().length > 0) {
-				sendMessage({ action: "name", clientName: name });
-				storeTalk.setClient({ clientId: data.clientId, clientName: name });
+				sendMessage({ action: "name", clientName: name, clientAvatar: avatar });
+				storeTalk.setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
 			}
 		}
 
@@ -44,8 +43,8 @@ export const Page = ({ name }: Props) => {
 			const myClient = data.clients.find((item) => item.clientId === client.clientId);
 
 			if (myClient) {
-				setClient({ ...client, clientName: myClient.clientName });
-				storeTalk.setClient({ clientId: myClient.clientId, clientName: myClient.clientName });
+				setClient({ ...client, clientName: myClient.clientName, clientAvatar: myClient.clientAvatar });
+				storeTalk.setClient({ clientId: myClient.clientId, clientName: myClient.clientName, clientAvatar: myClient.clientAvatar });
 			}
 
 			setClients(data.clients);
@@ -70,7 +69,7 @@ export const Page = ({ name }: Props) => {
 			<List>
 				{clients.map((client) => (
 					<List.Cell key={client.clientId} onClick={() => handleOnClickCell(client)}>
-						<S.ClientAvatar $avatarIndex={storeChat.avatar} />
+						<S.ClientAvatar $avatarIndex={client.clientAvatar} />
 						<S.ClientName>{client.clientName}</S.ClientName>
 						<S.ClientId>{client.clientId}</S.ClientId>
 					</List.Cell>

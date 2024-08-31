@@ -10,6 +10,7 @@ type Message = {
 	time: number;
 	clientId: string;
 	clientName: string;
+	clientAvatar: number;
 	message: string;
 };
 
@@ -18,12 +19,14 @@ type MessageSend =
 			action: "connected";
 			clientId: string;
 			clientName: string;
+			clientAvatar: number;
 	  }
 	| {
 			action: "update";
 			clients: {
 				clientId: string;
 				clientName: string;
+				clientAvatar: number;
 			}[];
 			messages: Message[];
 	  };
@@ -33,12 +36,14 @@ type MessageGet =
 			action: "name";
 			clientId: string;
 			clientName: string;
+			clientAvatar: number;
 	  }
 	| {
 			action: "message";
 			clients: {
 				clientId: string;
 				clientName: string;
+				clientAvatar: number;
 			}[];
 			message: string;
 	  };
@@ -52,6 +57,7 @@ interface ExtendedWebSocket extends WebSocket {
 	clientId: string;
 	clientTime: number;
 	clientName: string;
+	clientAvatar: number;
 }
 
 wss.on("error", (error: Error) => {
@@ -64,13 +70,15 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 	ws.clientId = getUniqueId();
 	ws.clientTime = Date.now();
 	ws.clientName = ws.clientId;
+	ws.clientAvatar = 0;
 
-	log("blue", `client connected, id: ${ws.clientId}, ip: ${ip}`);
+	log("blue", `connection, id: ${ws.clientId}, ip: ${ip} [${wss.clients.size}]`);
 
 	const message: MessageSend = {
 		action: "connected",
 		clientId: ws.clientId,
 		clientName: ws.clientName,
+		clientAvatar: ws.clientAvatar,
 	};
 
 	ws.send(JSON.stringify(message));
@@ -82,7 +90,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 	});
 
 	ws.on("close", () => {
-		log("cyan", "disconnect");
+		log("cyan", `disconnect [${wss.clients.size}]`);
 	});
 
 	ws.on("message", (message: string) => {
@@ -100,6 +108,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 		switch (data.action) {
 			case "name":
 				ws.clientName = data.clientName;
+				ws.clientAvatar = data.clientAvatar;
 				updateAllClients();
 				break;
 
@@ -109,6 +118,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 					time: Date.now(),
 					clientId: ws.clientId,
 					clientName: ws.clientName,
+					clientAvatar: ws.clientAvatar,
 					message: data.message,
 				};
 
@@ -127,7 +137,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 function updateAllClients() {
 	const clients = [...wss.clients].map((client) => {
 		const extendedClient = client as ExtendedWebSocket;
-		return { clientId: extendedClient.clientId, clientName: extendedClient.clientName };
+		return { clientId: extendedClient.clientId, clientName: extendedClient.clientName, clientAvatar: extendedClient.clientAvatar };
 	});
 
 	wss.clients.forEach((client) => {

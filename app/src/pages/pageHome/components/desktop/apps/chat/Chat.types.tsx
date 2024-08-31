@@ -1,11 +1,12 @@
-export type IClient = { clientId: string; clientName: string };
-export type IMessage = { messageId: string; time: number; clientId: string; clientName: string; message: string };
+export type IClient = { clientId: string; clientName: string; clientAvatar: number };
+export type IMessage = { messageId: string; time: number; clientId: string; clientName: string; clientAvatar: number; message: string };
 
 export type IDataGet =
 	| {
 			action: "connected";
 			clientId: string;
 			clientName: string;
+			clientAvatar: number;
 	  }
 	| {
 			action: "update";
@@ -17,6 +18,7 @@ export type IDataSend =
 	| {
 			action: "name";
 			clientName: string;
+			clientAvatar: number;
 	  }
 	| {
 			action: "message";

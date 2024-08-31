@@ -9,7 +9,7 @@ interface State {
 }
 
 export const useStoreTalk = create<State>()((set) => ({
-	client: { clientId: "", clientName: "" },
+	client: { clientId: "", clientName: "", clientAvatar: 0 },
 	messages: [],
 	setClient: (client: IClient) => set(() => ({ client })),
 	setMessages: (messages: IMessage[]) => set(() => ({ messages })),

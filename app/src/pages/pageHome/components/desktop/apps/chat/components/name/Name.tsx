@@ -18,7 +18,7 @@ export const Name = () => {
 
 		navigator.pushPage(
 			<Navigator.Page id="talks" title={userName}>
-				<Page name={userName} />
+				<Page name={userName} avatar={pageIndex} />
 			</Navigator.Page>
 		);
 	};
