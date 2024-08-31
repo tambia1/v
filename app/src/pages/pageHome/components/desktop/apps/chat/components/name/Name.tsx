@@ -5,13 +5,16 @@ import { StoreChat } from "./stores/StoreChat";
 import { NameBar } from "./components/messageBar/NameBar";
 import { Page } from "./components/page/Page";
 import { Pager } from "@src/components/pager/Pager";
+import { useState } from "react";
 
 export const Name = () => {
 	const navigator = useNavigator();
 	const storeChat = StoreChat();
+	const [pageIndex, setPageIndex] = useState(storeChat.avatar);
 
 	const handleOnClickSet = (userName: string) => {
 		storeChat.setName(userName);
+		storeChat.setAvatar(pageIndex);
 
 		navigator.pushPage(
 			<Navigator.Page id="talks" title={userName}>
@@ -21,7 +24,7 @@ export const Name = () => {
 	};
 
 	const handleChangeAvatar = (pageIndex: number) => {
-		storeChat.setAvatar(pageIndex);
+		setPageIndex(pageIndex);
 	};
 
 	return (
@@ -30,6 +33,7 @@ export const Name = () => {
 
 			<S.PagingContainer>
 				<Pager
+					initialPageIndex={storeChat.avatar}
 					onChange={(pageIndex) => {
 						handleChangeAvatar(pageIndex);
 					}}

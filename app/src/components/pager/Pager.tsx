@@ -1,4 +1,4 @@
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import * as S from "./Pager.styles";
 import { ITouch, useTouch } from "@src/hooks/UseTouch";
 
@@ -7,12 +7,20 @@ interface Props {
 	children: ReactNode[];
 	onChange: (pageIndex: number) => void;
 	disabled?: boolean;
+	initialPageIndex?: number;
 }
 
-export const Pager = ({ className, children: pages, onChange, disabled = false }: Props) => {
+export const Pager = ({ className, children: pages, onChange, disabled = false, initialPageIndex = 0 }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
-	const [pageIndex, setPageIndex] = useState(0);
+	const [pageIndex, setPageIndex] = useState(initialPageIndex);
+
+	useEffect(() => {
+		if (refPagesPanel.current) {
+			translate(refPagesPanel.current, -initialPageIndex * 100, false);
+			onChange(initialPageIndex);
+		}
+	}, []);
 
 	useTouch({
 		ref: refPages,

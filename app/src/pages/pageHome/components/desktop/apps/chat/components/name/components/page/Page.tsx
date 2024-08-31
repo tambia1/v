@@ -10,6 +10,7 @@ import { useState } from "react";
 import { IClient, IDataGet } from "../../../../Chat.types";
 import { useStoreTalk } from "../../stores/StoreTalk";
 import config from "@src/config.json";
+import { StoreChat } from "../../stores/StoreChat";
 
 const HOST = config.host;
 const PORT = config.chat.port;
@@ -20,6 +21,7 @@ interface Props {
 
 export const Page = ({ name }: Props) => {
 	const navigator = useNavigator();
+	const storeChat = StoreChat();
 
 	const { sendMessage } = useWebSocket({ url: `ws://[${HOST}]:${PORT}`, onMessage: (message) => handleOnMessage(message) });
 
@@ -68,7 +70,9 @@ export const Page = ({ name }: Props) => {
 			<List>
 				{clients.map((client) => (
 					<List.Cell key={client.clientId} onClick={() => handleOnClickCell(client)}>
-						<S.ClientName>{client.clientName}</S.ClientName> <S.ClientId>{client.clientId}</S.ClientId>
+						<S.ClientAvatar $avatarIndex={storeChat.avatar} />
+						<S.ClientName>{client.clientName}</S.ClientName>
+						<S.ClientId>{client.clientId}</S.ClientId>
 					</List.Cell>
 				))}
 			</List>
