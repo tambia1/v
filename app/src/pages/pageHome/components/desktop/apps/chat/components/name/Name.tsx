@@ -4,13 +4,14 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { StoreChat } from "./stores/StoreChat";
 import { NameBar } from "./components/messageBar/NameBar";
 import { Page } from "./components/page/Page";
+import { Pager } from "@src/components/pager/Pager";
 
 export const Name = () => {
 	const navigator = useNavigator();
 	const storeChat = StoreChat();
 
 	const handleOnClickSet = (userName: string) => {
-		storeChat.setData(userName);
+		storeChat.setName(userName);
 
 		navigator.pushPage(
 			<Navigator.Page id="talks" title={userName}>
@@ -19,9 +20,26 @@ export const Name = () => {
 		);
 	};
 
+	const handleChangeAvatar = (pageIndex: number) => {
+		storeChat.setAvatar(pageIndex);
+	};
+
 	return (
 		<S.Name>
 			<NameBar name={storeChat.name} onClickSet={handleOnClickSet} />
+
+			<S.PagingContainer>
+				<Pager
+					onChange={(pageIndex) => {
+						handleChangeAvatar(pageIndex);
+					}}
+				>
+					<S.PagingItem0 />
+					<S.PagingItem1 />
+					<S.PagingItem2 />
+					<S.PagingItem3 />
+				</Pager>
+			</S.PagingContainer>
 		</S.Name>
 	);
 };

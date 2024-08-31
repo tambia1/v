@@ -3,21 +3,25 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 interface Props {
 	name: string;
-	setData: (name: string) => void;
+	avatar: number;
+	setName: (name: string) => void;
+	setAvatar: (avatar: number) => void;
 }
 
 const initialState = {
 	name: "",
+	avatar: 0,
 };
 
 export const StoreChat = create<Props>()(
 	persist(
 		(set) => ({
 			...initialState,
-			setData: (name: string) => set(() => ({ name })),
+			setName: (name: string) => set(() => ({ name })),
+			setAvatar: (avatar: number) => set(() => ({ avatar })),
 		}),
 		{
-			version: 1,
+			version: 1.1,
 			name: "chat",
 			storage: createJSONStorage(() => localStorage),
 		}
