@@ -2,11 +2,10 @@ const downloadImages = (urls: string[]) => {
 	return Promise.all(
 		urls.map(
 			(url) =>
-				new Promise<void>((resolve) => {
+				new Promise<void>((resolve, reject) => {
 					const image = new Image();
-					image.onload = image.onerror = () => {
-						resolve();
-					};
+					image.onload = () => resolve();
+					image.onerror = () => reject(new Error(`Failed to load image: ${url}`));
 					image.src = url;
 				})
 		)
