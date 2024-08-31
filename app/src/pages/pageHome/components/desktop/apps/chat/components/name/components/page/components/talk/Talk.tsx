@@ -30,7 +30,7 @@ export const Talk = ({ sendMessage }: Props) => {
 				{messages.map((message) => (
 					<S.Message key={message.messageId}>
 						{message.clientId === client.clientId && <BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar} />}
-						{message.clientId !== client.clientId && <BubbleOther key={message.messageId} content={message.message} />}
+						{message.clientId !== client.clientId && <BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar} />}
 					</S.Message>
 				))}
 			</S.Messages>
