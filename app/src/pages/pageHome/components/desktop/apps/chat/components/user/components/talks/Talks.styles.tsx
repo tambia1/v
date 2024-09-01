@@ -8,7 +8,7 @@ const BgImages: { [K in ITheme["themeName"]]: string } = {
 	dark: ImageBgDark,
 };
 
-export const Page = styled.div`
+export const Talks = styled.div`
 	width: auto;
 	height: 100%;
 

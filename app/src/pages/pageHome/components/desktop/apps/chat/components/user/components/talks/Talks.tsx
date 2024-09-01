@@ -1,4 +1,4 @@
-import * as S from "./Page.styles";
+import * as S from "./Talks.styles";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { List } from "@src/components/list/List";
@@ -21,7 +21,7 @@ interface Props {
 	avatar: number;
 }
 
-export const Page = ({ name, avatar }: Props) => {
+export const Talks = ({ name, avatar }: Props) => {
 	const navigator = useNavigator();
 
 	const { sendMessage } = useWebSocket({ url: `ws://[${HOST}]:${PORT}`, onMessage: (message) => handleOnMessage(message) });
@@ -63,7 +63,7 @@ export const Page = ({ name, avatar }: Props) => {
 	};
 
 	return (
-		<S.Page>
+		<S.Talks>
 			<List.Section>
 				<T>{lang.chat.talks}</T>
 			</List.Section>
@@ -77,6 +77,6 @@ export const Page = ({ name, avatar }: Props) => {
 					</List.Cell>
 				))}
 			</List>
-		</S.Page>
+		</S.Talks>
 	);
 };
