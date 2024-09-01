@@ -6,6 +6,8 @@ import { NameBar } from "./components/messageBar/NameBar";
 import { Page } from "./components/page/Page";
 import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
+import { Avatar } from "./components/avatar/Avatar";
+import { avatars, IAvatar } from "./components/avatar/Avatar.styles";
 
 export const Name = () => {
 	const navigator = useNavigator();
@@ -38,10 +40,11 @@ export const Name = () => {
 						handleChangeAvatar(pageIndex);
 					}}
 				>
-					<S.PagingItem0 />
-					<S.PagingItem1 />
-					<S.PagingItem2 />
-					<S.PagingItem3 />
+					{avatars.map((_, index) => (
+						<S.PagingItem>
+							<Avatar index={index as unknown as IAvatar} size="l" />
+						</S.PagingItem>
+					))}
 				</Pager>
 			</S.PagingContainer>
 		</S.Name>

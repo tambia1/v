@@ -1,8 +1,4 @@
 import styled from "styled-components";
-import imageAvatar0 from "./../../../../../../../assets/avatar0.png";
-import imageAvatar1 from "./../../../../../../../assets/avatar1.png";
-import imageAvatar2 from "./../../../../../../../assets/avatar2.png";
-import imageAvatar3 from "./../../../../../../../assets/avatar3.png";
 
 export const BubbleMe = styled.div`
 	background-color: #aaffaa;
@@ -19,14 +15,4 @@ export const BubbleMeMessage = styled.div`
 	margin: 0.5rem 1rem;
 	white-space: pre-line;
 	max-width: 10rem;
-`;
-
-const avatars = [imageAvatar0, imageAvatar1, imageAvatar2, imageAvatar3];
-
-export const ClientAvatar = styled.div<{ $avatarIndex: number }>`
-	width: 2rem;
-	height: 2rem;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-image: url(${(props) => avatars[props.$avatarIndex]});
 `;

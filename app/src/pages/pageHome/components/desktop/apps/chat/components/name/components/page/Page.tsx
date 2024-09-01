@@ -10,6 +10,8 @@ import { useState } from "react";
 import { IClient, IDataGet } from "../../../../Chat.types";
 import { useStoreTalk } from "../../stores/StoreTalk";
 import config from "@src/config.json";
+import { Avatar } from "../avatar/Avatar";
+import { IAvatar } from "../avatar/Avatar.styles";
 
 const HOST = config.host;
 const PORT = config.chat.port;
@@ -69,7 +71,7 @@ export const Page = ({ name, avatar }: Props) => {
 			<List>
 				{clients.map((client) => (
 					<List.Cell key={client.clientId} onClick={() => handleOnClickCell(client)}>
-						<S.ClientAvatar $avatarIndex={client.clientAvatar} />
+						<Avatar index={client.clientAvatar as unknown as IAvatar} size="s" />
 						<S.ClientName>{client.clientName}</S.ClientName>
 						<S.ClientId>{client.clientId}</S.ClientId>
 					</List.Cell>

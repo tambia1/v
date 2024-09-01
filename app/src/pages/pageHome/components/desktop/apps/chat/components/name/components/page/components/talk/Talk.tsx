@@ -5,6 +5,7 @@ import { BubbleOther } from "./bubbleOther/BubbleOther";
 import { IDataSend } from "../../../../../../Chat.types";
 import { useStoreTalk } from "../../../../stores/StoreTalk";
 import { useEffect, useRef } from "react";
+import { IAvatar } from "../../../avatar/Avatar.styles";
 
 interface Props {
 	sendMessage: (message: IDataSend) => void;
@@ -29,8 +30,8 @@ export const Talk = ({ sendMessage }: Props) => {
 			<S.Messages ref={messagesRef}>
 				{messages.map((message) => (
 					<S.Message key={message.messageId}>
-						{message.clientId === client.clientId && <BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar} />}
-						{message.clientId !== client.clientId && <BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar} />}
+						{message.clientId === client.clientId && <BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />}
+						{message.clientId !== client.clientId && <BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />}
 					</S.Message>
 				))}
 			</S.Messages>

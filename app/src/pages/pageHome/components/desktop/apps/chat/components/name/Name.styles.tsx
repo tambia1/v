@@ -1,11 +1,7 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import ImageBgLight from "@apps/chat/assets/bgLight.png";
 import ImageBgDark from "@apps/chat/assets/bgDark.png";
 import { ITheme } from "@src/theme/Theme.types";
-import imageAvatar0 from "./../../assets/avatar0.png";
-import imageAvatar1 from "./../../assets/avatar1.png";
-import imageAvatar2 from "./../../assets/avatar2.png";
-import imageAvatar3 from "./../../assets/avatar3.png";
 
 const BgImages: { [K in ITheme["themeName"]]: string } = {
 	light: ImageBgLight,
@@ -45,33 +41,13 @@ export const PagingContainer = styled.div`
 	margin: 2rem;
 `;
 
-export const PagingItem = css`
+export const PagingItem = styled.div`
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 50%;
-`;
-
-export const PagingItem0 = styled.div`
-	${PagingItem}
-	background-image: url(${imageAvatar0});
-`;
-
-export const PagingItem1 = styled.div`
-	${PagingItem}
-	background-image: url(${imageAvatar1});
-`;
-
-export const PagingItem2 = styled.div`
-	${PagingItem}
-	background-image: url(${imageAvatar2});
-`;
-
-export const PagingItem3 = styled.div`
-	${PagingItem}
-	background-image: url(${imageAvatar3});
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
