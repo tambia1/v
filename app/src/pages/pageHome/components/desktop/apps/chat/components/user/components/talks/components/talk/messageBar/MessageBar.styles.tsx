@@ -4,8 +4,8 @@ export const MessageBar = styled.div`
 	display: flex;
 	flex-direction: row;
 	justify-content: left;
-	align-items: center;
-	height: 7rem;
+	align-items: end;
+	height: 12rem;
 	padding: 1rem;
 	box-sizing: border-box;
 	gap: 1rem;
@@ -14,7 +14,7 @@ export const MessageBar = styled.div`
 export const Message = styled.textarea`
 	display: flex;
 	width: 100%;
-	height: auto;
+	height: 100%;
 	overflow: auto;
 	box-shadow: 0 0 0.5rem 0 #00000066;
 	outline: 0px solid transparent;
