@@ -12,6 +12,7 @@ import { useStoreTalk } from "../../stores/StoreTalk";
 import config from "@src/config.json";
 import { Avatar } from "../avatar/Avatar";
 import { IAvatar } from "../avatar/Avatar.styles";
+import { log } from "../../../../../debug/Debug";
 
 const HOST = config.host;
 const PORT = config.chat.port;
@@ -24,7 +25,7 @@ interface Props {
 export const Talks = ({ name, avatar }: Props) => {
 	const navigator = useNavigator();
 
-	const { sendMessage } = useWebSocket({ url: `ws://[${HOST}]:${PORT}`, onMessage: (message) => handleOnMessage(message) });
+	const { sendMessage } = useWebSocket({ url: `ws://[${HOST}]:${PORT}`, onMessage: (message) => handleOnMessage(message), onError: (event) => handleOnError(event) });
 
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "", clientAvatar: 0 });
 	const [clients, setClients] = useState<IClient[]>([]);
@@ -32,6 +33,8 @@ export const Talks = ({ name, avatar }: Props) => {
 	const storeTalk = useStoreTalk();
 
 	const handleOnMessage = (data: IDataGet) => {
+		log.push(`handleOnMessage ${data.action}`);
+
 		if (data.action === "connected") {
 			setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
 
@@ -52,6 +55,10 @@ export const Talks = ({ name, avatar }: Props) => {
 			setClients(data.clients);
 			storeTalk.setMessages(data.messages);
 		}
+	};
+
+	const handleOnError = (event: Event) => {
+		log.push(`${event}`);
 	};
 
 	const handleOnClickCell = (_client: IClient) => {

@@ -7,7 +7,6 @@ export const Navigator = styled.div`
 	flex-direction: column;
 	position: relative;
 	overflow: hidden;
-	background-color: #eeeeee;
 `;
 
 export const Headers = styled.div`
