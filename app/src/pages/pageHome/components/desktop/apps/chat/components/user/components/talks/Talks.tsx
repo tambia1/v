@@ -58,7 +58,11 @@ export const Talks = ({ name, avatar }: Props) => {
 	};
 
 	const handleOnError = (event: Event) => {
-		log.push(`${event}`);
+		const eventDetails = Object.entries(event)
+			.map(([key, value]) => `${key}: ${value}`)
+			.join(", ");
+
+		log.push(`Event details: ${eventDetails}`);
 	};
 
 	const handleOnClickCell = (_client: IClient) => {
