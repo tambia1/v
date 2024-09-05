@@ -1,6 +1,6 @@
 import WebSocket, { WebSocketServer, ServerOptions } from "ws";
-import { log } from "./Log";
 import config from "./../../../../../../../config.json";
+import { log } from "@src/utils/Terminal";
 
 const HOST: string = config.host;
 const PORT: number = config.chat.port;

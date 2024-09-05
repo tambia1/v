@@ -53,6 +53,8 @@ function release() {
 	savePackage(packageJson);
 	runBuild();
 	commitAndPush(newVerion);
+
+	console.log("\u001b[" + 32 + "m" + `realse version: ${newVerion}` + "\u001b[0m");
 }
 
 release();
