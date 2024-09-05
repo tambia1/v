@@ -87,6 +87,10 @@ export default defineConfig({
 						return "assets/css/[name]-[hash][extname]";
 					}
 
+					if (/\.ttf$/.test(name ?? "")) {
+						return "assets/fonts/[name]-[hash][extname]";
+					}
+
 					return "assets/[name]-[hash][extname]";
 				},
 
