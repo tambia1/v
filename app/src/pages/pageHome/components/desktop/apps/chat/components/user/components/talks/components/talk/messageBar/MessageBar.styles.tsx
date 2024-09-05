@@ -11,6 +11,8 @@ export const MessageBar = styled.div<{ $numberOfLineBreaks: number }>`
 	box-sizing: border-box;
 	gap: 1rem;
 	padding: 1rem;
+	background-color: ${(props) => props.theme.color.normalBgActive};
+	transition: all 0.3s ease-out;
 `;
 
 export const Message = styled.textarea`
@@ -32,6 +34,8 @@ export const Message = styled.textarea`
 	padding: 0.3rem 0.5rem;
 	border-radius: 0.5rem;
 	font-size: 150%;
+
+	overflow: hidden;
 `;
 
 export const ButtonSend = styled(Button)`
