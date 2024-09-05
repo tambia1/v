@@ -25,7 +25,13 @@ interface Props {
 export const Talks = ({ name, avatar }: Props) => {
 	const navigator = useNavigator();
 
-	const { sendMessage } = useWebSocket({ url: `ws://[${HOST}]:${PORT}`, onMessage: (message) => handleOnMessage(message), onError: (event) => handleOnError(event) });
+	const { sendMessage } = useWebSocket({
+		url: `ws://[${HOST}]:${PORT}`,
+		onMessage: (message) => handleOnMessage(message),
+		onError: (event) => handleOnError(event),
+		onOpen: () => handleOnOpen(),
+		onClose: () => handleOnClose(),
+	});
 
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "", clientAvatar: 0 });
 	const [clients, setClients] = useState<IClient[]>([]);
@@ -62,7 +68,15 @@ export const Talks = ({ name, avatar }: Props) => {
 			.map(([key, value]) => `${key}: ${value}`)
 			.join(", ");
 
-		log.push(`Event details: ${eventDetails}`);
+		log.push(`handleOnError: ${eventDetails}`);
+	};
+
+	const handleOnOpen = () => {
+		log.push(`handleOnOpen`);
+	};
+
+	const handleOnClose = () => {
+		log.push(`handleOnClose`);
 	};
 
 	const handleOnClickCell = (_client: IClient) => {
