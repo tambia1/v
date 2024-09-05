@@ -40,8 +40,8 @@ export const User = () => {
 						handleChangeAvatar(pageIndex);
 					}}
 				>
-					{avatars.map((_, index) => (
-						<S.PagingItem>
+					{avatars.map((value, index) => (
+						<S.PagingItem key={value}>
 							<Avatar index={index as unknown as IAvatar} size="l" />
 						</S.PagingItem>
 					))}
