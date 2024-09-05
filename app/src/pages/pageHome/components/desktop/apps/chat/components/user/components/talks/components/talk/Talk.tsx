@@ -2,13 +2,12 @@ import * as S from "./Talk.styles";
 import { MessageBar } from "./messageBar/MessageBar";
 import { BubbleMe } from "./bubbleMe/BubbleMe";
 import { BubbleOther } from "./bubbleOther/BubbleOther";
-import { IDataSend } from "../../../../../../Chat.types";
 import { useStoreTalk } from "../../../../stores/StoreTalk";
 import { useEffect, useRef } from "react";
 import { IAvatar } from "../../../avatar/Avatar.styles";
 
 interface Props {
-	sendMessage: (message: IDataSend) => void;
+	sendMessage: (message: string) => void;
 }
 
 export const Talk = ({ sendMessage }: Props) => {
@@ -21,7 +20,9 @@ export const Talk = ({ sendMessage }: Props) => {
 
 	const handleOnClickSend = (message: string) => {
 		if (message.trim().length > 0) {
-			sendMessage({ action: "message", message });
+			const data = { action: "message", message };
+
+			sendMessage(JSON.stringify(data));
 		}
 	};
 

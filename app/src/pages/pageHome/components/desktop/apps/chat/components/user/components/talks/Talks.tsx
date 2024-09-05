@@ -29,8 +29,8 @@ export const Talks = ({ name, avatar }: Props) => {
 		url: `ws://[${HOST}]:${PORT}`,
 		onMessage: (message) => handleOnMessage(message),
 		onError: (event) => handleOnError(event),
-		onOpen: () => handleOnOpen(),
-		onClose: () => handleOnClose(),
+		onOpen: (event) => handleOnOpen(event),
+		onClose: (event) => handleOnClose(event),
 	});
 
 	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "", clientAvatar: 0 });
@@ -38,15 +38,31 @@ export const Talks = ({ name, avatar }: Props) => {
 
 	const storeTalk = useStoreTalk();
 
-	const handleOnMessage = (data: IDataGet) => {
+	const handleOnOpen = (event: Event) => {
+		logger(`handleOnOpen ${event.type}, ${event.isTrusted}`);
+	};
+
+	const handleOnClose = (event: CloseEvent) => {
+		logger(`handleOnClose ${event.type}, ${event.isTrusted}`);
+	};
+
+	const handleOnError = (event: Event) => {
+		logger(`handleOnError: ${event.type}, ${event.isTrusted}`);
+	};
+
+	const handleOnMessage = (event: MessageEvent) => {
+		const data: IDataGet = JSON.parse(event.data as string);
+
 		logger(`handleOnMessage ${JSON.stringify(data)}`);
 
 		if (data.action === "connected") {
 			setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
 
 			if (name.trim().length > 0) {
-				sendMessage({ action: "name", clientName: name, clientAvatar: avatar });
-				storeTalk.setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
+				const data = { action: "name", clientName: name, clientAvatar: avatar };
+
+				sendMessage(JSON.stringify(data));
+				storeTalk.setClient({ clientId: "", clientName: name, clientAvatar: avatar });
 			}
 		}
 
@@ -61,18 +77,6 @@ export const Talks = ({ name, avatar }: Props) => {
 			setClients(data.clients);
 			storeTalk.setMessages(data.messages);
 		}
-	};
-
-	const handleOnError = (event: Event) => {
-		logger(`handleOnError: ${JSON.stringify(event)}`);
-	};
-
-	const handleOnOpen = () => {
-		logger(`handleOnOpen`);
-	};
-
-	const handleOnClose = () => {
-		logger(`handleOnClose`);
 	};
 
 	const handleOnClickCell = (_client: IClient) => {
