@@ -4,7 +4,6 @@ const log: string[] = [];
 
 export const logger = (text: string) => {
 	log.push(text);
-	log.push("");
 };
 
 export const Debug = () => {
