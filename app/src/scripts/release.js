@@ -54,7 +54,7 @@ function release() {
 	runBuild();
 	commitAndPush(newVerion);
 
-	console.log("\u001b[" + 32 + "m" + `realse version: ${newVerion}` + "\u001b[0m");
+	console.log("\u001b[34m" + `realse version: ` + "\u001b[0m" + "\u001b[32m" + `${newVerion}` + "\u001b[0m");
 }
 
 release();
