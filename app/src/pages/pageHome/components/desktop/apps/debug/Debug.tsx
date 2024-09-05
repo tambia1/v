@@ -1,8 +1,13 @@
 import * as S from "./Debug.styles";
 
-export const log: string[] = [];
+const log: string[] = [];
 
-export const Console = () => {
+export const logger = (text: string) => {
+	log.push(text);
+	log.push("");
+};
+
+export const Debug = () => {
 	return (
 		<S.Debug>
 			<S.Console>{log.map((value, index) => `${index}: ${value}\n`)}</S.Console>

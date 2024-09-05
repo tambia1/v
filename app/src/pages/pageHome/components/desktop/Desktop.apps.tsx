@@ -27,7 +27,7 @@ import { TestRedis } from "./apps/testRedis/TestRedis";
 import { TestTree } from "./apps/testTree/TestTree";
 import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestCouner } from "./apps/testCounter/TestCouner";
-import { Console } from "./apps/debug/Debug";
+import { Debug } from "./apps/debug/Debug";
 
 const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -47,7 +47,7 @@ export const apps: IApp[][] = [
 		{ id: "settings", roles: ["admin", "user", "guest"], title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
 		{ id: "user", roles: ["admin", "user"], title: <T>{lang.user.title}</T>, icon: "userLoggedIn", component: <User /> },
 		{ id: "user", roles: ["guest"], title: <T>{lang.user.title}</T>, icon: "userLoggedOut", component: <User /> },
-		{ id: "debug", roles: ["admin", "user", "guest"], title: <T>{"Debug"}</T>, icon: "test", component: <Console /> },
+		{ id: "debug", roles: ["admin", "user", "guest"], title: <T>{"Debug"}</T>, icon: "test", component: <Debug /> },
 		{ id: "notes", roles: ["admin", "user", "guest"], title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
 		{ id: "calculator", roles: ["admin", "user", "guest"], title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", roles: ["admin", "user", "guest"], title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },

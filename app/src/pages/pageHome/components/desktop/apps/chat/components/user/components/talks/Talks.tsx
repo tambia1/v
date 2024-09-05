@@ -12,7 +12,7 @@ import { useStoreTalk } from "../../stores/StoreTalk";
 import config from "@src/config.json";
 import { Avatar } from "../avatar/Avatar";
 import { IAvatar } from "../avatar/Avatar.styles";
-import { log } from "../../../../../debug/Debug";
+import { logger } from "../../../../../debug/Debug";
 
 const HOST = config.host;
 const PORT = config.chat.port;
@@ -39,7 +39,7 @@ export const Talks = ({ name, avatar }: Props) => {
 	const storeTalk = useStoreTalk();
 
 	const handleOnMessage = (data: IDataGet) => {
-		log.push(`handleOnMessage ${data.action}`);
+		logger(`handleOnMessage ${JSON.stringify(data)}`);
 
 		if (data.action === "connected") {
 			setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
@@ -64,19 +64,15 @@ export const Talks = ({ name, avatar }: Props) => {
 	};
 
 	const handleOnError = (event: Event) => {
-		const eventDetails = Object.entries(event)
-			.map(([key, value]) => `${key}: ${value}`)
-			.join(", ");
-
-		log.push(`handleOnError: ${eventDetails}`);
+		logger(`handleOnError: ${JSON.stringify(event)}`);
 	};
 
 	const handleOnOpen = () => {
-		log.push(`handleOnOpen`);
+		logger(`handleOnOpen`);
 	};
 
 	const handleOnClose = () => {
-		log.push(`handleOnClose`);
+		logger(`handleOnClose`);
 	};
 
 	const handleOnClickCell = (_client: IClient) => {
