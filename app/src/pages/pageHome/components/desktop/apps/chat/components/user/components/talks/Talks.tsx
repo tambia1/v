@@ -59,10 +59,10 @@ export const Talks = ({ name, avatar }: Props) => {
 			setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
 
 			if (name.trim().length > 0) {
-				const data = { action: "name", clientName: name, clientAvatar: avatar };
+				const message = { action: "name", clientName: name, clientAvatar: avatar };
 
-				sendMessage(JSON.stringify(data));
-				storeTalk.setClient({ clientId: "", clientName: name, clientAvatar: avatar });
+				sendMessage(JSON.stringify(message));
+				storeTalk.setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
 			}
 		}
 
