@@ -1,3 +1,4 @@
+import { Button } from "@src/components/button/Button";
 import styled from "styled-components";
 
 export const NameBar = styled.div`
@@ -24,10 +25,14 @@ export const Name = styled.input`
 	border: none;
 	box-sizing: border-box;
 
-	border-width: 4px;
+	border-width: 0.2rem;
 	border-style: solid;
 
-	padding: 0.85rem;
-	border-radius: 0.8rem;
-	font-size: 18px;
+	padding: 0.5rem;
+	border-radius: 0.5rem;
+	font-size: 150%;
+`;
+
+export const ButtonSet = styled(Button)`
+	font-size: 150%;
 `;

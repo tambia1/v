@@ -18,7 +18,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			color: #606060;
 			text-shadow: 0 1px #fff;
 			transition: all 0.1s ease;
-			padding: 0.5em 1em 0.5em 1em;
+			padding: 0.5rem 1rem 0.5rem 1rem;
 			box-sizing: border-box;
 			min-width: 5em;
 			width: fit-content;
@@ -52,7 +52,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			border-width: 0.2rem;
 			border-style: solid;
 
-			padding: 0.5em 1em 0.5em 1em;
+			padding: 0.5rem 1rem 0.5rem 1rem;
 			border-radius: 0.5rem;
 			font-size: 100%;
 
@@ -92,7 +92,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			border-width: 0.2rem;
 			border-style: solid;
 
-			padding: 0.5em 1em 0.5em 1em;
+			padding: 0.5rem 1rem 0.5rem 1rem;
 			border-radius: 0.5rem;
 			font-size: 100%;
 
@@ -131,7 +131,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			border-width: 0.2rem;
 			border-style: solid;
 
-			padding: 0.5em 1em 0.5em 1em;
+			padding: 0.5rem 1rem 0.5rem 1rem;
 			border-radius: 0.5rem;
 			font-size: 100%;
 

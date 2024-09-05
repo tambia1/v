@@ -1,14 +1,16 @@
+import { Button } from "@src/components/button/Button";
 import styled from "styled-components";
 
-export const MessageBar = styled.div`
+export const MessageBar = styled.div<{ $numberOfLineBreaks: number }>`
 	display: flex;
 	flex-direction: row;
 	justify-content: left;
 	align-items: end;
-	height: 12rem;
-	padding: 1rem;
+	height: calc(5rem + ${(props) => props.$numberOfLineBreaks * 3}rem);
+	max-height: 12rem;
 	box-sizing: border-box;
 	gap: 1rem;
+	padding: 1rem;
 `;
 
 export const Message = styled.textarea`
@@ -27,7 +29,11 @@ export const Message = styled.textarea`
 	border-width: 4px;
 	border-style: solid;
 
-	padding: 0 0.5rem;
-	border-radius: 0.8rem;
-	font-size: 18px;
+	padding: 0.3rem 0.5rem;
+	border-radius: 0.5rem;
+	font-size: 150%;
+`;
+
+export const ButtonSend = styled(Button)`
+	font-size: 150%;
 `;

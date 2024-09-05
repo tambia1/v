@@ -1,6 +1,5 @@
 import { T } from "@src/locales/T";
 import * as S from "./NameBar.styles";
-import { Button } from "@src/components/button/Button";
 import { useState } from "react";
 import { lang } from "@src/locales/i18n";
 
@@ -19,9 +18,9 @@ export const NameBar = ({ name, onClickSet }: Props) => {
 	return (
 		<S.NameBar>
 			<S.Name value={content} onChange={handleTextChange} />
-			<Button variant="full" onClick={() => onClickSet(content)}>
+			<S.ButtonSet variant="full" onClick={() => onClickSet(content)}>
 				<T>{lang.chat.set}</T>
-			</Button>
+			</S.ButtonSet>
 		</S.NameBar>
 	);
 };

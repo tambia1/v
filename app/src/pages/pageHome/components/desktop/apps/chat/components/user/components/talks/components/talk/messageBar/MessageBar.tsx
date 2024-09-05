@@ -1,6 +1,5 @@
 import { T } from "@src/locales/T";
 import * as S from "./MessageBar.styles";
-import { Button } from "@src/components/button/Button";
 import { useRef, useState } from "react";
 import { lang } from "@src/locales/i18n";
 
@@ -9,11 +8,13 @@ interface Props {
 }
 
 export const MessageBar = ({ onClickSend }: Props) => {
-	const [content, setContent] = useState<string>("");
+	const [content, setContent] = useState("");
 	const messageRef = useRef<HTMLTextAreaElement>(null);
+	const [numberOfLineBreaks, setNumberOfLineBreaks] = useState(0);
 
 	const handleTextChange = (e: React.FormEvent<HTMLTextAreaElement>) => {
 		setContent(e.currentTarget.value);
+		setNumberOfLineBreaks((e.currentTarget.value.match(/\n/g) || []).length);
 	};
 
 	const handleOnClickSend = () => {
@@ -23,11 +24,11 @@ export const MessageBar = ({ onClickSend }: Props) => {
 	};
 
 	return (
-		<S.MessageBar>
+		<S.MessageBar $numberOfLineBreaks={numberOfLineBreaks}>
 			<S.Message ref={messageRef} value={content} onChange={handleTextChange} />
-			<Button variant="full" onClick={handleOnClickSend}>
+			<S.ButtonSend variant="full" onClick={handleOnClickSend}>
 				<T>{lang.chat.send}</T>
-			</Button>
+			</S.ButtonSend>
 		</S.MessageBar>
 	);
 };
