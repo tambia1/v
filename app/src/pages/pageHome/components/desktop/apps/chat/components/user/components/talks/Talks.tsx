@@ -39,15 +39,15 @@ export const Talks = ({ name, avatar }: Props) => {
 	const storeTalk = useStoreTalk();
 
 	const handleOnOpen = (event: Event) => {
-		logger(`handleOnOpen ${event.type}, ${event.isTrusted}`);
+		logger(`handleOnOpen ${event.type}`);
 	};
 
 	const handleOnClose = (event: CloseEvent) => {
-		logger(`handleOnClose ${event.type}, ${event.isTrusted}`);
+		logger(`handleOnClose ${event.type}, ${event.code}, ${event.reason}`);
 	};
 
 	const handleOnError = (event: Event) => {
-		logger(`handleOnError: ${event.type}, ${event.isTrusted}`);
+		logger(`handleOnError: ${event.type}`);
 	};
 
 	const handleOnMessage = (event: MessageEvent) => {
