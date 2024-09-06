@@ -36,7 +36,7 @@ export const Box = styled.div`
 	gap: 1rem;
 	padding: 2rem;
 	overflow: hidden;
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(255, 255, 255, 0.7);
 	border-radius: 16px;
 	box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.1);
 	backdrop-filter: blur(0.5rem);
