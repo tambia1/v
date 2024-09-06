@@ -58,7 +58,7 @@ const server = https.createServer({
 });
 
 server.listen(PORT, HOST, () => {
-	log("green", `WebSockets server running at https://${HOST}:${PORT}`);
+	log("green", `WebSockets server running at wss://[${HOST}]:${PORT}`);
 });
 
 const wss = new WebSocketServer({ server });
