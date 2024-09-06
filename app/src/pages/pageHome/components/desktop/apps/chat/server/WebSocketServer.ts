@@ -1,3 +1,5 @@
+import https from "https";
+import fs from "fs";
 import WebSocket, { WebSocketServer } from "ws";
 import config from "./../../../../../../../config.json";
 import { log } from "@src/utils/Terminal";
@@ -50,8 +52,15 @@ type MessageGet =
 
 const messages: Message[] = [];
 
-const wss = new WebSocketServer({ host: HOST, port: PORT }, () => {
-	log("green", `WebSockets server running at  [${HOST}]:${PORT}`);
+const server = https.createServer({
+	key: fs.readFileSync("key.pem"),
+	cert: fs.readFileSync("cert.pem"),
+});
+
+const wss = new WebSocketServer({ server });
+
+server.listen(PORT, HOST, () => {
+	log("green", `WebSockets server running at https://${HOST}:${PORT}`);
 });
 
 interface ExtendedWebSocket extends WebSocket {
