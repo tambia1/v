@@ -57,11 +57,11 @@ const server = https.createServer({
 	cert: fs.readFileSync("cert.pem"),
 });
 
-const wss = new WebSocketServer({ server });
-
 server.listen(PORT, HOST, () => {
 	log("green", `WebSockets server running at https://${HOST}:${PORT}`);
 });
+
+const wss = new WebSocketServer({ server });
 
 interface ExtendedWebSocket extends WebSocket {
 	clientId: string;
