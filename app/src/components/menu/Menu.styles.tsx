@@ -51,3 +51,5 @@ export const MenuList = styled.div<{ $visible: boolean }>`
 		width: auto;
 	}
 `;
+
+export const MenuGroup = styled.div``;

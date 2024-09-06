@@ -27,7 +27,7 @@ export const Menu = ({ className, visible, menuGroups, onClickBackground, ...res
 
 				<S.MenuList $visible={visible}>
 					{menuGroups.map((menuGroup) => (
-						<>
+						<S.MenuGroup key={menuGroup.text}>
 							<List.Section>
 								<T>{menuGroup.text}</T>
 							</List.Section>
@@ -44,7 +44,7 @@ export const Menu = ({ className, visible, menuGroups, onClickBackground, ...res
 									</List.Cell>
 								))}
 							</List>
-						</>
+						</S.MenuGroup>
 					))}
 				</S.MenuList>
 			</S.Container>
