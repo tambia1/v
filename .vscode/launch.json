@@ -322,8 +322,15 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "ipv6",
+			"name": "show ipv6",
 			"command": "ip -6 addr show | grep 'scope global temporary dynamic' | awk '{print $2}' | cut -d/ -f1 | tail -n 1",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/scripts/"
+		},
+		{
+			"name": "create ssl keys",
+			"command": "openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/scripts/"
