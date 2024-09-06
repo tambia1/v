@@ -26,7 +26,7 @@ export const Talks = ({ name, avatar }: Props) => {
 	const navigator = useNavigator();
 
 	const { sendMessage } = useWebSocket({
-		url: `ws://[${HOST}]:${PORT}`,
+		url: `wss://[${HOST}]:${PORT}`,
 		onMessage: (message) => handleOnMessage(message),
 		onError: (event) => handleOnError(event),
 		onOpen: (event) => handleOnOpen(event),

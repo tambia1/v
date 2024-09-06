@@ -1,3 +1,5 @@
+import fs from "fs";
+import https from "https";
 import WebSocket, { WebSocketServer, ServerOptions } from "ws";
 import config from "./../../../../../../../config.json";
 import { log } from "@src/utils/Terminal";
@@ -50,7 +52,18 @@ type MessageGet =
 
 const messages: Message[] = [];
 
-const wssOptions: ServerOptions = { host: HOST, port: PORT };
+const server = https.createServer(
+	{
+		key: fs.readFileSync("key.pem"),
+		cert: fs.readFileSync("cert.pem"),
+	},
+	(req, res) => {
+		res.writeHead(200, { "Content-Type": "text/plain" });
+		res.end("Server is running");
+	}
+);
+
+const wssOptions: ServerOptions = { noServer: true };
 const wss = new WebSocketServer(wssOptions);
 
 interface ExtendedWebSocket extends WebSocket {
@@ -164,4 +177,12 @@ function getUniqueId(): string {
 	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
 }
 
-log("green", `WebSockets server running at port ${PORT}`);
+server.on("upgrade", (request, socket, head) => {
+	wss.handleUpgrade(request, socket, head, (ws) => {
+		wss.emit("connection", ws, request);
+	});
+});
+
+server.listen(PORT, () => {
+	log("green", `WebSockets server running at port ${PORT}`);
+});
