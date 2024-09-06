@@ -1,4 +1,4 @@
-import WebSocket, { WebSocketServer, ServerOptions } from "ws";
+import WebSocket, { WebSocketServer } from "ws";
 import config from "./../../../../../../../config.json";
 import { log } from "@src/utils/Terminal";
 
@@ -50,8 +50,9 @@ type MessageGet =
 
 const messages: Message[] = [];
 
-const wssOptions: ServerOptions = { host: HOST, port: PORT };
-const wss = new WebSocketServer(wssOptions);
+const wss = new WebSocketServer({ host: HOST, port: PORT }, () => {
+	log("green", `WebSockets server running at  [${HOST}]:${PORT}`);
+});
 
 interface ExtendedWebSocket extends WebSocket {
 	clientId: string;
@@ -163,5 +164,3 @@ function getUniqueId(): string {
 
 	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
 }
-
-log("green", `WebSockets server running at port ${PORT}`);
