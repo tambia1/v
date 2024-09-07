@@ -19,6 +19,7 @@ export const Column = styled.div`
 	display: flex;
 	flex-direction: column;
 	box-shadow: ${(props) => props.theme.color.shadow};
+	min-width: 0;
 `;
 
 export const ColumnTitle = styled.div`
@@ -63,6 +64,7 @@ export const ColumnBody = styled.div<{ $isDragging: boolean }>`
 	background-color: ${(props) => (props.$isDragging ? props.theme.color.normalBgHover : props.theme.color.normalBg)};
 	padding: 1rem;
 	gap: 0.5rem;
+	overflow-x: hidden;
 	overflow-y: auto;
 	box-sizing: border-box;
 	transition: all 0.3s ease;
@@ -75,6 +77,7 @@ export const Task = styled.div`
 	padding: 0.5rem;
 	box-shadow: ${(props) => props.theme.color.shadow};
 	background-color: ${(props) => props.theme.color.normalBg};
+	overflow: hidden;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
