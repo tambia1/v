@@ -18,7 +18,6 @@ export const Column = styled.div`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	flex-shrink: 0;
 	box-shadow: ${(props) => props.theme.color.shadow};
 `;
 
