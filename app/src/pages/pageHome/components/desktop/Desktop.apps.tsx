@@ -28,6 +28,7 @@ import { TestTree } from "./apps/testTree/TestTree";
 import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestCouner } from "./apps/testCounter/TestCouner";
 import { Debug } from "./apps/debug/Debug";
+import { Board } from "./apps/board/Board";
 
 const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -58,6 +59,7 @@ export const apps: IApp[][] = [
 		{ id: "store", roles: ["admin", "user", "guest"], title: <T>{lang.store.title}</T>, icon: "store", component: <Store /> },
 		{ id: "spin", roles: ["admin", "user", "guest"], title: <T>{lang.spin.title}</T>, icon: "spin", component: <Spin /> },
 		{ id: "speed", roles: ["admin", "user", "guest"], title: <T>{lang.speed.title}</T>, icon: "speed", component: <Speed /> },
+		{ id: "board", roles: ["admin", "user", "guest"], title: <T>{lang.board.title}</T>, icon: "board", component: <Board /> },
 
 		{ id: "tetris", roles: ["admin", "user", "guest"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },

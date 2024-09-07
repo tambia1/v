@@ -19,6 +19,7 @@ import calendar from "./assets/calendar.png";
 import spin from "./assets/spin.png";
 import test from "./assets/test.png";
 import speed from "./assets/speed.png";
+import board from "./assets/board.png";
 
 export const appIcons = {
 	settings,
@@ -41,6 +42,7 @@ export const appIcons = {
 	spin,
 	test,
 	speed,
+	board,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;

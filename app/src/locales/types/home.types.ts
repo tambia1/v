@@ -102,6 +102,10 @@ export type IHome = {
 		title: string;
 	};
 
+	board: {
+		title: string;
+	};
+
 	test: {
 		title: string;
 	};

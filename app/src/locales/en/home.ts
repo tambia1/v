@@ -102,6 +102,10 @@ export const translation: IHome = {
 		title: "Micro Frontend",
 	},
 
+	board: {
+		title: "Board",
+	},
+
 	test: {
 		title: "Test",
 	},
