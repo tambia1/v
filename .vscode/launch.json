@@ -336,6 +336,27 @@
 			"cwd": "${workspaceFolder}/app/"
 		},
 		{
+			"name": "port status",
+			"command": "sudo ufw status",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "port enable",
+			"command": "sudo ufw allow 5002/tcp && sudo ufw reload",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "port disable",
+			"command": "sudo ufw delete allow 5002/tcp && sudo ufw reload",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
 			"name": "---------------------------------",
 			"command": "",
 			"request": "launch",
