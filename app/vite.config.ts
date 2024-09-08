@@ -2,7 +2,8 @@
 /// <reference types="vite/client" />
 
 import react from "@vitejs/plugin-react";
-import path from "path";
+import * as fs from "fs";
+import * as path from "path";
 import { PluginOption, defineConfig, Plugin } from "vite";
 import checker from "vite-plugin-checker";
 import federation from "@originjs/vite-plugin-federation";
@@ -35,6 +36,13 @@ export default defineConfig({
 			},
 		}),
 	],
+
+	server: {
+		https: {
+			key: fs.readFileSync(path.resolve(__dirname, "./certificates/key.pem")),
+			cert: fs.readFileSync(path.resolve(__dirname, "./certificates/cert.pem")),
+		},
+	},
 
 	resolve: {
 		alias: {
