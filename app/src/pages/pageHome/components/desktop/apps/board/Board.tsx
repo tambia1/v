@@ -11,7 +11,7 @@ export const Board = () => {
 	const [boards, setBoards] = useState<BoardProps[]>([
 		{
 			title: "Backlog",
-			tasks: ["Add header", "Fix styles"],
+			tasks: ["Task 0", "Task 1"],
 		},
 		{
 			title: "Doing",
@@ -19,7 +19,7 @@ export const Board = () => {
 		},
 		{
 			title: "Review",
-			tasks: ["Fix Websockets"],
+			tasks: ["Task 2"],
 		},
 		{
 			title: "Done",
@@ -85,7 +85,7 @@ export const Board = () => {
 			<S.Columns>
 				{boards.map((board) => (
 					<S.Column key={board.title}>
-						<S.ColumnTitle>{board.title}</S.ColumnTitle>
+						<S.ColumnHeader>{board.title}</S.ColumnHeader>
 						<S.ColumnBody
 							$isDragging={activeBoard === board.title}
 							onDrop={(e) => {

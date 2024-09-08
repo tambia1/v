@@ -15,14 +15,15 @@ export const Board = styled.div`
 
 export const Column = styled.div`
 	width: 100%;
-	height: 100%;
+	min-height: 20rem;
 	display: flex;
 	flex-direction: column;
 	box-shadow: ${(props) => props.theme.color.shadow};
 	min-width: 0;
+	flex-shrink: 0;
 `;
 
-export const ColumnTitle = styled.div`
+export const ColumnHeader = styled.div`
 	width: 100%;
 	height: 5rem;
 	display: flex;
@@ -38,19 +39,20 @@ export const Columns = styled.div`
 	height: 100%;
 
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	gap: 1rem;
+	overflow-y: scroll;
 
-	& > ${Column}:nth-child(1) ${ColumnTitle} {
+	& > ${Column}:nth-child(1) ${ColumnHeader} {
 		background-color: #f48897;
 	}
-	& > ${Column}:nth-child(2) ${ColumnTitle} {
+	& > ${Column}:nth-child(2) ${ColumnHeader} {
 		background-color: #f4e688;
 	}
-	& > ${Column}:nth-child(3) ${ColumnTitle} {
+	& > ${Column}:nth-child(3) ${ColumnHeader} {
 		background-color: #88f48e;
 	}
-	& > ${Column}:nth-child(4) ${ColumnTitle} {
+	& > ${Column}:nth-child(4) ${ColumnHeader} {
 		background-color: #88e2f4;
 	}
 `;
