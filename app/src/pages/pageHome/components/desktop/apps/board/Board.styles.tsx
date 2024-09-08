@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+const MOBILE_WIDTH = "768px";
+
 export const Board = styled.div`
 	width: 100%;
 	height: 100%;
@@ -20,7 +22,10 @@ export const Column = styled.div`
 	flex-direction: column;
 	box-shadow: ${(props) => props.theme.color.shadow};
 	min-width: 0;
-	flex-shrink: 0;
+
+	@media (max-width: ${MOBILE_WIDTH}) {
+		flex-shrink: 0;
+	}
 `;
 
 export const ColumnHeader = styled.div`
@@ -54,6 +59,10 @@ export const Columns = styled.div`
 	}
 	& > ${Column}:nth-child(4) ${ColumnHeader} {
 		background-color: #88e2f4;
+	}
+
+	@media (min-width: ${MOBILE_WIDTH}) {
+		flex-direction: row;
 	}
 `;
 
