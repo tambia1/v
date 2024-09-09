@@ -78,7 +78,7 @@ export const FolderDefault = ({ folder, Item, Folder }: FolderProps) => {
 				</S.TreeFolderSelect>
 				<S.TreeFolderExpand>{folder.isExpanded ? <Icon iconName="iconChevronRight" /> : <Icon iconName="iconChevronDown" />}</S.TreeFolderExpand>
 				<S.TreeFolderContent
-					highlighted={folder.isHighlighted}
+					$highlighted={folder.isHighlighted}
 					onClick={() => {
 						expandItem(folder, !folder.isExpanded, treeContext.originalNodes, treeContext.setOriginalNodes);
 					}}

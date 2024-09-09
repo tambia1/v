@@ -50,8 +50,8 @@ export const TreeFolderSelect = styled.div`
 	cursor: pointer;
 `;
 
-export const TreeFolderContent = styled.div<{ highlighted: boolean }>`
-	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
+export const TreeFolderContent = styled.div<{ $highlighted: boolean }>`
+	${(props) => props.$highlighted && `color: ${props.theme.color.errorFg};`}
 	padding: 0.5rem;
 `;
 
