@@ -31,15 +31,9 @@ export const Board = () => {
 	const handleOnDragStartTask = (e: React.DragEvent, board: string, task: string) => {
 		e.dataTransfer.setData("board", board);
 		e.dataTransfer.setData("task", task);
-
-		setActiveBoard(board);
-		setActiveTask(task);
 	};
 
-	const handleOnDragEndTask = () => {
-		setActiveBoard("");
-		setActiveTask("");
-	};
+	const handleOnDragEndTask = () => {};
 
 	const handleOnDragOverTask = (e: React.DragEvent, board: string, task: string) => {
 		e.preventDefault();
@@ -117,9 +111,6 @@ export const Board = () => {
 
 	const handleOnDragEnterBody = (e: React.DragEvent, board: string) => {
 		e.preventDefault();
-
-		setActiveBoard(board);
-		setActiveTask("");
 	};
 
 	const handleOnDragLeaveBody = (e: React.DragEvent) => {
