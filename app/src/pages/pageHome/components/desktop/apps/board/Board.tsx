@@ -11,7 +11,7 @@ export const Board = () => {
 	const [boards, setBoards] = useState<BoardProps[]>([
 		{
 			title: "Backlog",
-			tasks: ["Task 0", "Task 1"],
+			tasks: ["Task 0", "Task 1", "Task 2"],
 		},
 		{
 			title: "Doing",
@@ -19,7 +19,7 @@ export const Board = () => {
 		},
 		{
 			title: "Review",
-			tasks: ["Task 2"],
+			tasks: ["Task 3"],
 		},
 		{
 			title: "Done",
@@ -42,12 +42,47 @@ export const Board = () => {
 		e.preventDefault();
 	};
 
+	const handleOnDropToTask = (e: React.DragEvent, targetBoard: string, targetTask: string) => {
+		e.preventDefault();
+
+		const sourceBoard = e.dataTransfer.getData("board") as string;
+		const sourceTask = e.dataTransfer.getData("task") as string;
+
+		if (targetBoard !== sourceBoard) {
+			return;
+		}
+
+		if (sourceBoard === targetBoard) {
+			setBoards(
+				boards.map((board) => {
+					if (board.title === sourceBoard) {
+						const targetIndex = board.tasks.indexOf(targetTask);
+						const sourceIndex = board.tasks.indexOf(sourceTask);
+
+						const updatedTasks = [...board.tasks];
+
+						[updatedTasks[sourceIndex], updatedTasks[targetIndex]] = [updatedTasks[targetIndex], updatedTasks[sourceIndex]];
+
+						return { ...board, tasks: updatedTasks };
+					}
+					return board;
+				})
+			);
+		}
+
+		setActiveBoard("");
+	};
+
 	const handleOnDropToBody = (e: React.DragEvent, targetBoard: string) => {
 		e.preventDefault();
 		e.stopPropagation();
 
 		const sourceBoard = e.dataTransfer.getData("board") as string;
 		const sourceTask = e.dataTransfer.getData("task") as string;
+
+		if (targetBoard === sourceBoard) {
+			return;
+		}
 
 		setBoards(
 			boards.map((board) => {
@@ -113,6 +148,9 @@ export const Board = () => {
 									}}
 									onDragOver={(e) => {
 										handleOnDragOverTask(e);
+									}}
+									onDrop={(e) => {
+										handleOnDropToTask(e, board.title, task);
 									}}
 								>
 									{task}
