@@ -8,6 +8,7 @@ type BoardProps = {
 
 export const Board = () => {
 	const [activeBoard, setActiveBoard] = useState("");
+	const [activeTask, setActiveTask] = useState("");
 	const [boards, setBoards] = useState<BoardProps[]>([
 		{
 			title: "Backlog",
@@ -32,14 +33,19 @@ export const Board = () => {
 		e.dataTransfer.setData("task", task);
 
 		setActiveBoard(board);
+		setActiveTask(task);
 	};
 
 	const handleOnDragEndTask = () => {
 		setActiveBoard("");
+		setActiveTask("");
 	};
 
-	const handleOnDragOverTask = (e: React.DragEvent) => {
+	const handleOnDragOverTask = (e: React.DragEvent, board: string, task: string) => {
 		e.preventDefault();
+
+		setActiveBoard(board);
+		setActiveTask(task);
 	};
 
 	const handleOnDropToTask = (e: React.DragEvent, targetBoard: string, targetTask: string) => {
@@ -71,6 +77,7 @@ export const Board = () => {
 		}
 
 		setActiveBoard("");
+		setActiveTask("");
 	};
 
 	const handleOnDropToBody = (e: React.DragEvent, targetBoard: string) => {
@@ -99,20 +106,26 @@ export const Board = () => {
 		);
 
 		setActiveBoard("");
+		setActiveTask("");
 	};
 
-	const handleOnDragOverBody = (e: React.DragEvent) => {
+	const handleOnDragOverBody = (e: React.DragEvent, board: string) => {
 		e.preventDefault();
+
+		setActiveBoard(board);
 	};
 
 	const handleOnDragEnterBody = (e: React.DragEvent, board: string) => {
 		e.preventDefault();
+
 		setActiveBoard(board);
+		setActiveTask("");
 	};
 
 	const handleOnDragLeaveBody = (e: React.DragEvent) => {
 		e.preventDefault();
 		setActiveBoard("");
+		setActiveTask("");
 	};
 
 	return (
@@ -122,12 +135,12 @@ export const Board = () => {
 					<S.Column key={board.title}>
 						<S.ColumnHeader>{board.title}</S.ColumnHeader>
 						<S.ColumnBody
-							$isDragging={activeBoard === board.title}
+							$isDragOn={activeBoard === board.title}
 							onDrop={(e) => {
 								handleOnDropToBody(e, board.title);
 							}}
 							onDragOver={(e) => {
-								handleOnDragOverBody(e);
+								handleOnDragOverBody(e, board.title);
 							}}
 							onDragEnter={(e) => {
 								handleOnDragEnterBody(e, board.title);
@@ -140,6 +153,7 @@ export const Board = () => {
 								<S.Task
 									key={task}
 									draggable
+									$isDragOn={activeTask === task}
 									onDragStart={(e) => {
 										handleOnDragStartTask(e, board.title, task);
 									}}
@@ -147,7 +161,7 @@ export const Board = () => {
 										handleOnDragEndTask();
 									}}
 									onDragOver={(e) => {
-										handleOnDragOverTask(e);
+										handleOnDragOverTask(e, board.title, task);
 									}}
 									onDrop={(e) => {
 										handleOnDropToTask(e, board.title, task);

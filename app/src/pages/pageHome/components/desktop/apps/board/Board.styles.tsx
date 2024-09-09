@@ -66,13 +66,13 @@ export const Columns = styled.div`
 	}
 `;
 
-export const ColumnBody = styled.div<{ $isDragging: boolean }>`
+export const ColumnBody = styled.div<{ $isDragOn: boolean }>`
 	width: 100%;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => (props.$isDragging ? props.theme.color.normalBgHover : props.theme.color.normalBg)};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.normalBgHover : props.theme.color.normalBg)};
 	padding: 1rem;
 	gap: 0.5rem;
 	overflow-x: hidden;
@@ -81,14 +81,15 @@ export const ColumnBody = styled.div<{ $isDragging: boolean }>`
 	transition: all 0.3s ease;
 `;
 
-export const Task = styled.div`
+export const Task = styled.div<{ $isDragOn: boolean }>`
 	display: flex;
 	width: auto;
 	min-height: 5rem;
 	padding: 0.5rem;
 	box-shadow: ${(props) => props.theme.color.shadow};
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentBgHover : props.theme.color.normalBg)};
 	overflow: hidden;
+	transition: all 0.3s ease;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
