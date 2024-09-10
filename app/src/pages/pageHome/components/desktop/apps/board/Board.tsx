@@ -9,6 +9,7 @@ type BoardProps = {
 export const Board = () => {
 	const [activeBoard, setActiveBoard] = useState("");
 	const [activeTask, setActiveTask] = useState("");
+
 	const [boards, setBoards] = useState<BoardProps[]>([
 		{
 			title: "Backlog",
@@ -33,13 +34,18 @@ export const Board = () => {
 		e.dataTransfer.setData("task", task);
 	};
 
-	const handleOnDragEndTask = () => {};
-
 	const handleOnDragOverTask = (e: React.DragEvent, board: string, task: string) => {
 		e.preventDefault();
 
 		setActiveBoard(board);
 		setActiveTask(task);
+	};
+
+	const handleOnDragLeaveTask = (e: React.DragEvent) => {
+		e.preventDefault();
+
+		setActiveBoard("");
+		setActiveTask("");
 	};
 
 	const handleOnDropToTask = (e: React.DragEvent, targetBoard: string, targetTask: string) => {
@@ -74,9 +80,21 @@ export const Board = () => {
 		setActiveTask("");
 	};
 
+	const handleOnDragOverBody = (e: React.DragEvent, board: string) => {
+		e.preventDefault();
+
+		setActiveBoard(board);
+	};
+
+	const handleOnDragLeaveBody = (e: React.DragEvent) => {
+		e.preventDefault();
+
+		setActiveBoard("");
+		setActiveTask("");
+	};
+
 	const handleOnDropToBody = (e: React.DragEvent, targetBoard: string) => {
 		e.preventDefault();
-		e.stopPropagation();
 
 		const sourceBoard = e.dataTransfer.getData("board") as string;
 		const sourceTask = e.dataTransfer.getData("task") as string;
@@ -103,22 +121,6 @@ export const Board = () => {
 		setActiveTask("");
 	};
 
-	const handleOnDragOverBody = (e: React.DragEvent, board: string) => {
-		e.preventDefault();
-
-		setActiveBoard(board);
-	};
-
-	const handleOnDragEnterBody = (e: React.DragEvent, board: string) => {
-		e.preventDefault();
-	};
-
-	const handleOnDragLeaveBody = (e: React.DragEvent) => {
-		e.preventDefault();
-		setActiveBoard("");
-		setActiveTask("");
-	};
-
 	return (
 		<S.Board>
 			<S.Columns>
@@ -127,17 +129,14 @@ export const Board = () => {
 						<S.ColumnHeader>{board.title}</S.ColumnHeader>
 						<S.ColumnBody
 							$isDragOn={activeBoard === board.title}
-							onDrop={(e) => {
-								handleOnDropToBody(e, board.title);
-							}}
 							onDragOver={(e) => {
 								handleOnDragOverBody(e, board.title);
 							}}
-							onDragEnter={(e) => {
-								handleOnDragEnterBody(e, board.title);
-							}}
 							onDragLeave={(e) => {
 								handleOnDragLeaveBody(e);
+							}}
+							onDrop={(e) => {
+								handleOnDropToBody(e, board.title);
 							}}
 						>
 							{board.tasks.map((task) => (
@@ -148,11 +147,11 @@ export const Board = () => {
 									onDragStart={(e) => {
 										handleOnDragStartTask(e, board.title, task);
 									}}
-									onDragEnd={() => {
-										handleOnDragEndTask();
-									}}
 									onDragOver={(e) => {
 										handleOnDragOverTask(e, board.title, task);
+									}}
+									onDragLeave={(e) => {
+										handleOnDragLeaveTask(e);
 									}}
 									onDrop={(e) => {
 										handleOnDropToTask(e, board.title, task);
