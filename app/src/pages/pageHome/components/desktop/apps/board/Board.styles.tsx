@@ -72,7 +72,7 @@ export const ColumnBody = styled.div<{ $isDragOn: boolean }>`
 	display: flex;
 	flex-direction: column;
 	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.normalBgHover : props.theme.color.normalBg)};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.normalBgActive : props.theme.color.normalBg)};
 	padding: 1rem;
 	gap: 0.5rem;
 	overflow-x: hidden;
@@ -93,9 +93,5 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
-	}
-
-	&:active {
-		background-color: ${(props) => props.theme.color.normalBgActive};
 	}
 `;
