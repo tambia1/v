@@ -87,9 +87,10 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 	min-height: 5rem;
 	padding: 0.5rem;
 	box-shadow: ${(props) => props.theme.color.shadow};
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentBgHover : props.theme.color.normalBg)};
 	overflow: hidden;
 	transition: all 0.3s ease;
+
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentBgActive : props.theme.color.normalBg)};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import * as S from "./Board.styles";
 
 type BoardProps = {
@@ -9,6 +9,8 @@ type BoardProps = {
 export const Board = () => {
 	const [activeBoard, setActiveBoard] = useState("");
 	const [activeTask, setActiveTask] = useState("");
+
+	const taskRefs = useRef<Map<string, HTMLElement>>(new Map());
 
 	const [boards, setBoards] = useState<BoardProps[]>([
 		{
@@ -34,52 +36,6 @@ export const Board = () => {
 		e.dataTransfer.setData("task", task);
 	};
 
-	const handleOnDragOverTask = (e: React.DragEvent, board: string, task: string) => {
-		e.preventDefault();
-
-		setActiveBoard(board);
-		setActiveTask(task);
-	};
-
-	const handleOnDragLeaveTask = (e: React.DragEvent) => {
-		e.preventDefault();
-
-		setActiveBoard("");
-		setActiveTask("");
-	};
-
-	const handleOnDropToTask = (e: React.DragEvent, targetBoard: string, targetTask: string) => {
-		e.preventDefault();
-
-		const sourceBoard = e.dataTransfer.getData("board") as string;
-		const sourceTask = e.dataTransfer.getData("task") as string;
-
-		if (targetBoard !== sourceBoard) {
-			return;
-		}
-
-		if (sourceBoard === targetBoard) {
-			setBoards(
-				boards.map((board) => {
-					if (board.title === sourceBoard) {
-						const targetIndex = board.tasks.indexOf(targetTask);
-						const sourceIndex = board.tasks.indexOf(sourceTask);
-
-						const updatedTasks = [...board.tasks];
-
-						[updatedTasks[sourceIndex], updatedTasks[targetIndex]] = [updatedTasks[targetIndex], updatedTasks[sourceIndex]];
-
-						return { ...board, tasks: updatedTasks };
-					}
-					return board;
-				})
-			);
-		}
-
-		setActiveBoard("");
-		setActiveTask("");
-	};
-
 	const handleOnDragOverBody = (e: React.DragEvent, board: string) => {
 		e.preventDefault();
 
@@ -95,6 +51,7 @@ export const Board = () => {
 
 	const handleOnDropToBody = (e: React.DragEvent, targetBoard: string) => {
 		e.preventDefault();
+		e.stopPropagation();
 
 		const sourceBoard = e.dataTransfer.getData("board") as string;
 		const sourceTask = e.dataTransfer.getData("task") as string;
@@ -116,6 +73,101 @@ export const Board = () => {
 				return board;
 			})
 		);
+
+		const targetElement = taskRefs.current.get(sourceTask);
+		if (targetElement) {
+			const initialX = Number(e.dataTransfer.getData("initialX"));
+			const initialY = Number(e.dataTransfer.getData("initialY"));
+			const finalRect = targetElement.getBoundingClientRect();
+
+			const deltaX = initialX - finalRect.x;
+			const deltaY = initialY - finalRect.y;
+
+			// Apply the initial transform to set the task where it started from
+			targetElement.style.transition = "none";
+			targetElement.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+			requestAnimationFrame(() => {
+				// Now apply the transition to animate to the new position
+				targetElement.style.transition = "transform 10.3s ease";
+				targetElement.style.transform = `translate(0, 0)`;
+
+				// Clean up the transform after the animation is done
+				targetElement.addEventListener(
+					"transitionend",
+					() => {
+						targetElement.style.transition = "";
+						targetElement.style.transform = "";
+					},
+					{ once: true }
+				);
+			});
+		}
+
+		setActiveBoard("");
+		setActiveTask("");
+	};
+
+	const handleOnDragOverTask = (e: React.DragEvent, board: string, task: string) => {
+		e.preventDefault();
+
+		setActiveBoard(board);
+		setActiveTask(task);
+	};
+
+	const handleOnDragLeaveTask = (e: React.DragEvent) => {
+		e.preventDefault();
+
+		setActiveBoard("");
+		setActiveTask("");
+	};
+
+	const handleOnDropToTask = (e: React.DragEvent, targetBoard: string, targetTask: string) => {
+		e.preventDefault();
+		e.stopPropagation();
+
+		const sourceBoard = e.dataTransfer.getData("board") as string;
+		const sourceTask = e.dataTransfer.getData("task") as string;
+
+		if (targetBoard !== sourceBoard) {
+			setBoards(
+				boards.map((board) => {
+					if (board.title === sourceBoard) {
+						const updatedTasks = [...board.tasks];
+
+						return { ...board, tasks: updatedTasks.filter((task) => task != sourceTask) };
+					}
+
+					if (board.title === targetBoard) {
+						const targetIndex = board.tasks.indexOf(targetTask);
+
+						const updatedTasks = [...board.tasks];
+						updatedTasks.splice(targetIndex, 0, sourceTask);
+
+						return { ...board, tasks: updatedTasks };
+					}
+
+					return board;
+				})
+			);
+		} else {
+			setBoards(
+				boards.map((board) => {
+					if (board.title === sourceBoard) {
+						const targetIndex = board.tasks.indexOf(targetTask);
+						const sourceIndex = board.tasks.indexOf(sourceTask);
+
+						const updatedTasks = [...board.tasks];
+
+						[updatedTasks[sourceIndex], updatedTasks[targetIndex]] = [updatedTasks[targetIndex], updatedTasks[sourceIndex]];
+
+						return { ...board, tasks: updatedTasks };
+					}
+
+					return board;
+				})
+			);
+		}
 
 		setActiveBoard("");
 		setActiveTask("");
@@ -142,6 +194,7 @@ export const Board = () => {
 							{board.tasks.map((task) => (
 								<S.Task
 									key={task}
+									ref={(el) => el && taskRefs.current.set(task, el)}
 									draggable
 									$isDragOn={activeTask === task}
 									onDragStart={(e) => {
