@@ -31,11 +31,6 @@ export const Board = () => {
 		},
 	]);
 
-	const handleOnDragStartTask = (e: React.DragEvent, board: string, task: string) => {
-		e.dataTransfer.setData("board", board);
-		e.dataTransfer.setData("task", task);
-	};
-
 	const handleOnDragOverBody = (e: React.DragEvent, board: string) => {
 		e.preventDefault();
 
@@ -103,6 +98,18 @@ export const Board = () => {
 				);
 			});
 		}
+
+		setActiveBoard("");
+		setActiveTask("");
+	};
+
+	const handleOnDragStartTask = (e: React.DragEvent, board: string, task: string) => {
+		e.dataTransfer.setData("board", board);
+		e.dataTransfer.setData("task", task);
+	};
+
+	const handleOnDragEndTask = (e: React.DragEvent) => {
+		e.preventDefault();
 
 		setActiveBoard("");
 		setActiveTask("");
@@ -199,6 +206,9 @@ export const Board = () => {
 									$isDragOn={activeTask === task}
 									onDragStart={(e) => {
 										handleOnDragStartTask(e, board.title, task);
+									}}
+									onDragEnd={(e) => {
+										handleOnDragEndTask(e);
 									}}
 									onDragOver={(e) => {
 										handleOnDragOverTask(e, board.title, task);
