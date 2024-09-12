@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import * as S from "./Board.styles";
 
 type BoardProps = {
@@ -13,8 +13,6 @@ type ActiveState = {
 
 export const Board = () => {
 	const [activeItem, setActiveItem] = useState<ActiveState>({ board: "", task: "" });
-
-	const taskRefs = useRef<Map<string, HTMLElement>>(new Map());
 
 	const [boards, setBoards] = useState<BoardProps[]>([
 		{
@@ -156,7 +154,6 @@ export const Board = () => {
 							{board.tasks.map((task) => (
 								<S.Task
 									key={task}
-									ref={(el) => el && taskRefs.current.set(task, el)}
 									draggable
 									$isDragOn={activeItem.task === task}
 									onDragStart={(e) => handleOnDragStartTask(e, board.title, task)}
