@@ -12,7 +12,7 @@
 			"name": "launch edge 5000",
 			"type": "msedge",
 			"request": "launch",
-			"url": "http://localhost:5000",
+			"url": "https://localhost:5000/v",
 			"webRoot": "${workspaceFolder}/app",
 			"sourceMapPathOverrides": {
 				"\\mnt\\c\\*": "C:/*"
@@ -22,7 +22,7 @@
 			"name": "launch brave 5000",
 			"type": "chrome",
 			"request": "launch",
-			"url": "http://localhost:5000",
+			"url": "https://localhost:5000/v",
 			"webRoot": "${workspaceFolder}/app",
 			"runtimeExecutable": "/usr/bin/brave-browser-stable",
 			"sourceMapPathOverrides": {
@@ -37,21 +37,8 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "packages install",
-			"command": "npm install --legacy-peer-deps",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/"
-		},
-		{
-			"name": "---------------------------------",
-			"command": "",
-			"request": "launch",
-			"type": "node-terminal"
-		},
-		{
 			"name": "app install",
-			"command": "npm i",
+			"command": "npm install --legacy-peer-deps",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/"
@@ -298,22 +285,39 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "Show versions",
+			"command": "npm -v && node -v && tsc -v ",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
 			"name": "Update npm",
 			"command": "npm install -g npm stable",
 			"request": "launch",
-			"type": "node-terminal"
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "Update node",
 			"command": "npm install -g node stable",
 			"request": "launch",
-			"type": "node-terminal"
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
-			"name": "Update VSCode",
+			"name": "Update typescript",
+			"command": "npm install -g typescript",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "Update vscode",
 			"command": "sudo apt update && sudo apt install code",
 			"request": "launch",
-			"type": "node-terminal"
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "---------------------------------",
