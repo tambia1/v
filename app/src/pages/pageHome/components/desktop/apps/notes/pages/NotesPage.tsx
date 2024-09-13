@@ -91,10 +91,16 @@ export const NotesPage = () => {
 				iconName="question"
 				text={<T>{lang.misc.areYouSure}</T>}
 				onClickBackground={cancelRemoveNote}
-				buttonContentA={<T>{lang.misc.yes}</T>}
-				buttonCallbackA={performRemoveNote}
-				buttonContentB={<T>{lang.misc.no}</T>}
-				buttonCallbackB={cancelRemoveNote}
+				buttons={[
+					{
+						content: <T>{lang.misc.yes}</T>,
+						onClick: performRemoveNote,
+					},
+					{
+						content: <T>{lang.misc.no}</T>,
+						onClick: cancelRemoveNote,
+					},
+				]}
 			/>
 		</S.NotesPage>
 	);

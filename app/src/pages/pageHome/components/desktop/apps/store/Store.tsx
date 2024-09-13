@@ -57,23 +57,35 @@ export const Store = () => {
 					</S.Group>
 				))}
 			</S.Store>
+
 			<Modal
 				isVisible={isModalSaveVisible}
 				iconName="question"
 				text={<T>{lang.store.saveApp}</T>}
 				onClickBackground={handleSaveNo}
-				buttonContentA={<T>{lang.misc.yes}</T>}
-				buttonCallbackA={handleSaveYes}
-				buttonContentB={<T>{lang.misc.no}</T>}
-				buttonCallbackB={handleSaveNo}
+				buttons={[
+					{
+						content: <T>{lang.misc.yes}</T>,
+						onClick: handleSaveYes,
+					},
+					{
+						content: <T>{lang.misc.no}</T>,
+						onClick: handleSaveNo,
+					},
+				]}
 			/>
+
 			<Modal
 				isVisible={isModalExistVisible}
 				iconName="info"
 				text={<T>{lang.store.alreadySaved}</T>}
 				onClickBackground={handleSaveNo}
-				buttonContentA={<T>{lang.misc.ok}</T>}
-				buttonCallbackA={handleExistOk}
+				buttons={[
+					{
+						content: <T>{lang.misc.ok}</T>,
+						onClick: handleExistOk,
+					},
+				]}
 			/>
 		</>
 	);

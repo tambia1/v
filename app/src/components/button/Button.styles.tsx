@@ -20,8 +20,8 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			transition: all 0.1s ease;
 			padding: 0.5rem 1rem 0.5rem 1rem;
 			box-sizing: border-box;
-			min-width: 5em;
 			width: fit-content;
+			min-width: 5em;
 			white-space: nowrap;
 
 			&:hover {
@@ -57,6 +57,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			font-size: 100%;
 
 			width: fit-content;
+			min-width: 5em;
 
 			&:hover {
 				--background-hover-color: hsl(230, 60%, 55%);
@@ -97,6 +98,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			font-size: 100%;
 
 			width: fit-content;
+			min-width: 5em;
 
 			&:hover {
 				--background-hover-color: hsl(230, 55%, 80%);
@@ -136,6 +138,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			font-size: 100%;
 
 			width: fit-content;
+			min-width: 5em;
 
 			&:hover {
 				--label-color: hsl(230, 55%, 80%);

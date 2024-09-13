@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as S from "./Board.styles";
+import { Modal } from "@src/components/modal/Modal";
 
 type BoardProps = {
 	title: string;
@@ -172,6 +173,18 @@ export const Board = () => {
 					</S.Column>
 				))}
 			</S.Columns>
+
+			<Modal
+				isVisible
+				text="test"
+				iconName="check"
+				buttons={[
+					{
+						content: "A",
+						onClick: () => {},
+					},
+				]}
+			></Modal>
 		</S.Board>
 	);
 };

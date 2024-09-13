@@ -95,10 +95,16 @@ export const NotesContent = ({ id, title, text }: Props) => {
 				iconName="question"
 				text={<T>{lang.misc.areYouSure}</T>}
 				onClickBackground={cancelExit}
-				buttonContentA={<T>{lang.misc.yes}</T>}
-				buttonCallbackA={performExit}
-				buttonContentB={<T>{lang.misc.no}</T>}
-				buttonCallbackB={cancelExit}
+				buttons={[
+					{
+						content: <T>{lang.misc.yes}</T>,
+						onClick: performExit,
+					},
+					{
+						content: <T>{lang.misc.no}</T>,
+						onClick: cancelExit,
+					},
+				]}
 			/>
 		</S.NotesContent>
 	);

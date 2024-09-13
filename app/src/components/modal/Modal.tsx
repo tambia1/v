@@ -1,26 +1,23 @@
-import { ReactElement, ReactNode } from "react";
+import { ReactNode } from "react";
 import { Box } from "./components/box/Box";
 import { IconsName } from "./components/box/components/content/components/icon/Icon.styles";
 import { Button } from "../button/Button";
 import { Compose } from "./components/compose/Compose";
-// import { useStoreModal } from "./stores/StoreModal";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	children?: ReactNode;
 	isVisible?: boolean;
-	text?: ReactElement | string;
-	buttonContentA?: ReactElement | string;
-	buttonCallbackA?: () => void;
-	buttonContentB?: ReactElement | string;
-	buttonCallbackB?: () => void;
-	iconName?: IconsName;
 	onClickBackground?: () => void;
+	iconName?: IconsName;
+	text?: ReactNode;
+	buttons: {
+		content: ReactNode;
+		onClick: () => void;
+	}[];
 }
 
-export const Modal = ({ className, isVisible = true, text, iconName, buttonContentA, buttonCallbackA, buttonContentB, buttonCallbackB, onClickBackground }: Props) => {
-	// const {isVisible, setIsVisible} = useStoreModal();
-
+export const Modal = ({ className, isVisible = true, text, iconName, buttons, onClickBackground }: Props) => {
 	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
 			return;
@@ -30,7 +27,7 @@ export const Modal = ({ className, isVisible = true, text, iconName, buttonConte
 	};
 
 	return (
-		<Modal.Compose className={className} onClick={handleOnClick} isVisible={isVisible}>
+		<Modal.Compose className={className} isVisible={isVisible} onClick={handleOnClick}>
 			<Modal.Box.Compose>
 				<Modal.Box.Content.Compose>
 					{iconName && <Modal.Box.Content.Icon iconName={iconName} />}
@@ -38,8 +35,11 @@ export const Modal = ({ className, isVisible = true, text, iconName, buttonConte
 				</Modal.Box.Content.Compose>
 
 				<Modal.Box.Buttons>
-					{buttonContentA && <Button onClick={buttonCallbackA}>{buttonContentA}</Button>}
-					{buttonContentB && <Button onClick={buttonCallbackB}>{buttonContentB}</Button>}
+					{buttons.map((button) => (
+						<Button onClick={button.onClick} variant="styled">
+							{button.content}
+						</Button>
+					))}
 				</Modal.Box.Buttons>
 			</Modal.Box.Compose>
 		</Modal.Compose>

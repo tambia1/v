@@ -187,8 +187,12 @@ export const Desktop = () => {
 				iconName="info"
 				text={t(lang.misc.error)}
 				onClickBackground={handleLoadingError}
-				buttonContentA={t(lang.misc.ok)}
-				buttonCallbackA={handleLoadingError}
+				buttons={[
+					{
+						content: t(lang.misc.ok),
+						onClick: handleLoadingError,
+					},
+				]}
 			/>
 		</S.Container>
 	);
