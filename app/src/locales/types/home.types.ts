@@ -3,7 +3,7 @@ import { ILanguageName } from "../i18n.types";
 export type IHome = {
 	languageName: ILanguageName;
 
-	misc: {
+	all: {
 		yes: string;
 		no: string;
 		ok: string;

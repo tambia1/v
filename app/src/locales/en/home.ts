@@ -3,7 +3,7 @@ import { IHome } from "../types/home.types";
 export const translation: IHome = {
 	languageName: "en",
 
-	misc: {
+	all: {
 		yes: "Yes",
 		no: "No",
 		ok: "OK",

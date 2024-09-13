@@ -65,11 +65,11 @@ export const Store = () => {
 				onClickBackground={handleSaveNo}
 				buttons={[
 					{
-						content: <T>{lang.misc.yes}</T>,
+						content: <T>{lang.all.yes}</T>,
 						onClick: handleSaveYes,
 					},
 					{
-						content: <T>{lang.misc.no}</T>,
+						content: <T>{lang.all.no}</T>,
 						onClick: handleSaveNo,
 					},
 				]}
@@ -82,7 +82,7 @@ export const Store = () => {
 				onClickBackground={handleSaveNo}
 				buttons={[
 					{
-						content: <T>{lang.misc.ok}</T>,
+						content: <T>{lang.all.ok}</T>,
 						onClick: handleExistOk,
 					},
 				]}

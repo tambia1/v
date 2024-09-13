@@ -93,15 +93,15 @@ export const NotesContent = ({ id, title, text }: Props) => {
 			<Modal
 				isVisible={isModalVisible}
 				iconName="question"
-				text={<T>{lang.misc.areYouSure}</T>}
+				text={<T>{lang.all.areYouSure}</T>}
 				onClickBackground={cancelExit}
 				buttons={[
 					{
-						content: <T>{lang.misc.yes}</T>,
+						content: <T>{lang.all.yes}</T>,
 						onClick: performExit,
 					},
 					{
-						content: <T>{lang.misc.no}</T>,
+						content: <T>{lang.all.no}</T>,
 						onClick: cancelExit,
 					},
 				]}

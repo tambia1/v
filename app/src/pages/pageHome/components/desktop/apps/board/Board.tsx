@@ -1,6 +1,9 @@
 import { useState } from "react";
 import * as S from "./Board.styles";
 import { Modal } from "@src/components/modal/Modal";
+import { Input } from "@src/components/input/Input";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
 
 type BoardProps = {
 	title: string;
@@ -13,8 +16,10 @@ type ActiveState = {
 };
 
 export const Board = () => {
-	const [activeItem, setActiveItem] = useState<ActiveState>({ board: "", task: "" });
+	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [modalText, setModalText] = useState("");
 
+	const [activeItem, setActiveItem] = useState<ActiveState>({ board: "", task: "" });
 	const [boards, setBoards] = useState<BoardProps[]>([
 		{
 			title: "Backlog",
@@ -140,6 +145,20 @@ export const Board = () => {
 		setActiveItem({ board: "", task: "" });
 	};
 
+	const handleOnClickBacklogPlus = () => {
+		setIsModalVisible(true);
+	};
+
+	const handleOnClickModalOk = () => {
+		setBoards([...boards.map((board, index) => (index === 0 ? { ...board, tasks: [...board.tasks, modalText] } : board))]);
+		setModalText("");
+		setIsModalVisible(false);
+	};
+
+	const handleOnClickModalCancel = () => {
+		setIsModalVisible(false);
+	};
+
 	return (
 		<S.Board>
 			<S.Columns>
@@ -147,7 +166,7 @@ export const Board = () => {
 					<S.Column key={board.title}>
 						<S.ColumnHeader>
 							<S.HeaderText>{board.title}</S.HeaderText>
-							{board.title === "Backlog" && <S.HeaderIcon iconName="iconPlusCircle" />}
+							{board.title === "Backlog" && <S.HeaderIcon iconName="iconPlusCircle" onClick={handleOnClickBacklogPlus} />}
 						</S.ColumnHeader>
 						<S.ColumnBody
 							$isDragOn={activeItem.board === board.title}
@@ -175,13 +194,23 @@ export const Board = () => {
 			</S.Columns>
 
 			<Modal
-				isVisible
-				text="test"
-				iconName="check"
+				isVisible={isModalVisible}
+				text={
+					<Input
+						value={modalText}
+						onTextChange={(value) => {
+							setModalText(value);
+						}}
+					></Input>
+				}
 				buttons={[
 					{
-						content: "A",
-						onClick: () => {},
+						content: <T>{lang.all.cancel}</T>,
+						onClick: handleOnClickModalCancel,
+					},
+					{
+						content: <T>{lang.all.ok}</T>,
+						onClick: handleOnClickModalOk,
 					},
 				]}
 			></Modal>

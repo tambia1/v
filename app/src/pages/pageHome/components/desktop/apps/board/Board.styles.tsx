@@ -109,12 +109,12 @@ export const HeaderIcon = styled(Icon).attrs({
 	right: 1rem;
 
 	padding: 0.5rem;
+	border-radius: 0.5rem;
 
-	&:hover {
-		background-color: ${(props) => props.theme.color.normalBgHover};
-	}
+	cursor: pointer;
+	transition: all 0.3s ease;
 
 	&:active {
-		background-color: ${(props) => props.theme.color.normalBgActive};
+		opacity: 0.5;
 	}
 `;

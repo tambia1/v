@@ -185,11 +185,11 @@ export const Desktop = () => {
 			<Modal
 				isVisible={isErrorLoadingComponent}
 				iconName="info"
-				text={t(lang.misc.error)}
+				text={t(lang.all.error)}
 				onClickBackground={handleLoadingError}
 				buttons={[
 					{
-						content: t(lang.misc.ok),
+						content: t(lang.all.ok),
 						onClick: handleLoadingError,
 					},
 				]}
