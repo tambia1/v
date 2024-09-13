@@ -11,7 +11,7 @@ export const Compose = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	background-color: #ffffff88;
+	background-color: #00000088;
 	border-radius: 5px;
 
 	z-index: 100;

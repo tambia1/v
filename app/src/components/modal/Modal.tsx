@@ -35,8 +35,8 @@ export const Modal = ({ className, isVisible = true, text, iconName, buttons, on
 				</Modal.Box.Content.Compose>
 
 				<Modal.Box.Buttons>
-					{buttons.map((button) => (
-						<Button onClick={button.onClick} variant="styled">
+					{buttons.map((button, index) => (
+						<Button key={index} onClick={button.onClick} variant="styled">
 							{button.content}
 						</Button>
 					))}

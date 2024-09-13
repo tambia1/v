@@ -5,14 +5,14 @@ export const Box = styled.div`
 	width: 350px;
 	height: 150px;
 	box-sizing: border-box;
-	color: #fff;
 
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 
-	background-color: #0008;
-	border-radius: 5px;
+	color: ${(props) => props.theme.color.normalFg};
+	background-color: ${(props) => props.theme.color.normalBg};
 
+	border-radius: 5px;
 	overflow: hidden;
 `;
