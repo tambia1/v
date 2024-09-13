@@ -1,3 +1,4 @@
+import { Icon } from "@src/icons/Icon";
 import styled from "styled-components";
 
 const MOBILE_WIDTH = "768px";
@@ -37,6 +38,7 @@ export const ColumnHeader = styled.div`
 	align-items: center;
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};
+	position: relative;
 `;
 
 export const Columns = styled.div`
@@ -94,5 +96,25 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
+	}
+`;
+
+export const HeaderText = styled.div``;
+
+export const HeaderIcon = styled(Icon).attrs({
+	fill: "#00ff00",
+	stroke: "#000000",
+})`
+	position: absolute;
+	right: 1rem;
+
+	padding: 0.5rem;
+
+	&:hover {
+		background-color: ${(props) => props.theme.color.normalBgHover};
+	}
+
+	&:active {
+		background-color: ${(props) => props.theme.color.normalBgActive};
 	}
 `;

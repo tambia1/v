@@ -144,7 +144,10 @@ export const Board = () => {
 			<S.Columns>
 				{boards.map((board) => (
 					<S.Column key={board.title}>
-						<S.ColumnHeader>{board.title}</S.ColumnHeader>
+						<S.ColumnHeader>
+							<S.HeaderText>{board.title}</S.HeaderText>
+							{board.title === "Backlog" && <S.HeaderIcon iconName="iconPlusCircle" />}
+						</S.ColumnHeader>
 						<S.ColumnBody
 							$isDragOn={activeItem.board === board.title}
 							onDragOver={(e) => handleOnDragOverBody(e, board.title)}
