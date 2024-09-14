@@ -38,7 +38,10 @@ export const About = () => {
 			<Text size="m">
 				{dimensions.width}x{dimensions.height}
 			</Text>
-			<Text size="m">{dimensions.orientation}</Text>{" "}
+			<S.Spacer />
+			<Text size="m">{dimensions.orientation}</Text>
+			<S.Spacer />
+			<Text size="m">{navigator.userAgent}</Text>
 		</S.About>
 	);
 };
