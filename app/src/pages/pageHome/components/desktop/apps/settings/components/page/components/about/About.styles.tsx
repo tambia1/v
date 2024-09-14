@@ -10,3 +10,8 @@ export const About = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 `;
+
+export const Spacer = styled.div`
+	width: 100%;
+	height: 1rem;
+`;
