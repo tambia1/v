@@ -1,7 +1,7 @@
 import { Icon } from "@src/icons/Icon";
 import styled from "styled-components";
 
-const MOBILE_WIDTH = "768px";
+const MOBILE_WIDTH = "384px";
 
 export const Board = styled.div`
 	width: 100%;
