@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Box = styled.div`
 	position: relative;
-	width: 35rem;
-	height: 15rem;
+	width: 25rem;
+	min-height: 10rem;
 	box-sizing: border-box;
 
 	display: flex;

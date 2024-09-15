@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Text = styled.div`
 	display: inline-flex;
-	font-size: 14px;
-	padding-bottom: 6px;
-	margin: 10px;
+	font-size: 100%;
+	margin: 0.5rem;
 `;

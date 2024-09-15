@@ -5,9 +5,10 @@ html {
 	margin: 0px;
 	padding: 0px;
 
-	font-family: monospace;
-	font-weight: bold;
 	font-size: 12px;
+	font-family: sans-serif, Helvetica;
+	font-weight: bold;
+	line-height: 1;
 
 	overflow: hidden;
 
@@ -28,10 +29,6 @@ body {
 
 	color: #ffffff;
 	background-color: #000000;
-
-	font-size: 12px;
-	font-family: sans-serif, Helvetica;
-	line-height: 1;
 
 	overflow: hidden;
 

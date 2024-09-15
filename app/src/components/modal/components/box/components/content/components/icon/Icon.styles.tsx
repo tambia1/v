@@ -19,10 +19,10 @@ export const Icon = styled.div``;
 
 export const Image = styled.div<{ $iconName: IconsName }>`
 	display: flex;
-	width: 50px;
-	height: 50px;
+	width: 3rem;
+	height: 3rem;
 	background-image: url(${({ $iconName }) => Icons[$iconName]});
 	background-size: contain;
 	background-repeat: no-repeat;
-	margin: 10px;
+	margin: 0.5rem;
 `;
