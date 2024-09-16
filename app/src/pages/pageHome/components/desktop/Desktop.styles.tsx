@@ -35,6 +35,8 @@ export const AppContainer = styled.div`
 	inset: 0 0 0 0;
 	pointer-events: none;
 	z-index: 1;
+
+	backdrop-filter: blur(0.5rem);
 `;
 
 export const App = styled.div`
