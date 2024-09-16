@@ -1,4 +1,4 @@
-import { ErrorInfo, ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { ErrorInfo, ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
 import * as S from "./Desktop.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { ITheme, themes } from "@src/theme/Theme.types";
@@ -50,7 +50,7 @@ export const Desktop = () => {
 	const allApps: IApp[][] = [...apps, externalApps];
 	const appsByRole = getAppsByRoles(allApps, storeLogin.role);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		animationApp.play("disappear");
 	}, []);
 
