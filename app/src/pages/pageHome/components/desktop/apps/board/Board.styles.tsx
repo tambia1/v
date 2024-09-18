@@ -48,7 +48,6 @@ export const Columns = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	overflow-y: scroll;
 
 	& > ${Column}:nth-child(1) ${ColumnHeader} {
 		background-color: #f48897;
