@@ -4,6 +4,7 @@ import { Modal } from "@src/components/modal/Modal";
 import { Input } from "@src/components/input/Input";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { Text } from "@src/components/text/Text";
 
 type BoardProps = {
 	title: string;
@@ -196,12 +197,15 @@ export const Board = () => {
 			<Modal
 				isVisible={isModalVisible}
 				text={
-					<Input
-						value={modalText}
-						onTextChange={(value) => {
-							setModalText(value);
-						}}
-					></Input>
+					<S.ModalContent>
+						<Text>Please enter task name</Text>
+						<Input
+							value={modalText}
+							onTextChange={(value) => {
+								setModalText(value);
+							}}
+						></Input>
+					</S.ModalContent>
 				}
 				buttons={[
 					{

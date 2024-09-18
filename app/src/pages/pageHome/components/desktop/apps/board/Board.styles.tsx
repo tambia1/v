@@ -117,3 +117,9 @@ export const HeaderIcon = styled(Icon).attrs({
 		opacity: 0.5;
 	}
 `;
+
+export const ModalContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+`;
