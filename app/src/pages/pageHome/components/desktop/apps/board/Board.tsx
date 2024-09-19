@@ -5,7 +5,6 @@ import { Input } from "@src/components/input/Input";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { Text } from "@src/components/text/Text";
-import { getElementPositionRelativeToParent } from "@src/utils/Dom";
 
 type BoardProps = {
 	title: string;
