@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import * as S from "./Board.styles";
 import { Modal } from "@src/components/modal/Modal";
 import { Input } from "@src/components/input/Input";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { Text } from "@src/components/text/Text";
+import { getElementPositionRelativeToParent } from "@src/utils/Dom";
 
 type BoardProps = {
 	title: string;
@@ -17,6 +18,8 @@ type ActiveState = {
 };
 
 export const Board = () => {
+	const refTasks = useRef<Map<string, HTMLElement>>(new Map());
+
 	const [isModalVisible, setIsModalVisible] = useState(false);
 	const [modalText, setModalText] = useState("");
 
@@ -40,6 +43,14 @@ export const Board = () => {
 		},
 	]);
 
+	const setTaskRef = (task: string, element: HTMLElement | null) => {
+		if (element) {
+			refTasks.current.set(task, element);
+		} else {
+			refTasks.current.delete(task);
+		}
+	};
+
 	const handleOnDragOverBody = (e: React.DragEvent, board: string) => {
 		e.preventDefault();
 		setActiveItem((prev) => ({ ...prev, board }));
@@ -54,21 +65,21 @@ export const Board = () => {
 		e.preventDefault();
 		e.stopPropagation();
 
-		const sourceBoard = e.dataTransfer.getData("board") as string;
-		const sourceTask = e.dataTransfer.getData("task") as string;
+		const sourceBoardTitle = e.dataTransfer.getData("board");
+		const sourceTaskTitle = e.dataTransfer.getData("task");
 
-		if (targetBoard === sourceBoard) {
+		if (targetBoard === sourceBoardTitle) {
 			return;
 		}
 
 		setBoards(
 			boards.map((board) => {
-				if (board.title === sourceBoard) {
-					return { ...board, tasks: board.tasks.filter((task) => task !== sourceTask) };
+				if (board.title === sourceBoardTitle) {
+					return { ...board, tasks: board.tasks.filter((task) => task !== sourceTaskTitle) };
 				}
 
 				if (board.title === targetBoard) {
-					return { ...board, tasks: [...board.tasks, sourceTask] };
+					return { ...board, tasks: [...board.tasks, sourceTaskTitle] };
 				}
 
 				return board;
@@ -103,21 +114,21 @@ export const Board = () => {
 		e.preventDefault();
 		e.stopPropagation();
 
-		const sourceBoard = e.dataTransfer.getData("board") as string;
-		const sourceTask = e.dataTransfer.getData("task") as string;
+		const sourceBoardTitle = e.dataTransfer.getData("board");
+		const sourceTaskTitle = e.dataTransfer.getData("task");
 
-		if (targetBoard !== sourceBoard) {
+		if (targetBoard !== sourceBoardTitle) {
 			setBoards(
 				boards.map((board) => {
-					if (board.title === sourceBoard) {
+					if (board.title === sourceBoardTitle) {
 						const updatedTasks = [...board.tasks];
-						return { ...board, tasks: updatedTasks.filter((task) => task !== sourceTask) };
+						return { ...board, tasks: updatedTasks.filter((task) => task !== sourceTaskTitle) };
 					}
 
 					if (board.title === targetBoard) {
 						const targetIndex = board.tasks.indexOf(targetTask);
 						const updatedTasks = [...board.tasks];
-						updatedTasks.splice(targetIndex, 0, sourceTask);
+						updatedTasks.splice(targetIndex, 0, sourceTaskTitle);
 
 						return { ...board, tasks: updatedTasks };
 					}
@@ -128,9 +139,9 @@ export const Board = () => {
 		} else {
 			setBoards(
 				boards.map((board) => {
-					if (board.title === sourceBoard) {
+					if (board.title === sourceBoardTitle) {
 						const targetIndex = board.tasks.indexOf(targetTask);
-						const sourceIndex = board.tasks.indexOf(sourceTask);
+						const sourceIndex = board.tasks.indexOf(sourceTaskTitle);
 
 						const updatedTasks = [...board.tasks];
 						[updatedTasks[sourceIndex], updatedTasks[targetIndex]] = [updatedTasks[targetIndex], updatedTasks[sourceIndex]];
@@ -177,6 +188,7 @@ export const Board = () => {
 						>
 							{board.tasks.map((task) => (
 								<S.Task
+									ref={(element) => setTaskRef(task, element)}
 									key={task}
 									draggable
 									$isDragOn={activeItem.task === task}

@@ -23,6 +23,7 @@ export const Column = styled.div`
 	flex-direction: column;
 	box-shadow: ${(props) => props.theme.color.shadow};
 	min-width: 0;
+	transition: all 0.3s ease;
 
 	@media (max-width: ${MOBILE_WIDTH}) {
 		flex-shrink: 0;
