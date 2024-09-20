@@ -106,6 +106,14 @@ export const translation: IHome = {
 		title: "Lauta",
 	},
 
+	redis: {
+		title: "Redis",
+	},
+
+	featureFlag: {
+		title: "Feature Flag",
+	},
+
 	test: {
 		title: "Test",
 	},

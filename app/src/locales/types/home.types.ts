@@ -106,6 +106,14 @@ export type IHome = {
 		title: string;
 	};
 
+	redis: {
+		title: string;
+	};
+
+	featureFlag: {
+		title: string;
+	};
+
 	test: {
 		title: string;
 	};
