@@ -326,7 +326,14 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "show ipv6",
+			"name": "ip status",
+			"command": "ip addr show",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "ipv6 status",
 			"command": "ip -6 addr show | grep 'scope global temporary dynamic' | awk '{print $2}' | cut -d/ -f1 | tail -n 1",
 			"request": "launch",
 			"type": "node-terminal",
