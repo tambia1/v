@@ -228,7 +228,7 @@ export const Board = () => {
 						onClick: handleOnClickModalOk,
 					},
 				]}
-			></Modal>
+			/>
 		</S.Board>
 	);
 };

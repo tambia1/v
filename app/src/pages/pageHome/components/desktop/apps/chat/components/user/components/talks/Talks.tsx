@@ -13,6 +13,7 @@ import config from "@src/config.json";
 import { Avatar } from "../avatar/Avatar";
 import { IAvatar } from "../avatar/Avatar.styles";
 import { logger } from "../../../../../debug/Debug";
+import { Modal } from "@src/components/modal/Modal";
 
 const HOST = config.host;
 const PORT = config.chat.port;
@@ -38,6 +39,8 @@ export const Talks = ({ name, avatar }: Props) => {
 
 	const storeTalk = useStoreTalk();
 
+	const [isModalVisible, setIsModalVisible] = useState(false);
+
 	const handleOnOpen = (event: Event) => {
 		logger(`handleOnOpen ${event.type}`);
 	};
@@ -48,6 +51,7 @@ export const Talks = ({ name, avatar }: Props) => {
 
 	const handleOnError = (event: Event) => {
 		logger(`handleOnError: ${event.type}`);
+		setIsModalVisible(true);
 	};
 
 	const handleOnMessage = (event: MessageEvent) => {
@@ -87,6 +91,11 @@ export const Talks = ({ name, avatar }: Props) => {
 		);
 	};
 
+	const handleOnClickModalOk = () => {
+		setIsModalVisible(false);
+		navigator.popPage();
+	};
+
 	return (
 		<S.Talks>
 			<List.Section>
@@ -102,6 +111,19 @@ export const Talks = ({ name, avatar }: Props) => {
 					</List.Cell>
 				))}
 			</List>
+
+			<Modal
+				isVisible={isModalVisible}
+				iconName="question"
+				text={<T>{lang.all.error}</T>}
+				onClickBackground={handleOnClickModalOk}
+				buttons={[
+					{
+						content: <T>{lang.all.ok}</T>,
+						onClick: handleOnClickModalOk,
+					},
+				]}
+			/>
 		</S.Talks>
 	);
 };
