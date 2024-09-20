@@ -30,7 +30,6 @@ import { TestCouner } from "./apps/testCounter/TestCouner";
 import { Debug } from "./apps/debug/Debug";
 import { Board } from "./apps/board/Board";
 import { Redis } from "./apps/redis/Redis";
-import { FeatureFlag } from "./apps/featureFlag/FeatureFlag";
 
 const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -63,7 +62,6 @@ export const apps: IApp[][] = [
 		{ id: "speed", roles: ["admin", "user", "guest"], title: <T>{lang.speed.title}</T>, icon: "speed", component: <Speed /> },
 		{ id: "board", roles: ["admin", "user", "guest"], title: <T>{lang.board.title}</T>, icon: "board", component: <Board /> },
 		{ id: "redis", roles: ["admin", "user", "guest"], title: <T>{lang.redis.title}</T>, icon: "redis", component: <Redis /> },
-		{ id: "featureFlag", roles: ["admin", "user", "guest"], title: <T>{lang.featureFlag.title}</T>, icon: "featureFlag", component: <FeatureFlag /> },
 
 		{ id: "tetris", roles: ["admin", "user", "guest"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },

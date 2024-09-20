@@ -21,7 +21,6 @@ import test from "./assets/test.png";
 import speed from "./assets/speed.png";
 import board from "./assets/board.png";
 import redis from "./assets/redis.png";
-import featureFlag from "./assets/featureFlag.png";
 
 export const appIcons = {
 	settings,
@@ -46,7 +45,6 @@ export const appIcons = {
 	speed,
 	board,
 	redis,
-	featureFlag,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;
