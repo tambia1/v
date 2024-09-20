@@ -226,7 +226,7 @@
 		},
 		{
 			"name": "server websocket",
-			"command": "tsx WebSocketServer.ts",
+			"command": "sudo tsx WebSocketServer.ts",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/chat/server/"

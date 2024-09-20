@@ -2,7 +2,7 @@
 	"host": "2a06:c701:9c6e:6a00:3b73:577d:5dfd:bd89",
 
 	"chat": {
-		"port": 443
+		"port": 5002
 	},
 
 	"graphQl": {
