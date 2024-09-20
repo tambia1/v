@@ -35,6 +35,10 @@ type MessageSend =
 
 type MessageGet =
 	| {
+			action: "ping";
+			clientId: string;
+	  }
+	| {
 			action: "name";
 			clientId: string;
 			clientName: string;
@@ -116,6 +120,10 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 		log("yellow", `Client sent message: ${ws.clientId} ${JSON.stringify(data)}`);
 
 		switch (data.action) {
+			case "ping":
+				ws.send("pong");
+				break;
+
 			case "name":
 				ws.clientName = data.clientName;
 				ws.clientAvatar = data.clientAvatar;

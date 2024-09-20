@@ -14,7 +14,7 @@ export const useWebSocket = ({ url, onMessage, onOpen, onClose, onError }: Props
 	useEffect(() => {
 		const ws = new WebSocket(url);
 
-		ws.onopen = (event: Event) => () => {
+		ws.onopen = (event: Event) => {
 			console.log("WebSocket open", event);
 			onOpen?.(event);
 		};
