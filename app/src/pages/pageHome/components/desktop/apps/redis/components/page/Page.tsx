@@ -4,23 +4,66 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { About } from "./components/about/About";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { IData, Table } from "@src/components/table/Table";
+import { ReactNode, useEffect, useState } from "react";
+import subs from "../../data/subscriptions.json";
+import bdbs from "../../data/bdbs.json";
+import { Collapsable } from "@src/components/collapsable/Collapsable";
+
+type Sub = {
+	name: ReactNode;
+	id: string;
+	type: string;
+	dbs: {
+		name: string;
+		id: string;
+	}[];
+};
+
+const subsTitles = ["SUBSCRIPTION NAME", "ID", "TYPE"];
+const dbsTitles = ["DATABASE NAME", "ID"];
+
+type Subscription = (typeof subs.subscriptions)[0];
+type SubscriptionType = "fixed" | "pro" | "activeActive";
 
 export const Page = () => {
 	const navigator = useNavigator();
+	const [data, setData] = useState<Sub[]>([]);
 
-	const data: IData = {
-		cols: [<span onClick={() => handleOnClickAbout()}>"NAME"</span>, "TIME (EST)", "FUTURE DATE", "LAST", "NET CHANGE", "OPEN", "HIGH", "LOW"],
-		rows: [
-			["Dow Jones mini", "4:38 PM", "Dec 2023", "33,984.00", "-189.00", "34,159.00", "34,283.00", "33,915.00"],
-			["S&P 500 mini", "4:39 PM", "Dec 2023", "4,366.00", "-33.50", "4,393.25", "4,413.00", "4,357.75"],
-			["NASDAQ 100 mini", "4:38 PM", "Dec 2023", "15,256.00", "-130.50", "15,356.25", "15,453.75", "15,236.75"],
-			["Mexican IPC", "3:59 PM", "Dec 2023", "51,380.00", "+93.00", "51,250.00", "51,550.00", "51,050.00"],
-			["S&P/TSX Composite", "11/8/2023", "Dec 2023", "19,595.00", "+50.00", "--", "--", "--"],
-			["S&P/TSX 60", "4:29 PM", "Dec 2023", "1,183.00", "+6.10", "1,176.40", "1,193.50", "1,175.60"],
-			["Ibovespa", "4:31 PM", "Dec 2023", "120,225.00", "-75.00", "120,670.00", "121,460.00", "119,540.00"],
-			["IBrX-50", "11/8/2023", "Dec 2023", "19,860.00", "-64.00", "19,845.00", "19,845.00", "19,845.00"],
-		],
+	const [collapsed, setCollapsed] = useState<{ [K: string]: boolean }>({});
+
+	useEffect(() => {
+		const newData: Sub[] = [];
+
+		for (let i = 0; i < subs.subscriptions.length; i++) {
+			newData.push({
+				name: (
+					<span
+						onClick={() => {
+							setCollapsed({ ...collapsed, [subs.subscriptions[i].id]: !collapsed[subs.subscriptions[i].id] });
+						}}
+					>
+						{subs.subscriptions[i].name}
+					</span>
+				),
+				id: String(subs.subscriptions[i].id),
+				type: getSubscriptionType(subs.subscriptions[i]),
+				dbs: bdbs.bdbs.filter((bdb) => bdb.subscription === subs.subscriptions[i].id).map((bdb) => ({ name: bdb.name, id: String(bdb.id) })),
+			});
+		}
+
+		setData(newData);
+	}, []);
+
+	const getSubscriptionType = (subscription: Subscription): SubscriptionType => {
+		if (subscription.aa_rcp) {
+			return "activeActive";
+		}
+
+		if (subscription.rcp) {
+			return "pro";
+		}
+
+		return "fixed";
 	};
 
 	const handleOnClickAbout = () => {
@@ -31,9 +74,55 @@ export const Page = () => {
 		);
 	};
 
+	const handleOnClickCollpse = (subId: string) => {
+		setCollapsed({ ...collapsed, [subId]: !collapsed[subId] });
+	};
+
 	return (
 		<S.Page>
-			<Table data={data} type={"horizontal"} />
+			<S.TableSubscriptions>
+				<S.TableHead>
+					{subsTitles.map((col, i) => (
+						<S.TableCol key={i}>{col}</S.TableCol>
+					))}
+				</S.TableHead>
+
+				<S.TableBody>
+					{data.map((sub) => (
+						<>
+							<S.TableRow>
+								<S.TableDataText onClick={() => handleOnClickCollpse(sub.id)}>{sub.name}</S.TableDataText>
+								<S.TableDataText>{sub.id}</S.TableDataText>
+								<S.TableDataText>{sub.type}</S.TableDataText>
+							</S.TableRow>
+
+							<S.TableRow>
+								<S.TableData colSpan={100}>
+									<Collapsable collapsed={collapsed[sub.id]}>
+										<S.TableDatabases>
+											<S.TableHead>
+												{dbsTitles.map((col, i) => (
+													<S.TableCol key={i}>{col}</S.TableCol>
+												))}
+											</S.TableHead>
+											<S.TableBody>
+												<S.TableRow>
+													{sub.dbs.map((db) => (
+														<S.TableRow>
+															<S.TableDataText onClick={handleOnClickAbout}>{db.name}</S.TableDataText>
+															<S.TableDataText>{db.id}</S.TableDataText>
+														</S.TableRow>
+													))}
+												</S.TableRow>
+											</S.TableBody>
+										</S.TableDatabases>
+									</Collapsable>
+								</S.TableData>
+							</S.TableRow>
+						</>
+					))}
+				</S.TableBody>
+			</S.TableSubscriptions>
 		</S.Page>
 	);
 };

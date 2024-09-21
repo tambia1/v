@@ -35,6 +35,5 @@ export const TableCellData = styled.td`
 
 export const TableCellHead = styled.td`
 	white-space: nowrap;
-	font-weight: normal;
 	font-weight: bold;
 `;
