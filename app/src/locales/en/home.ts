@@ -108,6 +108,9 @@ export const translation: IHome = {
 
 	redis: {
 		title: "Redis",
+		menu: {
+			databases: "Databases",
+		},
 	},
 
 	featureFlag: {

@@ -108,6 +108,9 @@ export type IHome = {
 
 	redis: {
 		title: string;
+		menu: {
+			databases: string;
+		};
 	};
 
 	featureFlag: {

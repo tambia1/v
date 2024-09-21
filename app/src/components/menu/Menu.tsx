@@ -1,36 +1,43 @@
 import * as S from "./Menu.styles";
 import { List } from "../list/List";
-import { T } from "@src/locales/T";
+import { ReactNode } from "react";
 
 export type MenuGroup = {
-	text: string;
+	text: ReactNode;
 	menuItems: MenuItem[];
 };
 
 export type MenuItem = {
 	id: string;
-	text: string;
+	text: ReactNode;
 	onClick: (id: string) => void;
 };
 
 export interface Props {
+	children?: ReactNode;
 	className?: string | undefined;
 	visible: boolean;
 	menuGroups: MenuGroup[];
 	onClickBackground: () => void;
 }
-export const Menu = ({ className, visible, menuGroups, onClickBackground, ...rest }: Props) => {
+export const Menu = ({ children, className, visible, menuGroups, onClickBackground, ...rest }: Props) => {
+	const handleOnClickBackground = () => {
+		if (visible) {
+			onClickBackground();
+		}
+	};
+
 	return (
-		<S.Menu className={className} {...rest} onClick={onClickBackground}>
+		<S.Menu className={className} {...rest} onClick={handleOnClickBackground}>
 			<S.Container>
+				<S.Content>{children}</S.Content>
+
 				<S.Cover $visible={visible} />
 
 				<S.MenuList $visible={visible}>
-					{menuGroups.map((menuGroup) => (
-						<S.MenuGroup key={menuGroup.text}>
-							<List.Section>
-								<T>{menuGroup.text}</T>
-							</List.Section>
+					{menuGroups.map((menuGroup, index) => (
+						<S.MenuGroup key={index}>
+							<List.Section>{menuGroup.text}</List.Section>
 
 							<List>
 								{menuGroup.menuItems.map((menuItem) => (

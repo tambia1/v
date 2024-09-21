@@ -1,0 +1,644 @@
+{
+	"crdbs": [
+		{
+			"causal_consistency": false,
+			"crdb_instances": [
+				{
+					"access_control": {
+						"id": 51041983,
+						"has_source_ips": false,
+						"source_ips": [],
+						"has_security_groups": false,
+						"security_groups": [],
+						"has_redis_password": true,
+						"redis_password": "vwslaDNeUPoh24uRVNBjXExLh8MPxPDi",
+						"default_user": true,
+						"has_sasl_auth": false,
+						"sasl_user_name": null,
+						"sasl_user_password": null,
+						"has_ssl_auth": null,
+						"enforce_client_authentication": null,
+						"certificates": []
+					},
+					"backup": false,
+					"backup_path": null,
+					"backup_interval": null,
+					"backup_interval_offset": null,
+					"last_backup_time": null,
+					"backup_status": null,
+					"backup_progress": -1,
+					"backup_failure_reason": null,
+					"bdb_id": 51041983,
+					"max_reads": 1000,
+					"max_writes": 1000,
+					"resp3": true,
+					"oss_cluster": false,
+					"oss_cluster_api_preferred_ip_type": "internal",
+					"quantity": 1,
+					"region_id": 1,
+					"replication": true,
+					"shards_count": 1,
+					"usage": 6606027,
+					"cluster": {
+						"id": 44922,
+						"supports_noeviction": true,
+						"supports_lfu": true,
+						"supports_ssl": true,
+						"supports_clustering": true,
+						"supports_security_groups": false,
+						"supports_slowlog": true,
+						"supports_oss_cluster": true,
+						"supports_resp3": true,
+						"supports_oss_cluster_api_preferred_ip_type": true,
+						"support_rcp_regex_rules_change": true,
+						"supports_client_authentication_enforcement": true,
+						"supports_multi_modules": true,
+						"supports_redis_stack": true,
+						"is_V4": true,
+						"max_memcached_size": 1000000,
+						"max_redis_size": 1000000,
+						"max_global_memcached_size": 1000000,
+						"max_global_redis_size": 1000000,
+						"is_rof": false,
+						"max_throughput": null,
+						"absolute_bdb_max_size": null,
+						"total_memory": 23387,
+						"is_acl_supported": true,
+						"supports_redis_modules": true,
+						"maintenance_mode": false,
+						"supported_redis_features": [
+							{
+								"name": "resp3",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.2"
+							},
+							{
+								"name": "search_vertical_scaling_create",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.4"
+							},
+							{
+								"name": "rdi",
+								"min_redis_version": "6.2",
+								"min_software_version": "6.4.2-61"
+							}
+						],
+						"default_redis_version": "7.2",
+						"errors": []
+					},
+					"data_persistence": "disabled",
+					"status": "active",
+					"bdb_alerts": [
+						{
+							"id": 2,
+							"name": "dataset_size",
+							"active": true,
+							"value": 80,
+							"default_value": 80,
+							"max_value": 100,
+							"min_value": 1
+						}
+					]
+				},
+				{
+					"access_control": {
+						"id": 51041984,
+						"has_source_ips": false,
+						"source_ips": [],
+						"has_security_groups": false,
+						"security_groups": [],
+						"has_redis_password": true,
+						"redis_password": "vwslaDNeUPoh24uRVNBjXExLh8MPxPDi",
+						"default_user": true,
+						"has_sasl_auth": false,
+						"sasl_user_name": null,
+						"sasl_user_password": null,
+						"has_ssl_auth": null,
+						"enforce_client_authentication": null,
+						"certificates": []
+					},
+					"backup": false,
+					"backup_path": null,
+					"backup_interval": null,
+					"backup_interval_offset": null,
+					"last_backup_time": null,
+					"backup_status": null,
+					"backup_progress": -1,
+					"backup_failure_reason": null,
+					"bdb_id": 51041984,
+					"max_reads": 1000,
+					"max_writes": 1000,
+					"resp3": true,
+					"oss_cluster": false,
+					"oss_cluster_api_preferred_ip_type": "internal",
+					"quantity": 1,
+					"region_id": 4,
+					"replication": true,
+					"shards_count": 1,
+					"usage": 6606027,
+					"cluster": {
+						"id": 44923,
+						"supports_noeviction": true,
+						"supports_lfu": true,
+						"supports_ssl": true,
+						"supports_clustering": true,
+						"supports_security_groups": false,
+						"supports_slowlog": true,
+						"supports_oss_cluster": true,
+						"supports_resp3": true,
+						"supports_oss_cluster_api_preferred_ip_type": true,
+						"support_rcp_regex_rules_change": true,
+						"supports_client_authentication_enforcement": true,
+						"supports_multi_modules": true,
+						"supports_redis_stack": true,
+						"is_V4": true,
+						"max_memcached_size": 1000000,
+						"max_redis_size": 1000000,
+						"max_global_memcached_size": 1000000,
+						"max_global_redis_size": 1000000,
+						"is_rof": false,
+						"max_throughput": null,
+						"absolute_bdb_max_size": null,
+						"total_memory": 23387,
+						"is_acl_supported": true,
+						"supports_redis_modules": true,
+						"maintenance_mode": false,
+						"supported_redis_features": [
+							{
+								"name": "resp3",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.2"
+							},
+							{
+								"name": "search_vertical_scaling_create",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.4"
+							},
+							{
+								"name": "rdi",
+								"min_redis_version": "6.2",
+								"min_software_version": "6.4.2-61"
+							}
+						],
+						"default_redis_version": "7.2",
+						"errors": []
+					},
+					"data_persistence": "disabled",
+					"status": "active",
+					"bdb_alerts": [
+						{
+							"id": 2,
+							"name": "dataset_size",
+							"active": true,
+							"value": 80,
+							"default_value": 80,
+							"max_value": 100,
+							"min_value": 1
+						}
+					]
+				}
+			],
+			"default_db_config": {
+				"sharding": true,
+				"shards_count": null,
+				"data_persistence": "disabled",
+				"eviction_policy": "volatile-lru",
+				"access_control": {
+					"id": null,
+					"has_source_ips": false,
+					"source_ips": [],
+					"has_security_groups": false,
+					"security_groups": [],
+					"has_redis_password": false,
+					"redis_password": "vwslaDNeUPoh24uRVNBjXExLh8MPxPDi",
+					"default_user": true,
+					"has_sasl_auth": false,
+					"sasl_user_name": null,
+					"sasl_user_password": null,
+					"has_ssl_auth": null,
+					"enforce_client_authentication": null,
+					"certificates": []
+				},
+				"backup": false,
+				"backup_path": null,
+				"backup_interval": null,
+				"backup_interval_offset": null,
+				"replication": true,
+				"bdb_alerts": [
+					{
+						"id": 2,
+						"name": "dataset_size",
+						"active": true,
+						"value": 80,
+						"default_value": 80,
+						"max_value": 100,
+						"min_value": 1
+					}
+				],
+				"oss_cluster": false,
+				"oss_cluster_api_preferred_ip_type": "internal",
+				"compression": 3,
+				"module_list": [
+					{
+						"id": 76764,
+						"module": {
+							"id": 217,
+							"name": "ReJSON",
+							"display_name": "RedisJSON",
+							"capability_name": "JSON",
+							"version": "2.6.13",
+							"uid": "47255baa5a2dcfbac375ada053f7a50e",
+							"icon": "rejson",
+							"description": "Native JSON Data Type for Redis",
+							"default_args": "",
+							"documents_arg_required": false,
+							"is_custom": false,
+							"module_capabilities": ["replica_of", "eviction", "flash", "backup_restore", "reshard", "persistence_aof", "persistence_snapshot", "hash_policy", "clustering"],
+							"multi_modules_specs": null,
+							"errors": null
+						},
+						"module_args_list": "",
+						"number_of_documents": 0,
+						"number_of_threads": null,
+						"errors": null
+					},
+					{
+						"id": 76763,
+						"module": {
+							"id": 220,
+							"name": "search",
+							"display_name": "RediSearch 2",
+							"capability_name": "Search and query",
+							"version": "2.8.18",
+							"uid": "a03bc27eb7ede8d95048c4dd26ab80cf",
+							"icon": "search",
+							"description": "High performance search index on top of Redis (with clustering)",
+							"default_args": "PARTITIONS AUTO",
+							"documents_arg_required": false,
+							"is_custom": false,
+							"module_capabilities": ["replica_of", "persistence_aof", "persistence_snapshot", "clustering", "backup_restore", "reshard", "flash", "eviction", "hash_policy"],
+							"multi_modules_specs": null,
+							"errors": null
+						},
+						"module_args_list": "",
+						"number_of_documents": 0,
+						"number_of_threads": null,
+						"errors": null
+					}
+				]
+			},
+			"id": 1456,
+			"guid": "74ce11ab-27ed-4baa-b8cb-bb5482bc8dd3",
+			"memory_size_in_mb": 4096,
+			"name": "cache-M1BC75LQ",
+			"shard_key_regex": [
+				{
+					"id": 2916,
+					"order": 0,
+					"pattern": ".*\\{(?<tag>.*)\\}.*"
+				},
+				{
+					"id": 2917,
+					"order": 1,
+					"pattern": "(?<tag>.*)"
+				}
+			],
+			"sharding_type": "default-regex-rules",
+			"subscription": 126614,
+			"import_status": {
+				"bdb_import_id": 51041983,
+				"import_status": "succeeded",
+				"import_progress": -1,
+				"import_failure_reason": null,
+				"import_failure_reason_params": []
+			},
+			"status": "active",
+			"creation_date": "2024-09-20T23:15:01Z",
+			"last_changed_date": "2024-09-20T23:26:56Z",
+			"quantity": 1,
+			"port": null,
+			"is_name_change_supported": true,
+			"preferred_proxy_policy": null
+		},
+		{
+			"causal_consistency": false,
+			"crdb_instances": [
+				{
+					"access_control": {
+						"id": 51041985,
+						"has_source_ips": false,
+						"source_ips": [],
+						"has_security_groups": false,
+						"security_groups": [],
+						"has_redis_password": true,
+						"redis_password": "HioRvPAjZF5bWap1nktWsvahA3gP2cFN",
+						"default_user": true,
+						"has_sasl_auth": false,
+						"sasl_user_name": null,
+						"sasl_user_password": null,
+						"has_ssl_auth": null,
+						"enforce_client_authentication": null,
+						"certificates": []
+					},
+					"backup": false,
+					"backup_path": null,
+					"backup_interval": null,
+					"backup_interval_offset": null,
+					"last_backup_time": null,
+					"backup_status": null,
+					"backup_progress": -1,
+					"backup_failure_reason": null,
+					"bdb_id": 51041985,
+					"max_reads": 1000,
+					"max_writes": 1000,
+					"resp3": true,
+					"oss_cluster": false,
+					"oss_cluster_api_preferred_ip_type": "internal",
+					"quantity": 1,
+					"region_id": 1,
+					"replication": true,
+					"shards_count": 1,
+					"usage": 6606027,
+					"cluster": {
+						"id": 44922,
+						"supports_noeviction": true,
+						"supports_lfu": true,
+						"supports_ssl": true,
+						"supports_clustering": true,
+						"supports_security_groups": false,
+						"supports_slowlog": true,
+						"supports_oss_cluster": true,
+						"supports_resp3": true,
+						"supports_oss_cluster_api_preferred_ip_type": true,
+						"support_rcp_regex_rules_change": true,
+						"supports_client_authentication_enforcement": true,
+						"supports_multi_modules": true,
+						"supports_redis_stack": true,
+						"is_V4": true,
+						"max_memcached_size": 1000000,
+						"max_redis_size": 1000000,
+						"max_global_memcached_size": 1000000,
+						"max_global_redis_size": 1000000,
+						"is_rof": false,
+						"max_throughput": null,
+						"absolute_bdb_max_size": null,
+						"total_memory": 23387,
+						"is_acl_supported": true,
+						"supports_redis_modules": true,
+						"maintenance_mode": false,
+						"supported_redis_features": [
+							{
+								"name": "resp3",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.2"
+							},
+							{
+								"name": "search_vertical_scaling_create",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.4"
+							},
+							{
+								"name": "rdi",
+								"min_redis_version": "6.2",
+								"min_software_version": "6.4.2-61"
+							}
+						],
+						"default_redis_version": "7.2",
+						"errors": []
+					},
+					"data_persistence": "disabled",
+					"status": "active",
+					"bdb_alerts": [
+						{
+							"id": 2,
+							"name": "dataset_size",
+							"active": true,
+							"value": 80,
+							"default_value": 80,
+							"max_value": 100,
+							"min_value": 1
+						}
+					]
+				},
+				{
+					"access_control": {
+						"id": 51041986,
+						"has_source_ips": false,
+						"source_ips": [],
+						"has_security_groups": false,
+						"security_groups": [],
+						"has_redis_password": true,
+						"redis_password": "HioRvPAjZF5bWap1nktWsvahA3gP2cFN",
+						"default_user": true,
+						"has_sasl_auth": false,
+						"sasl_user_name": null,
+						"sasl_user_password": null,
+						"has_ssl_auth": null,
+						"enforce_client_authentication": null,
+						"certificates": []
+					},
+					"backup": false,
+					"backup_path": null,
+					"backup_interval": null,
+					"backup_interval_offset": null,
+					"last_backup_time": null,
+					"backup_status": null,
+					"backup_progress": -1,
+					"backup_failure_reason": null,
+					"bdb_id": 51041986,
+					"max_reads": 1000,
+					"max_writes": 1000,
+					"resp3": true,
+					"oss_cluster": false,
+					"oss_cluster_api_preferred_ip_type": "internal",
+					"quantity": 1,
+					"region_id": 4,
+					"replication": true,
+					"shards_count": 1,
+					"usage": 6606027,
+					"cluster": {
+						"id": 44923,
+						"supports_noeviction": true,
+						"supports_lfu": true,
+						"supports_ssl": true,
+						"supports_clustering": true,
+						"supports_security_groups": false,
+						"supports_slowlog": true,
+						"supports_oss_cluster": true,
+						"supports_resp3": true,
+						"supports_oss_cluster_api_preferred_ip_type": true,
+						"support_rcp_regex_rules_change": true,
+						"supports_client_authentication_enforcement": true,
+						"supports_multi_modules": true,
+						"supports_redis_stack": true,
+						"is_V4": true,
+						"max_memcached_size": 1000000,
+						"max_redis_size": 1000000,
+						"max_global_memcached_size": 1000000,
+						"max_global_redis_size": 1000000,
+						"is_rof": false,
+						"max_throughput": null,
+						"absolute_bdb_max_size": null,
+						"total_memory": 23387,
+						"is_acl_supported": true,
+						"supports_redis_modules": true,
+						"maintenance_mode": false,
+						"supported_redis_features": [
+							{
+								"name": "resp3",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.2"
+							},
+							{
+								"name": "search_vertical_scaling_create",
+								"min_redis_version": "7.2",
+								"min_software_version": "7.4"
+							},
+							{
+								"name": "rdi",
+								"min_redis_version": "6.2",
+								"min_software_version": "6.4.2-61"
+							}
+						],
+						"default_redis_version": "7.2",
+						"errors": []
+					},
+					"data_persistence": "disabled",
+					"status": "active",
+					"bdb_alerts": [
+						{
+							"id": 2,
+							"name": "dataset_size",
+							"active": true,
+							"value": 80,
+							"default_value": 80,
+							"max_value": 100,
+							"min_value": 1
+						}
+					]
+				}
+			],
+			"default_db_config": {
+				"sharding": true,
+				"shards_count": null,
+				"data_persistence": "disabled",
+				"eviction_policy": "volatile-lru",
+				"access_control": {
+					"id": null,
+					"has_source_ips": false,
+					"source_ips": [],
+					"has_security_groups": false,
+					"security_groups": [],
+					"has_redis_password": false,
+					"redis_password": "HioRvPAjZF5bWap1nktWsvahA3gP2cFN",
+					"default_user": true,
+					"has_sasl_auth": false,
+					"sasl_user_name": null,
+					"sasl_user_password": null,
+					"has_ssl_auth": null,
+					"enforce_client_authentication": null,
+					"certificates": []
+				},
+				"backup": false,
+				"backup_path": null,
+				"backup_interval": null,
+				"backup_interval_offset": null,
+				"replication": true,
+				"bdb_alerts": [
+					{
+						"id": 2,
+						"name": "dataset_size",
+						"active": true,
+						"value": 80,
+						"default_value": 80,
+						"max_value": 100,
+						"min_value": 1
+					}
+				],
+				"oss_cluster": false,
+				"oss_cluster_api_preferred_ip_type": "internal",
+				"compression": 3,
+				"module_list": [
+					{
+						"id": 76768,
+						"module": {
+							"id": 217,
+							"name": "ReJSON",
+							"display_name": "RedisJSON",
+							"capability_name": "JSON",
+							"version": "2.6.13",
+							"uid": "47255baa5a2dcfbac375ada053f7a50e",
+							"icon": "rejson",
+							"description": "Native JSON Data Type for Redis",
+							"default_args": "",
+							"documents_arg_required": false,
+							"is_custom": false,
+							"module_capabilities": ["replica_of", "eviction", "flash", "backup_restore", "reshard", "persistence_aof", "persistence_snapshot", "hash_policy", "clustering"],
+							"multi_modules_specs": null,
+							"errors": null
+						},
+						"module_args_list": "",
+						"number_of_documents": 0,
+						"number_of_threads": null,
+						"errors": null
+					},
+					{
+						"id": 76767,
+						"module": {
+							"id": 220,
+							"name": "search",
+							"display_name": "RediSearch 2",
+							"capability_name": "Search and query",
+							"version": "2.8.18",
+							"uid": "a03bc27eb7ede8d95048c4dd26ab80cf",
+							"icon": "search",
+							"description": "High performance search index on top of Redis (with clustering)",
+							"default_args": "PARTITIONS AUTO",
+							"documents_arg_required": false,
+							"is_custom": false,
+							"module_capabilities": ["replica_of", "persistence_aof", "persistence_snapshot", "clustering", "backup_restore", "reshard", "flash", "eviction", "hash_policy"],
+							"multi_modules_specs": null,
+							"errors": null
+						},
+						"module_args_list": "",
+						"number_of_documents": 0,
+						"number_of_threads": null,
+						"errors": null
+					}
+				]
+			},
+			"id": 1457,
+			"guid": "e85774c1-ec6f-40b1-9e29-30f9c64183ec",
+			"memory_size_in_mb": 2048,
+			"name": "cache-M1BC79P7",
+			"shard_key_regex": [
+				{
+					"id": 2918,
+					"order": 0,
+					"pattern": ".*\\{(?<tag>.*)\\}.*"
+				},
+				{
+					"id": 2919,
+					"order": 1,
+					"pattern": "(?<tag>.*)"
+				}
+			],
+			"sharding_type": "default-regex-rules",
+			"subscription": 126614,
+			"import_status": {
+				"bdb_import_id": 51041985,
+				"import_status": "succeeded",
+				"import_progress": -1,
+				"import_failure_reason": null,
+				"import_failure_reason_params": []
+			},
+			"status": "active",
+			"creation_date": "2024-09-20T23:15:01Z",
+			"last_changed_date": "2024-09-20T23:26:55Z",
+			"quantity": 1,
+			"port": null,
+			"is_name_change_supported": true,
+			"preferred_proxy_policy": null
+		}
+	]
+}
