@@ -10,7 +10,7 @@ export const Page = () => {
 	const navigator = useNavigator();
 
 	const data: IData = {
-		cols: ["NAME", "TIME (EST)", "FUTURE DATE", "LAST", "NET CHANGE", "OPEN", "HIGH", "LOW"],
+		cols: [<span onClick={() => handleOnClickAbout()}>"NAME"</span>, "TIME (EST)", "FUTURE DATE", "LAST", "NET CHANGE", "OPEN", "HIGH", "LOW"],
 		rows: [
 			["Dow Jones mini", "4:38 PM", "Dec 2023", "33,984.00", "-189.00", "34,159.00", "34,283.00", "33,915.00"],
 			["S&P 500 mini", "4:39 PM", "Dec 2023", "4,366.00", "-33.50", "4,393.25", "4,413.00", "4,357.75"],
@@ -22,6 +22,7 @@ export const Page = () => {
 			["IBrX-50", "11/8/2023", "Dec 2023", "19,860.00", "-64.00", "19,845.00", "19,845.00", "19,845.00"],
 		],
 	};
+
 	const handleOnClickAbout = () => {
 		navigator.pushPage(
 			<Navigator.Page id="about" title={<T>{lang.settings.about.title}</T>}>
