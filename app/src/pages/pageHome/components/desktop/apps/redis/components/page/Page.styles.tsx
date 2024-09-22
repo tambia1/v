@@ -51,3 +51,7 @@ export const TableDataText = styled.td`
 	white-space: nowrap;
 	font-weight: normal;
 `;
+
+export const Pressable = styled.span`
+	cursor: pointer;
+`;

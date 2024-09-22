@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const List = styled.div`
 	width: 100%;
-	max-width: 40rem;
+	max-width: 50rem;
 	height: auto;
 
 	display: flex;

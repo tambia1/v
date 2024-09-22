@@ -8,6 +8,8 @@ import { ReactNode, useEffect, useState } from "react";
 import subs from "../../data/subscriptions.json";
 import bdbs from "../../data/bdbs.json";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
+import { List } from "@src/components/list/List";
+import { Icon } from "@src/icons/Icon";
 
 type Sub = {
 	name: ReactNode;
@@ -33,25 +35,20 @@ export const Page = () => {
 
 	useEffect(() => {
 		const newData: Sub[] = [];
+		const newCollapsed: { [K: string]: boolean } = {};
 
 		for (let i = 0; i < subs.subscriptions.length; i++) {
 			newData.push({
-				name: (
-					<span
-						onClick={() => {
-							setCollapsed({ ...collapsed, [subs.subscriptions[i].id]: !collapsed[subs.subscriptions[i].id] });
-						}}
-					>
-						{subs.subscriptions[i].name}
-					</span>
-				),
+				name: subs.subscriptions[i].name,
 				id: String(subs.subscriptions[i].id),
 				type: getSubscriptionType(subs.subscriptions[i]),
 				dbs: bdbs.bdbs.filter((bdb) => bdb.subscription === subs.subscriptions[i].id).map((bdb) => ({ name: bdb.name, id: String(bdb.id) })),
 			});
+			newCollapsed[subs.subscriptions[i].id] = true;
 		}
 
 		setData(newData);
+		setCollapsed(newCollapsed);
 	}, []);
 
 	const getSubscriptionType = (subscription: Subscription): SubscriptionType => {
@@ -80,50 +77,57 @@ export const Page = () => {
 
 	return (
 		<S.Page>
-			<S.TableSubscriptions>
-				<S.TableHead>
-					{subsTitles.map((col, i) => (
-						<S.TableCol key={i}>{col}</S.TableCol>
-					))}
-				</S.TableHead>
+			<List.Section>
+				{subsTitles.map((col) => (
+					<List.Cell.Text key={col}>{col}</List.Cell.Text>
+				))}
+			</List.Section>
 
-				<S.TableBody>
-					{data.map((sub) => (
-						<>
-							<S.TableRow>
-								<S.TableDataText onClick={() => handleOnClickCollpse(sub.id)}>{sub.name}</S.TableDataText>
-								<S.TableDataText>{sub.id}</S.TableDataText>
-								<S.TableDataText>{sub.type}</S.TableDataText>
-								<S.TableDataText>{sub.dbs.length}</S.TableDataText>
-							</S.TableRow>
+			<List>
+				{data.map((sub) => (
+					<List.Cell key={sub.id}>
+						<div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+							<div style={{ width: "100%", display: "flex", flexDirection: "row" }} onClick={() => handleOnClickCollpse(sub.id)}>
+								<List.Cell.Arrow>
+									<S.Pressable>
+										<Icon iconName={collapsed[sub.id] ? "iconChevronDown" : "iconChevronUp"} />
+									</S.Pressable>
+								</List.Cell.Arrow>
+								<List.Cell.Text>{sub.name}</List.Cell.Text>
+								<List.Cell.Text>{sub.id}</List.Cell.Text>
+								<List.Cell.Text>{sub.type}</List.Cell.Text>
+								<List.Cell.Text>{sub.dbs.length}</List.Cell.Text>
+								<List.Cell.Arrow>
+									<S.Pressable onClick={() => handleOnClickAbout()}>
+										<Icon iconName="iconChevronRight" />
+									</S.Pressable>
+								</List.Cell.Arrow>
+							</div>
+							<div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
+								<Collapsable collapsed={collapsed[sub.id]}>
+									<List.Cell>
+										{dbsTitles.map((col) => (
+											<List.Cell.Text key={col}>{col}</List.Cell.Text>
+										))}
+									</List.Cell>
 
-							<S.TableRow>
-								<S.TableData colSpan={100}>
-									<Collapsable collapsed={collapsed[sub.id]}>
-										<S.TableDatabases>
-											<S.TableHead>
-												{dbsTitles.map((col, i) => (
-													<S.TableCol key={i}>{col}</S.TableCol>
-												))}
-											</S.TableHead>
-											<S.TableBody>
-												<S.TableRow>
-													{sub.dbs.map((db) => (
-														<S.TableRow>
-															<S.TableDataText onClick={handleOnClickAbout}>{db.name}</S.TableDataText>
-															<S.TableDataText>{db.id}</S.TableDataText>
-														</S.TableRow>
-													))}
-												</S.TableRow>
-											</S.TableBody>
-										</S.TableDatabases>
-									</Collapsable>
-								</S.TableData>
-							</S.TableRow>
-						</>
-					))}
-				</S.TableBody>
-			</S.TableSubscriptions>
+									{sub.dbs.map((db) => (
+										<List.Cell key={db.id}>
+											<List.Cell.Text>{db.name}</List.Cell.Text>
+											<List.Cell.Text>{db.id}</List.Cell.Text>
+											<List.Cell.Arrow>
+												<S.Pressable onClick={() => handleOnClickAbout()}>
+													<Icon iconName="iconChevronRight" />
+												</S.Pressable>
+											</List.Cell.Arrow>
+										</List.Cell>
+									))}
+								</Collapsable>
+							</div>
+						</div>
+					</List.Cell>
+				))}
+			</List>
 		</S.Page>
 	);
 };
