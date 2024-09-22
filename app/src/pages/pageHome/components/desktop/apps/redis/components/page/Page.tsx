@@ -19,7 +19,7 @@ type Sub = {
 	}[];
 };
 
-const subsTitles = ["SUBSCRIPTION NAME", "ID", "TYPE"];
+const subsTitles = ["SUBSCRIPTION NAME", "ID", "TYPE", "NUMBER OF DATABASES"];
 const dbsTitles = ["DATABASE NAME", "ID"];
 
 type Subscription = (typeof subs.subscriptions)[0];
@@ -94,6 +94,7 @@ export const Page = () => {
 								<S.TableDataText onClick={() => handleOnClickCollpse(sub.id)}>{sub.name}</S.TableDataText>
 								<S.TableDataText>{sub.id}</S.TableDataText>
 								<S.TableDataText>{sub.type}</S.TableDataText>
+								<S.TableDataText>{sub.dbs.length}</S.TableDataText>
 							</S.TableRow>
 
 							<S.TableRow>
