@@ -8,7 +8,6 @@ import { ReactNode, useEffect, useState } from "react";
 import subs from "../../data/subscriptions.json";
 import bdbs from "../../data/bdbs.json";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
-import { List } from "@src/components/list/List";
 import { Icon } from "@src/icons/Icon";
 
 type Sub = {
@@ -22,7 +21,7 @@ type Sub = {
 };
 
 const subsTitles = ["SUBSCRIPTION NAME", "ID", "TYPE", "NUMBER OF DATABASES"];
-const dbsTitles = ["DATABASE NAME", "ID"];
+const dbsTitles = ["DATABASE NAME", "ID", "SIZE"];
 
 type Subscription = (typeof subs.subscriptions)[0];
 type SubscriptionType = "fixed" | "pro" | "activeActive";
@@ -77,57 +76,62 @@ export const Page = () => {
 
 	return (
 		<S.Page>
-			<List.Section>
-				{subsTitles.map((col) => (
-					<List.Cell.Text key={col}>{col}</List.Cell.Text>
-				))}
-			</List.Section>
+			<S.List>
+				<S.SubscriptionsHeader>
+					{subsTitles.map((col) => (
+						<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
+					))}
+				</S.SubscriptionsHeader>
 
-			<List>
 				{data.map((sub) => (
-					<List.Cell key={sub.id}>
-						<div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
-							<div style={{ width: "100%", display: "flex", flexDirection: "row" }} onClick={() => handleOnClickCollpse(sub.id)}>
-								<List.Cell.Arrow>
-									<S.Pressable>
-										<Icon iconName={collapsed[sub.id] ? "iconChevronDown" : "iconChevronUp"} />
-									</S.Pressable>
-								</List.Cell.Arrow>
-								<List.Cell.Text>{sub.name}</List.Cell.Text>
-								<List.Cell.Text>{sub.id}</List.Cell.Text>
-								<List.Cell.Text>{sub.type}</List.Cell.Text>
-								<List.Cell.Text>{sub.dbs.length}</List.Cell.Text>
-								<List.Cell.Arrow>
-									<S.Pressable onClick={() => handleOnClickAbout()}>
-										<Icon iconName="iconChevronRight" />
-									</S.Pressable>
-								</List.Cell.Arrow>
-							</div>
-							<div style={{ width: "100%", display: "flex", flexDirection: "column" }}>
-								<Collapsable collapsed={collapsed[sub.id]}>
-									<List.Cell>
-										{dbsTitles.map((col) => (
-											<List.Cell.Text key={col}>{col}</List.Cell.Text>
-										))}
-									</List.Cell>
+					<S.Col>
+						<S.SubscriptionsRow onClick={() => handleOnClickCollpse(sub.id)}>
+							<S.IconCollapse onClick={() => handleOnClickAbout()} collapsed={collapsed[sub.id]}>
+								<Icon iconName="iconChevronDown" />
+							</S.IconCollapse>
+							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
+							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
+							<S.SubscriptionsText>{sub.type}</S.SubscriptionsText>
+							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
+							<S.IconRight onClick={() => handleOnClickAbout()}>
+								<Icon iconName="iconChevronRight" />
+							</S.IconRight>
+						</S.SubscriptionsRow>
 
-									{sub.dbs.map((db) => (
-										<List.Cell key={db.id}>
-											<List.Cell.Text>{db.name}</List.Cell.Text>
-											<List.Cell.Text>{db.id}</List.Cell.Text>
-											<List.Cell.Arrow>
-												<S.Pressable onClick={() => handleOnClickAbout()}>
-													<Icon iconName="iconChevronRight" />
-												</S.Pressable>
-											</List.Cell.Arrow>
-										</List.Cell>
+						<S.Databases>
+							<Collapsable collapsed={collapsed[sub.id]}>
+								<S.DatabasesHeader>
+									{dbsTitles.map((col) => (
+										<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
 									))}
-								</Collapsable>
-							</div>
-						</div>
-					</List.Cell>
+								</S.DatabasesHeader>
+
+								<S.Col>
+									{sub.dbs.map((db) => (
+										<S.Col>
+											<S.Row>
+												<S.DatabasesLine />
+											</S.Row>
+
+											<S.DatabasesRow key={db.id} onClick={() => handleOnClickAbout()}>
+												<S.DatabasesText>{db.name}</S.DatabasesText>
+												<S.DatabasesText>{db.id}</S.DatabasesText>
+												<S.IconRight>
+													<Icon iconName="iconChevronRight" />
+												</S.IconRight>
+											</S.DatabasesRow>
+										</S.Col>
+									))}
+								</S.Col>
+							</Collapsable>
+						</S.Databases>
+
+						<S.Row>
+							<S.SubscriptionsLine />
+						</S.Row>
+					</S.Col>
 				))}
-			</List>
+			</S.List>
 		</S.Page>
 	);
 };
