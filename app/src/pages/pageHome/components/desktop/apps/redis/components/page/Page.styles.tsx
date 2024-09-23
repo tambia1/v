@@ -1,5 +1,5 @@
 import { Collapsable } from "@src/components/collapsable/Collapsable.styles";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Page = styled.div`
 	width: auto;
@@ -29,6 +29,54 @@ export const List = styled.div`
 
 	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
 	border-radius: 1rem;
+
+	background-color: ${(props) => props.theme.color.normalBg};
+`;
+
+const SubscriptionsWidth = css`
+	& div {
+		flex-shrink: 0;
+	}
+
+	& div:nth-child(1) {
+		width: 3rem;
+	}
+	& div:nth-child(2) {
+		width: 100%;
+		flex-shrink: 1;
+	}
+	& div:nth-child(3) {
+		width: 6rem;
+	}
+	& div:nth-child(4) {
+		width: 8rem;
+	}
+	& div:nth-child(5) {
+		width: 3rem;
+	}
+	& div:nth-child(6) {
+		width: 3rem;
+	}
+`;
+
+const DatabasesWidth = css`
+	& div {
+		flex-shrink: 0;
+	}
+
+	& div:nth-child(1) {
+		width: 100%;
+		flex-shrink: 1;
+	}
+	& div:nth-child(2) {
+		width: 6rem;
+	}
+	& div:nth-child(3) {
+		width: 6rem;
+	}
+	& div:nth-child(4) {
+		width: 3rem;
+	}
 `;
 
 export const SubscriptionsHeader = styled.div`
@@ -41,6 +89,8 @@ export const SubscriptionsHeader = styled.div`
 	padding-top: 2rem;
 	padding-bottom: 1.5rem;
 	background-color: ${(props) => props.theme.color.normalBgActive};
+
+	${SubscriptionsWidth}
 `;
 
 export const DatabasesHeader = styled.div`
@@ -49,8 +99,10 @@ export const DatabasesHeader = styled.div`
 	display: flex;
 	flex-direction: row;
 	white-space: nowrap;
-	padding: 1rem;
+	padding: 0.5rem 1rem;
 	background-color: ${(props) => props.theme.color.accentBgHover};
+
+	${DatabasesWidth}
 `;
 
 export const SubscriptionsLine = styled.div`
@@ -109,6 +161,7 @@ export const IconRight = styled.div`
 	align-items: center;
 	flex-shrink: 0;
 	cursor: pointer;
+	flex-shrink: 0;
 `;
 
 export const SubscriptionsText = styled.div`
@@ -124,6 +177,7 @@ export const DatabasesText = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: normal;
+	flex-shrink: 0;
 `;
 
 export const Col = styled.div`
@@ -147,6 +201,8 @@ export const SubscriptionsRow = styled.div`
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
 	}
+
+	${SubscriptionsWidth}
 `;
 
 export const Databases = styled.div`
@@ -169,4 +225,6 @@ export const DatabasesRow = styled.div`
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
 	}
+
+	${DatabasesWidth}
 `;

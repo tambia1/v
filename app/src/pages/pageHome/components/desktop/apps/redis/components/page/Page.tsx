@@ -4,27 +4,16 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { About } from "./components/about/About";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import subs from "../../data/subscriptions.json";
 import bdbs from "../../data/bdbs.json";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/icons/Icon";
+import { Sub } from "./Page.types";
+import { getSubscriptionType } from "./Page.utils";
 
-type Sub = {
-	name: ReactNode;
-	id: string;
-	type: string;
-	dbs: {
-		name: string;
-		id: string;
-	}[];
-};
-
-const subsTitles = ["SUBSCRIPTION NAME", "ID", "TYPE", "NUMBER OF DATABASES"];
-const dbsTitles = ["DATABASE NAME", "ID", "SIZE"];
-
-type Subscription = (typeof subs.subscriptions)[0];
-type SubscriptionType = "fixed" | "pro" | "activeActive";
+const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
+const dbsTitles = ["DATABASE", "ID", "SIZE", ""];
 
 export const Page = () => {
 	const navigator = useNavigator();
@@ -50,18 +39,6 @@ export const Page = () => {
 		setCollapsed(newCollapsed);
 	}, []);
 
-	const getSubscriptionType = (subscription: Subscription): SubscriptionType => {
-		if (subscription.aa_rcp) {
-			return "activeActive";
-		}
-
-		if (subscription.rcp) {
-			return "pro";
-		}
-
-		return "fixed";
-	};
-
 	const handleOnClickAbout = () => {
 		navigator.pushPage(
 			<Navigator.Page id="about" title={<T>{lang.settings.about.title}</T>}>
@@ -84,9 +61,9 @@ export const Page = () => {
 				</S.SubscriptionsHeader>
 
 				{data.map((sub) => (
-					<S.Col>
+					<S.Col key={sub.id}>
 						<S.SubscriptionsRow onClick={() => handleOnClickCollpse(sub.id)}>
-							<S.IconCollapse onClick={() => handleOnClickAbout()} collapsed={collapsed[sub.id]}>
+							<S.IconCollapse collapsed={collapsed[sub.id]}>
 								<Icon iconName="iconChevronDown" />
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
@@ -102,19 +79,20 @@ export const Page = () => {
 							<Collapsable collapsed={collapsed[sub.id]}>
 								<S.DatabasesHeader>
 									{dbsTitles.map((col) => (
-										<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
+										<S.SubscriptionsText>{col}</S.SubscriptionsText>
 									))}
 								</S.DatabasesHeader>
 
 								<S.Col>
 									{sub.dbs.map((db) => (
-										<S.Col>
+										<S.Col key={db.id}>
 											<S.Row>
 												<S.DatabasesLine />
 											</S.Row>
 
-											<S.DatabasesRow key={db.id} onClick={() => handleOnClickAbout()}>
+											<S.DatabasesRow onClick={() => handleOnClickAbout()}>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
+												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.IconRight>
 													<Icon iconName="iconChevronRight" />
