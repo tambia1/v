@@ -10,10 +10,10 @@ import bdbs from "../../data/bdbs.json";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/icons/Icon";
 import { Sub } from "./Page.types";
-import { getSubscriptionType } from "./Page.utils";
+import { convertBytes, getSubscriptionType } from "./Page.utils";
 
 const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
-const dbsTitles = ["DATABASE", "ID", "SIZE", ""];
+const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
 export const Page = () => {
 	const navigator = useNavigator();
@@ -30,7 +30,7 @@ export const Page = () => {
 				name: subs.subscriptions[i].name,
 				id: String(subs.subscriptions[i].id),
 				type: getSubscriptionType(subs.subscriptions[i]),
-				dbs: bdbs.bdbs.filter((bdb) => bdb.subscription === subs.subscriptions[i].id).map((bdb) => ({ name: bdb.name, id: String(bdb.id) })),
+				dbs: bdbs.bdbs.filter((bdb) => bdb.subscription === subs.subscriptions[i].id).map((bdb) => ({ name: bdb.name, id: String(bdb.id), usage: bdb.usage })),
 			});
 			newCollapsed[subs.subscriptions[i].id] = true;
 		}
@@ -93,7 +93,7 @@ export const Page = () => {
 											<S.DatabasesRow onClick={() => handleOnClickAbout()}>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
-												<S.DatabasesText>{db.id}</S.DatabasesText>
+												<S.DatabasesText>{`${convertBytes(db.usage, "mb")}MB`}</S.DatabasesText>
 												<S.IconRight>
 													<Icon iconName="iconChevronRight" />
 												</S.IconRight>
