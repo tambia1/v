@@ -48,10 +48,6 @@ const SubscriptionsWidth = css`
 	& div:nth-child(2) {
 		width: 100%;
 		flex-shrink: 1;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		display: inline;
 	}
 	& div:nth-child(3) {
 		width: 4rem;
@@ -204,6 +200,8 @@ export const SubscriptionsRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	padding: 1rem;
+	align-items: center;
+
 	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
@@ -227,6 +225,7 @@ export const DatabasesRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	padding: 1rem;
+	align-items: center;
 
 	background-color: ${(props) => props.theme.color.normalBg};
 

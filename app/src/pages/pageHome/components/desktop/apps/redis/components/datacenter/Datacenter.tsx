@@ -1,7 +1,7 @@
-import * as S from "./Page.styles";
+import * as S from "./Datacenter.styles";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { About } from "./components/about/About";
+import { Database } from "./components/database/Database";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { MouseEvent, useEffect, useState } from "react";
@@ -9,13 +9,14 @@ import subs from "../../data/subscriptions.json";
 import bdbs from "../../data/bdbs.json";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/icons/Icon";
-import { Sub } from "./Page.types";
-import { convertBytes, getSubscriptionType } from "./Page.utils";
+import { Sub } from "./Datacenter.types";
+import { convertBytes, getSubscriptionType } from "./Datacenter.utils";
+import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
-export const Page = () => {
+export const Datacenter = () => {
 	const navigator = useNavigator();
 	const [data, setData] = useState<Sub[]>([]);
 
@@ -28,9 +29,15 @@ export const Page = () => {
 		for (let i = 0; i < subs.subscriptions.length; i++) {
 			newData.push({
 				name: subs.subscriptions[i].name,
-				id: String(subs.subscriptions[i].id),
+				id: subs.subscriptions[i].id,
 				type: getSubscriptionType(subs.subscriptions[i]),
-				dbs: bdbs.bdbs.filter((bdb) => bdb.subscription === subs.subscriptions[i].id).map((bdb) => ({ name: bdb.name, id: String(bdb.id), usage: bdb.usage })),
+				dbs: bdbs.bdbs
+					.filter((bdb) => bdb.subscription === subs.subscriptions[i].id)
+					.map((bdb) => ({
+						name: bdb.name,
+						id: bdb.id,
+						usage: bdb.usage,
+					})),
 			});
 			newCollapsed[subs.subscriptions[i].id] = true;
 		}
@@ -39,18 +46,28 @@ export const Page = () => {
 		setCollapsed(newCollapsed);
 	}, []);
 
-	const handleOnClickAbout = (e: MouseEvent<HTMLDivElement>) => {
+	const handleOnClickSubscription = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
 		e.stopPropagation();
 
 		navigator.pushPage(
-			<Navigator.Page id="about" title={<T>{lang.settings.about.title}</T>}>
-				<About />
+			<Navigator.Page id="subscriptioni" title={<T>{lang.redis.subscription.title}</T>}>
+				<Subscription subscriptionId={subscriptionId} />
 			</Navigator.Page>
 		);
 	};
 
-	const handleOnClickCollpse = (subId: string) => {
-		setCollapsed({ ...collapsed, [subId]: !collapsed[subId] });
+	const handleOnClickDatabase = (e: MouseEvent<HTMLDivElement>, databaseId: number) => {
+		e.stopPropagation();
+
+		navigator.pushPage(
+			<Navigator.Page id="database" title={<T>{lang.redis.database.title}</T>}>
+				<Database databaseId={databaseId} />
+			</Navigator.Page>
+		);
+	};
+
+	const handleOnClickCollpse = (subscriptionId: number) => {
+		setCollapsed({ ...collapsed, [subscriptionId]: !collapsed[subscriptionId] });
 	};
 
 	return (
@@ -76,7 +93,7 @@ export const Page = () => {
 								{sub.type === "active-active" && <Icon iconName="iconGrid" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
-							<S.IconRight onClick={(e) => handleOnClickAbout(e)}>
+							<S.IconRight onClick={(e) => handleOnClickSubscription(e, sub.id)}>
 								<Icon iconName="iconChevronRight" />
 							</S.IconRight>
 						</S.SubscriptionsRow>
@@ -96,7 +113,7 @@ export const Page = () => {
 												<S.DatabasesLine />
 											</S.Row>
 
-											<S.DatabasesRow onClick={(e) => handleOnClickAbout(e)}>
+											<S.DatabasesRow onClick={(e) => handleOnClickDatabase(e, db.id)}>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>{`${convertBytes(db.usage, "mb")}MB`}</S.DatabasesText>

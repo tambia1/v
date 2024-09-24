@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const About = styled.div`
+export const Subscription = styled.div`
 	width: auto;
 	height: auto;
 

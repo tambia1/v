@@ -1,14 +1,14 @@
 import { ReactNode } from "react";
-import subs from "./../../data/subscriptions.json";
-import bdbs from "./../../data/bdbs.json";
+import subs from "../../data/subscriptions.json";
+import bdbs from "../../data/bdbs.json";
 
 export type Sub = {
 	name: ReactNode;
-	id: string;
+	id: number;
 	type: SubscriptionType;
 	dbs: {
 		name: string;
-		id: string;
+		id: number;
 		usage: number;
 	}[];
 };

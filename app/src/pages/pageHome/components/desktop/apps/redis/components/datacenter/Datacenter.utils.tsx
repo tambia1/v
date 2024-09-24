@@ -1,4 +1,4 @@
-import { Subscription, SubscriptionType } from "./Page.types";
+import { Subscription, SubscriptionType } from "./Datacenter.types";
 
 export const getSubscriptionType = (subscription: Subscription): SubscriptionType => {
 	if (subscription.aa_rcp) {

@@ -4,7 +4,7 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { useState } from "react";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { Page } from "./components/page/Page";
+import { Datacenter } from "./components/datacenter/Datacenter";
 
 export const Redis = () => {
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
@@ -13,7 +13,7 @@ export const Redis = () => {
 		{
 			text: "Data",
 			menuItems: [
-				{ id: "datacenter", text: <T>{lang.redis.menu.databases}</T>, onClick: () => {} },
+				{ id: "datacenter", text: <T>{lang.redis.menu.datacenter}</T>, onClick: () => {} },
 				{ id: "about1", text: "Data Access Controll", onClick: () => {} },
 				{ id: "about2", text: "Access Management", onClick: () => {} },
 				{ id: "about3", text: "Logs", onClick: () => {} },
@@ -46,8 +46,8 @@ export const Redis = () => {
 
 			<Menu visible={isMenuVisible} menuGroups={menuGroups} onClickBackground={handleOnClickMenu}>
 				<Navigator>
-					<Navigator.Page id="app" title={<T>{lang.redis.menu.databases}</T>}>
-						<Page />
+					<Navigator.Page id="app" title={<T>{lang.redis.menu.datacenter}</T>}>
+						<Datacenter />
 					</Navigator.Page>
 				</Navigator>
 			</Menu>

@@ -21,4 +21,12 @@ export const Spacer = styled.div`
 export const MenuIcon = styled(Icon)`
 	cursor: pointer;
 	padding: 0.5rem;
+
+	&:hover {
+		background-color: ${(props) => props.theme.color.normalBgHover};
+	}
+
+	&:active {
+		background-color: ${(props) => props.theme.color.normalBgActive};
+	}
 `;

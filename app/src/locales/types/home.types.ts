@@ -109,7 +109,13 @@ export type IHome = {
 	redis: {
 		title: string;
 		menu: {
-			databases: string;
+			datacenter: string;
+		};
+		database: {
+			title: string;
+		};
+		subscription: {
+			title: string;
 		};
 	};
 
