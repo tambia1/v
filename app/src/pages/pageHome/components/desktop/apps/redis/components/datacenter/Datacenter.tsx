@@ -11,7 +11,7 @@ import { bdbs } from "../../data/bdbs";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/icons/Icon";
 import { Sub } from "./Datacenter.types";
-import { convertBytes, getSubscriptionType } from "./Datacenter.utils";
+import { getSubscriptionType } from "./Datacenter.utils";
 import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["", "SUBSCRIPTION", "ID", "CLOUD", "TYPE", "QTY", ""];
@@ -107,7 +107,7 @@ export const Datacenter = () => {
 						</S.SubscriptionsRow>
 
 						<S.DatabasesList>
-							<Collapsable collapsed={collapsed[sub.id]}>
+							<Collapsable collapsed={collapsed[sub.id] && false}>
 								<S.DatabasesHeader>
 									{dbsTitles.map((col) => (
 										<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
@@ -124,7 +124,10 @@ export const Datacenter = () => {
 											<S.DatabasesRow onClick={(e) => handleOnClickDatabase(e, db.id)}>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
-												<S.DatabasesText>{`${convertBytes(db.usage, "biggest")} / ${convertBytes(sub.size, "biggest")}`}</S.DatabasesText>
+												<S.DatabasesText>
+													<S.Progress percent={(db.usage / sub.size) * 100} />
+													{/* <S.Progress percent={0} /> */}
+												</S.DatabasesText>
 												<S.IconRight>
 													<Icon iconName="iconChevronRight" />
 												</S.IconRight>

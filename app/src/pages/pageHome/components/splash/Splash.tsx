@@ -54,7 +54,7 @@ export const Splash = ({ onFinish }: Props) => {
 		<S.Splash>
 			<S.Logo ref={refLogo} />
 			<S.Progress ref={refProgress}>
-				<Progress progress={progress} />
+				<Progress percent={progress} />
 			</S.Progress>
 			<S.Version>{version}</S.Version>
 		</S.Splash>

@@ -243,7 +243,7 @@ export const bdbs = [
 		replication: false,
 		size: 0,
 		min_size: 0,
-		usage: 2508534,
+		usage: 15728640,
 		access_control: {
 			id: 51041821,
 			has_source_ips: false,

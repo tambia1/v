@@ -1,12 +1,12 @@
 import * as S from "./Progress.styles";
 
-interface Props {
+export interface Props {
 	className?: string | undefined;
-	progress: number;
+	percent: number;
 }
 
-export const Progress = ({ className, progress = 0 }: Props) => {
-	const width = Math.min(100, Math.max(0, progress));
+export const Progress = ({ className, percent = 0 }: Props) => {
+	const width = Math.min(100, Math.max(0, percent));
 
 	return (
 		<S.Progress className={className}>

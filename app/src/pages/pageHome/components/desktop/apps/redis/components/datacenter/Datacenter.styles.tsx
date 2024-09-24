@@ -1,4 +1,5 @@
 import { Collapsable } from "@src/components/collapsable/Collapsable.styles";
+import { Progress as ProgressComponent } from "@src/components/progress/Progress";
 import styled, { css } from "styled-components";
 
 export const Page = styled.div`
@@ -60,53 +61,53 @@ export const Row = styled.div`
 `;
 
 const SubscriptionsWidth = css`
-	& div {
+	& > div {
 		flex-shrink: 0;
 		justify-content: center;
 	}
 
-	& div:nth-child(1) {
+	& > div:nth-child(1) {
 		width: 3rem;
 	}
-	& div:nth-child(2) {
+	& > div:nth-child(2) {
 		width: 100%;
 		flex-shrink: 1;
 		justify-content: left;
 	}
-	& div:nth-child(3) {
+	& > div:nth-child(3) {
 		width: 4rem;
 		justify-content: left;
 	}
-	& div:nth-child(4) {
+	& > div:nth-child(4) {
 		width: 4rem;
 	}
-	& div:nth-child(5) {
+	& > div:nth-child(5) {
 		width: 4rem;
 	}
-	& div:nth-child(6) {
+	& > div:nth-child(6) {
 		width: 3rem;
 	}
-	& div:nth-child(7) {
+	& > div:nth-child(7) {
 		width: 3rem;
 	}
 `;
 
 const DatabasesWidth = css`
-	& div {
+	& > div {
 		flex-shrink: 0;
 	}
 
-	& div:nth-child(1) {
+	& > div:nth-child(1) {
 		width: 100%;
 		flex-shrink: 1;
 	}
-	& div:nth-child(2) {
+	& > div:nth-child(2) {
 		width: 6rem;
 	}
-	& div:nth-child(3) {
+	& > div:nth-child(3) {
 		width: 6rem;
 	}
-	& div:nth-child(4) {
+	& > div:nth-child(4) {
 		width: 3rem;
 	}
 `;
@@ -222,4 +223,13 @@ export const DatabasesRow = styled.div`
 	}
 
 	${DatabasesWidth}
+`;
+
+export const Progress = styled(ProgressComponent)<{ percent: number }>`
+	border: 1px solid ${({ theme }) => theme.color.normalFg};
+
+	& > div {
+		background-color: ${({ theme }) => theme.color.normalFg};
+		background: linear-gradient(90deg, #4cae4c 0%, #4cae4c 50%, #f0ad4e ${({ percent }) => `${180 - percent}%`}, #ff0000 ${({ percent }) => `${200 - percent}%`});
+	}
 `;
