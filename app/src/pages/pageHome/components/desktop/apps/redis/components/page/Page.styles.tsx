@@ -31,6 +31,10 @@ export const List = styled.div`
 	border-radius: 1rem;
 
 	background-color: ${(props) => props.theme.color.normalBg};
+
+	& > div:last-child > div:last-child {
+		display: none;
+	}
 `;
 
 const SubscriptionsWidth = css`
@@ -50,10 +54,10 @@ const SubscriptionsWidth = css`
 		display: inline;
 	}
 	& div:nth-child(3) {
-		width: 6rem;
+		width: 4rem;
 	}
 	& div:nth-child(4) {
-		width: 8rem;
+		width: 4rem;
 	}
 	& div:nth-child(5) {
 		width: 3rem;
