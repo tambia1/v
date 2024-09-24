@@ -5,15 +5,16 @@ import { Database } from "./components/database/Database";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { MouseEvent, useEffect, useState } from "react";
-import subs from "../../data/subscriptions.json";
-import bdbs from "../../data/bdbs.json";
+import { plans } from "../../data/plans";
+import { subs } from "../../data/subs";
+import { bdbs } from "../../data/bdbs";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/icons/Icon";
 import { Sub } from "./Datacenter.types";
 import { convertBytes, getSubscriptionType } from "./Datacenter.utils";
 import { Subscription } from "./components/subscription/Subscription";
 
-const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
+const subsTitles = ["", "SUBSCRIPTION", "ID", "CLOUD", "TYPE", "QTY", ""];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
 export const Datacenter = () => {
@@ -26,20 +27,21 @@ export const Datacenter = () => {
 		const newData: Sub[] = [];
 		const newCollapsed: { [K: string]: boolean } = {};
 
-		for (let i = 0; i < subs.subscriptions.length; i++) {
+		for (let i = 0; i < subs.length; i++) {
 			newData.push({
-				name: subs.subscriptions[i].name,
-				id: subs.subscriptions[i].id,
-				type: getSubscriptionType(subs.subscriptions[i]),
-				dbs: bdbs.bdbs
-					.filter((bdb) => bdb.subscription === subs.subscriptions[i].id)
+				name: subs[i].name,
+				id: subs[i].id,
+				type: getSubscriptionType(subs[i]),
+				cloud: plans.filter((plan) => plan.id === subs[i].plan)[0].cloud,
+				dbs: bdbs
+					.filter((bdb) => bdb.subscription === subs[i].id)
 					.map((bdb) => ({
 						name: bdb.name,
 						id: bdb.id,
 						usage: bdb.usage,
 					})),
 			});
-			newCollapsed[subs.subscriptions[i].id] = true;
+			newCollapsed[subs[i].id] = true;
 		}
 
 		setData(newData);
@@ -87,6 +89,11 @@ export const Datacenter = () => {
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
+							<S.SubscriptionsText>
+								{sub.cloud === "AWS" && <Icon iconName="iconAmazon" />}
+								{sub.cloud === "GCP" && <Icon iconName="iconGoogle" />}
+								{sub.cloud === "Azure" && <Icon iconName="iconMicrosoft" />}
+							</S.SubscriptionsText>
 							<S.SubscriptionsText>
 								{sub.type === "fixed" && <Icon iconName="iconServerSingle" />}
 								{sub.type === "pro" && <Icon iconName="iconServer" />}

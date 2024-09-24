@@ -62,6 +62,7 @@ export const Row = styled.div`
 const SubscriptionsWidth = css`
 	& div {
 		flex-shrink: 0;
+		justify-content: center;
 	}
 
 	& div:nth-child(1) {
@@ -70,17 +71,22 @@ const SubscriptionsWidth = css`
 	& div:nth-child(2) {
 		width: 100%;
 		flex-shrink: 1;
+		justify-content: left;
 	}
 	& div:nth-child(3) {
 		width: 4rem;
+		justify-content: left;
 	}
 	& div:nth-child(4) {
 		width: 4rem;
 	}
 	& div:nth-child(5) {
-		width: 3rem;
+		width: 4rem;
 	}
 	& div:nth-child(6) {
+		width: 3rem;
+	}
+	& div:nth-child(7) {
 		width: 3rem;
 	}
 `;
