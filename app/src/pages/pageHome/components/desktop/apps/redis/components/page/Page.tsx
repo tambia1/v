@@ -57,15 +57,15 @@ export const Page = () => {
 		<S.Page>
 			<S.List>
 				<S.SubscriptionsHeader>
-					{subsTitles.map((col) => (
-						<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
+					{subsTitles.map((col, index) => (
+						<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 					))}
 				</S.SubscriptionsHeader>
 
 				{data.map((sub) => (
 					<S.Col key={sub.id}>
 						<S.SubscriptionsRow onClick={() => handleOnClickCollpse(sub.id)}>
-							<S.IconCollapse collapsed={collapsed[sub.id]}>
+							<S.IconCollapse $collapsed={collapsed[sub.id]}>
 								<Icon iconName="iconChevronDown" />
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
@@ -81,7 +81,7 @@ export const Page = () => {
 							<Collapsable collapsed={collapsed[sub.id]}>
 								<S.DatabasesHeader>
 									{dbsTitles.map((col) => (
-										<S.SubscriptionsText>{col}</S.SubscriptionsText>
+										<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
 									))}
 								</S.DatabasesHeader>
 

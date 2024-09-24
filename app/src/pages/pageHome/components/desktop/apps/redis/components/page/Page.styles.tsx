@@ -143,7 +143,7 @@ export const Cell = styled.div`
 	padding: 1rem;
 `;
 
-export const IconCollapse = styled.div<{ collapsed: boolean }>`
+export const IconCollapse = styled.div<{ $collapsed: boolean }>`
 	width: 2rem;
 	height: 100%;
 	display: flex;
@@ -153,7 +153,7 @@ export const IconCollapse = styled.div<{ collapsed: boolean }>`
 
 	& > div {
 		transition: all 0.3s ease;
-		transform: rotateZ(${({ collapsed }) => (collapsed ? -180 : 0)}deg);
+		transform: rotateZ(${({ $collapsed }) => ($collapsed ? -180 : 0)}deg);
 		transform-origin: 50% 50%;
 	}
 `;
