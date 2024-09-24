@@ -2,14 +2,17 @@ export const plans = [
 	{
 		id: 34421,
 		cloud: "GCP",
+		size: 0,
 	},
 	{
 		id: 34419,
 		cloud: "GCP",
+		size: 0,
 	},
 	{
 		id: 34420,
 		cloud: "Azure",
+		size: 0,
 	},
 	{
 		id: 32174,

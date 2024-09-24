@@ -33,6 +33,7 @@ export const Datacenter = () => {
 				id: subs[i].id,
 				type: getSubscriptionType(subs[i]),
 				cloud: plans.filter((plan) => plan.id === subs[i].plan)[0].cloud,
+				size: plans.filter((plan) => plan.id === subs[i].plan)[0].size,
 				dbs: bdbs
 					.filter((bdb) => bdb.subscription === subs[i].id)
 					.map((bdb) => ({
@@ -123,7 +124,7 @@ export const Datacenter = () => {
 											<S.DatabasesRow onClick={(e) => handleOnClickDatabase(e, db.id)}>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
-												<S.DatabasesText>{`${convertBytes(db.usage, "mb")}MB`}</S.DatabasesText>
+												<S.DatabasesText>{`${convertBytes(db.usage, "biggest")} / ${convertBytes(sub.size, "biggest")}`}</S.DatabasesText>
 												<S.IconRight>
 													<Icon iconName="iconChevronRight" />
 												</S.IconRight>
