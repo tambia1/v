@@ -4,7 +4,7 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { About } from "./components/about/About";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { useEffect, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import subs from "../../data/subscriptions.json";
 import bdbs from "../../data/bdbs.json";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
@@ -39,7 +39,9 @@ export const Page = () => {
 		setCollapsed(newCollapsed);
 	}, []);
 
-	const handleOnClickAbout = () => {
+	const handleOnClickAbout = (e: MouseEvent<HTMLDivElement>) => {
+		e.stopPropagation();
+
 		navigator.pushPage(
 			<Navigator.Page id="about" title={<T>{lang.settings.about.title}</T>}>
 				<About />
@@ -70,7 +72,7 @@ export const Page = () => {
 							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.type}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
-							<S.IconRight onClick={() => handleOnClickAbout()}>
+							<S.IconRight onClick={(e) => handleOnClickAbout(e)}>
 								<Icon iconName="iconChevronRight" />
 							</S.IconRight>
 						</S.SubscriptionsRow>
@@ -90,7 +92,7 @@ export const Page = () => {
 												<S.DatabasesLine />
 											</S.Row>
 
-											<S.DatabasesRow onClick={() => handleOnClickAbout()}>
+											<S.DatabasesRow onClick={(e) => handleOnClickAbout(e)}>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>{`${convertBytes(db.usage, "mb")}MB`}</S.DatabasesText>

@@ -44,6 +44,10 @@ const SubscriptionsWidth = css`
 	& div:nth-child(2) {
 		width: 100%;
 		flex-shrink: 1;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: inline;
 	}
 	& div:nth-child(3) {
 		width: 6rem;
