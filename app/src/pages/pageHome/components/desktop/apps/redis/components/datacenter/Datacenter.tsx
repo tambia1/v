@@ -72,7 +72,7 @@ export const Datacenter = () => {
 
 	return (
 		<S.Page>
-			<S.List>
+			<S.SubscriptionsList>
 				<S.SubscriptionsHeader>
 					{subsTitles.map((col, index) => (
 						<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
@@ -98,7 +98,7 @@ export const Datacenter = () => {
 							</S.IconRight>
 						</S.SubscriptionsRow>
 
-						<S.Databases>
+						<S.DatabasesList>
 							<Collapsable collapsed={collapsed[sub.id]}>
 								<S.DatabasesHeader>
 									{dbsTitles.map((col) => (
@@ -125,14 +125,14 @@ export const Datacenter = () => {
 									))}
 								</S.Col>
 							</Collapsable>
-						</S.Databases>
+						</S.DatabasesList>
 
 						<S.Row>
 							<S.SubscriptionsLine />
 						</S.Row>
 					</S.Col>
 				))}
-			</S.List>
+			</S.SubscriptionsList>
 		</S.Page>
 	);
 };

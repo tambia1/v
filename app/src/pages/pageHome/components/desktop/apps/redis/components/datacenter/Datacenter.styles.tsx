@@ -16,7 +16,7 @@ export const Pressable = styled.span`
 	cursor: pointer;
 `;
 
-export const List = styled.div`
+export const SubscriptionsList = styled.div`
 	width: 100%;
 	max-width: 50rem;
 	height: auto;
@@ -35,6 +35,28 @@ export const List = styled.div`
 	& > div:last-child > div:last-child {
 		display: none;
 	}
+`;
+
+export const DatabasesList = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+
+	& > ${Collapsable} {
+		width: 100%;
+	}
+`;
+
+export const Col = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+`;
+
+export const Row = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: row;
 `;
 
 const SubscriptionsWidth = css`
@@ -125,24 +147,6 @@ export const DatabasesLine = styled.div`
 	border-bottom: dashed ${(props) => props.theme.color.normalFgSelected} 1px;
 `;
 
-export const Cell = styled.div`
-	width: 100%;
-	height: auto;
-
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
-
-	box-sizing: border-box;
-
-	display: flex;
-	flex-direction: column;
-
-	overflow: hidden;
-	border-radius: 0rem 0rem 0rem 0rem;
-
-	padding: 1rem;
-`;
-
 export const IconCollapse = styled.div<{ $collapsed: boolean }>`
 	width: 2rem;
 	height: 100%;
@@ -184,18 +188,6 @@ export const DatabasesText = styled.div`
 	flex-shrink: 0;
 `;
 
-export const Col = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-`;
-
-export const Row = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-`;
-
 export const SubscriptionsRow = styled.div`
 	display: flex;
 	flex-direction: row;
@@ -209,16 +201,6 @@ export const SubscriptionsRow = styled.div`
 	}
 
 	${SubscriptionsWidth}
-`;
-
-export const Databases = styled.div`
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-
-	& > ${Collapsable} {
-		width: 100%;
-	}
 `;
 
 export const DatabasesRow = styled.div`
