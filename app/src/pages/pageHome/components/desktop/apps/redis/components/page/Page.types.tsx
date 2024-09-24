@@ -5,7 +5,7 @@ import bdbs from "./../../data/bdbs.json";
 export type Sub = {
 	name: ReactNode;
 	id: string;
-	type: string;
+	type: SubscriptionType;
 	dbs: {
 		name: string;
 		id: string;

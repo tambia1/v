@@ -70,7 +70,11 @@ export const Page = () => {
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
-							<S.SubscriptionsText>{sub.type}</S.SubscriptionsText>
+							<S.SubscriptionsText>
+								{sub.type === "fixed" && <Icon iconName="iconServerSingle" />}
+								{sub.type === "pro" && <Icon iconName="iconServer" />}
+								{sub.type === "active-active" && <Icon iconName="iconGrid" />}
+							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
 							<S.IconRight onClick={(e) => handleOnClickAbout(e)}>
 								<Icon iconName="iconChevronRight" />

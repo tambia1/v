@@ -213,6 +213,7 @@ import iconScissors from "./assets/scissors.svg";
 import iconSearch from "./assets/search.svg";
 import iconSend from "./assets/send.svg";
 import iconServer from "./assets/server.svg";
+import iconServerSingle from "./assets/server-single.svg";
 import iconSettings from "./assets/settings.svg";
 import iconShare2 from "./assets/share-2.svg";
 import iconShare from "./assets/share.svg";
@@ -292,6 +293,7 @@ import iconZoomOut from "./assets/zoom-out.svg";
 import iconGoogle from "./assets/google.svg";
 import iconApple from "./assets/apple.svg";
 import iconMicrosoft from "./assets/microsoft.svg";
+import iconAmazon from "./assets/amazon.svg";
 
 export const Icons = {
 	"": "",
@@ -510,6 +512,7 @@ export const Icons = {
 	iconSearch,
 	iconSend,
 	iconServer,
+	iconServerSingle,
 	iconSettings,
 	iconShare2,
 	iconShare,
@@ -589,6 +592,7 @@ export const Icons = {
 	iconGoogle,
 	iconApple,
 	iconMicrosoft,
+	iconAmazon,
 } as const;
 
 export type IIconName = keyof typeof Icons;
