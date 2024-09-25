@@ -2,25 +2,26 @@ import * as S from "./Menu.styles";
 import { List } from "../list/List";
 import { ReactNode } from "react";
 
-export type MenuGroup = {
+export type MenuGroup<MenuItemId> = {
 	text: ReactNode;
-	menuItems: MenuItem[];
+	menuItems: MenuItem<MenuItemId>[];
 };
 
-export type MenuItem = {
-	id: string;
+export type MenuItem<MenuItemId> = {
+	id: MenuItemId;
 	text: ReactNode;
-	onClick: (id: string) => void;
 };
 
-export interface Props {
+export interface Props<MenuItemId> {
 	children?: ReactNode;
 	className?: string | undefined;
 	visible: boolean;
-	menuGroups: MenuGroup[];
+	menuGroups: MenuGroup<MenuItemId>[];
 	onClickBackground: () => void;
+	onClickItem: (id: MenuItemId) => void;
 }
-export const Menu = ({ children, className, visible, menuGroups, onClickBackground, ...rest }: Props) => {
+
+export const Menu = <MenuItemId extends string>({ children, className, visible, menuGroups, onClickBackground, onClickItem, ...rest }: Props<MenuItemId>) => {
 	const handleOnClickBackground = () => {
 		if (visible) {
 			onClickBackground();
@@ -41,12 +42,7 @@ export const Menu = ({ children, className, visible, menuGroups, onClickBackgrou
 
 							<List>
 								{menuGroup.menuItems.map((menuItem) => (
-									<List.Cell
-										key={menuItem.id}
-										onClick={() => {
-											menuItem.onClick(menuItem.id);
-										}}
-									>
+									<List.Cell key={menuItem.id} onClick={() => onClickItem(menuItem.id)}>
 										{menuItem.text}
 									</List.Cell>
 								))}
