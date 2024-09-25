@@ -10,7 +10,7 @@ import { IApp, apps } from "./Desktop.apps";
 import { ILanguageName } from "@src/locales/i18n.types";
 import { useTranslation } from "react-i18next";
 import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/theme/store/ThemeStore";
-import { useStoreLogin } from "@apps/user/stores/StoreLogin";
+import { StoreUser } from "@apps/user/stores/StoreUser";
 import { QueryUser } from "@apps/user/queries/QueryUser";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
@@ -41,14 +41,14 @@ export const Desktop = () => {
 	const [isErrorLoadingComponent, setIsErrorLoadingComponent] = useState(false);
 	const [isShakeMode, setIsShakeMode] = useState(false);
 
-	const storeLogin = useStoreLogin();
-	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: !!storeLogin.token });
+	const storeUser = StoreUser();
+	const queryUser = QueryUser.queryUser({ token: storeUser.token }, { enabled: !!storeUser.token });
 
 	const storeApps = StoreApps();
 	const externalApps = getExternalApps(storeApps.apps);
 
 	const allApps: IApp[][] = [...apps, externalApps];
-	const appsByRole = getAppsByRoles(allApps, storeLogin.role);
+	const appsByRole = getAppsByRoles(allApps, storeUser.role);
 
 	useLayoutEffect(() => {
 		animationApp.play("disappear");

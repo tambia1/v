@@ -3,7 +3,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { QueryLogin } from "@apps/user/queries/QueryLogin";
 import { QueryUser } from "@apps/user/queries/QueryUser";
-import { useStoreLogin } from "@apps/user/stores/StoreLogin";
+import { StoreUser } from "@apps/user/stores/StoreUser";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useBarMain } from "../../hooks/UseBarMain";
@@ -39,8 +39,8 @@ export const User = () => {
 
 	const [isLoginPerformed, setIsLoginPerformed] = useState(false);
 
-	const storeLogin = useStoreLogin();
-	const queryUser = QueryUser.queryUser({ token: storeLogin.token }, { enabled: false });
+	const storeUser = StoreUser();
+	const queryUser = QueryUser.queryUser({ token: storeUser.token }, { enabled: false });
 
 	const performGoogleLogin = useGoogleLogin({
 		onSuccess: async (tokenResponse) => {
@@ -72,7 +72,7 @@ export const User = () => {
 		if (queryUser.data?.error === 0) {
 			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data.firstName, lastName: queryUser.data.lastName }) });
 
-			storeLogin.setRole(queryUser.data.role);
+			storeUser.setRole(queryUser.data.role);
 
 			if (isLoginPerformed) {
 				setTimeout(barMain.onClickClose, 1000);
@@ -125,10 +125,10 @@ export const User = () => {
 	const handleOnClickLogout = async () => {
 		setMessage({ state: "idle", message: "" });
 
-		storeLogin.setToken("");
-		storeLogin.setRole("guest");
+		storeUser.setToken("");
+		storeUser.setRole("guest");
 
-		mutateLogout({ token: storeLogin.token });
+		mutateLogout({ token: storeUser.token });
 
 		setInputData({ ...inputData, email: { ...inputData.email, value: "", disabled: false }, password: { ...inputData.password, value: "", disabled: false } });
 	};
@@ -138,59 +138,59 @@ export const User = () => {
 	};
 
 	const onLoginSuccess = (token: string) => {
-		storeLogin.setToken(token);
+		storeUser.setToken(token);
 		queryUser.refetch();
 	};
 
 	const onLoginError = () => {
-		storeLogin.setToken("");
-		storeLogin.setRole("guest");
+		storeUser.setToken("");
+		storeUser.setRole("guest");
 		setMessage({ state: "error", message: "Invalid name or password" });
 	};
 
 	return (
 		<S.User onClick={handleOnClickBackground}>
 			<S.Box>
-				<S.UserImage $logState={storeLogin.token === "" ? "loggedOut" : "loggedIn"} />
+				<S.UserImage $logState={storeUser.token === "" ? "loggedOut" : "loggedIn"} />
 
-				<S.EmailBox disabled={!!storeLogin.token || isLoading}>
+				<S.EmailBox disabled={!!storeUser.token || isLoading}>
 					<S.EmailImage iconName="iconUser" />
 					<S.EmailInput
 						type="text"
 						placeholder={t(lang.user.email) + " (a, b)"}
 						onChange={handleEmailChange}
 						value={inputData.email.value}
-						disabled={!!storeLogin.token || isLoading}
+						disabled={!!storeUser.token || isLoading}
 						autoComplete="off"
 					/>
 				</S.EmailBox>
 
-				<S.PasswordBox disabled={!!storeLogin.token || isLoading}>
+				<S.PasswordBox disabled={!!storeUser.token || isLoading}>
 					<S.PasswordImage iconName="iconLock" />
 					<S.PasswordInput
 						type="password"
 						placeholder={t(lang.user.password) + " (a, b)"}
 						onChange={handlePasswordChange}
 						value={inputData.password.value}
-						disabled={!!storeLogin.token || isLoading}
+						disabled={!!storeUser.token || isLoading}
 						autoComplete="off"
 					/>
 				</S.PasswordBox>
 
 				<S.ButtonBox>
-					{storeLogin.token === "" && (
+					{storeUser.token === "" && (
 						<S.ButtonLogin onClick={handleOnClickDirectLogin} disabled={isLoading}>
 							<T>{lang.user.login}</T>
 						</S.ButtonLogin>
 					)}
-					{storeLogin.token !== "" && (
+					{storeUser.token !== "" && (
 						<S.ButtonLogout onClick={handleOnClickLogout} disabled={isLoading}>
 							<T>{lang.user.logout}</T>
 						</S.ButtonLogout>
 					)}
 				</S.ButtonBox>
 
-				<S.SocialLoginleBox disabled={!!storeLogin.token || isLoading}>
+				<S.SocialLoginleBox disabled={!!storeUser.token || isLoading}>
 					<S.SocialLoginImage iconName="iconGoogle" onClick={handleGoogleLogin} />
 					<S.SocialLoginImage iconName="iconFacebook" onClick={handleGoogleLogin} />
 					<S.SocialLoginImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />

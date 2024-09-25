@@ -8,7 +8,7 @@ interface State {
 	setRole: (role: IRole) => void;
 }
 
-export const useStoreLogin = create<State>()((set) => ({
+export const StoreUser = create<State>()((set) => ({
 	token: "",
 	role: "guest",
 	setToken: (token: string) => set(() => ({ token })),
