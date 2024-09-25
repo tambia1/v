@@ -67,7 +67,7 @@ const SubscriptionsWidth = css`
 	}
 
 	& > div:nth-child(1) {
-		width: 3rem;
+		width: 2rem;
 	}
 	& > div:nth-child(2) {
 		width: 100%;
@@ -79,16 +79,13 @@ const SubscriptionsWidth = css`
 		justify-content: left;
 	}
 	& > div:nth-child(4) {
-		width: 4rem;
+		width: 2rem;
 	}
 	& > div:nth-child(5) {
-		width: 4rem;
+		width: 2rem;
 	}
 	& > div:nth-child(6) {
-		width: 3rem;
-	}
-	& > div:nth-child(7) {
-		width: 3rem;
+		width: 2rem;
 	}
 `;
 
@@ -102,13 +99,13 @@ const DatabasesWidth = css`
 		flex-shrink: 1;
 	}
 	& > div:nth-child(2) {
-		width: 6rem;
+		width: 5rem;
 	}
 	& > div:nth-child(3) {
-		width: 6rem;
+		width: 5rem;
 	}
 	& > div:nth-child(4) {
-		width: 3rem;
+		width: 2rem;
 	}
 `;
 
@@ -117,6 +114,7 @@ export const SubscriptionsHeader = styled.div`
 	height: auto;
 	display: flex;
 	flex-direction: row;
+	gap: 0.5rem;
 	white-space: nowrap;
 	padding: 1rem;
 	padding-top: 2rem;
@@ -131,6 +129,7 @@ export const DatabasesHeader = styled.div`
 	height: auto;
 	display: flex;
 	flex-direction: row;
+	gap: 0.5rem;
 	white-space: nowrap;
 	padding: 0.5rem 1rem;
 	background-color: ${(props) => props.theme.color.accentBgHover};
@@ -201,7 +200,7 @@ export const SubscriptionsRow = styled.div`
 	flex-direction: row;
 	padding: 1rem;
 	align-items: center;
-
+	gap: 0.5rem;
 	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
@@ -216,7 +215,7 @@ export const DatabasesRow = styled.div`
 	flex-direction: row;
 	padding: 1rem;
 	align-items: center;
-
+	gap: 0.5rem;
 	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
@@ -231,6 +230,6 @@ export const Progress = styled(ProgressComponent)<{ percent: number }>`
 
 	& > div > div {
 		background-color: ${({ theme }) => theme.color.normalFg};
-		background: linear-gradient(90deg, #4cae4c 0%, #4cae4c 50%, #f0ad4e ${({ percent }) => `${180 - percent}%`}, #ff0000 ${({ percent }) => `${200 - percent}%`});
+		background: linear-gradient(90deg, #4cae4c 0%, #4cae4c 60%, #f0ad4e ${({ percent }) => `${180 - percent}%`}, #ff0000 ${({ percent }) => `${200 - percent}%`});
 	}
 `;

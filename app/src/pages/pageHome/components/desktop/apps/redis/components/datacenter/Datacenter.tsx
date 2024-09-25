@@ -14,7 +14,7 @@ import { Sub } from "./Datacenter.types";
 import { getSubscriptionType } from "./Datacenter.utils";
 import { Subscription } from "./components/subscription/Subscription";
 
-const subsTitles = ["", "SUBSCRIPTION", "ID", "CLOUD", "TYPE", "QTY", ""];
+const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
 export const Datacenter = () => {
@@ -91,11 +91,6 @@ export const Datacenter = () => {
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
 							<S.SubscriptionsText>
-								{sub.cloud === "AWS" && <Icon iconName="iconAmazon" />}
-								{sub.cloud === "GCP" && <Icon iconName="iconGoogle" />}
-								{sub.cloud === "Azure" && <Icon iconName="iconMicrosoft" />}
-							</S.SubscriptionsText>
-							<S.SubscriptionsText>
 								{sub.type === "fixed" && <Icon iconName="iconServerSingle" />}
 								{sub.type === "pro" && <Icon iconName="iconServer" />}
 								{sub.type === "active-active" && <Icon iconName="iconGrid" />}
@@ -128,7 +123,7 @@ export const Datacenter = () => {
 													<S.Progress percent={(db.usage / sub.size) * 100} />
 												</S.DatabasesText>
 												<S.IconRight>
-													<Icon iconName="iconChevronRight" />
+													<Icon iconName="iconChevronsRight" />
 												</S.IconRight>
 											</S.DatabasesRow>
 										</S.Col>
