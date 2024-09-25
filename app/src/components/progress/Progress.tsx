@@ -10,7 +10,9 @@ export const Progress = ({ className, percent = 0 }: Props) => {
 
 	return (
 		<S.Progress className={className}>
-			<S.ProgressValue $width={width} />
+			<S.ProgressContent>
+				<S.ProgressValue $width={width} />
+			</S.ProgressContent>
 		</S.Progress>
 	);
 };

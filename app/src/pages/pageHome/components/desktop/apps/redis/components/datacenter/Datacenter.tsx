@@ -107,7 +107,7 @@ export const Datacenter = () => {
 						</S.SubscriptionsRow>
 
 						<S.DatabasesList>
-							<Collapsable collapsed={collapsed[sub.id] && false}>
+							<Collapsable collapsed={collapsed[sub.id]}>
 								<S.DatabasesHeader>
 									{dbsTitles.map((col) => (
 										<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
@@ -126,7 +126,6 @@ export const Datacenter = () => {
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>
 													<S.Progress percent={(db.usage / sub.size) * 100} />
-													{/* <S.Progress percent={0} /> */}
 												</S.DatabasesText>
 												<S.IconRight>
 													<Icon iconName="iconChevronRight" />

@@ -174,6 +174,7 @@ export const IconRight = styled.div`
 	height: 100%;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	flex-shrink: 0;
 	cursor: pointer;
 	flex-shrink: 0;
@@ -228,7 +229,7 @@ export const DatabasesRow = styled.div`
 export const Progress = styled(ProgressComponent)<{ percent: number }>`
 	border: 1px solid ${({ theme }) => theme.color.normalFg};
 
-	& > div {
+	& > div > div {
 		background-color: ${({ theme }) => theme.color.normalFg};
 		background: linear-gradient(90deg, #4cae4c 0%, #4cae4c 50%, #f0ad4e ${({ percent }) => `${180 - percent}%`}, #ff0000 ${({ percent }) => `${200 - percent}%`});
 	}
