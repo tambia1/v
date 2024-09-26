@@ -13,6 +13,10 @@ import { Icon } from "@src/icons/Icon";
 import { Sub } from "./Datacenter.types";
 import { getSubscriptionType } from "./Datacenter.utils";
 import { Subscription } from "./components/subscription/Subscription";
+import { QueryPlans } from "../user/queries/QueryPlans";
+import { QueryCsrf } from "../user/queries/QueryCsrf";
+import { StoreUser } from "../user/stores/StoreUser";
+import { QueryMe } from "../user/queries/QueryMe";
 
 const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
@@ -20,8 +24,17 @@ const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 export const Datacenter = () => {
 	const navigator = useNavigator();
 	const [data, setData] = useState<Sub[]>([]);
-
 	const [collapsed, setCollapsed] = useState<{ [K: string]: boolean }>({});
+
+	const storeUser = StoreUser();
+
+	const queryCsrf = QueryCsrf.csrf({ csrf: storeUser.csrf });
+	const queryMe = QueryMe.me({ csrf: storeUser.csrf });
+	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: false });
+
+	console.log("aaa", queryMe.data);
+	console.log("bbb", queryCsrf.data);
+	console.log("ccc", queryPlans.data);
 
 	useEffect(() => {
 		const newData: Sub[] = [];

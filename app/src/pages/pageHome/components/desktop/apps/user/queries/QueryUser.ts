@@ -16,7 +16,7 @@ interface QueryUserProps {
 
 const queryUser = (props: QueryUserProps, options?: Partial<UseQueryOptions<QueryUserResult, Error>>) => {
 	return useQuery({
-		queryKey: ["login", { ...props }],
+		queryKey: ["users", { ...props }],
 		queryFn: () => getUser(props.token),
 		...options,
 	});

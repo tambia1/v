@@ -1,12 +1,11 @@
 import { create } from "zustand";
 
 interface State {
-	token: string;
-	setToken: (token: string) => void;
+	csrf: string;
+	setCsrf: (csrf: string) => void;
 }
 
 export const StoreUser = create<State>()((set) => ({
-	token: "",
-	role: "guest",
-	setToken: (token: string) => set(() => ({ token })),
+	csrf: "",
+	setCsrf: (csrf: string) => set(() => ({ csrf })),
 }));

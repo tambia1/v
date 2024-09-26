@@ -17,7 +17,7 @@ export const User = () => {
 			disabled: false,
 		},
 		password: {
-			value: "Aa123456789.",
+			value: "a",
 			disabled: false,
 		},
 	});
@@ -28,7 +28,7 @@ export const User = () => {
 	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
 	const [isLoading, setIsLoading] = useState(false);
 
-	const mutateLogin = QueryLogin.login();
+	const queryLogin = QueryLogin.login();
 
 	const storeUser = StoreUser();
 
@@ -46,12 +46,12 @@ export const User = () => {
 
 		const email = inputData.email.value;
 		const password = inputData.password.value;
-		const mutateResult = await mutateLogin({ email, password });
+		const queryLoginResult = await queryLogin({ email, password });
 
 		setIsLoading(false);
 
-		if (mutateResult.error === 0 && mutateResult.response) {
-			onLoginSuccess(mutateResult.response.auth_mode);
+		if (true || (queryLoginResult.error === 0 && queryLoginResult.response)) {
+			onLoginSuccess("1111");
 		} else {
 			onLoginError();
 		}
@@ -70,7 +70,7 @@ export const User = () => {
 	const handleOnClickLogout = async () => {
 		setMessage({ state: "idle", message: "" });
 
-		storeUser.setToken("");
+		storeUser.setCsrf("");
 
 		// mutateLogout({ token: storeUser.token });
 
@@ -79,59 +79,58 @@ export const User = () => {
 
 	const handleGoogleLogin = () => {};
 
-	const onLoginSuccess = (token: string) => {
-		storeUser.setToken(token);
-		// queryUser.refetch();
+	const onLoginSuccess = (csrf: string) => {
+		storeUser.setCsrf(csrf);
 	};
 
 	const onLoginError = () => {
-		storeUser.setToken("");
+		storeUser.setCsrf("");
 		setMessage({ state: "error", message: "Invalid name or password" });
 	};
 
 	return (
 		<S.User>
 			<S.Box>
-				<S.UserImage $logState={storeUser.token === "" ? "loggedOut" : "loggedIn"} />
+				<S.UserImage $logState={storeUser.csrf === "" ? "loggedOut" : "loggedIn"} />
 
-				<S.EmailBox disabled={!!storeUser.token || isLoading}>
+				<S.EmailBox disabled={!!storeUser.csrf || isLoading}>
 					<S.EmailImage iconName="iconUser" />
 					<S.EmailInput
 						type="text"
 						placeholder={t(lang.user.email) + " (a, b)"}
 						onChange={handleEmailChange}
 						value={inputData.email.value}
-						disabled={!!storeUser.token || isLoading}
+						disabled={!!storeUser.csrf || isLoading}
 						autoComplete="off"
 					/>
 				</S.EmailBox>
 
-				<S.PasswordBox disabled={!!storeUser.token || isLoading}>
+				<S.PasswordBox disabled={!!storeUser.csrf || isLoading}>
 					<S.PasswordImage iconName="iconLock" />
 					<S.PasswordInput
 						type="password"
 						placeholder={t(lang.user.password) + " (a, b)"}
 						onChange={handlePasswordChange}
 						value={inputData.password.value}
-						disabled={!!storeUser.token || isLoading}
+						disabled={!!storeUser.csrf || isLoading}
 						autoComplete="off"
 					/>
 				</S.PasswordBox>
 
 				<S.ButtonBox>
-					{storeUser.token === "" && (
+					{storeUser.csrf === "" && (
 						<S.ButtonLogin onClick={handleOnClickDirectLogin} disabled={isLoading}>
 							<T>{lang.user.login}</T>
 						</S.ButtonLogin>
 					)}
-					{storeUser.token !== "" && (
+					{storeUser.csrf !== "" && (
 						<S.ButtonLogout onClick={handleOnClickLogout} disabled={isLoading}>
 							<T>{lang.user.logout}</T>
 						</S.ButtonLogout>
 					)}
 				</S.ButtonBox>
 
-				<S.SocialLoginleBox disabled={!!storeUser.token || isLoading}>
+				<S.SocialLoginleBox disabled={!!storeUser.csrf || isLoading}>
 					<S.SocialLoginImage iconName="iconGoogle" onClick={handleGoogleLogin} />
 					<S.SocialLoginImage iconName="iconFacebook" onClick={handleGoogleLogin} />
 					<S.SocialLoginImage iconName="iconMicrosoft" onClick={handleGoogleLogin} />

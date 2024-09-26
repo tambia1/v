@@ -17,28 +17,16 @@ export const Redis = () => {
 	const storeUser = StoreUser();
 
 	useEffect(() => {
-		/*
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/login
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/csrf
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/accounts?current=true
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=all
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=rcp
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/users/me
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/bdbs?productType=unifiedrc
-		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/crdbs
-		*/
-
-		if (storeUser.token) {
+		if (storeUser.csrf) {
 			setUserState("loggedIn");
 			setIsMenuVisible(false);
 		}
-	}, [storeUser.token]);
+	}, [storeUser.csrf]);
 
 	const handleOnClickLogout = () => {
 		setUserState("loggedOut");
 		setIsMenuVisible(false);
-		storeUser.setToken("");
+		storeUser.setCsrf("");
 	};
 
 	const handleOnClickMenu = () => {
@@ -67,23 +55,25 @@ export const Redis = () => {
 				</S.Transition>
 
 				<S.Transition $visible={userState === "loggedIn"}>
-					<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
-						<S.Transition $visible={selectedMenuId === "dataCenter"}>
-							<Navigator>
-								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataCenter}</T>}>
-									<Datacenter />
-								</Navigator.Page>
-							</Navigator>
-						</S.Transition>
+					{userState === "loggedIn" && (
+						<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
+							<S.Transition $visible={selectedMenuId === "dataCenter"}>
+								<Navigator>
+									<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataCenter}</T>}>
+										<Datacenter />
+									</Navigator.Page>
+								</Navigator>
+							</S.Transition>
 
-						<S.Transition $visible={selectedMenuId === "dataAccess"}>
-							<Navigator>
-								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
-									<Home />
-								</Navigator.Page>
-							</Navigator>
-						</S.Transition>
-					</Menu>
+							<S.Transition $visible={selectedMenuId === "dataAccess"}>
+								<Navigator>
+									<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
+										<Home />
+									</Navigator.Page>
+								</Navigator>
+							</S.Transition>
+						</Menu>
+					)}
 				</S.Transition>
 			</S.Container>
 		</S.Redis>
