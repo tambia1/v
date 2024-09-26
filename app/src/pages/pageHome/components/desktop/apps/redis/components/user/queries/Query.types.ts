@@ -1,4 +1,5 @@
-export interface QueryResult {
+export type QueryResult<ResponseType> = {
 	error: number;
 	message: string;
-}
+	response?: ResponseType;
+};

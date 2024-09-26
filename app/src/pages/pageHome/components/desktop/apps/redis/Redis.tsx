@@ -17,6 +17,18 @@ export const Redis = () => {
 	const storeUser = StoreUser();
 
 	useEffect(() => {
+		/*
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/login
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/csrf
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/accounts?current=true
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=all
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=rcp
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/users/me
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/bdbs?productType=unifiedrc
+		https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/crdbs
+		*/
+
 		if (storeUser.token) {
 			setUserState("loggedIn");
 			setIsMenuVisible(false);
