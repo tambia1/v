@@ -3,12 +3,12 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { QueryLogin } from "@apps/user/queries/QueryLogin";
 import { QueryUser } from "@apps/user/queries/QueryUser";
-import { StoreUser } from "@apps/user/stores/StoreUser";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Loader } from "@src/components/loader/Loader";
 import { z } from "zod";
 import { useGoogleLogin } from "@react-oauth/google";
+import { StoreUser } from "./stores/StoreUser";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -69,8 +69,6 @@ export const User = () => {
 		if (queryUser.data?.error === 0) {
 			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data.firstName, lastName: queryUser.data.lastName }) });
 
-			storeUser.setRole(queryUser.data.role);
-
 			if (isLoginPerformed) {
 				// setTimeout(barMain.onClickClose, 1000);
 			}
@@ -123,7 +121,6 @@ export const User = () => {
 		setMessage({ state: "idle", message: "" });
 
 		storeUser.setToken("");
-		storeUser.setRole("guest");
 
 		mutateLogout({ token: storeUser.token });
 
@@ -141,7 +138,6 @@ export const User = () => {
 
 	const onLoginError = () => {
 		storeUser.setToken("");
-		storeUser.setRole("guest");
 		setMessage({ state: "error", message: "Invalid name or password" });
 	};
 

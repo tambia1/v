@@ -71,9 +71,33 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		});
 	};
 
+	const addPage = (index: number, page: IPage) => {
+		setNavigatorItems((prevPages) => {
+			const newPages = [...prevPages];
+
+			newPages.splice(index, 0, {
+				page,
+				pageAnimation: "showInCenter",
+				titleAnimation: "showInCenter",
+			});
+
+			return newPages;
+		});
+	};
+
+	const removePage = (index: number) => {
+		setNavigatorItems((prevPages) => {
+			const newPages = [...prevPages];
+
+			newPages.splice(index, 1);
+
+			return newPages;
+		});
+	};
+
 	const onAnimationStart = (navigatorItem: INavigatorItem) => {
 		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
-			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k));
+			Object.keys(listeners.pushStart).forEach((k) => listeners.pushStart[k](k));
 		}
 		if (navigatorItem.pageAnimation === "moveFromCenterToRight" || navigatorItem.pageAnimation === "goFromCenterToRight") {
 			Object.keys(listeners.popStart).forEach((k) => listeners.popStart[k](k));
@@ -140,7 +164,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 	};
 
 	return (
-		<NavigatorContext.Provider value={{ pages: navigatorItems, pushPage, popPage, goHome, addListener, removeListener }}>
+		<NavigatorContext.Provider value={{ pages: navigatorItems, pushPage, popPage, goHome, addPage, removePage, addListener, removeListener }}>
 			<S.Navigator className={className} data-items={navigatorItems.length}>
 				<S.Headers>
 					<S.Back>

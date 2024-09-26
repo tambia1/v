@@ -1,56 +1,79 @@
 import * as S from "./Redis.styles";
-import { Menu, MenuGroup } from "@src/components/menu/Menu";
+import { Menu } from "@src/components/menu/Menu";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { Home } from "./components/home/Home";
 import { Datacenter } from "./components/datacenter/Datacenter";
+import { StoreUser } from "./components/user/stores/StoreUser";
+import { User } from "./components/user/User";
+import { menuGroups, MenuItemId } from "./Redis.types";
 
 export const Redis = () => {
+	const [userState, setUserState] = useState<"loggedIn" | "loggedOut">("loggedOut");
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
+	const [selectedMenuId, setSelectedMenutId] = useState<MenuItemId>("dataCenter");
+	const storeUser = StoreUser();
 
-	const menuGroups: MenuGroup[] = [
-		{
-			text: "Data",
-			menuItems: [
-				{ id: "datacenter", text: <T>{lang.redis.menu.datacenter}</T>, onClick: () => {} },
-				{ id: "about1", text: "Data Access Controll", onClick: () => {} },
-				{ id: "about2", text: "Access Management", onClick: () => {} },
-				{ id: "about3", text: "Logs", onClick: () => {} },
-			],
-		},
-		{
-			text: "Settings",
-			menuItems: [
-				{ id: "about4", text: "Account Settings", onClick: () => {} },
-				{ id: "about5", text: "Usage Report", onClick: () => {} },
-				{ id: "about6", text: "Billing & Payments", onClick: () => {} },
-			],
-		},
-		{
-			text: "About",
-			menuItems: [
-				{ id: "about7", text: "Support", onClick: () => {} },
-				{ id: "about8", text: "About", onClick: () => {} },
-			],
-		},
-	];
+	useEffect(() => {
+		if (storeUser.token) {
+			setUserState("loggedIn");
+			setIsMenuVisible(false);
+		}
+	}, [storeUser.token]);
+
+	const handleOnClickLogout = () => {
+		setUserState("loggedOut");
+		setIsMenuVisible(false);
+		storeUser.setToken("");
+	};
 
 	const handleOnClickMenu = () => {
 		setIsMenuVisible(!isMenuVisible);
 	};
 
+	const handleOnClickMenuBackground = () => {
+		setIsMenuVisible(false);
+	};
+
+	const handleOnClickMenuItem = (id: MenuItemId) => {
+		setIsMenuVisible(!isMenuVisible);
+		setSelectedMenutId(id);
+	};
+
 	return (
 		<S.Redis>
-			<S.MenuIcon iconName="iconMenu" onClick={handleOnClickMenu} />
+			<S.Bar>
+				{userState === "loggedIn" && <S.IconMenu iconName="iconMenu" onClick={handleOnClickMenu} />}
+				{userState === "loggedIn" && <S.IconLogout iconName="iconLogOut" onClick={handleOnClickLogout} />}
+			</S.Bar>
 
-			<Menu visible={isMenuVisible} menuGroups={menuGroups} onClickBackground={handleOnClickMenu}>
-				<Navigator>
-					<Navigator.Page id="app" title={<T>{lang.redis.menu.datacenter}</T>}>
-						<Datacenter />
-					</Navigator.Page>
-				</Navigator>
-			</Menu>
+			<S.Container>
+				<S.Transition visible={userState === "loggedOut"}>
+					<User />
+				</S.Transition>
+
+				<S.Transition visible={userState === "loggedIn"}>
+					<Menu visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
+						<S.Transition visible={selectedMenuId === "dataCenter"}>
+							<Navigator>
+								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataCenter}</T>}>
+									<Datacenter />
+								</Navigator.Page>
+							</Navigator>
+						</S.Transition>
+
+						<S.Transition visible={selectedMenuId === "dataAccess"}>
+							<Navigator>
+								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
+									<Home />
+								</Navigator.Page>
+							</Navigator>
+						</S.Transition>
+					</Menu>
+				</S.Transition>
+			</S.Container>
 		</S.Redis>
 	);
 };

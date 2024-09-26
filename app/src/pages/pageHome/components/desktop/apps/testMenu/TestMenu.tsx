@@ -5,25 +5,31 @@ import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { Menu, MenuGroup } from "@src/components/menu/Menu";
 
+type MenuItemId = "add" | "remove" | "update" | "about";
+
+const menuGroups: MenuGroup<MenuItemId>[] = [
+	{
+		text: "CRUD",
+		menuItems: [
+			{ id: "add", text: "Add" },
+			{ id: "remove", text: "Remove" },
+			{ id: "update", text: "Update" },
+		],
+	},
+	{
+		text: "Settings",
+		menuItems: [{ id: "about", text: "About" }],
+	},
+];
+
 export const TestMenu = () => {
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
 
-	const menuGroups: MenuGroup[] = [
-		{
-			text: "CRUD",
-			menuItems: [
-				{ id: "add", text: "Add", onClick: () => {} },
-				{ id: "remove", text: "Remove", onClick: () => {} },
-				{ id: "update", text: "Update", onClick: () => {} },
-			],
-		},
-		{
-			text: "Settings",
-			menuItems: [{ id: "about", text: "About", onClick: () => {} }],
-		},
-	];
+	const handleOnClickMenuBackground = () => {
+		setIsMenuVisible(!isMenuVisible);
+	};
 
-	const handleOnClickMenu = () => {
+	const handleOnClickMenuItem = (_id: string) => {
 		setIsMenuVisible(!isMenuVisible);
 	};
 
@@ -35,9 +41,9 @@ export const TestMenu = () => {
 
 			<S.Spacer />
 
-			<S.MenuIcon iconName="iconMenu" onClick={handleOnClickMenu} />
+			<S.MenuIcon iconName="iconMenu" onClick={handleOnClickMenuBackground} />
 
-			<Menu visible={isMenuVisible} menuGroups={menuGroups} onClickBackground={handleOnClickMenu} />
+			<Menu visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId="add" onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem} />
 		</S.TestMenu>
 	);
 };

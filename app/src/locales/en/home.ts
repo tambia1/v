@@ -109,7 +109,22 @@ export const translation: IHome = {
 	redis: {
 		title: "Redis",
 		menu: {
-			datacenter: "Datacenter",
+			data: {
+				title: "Data",
+				dataCenter: "Data Center",
+				dataAccess: "Data Access",
+			},
+			settings: {
+				title: "Settings",
+				settings: "Settings",
+				reports: "Reports",
+				payments: "Payments",
+			},
+			about: {
+				title: "About",
+				support: "Support",
+				about: "About",
+			},
 		},
 		database: {
 			title: "Database",

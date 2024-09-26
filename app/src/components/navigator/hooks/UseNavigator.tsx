@@ -8,6 +8,9 @@ export const NavigatorContext = createContext<{
 	popPage: () => void;
 	goHome: () => void;
 
+	addPage: (index: number, page: IPage) => void;
+	removePage: (index: number) => void;
+
 	addListener: (action: IAction, key: string, callback: ICallback) => void;
 	removeListener: (action: IAction, key: string) => void;
 } | null>(null);
