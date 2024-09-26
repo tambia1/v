@@ -50,13 +50,13 @@ export const Redis = () => {
 			</S.Bar>
 
 			<S.Container>
-				<S.Transition visible={userState === "loggedOut"}>
+				<S.Transition $visible={userState === "loggedOut"}>
 					<User />
 				</S.Transition>
 
-				<S.Transition visible={userState === "loggedIn"}>
-					<Menu visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
-						<S.Transition visible={selectedMenuId === "dataCenter"}>
+				<S.Transition $visible={userState === "loggedIn"}>
+					<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
+						<S.Transition $visible={selectedMenuId === "dataCenter"}>
 							<Navigator>
 								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataCenter}</T>}>
 									<Datacenter />
@@ -64,7 +64,7 @@ export const Redis = () => {
 							</Navigator>
 						</S.Transition>
 
-						<S.Transition visible={selectedMenuId === "dataAccess"}>
+						<S.Transition $visible={selectedMenuId === "dataAccess"}>
 							<Navigator>
 								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
 									<Home />

@@ -15,16 +15,16 @@ export type MenuItem<MenuItemId> = {
 export interface Props<MenuItemId> {
 	children?: ReactNode;
 	className?: string | undefined;
-	visible: boolean;
+	$visible: boolean;
 	menuGroups: MenuGroup<MenuItemId>[];
 	selectedMenuId: MenuItemId;
 	onClickBackground: () => void;
 	onClickItem: (id: MenuItemId) => void;
 }
 
-export const Menu = <MenuItemId extends string>({ children, className, visible, menuGroups, selectedMenuId, onClickBackground, onClickItem, ...rest }: Props<MenuItemId>) => {
+export const Menu = <MenuItemId extends string>({ children, className, $visible, menuGroups, selectedMenuId, onClickBackground, onClickItem, ...rest }: Props<MenuItemId>) => {
 	const handleOnClickBackground = () => {
-		if (visible) {
+		if ($visible) {
 			onClickBackground();
 		}
 	};
@@ -34,9 +34,9 @@ export const Menu = <MenuItemId extends string>({ children, className, visible, 
 			<S.Container>
 				<S.Content>{children}</S.Content>
 
-				<S.Cover $visible={visible} />
+				<S.Cover $visible={$visible} />
 
-				<S.MenuList $visible={visible}>
+				<S.MenuList $visible={$visible}>
 					{menuGroups.map((menuGroup, index) => (
 						<S.MenuGroup key={index}>
 							<List.Section>{menuGroup.text}</List.Section>

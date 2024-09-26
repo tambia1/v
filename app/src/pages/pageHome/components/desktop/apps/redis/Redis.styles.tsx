@@ -60,11 +60,11 @@ export const Container = styled.div`
 	position: relative;
 `;
 
-export const Transition = styled.div<{ visible: boolean }>`
+export const Transition = styled.div<{ $visible: boolean }>`
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	transition: opacity 0.3s ease;
-	opacity: ${(props) => (props.visible ? 1 : 0)};
-	z-index: ${(props) => (props.visible ? 1 : 0)};
+	opacity: ${(props) => (props.$visible ? 1 : 0)};
+	z-index: ${(props) => (props.$visible ? 1 : 0)};
 `;
