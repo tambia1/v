@@ -43,7 +43,7 @@ export const TestMenu = () => {
 
 			<S.MenuIcon iconName="iconMenu" onClick={handleOnClickMenuBackground} />
 
-			<Menu visible={isMenuVisible} menuGroups={menuGroups} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem} />
+			<Menu visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId="add" onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem} />
 		</S.TestMenu>
 	);
 };

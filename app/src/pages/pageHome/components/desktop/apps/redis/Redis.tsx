@@ -1,5 +1,5 @@
 import * as S from "./Redis.styles";
-import { Menu, MenuGroup } from "@src/components/menu/Menu";
+import { Menu } from "@src/components/menu/Menu";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { useEffect, useState } from "react";
 import { T } from "@src/locales/T";
@@ -8,38 +8,12 @@ import { Home } from "./components/home/Home";
 import { Datacenter } from "./components/datacenter/Datacenter";
 import { StoreUser } from "./components/user/stores/StoreUser";
 import { User } from "./components/user/User";
-
-type MenuItemId = "dataCenter" | "dataAccess" | "settings" | "reports" | "payments" | "support" | "about";
-
-const menuGroups: MenuGroup<MenuItemId>[] = [
-	{
-		text: <T>{lang.redis.menu.data.title}</T>,
-		menuItems: [
-			{ id: "dataCenter", text: <T>{lang.redis.menu.data.dataCenter}</T> },
-			{ id: "dataAccess", text: <T>{lang.redis.menu.data.dataAccess}</T> },
-		],
-	},
-	{
-		text: <T>{lang.redis.menu.settings.title}</T>,
-		menuItems: [
-			{ id: "settings", text: <T>{lang.redis.menu.settings.settings}</T> },
-			{ id: "reports", text: <T>{lang.redis.menu.settings.reports}</T> },
-			{ id: "payments", text: <T>{lang.redis.menu.settings.payments}</T> },
-		],
-	},
-	{
-		text: <T>{lang.redis.menu.about.title}</T>,
-		menuItems: [
-			{ id: "support", text: <T>{lang.redis.menu.about.support}</T> },
-			{ id: "about", text: <T>{lang.redis.menu.about.about}</T> },
-		],
-	},
-];
+import { menuGroups, MenuItemId } from "./Redis.types";
 
 export const Redis = () => {
 	const [userState, setUserState] = useState<"loggedIn" | "loggedOut">("loggedOut");
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
-	const [selectedMenuItem, setSelectedMenutItem] = useState<MenuItemId>("dataCenter");
+	const [selectedMenuId, setSelectedMenutId] = useState<MenuItemId>("dataCenter");
 	const storeUser = StoreUser();
 
 	useEffect(() => {
@@ -65,7 +39,7 @@ export const Redis = () => {
 
 	const handleOnClickMenuItem = (id: MenuItemId) => {
 		setIsMenuVisible(!isMenuVisible);
-		setSelectedMenutItem(id);
+		setSelectedMenutId(id);
 	};
 
 	return (
@@ -81,8 +55,8 @@ export const Redis = () => {
 				</S.Transition>
 
 				<S.Transition visible={userState === "loggedIn"}>
-					<Menu visible={isMenuVisible} menuGroups={menuGroups} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
-						<S.Transition visible={selectedMenuItem === "dataCenter"}>
+					<Menu visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
+						<S.Transition visible={selectedMenuId === "dataCenter"}>
 							<Navigator>
 								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataCenter}</T>}>
 									<Datacenter />
@@ -90,7 +64,7 @@ export const Redis = () => {
 							</Navigator>
 						</S.Transition>
 
-						<S.Transition visible={selectedMenuItem === "dataAccess"}>
+						<S.Transition visible={selectedMenuId === "dataAccess"}>
 							<Navigator>
 								<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
 									<Home />

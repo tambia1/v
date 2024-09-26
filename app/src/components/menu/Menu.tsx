@@ -17,11 +17,12 @@ export interface Props<MenuItemId> {
 	className?: string | undefined;
 	visible: boolean;
 	menuGroups: MenuGroup<MenuItemId>[];
+	selectedMenuId: MenuItemId;
 	onClickBackground: () => void;
 	onClickItem: (id: MenuItemId) => void;
 }
 
-export const Menu = <MenuItemId extends string>({ children, className, visible, menuGroups, onClickBackground, onClickItem, ...rest }: Props<MenuItemId>) => {
+export const Menu = <MenuItemId extends string>({ children, className, visible, menuGroups, selectedMenuId, onClickBackground, onClickItem, ...rest }: Props<MenuItemId>) => {
 	const handleOnClickBackground = () => {
 		if (visible) {
 			onClickBackground();
@@ -42,7 +43,7 @@ export const Menu = <MenuItemId extends string>({ children, className, visible, 
 
 							<List>
 								{menuGroup.menuItems.map((menuItem) => (
-									<List.Cell key={menuItem.id} onClick={() => onClickItem(menuItem.id)}>
+									<List.Cell key={menuItem.id} $isSelected={selectedMenuId === menuItem.id} onClick={() => onClickItem(menuItem.id)}>
 										{menuItem.text}
 									</List.Cell>
 								))}
