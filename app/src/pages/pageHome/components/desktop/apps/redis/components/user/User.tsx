@@ -37,12 +37,12 @@ export const User = () => {
 	useEffect(() => {
 		const csrf = queryCsrf.data?.response?.csrfToken?.csrf_token || "111";
 
-		if (message.state === "success" && csrf) {
+		if (message.state === "success" && csrf && !queryCsrf.isLoading) {
 			storeUser.setCsrf(csrf);
 		} else {
 			storeUser.setCsrf("");
 		}
-	}, [queryCsrf.data, message.state]);
+	}, [queryCsrf.data, queryCsrf.isLoading, message.state]);
 
 	useEffect(() => {
 		if (!storeUser.csrf) {
