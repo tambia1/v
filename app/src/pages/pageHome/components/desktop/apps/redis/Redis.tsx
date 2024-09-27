@@ -1,7 +1,7 @@
 import * as S from "./Redis.styles";
 import { Menu } from "@src/components/menu/Menu";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { Home } from "./components/home/Home";
@@ -11,22 +11,14 @@ import { User } from "./components/user/User";
 import { menuGroups, MenuItemId } from "./Redis.types";
 
 export const Redis = () => {
-	const [userState, setUserState] = useState<"loggedIn" | "loggedOut">("loggedOut");
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
 	const [selectedMenuId, setSelectedMenutId] = useState<MenuItemId>("dataCenter");
 	const storeUser = StoreUser();
-
-	useEffect(() => {
-		if (storeUser.csrf) {
-			setUserState("loggedIn");
-			setIsMenuVisible(false);
-		}
-	}, [storeUser.csrf]);
+	const isLoggedin = Boolean(storeUser.csrf);
 
 	const handleOnClickLogout = () => {
-		setUserState("loggedOut");
-		setIsMenuVisible(false);
 		storeUser.setCsrf("");
+		setIsMenuVisible(false);
 	};
 
 	const handleOnClickMenu = () => {
@@ -45,17 +37,17 @@ export const Redis = () => {
 	return (
 		<S.Redis>
 			<S.Bar>
-				{userState === "loggedIn" && <S.IconMenu iconName="iconMenu" onClick={handleOnClickMenu} />}
-				{userState === "loggedIn" && <S.IconLogout iconName="iconLogOut" onClick={handleOnClickLogout} />}
+				{isLoggedin && <S.IconMenu iconName="iconMenu" onClick={handleOnClickMenu} />}
+				{isLoggedin && <S.IconLogout iconName="iconLogOut" onClick={handleOnClickLogout} />}
 			</S.Bar>
 
 			<S.Container>
-				<S.Transition $visible={userState === "loggedOut"}>
+				<S.Transition $visible={!isLoggedin}>
 					<User />
 				</S.Transition>
 
-				<S.Transition $visible={userState === "loggedIn"}>
-					{userState === "loggedIn" && (
+				<S.Transition $visible={isLoggedin}>
+					{isLoggedin && (
 						<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
 							<S.Transition $visible={selectedMenuId === "dataCenter"}>
 								<Navigator>

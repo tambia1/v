@@ -1,7 +1,7 @@
 import * as S from "./User.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Loader } from "@src/components/loader/Loader";
 import { z } from "zod";
@@ -30,9 +30,23 @@ export const User = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const queryLogin = QueryLogin.login();
-	const queryCsrf = QueryCsrf.csrf();
+	const queryCsrf = QueryCsrf.csrf({ enabled: message.state === "success" });
 
 	const storeUser = StoreUser();
+
+	useEffect(() => {
+		if (message.state === "success" && queryCsrf.data?.response?.csrfToken?.csrf_token) {
+			storeUser.setCsrf(queryCsrf.data.response.csrfToken.csrf_token);
+		} else {
+			storeUser.setCsrf("");
+		}
+	}, [queryCsrf.data, message.state]);
+
+	useEffect(() => {
+		if (!storeUser.csrf) {
+			setMessage({ state: "idle", message: "" });
+		}
+	}, [storeUser.csrf]);
 
 	const handleOnClickDirectLogin = async () => {
 		const emailSchemaResult = emailSchema.safeParse(inputData.email.value);
@@ -52,10 +66,10 @@ export const User = () => {
 
 		setIsLoading(false);
 
-		if (queryLoginResult.error === 0 && queryLoginResult.response && queryCsrf.data?.response?.csrfToken?.csrf_token) {
-			onLoginSuccess(queryCsrf.data.response.csrfToken.csrf_token || "");
+		if (queryLoginResult.error === 0 && queryLoginResult.response) {
+			setMessage({ state: "success", message: "Login success" });
 		} else {
-			onLoginError();
+			setMessage({ state: "error", message: "Invalid name or password" });
 		}
 	};
 
@@ -71,24 +85,10 @@ export const User = () => {
 
 	const handleOnClickLogout = async () => {
 		setMessage({ state: "idle", message: "" });
-
-		storeUser.setCsrf("");
-
-		// mutateLogout({ token: storeUser.token });
-
 		setInputData({ ...inputData, email: { ...inputData.email, value: "", disabled: false }, password: { ...inputData.password, value: "", disabled: false } });
 	};
 
 	const handleGoogleLogin = () => {};
-
-	const onLoginSuccess = (csrf: string) => {
-		storeUser.setCsrf(csrf);
-	};
-
-	const onLoginError = () => {
-		storeUser.setCsrf("");
-		setMessage({ state: "error", message: "Invalid name or password" });
-	};
 
 	return (
 		<S.User>
