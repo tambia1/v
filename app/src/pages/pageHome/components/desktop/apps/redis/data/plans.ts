@@ -249,7 +249,7 @@ export const plans = [
 		region_id: null,
 		name: "Active Active PRO",
 		full_name: "Redis Cloud/Active-Active",
-		cloud: "aws",
+		cloud: "AWS",
 		region: null,
 		bdb_type: "redis",
 		plan_type: "aarcp",
@@ -410,4 +410,4 @@ export const plans = [
 		is_redis_flex: false,
 		errors: [],
 	},
-];
+] as const;

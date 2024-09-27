@@ -11,7 +11,6 @@ import { bdbs } from "../../data/bdbs";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/icons/Icon";
 import { Sub } from "./Datacenter.types";
-import { getSubscriptionType } from "./Datacenter.utils";
 import { Subscription } from "./components/subscription/Subscription";
 import { QueryPlans } from "../user/queries/QueryPlans";
 import { StoreUser } from "../user/stores/StoreUser";
@@ -41,7 +40,7 @@ export const Datacenter = () => {
 			newData.push({
 				name: subs[i].name,
 				id: subs[i].id,
-				type: getSubscriptionType(subs[i]),
+				type: plans.filter((plan) => plan.id === subs[i].plan)[0].plan_type,
 				cloud: plans.filter((plan) => plan.id === subs[i].plan)[0].cloud,
 				size: plans.filter((plan) => plan.id === subs[i].plan)[0].size,
 				dbs: bdbs
@@ -50,6 +49,7 @@ export const Datacenter = () => {
 						name: bdb.name,
 						id: bdb.id,
 						usage: bdb.usage,
+						size: bdb.size,
 					})),
 			});
 			newCollapsed[subs[i].id] = true;
@@ -101,9 +101,10 @@ export const Datacenter = () => {
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
 							<S.SubscriptionsText>
-								{sub.type === "fixed" && <Icon iconName="iconServerSingle" />}
-								{sub.type === "pro" && <Icon iconName="iconServer" />}
-								{sub.type === "active-active" && <Icon iconName="iconGrid" />}
+								{sub.type === "free" && <Icon iconName="iconStar" />}
+								{sub.type === "paid" && <Icon iconName="iconServerSingle" />}
+								{sub.type === "rcp" && <Icon iconName="iconServer" />}
+								{sub.type === "aarcp" && <Icon iconName="iconGrid" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
 							<S.IconRight onClick={(e) => handleOnClickSubscription(e, sub.id)}>
@@ -130,7 +131,7 @@ export const Datacenter = () => {
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>
-													<S.Progress percent={(db.usage / sub.size) * 100} />
+													<S.Progress percent={(db.usage / db.size) * 100} />
 												</S.DatabasesText>
 												<S.IconRight>
 													<Icon iconName="iconChevronsRight" />

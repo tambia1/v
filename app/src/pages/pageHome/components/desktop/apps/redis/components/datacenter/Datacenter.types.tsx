@@ -6,20 +6,21 @@ import { bdbs } from "../../data/bdbs";
 export type Sub = {
 	name: ReactNode;
 	id: number;
-	type: SubscriptionType;
+	type: PlanType;
 	cloud: CloudType;
 	size: number;
 	dbs: {
 		name: string;
 		id: number;
 		usage: number;
+		size: number;
 	}[];
 };
 
 export type Subscription = (typeof subs)[number];
-export type SubscriptionType = "fixed" | "pro" | "active-active";
 export type CloudType = (typeof plans)[number]["cloud"];
 
-export type Bdb = (typeof bdbs)[0];
+export type Bdb = (typeof bdbs)[number];
 
-export type Plan = (typeof plans)[0];
+export type Plan = (typeof plans)[number];
+export type PlanType = (typeof plans)[number]["plan_type"];

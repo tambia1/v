@@ -588,4 +588,4 @@ export const subs = [
 		payment_next_action: null,
 		errors: [],
 	},
-];
+] as const;

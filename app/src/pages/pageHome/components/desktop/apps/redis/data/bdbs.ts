@@ -2452,4 +2452,4 @@ export const bdbs = [
 		errors: [],
 		"secret-data-masc": null,
 	},
-];
+] as const;

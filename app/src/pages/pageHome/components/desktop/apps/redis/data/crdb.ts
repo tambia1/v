@@ -959,4 +959,4 @@ export const crdbs = [
 		is_name_change_supported: true,
 		preferred_proxy_policy: null,
 	},
-];
+] as const;
