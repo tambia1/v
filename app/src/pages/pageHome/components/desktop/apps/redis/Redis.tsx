@@ -10,6 +10,18 @@ import { StoreUser } from "./components/user/stores/StoreUser";
 import { User } from "./components/user/User";
 import { menuGroups, MenuItemId } from "./Redis.types";
 
+/*
+	make sure you have:
+	/etc/hosts
+	127.0.0.1 test.redislabs.com
+
+	browser:
+	https://test.redislabs.com:5000/v
+
+	use direct login
+
+*/
+
 export const Redis = () => {
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
 	const [selectedMenuId, setSelectedMenutId] = useState<MenuItemId>("dataCenter");

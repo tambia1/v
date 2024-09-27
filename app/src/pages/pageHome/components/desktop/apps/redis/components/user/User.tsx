@@ -38,7 +38,7 @@ export const User = () => {
 		if (message.state === "success" && queryCsrf.data?.response?.csrfToken?.csrf_token) {
 			storeUser.setCsrf(queryCsrf.data.response.csrfToken.csrf_token);
 		} else {
-			storeUser.setCsrf("");
+			storeUser.setCsrf("111");
 		}
 	}, [queryCsrf.data, message.state]);
 
