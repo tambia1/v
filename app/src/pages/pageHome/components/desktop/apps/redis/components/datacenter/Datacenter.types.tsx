@@ -8,7 +8,6 @@ export type Sub = {
 	id: number;
 	type: PlanType;
 	cloud: CloudType;
-	size: number;
 	dbs: {
 		name: string;
 		id: number;

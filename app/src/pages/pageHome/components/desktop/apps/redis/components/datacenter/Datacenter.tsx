@@ -37,19 +37,20 @@ export const Datacenter = () => {
 		const newCollapsed: { [K: string]: boolean } = {};
 
 		for (let i = 0; i < subs.length; i++) {
+			const plan = plans.filter((plan) => plan.id === subs[i].plan)[0];
+
 			newData.push({
 				name: subs[i].name,
 				id: subs[i].id,
-				type: plans.filter((plan) => plan.id === subs[i].plan)[0].plan_type,
-				cloud: plans.filter((plan) => plan.id === subs[i].plan)[0].cloud,
-				size: plans.filter((plan) => plan.id === subs[i].plan)[0].size,
+				type: plan.plan_type,
+				cloud: plan.cloud,
 				dbs: bdbs
 					.filter((bdb) => bdb.subscription === subs[i].id)
 					.map((bdb) => ({
 						name: bdb.name,
 						id: bdb.id,
 						usage: bdb.usage,
-						size: bdb.size,
+						size: bdb.size || plan.size,
 					})),
 			});
 			newCollapsed[subs[i].id] = true;
