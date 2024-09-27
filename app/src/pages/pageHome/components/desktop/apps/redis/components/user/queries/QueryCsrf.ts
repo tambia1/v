@@ -1,10 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QueryResult } from "./Query.types";
 
-type Props = {
-	csrf: string;
-};
-
 type Result = QueryResult<{
 	csrfToken: {
 		csrf_token: string;
@@ -13,7 +9,7 @@ type Result = QueryResult<{
 	};
 }>;
 
-const getCsrf = async (props: Props): Promise<Result> => {
+const getCsrf = async (): Promise<Result> => {
 	let result: Result;
 
 	try {
@@ -21,7 +17,6 @@ const getCsrf = async (props: Props): Promise<Result> => {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				"x-csrf-token": props.csrf,
 			},
 			credentials: "include",
 		});
@@ -50,10 +45,10 @@ const getCsrf = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const csrf = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const csrf = (options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
 		queryKey: ["csrf"],
-		queryFn: () => getCsrf(props),
+		queryFn: () => getCsrf(),
 		...options,
 	});
 };

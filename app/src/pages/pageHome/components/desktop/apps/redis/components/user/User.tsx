@@ -7,6 +7,7 @@ import { Loader } from "@src/components/loader/Loader";
 import { z } from "zod";
 import { QueryLogin } from "./queries/QueryLogin";
 import { StoreUser } from "./stores/StoreUser";
+import { QueryCsrf } from "./queries/QueryCsrf";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -17,7 +18,7 @@ export const User = () => {
 			disabled: false,
 		},
 		password: {
-			value: "a",
+			value: "Aa123456789.",
 			disabled: false,
 		},
 	});
@@ -29,6 +30,7 @@ export const User = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const queryLogin = QueryLogin.login();
+	const queryCsrf = QueryCsrf.csrf();
 
 	const storeUser = StoreUser();
 
@@ -50,8 +52,8 @@ export const User = () => {
 
 		setIsLoading(false);
 
-		if (true || (queryLoginResult.error === 0 && queryLoginResult.response)) {
-			onLoginSuccess("1111");
+		if (queryLoginResult.error === 0 && queryLoginResult.response && queryCsrf.data?.response?.csrfToken?.csrf_token) {
+			onLoginSuccess(queryCsrf.data.response.csrfToken.csrf_token || "");
 		} else {
 			onLoginError();
 		}

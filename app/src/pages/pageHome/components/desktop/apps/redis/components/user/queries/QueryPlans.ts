@@ -28,8 +28,6 @@ const getPlans = async (props: Props): Promise<Result> => {
 			headers: {
 				"Content-Type": "application/json",
 				"x-csrf-token": props.csrf,
-				origin: "https://app-sm.k8s-gh.sm-qa.qa.redislabs.com",
-				referer: "https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/",
 			},
 			credentials: "include",
 		});

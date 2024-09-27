@@ -14,7 +14,6 @@ import { Sub } from "./Datacenter.types";
 import { getSubscriptionType } from "./Datacenter.utils";
 import { Subscription } from "./components/subscription/Subscription";
 import { QueryPlans } from "../user/queries/QueryPlans";
-import { QueryCsrf } from "../user/queries/QueryCsrf";
 import { StoreUser } from "../user/stores/StoreUser";
 import { QueryMe } from "../user/queries/QueryMe";
 
@@ -28,12 +27,10 @@ export const Datacenter = () => {
 
 	const storeUser = StoreUser();
 
-	const queryCsrf = QueryCsrf.csrf({ csrf: storeUser.csrf });
 	const queryMe = QueryMe.me({ csrf: storeUser.csrf });
 	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: false });
 
 	console.log("aaa", queryMe.data);
-	console.log("bbb", queryCsrf.data);
 	console.log("ccc", queryPlans.data);
 
 	useEffect(() => {
