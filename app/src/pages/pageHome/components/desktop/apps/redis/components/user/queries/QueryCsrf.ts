@@ -9,7 +9,7 @@ type Result = QueryResult<{
 	};
 }>;
 
-const getCsrf = async (): Promise<Result> => {
+const get = async (): Promise<Result> => {
 	let result: Result;
 
 	try {
@@ -48,7 +48,7 @@ const getCsrf = async (): Promise<Result> => {
 const csrf = (options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
 		queryKey: ["csrf"],
-		queryFn: () => getCsrf(),
+		queryFn: () => get(),
 		...options,
 	});
 };

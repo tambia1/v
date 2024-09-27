@@ -1,21 +1,20 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { Plan, QueryResult } from "./Query.types";
-import { plans as fakePlans } from "./../../../data/plans";
+import { QueryResult, Subscription } from "./Query.types";
+import { subs as fakeSubs } from "./../../../data/subs";
 
 type Props = {
 	csrf: string;
-	only_customer_plans: boolean;
 };
 
 type Result = QueryResult<{
-	plans: Plan[];
+	subscriptions: Subscription[];
 }>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch(`https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans?only_customer_plans=${props.only_customer_plans}`, {
+		const response = await fetch(`https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -41,7 +40,7 @@ const get = async (props: Props): Promise<Result> => {
 			result = {
 				error: 0,
 				message: "fake",
-				response: fakePlans,
+				response: fakeSubs,
 			};
 		}
 	} catch (error) {
@@ -54,14 +53,14 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const plans = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const subscriptions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["plans", props.only_customer_plans],
+		queryKey: ["subscriptions"],
 		queryFn: () => get(props),
 		...options,
 	});
 };
 
-export const QueryPlans = {
-	plans,
+export const QuerySubscriptions = {
+	subscriptions,
 };

@@ -9,7 +9,7 @@ type Result = QueryResult<{
 	data: {};
 }>;
 
-const getMe = async (props: Props): Promise<Result> => {
+const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
@@ -49,7 +49,7 @@ const getMe = async (props: Props): Promise<Result> => {
 const me = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
 		queryKey: ["me"],
-		queryFn: () => getMe(props),
+		queryFn: () => get(props),
 		...options,
 	});
 };

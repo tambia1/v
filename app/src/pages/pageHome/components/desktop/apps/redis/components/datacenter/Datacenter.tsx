@@ -5,16 +5,15 @@ import { Database } from "./components/database/Database";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { MouseEvent, useEffect, useState } from "react";
-import { plans } from "../../data/plans";
-import { subs } from "../../data/subs";
-import { bdbs } from "../../data/bdbs";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/icons/Icon";
 import { Sub } from "./Datacenter.types";
 import { Subscription } from "./components/subscription/Subscription";
 import { QueryPlans } from "../user/queries/QueryPlans";
 import { StoreUser } from "../user/stores/StoreUser";
-import { QueryMe } from "../user/queries/QueryMe";
+import { QuerySubscriptions } from "../user/queries/QuerySubscriptions";
+import { QueryBdbs } from "../user/queries/QueryBdbs";
+import { QueryCrdbs } from "../user/queries/QueryCrdbs";
 
 const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
@@ -26,13 +25,21 @@ export const Datacenter = () => {
 
 	const storeUser = StoreUser();
 
-	const queryMe = QueryMe.me({ csrf: storeUser.csrf });
-	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: false });
-
-	console.log("aaa", queryMe.data);
-	console.log("ccc", queryPlans.data);
+	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: true });
+	const querySubs = QuerySubscriptions.subscriptions({ csrf: storeUser.csrf });
+	const queryBdbs = QueryBdbs.bdbs({ csrf: storeUser.csrf });
+	const queryCrdbs = QueryCrdbs.getCrdbs({ csrf: storeUser.csrf });
 
 	useEffect(() => {
+		if (queryPlans.data?.error !== 0 || querySubs.data?.error !== 0 || queryBdbs.data?.error !== 0 || queryCrdbs.data?.error !== 0) {
+			return;
+		}
+
+		const plans = queryPlans.data!.response!.plans!;
+		const subs = querySubs.data!.response!.subscriptions!;
+		const bdbs = queryBdbs.data!.response!.bdbs!;
+		// const crdbs = queryCrdbs.data!.response!.crdbs!;
+
 		const newData: Sub[] = [];
 		const newCollapsed: { [K: string]: boolean } = {};
 
@@ -58,7 +65,7 @@ export const Datacenter = () => {
 
 		setData(newData);
 		setCollapsed(newCollapsed);
-	}, []);
+	}, [queryPlans.data, querySubs.data, queryBdbs.data, queryCrdbs.data]);
 
 	const handleOnClickSubscription = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
 		e.stopPropagation();

@@ -19,7 +19,7 @@ type Result = QueryResult<{
 	user_id: number;
 }>;
 
-const sendLogin = async (props: Props): Promise<Result> => {
+const send = async (props: Props): Promise<Result> => {
 	let result: Result = {
 		error: 1,
 		message: "error",
@@ -65,7 +65,7 @@ const sendLogin = async (props: Props): Promise<Result> => {
 const login = (options?: UseMutationOptions<Result, Error, Props, unknown>) => {
 	const { mutateAsync } = useMutation({
 		...options,
-		mutationFn: (props: Props) => sendLogin(props),
+		mutationFn: (props: Props) => send(props),
 	});
 
 	return mutateAsync;

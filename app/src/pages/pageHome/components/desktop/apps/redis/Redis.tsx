@@ -20,6 +20,8 @@ import { menuGroups, MenuItemId } from "./Redis.types";
 
 	use direct login
 
+	on fetch data error it will use fake data
+
 */
 
 export const Redis = () => {
