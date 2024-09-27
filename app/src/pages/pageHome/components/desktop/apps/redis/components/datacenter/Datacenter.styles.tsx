@@ -230,6 +230,12 @@ export const Progress = styled(ProgressComponent)<{ percent: number }>`
 
 	& > div > div {
 		background-color: ${({ theme }) => theme.color.normalFg};
-		background: linear-gradient(90deg, #4cae4c 0%, #4cae4c 60%, #f0ad4e ${({ percent }) => `${180 - percent}%`}, #ff0000 ${({ percent }) => `${200 - percent}%`});
+		${(props) => {
+			const percent = Math.min(100, Math.max(0, props.percent));
+
+			return css`
+				background: linear-gradient(90deg, #4cae4c 0%, #4cae4c 60%, #f0ad4e ${180 - percent}%, #ff0000 ${200 - percent}%);
+			`;
+		}};
 	}
 `;
