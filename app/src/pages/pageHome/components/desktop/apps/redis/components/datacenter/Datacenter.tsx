@@ -122,7 +122,7 @@ export const Datacenter = () => {
 								{sub.type === "free" && <Icon iconName="iconStar" />}
 								{sub.type === "paid" && <Icon iconName="iconServerSingle" />}
 								{sub.type === "rcp" && <Icon iconName="iconServer" />}
-								{sub.type === "aarcp" && <Icon iconName="iconGrid" />}
+								{sub.type === "aarcp" && <Icon iconName="iconGlobe" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
 							<S.IconRight onClick={(e) => handleOnClickSubscription(e, sub.id)}>
