@@ -32,8 +32,7 @@ export const Pages = styled.div`
 	display: flex;
 	flex-direction: row;
 	position: relative;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: hidden;
 
 	background-color: ${(props) => props.theme.color.normalBgSelected};
 `;

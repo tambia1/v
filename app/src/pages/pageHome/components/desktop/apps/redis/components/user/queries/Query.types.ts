@@ -1,6 +1,7 @@
 import { bdbs } from "../../../data/bdbs";
 import { crdbs } from "../../../data/crdbs";
 import { plans } from "../../../data/plans";
+import { regions } from "../../../data/regions";
 import { subs } from "../../../data/subs";
 
 export type QueryResult<ResponseType> = {
@@ -18,3 +19,5 @@ export type Subscription = (typeof subs.subscriptions)[number];
 export type Bdb = (typeof bdbs.bdbs)[number];
 
 export type Crdb = (typeof crdbs.crdbs)[number];
+
+export type Region = (typeof regions)[number];

@@ -78,6 +78,8 @@ export const Item = styled.div<{ $animationState: IAnimationState }>`
 	width: 100%;
 	height: 100%;
 	position: absolute;
+	overflow-x: hidden;
+	overflow-y: auto;
 
 	${(props) => Animations[props.$animationState]}
 `;
