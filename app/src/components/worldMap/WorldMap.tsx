@@ -4,10 +4,10 @@ import { Pin } from "./components/pin/Pin";
 
 const MAP_WIDTH = 350;
 const MAP_HEIGHT = 150;
-const MAP_FIX_W = -70;
-const MAP_FIX_H = 125;
-const MAP_FIX_X = -35;
-const MAP_FIX_Y = 20;
+const MAP_FIX_W = -0.2;
+const MAP_FIX_H = 0.833;
+const MAP_FIX_X = -0.1;
+const MAP_FIX_Y = 0.11;
 
 type Props = {
 	className?: string | undefined;
@@ -40,8 +40,13 @@ export const WorldMap = ({ className, map, mapWidth = MAP_WIDTH, mapHeight = MAP
 WorldMap.Pin = Pin;
 
 const getXYFromLngLat = (lng: number, lat: number, imageWidth: number, imageHeight: number, mapFixW: number, mapFixH: number, mapFixX: number, mapFixY: number) => {
-	imageWidth += mapFixW;
-	imageHeight += mapFixH;
+	const fixW = imageWidth * mapFixW;
+	const fixH = imageHeight * mapFixH;
+	const fixX = imageWidth * mapFixX;
+	const fixY = imageHeight * mapFixY;
+
+	imageWidth += fixW;
+	imageHeight += fixH;
 
 	let x = (lng + 180) * (imageWidth / 360);
 
@@ -50,8 +55,8 @@ const getXYFromLngLat = (lng: number, lat: number, imageWidth: number, imageHeig
 
 	let y = imageHeight / 2 - (imageWidth * mercN) / (2 * Math.PI) / (imageWidth / imageHeight);
 
-	x = x + mapFixX - mapFixW / 2;
-	y = y + mapFixY - mapFixH / 2;
+	x = x + fixX - fixW / 2;
+	y = y + fixY - fixH / 2;
 
 	return { x, y };
 };
