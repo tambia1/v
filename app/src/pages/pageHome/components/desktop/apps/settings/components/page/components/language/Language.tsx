@@ -28,7 +28,7 @@ export const Language = () => {
 			<List>
 				<List.Cell onClick={() => handleOnClickChangeLanguage("en")}>
 					<List.Cell.Image>
-						<Flag flagName="flagGb" />
+						<Flag flagName="gb" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<T>{lang.settings.language.english}</T>
@@ -40,7 +40,7 @@ export const Language = () => {
 
 				<List.Cell onClick={() => handleOnClickChangeLanguage("fi")}>
 					<List.Cell.Image>
-						<Flag flagName="flagFi" />
+						<Flag flagName="fi" />
 					</List.Cell.Image>
 					<List.Cell.Text>
 						<T>{lang.settings.language.finnish}</T>
