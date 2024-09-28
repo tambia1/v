@@ -113,8 +113,8 @@ export const Datacenter = () => {
 
 				{data.map((sub) => (
 					<S.Col key={sub.id}>
-						<S.SubscriptionsRow>
-							<S.IconCollapse $collapsed={collapsed[sub.id]} onClick={(e) => handleOnClickCollpse(e, sub.id)}>
+						<S.SubscriptionsRow onClick={(e) => handleOnClickCollpse(e, sub.id)}>
+							<S.IconCollapse $collapsed={collapsed[sub.id]}>
 								<Icon iconName="iconChevronDown" />
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
