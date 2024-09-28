@@ -18,8 +18,13 @@ export const Spacer = styled.div`
 
 export const WorldMapContainer = styled.div`
 	width: 100%;
-	max-width: 50rem;
-	height: 20rem;
+	height: 15rem;
+	display: flex;
+	justify-content: center;
+
+	& > div {
+		max-width: 40rem;
+	}
 `;
 
 export const Pin = styled.div`
