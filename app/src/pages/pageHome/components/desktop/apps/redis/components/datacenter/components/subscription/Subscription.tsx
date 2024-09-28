@@ -67,10 +67,17 @@ export const Subscription = ({ subscriptionId }: Props) => {
 			<S.Spacer />
 			<WorldMap
 				map={<Map />}
-				pins={regions.map((region) => {
+				// pins={regions.map((region) => {
+				// 	return (
+				// 		<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
+				// 			<S.Pin>{region.city_name}</S.Pin>
+				// 		</WorldMap.Pin>
+				// 	);
+				// })}
+				pins={Object.values(locations).map((v) => {
 					return (
-						<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
-							<S.Pin>{region.city_name}</S.Pin>
+						<WorldMap.Pin key={v.name} lng={v.lng} lat={v.lat}>
+							<S.Pin>{v.name}</S.Pin>
 						</WorldMap.Pin>
 					);
 				})}

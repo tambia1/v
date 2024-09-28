@@ -4,10 +4,10 @@ import { Pin } from "./components/pin/Pin";
 
 const MAP_WIDTH = 350;
 const MAP_HEIGHT = 150;
-const MAP_FIXW = -70;
-const MAP_FIXH = 125;
-const MAP_FIXX = -35;
-const MAP_FIXY = 20;
+const MAP_FIX_W = -70;
+const MAP_FIX_H = 125;
+const MAP_FIX_X = -35;
+const MAP_FIX_Y = 20;
 
 type Props = {
 	className?: string | undefined;
@@ -21,14 +21,14 @@ type Props = {
 	pins: ReactElement[];
 };
 
-export const WorldMap = ({ className, map, mapWidth = MAP_WIDTH, mapHeight = MAP_HEIGHT, mapFixX = MAP_FIXX, mapFixY = MAP_FIXY, mapFixW = MAP_FIXW, mapFixH = MAP_FIXH, pins }: Props) => {
+export const WorldMap = ({ className, map, mapWidth = MAP_WIDTH, mapHeight = MAP_HEIGHT, mapFixX = MAP_FIX_X, mapFixY = MAP_FIX_Y, mapFixW = MAP_FIX_W, mapFixH = MAP_FIX_H, pins }: Props) => {
 	return (
 		<S.WorldMap className={className}>
 			<S.ContainerMap>{map}</S.ContainerMap>
 			<S.ContainerPins>
 				{React.Children.map(pins, (pin, index) => {
 					const { lng, lat } = pin.props;
-					const coords = getWorldMapXY(lng, lat, mapWidth, mapHeight, mapFixW, mapFixH, mapFixX, mapFixY);
+					const coords = getXYFromLngLat(lng, lat, mapWidth, mapHeight, mapFixW, mapFixH, mapFixX, mapFixY);
 
 					return React.cloneElement(pin, { key: `pin-${index}`, lng: coords.x, lat: coords.y });
 				})}
@@ -39,7 +39,7 @@ export const WorldMap = ({ className, map, mapWidth = MAP_WIDTH, mapHeight = MAP
 
 WorldMap.Pin = Pin;
 
-const getWorldMapXY = (lng: number, lat: number, imageWidth: number, imageHeight: number, mapFixW: number, mapFixH: number, mapFixX: number, mapFixY: number) => {
+const getXYFromLngLat = (lng: number, lat: number, imageWidth: number, imageHeight: number, mapFixW: number, mapFixH: number, mapFixX: number, mapFixY: number) => {
 	imageWidth += mapFixW;
 	imageHeight += mapFixH;
 
