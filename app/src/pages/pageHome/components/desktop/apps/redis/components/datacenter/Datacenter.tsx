@@ -38,7 +38,7 @@ export const Datacenter = () => {
 		const plans = queryPlans.data!.response!.plans!;
 		const subs = querySubs.data!.response!.subscriptions!;
 		const bdbs = queryBdbs.data!.response!.bdbs!;
-		// const crdbs = queryCrdbs.data!.response!.crdbs!;
+		const crdbs = queryCrdbs.data!.response!.crdbs!;
 
 		const newData: Sub[] = [];
 		const newCollapsed: { [K: string]: boolean } = {};
@@ -51,14 +51,24 @@ export const Datacenter = () => {
 				id: subs[i].id,
 				type: plan.plan_type,
 				cloud: plan.cloud,
-				dbs: bdbs
-					.filter((bdb) => bdb.subscription === subs[i].id)
-					.map((bdb) => ({
-						name: bdb.name,
-						id: bdb.id,
-						usage: bdb.usage,
-						size: bdb.size || plan.size,
-					})),
+				dbs:
+					plan.plan_type === "aarcp"
+						? crdbs
+								.filter((crdb) => crdb.subscription === subs[i].id)
+								.map((crdb) => ({
+									name: crdb.name,
+									id: crdb.id,
+									usage: crdb.crdb_instances[0].usage,
+									size: crdb.memory_size_in_mb * 1024 * 1024,
+								}))
+						: bdbs
+								.filter((bdb) => bdb.subscription === subs[i].id)
+								.map((bdb) => ({
+									name: bdb.name,
+									id: bdb.id,
+									usage: bdb.usage,
+									size: bdb.size || plan.size,
+								})),
 			});
 			newCollapsed[subs[i].id] = true;
 		}
