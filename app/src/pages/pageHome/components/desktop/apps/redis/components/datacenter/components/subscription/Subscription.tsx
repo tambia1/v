@@ -67,17 +67,10 @@ export const Subscription = ({ subscriptionId }: Props) => {
 			<S.WorldMapContainer>
 				<WorldMap
 					map={<WorldMap.Map />}
-					// pins={regions.map((region) => {
-					// 	return (
-					// 		<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
-					// 			<S.Pin>{region.city_name}</S.Pin>
-					// 		</WorldMap.Pin>
-					// 	);
-					// })}
-					pins={Object.values(locations).map((v) => {
+					pins={regions.map((region) => {
 						return (
-							<WorldMap.Pin key={v.name} lng={v.lng} lat={v.lat}>
-								<S.Pin>{v.name}</S.Pin>
+							<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
+								<S.Pin>{region.city_name}</S.Pin>
 							</WorldMap.Pin>
 						);
 					})}
