@@ -3,7 +3,6 @@ import { Text } from "@src/components/text/Text";
 import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
-import { Map } from "@src/components/worldMap/WorldMap.styles";
 import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
 import { StoreUser } from "../../../user/stores/StoreUser";
 import { QueryRegions } from "../../../user/queries/QueryRegions";
@@ -65,23 +64,25 @@ export const Subscription = ({ subscriptionId }: Props) => {
 			<Text size="m">Subscription id {subscriptionId}</Text>
 
 			<S.Spacer />
-			<WorldMap
-				map={<Map />}
-				// pins={regions.map((region) => {
-				// 	return (
-				// 		<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
-				// 			<S.Pin>{region.city_name}</S.Pin>
-				// 		</WorldMap.Pin>
-				// 	);
-				// })}
-				pins={Object.values(locations).map((v) => {
-					return (
-						<WorldMap.Pin key={v.name} lng={v.lng} lat={v.lat}>
-							<S.Pin>{v.name}</S.Pin>
-						</WorldMap.Pin>
-					);
-				})}
-			/>
+			<S.WorldMapContainer>
+				<WorldMap
+					map={<WorldMap.Map />}
+					// pins={regions.map((region) => {
+					// 	return (
+					// 		<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
+					// 			<S.Pin>{region.city_name}</S.Pin>
+					// 		</WorldMap.Pin>
+					// 	);
+					// })}
+					pins={Object.values(locations).map((v) => {
+						return (
+							<WorldMap.Pin key={v.name} lng={v.lng} lat={v.lat}>
+								<S.Pin>{v.name}</S.Pin>
+							</WorldMap.Pin>
+						);
+					})}
+				/>
+			</S.WorldMapContainer>
 		</S.Subscription>
 	);
 };

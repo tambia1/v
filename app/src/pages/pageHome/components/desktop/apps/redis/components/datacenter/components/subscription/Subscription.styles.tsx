@@ -16,6 +16,12 @@ export const Spacer = styled.div`
 	height: 1rem;
 `;
 
+export const WorldMapContainer = styled.div`
+	width: 100%;
+	max-width: 50rem;
+	height: 20rem;
+`;
+
 export const Pin = styled.div`
 	white-space: nowrap;
 `;

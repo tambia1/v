@@ -3,13 +3,16 @@ import imageWorldMapLight from "./assets/world-map-light.png";
 import imageWorldMapDark from "./assets/world-map-dark.png";
 
 export const WorldMap = styled.div`
-	width: fit-content;
-	height: fit-content;
+	width: 100%;
+	height: 100%;
 	display: flex;
 	position: relative;
 `;
 
-export const ContainerMap = styled.div``;
+export const ContainerMap = styled.div`
+	width: 100%;
+	height: 100%;
+`;
 
 export const ContainerPins = styled.div`
 	position: absolute;
@@ -19,8 +22,8 @@ export const ContainerPins = styled.div`
 
 export const Map = styled.div`
 	position: relative;
-	width: 300px;
-	height: 150px;
+	width: 100%;
+	height: 100%;
 
 	background-image: url(${(props) => (props.theme.themeName === "dark" ? imageWorldMapDark : imageWorldMapLight)});
 	background-repeat: no-repeat;
