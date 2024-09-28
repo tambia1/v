@@ -30,3 +30,10 @@ export const WorldMapContainer = styled.div`
 export const Pin = styled.div`
 	white-space: nowrap;
 `;
+
+export const Row = styled.div`
+	display: flex;
+	flex-direction: row;
+	margin-top: 0.5rem;
+	gap: 0.5rem;
+`;

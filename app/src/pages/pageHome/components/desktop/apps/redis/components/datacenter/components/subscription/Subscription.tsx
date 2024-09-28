@@ -6,9 +6,11 @@ import { useTranslation } from "react-i18next";
 import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
 import { StoreUser } from "../../../user/stores/StoreUser";
 import { QueryRegions } from "../../../user/queries/QueryRegions";
-import { Region } from "../../../user/queries/Query.types";
+import { Region, Subscription as SubscriptionType } from "../../../user/queries/Query.types";
 import { useEffect, useState } from "react";
 import { QueryPlans } from "../../../user/queries/QueryPlans";
+import { Icon } from "@src/icons/Icon";
+import { Loader } from "@src/components/loader/Loader";
 
 type Props = {
 	subscriptionId: number;
@@ -23,6 +25,8 @@ export const Subscription = ({ subscriptionId }: Props) => {
 	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
 
 	const [regions, setRegions] = useState<Region[]>([]);
+
+	const [sub, setSub] = useState<SubscriptionType | null>(null);
 
 	useEffect(() => {
 		if (queryPlans.data?.error !== 0 || querySubs.data?.error !== 0 || queryRegions.data?.error !== 0) {
@@ -53,14 +57,32 @@ export const Subscription = ({ subscriptionId }: Props) => {
 		}
 
 		setRegions(newRegions);
+		setSub(sub);
 	}, [querySubs.data, queryPlans.data, queryRegions.data]);
+
+	if (sub === null) {
+		return (
+			<S.Subscription>
+				<Loader />
+			</S.Subscription>
+		);
+	}
 
 	return (
 		<S.Subscription>
 			<Text size="l">{t(lang.redis.subscription.title)}</Text>
 
 			<S.Spacer />
-			<Text size="m">Subscription id {subscriptionId}</Text>
+
+			<S.Row>
+				<Text size="m">ID:</Text>
+				<Text size="m">{sub.id}</Text>
+			</S.Row>
+
+			<S.Row>
+				<Text size="m">Cloud: </Text>
+				<Icon iconName="iconAmazon" />
+			</S.Row>
 
 			<S.Spacer />
 			<S.WorldMapContainer>

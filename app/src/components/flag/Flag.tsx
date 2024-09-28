@@ -1,13 +1,17 @@
 import * as S from "./Flag.styles";
-import { FlagName } from "./Flag.types";
-import { ITheme } from "@src/theme/Theme.types";
+import { ReactSVG } from "react-svg";
+import { Flags, IFlagName } from "./Flag.types";
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string | undefined;
-	flagName: FlagName;
-	size?: keyof ITheme["size"];
+	flagName: IFlagName;
+	size?: string;
 }
 
-export const Flag = ({ className, flagName, size = "m", ...rest }: Props) => {
-	return <S.Flag className={className} $size={size} $flagName={flagName} {...rest}></S.Flag>;
+export const Flag = ({ className, flagName, size = "1.5rem", ...rest }: Props) => {
+	return (
+		<S.Flag className={className} $size={size} {...rest} data-name={flagName}>
+			<ReactSVG src={Flags[flagName]} title={flagName} />
+		</S.Flag>
+	);
 };
