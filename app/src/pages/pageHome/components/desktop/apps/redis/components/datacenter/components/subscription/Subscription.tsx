@@ -9,7 +9,6 @@ import { QueryRegions } from "../../../user/queries/QueryRegions";
 import { Region } from "../../../user/queries/Query.types";
 import { useEffect, useState } from "react";
 import { QueryPlans } from "../../../user/queries/QueryPlans";
-import { locations } from "@src/components/worldMap/data/locations";
 
 type Props = {
 	subscriptionId: number;
