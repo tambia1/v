@@ -10,6 +10,7 @@ import { QueryRegions } from "../../../user/queries/QueryRegions";
 import { Region } from "../../../user/queries/Query.types";
 import { useEffect, useState } from "react";
 import { QueryPlans } from "../../../user/queries/QueryPlans";
+import { locations } from "@src/components/worldMap/data/locations";
 
 type Props = {
 	subscriptionId: number;
@@ -63,6 +64,7 @@ export const Subscription = ({ subscriptionId }: Props) => {
 			<S.Spacer />
 			<Text size="m">Subscription id {subscriptionId}</Text>
 
+			<S.Spacer />
 			<WorldMap
 				map={<Map />}
 				pins={regions.map((region) => {

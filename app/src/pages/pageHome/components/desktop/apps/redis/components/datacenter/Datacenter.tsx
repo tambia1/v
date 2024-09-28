@@ -113,7 +113,7 @@ export const Datacenter = () => {
 
 				{data.map((sub) => (
 					<S.Col key={sub.id}>
-						<S.SubscriptionsRow onClick={(e) => handleOnClickSubscription(e, sub.id)}>
+						<S.SubscriptionsRow>
 							<S.IconCollapse $collapsed={collapsed[sub.id]} onClick={(e) => handleOnClickCollpse(e, sub.id)}>
 								<Icon iconName="iconChevronDown" />
 							</S.IconCollapse>
@@ -126,7 +126,7 @@ export const Datacenter = () => {
 								{sub.type === "aarcp" && <Icon iconName="iconGlobe" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
-							<S.IconRight>
+							<S.IconRight onClick={(e) => handleOnClickSubscription(e, sub.id)}>
 								<Icon iconName="iconChevronRight" />
 							</S.IconRight>
 						</S.SubscriptionsRow>

@@ -2,12 +2,12 @@ import React, { ReactElement, ReactNode } from "react";
 import * as S from "./WorldMap.styles";
 import { Pin } from "./components/pin/Pin";
 
-const MAP_WIDTH = 700;
-const MAP_HEIGHT = 300;
-const MAP_FIXW = -40;
-const MAP_FIXH = 250;
-const MAP_FIXX = -20;
-const MAP_FIXY = 40;
+const MAP_WIDTH = 350;
+const MAP_HEIGHT = 150;
+const MAP_FIXW = -70;
+const MAP_FIXH = 125;
+const MAP_FIXX = -35;
+const MAP_FIXY = 20;
 
 type Props = {
 	className?: string | undefined;

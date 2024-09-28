@@ -19,8 +19,8 @@ export const ContainerPins = styled.div`
 
 export const Map = styled.div`
 	position: relative;
-	width: 700px;
-	height: 300px;
+	width: 300px;
+	height: 150px;
 
 	background-image: url(${(props) => (props.theme.themeName === "dark" ? imageWorldMapDark : imageWorldMapLight)});
 	background-repeat: no-repeat;
