@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { QueryPlans } from "../../../user/queries/QueryPlans";
 import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
+import { Flag } from "@src/components/flag/Flag";
+import { IFlagName } from "@src/components/flag/Flag.types";
 
 type Props = {
 	subscriptionId: number;
@@ -91,7 +93,9 @@ export const Subscription = ({ subscriptionId }: Props) => {
 					pins={regions.map((region) => {
 						return (
 							<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
-								<S.Pin>{region.city_name}</S.Pin>
+								<S.Pin>
+									{region.city_name} <Flag flagName={`flag${region.flag.charAt(0).toUpperCase() + region.flag.slice(1)}` as IFlagName} />
+								</S.Pin>
 							</WorldMap.Pin>
 						);
 					})}
