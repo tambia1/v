@@ -15,7 +15,7 @@ import { QuerySubscriptions } from "../user/queries/QuerySubscriptions";
 import { QueryBdbs } from "../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../user/queries/QueryCrdbs";
 
-const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "QTY", ""];
+const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "DB", ""];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
 export const Datacenter = () => {
