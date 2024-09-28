@@ -1,7 +1,7 @@
 import { ITouch, useTouch } from "@src/hooks/UseTouch";
 import * as S from "./AppButton.styles";
 import { ReactNode, useRef } from "react";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { StoreApps } from "../../stores/StoreApps";
 
 interface Props {

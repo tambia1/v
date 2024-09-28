@@ -1,5 +1,5 @@
 import { Button } from "@src/components/button/Button";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import styled from "styled-components";
 import imageUserLoggedIn from "./assets/userLoggedIn.png";
 import imageUserLoggedOut from "./assets/userLoggedOut.png";

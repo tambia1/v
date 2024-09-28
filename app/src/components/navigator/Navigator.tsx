@@ -3,7 +3,7 @@ import * as S from "./Navigator.styles";
 import { Item } from "./components/item/Item";
 import { NavigatorContext } from "./hooks/UseNavigator";
 import { IAnimationState } from "./components/item/Item.styles";
-import { Icon } from "../../icons/Icon";
+import { Icon } from "../icon/Icon";
 import { Page, IPage } from "./components/page/Page";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 

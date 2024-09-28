@@ -5,7 +5,7 @@ import { Language } from "./components/language/Language";
 import { Theme } from "./components/theme/Theme";
 import { Layout } from "./components/layout/Layout";
 import { List } from "@src/components/list/List";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { About } from "./components/about/About";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";

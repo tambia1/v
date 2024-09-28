@@ -1,6 +1,6 @@
 import * as S from "./Tree.styles";
 import { createContext, ReactNode, useContext } from "react";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { Search } from "@src/utils/Search";
 
 const TreeContext = createContext<{

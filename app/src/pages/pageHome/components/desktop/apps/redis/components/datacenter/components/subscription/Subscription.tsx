@@ -9,7 +9,7 @@ import { QueryRegions } from "../../../user/queries/QueryRegions";
 import { Region, Subscription as SubscriptionType } from "../../../user/queries/Query.types";
 import { useEffect, useState } from "react";
 import { QueryPlans } from "../../../user/queries/QueryPlans";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 
 type Props = {

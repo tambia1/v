@@ -1,4 +1,4 @@
-import { Icon } from "@src/icons/Icon.styles";
+import { Icon } from "@src/components/icon/Icon.styles";
 import styled from "styled-components";
 
 export const SpinPage = styled.div`

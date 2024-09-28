@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import * as S from "./Select.styles";
 import { List } from "./components/list/List";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { Item } from "./components/item/Item";
 
 export interface Props {

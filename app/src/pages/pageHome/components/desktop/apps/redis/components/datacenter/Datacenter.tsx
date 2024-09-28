@@ -6,7 +6,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { MouseEvent, useEffect, useState } from "react";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { Sub } from "./Datacenter.types";
 import { Subscription } from "./components/subscription/Subscription";
 import { QueryPlans } from "../user/queries/QueryPlans";

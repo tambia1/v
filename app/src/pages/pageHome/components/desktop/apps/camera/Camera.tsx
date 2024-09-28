@@ -1,6 +1,6 @@
 import * as S from "./Camera.styles";
 import { useRef, useState } from "react";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { useTheme } from "styled-components";
 import { Loader } from "@src/components/loader/Loader";
 

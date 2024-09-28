@@ -1,4 +1,4 @@
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import * as S from "./BarDoneCancel.styles";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as S from "./Layout.styles";
 import { List } from "@src/components/list/List";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useSearchParams } from "react-router-dom";

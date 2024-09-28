@@ -1,6 +1,6 @@
 import * as S from "./Compose.styles";
 import { useCounterContext } from "../../../contexts/Counter.context";
-import { IIconName } from "@src/icons/Icon.types";
+import { IIconName } from "@src/components/icon/Icon.types";
 
 export interface Props {
 	iconName: IIconName;

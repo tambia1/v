@@ -1,4 +1,4 @@
-import { Icons } from "@src/icons/Icon.types";
+import { Icons } from "@src/components/icon/Icon.types";
 import { backgroundImages } from "./../desktop/apps/settings/components/page/components/theme/Theme.styles";
 import userLoggedIn from "@apps/user/assets/userLoggedIn.png";
 import userLoggedOut from "@apps/user/assets/userLoggedOut.png";

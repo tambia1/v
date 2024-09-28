@@ -1,6 +1,6 @@
 import * as S from "./Language.styles";
 import { List } from "@src/components/list/List";
-import { Icon } from "@src/icons/Icon";
+import { Icon } from "@src/components/icon/Icon";
 import { useTranslation } from "react-i18next";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
