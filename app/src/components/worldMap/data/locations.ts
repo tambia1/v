@@ -1,34 +1,32 @@
-export const Locations = {
-	miami: {
-		name: "Miami",
-		lng: -80.23621830872433,
-		lat: 25.822112091825236,
-	},
-	newYork: {
-		name: "New\nYork",
-		lng: -73.935242,
-		lat: 40.73061,
-	},
-	london: {
-		name: "London",
-		lng: -0.118092,
-		lat: 51.509865,
-	},
-	telAviv: {
-		name: "Tel\nAviv",
-		lng: 35.217018,
-		lat: 31.771959,
-	},
-	sydney: {
-		name: "Sydney",
-		lng: 151.10632004454698,
-		lat: -33.92060175979464,
-	},
-	tokyo: {
-		name: "Tokyo",
-		lng: 139.77993777728716,
-		lat: 35.67743872951423,
-	},
+export const locations: { [CityName: string]: { lng: number; lat: number } } = {
+	"N. Virginia": { lng: -77.4875, lat: 38.0336 },
+	Taiwan: { lng: 121.5654, lat: 25.0329 },
+	"N. California": { lng: -122.4194, lat: 37.7749 },
+	"Hong Kong": { lng: 114.1095, lat: 22.3964 },
+	Oregon: { lng: -123.3656, lat: 44.0462 },
+	Tokyo: { lng: 139.6917, lat: 35.6895 },
+	Ireland: { lng: -6.2603, lat: 53.3498 },
+	Osaka: { lng: 135.5022, lat: 34.6937 },
+	Frankfurt: { lng: 8.6821, lat: 50.1109 },
+	Mumbai: { lng: 72.8777, lat: 19.076 },
+	Singapore: { lng: 103.8198, lat: 1.3521 },
+	Sydney: { lng: 151.2093, lat: -33.8688 },
+	Finland: { lng: 25.7482, lat: 61.9241 },
+	"Sao Paulo": { lng: -46.6333, lat: -23.5505 },
+	Belgium: { lng: 4.4699, lat: 50.5039 },
+	"Central Canada": { lng: -106.3468, lat: 56.1304 },
+	Stockholm: { lng: 18.0686, lat: 59.3293 },
+	London: { lng: -0.1276, lat: 51.5074 },
+	Paris: { lng: 2.3522, lat: 48.8566 },
+	Ohio: { lng: -82.9071, lat: 40.4173 },
+	Virginia: { lng: -78.6569, lat: 37.4316 },
+	California: { lng: -119.4179, lat: 36.7783 },
+	Netherlands: { lng: 5.2913, lat: 52.1326 },
+	Berlin: { lng: 13.405, lat: 52.52 },
+	Zurich: { lng: 8.5417, lat: 47.3769 },
+	Milan: { lng: 9.19, lat: 45.4642 },
+	Montreal: { lng: -73.5673, lat: 45.5017 },
+	Iowa: { lng: -93.0977, lat: 41.878 },
 } as const;
 
-export type ILocation = keyof typeof Locations;
+export type Location = typeof locations;

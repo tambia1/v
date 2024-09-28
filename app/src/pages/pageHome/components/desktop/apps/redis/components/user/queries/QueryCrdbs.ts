@@ -53,7 +53,7 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const getCrdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const crdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
 		queryKey: ["crdbs"],
 		queryFn: () => get(props),
@@ -62,5 +62,5 @@ const getCrdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error>
 };
 
 export const QueryCrdbs = {
-	getCrdbs,
+	crdbs,
 };

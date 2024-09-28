@@ -24,27 +24,26 @@ export const Datacenter = () => {
 	const [collapsed, setCollapsed] = useState<{ [K: string]: boolean }>({});
 
 	const storeUser = StoreUser();
-
 	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: true });
 	const querySubs = QuerySubscriptions.subscriptions({ csrf: storeUser.csrf });
 	const queryBdbs = QueryBdbs.bdbs({ csrf: storeUser.csrf });
-	const queryCrdbs = QueryCrdbs.getCrdbs({ csrf: storeUser.csrf });
+	const queryCrdbs = QueryCrdbs.crdbs({ csrf: storeUser.csrf });
 
 	useEffect(() => {
 		if (queryPlans.data?.error !== 0 || querySubs.data?.error !== 0 || queryBdbs.data?.error !== 0 || queryCrdbs.data?.error !== 0) {
 			return;
 		}
 
+		const newData: Sub[] = [];
+		const newCollapsed: { [K: string]: boolean } = {};
+
 		const plans = queryPlans.data!.response!.plans!;
 		const subs = querySubs.data!.response!.subscriptions!;
 		const bdbs = queryBdbs.data!.response!.bdbs!;
 		const crdbs = queryCrdbs.data!.response!.crdbs!;
 
-		const newData: Sub[] = [];
-		const newCollapsed: { [K: string]: boolean } = {};
-
 		for (let i = 0; i < subs.length; i++) {
-			const plan = plans.filter((plan) => plan.id === subs[i].plan)[0];
+			const plan = plans.find((plan) => plan.id === subs[i].plan)!;
 
 			newData.push({
 				name: subs[i].name,
@@ -97,7 +96,9 @@ export const Datacenter = () => {
 		);
 	};
 
-	const handleOnClickCollpse = (subscriptionId: number) => {
+	const handleOnClickCollpse = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
+		e.stopPropagation();
+
 		setCollapsed({ ...collapsed, [subscriptionId]: !collapsed[subscriptionId] });
 	};
 
@@ -112,8 +113,8 @@ export const Datacenter = () => {
 
 				{data.map((sub) => (
 					<S.Col key={sub.id}>
-						<S.SubscriptionsRow onClick={() => handleOnClickCollpse(sub.id)}>
-							<S.IconCollapse $collapsed={collapsed[sub.id]}>
+						<S.SubscriptionsRow onClick={(e) => handleOnClickSubscription(e, sub.id)}>
+							<S.IconCollapse $collapsed={collapsed[sub.id]} onClick={(e) => handleOnClickCollpse(e, sub.id)}>
 								<Icon iconName="iconChevronDown" />
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
@@ -125,7 +126,7 @@ export const Datacenter = () => {
 								{sub.type === "aarcp" && <Icon iconName="iconGlobe" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
-							<S.IconRight onClick={(e) => handleOnClickSubscription(e, sub.id)}>
+							<S.IconRight>
 								<Icon iconName="iconChevronRight" />
 							</S.IconRight>
 						</S.SubscriptionsRow>
