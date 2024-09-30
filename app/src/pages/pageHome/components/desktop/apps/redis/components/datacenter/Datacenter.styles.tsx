@@ -216,7 +216,7 @@ export const DatabasesRow = styled.div`
 	padding: 1rem;
 	align-items: center;
 	gap: 0.5rem;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.normalBgDisabled};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
