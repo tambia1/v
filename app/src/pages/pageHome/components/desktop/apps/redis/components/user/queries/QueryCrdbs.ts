@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Crdb, QueryResult } from "./Query.types";
-import { crdbs as fakeCrdbs } from "./../../../data/crdbs";
+import { crdbs as fakeResponse } from "./../../../data/crdbs";
 
 type Props = {
 	csrf: string;
@@ -32,21 +32,23 @@ const get = async (props: Props): Promise<Result> => {
 				response: res,
 			};
 		} else {
-			// result = {
-			// 	error: 2,
-			// 	message: "error",
-			// };
-
 			result = {
-				error: 0,
-				message: "fake",
-				response: fakeCrdbs,
+				error: 2,
+				message: "error",
 			};
 		}
 	} catch (error) {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 

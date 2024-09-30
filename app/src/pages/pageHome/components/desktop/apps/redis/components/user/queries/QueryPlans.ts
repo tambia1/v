@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Plan, QueryResult } from "./Query.types";
-import { plans as fakePlans } from "./../../../data/plans";
+import { plans as fakeResponse } from "./../../../data/plans";
 
 type Props = {
 	csrf: string;
@@ -33,21 +33,23 @@ const get = async (props: Props): Promise<Result> => {
 				response: res,
 			};
 		} else {
-			// result = {
-			// 	error: 2,
-			// 	message: "error",
-			// };
-
 			result = {
-				error: 0,
-				message: "fake",
-				response: fakePlans,
+				error: 2,
+				message: "error",
 			};
 		}
 	} catch (error) {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 

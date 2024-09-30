@@ -1,4 +1,4 @@
-import { bdbs as fakeBdbs } from "./../../../data/bdbs";
+import { bdbs as fakeResponse } from "./../../../data/bdbs";
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Bdb, QueryResult } from "./Query.types";
 
@@ -32,21 +32,23 @@ const get = async (props: Props): Promise<Result> => {
 				response: res,
 			};
 		} else {
-			// result = {
-			// 	error: 2,
-			// 	message: "error",
-			// };
-
 			result = {
-				error: 0,
-				message: "fake",
-				response: fakeBdbs,
+				error: 2,
+				message: "error",
 			};
 		}
 	} catch (error) {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 

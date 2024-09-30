@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QueryResult, Region } from "./Query.types";
-import { regions as fakeRegions } from "../../../data/regions";
+import { regions as fakeResponse } from "../../../data/regions";
 
 type Props = {
 	csrf: string;
@@ -30,21 +30,23 @@ const get = async (props: Props): Promise<Result> => {
 				response: res,
 			};
 		} else {
-			// result = {
-			// 	error: 2,
-			// 	message: "error",
-			// };
-
 			result = {
-				error: 0,
-				message: "fake",
-				response: fakeRegions,
+				error: 2,
+				message: "error",
 			};
 		}
 	} catch (error) {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 
