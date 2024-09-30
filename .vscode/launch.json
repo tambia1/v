@@ -4,7 +4,11 @@
 		{
 			"name": "Run project",
 			"configurations": ["launch brave 5000", "app start", "frontend preview", "server websocket", "server graphql", "server redis"],
-			"stopAll": true
+			"stopAll": true,
+			"presentation": {
+				"group": "1",
+				"order": 1
+			}
 		}
 	],
 	"configurations": [
