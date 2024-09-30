@@ -14,6 +14,7 @@ import { StoreUser } from "../user/stores/StoreUser";
 import { QuerySubscriptions } from "../user/queries/QuerySubscriptions";
 import { QueryBdbs } from "../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../user/queries/QueryCrdbs";
+import { Loader } from "@src/components/loader/Loader";
 
 const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "DB", ""];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
@@ -21,6 +22,7 @@ const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 export const Datacenter = () => {
 	const navigator = useNavigator();
 	const [data, setData] = useState<Sub[]>([]);
+	const [isDataReady, setIsDataReady] = useState(false);
 	const [collapsed, setCollapsed] = useState<{ [K: string]: boolean }>({});
 
 	const storeUser = StoreUser();
@@ -74,6 +76,7 @@ export const Datacenter = () => {
 
 		setData(newData);
 		setCollapsed(newCollapsed);
+		setIsDataReady(true);
 	}, [queryPlans.data, querySubs.data, queryBdbs.data, queryCrdbs.data]);
 
 	const handleOnClickSubscription = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
@@ -101,6 +104,14 @@ export const Datacenter = () => {
 
 		setCollapsed({ ...collapsed, [subscriptionId]: !collapsed[subscriptionId] });
 	};
+
+	if (!isDataReady) {
+		return (
+			<S.Page>
+				<Loader />
+			</S.Page>
+		);
+	}
 
 	return (
 		<S.Page>
