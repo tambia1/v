@@ -1,5 +1,6 @@
 import { useMutation, UseMutationOptions } from "@tanstack/react-query";
 import { QueryResult } from "./Query.types";
+import { login as fakeResponse } from "./../../../data/login";
 
 type Props = {
 	email: string;
@@ -56,6 +57,14 @@ const send = async (props: Props): Promise<Result> => {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 

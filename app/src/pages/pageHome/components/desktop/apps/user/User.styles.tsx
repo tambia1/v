@@ -35,7 +35,7 @@ export const Box = styled.div`
 	padding: 2rem;
 	overflow: hidden;
 	border-radius: 16px;
-	box-shadow: 0 0.5rem 3rem rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 0px 1rem #333333aa;
 	background-color: ${(props) => props.theme.color.normalBg};
 `;
 

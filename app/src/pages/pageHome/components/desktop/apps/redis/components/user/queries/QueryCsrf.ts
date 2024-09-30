@@ -1,5 +1,6 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { QueryResult } from "./Query.types";
+import { csrf as fakeResponse } from "./../../../data/csrf";
 
 type Result = QueryResult<{
 	csrfToken: {
@@ -39,6 +40,14 @@ const get = async (): Promise<Result> => {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 
