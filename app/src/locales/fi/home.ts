@@ -132,6 +132,9 @@ export const translation: IHome = {
 		subscription: {
 			title: "Subscription",
 		},
+		create: {
+			title: "Build",
+		},
 	},
 
 	featureFlag: {

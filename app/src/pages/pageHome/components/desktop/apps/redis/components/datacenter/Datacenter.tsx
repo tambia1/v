@@ -15,6 +15,7 @@ import { QuerySubscriptions } from "../user/queries/QuerySubscriptions";
 import { QueryBdbs } from "../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../user/queries/QueryCrdbs";
 import { Loader } from "@src/components/loader/Loader";
+import { Create } from "./components/create/Create";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
@@ -121,6 +122,16 @@ export const Datacenter = () => {
 		});
 	};
 
+	const handleOnClickCreate = (e: MouseEvent<HTMLDivElement>) => {
+		e.stopPropagation();
+
+		navigator.pushPage(
+			<Navigator.Page id="create" title={<T>{lang.redis.create.title}</T>}>
+				<Create />
+			</Navigator.Page>
+		);
+	};
+
 	if (!isDataReady) {
 		return (
 			<S.Page>
@@ -139,7 +150,7 @@ export const Datacenter = () => {
 					{subsTitles.map((col, index) => (
 						<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 					))}
-					<S.ColIcon>
+					<S.ColIcon onClick={(e) => handleOnClickCreate(e)}>
 						<Icon iconName="iconPlusCircle" />
 					</S.ColIcon>
 				</S.SubscriptionsHeader>

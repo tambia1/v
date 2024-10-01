@@ -132,6 +132,9 @@ export type IHome = {
 		subscription: {
 			title: string;
 		};
+		create: {
+			title: string;
+		};
 	};
 
 	featureFlag: {
