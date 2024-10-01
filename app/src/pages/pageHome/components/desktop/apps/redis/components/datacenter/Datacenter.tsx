@@ -179,13 +179,13 @@ export const Datacenter = () => {
 												<S.DatabasesLine />
 											</S.Row>
 
-											<S.DatabasesRow onClick={(e) => handleOnClickDatabase(e, db.id)}>
+											<S.DatabasesRow onClick={(e) => handleOnClickCollpse(e, sub.id)}>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>
 													<S.Progress percent={Math.max(25, (db.usage / db.size) * 100)} />
 												</S.DatabasesText>
-												<S.ColIcon>
+												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
 													<Icon iconName="iconChevronsRight" />
 												</S.ColIcon>
 											</S.DatabasesRow>
