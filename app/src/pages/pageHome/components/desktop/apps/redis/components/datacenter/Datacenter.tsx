@@ -47,31 +47,33 @@ export const Datacenter = () => {
 		for (let i = 0; i < subs.length; i++) {
 			const plan = plans.find((plan) => plan.id === subs[i].plan)!;
 
-			newData.push({
-				name: subs[i].name,
-				id: subs[i].id,
-				type: plan.plan_type,
-				cloud: plan.cloud,
-				dbs:
-					plan.plan_type === "aarcp"
-						? crdbs
-								.filter((crdb) => crdb.subscription === subs[i].id)
-								.map((crdb) => ({
-									name: crdb.name,
-									id: crdb.id,
-									usage: crdb.crdb_instances[0].usage,
-									size: crdb.memory_size_in_mb * 1024 * 1024,
-								}))
-						: bdbs
-								.filter((bdb) => bdb.subscription === subs[i].id)
-								.map((bdb) => ({
-									name: bdb.name,
-									id: bdb.id,
-									usage: bdb.usage,
-									size: bdb.size || plan.size,
-								})),
-			});
-			newCollapsed[subs[i].id] = true;
+			if (plan) {
+				newData.push({
+					name: subs[i].name,
+					id: subs[i].id,
+					type: plan.plan_type,
+					cloud: plan.cloud,
+					dbs:
+						plan.plan_type === "aarcp"
+							? crdbs
+									.filter((crdb) => crdb.subscription === subs[i].id)
+									.map((crdb) => ({
+										name: crdb.name,
+										id: crdb.id,
+										usage: crdb.crdb_instances[0].usage,
+										size: crdb.memory_size_in_mb * 1024 * 1024,
+									}))
+							: bdbs
+									.filter((bdb) => bdb.subscription === subs[i].id)
+									.map((bdb) => ({
+										name: bdb.name,
+										id: bdb.id,
+										usage: bdb.usage,
+										size: bdb.size || plan.size,
+									})),
+				});
+				newCollapsed[subs[i].id] = true;
+			}
 		}
 
 		setData(newData);
@@ -83,7 +85,7 @@ export const Datacenter = () => {
 		e.stopPropagation();
 
 		navigator.pushPage(
-			<Navigator.Page id="subscriptioni" title={<T>{lang.redis.subscription.title}</T>}>
+			<Navigator.Page id="subscription" title={<T>{lang.redis.subscription.title}</T>}>
 				<Subscription subscriptionId={subscriptionId} />
 			</Navigator.Page>
 		);

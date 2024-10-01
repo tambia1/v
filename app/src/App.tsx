@@ -10,6 +10,7 @@ import { PageHome } from "./pages/pageHome/PageHome";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Device } from "./utils/Device";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const VITE_GOOGLE_AUTH = (import.meta.env.VITE_GOOGLE_AUTH || "") as string;
 
@@ -35,6 +36,8 @@ export const App = () => {
 								<Route path={Pages.home} element={<PageHome />} />
 							</Routes>
 						</Theme>
+
+						<ReactQueryDevtools initialIsOpen={false} />
 					</QueryClientProvider>
 				</BrowserRouter>
 			</I18nextProvider>
