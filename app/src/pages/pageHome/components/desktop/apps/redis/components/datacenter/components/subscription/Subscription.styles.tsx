@@ -18,6 +18,7 @@ export const Spacer = styled.div`
 
 export const WorldMapContainer = styled.div`
 	width: 100%;
+	max-width: 50rem;
 	height: 15rem;
 	display: flex;
 	justify-content: center;
