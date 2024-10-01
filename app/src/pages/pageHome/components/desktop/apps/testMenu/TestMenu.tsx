@@ -9,16 +9,16 @@ type MenuItemId = "add" | "remove" | "update" | "about";
 
 const menuGroups: MenuGroup<MenuItemId>[] = [
 	{
-		text: "CRUD",
+		content: "CRUD",
 		menuItems: [
-			{ id: "add", text: "Add" },
-			{ id: "remove", text: "Remove" },
-			{ id: "update", text: "Update" },
+			{ id: "add", content: "Add" },
+			{ id: "remove", content: "Remove" },
+			{ id: "update", content: "Update" },
 		],
 	},
 	{
-		text: "Settings",
-		menuItems: [{ id: "about", text: "About" }],
+		content: "Settings",
+		menuItems: [{ id: "about", content: "About" }],
 	},
 ];
 

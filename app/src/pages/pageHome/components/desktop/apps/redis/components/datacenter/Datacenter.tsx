@@ -190,7 +190,7 @@ export const Datacenter = () => {
 												<S.DatabasesLine />
 											</S.Row>
 
-											<S.DatabasesRow onClick={(e) => handleOnClickCollpse(e, sub.id)}>
+											<S.DatabasesRow>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>

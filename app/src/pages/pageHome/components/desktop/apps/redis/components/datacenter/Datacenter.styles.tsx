@@ -168,7 +168,7 @@ export const IconCollapse = styled.div<{ $collapsed: boolean }>`
 
 	& > div {
 		transition: all 0.3s ease;
-		transform: rotateX(${({ $collapsed }) => ($collapsed ? -180 : 0)}deg);
+		transform: rotateZ(${({ $collapsed }) => ($collapsed ? -180 : 0)}deg);
 		transform-origin: 50% 50%;
 	}
 `;

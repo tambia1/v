@@ -1,3 +1,4 @@
+import { Icon } from "@src/components/icon/Icon";
 import { MenuGroup } from "@src/components/menu/Menu";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
@@ -6,25 +7,81 @@ export type MenuItemId = "dataCenter" | "dataAccess" | "settings" | "reports" | 
 
 export const menuGroups: MenuGroup<MenuItemId>[] = [
 	{
-		text: <T>{lang.redis.menu.data.title}</T>,
+		content: <T>{lang.redis.menu.data.title}</T>,
 		menuItems: [
-			{ id: "dataCenter", text: <T>{lang.redis.menu.data.dataCenter}</T> },
-			{ id: "dataAccess", text: <T>{lang.redis.menu.data.dataAccess}</T> },
+			{
+				id: "dataCenter",
+				content: (
+					<>
+						<Icon iconName="iconDatabase" />
+						<T>{lang.redis.menu.data.dataCenter}</T>
+					</>
+				),
+			},
+			{
+				id: "dataAccess",
+				content: (
+					<>
+						<Icon iconName="iconUser" />
+						<T>{lang.redis.menu.data.dataAccess}</T>
+					</>
+				),
+			},
 		],
 	},
 	{
-		text: <T>{lang.redis.menu.settings.title}</T>,
+		content: <T>{lang.redis.menu.settings.title}</T>,
 		menuItems: [
-			{ id: "settings", text: <T>{lang.redis.menu.settings.settings}</T> },
-			{ id: "reports", text: <T>{lang.redis.menu.settings.reports}</T> },
-			{ id: "payments", text: <T>{lang.redis.menu.settings.payments}</T> },
+			{
+				id: "settings",
+				content: (
+					<>
+						<Icon iconName="iconSettings" />
+						<T>{lang.redis.menu.settings.settings}</T>
+					</>
+				),
+			},
+			{
+				id: "reports",
+				content: (
+					<>
+						<Icon iconName="iconBook" />
+						<T>{lang.redis.menu.settings.reports}</T>
+					</>
+				),
+			},
+			{
+				id: "payments",
+				content: (
+					<>
+						<Icon iconName="iconDollarSign" />
+						<T>{lang.redis.menu.settings.payments}</T>
+					</>
+				),
+			},
 		],
 	},
 	{
-		text: <T>{lang.redis.menu.about.title}</T>,
+		content: <T>{lang.redis.menu.about.title}</T>,
 		menuItems: [
-			{ id: "support", text: <T>{lang.redis.menu.about.support}</T> },
-			{ id: "about", text: <T>{lang.redis.menu.about.about}</T> },
+			{
+				id: "support",
+				content: (
+					<>
+						<Icon iconName="iconHelpCircle" />
+						<T>{lang.redis.menu.about.support}</T>
+					</>
+				),
+			},
+			{
+				id: "about",
+				content: (
+					<>
+						<Icon iconName="iconRedisDisk" />
+						<T>{lang.redis.menu.about.about}</T>
+					</>
+				),
+			},
 		],
 	},
 ];

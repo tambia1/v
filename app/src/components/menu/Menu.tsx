@@ -3,13 +3,13 @@ import { List } from "../list/List";
 import { ReactNode } from "react";
 
 export type MenuGroup<MenuItemId> = {
-	text: ReactNode;
+	content: ReactNode;
 	menuItems: MenuItem<MenuItemId>[];
 };
 
 export type MenuItem<MenuItemId> = {
 	id: MenuItemId;
-	text: ReactNode;
+	content: ReactNode;
 };
 
 export interface Props<MenuItemId> {
@@ -39,12 +39,12 @@ export const Menu = <MenuItemId extends string>({ children, className, $visible,
 				<S.MenuList $visible={$visible}>
 					{menuGroups.map((menuGroup, index) => (
 						<S.MenuGroup key={index}>
-							<List.Section>{menuGroup.text}</List.Section>
+							<List.Section>{menuGroup.content}</List.Section>
 
 							<List>
 								{menuGroup.menuItems.map((menuItem) => (
 									<List.Cell key={menuItem.id} $isSelected={selectedMenuId === menuItem.id} onClick={() => onClickItem(menuItem.id)}>
-										{menuItem.text}
+										{menuItem.content}
 									</List.Cell>
 								))}
 							</List>
