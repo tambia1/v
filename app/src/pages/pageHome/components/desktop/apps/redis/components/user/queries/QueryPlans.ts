@@ -1,6 +1,7 @@
 import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import { Plan, QueryResult } from "./Query.types";
-import { plans as fakeResponse } from "./../../../data/plans";
+import { plans as fakeUserPlans } from "./../../../data/plans";
+import { plansAll as fakeAllPlans } from "./../../../data/plansAll";
 
 type Props = {
 	csrf: string;
@@ -49,7 +50,7 @@ const get = async (props: Props): Promise<Result> => {
 		result = {
 			error: 0,
 			message: "fake",
-			response: fakeResponse,
+			response: props.only_customer_plans ? fakeUserPlans : fakeAllPlans,
 		};
 	}
 

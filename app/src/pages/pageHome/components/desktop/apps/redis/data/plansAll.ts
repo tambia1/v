@@ -1,4 +1,4 @@
-export const plans = {
+export const plansAll = {
 	plans: [
 		{
 			id: 32174,
