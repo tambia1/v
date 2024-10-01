@@ -16,14 +16,14 @@ import { QueryBdbs } from "../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../user/queries/QueryCrdbs";
 import { Loader } from "@src/components/loader/Loader";
 
-const subsTitles = ["", "SUBSCRIPTION", "ID", "TYPE", "DB", ""];
+const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
 export const Datacenter = () => {
 	const navigator = useNavigator();
 	const [data, setData] = useState<Sub[]>([]);
 	const [isDataReady, setIsDataReady] = useState(false);
-	const [collapsed, setCollapsed] = useState<{ [K: string]: boolean }>({});
+	const [collapsed, setCollapsed] = useState<{ [subId: string]: boolean }>({});
 
 	const storeUser = StoreUser();
 	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: true });
@@ -72,6 +72,7 @@ export const Datacenter = () => {
 										size: bdb.size || plan.size,
 									})),
 				});
+
 				newCollapsed[subs[i].id] = true;
 			}
 		}
@@ -107,6 +108,19 @@ export const Datacenter = () => {
 		setCollapsed({ ...collapsed, [subscriptionId]: !collapsed[subscriptionId] });
 	};
 
+	const handleOnClickCollpseAll = (e: MouseEvent<HTMLDivElement>) => {
+		e.stopPropagation();
+
+		const collapseState = Object.keys(collapsed).some((subId) => !collapsed[subId]);
+
+		setCollapsed({
+			...Object.keys(collapsed).reduce((acc, subId) => {
+				acc[subId] = collapseState;
+				return acc;
+			}, {} as { [subId: string]: boolean }),
+		});
+	};
+
 	if (!isDataReady) {
 		return (
 			<S.Page>
@@ -119,16 +133,22 @@ export const Datacenter = () => {
 		<S.Page>
 			<S.SubscriptionsList>
 				<S.SubscriptionsHeader>
+					<S.ColIcon onClick={(e) => handleOnClickCollpseAll(e)}>
+						<Icon iconName="iconMinusCircle" />
+					</S.ColIcon>
 					{subsTitles.map((col, index) => (
 						<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 					))}
+					<S.ColIcon>
+						<Icon iconName="iconPlusCircle" />
+					</S.ColIcon>
 				</S.SubscriptionsHeader>
 
 				{data.map((sub) => (
 					<S.Col key={sub.id}>
 						<S.SubscriptionsRow onClick={(e) => handleOnClickCollpse(e, sub.id)}>
 							<S.IconCollapse $collapsed={collapsed[sub.id]}>
-								<Icon iconName="iconChevronDown" />
+								<Icon iconName="iconArrowDownCircle" />
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
@@ -139,9 +159,9 @@ export const Datacenter = () => {
 								{sub.type === "aarcp" && <Icon iconName="iconGlobe" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
-							<S.IconRight onClick={(e) => handleOnClickSubscription(e, sub.id)}>
-								<Icon iconName="iconChevronRight" />
-							</S.IconRight>
+							<S.ColIcon onClick={(e) => handleOnClickSubscription(e, sub.id)}>
+								<Icon iconName="iconArrowRightCircle" />
+							</S.ColIcon>
 						</S.SubscriptionsRow>
 
 						<S.DatabasesList>
@@ -163,11 +183,11 @@ export const Datacenter = () => {
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>
-													<S.Progress percent={(db.usage / db.size) * 100} />
+													<S.Progress percent={Math.max(25, (db.usage / db.size) * 100)} />
 												</S.DatabasesText>
-												<S.IconRight>
+												<S.ColIcon>
 													<Icon iconName="iconChevronsRight" />
-												</S.IconRight>
+												</S.ColIcon>
 											</S.DatabasesRow>
 										</S.Col>
 									))}

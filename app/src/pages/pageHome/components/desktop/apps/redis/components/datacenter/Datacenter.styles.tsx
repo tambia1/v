@@ -13,6 +13,11 @@ export const Page = styled.div`
 	box-sizing: border-box;
 `;
 
+export const Spacer = styled.div`
+	width: 100%;
+	height: 1rem;
+`;
+
 export const Pressable = styled.span`
 	cursor: pointer;
 `;
@@ -163,12 +168,12 @@ export const IconCollapse = styled.div<{ $collapsed: boolean }>`
 
 	& > div {
 		transition: all 0.3s ease;
-		transform: rotateZ(${({ $collapsed }) => ($collapsed ? -180 : 0)}deg);
+		transform: rotateX(${({ $collapsed }) => ($collapsed ? -180 : 0)}deg);
 		transform-origin: 50% 50%;
 	}
 `;
 
-export const IconRight = styled.div`
+export const ColIcon = styled.div`
 	width: 2rem;
 	height: 100%;
 	display: flex;
