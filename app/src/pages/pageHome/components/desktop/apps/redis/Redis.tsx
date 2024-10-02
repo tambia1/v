@@ -10,20 +10,6 @@ import { User } from "./components/user/User";
 import { menuGroups, MenuItemId } from "./Redis.types";
 import { Test } from "../test/Test";
 
-/*
-	make sure you have:
-	/etc/hosts
-	127.0.0.1 test.redislabs.com
-
-	browser:
-	https://test.redislabs.com:5000/v
-
-	use direct login
-
-	on fetch data error it will use fake data
-
-*/
-
 export const Redis = () => {
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
 	const [selectedMenuId, setSelectedMenutId] = useState<MenuItemId>("dataCenter");
