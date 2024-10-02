@@ -50,16 +50,18 @@ export const Redis = () => {
 
 	return (
 		<S.Redis>
-			<S.Bar>
-				{isLoggedin && <S.IconMenu iconName="iconMenu" onClick={handleOnClickMenu} />}
-				{isLoggedin && <S.IconLogout iconName="iconLogOut" onClick={handleOnClickLogout} />}
-			</S.Bar>
+			<S.Transition $visible={!isLoggedin}>
+				<User />
+			</S.Transition>
+
+			{isLoggedin && (
+				<S.Bar>
+					<S.IconMenu iconName="iconMenu" onClick={handleOnClickMenu} />
+					<S.IconLogout iconName="iconLogOut" onClick={handleOnClickLogout} />
+				</S.Bar>
+			)}
 
 			<S.Container>
-				<S.Transition $visible={!isLoggedin}>
-					<User />
-				</S.Transition>
-
 				<S.Transition $visible={isLoggedin}>
 					{isLoggedin && (
 						<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
