@@ -4,11 +4,11 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { useState } from "react";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { Home } from "./components/home/Home";
 import { Datacenter } from "./components/datacenter/Datacenter";
 import { StoreUser } from "./components/user/stores/StoreUser";
 import { User } from "./components/user/User";
 import { menuGroups, MenuItemId } from "./Redis.types";
+import { Test } from "../test/Test";
 
 /*
 	make sure you have:
@@ -76,7 +76,7 @@ export const Redis = () => {
 							<S.Transition $visible={selectedMenuId === "dataAccess"}>
 								<Navigator>
 									<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
-										<Home />
+										<Test />
 									</Navigator.Page>
 								</Navigator>
 							</S.Transition>
