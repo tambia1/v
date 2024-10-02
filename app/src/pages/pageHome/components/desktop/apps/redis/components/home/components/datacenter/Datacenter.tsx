@@ -9,11 +9,11 @@ import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/components/icon/Icon";
 import { Sub } from "./Datacenter.types";
 import { Subscription } from "./components/subscription/Subscription";
-import { QueryPlans } from "../user/queries/QueryPlans";
-import { StoreUser } from "../user/stores/StoreUser";
-import { QuerySubscriptions } from "../user/queries/QuerySubscriptions";
-import { QueryBdbs } from "../user/queries/QueryBdbs";
-import { QueryCrdbs } from "../user/queries/QueryCrdbs";
+import { QueryPlans } from "../../../user/queries/QueryPlans";
+import { StoreUser } from "../../../user/stores/StoreUser";
+import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
+import { QueryBdbs } from "../../../user/queries/QueryBdbs";
+import { QueryCrdbs } from "../../../user/queries/QueryCrdbs";
 import { Loader } from "@src/components/loader/Loader";
 import { Create } from "./components/create/Create";
 

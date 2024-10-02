@@ -1,5 +1,63 @@
 import * as S from "./Home.styles";
+import { Menu } from "@src/components/menu/Menu";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useState } from "react";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
+import { menuGroups, MenuItemId } from "./Home.types";
+import { Test } from "../test/Test";
+import { StoreUser } from "../user/stores/StoreUser";
+import { Datacenter } from "./components/datacenter/Datacenter";
 
 export const Home = () => {
-	return <S.Home>Test</S.Home>;
+	const storeUser = StoreUser();
+	const [isMenuVisible, setIsMenuVisible] = useState(false);
+	const [selectedMenuId, setSelectedMenutId] = useState<MenuItemId>("dataCenter");
+
+	const handleOnClickLogout = () => {
+		storeUser.setCsrf("");
+		setIsMenuVisible(false);
+	};
+
+	const handleOnClickMenu = () => {
+		setIsMenuVisible(!isMenuVisible);
+	};
+
+	const handleOnClickMenuBackground = () => {
+		setIsMenuVisible(false);
+	};
+
+	const handleOnClickMenuItem = (id: MenuItemId) => {
+		setIsMenuVisible(!isMenuVisible);
+		setSelectedMenutId(id);
+	};
+
+	return (
+		<S.Home>
+			<S.Bar>
+				<S.IconMenu iconName="iconMenu" onClick={handleOnClickMenu} />
+				<S.IconLogout iconName="iconLogOut" onClick={handleOnClickLogout} />
+			</S.Bar>
+
+			<S.Container>
+				<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
+					<S.Transition $visible={selectedMenuId === "dataCenter"}>
+						<Navigator>
+							<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataCenter}</T>}>
+								<Datacenter />
+							</Navigator.Page>
+						</Navigator>
+					</S.Transition>
+
+					<S.Transition $visible={selectedMenuId === "dataAccess"}>
+						<Navigator>
+							<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
+								<Test />
+							</Navigator.Page>
+						</Navigator>
+					</S.Transition>
+				</Menu>
+			</S.Container>
+		</S.Home>
+	);
 };

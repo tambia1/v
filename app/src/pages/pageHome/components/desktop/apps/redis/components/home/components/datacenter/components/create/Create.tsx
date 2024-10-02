@@ -2,8 +2,8 @@ import * as S from "./Create.styles";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
-import { StoreUser } from "../../../user/stores/StoreUser";
-import { QueryPlans } from "../../../user/queries/QueryPlans";
+import { StoreUser } from "../../../../../user/stores/StoreUser";
+import { QueryPlans } from "../../../../../user/queries/QueryPlans";
 import { convertBytes } from "../../Datacenter.utils";
 
 export const Create = () => {

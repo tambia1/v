@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { PlanCloud, PlanType } from "../user/queries/Query.types";
+import { PlanCloud, PlanType } from "../../../user/queries/Query.types";
 
 export type Sub = {
 	name: ReactNode;
