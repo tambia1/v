@@ -1,6 +1,6 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { QueryResult, Subscription } from "./Query.types";
-import { subs as fakeSubs } from "./../../../data/subs";
+import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { subs as fakeResponse } from "./../../../data/subs";
+import type { QueryResult, Subscription } from "./Query.types";
 
 type Props = {
 	csrf: string;
@@ -14,14 +14,17 @@ const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch(`https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				"x-csrf-token": props.csrf,
+		const response = await fetch(
+			"https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true",
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"x-csrf-token": props.csrf,
+				},
+				credentials: "include",
 			},
-			credentials: "include",
-		});
+		);
 
 		const res = await response.json();
 
@@ -32,21 +35,23 @@ const get = async (props: Props): Promise<Result> => {
 				response: res,
 			};
 		} else {
-			// result = {
-			// 	error: 2,
-			// 	message: "error",
-			// };
-
 			result = {
-				error: 0,
-				message: "fake",
-				response: fakeSubs,
+				error: 2,
+				message: "error",
 			};
 		}
 	} catch (error) {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 

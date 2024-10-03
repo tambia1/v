@@ -1,24 +1,13 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
-import { QueryResult } from "./Query.types";
+import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { login as fakeResponse } from "./../../../data/login";
+import type { Login, QueryResult } from "./Query.types";
 
 type Props = {
 	email: string;
 	password: string;
 };
 
-type Result = QueryResult<{
-	auth_mode: string;
-	current_account_id: string;
-	email: string;
-	id: string;
-	name: string;
-	permissions: string[];
-	product_type: string;
-	production: boolean;
-	role: string;
-	user_id: number;
-}>;
+type Result = QueryResult<Login>;
 
 const send = async (props: Props): Promise<Result> => {
 	let result: Result = {
