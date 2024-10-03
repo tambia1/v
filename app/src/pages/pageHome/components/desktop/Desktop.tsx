@@ -1,29 +1,29 @@
-import { ErrorInfo, ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
-import * as S from "./Desktop.styles";
-import { useThemeContext } from "@src/theme/UseThemeContext";
-import { ITheme, themes } from "@src/theme/Theme.types";
-import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
-import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
-import { useSearchParams } from "react-router-dom";
-import { useBarSearchParams } from "../../hooks/useBarSearchParams";
-import { IApp, apps } from "./Desktop.apps";
-import { ILanguageName } from "@src/locales/i18n.types";
-import { useTranslation } from "react-i18next";
-import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/theme/store/ThemeStore";
-import { StoreUser } from "@apps/user/stores/StoreUser";
 import { QueryUser } from "@apps/user/queries/QueryUser";
-import { lang } from "@src/locales/i18n";
-import { T } from "@src/locales/T";
-import { AppButton } from "./components/appButton/AppButton";
-import { Suspension } from "@src/components/suspension/Suspension";
-import { Promises } from "@src/services/Promises";
-import { BarMainContext } from "./hooks/UseBarMain";
-import { BarMain } from "./components/barMain/BarMain";
-import { useAnimation } from "@src/hooks/UseAnimation";
+import { StoreUser } from "@apps/user/stores/StoreUser";
 import { Modal } from "@src/components/modal/Modal";
 import { Pager } from "@src/components/pager/Pager";
-import { getExternalApps, removeAppsNotFittingByRoles as getAppsByRoles } from "./Desktop.utils";
+import { Suspension } from "@src/components/suspension/Suspension";
+import { useAnimation } from "@src/hooks/UseAnimation";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
+import type { ILanguageName } from "@src/locales/i18n.types";
+import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/theme/store/ThemeStore";
+import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
+import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
+import { Promises } from "@src/services/Promises";
+import { type ITheme, themes } from "@src/theme/Theme.types";
+import { useThemeContext } from "@src/theme/UseThemeContext";
+import { type ErrorInfo, type ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+import { useBarSearchParams } from "../../hooks/useBarSearchParams";
+import { type IApp, apps } from "./Desktop.apps";
+import * as S from "./Desktop.styles";
+import { removeAppsNotFittingByRoles as getAppsByRoles, getExternalApps } from "./Desktop.utils";
+import { AppButton } from "./components/appButton/AppButton";
 import { BarDoneCancel } from "./components/barDoneCancel/BarDoneCancel";
+import { BarMain } from "./components/barMain/BarMain";
+import { BarMainContext } from "./hooks/UseBarMain";
 import { StoreApps } from "./stores/StoreApps";
 
 export const Desktop = () => {
@@ -52,18 +52,24 @@ export const Desktop = () => {
 
 	useLayoutEffect(() => {
 		animationApp.play("disappear");
-	}, []);
+	}, [animationApp.play]);
 
 	useLocalesSearchParams({
-		onChange: useCallback((language: ILanguageName) => {
-			i18n.changeLanguage(language);
-		}, []),
+		onChange: useCallback(
+			(language: ILanguageName) => {
+				i18n.changeLanguage(language);
+			},
+			[i18n.changeLanguage],
+		),
 	});
 
 	useThemesSearchParams({
-		onChange: useCallback((themeName: ITheme["themeName"]) => {
-			setTheme(themes[themeName]);
-		}, []),
+		onChange: useCallback(
+			(themeName: ITheme["themeName"]) => {
+				setTheme(themes[themeName]);
+			},
+			[setTheme],
+		),
 	});
 
 	useBarSearchParams({
@@ -77,7 +83,12 @@ export const Desktop = () => {
 			return;
 		}
 
-		const app = allApps.flat().find((app) => app.id === appId)!;
+		const app = allApps.flat().find((app) => app.id === appId);
+
+		if (!app) {
+			return;
+		}
+
 		const timeStart = Date.now();
 		let isLoading = false;
 
