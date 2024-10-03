@@ -1,3 +1,6 @@
+import { Counter } from "@src/components/counter/Counter";
+import { Icon } from "@src/components/icon/Icon";
+import { Select } from "@src/components/select/Select";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
@@ -16,6 +19,22 @@ export const Create = () => {
 	return (
 		<S.Create>
 			<Text size="l">{t(lang.redis.create.title)}</Text>
+
+			<S.Spacer />
+			<Select selectedIndex={0} onClickItem={() => {}}>
+				<Select.Item>
+					<Icon iconName="iconAmazon" />
+				</Select.Item>
+				<Select.Item>
+					<Icon iconName="iconGoogle" />
+				</Select.Item>
+				<Select.Item>
+					<Icon iconName="iconMicrosoft" />
+				</Select.Item>
+			</Select>
+
+			<S.Spacer />
+			<Counter min={0} max={12} val={0} />
 
 			<S.Spacer />
 			<Text size="m">Cloud vendors</Text>
@@ -38,14 +57,6 @@ export const Create = () => {
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => plan.region))).map((size) => (
 					<S.Col key={size}>{size}</S.Col>
-				))}
-			</S.Row>
-
-			<S.Spacer />
-			<Text size="m">Number of databases</Text>
-			<S.Row>
-				{Array.from(new Set(plans.map((plan) => plan.max_bdbs))).map((maxBdbs) => (
-					<S.Col key={maxBdbs}>{maxBdbs}</S.Col>
 				))}
 			</S.Row>
 
