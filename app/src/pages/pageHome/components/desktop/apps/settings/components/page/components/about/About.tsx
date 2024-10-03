@@ -1,9 +1,9 @@
-import * as S from "./About.styles";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { Device } from "@src/utils/Device";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import * as S from "./About.styles";
 
 export const About = () => {
 	const { t } = useTranslation();
@@ -14,15 +14,15 @@ export const About = () => {
 		orientation: window.screen.orientation.type,
 	});
 
-	const getOrientation = () => {
-		setDimensions({
-			width: document.body.clientWidth,
-			height: document.body.clientHeight,
-			orientation: window.screen.orientation.type,
-		});
-	};
-
 	useEffect(() => {
+		const getOrientation = () => {
+			setDimensions({
+				width: document.body.clientWidth,
+				height: document.body.clientHeight,
+				orientation: window.screen.orientation.type,
+			});
+		};
+
 		window.addEventListener("resize", getOrientation);
 		window.screen.orientation.addEventListener("change", getOrientation);
 

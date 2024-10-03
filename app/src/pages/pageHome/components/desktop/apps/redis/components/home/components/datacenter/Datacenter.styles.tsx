@@ -3,7 +3,7 @@ import { Progress as ProgressComponent } from "@src/components/progress/Progress
 import styled, { css } from "styled-components";
 
 export const Page = styled.div`
-	width: auto;
+	width: 100%;
 	height: 100%;
 
 	display: flex;

@@ -1,4 +1,4 @@
-import { ILanguageName } from "../i18n.types";
+import type { ILanguageName } from "../i18n.types";
 
 export type IHome = {
 	languageName: ILanguageName;

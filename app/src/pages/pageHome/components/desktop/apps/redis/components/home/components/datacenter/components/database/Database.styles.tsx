@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Database = styled.div`
-	width: auto;
-	height: auto;
+	width: 100%;
+	height: 100%;
 
 	display: flex;
 	flex-direction: column;

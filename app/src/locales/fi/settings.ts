@@ -1,5 +1,5 @@
-import { ISettings } from "../types/settings.types";
 import { version } from "@src/../package.json";
+import type { ISettings } from "../types/settings.types";
 
 export const translation: ISettings = {
 	settings: {
