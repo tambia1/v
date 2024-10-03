@@ -61,6 +61,14 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
+			<Text size="m">Number of databases</Text>
+			<S.Row>
+				{Array.from(new Set(plans.map((plan) => plan.max_bdbs))).map((maxBdbs) => (
+					<S.Col key={maxBdbs}>{maxBdbs}</S.Col>
+				))}
+			</S.Row>
+
+			<S.Spacer />
 			<Text size="m">High availability</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => (plan.is_multi_az ? "multi" : plan.replication === "default" ? "none" : "single")))).map(
