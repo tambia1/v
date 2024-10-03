@@ -1,10 +1,10 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import * as S from "./Splash.styles";
 import { version } from "@src/../package.json";
-import { Files } from "@src/services/Files";
-import { Promises } from "@src/services/Promises";
 import { Progress } from "@src/components/progress/Progress";
 import { useAnimation } from "@src/hooks/UseAnimation";
+import { Files } from "@src/services/Files";
+import { Promises } from "@src/services/Promises";
+import { useLayoutEffect, useRef, useState } from "react";
+import * as S from "./Splash.styles";
 import { getImagesToCache } from "./Splash.utils";
 
 interface Props {
@@ -48,7 +48,7 @@ export const Splash = ({ onFinish }: Props) => {
 		};
 
 		start();
-	}, []);
+	}, [animationLogo.play, animationProgress.play, onFinish]);
 
 	return (
 		<S.Splash>
