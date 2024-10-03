@@ -1,14 +1,14 @@
-import * as S from "./SpinPage.styles";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Navigator } from "@src/components/navigator/Navigator";
-import { List } from "@src/components/list/List";
+import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
+import { List } from "@src/components/list/List";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { SlotMachine } from "./components/slotMachine/SlotMachine";
-import { useSpinStore } from "../store/UseSpinStore";
 import { useTranslation } from "react-i18next";
-import { Button } from "@src/components/button/Button";
+import { useSpinStore } from "../store/UseSpinStore";
+import * as S from "./SpinPage.styles";
+import { SlotMachine } from "./components/slotMachine/SlotMachine";
 
 export const SpinPage = () => {
 	const navigator = useNavigator();
@@ -19,7 +19,7 @@ export const SpinPage = () => {
 		navigator.pushPage(
 			<Navigator.Page id="slotMachine" title={t(lang.spin.title)}>
 				<SlotMachine slotItems={spinStore.data} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -72,7 +72,7 @@ export const SpinPage = () => {
 			</List>
 
 			<S.Buttons>
-				<Button onClick={handleOnClickSpin} disabled={spinStore.data.indexOf("") !== -1}>
+				<Button onClick={handleOnClickSpin} disabled={spinStore.data.length === 0}>
 					<T>{lang.spin.ready}</T>
 				</Button>
 			</S.Buttons>
