@@ -18,18 +18,41 @@ import { Icons } from "@src/components/icon/Icon.types";
 import { appIcons as DesktopButtonsIcons } from "../desktop/components/appButton/AppButton.styles";
 import { backgroundImages } from "./../desktop/apps/settings/components/page/components/theme/Theme.styles";
 
-export const getImagesToCache = () => {
-	return [
+const chunkArray = (arr: string[], chunkSize: number): string[][] => {
+	const chunks: string[][] = [];
+
+	for (let i = 0; i < arr.length; i += chunkSize) {
+		chunks.push(arr.slice(i, i + chunkSize));
+	}
+
+	return chunks;
+};
+
+export const getImagesToCache = (): string[][] => {
+	const imagesGroups = [
+		[userLoggedIn, userLoggedOut],
+		Object.values(DesktopButtonsIcons),
 		Object.values(Icons),
 		backgroundImages.map((item) => item.light),
 		backgroundImages.map((item) => item.dark),
-		[userLoggedIn, userLoggedOut],
-		Object.values(DesktopButtonsIcons),
 		[modalIconsCheck, modalIconsClose, modalIconsError, modalIconsInfo, modalIconsQuestion],
-		storeBg,
-		slotMachine,
+		[storeBg],
+		[slotMachine],
 		[ninjaBoard, ninjaGrass],
 		[speedometer, speddCaliper, speedCompass],
 		[worldMapLight, worldMapDark],
 	];
+
+	const CHUNK_SIZE = 50;
+	const result: string[][] = [];
+
+	imagesGroups.forEach((imageGroup) => {
+		if (imageGroup.length >= CHUNK_SIZE) {
+			result.push(...chunkArray(imageGroup, CHUNK_SIZE));
+		} else {
+			result.push(imageGroup);
+		}
+	});
+
+	return result;
 };

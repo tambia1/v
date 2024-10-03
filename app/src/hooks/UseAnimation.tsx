@@ -1,4 +1,4 @@
-import { RefObject, useLayoutEffect, useRef } from "react";
+import { type RefObject, useCallback, useLayoutEffect, useRef } from "react";
 import "./UseAnimation.css";
 
 const Animations = {
@@ -55,19 +55,22 @@ export const useAnimation = (ref: RefObject<HTMLElement>) => {
 		};
 	}, [ref.current]);
 
-	const play = (animation: IAnimation) => {
-		const div = ref.current;
+	const play = useCallback(
+		(animation: IAnimation) => {
+			const div = ref.current;
 
-		if (!div) {
-			return;
-		}
+			if (!div) {
+				return;
+			}
 
-		div.style.cssText = Animations[animation];
+			div.style.cssText = Animations[animation];
 
-		return new Promise<void>((resolve: IResolve) => {
-			refResolve.current = resolve;
-		});
-	};
+			return new Promise<void>((resolve: IResolve) => {
+				refResolve.current = resolve;
+			});
+		},
+		[ref],
+	);
 
 	return { play };
 };

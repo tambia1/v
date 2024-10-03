@@ -31,8 +31,9 @@ export const Splash = ({ onFinish }: Props) => {
 			const imagesToCache = getImagesToCache();
 
 			for (let i = 0; i < imagesToCache.length; i++) {
-				const urls = (Array.isArray(imagesToCache[i]) ? imagesToCache[i] : [imagesToCache[i]]) as string[];
+				const urls = imagesToCache[i];
 				await Files.downloadImages(urls);
+
 				setProgress((i / (imagesToCache.length - 1)) * 100);
 			}
 
