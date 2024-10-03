@@ -1,5 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
-import { MenuGroup } from "@src/components/menu/Menu";
+import type { MenuGroup } from "@src/components/menu/Menu";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 
