@@ -1,6 +1,6 @@
-import * as S from "./Flag.styles";
 import { ReactSVG } from "react-svg";
-import { Flags, IFlagName } from "./Flag.types";
+import * as S from "./Flag.styles";
+import { Flags, type IFlagName } from "./Flag.types";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string | undefined;
