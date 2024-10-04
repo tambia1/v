@@ -38,7 +38,7 @@ export const Datacenter = () => {
 		const bdbs = queryBdbs.data?.response?.bdbs || [];
 		const crdbs = queryCrdbs.data?.response?.crdbs || [];
 
-		if (plans.length || subs.length || bdbs.length || crdbs.length) {
+		if (!plans.length && !subs.length && !bdbs.length && !crdbs.length) {
 			return;
 		}
 
