@@ -1,21 +1,21 @@
-import * as S from "./Datacenter.styles";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Navigator } from "@src/components/navigator/Navigator";
-import { Database } from "./components/database/Database";
-import { T } from "@src/locales/T";
-import { lang } from "@src/locales/i18n";
-import { MouseEvent, useEffect, useState } from "react";
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Icon } from "@src/components/icon/Icon";
-import { Sub } from "./Datacenter.types";
-import { Subscription } from "./components/subscription/Subscription";
-import { QueryPlans } from "../../../user/queries/QueryPlans";
-import { StoreUser } from "../../../user/stores/StoreUser";
-import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
+import { Loader } from "@src/components/loader/Loader";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
+import { type MouseEvent, useEffect, useState } from "react";
 import { QueryBdbs } from "../../../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../../../user/queries/QueryCrdbs";
-import { Loader } from "@src/components/loader/Loader";
+import { QueryPlans } from "../../../user/queries/QueryPlans";
+import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
+import { StoreUser } from "../../../user/stores/StoreUser";
+import * as S from "./Datacenter.styles";
+import type { Sub } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
+import { Database } from "./components/database/Database";
+import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
@@ -33,20 +33,20 @@ export const Datacenter = () => {
 	const queryCrdbs = QueryCrdbs.crdbs({ csrf: storeUser.csrf });
 
 	useEffect(() => {
-		if (queryPlans.data?.error !== 0 || querySubs.data?.error !== 0 || queryBdbs.data?.error !== 0 || queryCrdbs.data?.error !== 0) {
+		const plans = queryPlans.data?.response?.plans || [];
+		const subs = querySubs.data?.response?.subscriptions || [];
+		const bdbs = queryBdbs.data?.response?.bdbs || [];
+		const crdbs = queryCrdbs.data?.response?.crdbs || [];
+
+		if (plans.length || subs.length || bdbs.length || crdbs.length) {
 			return;
 		}
 
 		const newData: Sub[] = [];
 		const newCollapsed: { [K: string]: boolean } = {};
 
-		const plans = queryPlans.data!.response!.plans!;
-		const subs = querySubs.data!.response!.subscriptions!;
-		const bdbs = queryBdbs.data!.response!.bdbs!;
-		const crdbs = queryCrdbs.data!.response!.crdbs!;
-
 		for (let i = 0; i < subs.length; i++) {
-			const plan = plans.find((plan) => plan.id === subs[i].plan)!;
+			const plan = plans.find((plan) => plan.id === subs[i].plan);
 
 			if (plan) {
 				newData.push({
@@ -89,7 +89,7 @@ export const Datacenter = () => {
 		navigator.pushPage(
 			<Navigator.Page id="subscription" title={<T>{lang.redis.subscription.title}</T>}>
 				<Subscription subscriptionId={subscriptionId} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -99,7 +99,7 @@ export const Datacenter = () => {
 		navigator.pushPage(
 			<Navigator.Page id="database" title={<T>{lang.redis.database.title}</T>}>
 				<Database databaseId={databaseId} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -115,10 +115,13 @@ export const Datacenter = () => {
 		const collapseState = Object.keys(collapsed).some((subId) => !collapsed[subId]);
 
 		setCollapsed({
-			...Object.keys(collapsed).reduce((acc, subId) => {
-				acc[subId] = collapseState;
-				return acc;
-			}, {} as { [subId: string]: boolean }),
+			...Object.keys(collapsed).reduce(
+				(acc, subId) => {
+					acc[subId] = collapseState;
+					return acc;
+				},
+				{} as { [subId: string]: boolean },
+			),
 		});
 	};
 
@@ -128,7 +131,7 @@ export const Datacenter = () => {
 		navigator.pushPage(
 			<Navigator.Page id="create" title={<T>{lang.redis.create.title}</T>}>
 				<Create />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
