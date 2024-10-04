@@ -78,6 +78,8 @@ export const Datacenter = () => {
 			}
 		}
 
+		newData.sort((a, b) => b.id - a.id);
+
 		setData(newData);
 		setCollapsed(newCollapsed);
 		setIsDataReady(true);

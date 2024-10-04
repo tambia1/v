@@ -30,6 +30,11 @@ export const WorldMapContainer = styled.div`
 
 export const Pin = styled.div`
 	white-space: nowrap;
+	transition: scale 0.3s ease;
+
+	&:hover{
+		scale: 150%;
+	}
 `;
 
 export const Row = styled.div`

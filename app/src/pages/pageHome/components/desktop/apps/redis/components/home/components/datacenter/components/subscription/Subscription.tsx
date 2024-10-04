@@ -1,18 +1,18 @@
-import * as S from "./Subscription.styles";
+import { Flag } from "@src/components/flag/Flag";
+import type { IFlagName } from "@src/components/flag/Flag.types";
+import { Icon } from "@src/components/icon/Icon";
+import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { lang } from "@src/locales/i18n";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import type { Plan as PlanType, Region, Subscription as SubscriptionType } from "../../../../../user/queries/Query.types";
+import { QueryPlans } from "../../../../../user/queries/QueryPlans";
+import { QueryRegions } from "../../../../../user/queries/QueryRegions";
 import { QuerySubscriptions } from "../../../../../user/queries/QuerySubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
-import { QueryRegions } from "../../../../../user/queries/QueryRegions";
-import { Region, Subscription as SubscriptionType } from "../../../../../user/queries/Query.types";
-import { useEffect, useState } from "react";
-import { QueryPlans } from "../../../../../user/queries/QueryPlans";
-import { Icon } from "@src/components/icon/Icon";
-import { Loader } from "@src/components/loader/Loader";
-import { Flag } from "@src/components/flag/Flag";
-import { IFlagName } from "@src/components/flag/Flag.types";
+import * as S from "./Subscription.styles";
 
 type Props = {
 	subscriptionId: number;
@@ -27,22 +27,31 @@ export const Subscription = ({ subscriptionId }: Props) => {
 	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
 
 	const [regions, setRegions] = useState<Region[]>([]);
-
 	const [sub, setSub] = useState<SubscriptionType | null>(null);
+	const [plan, setPlan] = useState<PlanType | null>(null);
 
 	useEffect(() => {
-		if (queryPlans.data?.error !== 0 || querySubs.data?.error !== 0 || queryRegions.data?.error !== 0) {
+		const plans = queryPlans.data?.response?.plans || [];
+		const subs = querySubs.data?.response?.subscriptions || [];
+		const regions = queryRegions.data?.response || [];
+
+		if (!plans.length && !subs.length && !regions.length) {
 			return;
 		}
 
 		const newRegions: Region[] = [];
 
-		const plans = queryPlans.data!.response!.plans!;
-		const subs = querySubs.data!.response!.subscriptions!;
-		const regions = queryRegions.data!.response!;
+		const sub = subs.find((sub) => sub.id === subscriptionId);
 
-		const sub = subs.find((sub) => sub.id === subscriptionId)!;
-		const plan = plans.find((plan) => plan.id === sub.plan)!;
+		if (!sub) {
+			return;
+		}
+
+		const plan = plans.find((plan) => plan.id === sub.plan);
+
+		if (!plan) {
+			return;
+		}
 
 		const region = regions.find((item) => item.name === plan.region);
 
@@ -60,9 +69,10 @@ export const Subscription = ({ subscriptionId }: Props) => {
 
 		setRegions(newRegions);
 		setSub(sub);
-	}, [querySubs.data, queryPlans.data, queryRegions.data]);
+		setPlan(plan);
+	}, [querySubs.data, queryPlans.data, queryRegions.data, subscriptionId]);
 
-	if (sub === null) {
+	if (!sub || !plan) {
 		return (
 			<S.Subscription>
 				<Loader />
@@ -83,7 +93,14 @@ export const Subscription = ({ subscriptionId }: Props) => {
 
 			<S.Row>
 				<Text size="m">Cloud: </Text>
-				<Icon iconName="iconAmazon" />
+				{plan.cloud.toLocaleLowerCase() === "aws" && <Icon iconName="iconAmazon" size="1rem" />}
+				{plan.cloud.toLocaleLowerCase() === "gcp" && <Icon iconName="iconGoogle" size="1rem" />}
+				{plan.cloud.toLocaleLowerCase() === "azure" && <Icon iconName="iconMicrosoft" size="1rem" />}
+			</S.Row>
+
+			<S.Row>
+				<Text size="m">ROF: </Text>
+				{String(plan.is_rof)}
 			</S.Row>
 
 			<S.Spacer />
