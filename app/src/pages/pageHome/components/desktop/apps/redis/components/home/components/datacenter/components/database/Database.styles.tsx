@@ -22,3 +22,9 @@ export const Row = styled.div`
 	margin-top: 0.5rem;
 	gap: 0.5rem;
 `;
+
+export const Col = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+`;

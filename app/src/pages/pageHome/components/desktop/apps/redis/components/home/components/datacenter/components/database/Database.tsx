@@ -1,3 +1,4 @@
+import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
@@ -9,6 +10,7 @@ import { QueryCrdbs } from "../../../../../user/queries/QueryCrdbs";
 import { QueryPlans } from "../../../../../user/queries/QueryPlans";
 import { QuerySubscriptions } from "../../../../../user/queries/QuerySubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
+import { convertBytes } from "../../Datacenter.utils";
 import * as S from "./Database.styles";
 
 type Props = {
@@ -92,6 +94,23 @@ export const Database = ({ databaseId }: Props) => {
 			<S.Row>
 				<Text size="m">Database ID:</Text>
 				<Text size="m">{bdb?.id || crdb?.id}</Text>
+			</S.Row>
+
+			<S.Row>
+				<S.Col>
+					<Icon iconName="iconRedis" size="3rem" />
+					<Text size="m">{convertBytes(bdb?.size || plan.size || (crdb?.memory_size_in_mb || 0) * 1024 * 1024, "biggest")}</Text>
+				</S.Col>
+
+				<S.Col>
+					<Icon iconName="iconDatabase" size="3rem" />
+					<Text size="m">Replica in same zone</Text>
+				</S.Col>
+
+				<S.Col>
+					<Icon iconName="iconHardDrive" size="3rem" />
+					<Text size="m">Data Persistence</Text>
+				</S.Col>
 			</S.Row>
 		</S.Database>
 	);
