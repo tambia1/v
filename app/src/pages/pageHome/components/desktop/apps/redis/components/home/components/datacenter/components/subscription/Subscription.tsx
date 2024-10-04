@@ -26,8 +26,8 @@ export const Subscription = ({ subscriptionId }: Props) => {
 	const querySubs = QuerySubscriptions.subscriptions({ csrf: storeUser.csrf });
 	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
 
-	const [regions, setRegions] = useState<Region[]>([]);
 	const [sub, setSub] = useState<SubscriptionType | null>(null);
+	const [regions, setRegions] = useState<Region[]>([]);
 	const [plan, setPlan] = useState<PlanType | null>(null);
 
 	useEffect(() => {
