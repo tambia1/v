@@ -227,14 +227,10 @@ export const SubscriptionsDetailsRow = styled.div`
 	flex-direction: row;
 	padding: 1rem;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1rem;
 	background-color: ${(props) => props.theme.color.normalBg};
 
-	& > div:nth-child(1) {
-		width: 8rem;
-		flex-shrink: 0;
-	}
-	& > div:nth-child(2) {
+	& > div {
 		width: auto;
 		flex-shrink: 0;
 	}
