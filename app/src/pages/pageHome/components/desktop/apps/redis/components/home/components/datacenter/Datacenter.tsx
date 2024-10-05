@@ -16,7 +16,7 @@ import { QueryRegions } from "../../../user/queries/QueryRegions";
 import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
 import { StoreUser } from "../../../user/stores/StoreUser";
 import * as S from "./Datacenter.styles";
-import type { Sub } from "./Datacenter.types";
+import type { DataCenterType as Sub } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
 import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
@@ -65,6 +65,7 @@ export const Datacenter = () => {
 						: (sub.minimal_pricing_regions
 								.map((subRegion) => regions.find((region) => region.name === subRegion.region_name))
 								.filter(Boolean) as Region[]),
+					rof: plan.is_rof,
 					dbs:
 						plan.plan_type === "aarcp"
 							? crdbs
@@ -205,6 +206,11 @@ export const Datacenter = () => {
 										{sub.regions.map((region) => (
 											<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
 										))}
+									</S.Row>
+									<S.Row>
+										<S.SubscriptionsDetailText>Flash</S.SubscriptionsDetailText>
+										{sub.rof && <Icon iconName="iconCheckSquare" />}
+										{!sub.rof && <Icon iconName="iconSquare" />}
 									</S.Row>
 								</S.SubscriptionsDetailsRow>
 
