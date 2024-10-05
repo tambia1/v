@@ -208,6 +208,12 @@ export const DatabasesText = styled.div`
 	color: ${(props) => props.theme.color.errorFg};
 `;
 
+export const DatabaseDetailText = styled.div`
+	display: flex;
+	align-items: center;
+	font-weight: normal;
+`;
+
 export const SubscriptionRow = styled.div`
 	width: 100%;
 	display: flex;

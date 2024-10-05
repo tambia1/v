@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { PlanCloud, PlanType, Region } from "../../../user/queries/Query.types";
+import type { HighAvailability, PlanCloud, PlanType, Region } from "../../../user/queries/Query.types";
 
 export type DataCenterType = {
 	name: ReactNode;
@@ -13,5 +13,7 @@ export type DataCenterType = {
 		id: number;
 		usage: number;
 		size: number;
+		highAvailability: HighAvailability;
+		dataPersistence: string;
 	}[];
 };

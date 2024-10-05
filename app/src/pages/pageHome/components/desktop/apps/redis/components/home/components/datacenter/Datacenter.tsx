@@ -9,6 +9,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { type MouseEvent, useEffect, useState } from "react";
 import type { Region } from "../../../user/queries/Query.types";
+import { getDetaPersistence, getHighAvailability } from "../../../user/queries/Query.utils";
 import { QueryBdbs } from "../../../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../../../user/queries/QueryCrdbs";
 import { QueryPlans } from "../../../user/queries/QueryPlans";
@@ -75,6 +76,8 @@ export const Datacenter = () => {
 										id: crdb.id,
 										usage: crdb.crdb_instances[0].usage,
 										size: crdb.memory_size_in_mb * 1024 * 1024,
+										highAvailability: getHighAvailability({ bdb: undefined, crdb, plan }),
+										dataPersistence: getDetaPersistence({ bdb: undefined, crdb, plan }),
 									}))
 							: bdbs
 									.filter((bdb) => bdb.subscription === sub.id)
@@ -83,6 +86,8 @@ export const Datacenter = () => {
 										id: bdb.id,
 										usage: bdb.usage,
 										size: bdb.size || plan.size,
+										highAvailability: getHighAvailability({ bdb, crdb: undefined, plan }),
+										dataPersistence: getDetaPersistence({ bdb, crdb: undefined, plan }),
 									})),
 				});
 
@@ -209,8 +214,8 @@ export const Datacenter = () => {
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Flash</S.SubscriptionsDetailText>
-										{sub.rof && <Icon iconName="iconCheckSquare" />}
 										{!sub.rof && <Icon iconName="iconSquare" />}
+										{sub.rof && <Icon iconName="iconCheckSquare" />}
 									</S.Row>
 								</S.SubscriptionsDetailsRow>
 
@@ -236,6 +241,18 @@ export const Datacenter = () => {
 												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
 													<Icon iconName="iconChevronsRight" />
 												</S.ColIcon>
+											</S.DatabasesRow>
+
+											<S.DatabasesRow>
+												<S.Row>
+													<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
+													{db.highAvailability === "no_replica" && <Icon iconName="iconSquare" />}
+													{db.highAvailability !== "no_replica" && <Icon iconName="iconCheckSquare" />}
+
+													<S.DatabaseDetailText>RDB</S.DatabaseDetailText>
+													{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" />}
+													{db.dataPersistence !== "disabled" && <Icon iconName="iconCheckSquare" />}
+												</S.Row>
 											</S.DatabasesRow>
 										</S.Col>
 									))}

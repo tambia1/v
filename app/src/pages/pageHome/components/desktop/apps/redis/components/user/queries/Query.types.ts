@@ -27,3 +27,5 @@ export type Bdb = (typeof bdbs.bdbs)[number];
 export type Crdb = (typeof crdbs.crdbs)[number];
 
 export type Region = (typeof regions)[number];
+
+export type HighAvailability = "replica_differen_zone" | "replica_same_zone" | "no_replica";

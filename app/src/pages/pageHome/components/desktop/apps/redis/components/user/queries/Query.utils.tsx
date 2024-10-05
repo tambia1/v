@@ -1,4 +1,4 @@
-import type { Bdb, Crdb, Plan } from "./Query.types";
+import type { Bdb, Crdb, HighAvailability, Plan } from "./Query.types";
 
 export const convertBytes = (bytes: number, unit: "bytes" | "mb" | "gb" | "tb" | "biggest") => {
 	const factor = {
@@ -31,7 +31,7 @@ export const getDbSize = (props: { bdb?: Bdb; crdb?: Crdb; plan?: Plan }) => {
 	return props.bdb?.size || props.plan?.size || (props.crdb?.memory_size_in_mb || 0) * 1024 * 1024;
 };
 
-export const getHighAvailability = ({ bdb, crdb, plan }: { bdb?: Bdb; crdb?: Crdb; plan?: Plan }) => {
+export const getHighAvailability = ({ bdb, crdb, plan }: { bdb?: Bdb; crdb?: Crdb; plan?: Plan }): HighAvailability => {
 	if (crdb || plan?.is_multi_az) {
 		return "replica_differen_zone";
 	}
