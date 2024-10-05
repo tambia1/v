@@ -1,4 +1,4 @@
-import { IHome } from "../types/home.types";
+import type { IHome } from "../types/home.types";
 
 export const translation: IHome = {
 	languageName: "en",

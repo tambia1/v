@@ -1,13 +1,13 @@
-import * as S from "./User.styles";
+import { Loader } from "@src/components/loader/Loader";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Loader } from "@src/components/loader/Loader";
 import { z } from "zod";
+import * as S from "./User.styles";
+import { QueryCsrf } from "./queries/QueryCsrf";
 import { QueryLogin } from "./queries/QueryLogin";
 import { StoreUser } from "./stores/StoreUser";
-import { QueryCsrf } from "./queries/QueryCsrf";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -42,7 +42,7 @@ export const User = () => {
 		} else {
 			storeUser.setCsrf("");
 		}
-	}, [queryCsrf.data, queryCsrf.isLoading, message.state]);
+	}, [storeUser.setCsrf, queryCsrf.data, queryCsrf.isLoading, message.state]);
 
 	useEffect(() => {
 		if (!storeUser.csrf) {
@@ -87,7 +87,11 @@ export const User = () => {
 
 	const handleOnClickLogout = async () => {
 		setMessage({ state: "idle", message: "" });
-		setInputData({ ...inputData, email: { ...inputData.email, value: "", disabled: false }, password: { ...inputData.password, value: "", disabled: false } });
+		setInputData({
+			...inputData,
+			email: { ...inputData.email, value: "", disabled: false },
+			password: { ...inputData.password, value: "", disabled: false },
+		});
 	};
 
 	const handleGoogleLogin = () => {};
@@ -101,7 +105,7 @@ export const User = () => {
 					<S.EmailImage iconName="iconUser" />
 					<S.EmailInput
 						type="text"
-						placeholder={t(lang.user.email) + " (a, b)"}
+						placeholder={t(lang.user.email)}
 						onChange={handleEmailChange}
 						value={inputData.email.value}
 						disabled={!!storeUser.csrf || isLoading}
@@ -113,7 +117,7 @@ export const User = () => {
 					<S.PasswordImage iconName="iconLock" />
 					<S.PasswordInput
 						type="password"
-						placeholder={t(lang.user.password) + " (a, b)"}
+						placeholder={t(lang.user.password)}
 						onChange={handlePasswordChange}
 						value={inputData.password.value}
 						disabled={!!storeUser.csrf || isLoading}

@@ -1,8 +1,8 @@
-import { ReactNode, useState } from "react";
-import * as S from "./Select.styles";
-import { List } from "./components/list/List";
 import { Icon } from "@src/components/icon/Icon";
+import { type ReactNode, useState } from "react";
+import * as S from "./Select.styles";
 import { Item } from "./components/item/Item";
+import { List } from "./components/list/List";
 
 export interface Props {
 	className?: string | undefined;

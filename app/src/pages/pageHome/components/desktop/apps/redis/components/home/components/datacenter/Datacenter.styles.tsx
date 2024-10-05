@@ -3,7 +3,7 @@ import { Progress as ProgressComponent } from "@src/components/progress/Progress
 import styled, { css } from "styled-components";
 
 export const Page = styled.div`
-	width: auto;
+	width: 100%;
 	height: 100%;
 
 	display: flex;
@@ -63,6 +63,7 @@ export const Row = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+	gap: 0.5rem
 `;
 
 const SubscriptionsWidth = css`
@@ -191,6 +192,12 @@ export const SubscriptionsText = styled.div`
 	align-items: center;
 `;
 
+export const SubscriptionsDetailText = styled.div`
+	display: flex;
+	align-items: center;
+	font-weight: normal;
+`;
+
 export const DatabasesText = styled.div`
 	width: 100%;
 	height: 100%;
@@ -213,6 +220,20 @@ export const SubscriptionsRow = styled.div`
 	}
 
 	${SubscriptionsWidth}
+`;
+
+export const SubscriptionsDetailsRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	padding: 1rem;
+	align-items: center;
+	gap: 1rem;
+	background-color: ${(props) => props.theme.color.normalBg};
+
+	& > div {
+		width: auto;
+		flex-shrink: 0;
+	}
 `;
 
 export const DatabasesRow = styled.div`

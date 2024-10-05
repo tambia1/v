@@ -1,21 +1,25 @@
-import * as S from "./Datacenter.styles";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Collapsable } from "@src/components/collapsable/Collapsable";
+import { Flag } from "@src/components/flag/Flag";
+import type { IFlagName } from "@src/components/flag/Flag.types";
+import { Icon } from "@src/components/icon/Icon";
+import { Loader } from "@src/components/loader/Loader";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { Database } from "./components/database/Database";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { MouseEvent, useEffect, useState } from "react";
-import { Collapsable } from "@src/components/collapsable/Collapsable";
-import { Icon } from "@src/components/icon/Icon";
-import { Sub } from "./Datacenter.types";
-import { Subscription } from "./components/subscription/Subscription";
-import { QueryPlans } from "../../../user/queries/QueryPlans";
-import { StoreUser } from "../../../user/stores/StoreUser";
-import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
+import { type MouseEvent, useEffect, useState } from "react";
+import type { Region } from "../../../user/queries/Query.types";
 import { QueryBdbs } from "../../../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../../../user/queries/QueryCrdbs";
-import { Loader } from "@src/components/loader/Loader";
+import { QueryPlans } from "../../../user/queries/QueryPlans";
+import { QueryRegions } from "../../../user/queries/QueryRegions";
+import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
+import { StoreUser } from "../../../user/stores/StoreUser";
+import * as S from "./Datacenter.styles";
+import type { Sub } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
+import { Database } from "./components/database/Database";
+import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
@@ -31,33 +35,40 @@ export const Datacenter = () => {
 	const querySubs = QuerySubscriptions.subscriptions({ csrf: storeUser.csrf });
 	const queryBdbs = QueryBdbs.bdbs({ csrf: storeUser.csrf });
 	const queryCrdbs = QueryCrdbs.crdbs({ csrf: storeUser.csrf });
+	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
 
 	useEffect(() => {
-		if (queryPlans.data?.error !== 0 || querySubs.data?.error !== 0 || queryBdbs.data?.error !== 0 || queryCrdbs.data?.error !== 0) {
+		const plans = queryPlans.data?.response?.plans || [];
+		const subs = querySubs.data?.response?.subscriptions || [];
+		const bdbs = queryBdbs.data?.response?.bdbs || [];
+		const crdbs = queryCrdbs.data?.response?.crdbs || [];
+		const regions = queryRegions.data?.response || [];
+
+		if (!plans.length && !subs.length && !bdbs.length && !crdbs.length && !regions.length) {
 			return;
 		}
 
 		const newData: Sub[] = [];
 		const newCollapsed: { [K: string]: boolean } = {};
 
-		const plans = queryPlans.data!.response!.plans!;
-		const subs = querySubs.data!.response!.subscriptions!;
-		const bdbs = queryBdbs.data!.response!.bdbs!;
-		const crdbs = queryCrdbs.data!.response!.crdbs!;
-
-		for (let i = 0; i < subs.length; i++) {
-			const plan = plans.find((plan) => plan.id === subs[i].plan)!;
+		subs.forEach((sub) => {
+			const plan = plans.find((plan) => plan.id === sub.plan);
 
 			if (plan) {
 				newData.push({
-					name: subs[i].name,
-					id: subs[i].id,
+					name: sub.name,
+					id: sub.id,
 					type: plan.plan_type,
-					cloud: plan.cloud,
+					cloud: plan.cloud.toLocaleLowerCase(),
+					regions: plan.region
+						? ([regions.find((region) => region.name === plan.region)] as Region[])
+						: (sub.minimal_pricing_regions
+								.map((subRegion) => regions.find((region) => region.name === subRegion.region_name))
+								.filter(Boolean) as Region[]),
 					dbs:
 						plan.plan_type === "aarcp"
 							? crdbs
-									.filter((crdb) => crdb.subscription === subs[i].id)
+									.filter((crdb) => crdb.subscription === sub.id)
 									.map((crdb) => ({
 										name: crdb.name,
 										id: crdb.id,
@@ -65,7 +76,7 @@ export const Datacenter = () => {
 										size: crdb.memory_size_in_mb * 1024 * 1024,
 									}))
 							: bdbs
-									.filter((bdb) => bdb.subscription === subs[i].id)
+									.filter((bdb) => bdb.subscription === sub.id)
 									.map((bdb) => ({
 										name: bdb.name,
 										id: bdb.id,
@@ -74,14 +85,16 @@ export const Datacenter = () => {
 									})),
 				});
 
-				newCollapsed[subs[i].id] = true;
+				newCollapsed[sub.id] = true;
 			}
-		}
+		});
+
+		newData.sort((a, b) => b.id - a.id);
 
 		setData(newData);
 		setCollapsed(newCollapsed);
 		setIsDataReady(true);
-	}, [queryPlans.data, querySubs.data, queryBdbs.data, queryCrdbs.data]);
+	}, [queryPlans.data, querySubs.data, queryBdbs.data, queryCrdbs.data, queryRegions.data]);
 
 	const handleOnClickSubscription = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
 		e.stopPropagation();
@@ -89,7 +102,7 @@ export const Datacenter = () => {
 		navigator.pushPage(
 			<Navigator.Page id="subscription" title={<T>{lang.redis.subscription.title}</T>}>
 				<Subscription subscriptionId={subscriptionId} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -99,7 +112,7 @@ export const Datacenter = () => {
 		navigator.pushPage(
 			<Navigator.Page id="database" title={<T>{lang.redis.database.title}</T>}>
 				<Database databaseId={databaseId} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -115,10 +128,13 @@ export const Datacenter = () => {
 		const collapseState = Object.keys(collapsed).some((subId) => !collapsed[subId]);
 
 		setCollapsed({
-			...Object.keys(collapsed).reduce((acc, subId) => {
-				acc[subId] = collapseState;
-				return acc;
-			}, {} as { [subId: string]: boolean }),
+			...Object.keys(collapsed).reduce(
+				(acc, subId) => {
+					acc[subId] = collapseState;
+					return acc;
+				},
+				{} as { [subId: string]: boolean },
+			),
 		});
 	};
 
@@ -128,7 +144,7 @@ export const Datacenter = () => {
 		navigator.pushPage(
 			<Navigator.Page id="create" title={<T>{lang.redis.create.title}</T>}>
 				<Create />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -177,6 +193,21 @@ export const Datacenter = () => {
 
 						<S.DatabasesList>
 							<Collapsable collapsed={collapsed[sub.id]}>
+								<S.SubscriptionsDetailsRow>
+									<S.Row>
+										<S.SubscriptionsDetailText>Vendor</S.SubscriptionsDetailText>
+										{sub.cloud === "aws" && <Icon iconName="iconAmazon" size="1rem" />}
+										{sub.cloud === "gcp" && <Icon iconName="iconGoogle" size="1rem" />}
+										{sub.cloud === "azure" && <Icon iconName="iconMicrosoft" size="1rem" />}
+									</S.Row>
+									<S.Row>
+										<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
+										{sub.regions.map((region) => (
+											<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
+										))}
+									</S.Row>
+								</S.SubscriptionsDetailsRow>
+
 								<S.DatabasesHeader>
 									{dbsTitles.map((col) => (
 										<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>

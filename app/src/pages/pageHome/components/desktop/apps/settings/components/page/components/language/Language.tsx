@@ -1,12 +1,12 @@
-import * as S from "./Language.styles";
-import { List } from "@src/components/list/List";
+import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
-import { useTranslation } from "react-i18next";
+import { List } from "@src/components/list/List";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import type { ILanguageName } from "@src/locales/i18n.types";
+import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
-import { ILanguageName } from "@src/locales/i18n.types";
-import { Flag } from "@src/components/flag/Flag";
+import * as S from "./Language.styles";
 
 export const Language = () => {
 	const { i18n } = useTranslation();

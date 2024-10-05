@@ -1,6 +1,6 @@
+import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { bdbs as fakeResponse } from "./../../../data/bdbs";
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { Bdb, QueryResult } from "./Query.types";
+import type { Bdb, QueryResult } from "./Query.types";
 
 type Props = {
 	csrf: string;
@@ -14,7 +14,7 @@ const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch(`https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/bdbs?productType=unifiedrc`, {
+		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/bdbs?productType=unifiedrc", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",

@@ -1,13 +1,14 @@
-import * as S from "./Home.styles";
 import { Menu } from "@src/components/menu/Menu";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { useState } from "react";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { menuGroups, MenuItemId } from "./Home.types";
-import { Test } from "../test/Test";
+import { useState } from "react";
 import { StoreUser } from "../user/stores/StoreUser";
+import * as S from "./Home.styles";
+import { type MenuItemId, menuGroups } from "./Home.types";
+import { About } from "./components/about/About";
 import { Datacenter } from "./components/datacenter/Datacenter";
+import { Test } from "./components/test/Test";
 
 export const Home = () => {
 	const storeUser = StoreUser();
@@ -40,10 +41,16 @@ export const Home = () => {
 			</S.Bar>
 
 			<S.Container>
-				<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId={selectedMenuId} onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem}>
+				<Menu
+					$visible={isMenuVisible}
+					menuGroups={menuGroups}
+					selectedMenuId={selectedMenuId}
+					onClickBackground={handleOnClickMenuBackground}
+					onClickItem={handleOnClickMenuItem}
+				>
 					<S.Transition $visible={selectedMenuId === "dataCenter"}>
 						<Navigator>
-							<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataCenter}</T>}>
+							<Navigator.Page id={selectedMenuId} title={<T>{lang.redis.menu.data.dataCenter}</T>}>
 								<Datacenter />
 							</Navigator.Page>
 						</Navigator>
@@ -51,8 +58,16 @@ export const Home = () => {
 
 					<S.Transition $visible={selectedMenuId === "dataAccess"}>
 						<Navigator>
-							<Navigator.Page id="app" title={<T>{lang.redis.menu.data.dataAccess}</T>}>
+							<Navigator.Page id={selectedMenuId} title={<T>{lang.redis.menu.data.dataAccess}</T>}>
 								<Test />
+							</Navigator.Page>
+						</Navigator>
+					</S.Transition>
+
+					<S.Transition $visible={selectedMenuId === "about"}>
+						<Navigator>
+							<Navigator.Page id={selectedMenuId} title={<T>{lang.redis.menu.data.dataAccess}</T>}>
+								<About />
 							</Navigator.Page>
 						</Navigator>
 					</S.Transition>

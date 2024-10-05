@@ -1,13 +1,12 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
-import { QueryResult } from "./Query.types";
+import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+import { me as fakeResponse } from "./../../../data/me";
+import type { Me, QueryResult } from "./Query.types";
 
 type Props = {
 	csrf: string;
 };
 
-type Result = QueryResult<{
-	data: {};
-}>;
+type Result = QueryResult<Me>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
@@ -40,6 +39,14 @@ const get = async (props: Props): Promise<Result> => {
 		result = {
 			error: 1,
 			message: "error",
+		};
+	}
+
+	if (result.error !== 0) {
+		result = {
+			error: 0,
+			message: "fake",
+			response: fakeResponse,
 		};
 	}
 
