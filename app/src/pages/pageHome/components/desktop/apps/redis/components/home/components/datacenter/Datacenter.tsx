@@ -61,7 +61,7 @@ export const Datacenter = () => {
 					type: plan.plan_type,
 					cloud: plan.cloud.toLocaleLowerCase(),
 					regions: plan.region
-						? ([regions.find((region) => region.name === plan.region)] as Region[])
+						? ([regions.find((region) => region.name === plan.region)].filter(Boolean) as Region[])
 						: (sub.minimal_pricing_regions
 								.map((subRegion) => regions.find((region) => region.name === subRegion.region_name))
 								.filter(Boolean) as Region[]),
@@ -183,7 +183,7 @@ export const Datacenter = () => {
 								{sub.type === "free" && <Icon iconName="iconStar" fill="yellow" />}
 								{sub.type === "paid" && <Icon iconName="iconServerSingle" fill="lightGreen" />}
 								{sub.type === "rcp" && <Icon iconName="iconServer" fill="gold" />}
-								{sub.type === "aarcp" && <Icon iconName="iconGlobe" />}
+								{sub.type === "aarcp" && <Icon iconName="iconGlobe" fill="cyan" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
 							<S.ColIcon onClick={(e) => handleOnClickSubscription(e, sub.id)}>
