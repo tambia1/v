@@ -172,24 +172,24 @@ export const Datacenter = () => {
 				</S.SubscriptionsHeader>
 
 				{data.map((sub) => (
-					<S.Col key={sub.id}>
-						<S.SubscriptionsRow onClick={(e) => handleOnClickCollpse(e, sub.id)}>
+					<S.SubscriptionRow key={sub.id}>
+						<S.SubscriptionsDataRow onClick={(e) => handleOnClickCollpse(e, sub.id)}>
 							<S.IconCollapse $collapsed={collapsed[sub.id]}>
 								<Icon iconName="iconArrowDownCircle" />
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.id}</S.SubscriptionsText>
 							<S.SubscriptionsText>
-								{sub.type === "free" && <Icon iconName="iconStar" />}
-								{sub.type === "paid" && <Icon iconName="iconServerSingle" />}
-								{sub.type === "rcp" && <Icon iconName="iconServer" />}
+								{sub.type === "free" && <Icon iconName="iconStar" fill="yellow" />}
+								{sub.type === "paid" && <Icon iconName="iconServerSingle" fill="lightGreen" />}
+								{sub.type === "rcp" && <Icon iconName="iconServer" fill="gold" />}
 								{sub.type === "aarcp" && <Icon iconName="iconGlobe" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
 							<S.ColIcon onClick={(e) => handleOnClickSubscription(e, sub.id)}>
 								<Icon iconName="iconArrowRightCircle" />
 							</S.ColIcon>
-						</S.SubscriptionsRow>
+						</S.SubscriptionsDataRow>
 
 						<S.DatabasesList>
 							<Collapsable collapsed={collapsed[sub.id]}>
@@ -240,7 +240,7 @@ export const Datacenter = () => {
 						<S.Row>
 							<S.SubscriptionsLine />
 						</S.Row>
-					</S.Col>
+					</S.SubscriptionRow>
 				))}
 			</S.SubscriptionsList>
 		</S.Page>

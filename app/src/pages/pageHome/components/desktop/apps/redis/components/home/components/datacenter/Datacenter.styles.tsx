@@ -205,15 +205,26 @@ export const DatabasesText = styled.div`
 	align-items: center;
 	font-weight: normal;
 	flex-shrink: 0;
+	color: ${(props) => props.theme.color.errorFg};
 `;
 
-export const SubscriptionsRow = styled.div`
+export const SubscriptionRow = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: ${(props) => props.theme.color.normalBgDisabled};
+
+	&:nth-child(odd){
+		background-color: ${(props) => props.theme.color.normalBgSelected};
+	}
+`;
+
+export const SubscriptionsDataRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	padding: 1rem;
 	align-items: center;
 	gap: 0.5rem;
-	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
@@ -242,7 +253,7 @@ export const DatabasesRow = styled.div`
 	padding: 1rem;
 	align-items: center;
 	gap: 0.5rem;
-	background-color: ${(props) => props.theme.color.normalBgDisabled};
+	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
