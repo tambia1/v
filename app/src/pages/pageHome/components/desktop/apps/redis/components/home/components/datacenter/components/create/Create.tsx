@@ -4,9 +4,9 @@ import { Select } from "@src/components/select/Select";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
+import { convertBytes } from "../../../../../user/queries/Query.utils";
 import { QueryPlans } from "../../../../../user/queries/QueryPlans";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
-import { convertBytes } from "../../Datacenter.utils";
 import * as S from "./Create.styles";
 
 export const Create = () => {

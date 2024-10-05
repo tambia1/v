@@ -5,12 +5,12 @@ import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { Bdb, Crdb, Plan, Subscription } from "../../../../../user/queries/Query.types";
+import { convertBytes, getDbSize, getDetaPersistence, getHighAvailability } from "../../../../../user/queries/Query.utils";
 import { QueryBdbs } from "../../../../../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../../../../../user/queries/QueryCrdbs";
 import { QueryPlans } from "../../../../../user/queries/QueryPlans";
 import { QuerySubscriptions } from "../../../../../user/queries/QuerySubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
-import { convertBytes } from "../../Datacenter.utils";
 import * as S from "./Database.styles";
 
 type Props = {
@@ -26,10 +26,10 @@ export const Database = ({ databaseId }: Props) => {
 	const queryBdbs = QueryBdbs.bdbs({ csrf: storeUser.csrf });
 	const queryCrdbs = QueryCrdbs.crdbs({ csrf: storeUser.csrf });
 
-	const [sub, setSub] = useState<Subscription | null>(null);
-	const [plan, setPlan] = useState<Plan | null>(null);
-	const [bdb, setBdb] = useState<Bdb | null>(null);
-	const [crdb, setCrdb] = useState<Crdb | null>(null);
+	const [sub, setSub] = useState<Subscription | undefined>(undefined);
+	const [plan, setPlan] = useState<Plan | undefined>(undefined);
+	const [bdb, setBdb] = useState<Bdb | undefined>(undefined);
+	const [crdb, setCrdb] = useState<Crdb | undefined>(undefined);
 
 	useEffect(() => {
 		const plans = queryPlans.data?.response?.plans || [];
@@ -84,8 +84,6 @@ export const Database = ({ databaseId }: Props) => {
 		<S.Database>
 			<Text size="l">{t(lang.redis.database.title)}</Text>
 
-			<S.Spacer />
-
 			<S.Row>
 				<Text size="m">Subscription ID:</Text>
 				<Text size="m">{sub.id}</Text>
@@ -97,20 +95,18 @@ export const Database = ({ databaseId }: Props) => {
 			</S.Row>
 
 			<S.Row>
-				<S.Col>
-					<Icon iconName="iconRedis" size="3rem" />
-					<Text size="m">{convertBytes(bdb?.size || plan.size || (crdb?.memory_size_in_mb || 0) * 1024 * 1024, "biggest")}</Text>
-				</S.Col>
+				<Icon iconName="iconRedis" size="3rem" />
+				<Text size="m">{convertBytes(getDbSize({ bdb, crdb, plan }), "biggest")}</Text>
+			</S.Row>
 
-				<S.Col>
-					<Icon iconName="iconDatabase" size="3rem" />
-					<Text size="m">Replica in same zone</Text>
-				</S.Col>
+			<S.Row>
+				<Icon iconName="iconDatabase" size="3rem" />
+				<Text size="m">{getHighAvailability({ bdb, crdb, plan })}</Text>
+			</S.Row>
 
-				<S.Col>
-					<Icon iconName="iconHardDrive" size="3rem" />
-					<Text size="m">Data Persistence</Text>
-				</S.Col>
+			<S.Row>
+				<Icon iconName="iconHardDrive" size="3rem" />
+				<Text size="m">{getDetaPersistence({ bdb, crdb, plan })}</Text>
 			</S.Row>
 		</S.Database>
 	);

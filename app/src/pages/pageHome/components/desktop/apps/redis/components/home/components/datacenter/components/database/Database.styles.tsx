@@ -13,14 +13,15 @@ export const Database = styled.div`
 
 export const Spacer = styled.div`
 	width: 100%;
-	height: 1rem;
+	height: 2rem;
 `;
 
 export const Row = styled.div`
 	display: flex;
 	flex-direction: row;
-	margin-top: 0.5rem;
-	gap: 0.5rem;
+	align-items: center;
+	margin-top: 2rem;
+	gap: 1rem;
 `;
 
 export const Col = styled.div`
