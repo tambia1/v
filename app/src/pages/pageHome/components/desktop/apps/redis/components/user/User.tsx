@@ -149,8 +149,8 @@ export const User = () => {
 					{isLoading && <Loader />}
 
 					{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}
-					{message.state === "error" && <S.Error>{message.message}</S.Error>}
-					{message.state === "success" && <S.Success>{message.message}</S.Success>}
+					{message.state === "error" && <S.ErrorMessage>{message.message}</S.ErrorMessage>}
+					{message.state === "success" && <S.SuccessMessage>{message.message}</S.SuccessMessage>}
 				</S.MessagesBox>
 			</S.Box>
 		</S.User>

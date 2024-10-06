@@ -1,6 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
 import styled from "styled-components";
+import imageBg from "./assets/login_bg.svg";
 import imageUserLoggedIn from "./assets/userLoggedIn.png";
 import imageUserLoggedOut from "./assets/userLoggedOut.png";
 
@@ -19,6 +20,11 @@ export const User = styled.div`
 	& * {
 		transition: all 0.3s ease;
 	}
+
+    background-color: rgba(0, 0, 200, 0.2);
+    background-image: url(${imageBg});
+    background-size: contain;
+    background-repeat: no-repeat;
 `;
 
 export const Box = styled.div`
@@ -166,13 +172,13 @@ export const Idle = styled.div`
 	white-space: nowrap;
 `;
 
-export const Success = styled.div`
+export const SuccessMessage = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.successFg};
 	white-space: nowrap;
 `;
 
-export const Error = styled.div`
+export const ErrorMessage = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.errorFg};
 	white-space: nowrap;
