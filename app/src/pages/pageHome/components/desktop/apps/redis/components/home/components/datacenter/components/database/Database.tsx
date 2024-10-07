@@ -5,7 +5,7 @@ import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { Bdb, Crdb, Plan, Subscription } from "../../../../../user/queries/Query.types";
-import { convertBytes, getDbSize, getDetaPersistence, getHighAvailability } from "../../../../../user/queries/Query.utils";
+import { convertBytes, getDbSize } from "../../../../../user/queries/Query.utils";
 import { QueryBdbs } from "../../../../../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../../../../../user/queries/QueryCrdbs";
 import { QueryPlans } from "../../../../../user/queries/QueryPlans";
@@ -101,12 +101,12 @@ export const Database = ({ databaseId }: Props) => {
 
 			<S.Row>
 				<Icon iconName="iconDatabase" size="3rem" />
-				<Text size="m">{getHighAvailability({ bdb, crdb, plan })}</Text>
+				<Text size="m"> {crdb ? "true" : String(bdb?.replication)}</Text>
 			</S.Row>
 
 			<S.Row>
 				<Icon iconName="iconHardDrive" size="3rem" />
-				<Text size="m">{getDetaPersistence({ bdb, crdb, plan })}</Text>
+				<Text size="m">{crdb ? "disabled" : String(bdb?.data_persistence)}</Text>
 			</S.Row>
 		</S.Database>
 	);

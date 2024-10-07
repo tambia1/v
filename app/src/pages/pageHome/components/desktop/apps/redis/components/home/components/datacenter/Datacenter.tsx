@@ -9,7 +9,6 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { type MouseEvent, useEffect, useState } from "react";
 import type { Region } from "../../../user/queries/Query.types";
-import { getDetaPersistence, getHighAvailability } from "../../../user/queries/Query.utils";
 import { QueryBdbs } from "../../../user/queries/QueryBdbs";
 import { QueryCrdbs } from "../../../user/queries/QueryCrdbs";
 import { QueryPlans } from "../../../user/queries/QueryPlans";
@@ -17,7 +16,7 @@ import { QueryRegions } from "../../../user/queries/QueryRegions";
 import { QuerySubscriptions } from "../../../user/queries/QuerySubscriptions";
 import { StoreUser } from "../../../user/stores/StoreUser";
 import * as S from "./Datacenter.styles";
-import type { DataCenterType as Sub } from "./Datacenter.types";
+import type { DataCenterType } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
 import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
@@ -27,7 +26,7 @@ const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
 export const Datacenter = () => {
 	const navigator = useNavigator();
-	const [data, setData] = useState<Sub[]>([]);
+	const [data, setData] = useState<DataCenterType[]>([]);
 	const [isDataReady, setIsDataReady] = useState(false);
 	const [collapsed, setCollapsed] = useState<{ [subId: string]: boolean }>({});
 
@@ -49,7 +48,7 @@ export const Datacenter = () => {
 			return;
 		}
 
-		const newData: Sub[] = [];
+		const newData: DataCenterType[] = [];
 		const newCollapsed: { [K: string]: boolean } = {};
 
 		subs.forEach((sub) => {
@@ -62,11 +61,10 @@ export const Datacenter = () => {
 					type: plan.plan_type,
 					cloud: plan.cloud.toLocaleLowerCase(),
 					regions: plan.region
-						? ([regions.find((region) => region.name === plan.region)].filter(Boolean) as Region[])
-						: (sub.minimal_pricing_regions
-								.map((subRegion) => regions.find((region) => region.name === subRegion.region_name))
-								.filter(Boolean) as Region[]),
-					rof: plan.is_rof,
+						? ([regions.find((region) => region.name === plan.region)] as Region[])
+						: (sub.minimal_pricing_regions.map((subRegion) => regions.find((region) => region.name === subRegion.region_name)) as Region[]),
+					redisOnFlash: plan.is_rof,
+					multiAvailabilityZone: plan.is_multi_az,
 					dbs:
 						plan.plan_type === "aarcp"
 							? crdbs
@@ -76,8 +74,8 @@ export const Datacenter = () => {
 										id: crdb.id,
 										usage: crdb.crdb_instances[0].usage,
 										size: crdb.memory_size_in_mb * 1024 * 1024,
-										highAvailability: getHighAvailability({ bdb: undefined, crdb, plan }),
-										dataPersistence: getDetaPersistence({ bdb: undefined, crdb, plan }),
+										highAvailability: true,
+										dataPersistence: "disabled",
 									}))
 							: bdbs
 									.filter((bdb) => bdb.subscription === sub.id)
@@ -86,8 +84,8 @@ export const Datacenter = () => {
 										id: bdb.id,
 										usage: bdb.usage,
 										size: bdb.size || plan.size,
-										highAvailability: getHighAvailability({ bdb, crdb: undefined, plan }),
-										dataPersistence: getDetaPersistence({ bdb, crdb: undefined, plan }),
+										highAvailability: bdb.replication,
+										dataPersistence: bdb.data_persistence,
 									})),
 				});
 
@@ -214,8 +212,13 @@ export const Datacenter = () => {
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Flash</S.SubscriptionsDetailText>
-										{!sub.rof && <Icon iconName="iconSquare" />}
-										{sub.rof && <Icon iconName="iconCheckSquare" />}
+										{!sub.redisOnFlash && <Icon iconName="iconSquare" />}
+										{sub.redisOnFlash && <Icon iconName="iconCheckSquare" />}
+									</S.Row>
+									<S.Row>
+										<S.SubscriptionsDetailText>Replica zone</S.SubscriptionsDetailText>
+										{!sub.multiAvailabilityZone && <Icon iconName="iconSquare" />}
+										{sub.multiAvailabilityZone && <Icon iconName="iconCheckSquare" />}
 									</S.Row>
 								</S.SubscriptionsDetailsRow>
 
@@ -246,10 +249,10 @@ export const Datacenter = () => {
 											<S.DatabasesRow>
 												<S.Row>
 													<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
-													{db.highAvailability === "no_replica" && <Icon iconName="iconSquare" />}
-													{db.highAvailability !== "no_replica" && <Icon iconName="iconCheckSquare" />}
+													{!db.highAvailability && <Icon iconName="iconSquare" />}
+													{db.highAvailability && <Icon iconName="iconCheckSquare" />}
 
-													<S.DatabaseDetailText>RDB</S.DatabaseDetailText>
+													<S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>
 													{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" />}
 													{db.dataPersistence !== "disabled" && <Icon iconName="iconCheckSquare" />}
 												</S.Row>

@@ -58,13 +58,6 @@
 			}
 		},
 		{
-			"name": "app knip",
-			"command": "npm run knip",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
 			"name": "app test",
 			"command": "npm run test",
 			"request": "launch",

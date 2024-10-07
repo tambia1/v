@@ -1,19 +1,20 @@
 import type { ReactNode } from "react";
-import type { HighAvailability, PlanCloud, PlanType, Region } from "../../../user/queries/Query.types";
+import type { PlanCloud, PlanType, Region } from "../../../user/queries/Query.types";
 
 export type DataCenterType = {
-	name: ReactNode;
 	id: number;
+	name: ReactNode;
 	type: PlanType;
 	cloud: PlanCloud;
+	redisOnFlash: boolean;
+	multiAvailabilityZone: boolean;
 	regions: Region[];
-	rof: boolean;
 	dbs: {
-		name: string;
 		id: number;
+		name: string;
 		usage: number;
 		size: number;
-		highAvailability: HighAvailability;
+		highAvailability: boolean;
 		dataPersistence: string;
 	}[];
 };
