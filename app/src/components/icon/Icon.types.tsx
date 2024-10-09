@@ -7,8 +7,10 @@ import iconAlignCenter from "./assets/align-center.svg";
 import iconAlignJustify from "./assets/align-justify.svg";
 import iconAlignLeft from "./assets/align-left.svg";
 import iconAlignRight from "./assets/align-right.svg";
+import iconAmazon from "./assets/amazon.svg";
 import iconAnchor from "./assets/anchor.svg";
 import iconAperture from "./assets/aperture.svg";
+import iconApple from "./assets/apple.svg";
 import iconArchive from "./assets/archive.svg";
 import iconArrowDownCircle from "./assets/arrow-down-circle.svg";
 import iconArrowDownLeft from "./assets/arrow-down-left.svg";
@@ -123,6 +125,7 @@ import iconGitPullRequest from "./assets/git-pull-request.svg";
 import iconGithub from "./assets/github.svg";
 import iconGitlab from "./assets/gitlab.svg";
 import iconGlobe from "./assets/globe.svg";
+import iconGoogle from "./assets/google.svg";
 import iconGrid from "./assets/grid.svg";
 import iconHardDrive from "./assets/hard-drive.svg";
 import iconHash from "./assets/hash.svg";
@@ -159,6 +162,7 @@ import iconMessageCircle from "./assets/message-circle.svg";
 import iconMessageSquare from "./assets/message-square.svg";
 import iconMicOff from "./assets/mic-off.svg";
 import iconMic from "./assets/mic.svg";
+import iconMicrosoft from "./assets/microsoft.svg";
 import iconMinimize2 from "./assets/minimize-2.svg";
 import iconMinimize from "./assets/minimize.svg";
 import iconMinusCircle from "./assets/minus-circle.svg";
@@ -212,8 +216,8 @@ import iconSave from "./assets/save.svg";
 import iconScissors from "./assets/scissors.svg";
 import iconSearch from "./assets/search.svg";
 import iconSend from "./assets/send.svg";
-import iconServer from "./assets/server.svg";
 import iconServerSingle from "./assets/server-single.svg";
+import iconServer from "./assets/server.svg";
 import iconSettings from "./assets/settings.svg";
 import iconShare2 from "./assets/share-2.svg";
 import iconShare from "./assets/share.svg";
@@ -270,6 +274,7 @@ import iconUserPlus from "./assets/user-plus.svg";
 import iconUserX from "./assets/user-x.svg";
 import iconUser from "./assets/user.svg";
 import iconUsers from "./assets/users.svg";
+import iconVSquare from "./assets/v-square.svg";
 import iconVideoOff from "./assets/video-off.svg";
 import iconVideo from "./assets/video.svg";
 import iconVoicemail from "./assets/voicemail.svg";
@@ -290,10 +295,6 @@ import iconZapOff from "./assets/zap-off.svg";
 import iconZap from "./assets/zap.svg";
 import iconZoomIn from "./assets/zoom-in.svg";
 import iconZoomOut from "./assets/zoom-out.svg";
-import iconGoogle from "./assets/google.svg";
-import iconApple from "./assets/apple.svg";
-import iconMicrosoft from "./assets/microsoft.svg";
-import iconAmazon from "./assets/amazon.svg";
 
 export const Icons = {
 	"": "",
@@ -576,6 +577,7 @@ export const Icons = {
 	iconVolume2,
 	iconVolumeX,
 	iconVolume,
+	iconVSquare,
 	iconWatch,
 	iconWifiOff,
 	iconWifi,

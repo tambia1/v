@@ -206,23 +206,19 @@ export const Datacenter = () => {
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
-										{sub.regions.map((region) => {
-											if (!region) {
-												console.log("aaa", sub);
-											}
-
-											return <Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />;
-										})}
+										{sub.regions.map((region) => (
+											<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
+										))}
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Flash</S.SubscriptionsDetailText>
 										{!sub.redisOnFlash && <Icon iconName="iconSquare" />}
-										{sub.redisOnFlash && <Icon iconName="iconCheckSquare" />}
+										{sub.redisOnFlash && <Icon iconName="iconVSquare" />}
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Replica zone</S.SubscriptionsDetailText>
 										{!sub.multiAvailabilityZone && <Icon iconName="iconSquare" />}
-										{sub.multiAvailabilityZone && <Icon iconName="iconCheckSquare" />}
+										{sub.multiAvailabilityZone && <Icon iconName="iconVSquare" />}
 									</S.Row>
 								</S.SubscriptionsDetailsRow>
 
@@ -254,11 +250,11 @@ export const Datacenter = () => {
 												<S.Row>
 													<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
 													{!db.highAvailability && <Icon iconName="iconSquare" />}
-													{db.highAvailability && <Icon iconName="iconCheckSquare" />}
+													{db.highAvailability && <Icon iconName="iconVSquare" />}
 
 													<S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>
 													{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" />}
-													{db.dataPersistence !== "disabled" && <Icon iconName="iconCheckSquare" />}
+													{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" />}
 												</S.Row>
 											</S.DatabasesRow>
 										</S.Col>

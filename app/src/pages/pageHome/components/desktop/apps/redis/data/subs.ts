@@ -2,6 +2,7 @@ export const subs = {
 	subscriptions: [
 		{
 			id: 126824,
+			name: "cache-M1Z8OL5A",
 			plan: 32382,
 			rcp: null,
 			aa_rcp: null,
@@ -16,7 +17,6 @@ export const subs = {
 			initial_charge: 0.0,
 			initial_payment_info: null,
 			minimal_pricing_regions: [],
-			name: "cache-M1Z8OL5A",
 			next_payment_date: "2024-11-01T23:59:59Z",
 			period: 0,
 			recurring_charge: null,
@@ -43,6 +43,7 @@ export const subs = {
 		},
 		{
 			id: 126823,
+			name: "cache-M1Z8NJTN",
 			plan: 32260,
 			rcp: null,
 			aa_rcp: null,
@@ -57,7 +58,6 @@ export const subs = {
 			initial_charge: 0.0,
 			initial_payment_info: null,
 			minimal_pricing_regions: [],
-			name: "cache-M1Z8NJTN",
 			next_payment_date: "2024-11-01T23:59:59Z",
 			period: 0,
 			recurring_charge: null,
@@ -84,6 +84,7 @@ export const subs = {
 		},
 		{
 			id: 126822,
+			name: "cache-M1Z8MV4L",
 			plan: 32190,
 			rcp: null,
 			aa_rcp: null,
@@ -98,7 +99,6 @@ export const subs = {
 			initial_charge: 0.0,
 			initial_payment_info: null,
 			minimal_pricing_regions: [],
-			name: "cache-M1Z8MV4L",
 			next_payment_date: "2024-11-01T23:59:59Z",
 			period: 0,
 			recurring_charge: null,
@@ -125,6 +125,7 @@ export const subs = {
 		},
 		{
 			id: 126828,
+			name: "PRO-aws-active-active-M1Z8WNGD",
 			plan: 34468,
 			rcp: null,
 			aa_rcp: {
@@ -651,7 +652,6 @@ export const subs = {
 					errors: null,
 				},
 			],
-			name: "PRO-aws-active-active-M1Z8WNGD",
 			next_payment_date: null,
 			period: 0,
 			recurring_charge: null,
@@ -738,6 +738,7 @@ export const subs = {
 		},
 		{
 			id: 126826,
+			name: "PRO-aws-ap-northeast-1-M1Z8S7OG",
 			plan: 34466,
 			rcp: {
 				id: 45960,
@@ -896,7 +897,6 @@ export const subs = {
 					errors: null,
 				},
 			],
-			name: "PRO-aws-ap-northeast-1-M1Z8S7OG",
 			next_payment_date: "2024-11-01T17:06:04Z",
 			period: 0,
 			recurring_charge: null,
@@ -936,6 +936,7 @@ export const subs = {
 		},
 		{
 			id: 126825,
+			name: "PRO-aws-eu-central-1-M1Z8QV6R",
 			plan: 34465,
 			rcp: {
 				id: 45959,
@@ -1084,7 +1085,6 @@ export const subs = {
 					errors: null,
 				},
 			],
-			name: "PRO-aws-eu-central-1-M1Z8QV6R",
 			next_payment_date: "2024-11-01T17:06:04Z",
 			period: 0,
 			recurring_charge: null,
@@ -1125,6 +1125,7 @@ export const subs = {
 		},
 		{
 			id: 126821,
+			name: "cache-M1Z8MJBS",
 			plan: 32178,
 			rcp: null,
 			aa_rcp: null,
@@ -1139,7 +1140,6 @@ export const subs = {
 			initial_charge: 0.0,
 			initial_payment_info: null,
 			minimal_pricing_regions: [],
-			name: "cache-M1Z8MJBS",
 			next_payment_date: null,
 			period: 0,
 			recurring_charge: null,
@@ -1166,6 +1166,7 @@ export const subs = {
 		},
 		{
 			id: 126827,
+			name: "PRO-gcp-us-central1-M1Z8TYXD",
 			plan: 34467,
 			rcp: {
 				id: 45961,
@@ -1344,7 +1345,6 @@ export const subs = {
 					errors: null,
 				},
 			],
-			name: "PRO-gcp-us-central1-M1Z8TYXD",
 			next_payment_date: "2024-11-01T17:06:04Z",
 			period: 0,
 			recurring_charge: null,
