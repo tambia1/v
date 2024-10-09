@@ -38,13 +38,13 @@ export const Datacenter = () => {
 	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
 
 	useEffect(() => {
-		const plans = queryPlans.data?.response?.plans || [];
-		const subs = querySubs.data?.response?.subscriptions || [];
-		const bdbs = queryBdbs.data?.response?.bdbs || [];
-		const crdbs = queryCrdbs.data?.response?.crdbs || [];
-		const regions = queryRegions.data?.response || [];
+		const plans = queryPlans.data?.response?.plans;
+		const subs = querySubs.data?.response?.subscriptions;
+		const bdbs = queryBdbs.data?.response?.bdbs;
+		const crdbs = queryCrdbs.data?.response?.crdbs;
+		const regions = queryRegions.data?.response;
 
-		if (!plans.length && !subs.length && !bdbs.length && !crdbs.length && !regions.length) {
+		if (!plans || !subs || !bdbs || !crdbs || !regions) {
 			return;
 		}
 
@@ -206,9 +206,13 @@ export const Datacenter = () => {
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
-										{sub.regions.map((region) => (
-											<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
-										))}
+										{sub.regions.map((region) => {
+											if (!region) {
+												console.log("aaa", sub);
+											}
+
+											return <Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />;
+										})}
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Flash</S.SubscriptionsDetailText>

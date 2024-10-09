@@ -32,12 +32,12 @@ export const Database = ({ databaseId }: Props) => {
 	const [crdb, setCrdb] = useState<Crdb | undefined>(undefined);
 
 	useEffect(() => {
-		const plans = queryPlans.data?.response?.plans || [];
-		const subs = querySubs.data?.response?.subscriptions || [];
-		const bdbs = queryBdbs.data?.response?.bdbs || [];
-		const crdbs = queryCrdbs.data?.response?.crdbs || [];
+		const plans = queryPlans.data?.response?.plans;
+		const subs = querySubs.data?.response?.subscriptions;
+		const bdbs = queryBdbs.data?.response?.bdbs;
+		const crdbs = queryCrdbs.data?.response?.crdbs;
 
-		if (!plans.length && !subs.length && !bdbs.length && !crdbs.length) {
+		if (!plans || !subs || !bdbs || !crdbs) {
 			return;
 		}
 

@@ -31,11 +31,11 @@ export const Subscription = ({ subscriptionId }: Props) => {
 	const [plan, setPlan] = useState<PlanType | null>(null);
 
 	useEffect(() => {
-		const plans = queryPlans.data?.response?.plans || [];
-		const subs = querySubs.data?.response?.subscriptions || [];
-		const regions = queryRegions.data?.response || [];
+		const plans = queryPlans.data?.response?.plans;
+		const subs = querySubs.data?.response?.subscriptions;
+		const regions = queryRegions.data?.response;
 
-		if (!plans.length && !subs.length && !regions.length) {
+		if (!plans || !subs || !regions) {
 			return;
 		}
 
