@@ -27,6 +27,6 @@ export const convertBytes = (bytes: number, unit: "bytes" | "mb" | "gb" | "tb" |
 	return `${convertedValue.toFixed(2)} ${finalUnit.toUpperCase()}`;
 };
 
-export const getDbSize = (props: { bdb?: Bdb; crdb?: Crdb; plan?: Plan }) => {
-	return props.bdb?.size || props.plan?.size || (props.crdb?.memory_size_in_mb || 0) * 1024 * 1024;
+export const getDbSize = ({ bdb, crdb, plan }: { bdb?: Bdb; crdb?: Crdb; plan?: Plan }) => {
+	return bdb?.size || plan?.size || (crdb?.memory_size_in_mb || 0) * 1024 * 1024;
 };
