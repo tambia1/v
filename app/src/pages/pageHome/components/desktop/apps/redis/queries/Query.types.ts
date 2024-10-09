@@ -1,10 +1,10 @@
-import type { bdbs } from "../../../data/bdbs";
-import type { crdbs } from "../../../data/crdbs";
-import type { login } from "../../../data/login";
-import type { me } from "../../../data/me";
-import type { plans } from "../../../data/plans";
-import type { regions } from "../../../data/regions";
-import type { subs } from "../../../data/subs";
+import type { bdbs } from "../data/bdbs";
+import type { crdbs } from "../data/crdbs";
+import type { login } from "../data/login";
+import type { me } from "../data/me";
+import type { plans } from "../data/plans";
+import type { regions } from "../data/regions";
+import type { subs } from "../data/subs";
 
 export type QueryResult<ResponseType> = {
 	error: number;

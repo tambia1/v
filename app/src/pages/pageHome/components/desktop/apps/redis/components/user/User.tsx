@@ -4,9 +4,9 @@ import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
+import { QueryCsrf } from "../../queries/QueryCsrf";
+import { QueryLogin } from "../../queries/QueryLogin";
 import * as S from "./User.styles";
-import { QueryCsrf } from "./queries/QueryCsrf";
-import { QueryLogin } from "./queries/QueryLogin";
 import { StoreUser } from "./stores/StoreUser";
 
 export const User = () => {

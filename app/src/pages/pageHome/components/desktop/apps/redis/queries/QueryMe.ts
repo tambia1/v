@@ -1,23 +1,22 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { csrf as fakeResponse } from "./../../../data/csrf";
-import type { QueryResult } from "./Query.types";
+import { me as fakeResponse } from "../data/me";
+import type { Me, QueryResult } from "./Query.types";
 
-type Result = QueryResult<{
-	csrfToken: {
-		csrf_token: string;
-		csrf_enabled: boolean;
-		errors: string[];
-	};
-}>;
+type Props = {
+	csrf: string;
+};
 
-const get = async (): Promise<Result> => {
+type Result = QueryResult<Me>;
+
+const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/csrf", {
+		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/users/me", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
+				"x-csrf-token": props.csrf,
 			},
 			credentials: "include",
 		});
@@ -54,14 +53,14 @@ const get = async (): Promise<Result> => {
 	return result;
 };
 
-const csrf = (options?: Partial<UseQueryOptions<Result, Error>>) => {
+const me = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["csrf"],
-		queryFn: () => get(),
+		queryKey: ["me"],
+		queryFn: () => get(props),
 		...options,
 	});
 };
 
-export const QueryCsrf = {
-	csrf,
+export const QueryMe = {
+	me,
 };

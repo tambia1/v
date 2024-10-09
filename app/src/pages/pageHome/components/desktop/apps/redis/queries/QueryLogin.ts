@@ -1,5 +1,5 @@
 import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
-import { login as fakeResponse } from "./../../../data/login";
+import { login as fakeResponse } from "../data/login";
 import type { Login, QueryResult } from "./Query.types";
 
 type Props = {

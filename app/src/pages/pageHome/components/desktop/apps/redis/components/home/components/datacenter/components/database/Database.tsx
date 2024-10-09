@@ -4,12 +4,12 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { Bdb, Crdb, Plan, Subscription } from "../../../../../user/queries/Query.types";
-import { convertBytes, getDbSize } from "../../../../../user/queries/Query.utils";
-import { QueryBdbs } from "../../../../../user/queries/QueryBdbs";
-import { QueryCrdbs } from "../../../../../user/queries/QueryCrdbs";
-import { QueryPlans } from "../../../../../user/queries/QueryPlans";
-import { QuerySubscriptions } from "../../../../../user/queries/QuerySubscriptions";
+import type { Bdb, Crdb, Plan, Subscription } from "../../../../../../queries/Query.types";
+import { convertBytes, getDbSize } from "../../../../../../queries/Query.utils";
+import { QueryBdbs } from "../../../../../../queries/QueryBdbs";
+import { QueryCrdbs } from "../../../../../../queries/QueryCrdbs";
+import { QueryPlans } from "../../../../../../queries/QueryPlans";
+import { QuerySubscriptions } from "../../../../../../queries/QuerySubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Database.styles";
 

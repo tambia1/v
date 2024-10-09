@@ -7,10 +7,10 @@ import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { Plan as PlanType, Region, Subscription as SubscriptionType } from "../../../../../user/queries/Query.types";
-import { QueryPlans } from "../../../../../user/queries/QueryPlans";
-import { QueryRegions } from "../../../../../user/queries/QueryRegions";
-import { QuerySubscriptions } from "../../../../../user/queries/QuerySubscriptions";
+import type { Plan as PlanType, Region, Subscription as SubscriptionType } from "../../../../../../queries/Query.types";
+import { QueryPlans } from "../../../../../../queries/QueryPlans";
+import { QueryRegions } from "../../../../../../queries/QueryRegions";
+import { QuerySubscriptions } from "../../../../../../queries/QuerySubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Subscription.styles";
 

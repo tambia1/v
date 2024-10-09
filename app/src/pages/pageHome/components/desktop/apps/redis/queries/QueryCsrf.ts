@@ -1,22 +1,23 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { regions as fakeResponse } from "../../../data/regions";
-import type { QueryResult, Region } from "./Query.types";
+import { csrf as fakeResponse } from "../data/csrf";
+import type { QueryResult } from "./Query.types";
 
-type Props = {
-	csrf: string;
-};
+type Result = QueryResult<{
+	csrfToken: {
+		csrf_token: string;
+		csrf_enabled: boolean;
+		errors: string[];
+	};
+}>;
 
-type Result = QueryResult<Region[]>;
-
-const get = async (props: Props): Promise<Result> => {
+const get = async (): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=all", {
+		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/csrf", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
-				"x-csrf-token": props.csrf,
 			},
 			credentials: "include",
 		});
@@ -53,14 +54,14 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const regions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const csrf = (options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["regions"],
-		queryFn: () => get(props),
+		queryKey: ["csrf"],
+		queryFn: () => get(),
 		...options,
 	});
 };
 
-export const QueryRegions = {
-	regions,
+export const QueryCsrf = {
+	csrf,
 };

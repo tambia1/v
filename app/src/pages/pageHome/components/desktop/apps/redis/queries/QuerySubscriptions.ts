@@ -1,27 +1,30 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { crdbs as fakeResponse } from "./../../../data/crdbs";
-import type { Crdb, QueryResult } from "./Query.types";
+import { subs as fakeResponse } from "../data/subs";
+import type { QueryResult, Subscription } from "./Query.types";
 
 type Props = {
 	csrf: string;
 };
 
 type Result = QueryResult<{
-	crdbs: Crdb[];
+	subscriptions: Subscription[];
 }>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/crdbs", {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json",
-				"x-csrf-token": props.csrf,
+		const response = await fetch(
+			"https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true",
+			{
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"x-csrf-token": props.csrf,
+				},
+				credentials: "include",
 			},
-			credentials: "include",
-		});
+		);
 
 		const res = await response.json();
 
@@ -55,14 +58,14 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const crdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const subscriptions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["crdbs"],
+		queryKey: ["subscriptions"],
 		queryFn: () => get(props),
 		...options,
 	});
 };
 
-export const QueryCrdbs = {
-	crdbs,
+export const QuerySubscriptions = {
+	subscriptions,
 };
