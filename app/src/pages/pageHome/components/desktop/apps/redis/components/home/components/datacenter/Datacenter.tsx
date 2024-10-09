@@ -9,6 +9,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { type MouseEvent, useEffect, useState } from "react";
 import type { Region } from "../../../../queries/Query.types";
+import { convertBytes } from "../../../../queries/Query.utils";
 import { QueryBdbs } from "../../../../queries/QueryBdbs";
 import { QueryCrdbs } from "../../../../queries/QueryCrdbs";
 import { QueryPlans } from "../../../../queries/QueryPlans";
@@ -248,6 +249,9 @@ export const Datacenter = () => {
 
 											<S.DatabasesRow>
 												<S.Row>
+													<S.DatabaseDetailText>Size</S.DatabaseDetailText>
+													<S.DatabaseDetailText>{convertBytes(db.size, "mb")}</S.DatabaseDetailText>
+
 													<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
 													{!db.highAvailability && <Icon iconName="iconSquare" />}
 													{db.highAvailability && <Icon iconName="iconVSquare" />}
