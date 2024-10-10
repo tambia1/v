@@ -101,16 +101,19 @@ const DatabasesWidth = css`
 	}
 
 	& > div:nth-child(1) {
-		width: 100%;
-		flex-shrink: 1;
+		width: 2rem;
 	}
 	& > div:nth-child(2) {
-		width: 5rem;
+		width: 100%;
+		flex-shrink: 1;
 	}
 	& > div:nth-child(3) {
 		width: 5rem;
 	}
 	& > div:nth-child(4) {
+		width: 5rem;
+	}
+	& > div:nth-child(5) {
 		width: 2rem;
 	}
 `;
@@ -266,6 +269,19 @@ export const DatabasesRow = styled.div`
 	}
 
 	${DatabasesWidth}
+`;
+
+export const DatabasesInfoRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	padding: 1rem;
+	align-items: center;
+	gap: 0.5rem;
+	background-color: ${(props) => props.theme.color.normalBg};
+
+	&:hover {
+		background-color: ${(props) => props.theme.color.normalBgHover};
+	}
 `;
 
 export const Progress = styled(ProgressComponent)<{ percent: number }>`

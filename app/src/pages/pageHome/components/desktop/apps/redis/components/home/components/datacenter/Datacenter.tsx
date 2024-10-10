@@ -23,13 +23,14 @@ import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
-const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
+const dbsTitles = ["", "DATABASE", "ID", "USAGE", ""];
 
 export const Datacenter = () => {
 	const navigator = useNavigator();
 	const [data, setData] = useState<DataCenterType[]>([]);
 	const [isDataReady, setIsDataReady] = useState(false);
-	const [collapsed, setCollapsed] = useState<{ [subId: string]: boolean }>({});
+	const [collapsedSubs, setCollapsedSubs] = useState<{ [subId: string]: boolean }>({});
+	const [collapsedDbs, setCollapsedDbs] = useState<{ [dbId: string]: boolean }>({});
 
 	const storeUser = StoreUser();
 	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: true });
@@ -50,13 +51,14 @@ export const Datacenter = () => {
 		}
 
 		const newData: DataCenterType[] = [];
-		const newCollapsed: { [K: string]: boolean } = {};
+		const newCollapsedSubs: typeof collapsedSubs = {};
+		const newCollapsedDbs: typeof collapsedDbs = {};
 
 		subs.forEach((sub) => {
 			const plan = plans.find((plan) => plan.id === sub.plan);
 
 			if (plan) {
-				newData.push({
+				const dataCenterItem: DataCenterType = {
 					name: sub.name,
 					id: sub.id,
 					type: plan.plan_type,
@@ -88,16 +90,23 @@ export const Datacenter = () => {
 										highAvailability: bdb.replication,
 										dataPersistence: bdb.data_persistence,
 									})),
-				});
+				};
 
-				newCollapsed[sub.id] = true;
+				newData.push(dataCenterItem);
+
+				newCollapsedSubs[sub.id] = true;
+
+				dataCenterItem.dbs.forEach((db) => {
+					newCollapsedDbs[db.id] = true;
+				});
 			}
 		});
 
 		newData.sort((a, b) => b.id - a.id);
 
 		setData(newData);
-		setCollapsed(newCollapsed);
+		setCollapsedSubs(newCollapsedSubs);
+		setCollapsedDbs(newCollapsedDbs);
 		setIsDataReady(true);
 	}, [queryPlans.data, querySubs.data, queryBdbs.data, queryCrdbs.data, queryRegions.data]);
 
@@ -121,26 +130,42 @@ export const Datacenter = () => {
 		);
 	};
 
-	const handleOnClickCollpse = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
-		e.stopPropagation();
-
-		setCollapsed({ ...collapsed, [subscriptionId]: !collapsed[subscriptionId] });
-	};
-
 	const handleOnClickCollpseAll = (e: MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
 
-		const collapseState = Object.keys(collapsed).some((subId) => !collapsed[subId]);
+		const collapseSubsState = Object.keys(collapsedSubs).some((subId) => !collapsedSubs[subId]);
 
-		setCollapsed({
-			...Object.keys(collapsed).reduce(
+		setCollapsedSubs({
+			...Object.keys(collapsedSubs).reduce(
 				(acc, subId) => {
-					acc[subId] = collapseState;
+					acc[subId] = collapseSubsState;
 					return acc;
 				},
-				{} as { [subId: string]: boolean },
+				{} as typeof collapsedSubs,
 			),
 		});
+
+		setCollapsedDbs({
+			...Object.keys(collapsedDbs).reduce(
+				(acc, dbId) => {
+					acc[dbId] = collapseSubsState;
+					return acc;
+				},
+				{} as typeof collapsedDbs,
+			),
+		});
+	};
+
+	const handleOnClickCollpseSub = (e: MouseEvent<HTMLDivElement>, subId: number) => {
+		e.stopPropagation();
+
+		setCollapsedSubs({ ...collapsedSubs, [subId]: !collapsedSubs[subId] });
+	};
+
+	const handleOnClickCollpseDb = (e: MouseEvent<HTMLDivElement>, dbId: number) => {
+		e.stopPropagation();
+
+		setCollapsedDbs({ ...collapsedDbs, [dbId]: !collapsedDbs[dbId] });
 	};
 
 	const handleOnClickCreate = (e: MouseEvent<HTMLDivElement>) => {
@@ -178,8 +203,8 @@ export const Datacenter = () => {
 
 				{data.map((sub) => (
 					<S.SubscriptionRow key={sub.id}>
-						<S.SubscriptionsDataRow onClick={(e) => handleOnClickCollpse(e, sub.id)}>
-							<S.IconCollapse $collapsed={collapsed[sub.id]}>
+						<S.SubscriptionsDataRow onClick={(e) => handleOnClickCollpseSub(e, sub.id)}>
+							<S.IconCollapse $collapsed={collapsedSubs[sub.id]}>
 								<Icon iconName="iconArrowDownCircle" />
 							</S.IconCollapse>
 							<S.SubscriptionsText>{sub.name}</S.SubscriptionsText>
@@ -197,7 +222,7 @@ export const Datacenter = () => {
 						</S.SubscriptionsDataRow>
 
 						<S.DatabasesList>
-							<Collapsable collapsed={collapsed[sub.id]}>
+							<Collapsable collapsed={collapsedSubs[sub.id]}>
 								<S.SubscriptionsDetailsRow>
 									<S.Row>
 										<S.SubscriptionsDetailText>Vendor</S.SubscriptionsDetailText>
@@ -236,19 +261,22 @@ export const Datacenter = () => {
 												<S.DatabasesLine />
 											</S.Row>
 
-											<S.DatabasesRow>
+											<S.DatabasesRow onClick={(e) => handleOnClickCollpseDb(e, db.id)}>
+												<S.IconCollapse $collapsed={collapsedDbs[db.id]}>
+													<Icon iconName="iconChevronDown" />
+												</S.IconCollapse>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>
 													<S.Progress percent={Math.max(25, (db.usage / db.size) * 100)} />
 												</S.DatabasesText>
 												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
-													<Icon iconName="iconChevronsRight" />
+													<Icon iconName="iconChevronRight" />
 												</S.ColIcon>
 											</S.DatabasesRow>
 
-											<S.DatabasesRow>
-												<S.Row>
+											<Collapsable collapsed={collapsedDbs[db.id]}>
+												<S.DatabasesInfoRow>
 													<S.DatabaseDetailText>Size</S.DatabaseDetailText>
 													<S.DatabaseDetailText>{convertBytes(db.size, "mb")}</S.DatabaseDetailText>
 
@@ -259,8 +287,8 @@ export const Datacenter = () => {
 													<S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>
 													{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" />}
 													{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" />}
-												</S.Row>
-											</S.DatabasesRow>
+												</S.DatabasesInfoRow>
+											</Collapsable>
 										</S.Col>
 									))}
 								</S.Col>
