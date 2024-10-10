@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { IType, Table } from "@src/components/table/Table";
-import * as S from "./TestTable.styles";
-import { data } from "./Data";
 import { Select } from "@src/components/select/Select";
+import { type IType, Table } from "@src/components/table/Table";
+import { useState } from "react";
+import { data } from "./Data";
+import * as S from "./TestTable.styles";
 
 export const TestTable = () => {
 	const [selectIndex, setSelectIndex] = useState(0);
