@@ -249,8 +249,8 @@ export const Datacenter = () => {
 								</S.SubscriptionsDetailsRow>
 
 								<S.DatabasesHeader>
-									{dbsTitles.map((col) => (
-										<S.SubscriptionsText key={col}>{col}</S.SubscriptionsText>
+									{dbsTitles.map((col, index) => (
+										<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 									))}
 								</S.DatabasesHeader>
 
