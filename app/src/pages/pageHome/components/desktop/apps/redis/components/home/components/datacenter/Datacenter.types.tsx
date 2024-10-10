@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { PlanCloud, PlanType, Region } from "../../../../queries/Query.types";
 
 export type DataCenterType = {
+	collapsed: boolean;
 	id: number;
 	name: ReactNode;
 	type: PlanType;
@@ -10,6 +11,7 @@ export type DataCenterType = {
 	multiAvailabilityZone: boolean;
 	regions: Region[];
 	dbs: {
+		collapsed: boolean;
 		id: number;
 		name: string;
 		usage: number;
