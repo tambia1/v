@@ -234,6 +234,7 @@ export const SubscriptionsDataRow = styled.div`
 	padding: 1rem;
 	align-items: center;
 	gap: 0.5rem;
+	height: 3rem;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
