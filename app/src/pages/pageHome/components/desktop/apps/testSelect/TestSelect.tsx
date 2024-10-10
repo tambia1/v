@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Select } from "@src/components/select/Select";
-import * as S from "./TestSelect.styles";
-import { Text } from "@src/components/text/Text";
 import { Space } from "@src/components/space/Space";
+import { Text } from "@src/components/text/Text";
+import { useState } from "react";
+import * as S from "./TestSelect.styles";
 
 export const TestSelect = () => {
 	const [selectedIndex, setSelectedIndex] = useState(1);

@@ -1,11 +1,11 @@
+import { Input } from "@src/components/input/Input";
 import { Text } from "@src/components/text/Text";
-import * as S from "./TestTree.styles";
+import { type NodeType, Tree, findNode, highlightItems } from "@src/components/tree/Tree";
+import { useDebounce } from "@src/hooks/UseDebounce";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
-import { Input } from "@src/components/input/Input";
-import { useDebounce } from "@src/hooks/UseDebounce";
-import { findNode, highlightItems, NodeType, Tree } from "@src/components/tree/Tree";
+import * as S from "./TestTree.styles";
 
 const data: NodeType[] = [
 	{
@@ -118,7 +118,7 @@ export const TestTree = () => {
 		});
 
 		setNodes([...nodes]);
-	}, [debouncedTitle]);
+	}, [nodes, debouncedTitle]);
 
 	return (
 		<S.TestTree>
