@@ -31,6 +31,7 @@ export const Col = styled.div`
 `;
 
 export const Chicken = styled.div`
-	margin-top: 15rem;
-	margin-left: 2rem;
+	position: absolute;
+	left: 2rem;
+	bottom: 5rem;
 `;
