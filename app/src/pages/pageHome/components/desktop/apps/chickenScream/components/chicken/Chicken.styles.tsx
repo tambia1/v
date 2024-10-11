@@ -2,8 +2,10 @@ import styled, { css } from "styled-components";
 import type { State } from "./Chicken.types";
 
 export const Chicken = styled.div`
-	width: 18rem;
-	height: 25rem;
+    font-size: 100%;
+
+    width: 18em;
+	height: 25em;
 	overflow: hidden;
 
 	display: flex;
@@ -13,55 +15,55 @@ export const Chicken = styled.div`
 `;
 
 export const BodyGray = styled.div`
-	width: 10rem;
-	height: 15rem;
+	width: 10em;
+	height: 15em;
 	position: absolute;
-	left: 3rem;
-	top: 5rem;
+	left: 3em;
+	top: 5em;
 	background-color: #eee;
-	border-radius:  2rem 2rem 2rem 1rem;
+	border-radius:  2em 2em 2em 1em;
 `;
 
 export const BodyWhite = styled.div`
-	width: 7rem;
-	height: 13rem;
+	width: 7em;
+	height: 13em;
 	position: absolute;
-	left: 6rem;
-	top: 6rem;
+	left: 6em;
+	top: 6em;
 	background-color: #fff;
-	border-radius: 2rem 2rem 2rem 0rem;
+	border-radius: 2em 2em 2em 0em;
 `;
 
 export const TailGrey = styled.div`
-    width: 3rem;
-    height: 5rem;
+    width: 3em;
+    height: 5em;
     position: absolute;
-    left: 1rem;
-    top: 15rem;
+    left: 1em;
+    top: 15em;
     background-color: #eee;
-    border-radius: 0 0 0 5rem;
+    border-radius: 0 0 0 5em;
 `;
 
 export const TailWhite = styled.div`
-	width: 3rem;
-    height: 3rem;
+	width: 3em;
+    height: 3em;
     position: absolute;
-    left: 3rem;
-    top: 16rem;
+    left: 3em;
+    top: 16em;
     background-color: #fff;
-    border-radius: 0 0 0 5rem;
+    border-radius: 0 0 0 5em;
 `;
 
 export const Eye = styled.div<{ $state: State }>`
-	width: 2rem;
-	height: 3rem;
+	width: 2em;
+	height: 3em;
 	position: absolute;
-	left: 9rem;
-	top: 7rem;
+	left: 9em;
+	top: 7em;
 	background-color: #000;
-	border-radius: 2rem;
+	border-radius: 2em;
 
-    transform-origin: 1rem 1.5rem;
+    transform-origin: 1em 1.5em;
     ${(props) => props.$state === "idle" && css`scale: 1`};
     ${(props) => props.$state === "walk-1" && css`scale: 1.1`};
     ${(props) => props.$state === "walk-2" && css`scale: 1.1`};
@@ -77,12 +79,12 @@ export const WingContainer = styled.div`
 `;
 
 export const Wing = styled.div<{ $state: State }>`
-	width: 5rem;
-	height: 4.5rem;
+	width: 5em;
+	height: 4.5em;
 	position: absolute;
-	left: 4rem;
-	top: 13rem;
-    transform-origin: 4rem 2rem;
+	left: 4em;
+	top: 13em;
+    transform-origin: 4em 2em;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: 10deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
@@ -90,43 +92,43 @@ export const Wing = styled.div<{ $state: State }>`
 `;
 
 export const WingTop = styled.div`
-	width: 5rem;
-	height: 2rem;
+	width: 5em;
+	height: 2em;
 	position: absolute;
-	left: 0rem;
-	top: 0rem;
+	left: 0em;
+	top: 0em;
 	background-color: #aaa;
-	border-radius: 2rem;
+	border-radius: 2em;
 `;
 
 export const WingMiddle = styled.div`
-	width: 3rem;
-	height: 2rem;
+	width: 3em;
+	height: 2em;
 	position: absolute;
-	left: 2rem;
-	top: 1.5rem;
+	left: 2em;
+	top: 1.5em;
 	background-color: #aaa;
-	border-radius: 2rem;
+	border-radius: 2em;
 `;
 
 export const WingBottom = styled.div`
-	width: 2rem;
-	height: 1.5rem;
+	width: 2em;
+	height: 1.5em;
 	position: absolute;
-	left: 3rem;
-	top: 3rem;
+	left: 3em;
+	top: 3em;
 	background-color: #aaa;
-	border-radius: 2rem;
+	border-radius: 2em;
 `;
 
 export const BeakTop = styled.div<{ $state: State }>`
 	position: absolute;
-    left: 11rem;
-    top: 8rem;
-    border-top: 0rem solid transparent;
-    border-left: 6rem solid #FD0;
-    border-bottom: 2.5rem solid transparent;
-    transform-origin: 1rem 0rem;
+    left: 11em;
+    top: 8em;
+    border-top: 0em solid transparent;
+    border-left: 6em solid #FD0;
+    border-bottom: 2.5em solid transparent;
+    transform-origin: 1em 0em;
     ${(props) => props.$state === "idle" && css`rotate: 18deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: 0deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
@@ -135,12 +137,12 @@ export const BeakTop = styled.div<{ $state: State }>`
 
 export const BeakBottom = styled.div<{ $state: State }>`
 	position: absolute;
-    left: 11rem;
-    top: 9rem;
-    border-top: 2.5rem solid transparent;
-    border-left: 6rem solid #FD0;
-    border-bottom: 0rem solid transparent;
-    transform-origin: 1rem 2rem;
+    left: 11em;
+    top: 9em;
+    border-top: 2.5em solid transparent;
+    border-left: 6em solid #FD0;
+    border-bottom: 0em solid transparent;
+    transform-origin: 1em 2em;
     ${(props) => props.$state === "idle" && css`rotate: -22deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: 0deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
@@ -148,23 +150,23 @@ export const BeakBottom = styled.div<{ $state: State }>`
 `;
 
 export const Leg = styled.div`
-    width: 1.5rem;
-    height: 3rem;
+    width: 1.5em;
+    height: 3em;
     position: absolute;
-    left: 0rem;
-    top: 0rem;
+    left: 0em;
+    top: 0em;
 	background-color: #FD0;
-	border-radius: 2rem;
+	border-radius: 2em;
 `;
 
 export const Foot = styled.div`
-	width: 3rem;
-    height: 1rem;
+	width: 3em;
+    height: 1em;
     position: absolute;
-    left: 0rem;
-    top: 2rem;
+    left: 0em;
+    top: 2em;
 	background-color: #FD0;
-	border-radius: 2rem;
+	border-radius: 2em;
 `;
 
 export const LegContainer = styled.div`
@@ -174,12 +176,12 @@ export const LegContainer = styled.div`
 `;
 
 export const LegLeft = styled.div<{ $state: State }>`
-	width: 3rem;
-    height: 3rem;
+	width: 3em;
+    height: 3em;
     position: absolute;
-    left: 9rem;
-    top: 20rem;
-    transform-origin: 0.75rem -2rem;
+    left: 9em;
+    top: 20em;
+    transform-origin: 0.75em -2em;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: -25deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
@@ -187,13 +189,13 @@ export const LegLeft = styled.div<{ $state: State }>`
 `;
 
 export const LegRight = styled.div<{ $state: State }>`
-	width: 3rem;	
-    height: 3rem;
+	width: 3em;	
+    height: 3em;
     position: absolute;
-    left: 6rem;
-    top: 20rem;
+    left: 6em;
+    top: 20em;
     rotate: 0deg;
-    transform-origin: 0.75rem 0rem;
+    transform-origin: 0.75em 0em;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: 45deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
@@ -201,15 +203,15 @@ export const LegRight = styled.div<{ $state: State }>`
 `;
 
 export const CabbageTop = styled.div<{ $state: State }>`
-	width: 2.5rem;
-    height: 4rem;
+	width: 2.5em;
+    height: 4em;
     position: absolute;
-    left: 8rem;
-    top: 1rem;
+    left: 8em;
+    top: 1em;
     background-color: #f00;
-    border-radius: 2rem;
+    border-radius: 2em;
 
-    transform-origin: 1.75rem 4rem;
+    transform-origin: 1.75em 4em;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: 10deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: 10deg`};
@@ -217,15 +219,15 @@ export const CabbageTop = styled.div<{ $state: State }>`
 `;
 
 export const CabbageLeft = styled.div<{ $state: State }>`
-	width: 2rem;
-    height: 3rem;
+	width: 2em;
+    height: 3em;
     position: absolute;
-    left: 7.5rem;
-    top: 2rem;
+    left: 7.5em;
+    top: 2em;
     background-color: #f00;
-    border-radius: 2rem;
+    border-radius: 2em;
 
-    transform-origin: 1rem 3rem;
+    transform-origin: 1em 3em;
     ${(props) => props.$state === "idle" && css`rotate: -30deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: -35deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: -35deg`};

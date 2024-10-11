@@ -33,5 +33,8 @@ export const Col = styled.div`
 export const Chicken = styled.div`
 	position: absolute;
 	left: 2rem;
-	bottom: 5rem;
+	bottom: 3rem;
+
+	font-size: 50%;
+
 `;
