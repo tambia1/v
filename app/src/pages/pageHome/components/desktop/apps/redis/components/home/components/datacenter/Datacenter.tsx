@@ -23,7 +23,7 @@ import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
-const dbsTitles = ["", "DATABASE", "ID", "USAGE", ""];
+const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
 export const Datacenter = () => {
 	const navigator = useNavigator();
@@ -124,15 +124,23 @@ export const Datacenter = () => {
 	const handleOnClickCollpseAll = (e: MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
 
-		const collapseState = data.some((d) => !d.collapsed);
+		const collapseState = data.some((sub) => !sub.collapsed);
 
-		setData({ ...data.map((d) => ({ ...d, collapsed: collapseState })) });
+		setData(data.map((sub) => ({ ...sub, collapsed: collapseState })));
 	};
 
 	const handleOnClickCollpseSub = (e: MouseEvent<HTMLDivElement>, subId: number) => {
 		e.stopPropagation();
 
 		setData(data.map((sub) => (sub.id === subId ? { ...sub, collapsed: !sub.collapsed } : sub)));
+	};
+
+	const handleOnClickCollpseSubDbs = (e: MouseEvent<HTMLDivElement>, subId: number) => {
+		e.stopPropagation();
+
+		const collapseState = data.find((sub) => sub.id === subId)?.dbs.some((db) => !db.collapsed) ?? true;
+
+		setData(data.map((sub) => (sub.id === subId ? { ...sub, dbs: sub.dbs.map((db) => ({ ...db, collapsed: collapseState })) } : sub)));
 	};
 
 	const handleOnClickCollpseDb = (e: MouseEvent<HTMLDivElement>, dbId: number) => {
@@ -222,6 +230,9 @@ export const Datacenter = () => {
 								</S.SubscriptionsDetailsRow>
 
 								<S.DatabasesHeader>
+									<S.ColIcon onClick={(e) => handleOnClickCollpseSubDbs(e, sub.id)}>
+										<Icon iconName="iconMinusCircle" />
+									</S.ColIcon>
 									{dbsTitles.map((col, index) => (
 										<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 									))}
