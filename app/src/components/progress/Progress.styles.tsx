@@ -19,11 +19,14 @@ export const ProgressContent = styled.div`
 	overflow: hidden;
 `;
 
-export const ProgressValue = styled.div<{ $width: number }>`
-	width: ${(props) => props.$width}%;
+export const ProgressValue = styled.div.attrs<{ $width: number }>((props) => ({
+	style: {
+		width: `${props.$width}%`,
+	},
+}))`
 	height: 100%;
 	position: relative;
 	border-radius: 100rem;
 	background-color: ${({ theme }) => theme.color.normalBg};
-	transition: all 0.3s ease;
+	transition: all 0.05s linear;
 `;
