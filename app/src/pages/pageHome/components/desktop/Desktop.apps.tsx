@@ -16,6 +16,7 @@ import type { IRole } from "./Desktop.types";
 import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";
+import { ChickenScream } from "./apps/chickenScream/ChickenScream";
 import { Debug } from "./apps/debug/Debug";
 import { Redis } from "./apps/redis/Redis";
 import { Speed } from "./apps/speed/Speed";
@@ -51,13 +52,7 @@ export const apps: IApp[][] = [
 		{ id: "user", roles: ["guest"], title: <T>{lang.user.title}</T>, icon: "userLoggedOut", component: <User /> },
 		{ id: "debug", roles: ["admin", "user", "guest"], title: <T>{"Debug"}</T>, icon: "test", component: <Debug /> },
 		{ id: "notes", roles: ["admin", "user", "guest"], title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
-		{
-			id: "calculator",
-			roles: ["admin", "user", "guest"],
-			title: <T>{lang.calculator.title}</T>,
-			icon: "calculator",
-			component: <Calculator />,
-		},
+		{ id: "calculator", roles: ["admin", "user", "guest"], title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", roles: ["admin", "user", "guest"], title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
 		{ id: "clock", roles: ["admin", "user", "guest"], title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
 		{ id: "calendar", roles: ["admin", "user", "guest"], title: <T>{lang.calendar.title}</T>, icon: "calendar", component: <Calendar /> },
@@ -71,13 +66,8 @@ export const apps: IApp[][] = [
 
 		{ id: "tetris", roles: ["admin", "user", "guest"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
-		{
-			id: "clashRoyale",
-			roles: ["admin", "user", "guest"],
-			title: <T>{lang.clashRoyale.title}</T>,
-			icon: "clashRoyale",
-			component: <ClashRoyale />,
-		},
+		{ id: "clashRoyale", roles: ["admin", "user", "guest"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
+		{ id: "chickenScream", roles: ["admin", "user", "guest"], title: <T>{lang.chickenScream.title}</T>, icon: "chickenScream", component: <ChickenScream /> },
 	],
 	[
 		{ id: "testMfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },

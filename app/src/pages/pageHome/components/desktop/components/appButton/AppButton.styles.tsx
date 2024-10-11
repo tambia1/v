@@ -1,26 +1,27 @@
 import styled, { css } from "styled-components";
+import board from "./assets/board.png";
 import calculator from "./assets/calculator.png";
-import settings from "./assets/settings.png";
+import calendar from "./assets/calendar.png";
 import camera from "./assets/camera.png";
-import notes from "./assets/notes.png";
-import photos from "./assets/photos.png";
-import weather from "./assets/weather.png";
-import tetris from "./assets/tetris.png";
-import ninja from "./assets/ninja.png";
+import chat from "./assets/chat.png";
+import chickenScream from "./assets/chickenScream.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 import clock from "./assets/clock.png";
-import userLoggedIn from "./assets/userLoggedIn.png";
-import userLoggedOut from "./assets/userLoggedOut.png";
+import ninja from "./assets/ninja.png";
+import notes from "./assets/notes.png";
+import photos from "./assets/photos.png";
+import redis from "./assets/redis.png";
+import settings from "./assets/settings.png";
 import snake from "./assets/snake.png";
+import speed from "./assets/speed.png";
+import spin from "./assets/spin.png";
 import stocks from "./assets/stocks.webp";
 import store from "./assets/store.png";
-import chat from "./assets/chat.png";
-import calendar from "./assets/calendar.png";
-import spin from "./assets/spin.png";
 import test from "./assets/test.png";
-import speed from "./assets/speed.png";
-import board from "./assets/board.png";
-import redis from "./assets/redis.png";
+import tetris from "./assets/tetris.png";
+import userLoggedIn from "./assets/userLoggedIn.png";
+import userLoggedOut from "./assets/userLoggedOut.png";
+import weather from "./assets/weather.png";
 
 export const appIcons = {
 	settings,
@@ -45,6 +46,7 @@ export const appIcons = {
 	speed,
 	board,
 	redis,
+	chickenScream,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;

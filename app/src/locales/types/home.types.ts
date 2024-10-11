@@ -98,6 +98,10 @@ export type IHome = {
 		title: string;
 	};
 
+	chickenScream: {
+		title: string;
+	};
+
 	mfe: {
 		title: string;
 	};
