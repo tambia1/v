@@ -11,6 +11,9 @@ export const Page = styled.div`
 
 	padding: 1rem;
 	box-sizing: border-box;
+
+	overflow-y: overlay;
+	scrollbar-gutter: stable;
 `;
 
 export const Spacer = styled.div`
@@ -240,6 +243,12 @@ export const SubscriptionsDataRow = styled.div`
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
+		background-color :red;
+	}
+
+	&:active {
+		background-color: ${(props) => props.theme.color.normalBgActive};
+		background-color :red;
 	}
 
 	${SubscriptionsWidth}
