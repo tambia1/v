@@ -1,4 +1,3 @@
-import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
 import { useEffect, useRef, useState } from "react";
@@ -8,6 +7,7 @@ import type { State } from "./components/chicken/Chicken.types";
 
 export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("idle");
+	const canSwitchStateRef = useRef(true);
 
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
@@ -81,43 +81,45 @@ export const ChickenScream = () => {
 	}, []);
 
 	useEffect(() => {
-		if (volume > 0.2) {
-			handleOnClickJump();
-		} else if (volume > 0.1) {
-			handleOnClickWalk();
+		if (volume > 0.25) {
+			setChickenState("jump");
+		} else if (volume > 0.15) {
+			if (!canSwitchStateRef.current) {
+				return;
+			}
+
+			if (chickenState === "idle") {
+				setChickenState("walk");
+			}
+
+			if (chickenState === "walk") {
+				setChickenState("idle");
+			}
+
+			canSwitchStateRef.current = false;
+
+			setTimeout(() => {
+				canSwitchStateRef.current = true;
+			}, 300);
+		} else {
+			if (chickenState === "jump") {
+				setChickenState("idle");
+			}
+
+			canSwitchStateRef.current = true;
 		}
-	}, [volume]);
-
-	const handleOnClickWalk = () => {
-		setChickenState("walk");
-
-		setTimeout(() => {
-			setChickenState("idle");
-		}, 100);
-	};
-
-	const handleOnClickJump = () => {
-		setChickenState("jump");
-
-		setTimeout(() => {
-			setChickenState("idle");
-		}, 100);
-	};
+	}, [volume, chickenState]);
 
 	return (
 		<S.ChickenScream>
 			<p>Volume: {volume.toFixed(3)}</p>
 
-			{!isListening && <Icon iconName="iconMicOff" stroke="red" />}
-			{isListening && <Icon iconName="iconMic" stroke="green" />}
-			<S.Spacer />
-			<Progress percent={volume * 100} />
-
-			<S.Spacer />
-
 			<S.Row>
-				<Button onClick={handleOnClickWalk}>Walk</Button>
-				<Button onClick={handleOnClickJump}>Jump</Button>
+				<S.Col>
+					{!isListening && <Icon iconName="iconMicOff" stroke="red" />}
+					{isListening && <Icon iconName="iconMic" stroke="green" />}
+					<Progress percent={volume * 100} />
+				</S.Col>
 			</S.Row>
 
 			<S.Spacer />
