@@ -123,6 +123,7 @@ export const SubscriptionsHeader = styled.div`
 	height: auto;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	gap: 0.5rem;
 	white-space: nowrap;
 	padding: 1rem;
@@ -138,6 +139,7 @@ export const DatabasesHeader = styled.div`
 	height: auto;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	gap: 0.5rem;
 	white-space: nowrap;
 	padding: 0.5rem 1rem;
