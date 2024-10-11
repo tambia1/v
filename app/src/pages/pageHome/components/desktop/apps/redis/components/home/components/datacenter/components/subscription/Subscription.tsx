@@ -111,7 +111,8 @@ export const Subscription = ({ subscriptionId }: Props) => {
 						return (
 							<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
 								<S.Pin>
-									{region.city_name} <Flag flagName={`${region.flag}` as IFlagName} />
+									<Flag flagName={`${region.flag}` as IFlagName} />
+									{region.city_name}
 								</S.Pin>
 							</WorldMap.Pin>
 						);
