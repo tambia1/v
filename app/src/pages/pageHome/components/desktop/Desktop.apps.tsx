@@ -1,35 +1,35 @@
-import { T } from "@src/locales/T";
-import { IRole } from "./Desktop.types";
-import { lang } from "@src/locales/i18n";
+import { Camera } from "@apps/camera/Camera";
+import { ClashRoyale } from "@apps/clashRoyale/ClashRoyale";
+import { Clock } from "@apps/clock/Clock";
+import { Ninja } from "@apps/ninja/Ninja";
 import { Settings } from "@apps/settings/Settings";
-import { Tetris } from "@apps/tetris/Tetris";
 import { Test } from "@apps/test/Test";
 import { TestSelect } from "@apps/testSelect/TestSelect";
 import { TestTable } from "@apps/testTable/TestTable";
-import { Camera } from "@apps/camera/Camera";
-import { lazy } from "react";
-import { Clock } from "@apps/clock/Clock";
-import { IAppIcon } from "./components/appButton/AppButton.styles";
-import { User } from "@apps/user/User";
-import { ClashRoyale } from "@apps/clashRoyale/ClashRoyale";
 import { TestTransition } from "@apps/testTransition/TestTransition";
-import { Ninja } from "@apps/ninja/Ninja";
+import { Tetris } from "@apps/tetris/Tetris";
+import { User } from "@apps/user/User";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
+import { lazy } from "react";
+import type { IRole } from "./Desktop.types";
+import { Board } from "./apps/board/Board";
+import { Calendar } from "./apps/calendar/Calendar";
+import { Chat } from "./apps/chat/Chat";
+import { Debug } from "./apps/debug/Debug";
+import { Redis } from "./apps/redis/Redis";
+import { Speed } from "./apps/speed/Speed";
+import { Spin } from "./apps/spin/Spin";
 import { Stocks } from "./apps/stocks/Stocks";
 import { Store } from "./apps/store/Store";
-import { Chat } from "./apps/chat/Chat";
-import { Calendar } from "./apps/calendar/Calendar";
-import { Spin } from "./apps/spin/Spin";
 import { TestAnimation } from "./apps/testAnimation/TestAnimation";
-import { TestGraphQl } from "./apps/testGraphQl/GraphQl";
-import { Speed } from "./apps/speed/Speed";
+import { TestCouner } from "./apps/testCounter/TestCouner";
 import { TestCube } from "./apps/testCube/TestCube";
+import { TestGraphQl } from "./apps/testGraphQl/GraphQl";
+import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
 import { TestTree } from "./apps/testTree/TestTree";
-import { TestMenu } from "./apps/testMenu/TestMenu";
-import { TestCouner } from "./apps/testCounter/TestCouner";
-import { Debug } from "./apps/debug/Debug";
-import { Board } from "./apps/board/Board";
-import { Redis } from "./apps/redis/Redis";
+import type { IAppIcon } from "./components/appButton/AppButton.styles";
 
 const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
@@ -51,7 +51,13 @@ export const apps: IApp[][] = [
 		{ id: "user", roles: ["guest"], title: <T>{lang.user.title}</T>, icon: "userLoggedOut", component: <User /> },
 		{ id: "debug", roles: ["admin", "user", "guest"], title: <T>{"Debug"}</T>, icon: "test", component: <Debug /> },
 		{ id: "notes", roles: ["admin", "user", "guest"], title: <T>{lang.notes.title}</T>, icon: "notes", component: <Notes /> },
-		{ id: "calculator", roles: ["admin", "user", "guest"], title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
+		{
+			id: "calculator",
+			roles: ["admin", "user", "guest"],
+			title: <T>{lang.calculator.title}</T>,
+			icon: "calculator",
+			component: <Calculator />,
+		},
 		{ id: "camera", roles: ["admin", "user", "guest"], title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
 		{ id: "clock", roles: ["admin", "user", "guest"], title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
 		{ id: "calendar", roles: ["admin", "user", "guest"], title: <T>{lang.calendar.title}</T>, icon: "calendar", component: <Calendar /> },
@@ -65,7 +71,13 @@ export const apps: IApp[][] = [
 
 		{ id: "tetris", roles: ["admin", "user", "guest"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
-		{ id: "clashRoyale", roles: ["admin", "user", "guest"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
+		{
+			id: "clashRoyale",
+			roles: ["admin", "user", "guest"],
+			title: <T>{lang.clashRoyale.title}</T>,
+			icon: "clashRoyale",
+			component: <ClashRoyale />,
+		},
 	],
 	[
 		{ id: "testMfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },
