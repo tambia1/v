@@ -88,7 +88,20 @@ export const Wing = styled.div<{ $state: State }>`
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
     ${(props) => props.$state === "walk-1" && css`rotate: 10deg`};
     ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
-    ${(props) => props.$state === "jump" && css`rotate: 30deg`};
+    ${(props) =>
+			props.$state === "jump" &&
+			css`
+                @keyframes fly {
+                    0% {
+                        rotate: 0deg
+                    },
+                    100% {
+                        rotate: 30deg
+                    }
+                }
+
+                animation: fly 0.05s infinite alternate;
+    `};
 `;
 
 export const WingTop = styled.div`
