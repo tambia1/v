@@ -282,12 +282,18 @@ export const DatabasesInfoRow = styled.div`
 	flex-direction: row;
 	padding: 1rem;
 	align-items: center;
-	gap: 0.5rem;
+	gap: 1rem;
 	background-color: ${(props) => props.theme.color.normalBg};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.normalBgHover};
 	}
+`;
+
+export const DatabasesInfoCell = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
 `;
 
 export const Progress = styled(ProgressComponent)<{ percent: number }>`

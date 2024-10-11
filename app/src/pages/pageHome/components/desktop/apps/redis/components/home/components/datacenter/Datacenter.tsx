@@ -261,16 +261,33 @@ export const Datacenter = () => {
 
 											<Collapsable collapsed={db.collapsed}>
 												<S.DatabasesInfoRow>
-													<S.DatabaseDetailText>Size</S.DatabaseDetailText>
-													<S.DatabaseDetailText>{convertBytes(db.size, "mb")}</S.DatabaseDetailText>
+													<S.DatabasesInfoCell>
+														<S.DatabaseDetailText>Size</S.DatabaseDetailText>
+														<S.DatabaseDetailText>{convertBytes(db.size, "mb")}</S.DatabaseDetailText>
+													</S.DatabasesInfoCell>
 
-													<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
-													{!db.highAvailability && <Icon iconName="iconSquare" />}
-													{db.highAvailability && <Icon iconName="iconVSquare" />}
+													<S.DatabasesInfoCell>
+														<S.DatabaseDetailText>Usage</S.DatabaseDetailText>
+														<S.DatabaseDetailText>{convertBytes(db.usage, "mb")}</S.DatabaseDetailText>
+													</S.DatabasesInfoCell>
 
-													<S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>
-													{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" />}
-													{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" />}
+													<S.DatabasesInfoCell>
+														<S.DatabaseDetailText>{Number(db.usage / db.size).toFixed(3)}%</S.DatabaseDetailText>
+													</S.DatabasesInfoCell>
+												</S.DatabasesInfoRow>
+
+												<S.DatabasesInfoRow>
+													<S.DatabasesInfoCell>
+														<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
+														{!db.highAvailability && <Icon iconName="iconSquare" />}
+														{db.highAvailability && <Icon iconName="iconVSquare" />}
+													</S.DatabasesInfoCell>
+
+													<S.DatabasesInfoCell>
+														<S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>
+														{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" />}
+														{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" />}
+													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 											</Collapsable>
 										</S.Col>
