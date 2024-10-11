@@ -29,3 +29,8 @@ export const Col = styled.div`
 	flex-direction: col;
 	gap: 0.5rem;
 `;
+
+export const Chicken = styled.div`
+	margin-top: 15rem;
+	margin-left: 2rem;
+`;

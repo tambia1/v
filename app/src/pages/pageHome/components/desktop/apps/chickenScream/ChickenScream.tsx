@@ -1,5 +1,6 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
+import { Text } from "@src/components/text/Text";
 import { useEffect, useRef, useState } from "react";
 import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
@@ -114,8 +115,6 @@ export const ChickenScream = () => {
 
 	return (
 		<S.ChickenScream>
-			<p>Volume: {volume.toFixed(3)}</p>
-
 			<S.Row>
 				<S.Col>
 					{!isListening && <Icon iconName="iconMicOff" stroke="red" />}
@@ -126,7 +125,13 @@ export const ChickenScream = () => {
 
 			<S.Spacer />
 
-			<Chicken state={chickenState} />
+			<S.Row>
+				<Text>Volume: {volume.toFixed(3)}</Text>
+			</S.Row>
+
+			<S.Chicken>
+				<Chicken state={chickenState} />
+			</S.Chicken>
 		</S.ChickenScream>
 	);
 };
