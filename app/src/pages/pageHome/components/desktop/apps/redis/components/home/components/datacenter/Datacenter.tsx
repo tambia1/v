@@ -126,7 +126,7 @@ export const Datacenter = () => {
 
 		const collapseState = data.some((sub) => !sub.collapsed);
 
-		setData(data.map((sub) => ({ ...sub, collapsed: collapseState })));
+		setData(data.map((sub) => ({ ...sub, collapsed: collapseState, dbs: sub.dbs.map((db) => ({ ...db, collapsed: true })) })));
 	};
 
 	const handleOnClickCollpseSub = (e: MouseEvent<HTMLDivElement>, subId: number) => {
