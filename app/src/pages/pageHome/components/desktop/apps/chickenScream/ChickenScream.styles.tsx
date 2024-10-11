@@ -10,7 +10,7 @@ export const ChickenScream = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-image: linear-gradient(0deg, #32AE7F, #04B4C6); 
 `;
 
 export const Spacer = styled.div`
