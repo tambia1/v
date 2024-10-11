@@ -245,10 +245,6 @@ export const SubscriptionsDataRow = styled.div`
 		background-color: ${(props) => props.theme.color.normalBgHover};
 	}
 
-	&:active {
-		background-color: ${(props) => props.theme.color.normalBgActive};
-	}
-
 	${SubscriptionsWidth}
 `;
 
