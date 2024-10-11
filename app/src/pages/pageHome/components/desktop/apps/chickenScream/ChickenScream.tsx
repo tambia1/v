@@ -7,7 +7,6 @@ import type { State } from "./components/chicken/Chicken.types";
 
 export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("idle");
-	const canSwitchStateRef = useRef(true);
 
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
@@ -84,31 +83,13 @@ export const ChickenScream = () => {
 		if (volume > 0.25) {
 			setChickenState("jump");
 		} else if (volume > 0.15) {
-			if (!canSwitchStateRef.current) {
-				return;
-			}
-
-			if (chickenState === "idle") {
-				setChickenState("walk");
-			}
-
-			if (chickenState === "walk") {
-				setChickenState("idle");
-			}
-
-			canSwitchStateRef.current = false;
+			setChickenState("walk");
 
 			setTimeout(() => {
-				canSwitchStateRef.current = true;
-			}, 300);
-		} else {
-			if (chickenState === "jump") {
 				setChickenState("idle");
-			}
-
-			canSwitchStateRef.current = true;
+			}, 300);
 		}
-	}, [volume, chickenState]);
+	}, [volume]);
 
 	return (
 		<S.ChickenScream>
