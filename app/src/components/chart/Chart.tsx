@@ -1,6 +1,6 @@
 import { useTheme } from "styled-components";
 import { Canvas } from "../canvas/Canvas";
-import { IXY } from "../canvas/Canvas.types";
+import type { IXY } from "../canvas/Canvas.types";
 import * as C from "../canvas/Canvas.utils";
 import * as S from "./Chart.styles";
 
@@ -91,7 +91,7 @@ export const Chart = ({ className, lines }: Props) => {
 
 	return (
 		<S.Container className={className}>
-			<Canvas draw={draw} deps={lines} />
+			<Canvas draw={draw} />
 		</S.Container>
 	);
 };

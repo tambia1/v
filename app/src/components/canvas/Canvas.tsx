@@ -1,12 +1,11 @@
-import { DependencyList, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 interface Props {
 	className?: string | undefined;
 	draw: (ctx: CanvasRenderingContext2D) => void;
-	deps?: DependencyList | undefined;
 }
 
-export const Canvas = ({ className, draw, deps }: Props) => {
+export const Canvas = ({ className, draw }: Props) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
 	const handleOnResize = useCallback(
@@ -15,8 +14,17 @@ export const Canvas = ({ className, draw, deps }: Props) => {
 				return;
 			}
 
-			const canvas = canvasRef.current!;
-			const ctx = canvas.getContext("2d")!;
+			const canvas = canvasRef.current;
+
+			if (!canvas) {
+				return;
+			}
+
+			const ctx = canvas.getContext("2d");
+
+			if (!ctx) {
+				return;
+			}
 
 			canvas.width = entries[0].contentRect.width;
 			canvas.height = entries[0].contentRect.height;
@@ -32,11 +40,16 @@ export const Canvas = ({ className, draw, deps }: Props) => {
 
 			ctx.restore();
 		},
-		[draw, deps]
+		[draw],
 	);
 
 	useEffect(() => {
-		const parent = canvasRef.current!.parentElement!;
+		const parent = canvasRef.current?.parentElement;
+
+		if (!parent) {
+			return;
+		}
+
 		const resizeObserver = new ResizeObserver(handleOnResize);
 
 		resizeObserver.observe(parent);
