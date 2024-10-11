@@ -1,6 +1,6 @@
-import * as S from "./Menu.styles";
+import type { ReactNode } from "react";
 import { List } from "../list/List";
-import { ReactNode } from "react";
+import * as S from "./Menu.styles";
 
 export type MenuGroup<MenuItemId> = {
 	content: ReactNode;
@@ -22,7 +22,16 @@ export interface Props<MenuItemId> {
 	onClickItem: (id: MenuItemId) => void;
 }
 
-export const Menu = <MenuItemId extends string>({ children, className, $visible, menuGroups, selectedMenuId, onClickBackground, onClickItem, ...rest }: Props<MenuItemId>) => {
+export const Menu = <MenuItemId extends string>({
+	children,
+	className,
+	$visible,
+	menuGroups,
+	selectedMenuId,
+	onClickBackground,
+	onClickItem,
+	...rest
+}: Props<MenuItemId>) => {
 	const handleOnClickBackground = () => {
 		if ($visible) {
 			onClickBackground();
