@@ -6,7 +6,8 @@ import { Chicken } from "./components/chicken/Chicken";
 import type { State } from "./components/chicken/Chicken.types";
 
 export const ChickenScream = () => {
-	const [chickenState, setChickenState] = useState<State>("idle");
+	const [chickenState, setChickenState] = useState<State>("walk-2");
+	const timer = useRef(0);
 
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
@@ -73,6 +74,7 @@ export const ChickenScream = () => {
 			if (audioStreamRef.current) {
 				audioStreamRef.current.getTracks().forEach((track) => track.stop());
 			}
+
 			if (audioContextRef.current) {
 				audioContextRef.current.close();
 			}
@@ -80,16 +82,35 @@ export const ChickenScream = () => {
 	}, []);
 
 	useEffect(() => {
+		const INTERVAL = 100;
+		const intervalId = setInterval(() => {
+			timer.current += INTERVAL;
+		}, INTERVAL);
+
+		return () => {
+			clearInterval(intervalId);
+		};
+	}, []);
+
+	useEffect(() => {
 		if (volume > 0.25) {
 			setChickenState("jump");
+			timer.current = 0;
 		} else if (volume > 0.15) {
-			setChickenState("walk");
+			if (timer.current < 300) {
+				return;
+			}
 
-			setTimeout(() => {
-				setChickenState("idle");
-			}, 300);
+			setChickenState(chickenState === "walk-1" ? "walk-2" : "walk-1");
+			timer.current = 0;
+		} else {
+			if (timer.current < 600) {
+				return;
+			}
+
+			setChickenState("idle");
 		}
-	}, [volume]);
+	}, [volume, chickenState]);
 
 	return (
 		<S.ChickenScream>

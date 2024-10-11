@@ -66,7 +66,8 @@ export const Eye = styled.div<{ $state: State }>`
 
     transform-origin: 1rem 1.5rem;
     ${(props) => props.$state === "idle" && css`scale: 1`};
-    ${(props) => props.$state === "walk" && css`scale: 1.1`};
+    ${(props) => props.$state === "walk-1" && css`scale: 1.1`};
+    ${(props) => props.$state === "walk-2" && css`scale: 1.1`};
     ${(props) => props.$state === "jump" && css`scale: 1.5`};
 
     transition: all 0.1s linear;
@@ -86,7 +87,8 @@ export const Wing = styled.div<{ $state: State }>`
 	top: 13rem;
     transform-origin: 4rem 2rem;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
-    ${(props) => props.$state === "walk" && css`rotate: 10deg`};
+    ${(props) => props.$state === "walk-1" && css`rotate: 10deg`};
+    ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
     ${(props) => props.$state === "jump" && css`rotate: 30deg`};
 `;
 
@@ -129,7 +131,8 @@ export const BeakTop = styled.div<{ $state: State }>`
     border-bottom: 2.5rem solid transparent;
     transform-origin: 1rem 0rem;
     ${(props) => props.$state === "idle" && css`rotate: 18deg`};
-    ${(props) => props.$state === "walk" && css`rotate: 00deg`};
+    ${(props) => props.$state === "walk-1" && css`rotate: 0deg`};
+    ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
     ${(props) => props.$state === "jump" && css`rotate: -18deg`};
 `;
 
@@ -142,7 +145,8 @@ export const BeakBottom = styled.div<{ $state: State }>`
     border-bottom: 0rem solid transparent;
     transform-origin: 1rem 2rem;
     ${(props) => props.$state === "idle" && css`rotate: -22deg`};
-    ${(props) => props.$state === "walk" && css`rotate: 0deg`};
+    ${(props) => props.$state === "walk-1" && css`rotate: 0deg`};
+    ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
     ${(props) => props.$state === "jump" && css`rotate: 22deg`};
 `;
 
@@ -180,7 +184,8 @@ export const LegLeft = styled.div<{ $state: State }>`
     top: 20rem;
     transform-origin: 0.75rem -2rem;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
-    ${(props) => props.$state === "walk" && css`rotate: -25deg`};
+    ${(props) => props.$state === "walk-1" && css`rotate: -25deg`};
+    ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
     ${(props) => props.$state === "jump" && css`rotate: -90deg`};
 `;
 
@@ -193,7 +198,8 @@ export const LegRight = styled.div<{ $state: State }>`
     rotate: 0deg;
     transform-origin: 0.75rem 0rem;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
-    ${(props) => props.$state === "walk" && css`rotate: 45deg`};
+    ${(props) => props.$state === "walk-1" && css`rotate: 45deg`};
+    ${(props) => props.$state === "walk-2" && css`rotate: 0deg`};
     ${(props) => props.$state === "jump" && css`rotate: 90deg`};
 `;
 
@@ -208,7 +214,8 @@ export const CabbageTop = styled.div<{ $state: State }>`
 
     transform-origin: 1.75rem 4rem;
     ${(props) => props.$state === "idle" && css`rotate: 0deg`};
-    ${(props) => props.$state === "walk" && css`rotate: 10deg`};
+    ${(props) => props.$state === "walk-1" && css`rotate: 10deg`};
+    ${(props) => props.$state === "walk-2" && css`rotate: 10deg`};
     ${(props) => props.$state === "jump" && css`rotate: 20deg`};
 `;
 
@@ -223,6 +230,7 @@ export const CabbageLeft = styled.div<{ $state: State }>`
 
     transform-origin: 1rem 3rem;
     ${(props) => props.$state === "idle" && css`rotate: -30deg`};
-    ${(props) => props.$state === "walk" && css`rotate: -35deg`};
+    ${(props) => props.$state === "walk-1" && css`rotate: -35deg`};
+    ${(props) => props.$state === "walk-2" && css`rotate: -35deg`};
     ${(props) => props.$state === "jump" && css`rotate: -40deg`};
 `;
