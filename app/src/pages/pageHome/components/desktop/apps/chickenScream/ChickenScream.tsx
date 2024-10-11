@@ -1,19 +1,38 @@
-import { Text } from "@src/components/text/Text";
-import { T } from "@src/locales/T";
-import { lang } from "@src/locales/i18n";
+import { Button } from "@src/components/button/Button";
+import { useState } from "react";
 import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
+import type { State } from "./components/chicken/Chicken.types";
 
 export const ChickenScream = () => {
+	const [chickenState, setChickenState] = useState<State>("idle");
+
+	const handleOnClickWalk = () => {
+		setChickenState("walk");
+
+		setTimeout(() => {
+			setChickenState("idle");
+		}, 100);
+	};
+
+	const handleOnClickJump = () => {
+		setChickenState("jump");
+
+		setTimeout(() => {
+			setChickenState("idle");
+		}, 100);
+	};
+
 	return (
 		<S.ChickenScream>
-			<Text size="l">
-				<T>{lang.test.title}</T>
-			</Text>
+			<S.Row>
+				<Button onClick={handleOnClickWalk}>Walk</Button>
+				<Button onClick={handleOnClickJump}>Jump</Button>
+			</S.Row>
 
 			<S.Spacer />
 
-			<Chicken state="jump" />
+			<Chicken state={chickenState} />
 		</S.ChickenScream>
 	);
 };

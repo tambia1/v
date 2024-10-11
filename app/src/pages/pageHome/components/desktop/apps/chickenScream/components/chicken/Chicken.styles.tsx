@@ -55,7 +55,7 @@ export const TailWhite = styled.div`
     border-radius: 0 0 0 5rem;
 `;
 
-export const Eye = styled.div`
+export const Eye = styled.div<{ $state: State }>`
 	width: 2rem;
 	height: 3rem;
 	position: absolute;
@@ -63,6 +63,13 @@ export const Eye = styled.div`
 	top: 7rem;
 	background-color: #000;
 	border-radius: 2rem;
+
+    transform-origin: 1rem 1.5rem;
+    ${(props) => props.$state === "idle" && css`scale: 1`};
+    ${(props) => props.$state === "walk" && css`scale: 1.1`};
+    ${(props) => props.$state === "jump" && css`scale: 1.5`};
+
+    transition: all 0.1s linear;
 `;
 
 export const WingContainer = styled.div`
@@ -190,7 +197,7 @@ export const LegRight = styled.div<{ $state: State }>`
     ${(props) => props.$state === "jump" && css`rotate: 90deg`};
 `;
 
-export const CabbageTop = styled.div`
+export const CabbageTop = styled.div<{ $state: State }>`
 	width: 2.5rem;
     height: 4rem;
     position: absolute;
@@ -198,16 +205,24 @@ export const CabbageTop = styled.div`
     top: 1rem;
     background-color: #f00;
     border-radius: 2rem;
+
+    transform-origin: 1.75rem 4rem;
+    ${(props) => props.$state === "idle" && css`rotate: 0deg`};
+    ${(props) => props.$state === "walk" && css`rotate: 10deg`};
+    ${(props) => props.$state === "jump" && css`rotate: 20deg`};
 `;
 
-export const CabbageLeft = styled.div`
+export const CabbageLeft = styled.div<{ $state: State }>`
 	width: 2rem;
     height: 3rem;
     position: absolute;
-    left: 6.5rem;
-    top: 3rem;
+    left: 7.5rem;
+    top: 2rem;
     background-color: #f00;
     border-radius: 2rem;
-    rotate: -45deg;
-    transform-origin: 0rem 0rem;
+
+    transform-origin: 1rem 3rem;
+    ${(props) => props.$state === "idle" && css`rotate: -30deg`};
+    ${(props) => props.$state === "walk" && css`rotate: -35deg`};
+    ${(props) => props.$state === "jump" && css`rotate: -40deg`};
 `;

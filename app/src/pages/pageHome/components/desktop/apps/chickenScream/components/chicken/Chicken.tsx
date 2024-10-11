@@ -30,7 +30,7 @@ export const Chicken = ({ state }: Props) => {
 			<S.TailGrey />
 			<S.TailWhite />
 
-			<S.Eye />
+			<S.Eye $state={state} />
 
 			<S.Wing $state={state}>
 				<S.WingContainer>
@@ -40,8 +40,8 @@ export const Chicken = ({ state }: Props) => {
 				</S.WingContainer>
 			</S.Wing>
 
-			<S.CabbageTop />
-			<S.CabbageLeft />
+			<S.CabbageTop $state={state} />
+			<S.CabbageLeft $state={state} />
 		</S.Chicken>
 	);
 };

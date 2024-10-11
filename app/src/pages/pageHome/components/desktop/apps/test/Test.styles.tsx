@@ -17,3 +17,15 @@ export const Spacer = styled.div`
 	width: 100%;
 	height: 1rem;
 `;
+
+export const Row = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+`;
+
+export const Col = styled.div`
+	display: flex;
+	flex-direction: col;
+	gap: 0.5rem;
+`;
