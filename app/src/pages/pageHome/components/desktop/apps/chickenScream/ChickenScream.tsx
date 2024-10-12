@@ -1,5 +1,4 @@
 import { Button } from "@src/components/button/Button";
-import { Counter } from "@src/components/counter/Counter";
 import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
 import { Text } from "@src/components/text/Text";
@@ -67,10 +66,6 @@ export const ChickenScream = () => {
 		}
 	}, [volume, chickenState, pakPakSensitivity, pakKeekSensitivity, calibrating]);
 
-	const addNumbers = (num1: number, num2: number) => {
-		return Math.min(Math.max(~~((num1 + num2) * 100) / 100, 0), 1);
-	};
-
 	const handleOnClickCalibratePakpak = () => {
 		setPakpakSensitivity(0);
 		setCalibrating("pak-pak");
@@ -101,40 +96,22 @@ export const ChickenScream = () => {
 				<S.Spacer />
 
 				<S.Row>
-					<Text>Volume: {volume.toFixed(3)}</Text>
+					<Text>Volume: {volume.toFixed(2)}</Text>
 				</S.Row>
 
 				<S.Spacer />
 
 				<S.Row>
-					<Text>Pak-Pak sensitivity: </Text>
-					<Counter
-						val={pakPakSensitivity.toFixed(2)}
-						onClickMinus={() => {
-							setPakpakSensitivity(addNumbers(pakPakSensitivity, -0.01));
-						}}
-						onClickPlus={() => {
-							setPakpakSensitivity(addNumbers(pakPakSensitivity, +0.01));
-						}}
-					/>
+					<Text>Pak-Pak sensitivity: {pakPakSensitivity.toFixed(2)}</Text>
 					<Button variant="styled" onClick={handleOnClickCalibratePakpak} disabled={calibrating !== "none"}>
 						Calibrate Pak-Pak
 					</Button>
 				</S.Row>
 
 				<S.Row>
-					<Text>Pa-Keek sensitivity: </Text>
-					<Counter
-						val={pakKeekSensitivity.toFixed(2)}
-						onClickMinus={() => {
-							setPakKeekSensitivity(addNumbers(pakKeekSensitivity, -0.01));
-						}}
-						onClickPlus={() => {
-							setPakKeekSensitivity(addNumbers(pakKeekSensitivity, +0.01));
-						}}
-					/>
+					<Text>Pa-Keek sensitivity: {pakKeekSensitivity.toFixed(2)}</Text>
 					<Button variant="styled" onClick={handleOnClickCalibratePakeek} disabled={calibrating !== "none"}>
-						Calibrate Pak-Keek
+						Calibrate Pak-eek
 					</Button>
 				</S.Row>
 			</S.Col>
