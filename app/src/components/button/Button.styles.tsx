@@ -41,82 +41,65 @@ export const Button = styled.button<{ $variant: IVariant }>`
 	${(props) =>
 		props.$variant === "full" &&
 		css`
-			--label-color: hsl(0, 0%, 100%);
-			--background-color: hsl(230, 60%, 50%);
-			--border-color: hsl(230, 60%, 50%);
-
-			color: var(--label-color);
-			background-color: var(--background-color);
-			border-color: var(--border-color);
+			color: ${(props) => props.theme.color.normalBg};
+			background-color: ${(props) => props.theme.color.normalFg};
+			border-color: ${(props) => props.theme.color.normalFg};
 
 			border-width: 0.2rem;
 			border-style: solid;
+			box-sizing: border-box;
 
 			padding: 0.5rem 1rem 0.5rem 1rem;
-			border-radius: 0.5rem;
-			font-size: 100%;
+			border-radius: 5rem;
 
 			width: fit-content;
 			min-width: 5em;
 
 			&:hover {
-				--background-hover-color: hsl(230, 60%, 55%);
-				background-color: var(--background-hover-color);
+				background-color: ${(props) => props.theme.color.normalFgHover};
 			}
 
 			&:active {
-				--background-active-color: hsl(230, 60%, 60%);
-				background-color: var(--background-active-color);
+				background-color: ${(props) => props.theme.color.normalFgActive};
 			}
 
 			&:disabled {
-				--label-disabled-color: hsl(0, 0%, 100%);
-				--background-disabled-color: hsl(0, 0%, 63%);
-				--border-disabled-color: hsl(0, 0%, 63%);
-				color: var(--label-disabled-color);
-				background-color: var(--background-disabled-color);
-				border-color: var(--border-disabled-color);
+				color: ${(props) => props.theme.color.normalBgDisabled};
+				background-color: ${(props) => props.theme.color.normalFgDisabled};
+				border-color: ${(props) => props.theme.color.normalFgDisabled};
 			}
 		`}
 
 	${(props) =>
 		props.$variant === "stroke" &&
 		css`
-			--label-color: hsl(230, 60%, 50%);
-			--background-color: hsl(0, 0%, 100%);
-			--border-color: hsl(230, 60%, 50%);
-
-			color: var(--label-color);
-			background-color: var(--background-color);
-			border-color: var(--border-color);
+			color: ${(props) => props.theme.color.normalFg};
+			background-color: ${(props) => props.theme.color.normalBg};
+			border-color: ${(props) => props.theme.color.normalFg};
 
 			border-width: 0.2rem;
 			border-style: solid;
+			box-sizing: border-box;
 
 			padding: 0.5rem 1rem 0.5rem 1rem;
-			border-radius: 0.5rem;
+			border-radius: 5rem;
 			font-size: 100%;
 
 			width: fit-content;
 			min-width: 5em;
 
 			&:hover {
-				--background-hover-color: hsl(230, 55%, 80%);
-				background-color: var(--background-hover-color);
+				background-color: ${(props) => props.theme.color.normalBgHover}
 			}
 
 			&:active {
-				--background-active-color: hsl(230, 55%, 85%);
-				background-color: var(--background-active-color);
+				background-color: ${(props) => props.theme.color.normalBgActive}
 			}
 
 			&:disabled {
-				--label-disabled-color: hsl(0, 0%, 63%);
-				--background-disabled-color-color: hsl(0, 0%, 100%);
-				--border-disabled-color: hsl(0, 0%, 63%);
-				color: var(--label-disabled-color);
-				background-color: var(--background-disabled-color);
-				border-color: var(--border-disabled-color);
+				color: ${(props) => props.theme.color.normalFgDisabled}
+				background-color: ${(props) => props.theme.color.normalBgDisabled}
+				border-color: ${(props) => props.theme.color.normalBgDisabled}
 			}
 		`} 
 
@@ -132,6 +115,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 
 			border-width: 0.2rem;
 			border-style: solid;
+			box-sizing: border-box;
 
 			padding: 0.5rem 1rem 0.5rem 1rem;
 			border-radius: 0.5rem;
