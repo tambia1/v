@@ -5,11 +5,11 @@ import * as S from "./Button.styles";
 
 export type IVariant = "styled" | "full" | "stroke" | "link" | "none";
 
-export interface Props extends React.ComponentPropsWithoutRef<"button"> {
+export type Props = React.ComponentPropsWithoutRef<"button"> & {
 	className?: string;
 	variant?: IVariant;
 	onLongClick?: (e: TouchEvent | MouseEvent) => void;
-}
+};
 
 export const Button = ({ className, children, variant: varian = "styled", onLongClick, ...rest }: Props) => {
 	const refButton = useRef<HTMLButtonElement>(null);

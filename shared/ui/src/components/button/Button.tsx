@@ -1,11 +1,11 @@
-import React from "react";
+import type React from "react";
 import * as S from "./Button.styles";
 
 export type IVariant = "full" | "stroke" | "link";
 
-interface Props extends React.ComponentPropsWithoutRef<"button"> {
+type Props = React.ComponentPropsWithoutRef<"button"> & {
 	varian: IVariant;
-}
+};
 
 export const Button = ({ children, varian = "full", ...rest }: Props) => {
 	return (
