@@ -7,6 +7,7 @@ import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
 import type { State } from "./components/chicken/Chicken.types";
 import { Sun } from "./components/sun/Sun";
+import { useMicrophone } from "./hooks/useMicrophone";
 
 export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("walk-2");
@@ -15,77 +16,7 @@ export const ChickenScream = () => {
 	const [pakpakSensitivity, setPakpakSensitivity] = useState(0.2);
 	const [pakeekSensitivity, setPakeekSensitivity] = useState(0.3);
 
-	const audioContextRef = useRef<AudioContext | null>(null);
-	const analyserRef = useRef<AnalyserNode | null>(null);
-	const audioStreamRef = useRef<MediaStream | null>(null);
-	const [isListening, setIsListening] = useState(false);
-	const [volume, setVolume] = useState(0);
-
-	useEffect(() => {
-		const startListening = async () => {
-			try {
-				const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
-				if (!stream) {
-					setIsListening(false);
-					return;
-				}
-
-				audioStreamRef.current = stream;
-				setIsListening(true);
-
-				// Create an AudioContext and an AnalyserNode
-				const audioContext = new AudioContext();
-				audioContextRef.current = audioContext;
-
-				const analyser = audioContext.createAnalyser();
-				analyserRef.current = analyser;
-				analyser.fftSize = 256;
-
-				// Create a GainNode to amplify the audio (optional for sensitivity)
-				const gainNode = audioContext.createGain();
-				gainNode.gain.value = 10.0;
-
-				// Connect the audio stream to the AudioContext and AnalyserNode
-				const source = audioContext.createMediaStreamSource(stream);
-				source.connect(gainNode);
-				gainNode.connect(analyser);
-
-				// Function to analyze the audio levels
-				const checkVolume = () => {
-					const dataArray = new Uint8Array(analyser.frequencyBinCount);
-					analyser.getByteFrequencyData(dataArray);
-
-					let sum = 0;
-					for (let i = 0; i < dataArray.length; i++) {
-						sum += dataArray[i];
-					}
-
-					const averageVolume = sum / dataArray.length;
-					const normalizedVolume = averageVolume / 255;
-					setVolume(normalizedVolume);
-
-					requestAnimationFrame(checkVolume);
-				};
-
-				checkVolume();
-			} catch (error) {
-				setIsListening(false);
-			}
-		};
-
-		startListening();
-
-		return () => {
-			if (audioStreamRef.current) {
-				audioStreamRef.current.getTracks().forEach((track) => track.stop());
-			}
-
-			if (audioContextRef.current) {
-				audioContextRef.current.close();
-			}
-		};
-	}, []);
+	const { isListening, volume } = useMicrophone();
 
 	useEffect(() => {
 		const INTERVAL = 100;
