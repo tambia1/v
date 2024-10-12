@@ -34,7 +34,7 @@ export const Create = () => {
 			</Select>
 
 			<S.Spacer />
-			<Counter min={0} max={12} val={0} />
+			<Counter val={0} onClickMinus={() => {}} onClickPlus={() => {}} />
 
 			<S.Spacer />
 			<Text size="m">Cloud vendors</Text>
@@ -71,11 +71,9 @@ export const Create = () => {
 			<S.Spacer />
 			<Text size="m">High availability</Text>
 			<S.Row>
-				{Array.from(new Set(plans.map((plan) => (plan.is_multi_az ? "multi" : plan.replication === "default" ? "none" : "single")))).map(
-					(highAvailability) => (
-						<S.Col key={highAvailability}>{highAvailability}</S.Col>
-					),
-				)}
+				{Array.from(new Set(plans.map((plan) => (plan.is_multi_az ? "multi" : plan.replication === "default" ? "none" : "single")))).map((highAvailability) => (
+					<S.Col key={highAvailability}>{highAvailability}</S.Col>
+				))}
 			</S.Row>
 
 			<S.Spacer />

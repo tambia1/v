@@ -1,13 +1,14 @@
-import { useCounterContext } from "../contexts/Counter.context";
-import * as S from "./Value.styles";
 import { Text } from "@src/components/text/Text";
+import * as S from "./Value.styles";
 
-export const Value = () => {
-	const counterContext = useCounterContext();
+type Props = {
+	val: string | number;
+};
 
+export const Value = ({ val }: Props) => {
 	return (
 		<S.Value>
-			<Text>{counterContext.val}</Text>
+			<Text>{val}</Text>
 		</S.Value>
 	);
 };

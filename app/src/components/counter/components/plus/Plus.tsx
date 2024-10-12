@@ -1,7 +1,11 @@
 import { Compose } from "./components/compose/Compose";
 
-export const Plus = () => {
-	return <Plus.Compose iconName="iconPlusSquare" add={1} />;
+type Props = {
+	onClickPlus: () => void;
+};
+
+export const Plus = ({ onClickPlus }: Props) => {
+	return <Plus.Compose iconName="iconPlusSquare" onClickPlus={onClickPlus} />;
 };
 
 Plus.Compose = Compose;

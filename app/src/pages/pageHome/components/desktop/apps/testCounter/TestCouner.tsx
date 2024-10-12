@@ -1,8 +1,8 @@
+import { Counter } from "@src/components/counter/Counter";
 import { Text } from "@src/components/text/Text";
-import * as S from "./TestCouner.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { Counter } from "@src/components/counter/Counter";
+import * as S from "./TestCouner.styles";
 
 export const TestCouner = () => {
 	return (
@@ -13,30 +13,30 @@ export const TestCouner = () => {
 
 			<S.Spacer />
 
-			<Counter min={0} max={10} val={6} />
+			<Counter val={6} onClickMinus={() => {}} onClickPlus={() => {}} />
 
 			<S.Spacer />
 
-			<Counter.Compose min={0} max={10} val={6}>
-				<Counter.Minus />
-				<Counter.Plus />
-				<Counter.Value />
+			<Counter.Compose>
+				<Counter.Minus onClickMinus={() => {}} />
+				<Counter.Plus onClickPlus={() => {}} />
+				<Counter.Value val={7} />
 			</Counter.Compose>
 
 			<S.Spacer />
 
-			<Counter.Compose min={0} max={10} val={6}>
-				<Counter.Value />
-				<Counter.Plus />
-				<Counter.Minus />
+			<Counter.Compose>
+				<Counter.Value val={3} />
+				<Counter.Plus onClickPlus={() => {}} />
+				<Counter.Minus onClickMinus={() => {}} />
 			</Counter.Compose>
 
 			<S.Spacer />
 
-			<Counter.Compose min={0} max={10} val={6}>
-				<Counter.Plus.Compose iconName="iconPlusCircle" add={2} />
-				<Counter.Value />
-				<Counter.Minus.Compose iconName="iconMinusCircle" add={-2} />
+			<Counter.Compose>
+				<Counter.Plus.Compose iconName="iconPlusCircle" onClickPlus={() => {}} />
+				<Counter.Value val={8} />
+				<Counter.Minus.Compose iconName="iconMinusCircle" onClickMinus={() => {}} />
 			</Counter.Compose>
 		</S.TestCouner>
 	);

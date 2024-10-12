@@ -1,7 +1,11 @@
 import { Compose } from "./components/compose/Compose";
 
-export const Minus = () => {
-	return <Minus.Compose iconName="iconMinusSquare" add={-1} />;
+type Props = {
+	onClickMinus: () => void;
+};
+
+export const Minus = ({ onClickMinus }: Props) => {
+	return <Minus.Compose iconName="iconMinusSquare" onClickMinus={onClickMinus} />;
 };
 
 Minus.Compose = Compose;

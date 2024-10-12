@@ -1,3 +1,4 @@
+import { Counter } from "@src/components/counter/Counter";
 import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
 import { Text } from "@src/components/text/Text";
@@ -11,6 +12,8 @@ export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("walk-2");
 	const timer = useRef(0);
 	const groundX = useRef(0);
+	const [pakpakSensitivity, setPakpakSensitivity] = useState(0.15);
+	const [pakeekSensitivity, setPakeekSensitivity] = useState(0.25);
 
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
@@ -96,11 +99,11 @@ export const ChickenScream = () => {
 	}, []);
 
 	useEffect(() => {
-		if (volume > 0.25) {
+		if (volume > pakeekSensitivity) {
 			setChickenState("jump");
 			timer.current = 0;
 			groundX.current += 2;
-		} else if (volume > 0.15) {
+		} else if (volume > pakpakSensitivity) {
 			groundX.current++;
 
 			if (timer.current < 300) {
@@ -116,23 +119,51 @@ export const ChickenScream = () => {
 
 			setChickenState("idle");
 		}
-	}, [volume, chickenState]);
+	}, [volume, chickenState, pakpakSensitivity, pakeekSensitivity]);
+
+	const addNumbers = (num1: number, num2: number) => {
+		return Math.min(Math.max(~~((num1 + num2) * 100) / 100, 0), 1);
+	};
 
 	return (
 		<S.ChickenScream>
-			<S.Row>
-				<S.Col>
+			<S.Col>
+				<S.Row>
 					{!isListening && <Icon iconName="iconMicOff" stroke="red" />}
 					{isListening && <Icon iconName="iconMic" stroke="green" />}
 					<Progress percent={volume * 100} />
-				</S.Col>
-			</S.Row>
+				</S.Row>
 
-			<S.Spacer />
+				<S.Row>
+					<Text>Volume: {volume.toFixed(3)}</Text>
+				</S.Row>
 
-			<S.Row>
-				<Text>Volume: {volume.toFixed(3)}</Text>
-			</S.Row>
+				<S.Row>
+					<Text>Pak-Pak sensitivity: </Text>
+					<Counter
+						val={pakpakSensitivity.toFixed(2)}
+						onClickMinus={() => {
+							setPakpakSensitivity(addNumbers(pakpakSensitivity, -0.01));
+						}}
+						onClickPlus={() => {
+							setPakpakSensitivity(addNumbers(pakpakSensitivity, +0.01));
+						}}
+					/>
+				</S.Row>
+
+				<S.Row>
+					<Text>Pa-Keek sensitivity: </Text>
+					<Counter
+						val={pakeekSensitivity.toFixed(2)}
+						onClickMinus={() => {
+							setPakeekSensitivity(addNumbers(pakeekSensitivity, -0.01));
+						}}
+						onClickPlus={() => {
+							setPakeekSensitivity(addNumbers(pakeekSensitivity, +0.01));
+						}}
+					/>
+				</S.Row>
+			</S.Col>
 
 			<S.Sun>
 				<Sun />

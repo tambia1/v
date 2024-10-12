@@ -1,21 +1,21 @@
 import { Compose } from "./components/compose/Compose";
-import { Plus } from "./components/plus/Plus";
 import { Minus } from "./components/minus/Minus";
+import { Plus } from "./components/plus/Plus";
 import { Value } from "./components/value/Value";
 
-export interface Props {
+export type Props = {
 	className?: string | undefined;
-	min: number;
-	max: number;
-	val: number;
-}
+	val: string | number;
+	onClickMinus: () => void;
+	onClickPlus: () => void;
+};
 
-export const Counter = ({ className, ...rest }: Props) => {
+export const Counter = ({ className, val, onClickMinus, onClickPlus, ...rest }: Props) => {
 	return (
 		<Counter.Compose {...rest} className={className}>
-			<Minus />
-			<Value />
-			<Plus />
+			<Minus onClickMinus={onClickMinus} />
+			<Value val={val} />
+			<Plus onClickPlus={onClickPlus} />
 		</Counter.Compose>
 	);
 };
