@@ -1,11 +1,9 @@
-import { Compose } from "./components/compose/Compose";
+import * as S from "./Plus.styles";
 
 type Props = {
-	onClickPlus: () => void;
+	onClick: () => void;
 };
 
-export const Plus = ({ onClickPlus }: Props) => {
-	return <Plus.Compose iconName="iconPlusSquare" onClickPlus={onClickPlus} />;
+export const Plus = ({ onClick }: Props) => {
+	return <S.Plus iconName="iconPlusSquare" onMouseDown={onClick} />;
 };
-
-Plus.Compose = Compose;

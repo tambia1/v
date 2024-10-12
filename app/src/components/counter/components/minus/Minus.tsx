@@ -1,11 +1,9 @@
-import { Compose } from "./components/compose/Compose";
+import * as S from "./Minus.styles";
 
 type Props = {
-	onClickMinus: () => void;
+	onClick: () => void;
 };
 
-export const Minus = ({ onClickMinus }: Props) => {
-	return <Minus.Compose iconName="iconMinusSquare" onClickMinus={onClickMinus} />;
+export const Minus = ({ onClick }: Props) => {
+	return <S.Minus iconName="iconMinusSquare" onMouseDown={onClick} />;
 };
-
-Minus.Compose = Compose;

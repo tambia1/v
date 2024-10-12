@@ -18,8 +18,8 @@ export const TestCouner = () => {
 			<S.Spacer />
 
 			<Counter.Compose>
-				<Counter.Minus onClickMinus={() => {}} />
-				<Counter.Plus onClickPlus={() => {}} />
+				<Counter.Minus onClick={() => {}} />
+				<Counter.Plus onClick={() => {}} />
 				<Counter.Value val={7} />
 			</Counter.Compose>
 
@@ -27,16 +27,8 @@ export const TestCouner = () => {
 
 			<Counter.Compose>
 				<Counter.Value val={3} />
-				<Counter.Plus onClickPlus={() => {}} />
-				<Counter.Minus onClickMinus={() => {}} />
-			</Counter.Compose>
-
-			<S.Spacer />
-
-			<Counter.Compose>
-				<Counter.Plus.Compose iconName="iconPlusCircle" onClickPlus={() => {}} />
-				<Counter.Value val={8} />
-				<Counter.Minus.Compose iconName="iconMinusCircle" onClickMinus={() => {}} />
+				<Counter.Plus onClick={() => {}} />
+				<Counter.Minus onClick={() => {}} />
 			</Counter.Compose>
 		</S.TestCouner>
 	);
