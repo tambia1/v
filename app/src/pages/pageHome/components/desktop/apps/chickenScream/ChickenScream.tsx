@@ -1,3 +1,4 @@
+import { Button } from "@src/components/button/Button";
 import { Counter } from "@src/components/counter/Counter";
 import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
@@ -13,10 +14,12 @@ export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("walk-2");
 	const timer = useRef(0);
 	const groundX = useRef(0);
-	const [pakpakSensitivity, setPakpakSensitivity] = useState(0.2);
-	const [pakeekSensitivity, setPakeekSensitivity] = useState(0.3);
+	const [pakPakSensitivity, setPakpakSensitivity] = useState(0.0);
+	const [pakKeekSensitivity, setPakKeekSensitivity] = useState(0.0);
 
 	const { isListening, volume } = useMicrophone();
+
+	const [calibrating, setCalibrating] = useState<"none" | "pak-pak" | "pak-keek">("none");
 
 	useEffect(() => {
 		const INTERVAL = 100;
@@ -30,11 +33,23 @@ export const ChickenScream = () => {
 	}, []);
 
 	useEffect(() => {
-		if (volume > pakeekSensitivity) {
+		if (calibrating === "pak-pak") {
+			setPakpakSensitivity(Math.max(pakPakSensitivity, volume));
+
+			return;
+		}
+
+		if (calibrating === "pak-keek") {
+			setPakKeekSensitivity(Math.max(pakKeekSensitivity, volume));
+
+			return;
+		}
+
+		if (volume > pakKeekSensitivity) {
 			setChickenState("jump");
 			timer.current = 0;
 			groundX.current += 2;
-		} else if (volume > pakpakSensitivity) {
+		} else if (volume > pakPakSensitivity) {
 			groundX.current++;
 
 			if (timer.current < 300) {
@@ -50,10 +65,28 @@ export const ChickenScream = () => {
 
 			setChickenState("idle");
 		}
-	}, [volume, chickenState, pakpakSensitivity, pakeekSensitivity]);
+	}, [volume, chickenState, pakPakSensitivity, pakKeekSensitivity, calibrating]);
 
 	const addNumbers = (num1: number, num2: number) => {
 		return Math.min(Math.max(~~((num1 + num2) * 100) / 100, 0), 1);
+	};
+
+	const handleOnClickCalibratePakpak = () => {
+		setPakpakSensitivity(0);
+		setCalibrating("pak-pak");
+
+		setTimeout(() => {
+			setCalibrating("none");
+		}, 2000);
+	};
+
+	const handleOnClickCalibratePakeek = () => {
+		setPakKeekSensitivity(0);
+		setCalibrating("pak-keek");
+
+		setTimeout(() => {
+			setCalibrating("none");
+		}, 2000);
 	};
 
 	return (
@@ -76,27 +109,33 @@ export const ChickenScream = () => {
 				<S.Row>
 					<Text>Pak-Pak sensitivity: </Text>
 					<Counter
-						val={pakpakSensitivity.toFixed(2)}
+						val={pakPakSensitivity.toFixed(2)}
 						onClickMinus={() => {
-							setPakpakSensitivity(addNumbers(pakpakSensitivity, -0.01));
+							setPakpakSensitivity(addNumbers(pakPakSensitivity, -0.01));
 						}}
 						onClickPlus={() => {
-							setPakpakSensitivity(addNumbers(pakpakSensitivity, +0.01));
+							setPakpakSensitivity(addNumbers(pakPakSensitivity, +0.01));
 						}}
 					/>
+					<Button variant="styled" onClick={handleOnClickCalibratePakpak} disabled={calibrating !== "none"}>
+						Calibrate Pak-Pak
+					</Button>
 				</S.Row>
 
 				<S.Row>
 					<Text>Pa-Keek sensitivity: </Text>
 					<Counter
-						val={pakeekSensitivity.toFixed(2)}
+						val={pakKeekSensitivity.toFixed(2)}
 						onClickMinus={() => {
-							setPakeekSensitivity(addNumbers(pakeekSensitivity, -0.01));
+							setPakKeekSensitivity(addNumbers(pakKeekSensitivity, -0.01));
 						}}
 						onClickPlus={() => {
-							setPakeekSensitivity(addNumbers(pakeekSensitivity, +0.01));
+							setPakKeekSensitivity(addNumbers(pakKeekSensitivity, +0.01));
 						}}
 					/>
+					<Button variant="styled" onClick={handleOnClickCalibratePakeek} disabled={calibrating !== "none"}>
+						Calibrate Pak-Keek
+					</Button>
 				</S.Row>
 			</S.Col>
 
