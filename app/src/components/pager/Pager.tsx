@@ -1,9 +1,9 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { type ITouch, useTouch } from "@src/hooks/UseTouch";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import * as S from "./Pager.styles";
-import { ITouch, useTouch } from "@src/hooks/UseTouch";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	children: ReactNode[];
 	onChange: (pageIndex: number) => void;
 	disabled?: boolean;

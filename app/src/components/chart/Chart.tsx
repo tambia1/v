@@ -10,7 +10,7 @@ export type ILine = {
 };
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	lines: ILine[];
 }
 

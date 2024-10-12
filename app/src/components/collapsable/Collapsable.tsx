@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import * as S from "./Collapsable.styles";
 
 export interface Props {
-	className?: string | undefined;
+	className?: string;
 	children?: ReactNode;
 	collapsed: boolean;
 }

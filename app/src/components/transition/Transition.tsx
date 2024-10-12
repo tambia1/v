@@ -1,9 +1,9 @@
-import { ReactNode, useState, useRef, useLayoutEffect } from "react";
-import * as S from "./Transition.styles";
 import { useAnimation } from "@src/hooks/UseAnimation";
+import { type ReactNode, useLayoutEffect, useRef, useState } from "react";
+import * as S from "./Transition.styles";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	children?: ReactNode;
 }
 

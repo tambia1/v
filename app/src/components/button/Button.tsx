@@ -1,11 +1,12 @@
-import React, { useRef } from "react";
+import { type ITouch, useTouch } from "@src/hooks/UseTouch";
+import type React from "react";
+import { useRef } from "react";
 import * as S from "./Button.styles";
-import { ITouch, useTouch } from "@src/hooks/UseTouch";
 
 export type IVariant = "styled" | "full" | "stroke" | "link" | "none";
 
 export interface Props extends React.ComponentPropsWithoutRef<"button"> {
-	className?: string | undefined;
+	className?: string;
 	variant?: IVariant;
 	onLongClick?: (e: TouchEvent | MouseEvent) => void;
 }

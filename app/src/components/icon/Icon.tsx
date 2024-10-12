@@ -3,7 +3,7 @@ import * as S from "./Icon.styles";
 import { type IIconName, Icons } from "./Icon.types";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
-	className?: string | undefined;
+	className?: string;
 	iconName: IIconName;
 	size?: string;
 	fill?: string;

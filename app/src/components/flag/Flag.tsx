@@ -3,7 +3,7 @@ import * as S from "./Flag.styles";
 import { Flags, type IFlagName } from "./Flag.types";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
-	className?: string | undefined;
+	className?: string;
 	flagName: IFlagName;
 	size?: string;
 }

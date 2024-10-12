@@ -5,7 +5,7 @@ import { Item } from "./components/item/Item";
 import { List } from "./components/list/List";
 
 export interface Props {
-	className?: string | undefined;
+	className?: string;
 	children: ReactNode[];
 	selectedIndex: number;
 	onClickItem: (index: number) => void;

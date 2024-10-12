@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode, useEffect, useRef, useState } from "react";
+import React, { type ReactElement, type ReactNode, useEffect, useRef, useState } from "react";
 import * as S from "./WorldMap.styles";
 import { Pin } from "./components/pin/Pin";
 
@@ -8,7 +8,7 @@ const MAP_FIX_X = -0.035;
 const MAP_FIX_Y = 0.11;
 
 type Props = {
-	className?: string | undefined;
+	className?: string;
 	map: ReactNode;
 	mapFixW?: number;
 	mapFixH?: number;
@@ -70,7 +70,16 @@ export const WorldMap = ({ className, map, mapFixX = MAP_FIX_X, mapFixY = MAP_FI
 WorldMap.Pin = Pin;
 WorldMap.Map = S.Map;
 
-const getXYFromLngLat = (lng: number, lat: number, imageWidth: number, imageHeight: number, mapFixW: number, mapFixH: number, mapFixX: number, mapFixY: number) => {
+const getXYFromLngLat = (
+	lng: number,
+	lat: number,
+	imageWidth: number,
+	imageHeight: number,
+	mapFixW: number,
+	mapFixH: number,
+	mapFixX: number,
+	mapFixY: number,
+) => {
 	const fixW = imageWidth * mapFixW;
 	const fixH = imageHeight * mapFixH;
 	const fixX = imageWidth * mapFixX;

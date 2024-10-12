@@ -14,7 +14,7 @@ export type MenuItem<MenuItemId> = {
 
 export interface Props<MenuItemId> {
 	children?: ReactNode;
-	className?: string | undefined;
+	className?: string;
 	$visible: boolean;
 	menuGroups: MenuGroup<MenuItemId>[];
 	selectedMenuId: MenuItemId;

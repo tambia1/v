@@ -1,7 +1,7 @@
 import * as S from "./Progress.styles";
 
 export interface Props {
-	className?: string | undefined;
+	className?: string;
 	percent: number;
 }
 

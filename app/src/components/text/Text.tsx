@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import type { ITheme } from "@src/theme/Theme.types";
+import type { ReactNode } from "react";
 import * as S from "./Text.styles";
-import { ITheme } from "@src/theme/Theme.types";
 
 export interface Props {
-	className?: string | undefined;
+	className?: string;
 	children?: ReactNode;
 	size?: keyof ITheme["size"];
 	color?: keyof ITheme["color"];

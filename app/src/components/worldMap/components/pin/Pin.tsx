@@ -1,8 +1,8 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import * as S from "./Pin.styles";
 
 type Props = {
-	className?: string | undefined;
+	className?: string;
 	children?: ReactNode;
 	lng: number;
 	lat: number;

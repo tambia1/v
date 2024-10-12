@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import * as S from "./Table.styles";
 
 export type IData = {
@@ -9,7 +9,7 @@ export type IData = {
 export type IType = "horizontal" | "vertical";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	type: IType;
 	data: IData;
 }

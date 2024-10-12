@@ -1,14 +1,14 @@
+import { useThemeContext } from "@src/theme/UseThemeContext";
 import { useState } from "react";
+import { Icon } from "../icon/Icon";
 import * as S from "./Navigator.styles";
 import { Item } from "./components/item/Item";
+import type { IAnimationState } from "./components/item/Item.styles";
+import { type IPage, Page } from "./components/page/Page";
 import { NavigatorContext } from "./hooks/UseNavigator";
-import { IAnimationState } from "./components/item/Item.styles";
-import { Icon } from "../icon/Icon";
-import { Page, IPage } from "./components/page/Page";
-import { useThemeContext } from "@src/theme/UseThemeContext";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	children?: IPage;
 	onPushStart?: ICallback;
 	onPushEnd?: ICallback;
@@ -29,7 +29,9 @@ export type ICallback = (key: string) => boolean;
 
 export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
 	const { theme } = useThemeContext();
-	const [navigatorItems, setNavigatorItems] = useState<INavigatorItem[]>(children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : []);
+	const [navigatorItems, setNavigatorItems] = useState<INavigatorItem[]>(
+		children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : [],
+	);
 	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
 		pushStart: onPushStart ? { pager: onPushStart } : {},
 		pushEnd: onPushEnd ? { pager: onPushEnd } : {},
@@ -43,7 +45,11 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		Object.keys(listeners.pushStart).forEach((k) => listeners.popStart[k](k));
 
 		setNavigatorItems((prevPages) => {
-			const newPages = prevPages.map((prevPage) => ({ ...prevPage, pageAnimation: "moveFromCenterToLeft" as IAnimationState, titleAnimation: "hideFromCenter" as IAnimationState }));
+			const newPages = prevPages.map((prevPage) => ({
+				...prevPage,
+				pageAnimation: "moveFromCenterToLeft" as IAnimationState,
+				titleAnimation: "hideFromCenter" as IAnimationState,
+			}));
 
 			return [
 				...newPages,
@@ -185,7 +191,12 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 				</S.Headers>
 				<S.Pages>
 					{navigatorItems.map((navigatorItem) => (
-						<Item key={navigatorItem.page.props.id} animation={navigatorItem.pageAnimation} onAnimStart={() => onAnimationStart(navigatorItem)} onAnimEnd={() => onAnimationEnd(navigatorItem)}>
+						<Item
+							key={navigatorItem.page.props.id}
+							animation={navigatorItem.pageAnimation}
+							onAnimStart={() => onAnimationStart(navigatorItem)}
+							onAnimEnd={() => onAnimationEnd(navigatorItem)}
+						>
 							{navigatorItem.page.props.children}
 						</Item>
 					))}

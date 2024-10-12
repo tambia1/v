@@ -1,8 +1,8 @@
-import { ITheme } from "@src/theme/Theme.types";
+import type { ITheme } from "@src/theme/Theme.types";
 import * as S from "./Loader.styles";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	size?: keyof ITheme["size"];
 	color?: keyof ITheme["color"];
 }

@@ -4,7 +4,7 @@ import { Plus } from "./components/plus/Plus";
 import { Value } from "./components/value/Value";
 
 export type Props = {
-	className?: string | undefined;
+	className?: string;
 	val: string | number;
 	onClickMinus: () => void;
 	onClickPlus: () => void;

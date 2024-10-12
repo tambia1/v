@@ -1,10 +1,10 @@
+import type { ReactNode } from "react";
 import * as S from "./List.styles";
-import { ReactNode } from "react";
 import { Cell } from "./components/cell/Cell";
 import { Section } from "./components/section/Section";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	children?: ReactNode;
 }
 

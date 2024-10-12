@@ -1,7 +1,7 @@
 import * as S from "./Slider.styles";
 
 export interface Props {
-	className?: string | undefined;
+	className?: string;
 	value: number;
 	onChange: (value: number) => void;
 }

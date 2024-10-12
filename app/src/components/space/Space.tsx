@@ -1,8 +1,8 @@
+import type { ITheme } from "@src/theme/Theme.types";
 import * as S from "./Space.styles";
-import { ITheme } from "@src/theme/Theme.types";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	size?: keyof ITheme["size"];
 }
 

@@ -1,8 +1,8 @@
-import * as S from "./Input.styles";
 import { useState } from "react";
+import * as S from "./Input.styles";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	value: string;
 	onTextChange: (content: string) => void;
 }

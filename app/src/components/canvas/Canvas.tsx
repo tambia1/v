@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef } from "react";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	draw: (ctx: CanvasRenderingContext2D) => void;
 }
 

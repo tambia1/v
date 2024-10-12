@@ -3,7 +3,7 @@ import * as S from "./Switch.styles";
 export type SwitchState = "left" | "right";
 
 interface Props {
-	className?: string | undefined;
+	className?: string;
 	switchState: SwitchState;
 	onClickSwitch: (switchState: SwitchState) => void;
 }
