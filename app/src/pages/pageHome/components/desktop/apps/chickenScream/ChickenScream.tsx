@@ -5,10 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
 import type { State } from "./components/chicken/Chicken.types";
+import { Sun } from "./components/sun/Sun";
 
 export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("walk-2");
 	const timer = useRef(0);
+	const groundX = useRef(0);
 
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
@@ -97,7 +99,10 @@ export const ChickenScream = () => {
 		if (volume > 0.25) {
 			setChickenState("jump");
 			timer.current = 0;
+			groundX.current += 2;
 		} else if (volume > 0.15) {
+			groundX.current++;
+
 			if (timer.current < 300) {
 				return;
 			}
@@ -129,9 +134,15 @@ export const ChickenScream = () => {
 				<Text>Volume: {volume.toFixed(3)}</Text>
 			</S.Row>
 
-			<S.Chicken>
+			<S.Sun>
+				<Sun />
+			</S.Sun>
+
+			<S.Chicken $isJumping={chickenState === "jump"}>
 				<Chicken state={chickenState} />
 			</S.Chicken>
+
+			<S.Ground $x={groundX.current} />
 		</S.ChickenScream>
 	);
 };

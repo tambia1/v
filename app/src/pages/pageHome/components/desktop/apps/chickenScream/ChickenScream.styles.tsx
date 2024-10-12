@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ground from "./assets/ground.png";
 
 export const ChickenScream = styled.div`
 	width: 100%;
@@ -30,11 +31,33 @@ export const Col = styled.div`
 	gap: 0.5rem;
 `;
 
-export const Chicken = styled.div`
+export const Chicken = styled.div<{ $isJumping: boolean }>`
 	position: absolute;
 	left: 2rem;
-	bottom: 3rem;
+	bottom: ${(props) => (props.$isJumping ? "7rem" : "5rem")};
 
 	font-size: 50%;
 
+	transition: all 0.3s ease;
+`;
+
+export const Ground = styled.div.attrs<{ $x: number }>((props) => ({
+	style: {
+		backgroundPosition: `${-props.$x}px 0px`,
+	},
+}))`
+	position: absolute;
+	height: 5.5rem;
+	left: 0rem;
+	right: 0rem;
+	bottom: 0rem;
+	background-image: url(${ground});
+	background-size: contain; 
+	background-repeat: repeat-x; 
+`;
+
+export const Sun = styled.div`
+	position: absolute;
+	right: 5rem;
+	bottom: 22rem;
 `;

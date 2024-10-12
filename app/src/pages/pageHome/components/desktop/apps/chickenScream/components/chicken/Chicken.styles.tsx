@@ -5,7 +5,7 @@ export const Chicken = styled.div`
     font-size: 100%;
 
     width: 18em;
-	height: 25em;
+	height: 23em;
 	overflow: hidden;
 
 	display: flex;
