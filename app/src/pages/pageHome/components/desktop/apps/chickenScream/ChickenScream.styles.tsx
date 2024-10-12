@@ -22,14 +22,14 @@ export const Spacer = styled.div`
 export const Row = styled.div`
 	display: flex;
 	flex-direction: row;
-	gap: 1rem;
+	gap: 0.5rem;
 	align-items: center;
 `;
 
 export const Col = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 0.5rem;
 `;
 
 export const Chicken = styled.div<{ $isJumping: boolean }>`
