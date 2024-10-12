@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { IVariant } from "./Button";
+import type { IVariant } from "./Button";
 
 export const Button = styled.button<{ $variant: IVariant }>`
 	display: flex;
@@ -121,8 +121,8 @@ export const Button = styled.button<{ $variant: IVariant }>`
 		`} 
 
 		${(props) =>
-		props.$variant === "link" &&
-		css`
+			props.$variant === "link" &&
+			css`
 			--label-color: hsl(230, 60%, 50%);
 			--background-color: hsla(0, 0%, 0%, 0);
 

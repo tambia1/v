@@ -1,6 +1,5 @@
+import { Button } from "./components/button/Button";
 import { Compose } from "./components/compose/Compose";
-import { Minus } from "./components/minus/Minus";
-import { Plus } from "./components/plus/Plus";
 import { Value } from "./components/value/Value";
 
 export type Props = {
@@ -13,14 +12,14 @@ export type Props = {
 export const Counter = ({ className, val, onClickMinus, onClickPlus, ...rest }: Props) => {
 	return (
 		<Counter.Compose {...rest} className={className}>
-			<Minus onClick={onClickMinus} />
+			<Button iconName="iconMinusSquare" onClick={onClickMinus} />
 			<Value val={val} />
-			<Plus onClick={onClickPlus} />
+			<Button iconName="iconPlusSquare" onClick={onClickPlus} />
 		</Counter.Compose>
 	);
 };
 
 Counter.Compose = Compose;
-Counter.Minus = Minus;
-Counter.Plus = Plus;
+Counter.Minus = Button;
+Counter.Plus = Button;
 Counter.Value = Value;
