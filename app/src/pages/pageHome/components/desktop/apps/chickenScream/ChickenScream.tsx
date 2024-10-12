@@ -12,8 +12,8 @@ export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("walk-2");
 	const timer = useRef(0);
 	const groundX = useRef(0);
-	const [pakpakSensitivity, setPakpakSensitivity] = useState(0.15);
-	const [pakeekSensitivity, setPakeekSensitivity] = useState(0.25);
+	const [pakpakSensitivity, setPakpakSensitivity] = useState(0.2);
+	const [pakeekSensitivity, setPakeekSensitivity] = useState(0.3);
 
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
