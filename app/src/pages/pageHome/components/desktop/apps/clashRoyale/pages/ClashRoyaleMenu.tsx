@@ -1,10 +1,10 @@
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import * as S from "./ClashRoyaleMenu.styles";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { ClashRoyaleGame } from "./ClashRoyaleGame";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
-import { IType as IArenaType } from "./game/Arena";
+import { ClashRoyaleGame } from "./ClashRoyaleGame";
+import * as S from "./ClashRoyaleMenu.styles";
+import type { IType as IArenaType } from "./game/Arena";
 
 export const ClashRoyaleMenu = () => {
 	const navigator = useNavigator();
@@ -16,7 +16,7 @@ export const ClashRoyaleMenu = () => {
 		navigator.pushPage(
 			<Navigator.Page id={"game"} title={"Game"}>
 				<ClashRoyaleGame arenaType={Arenas[pageIndex]} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 

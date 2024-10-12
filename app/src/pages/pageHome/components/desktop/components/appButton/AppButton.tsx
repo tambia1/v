@@ -1,8 +1,8 @@
-import { ITouch, useTouch } from "@src/hooks/UseTouch";
-import * as S from "./AppButton.styles";
-import { ReactNode, useRef } from "react";
 import { Icon } from "@src/components/icon/Icon";
+import { type ITouch, useTouch } from "@src/hooks/UseTouch";
+import { type ReactNode, useRef } from "react";
 import { StoreApps } from "../../stores/StoreApps";
+import * as S from "./AppButton.styles";
 
 interface Props {
 	id: string;
@@ -36,7 +36,6 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isLoading, is
 				onClick?.(id);
 			}
 		},
-		deps: [refButton.current],
 	});
 
 	return (

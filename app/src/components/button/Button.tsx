@@ -21,7 +21,6 @@ export const Button = ({ className, children, variant: varian = "styled", onLong
 				onLongClick?.(e);
 			}
 		},
-		deps: [refButton.current],
 	});
 
 	return (

@@ -39,12 +39,12 @@ export const Pager = ({ className, children: pages, onChange, disabled = false, 
 				let gap = xMove - xStart;
 
 				//check move
-				if ((pageIndex == 0 && gap > 0) || (pageIndex == pages.length - 1 && gap < 0)) {
+				if ((pageIndex === 0 && gap > 0) || (pageIndex === pages.length - 1 && gap < 0)) {
 					gap >>= 1;
 				}
 
 				//if we have only one item then move only half
-				if (pages.length == 1) {
+				if (pages.length === 1) {
 					gap >>= 2;
 				}
 
@@ -58,15 +58,15 @@ export const Pager = ({ className, children: pages, onChange, disabled = false, 
 				const direction = Math.abs(gap) < 100 ? 0 : gap / Math.abs(gap);
 				let index = pageIndex;
 
-				if (direction == 0) {
+				if (direction === 0) {
 					if (gap < -(divPagesPanel.clientWidth >> 1)) {
 						index = pageIndex + 1;
 					} else if (gap > divPagesPanel.clientWidth >> 1) {
 						index = pageIndex - 1;
 					}
-				} else if (direction == -1 && pageIndex < pages.length - 1) {
+				} else if (direction === -1 && pageIndex < pages.length - 1) {
 					index = pageIndex + 1;
-				} else if (direction == 1 && pageIndex > 0) {
+				} else if (direction === 1 && pageIndex > 0) {
 					index = pageIndex - 1;
 				}
 
@@ -75,7 +75,6 @@ export const Pager = ({ className, children: pages, onChange, disabled = false, 
 				onChange(index);
 			}
 		},
-		deps: [pageIndex, setPageIndex, refPagesPanel.current],
 	});
 
 	const translate = (div: HTMLDivElement, x: number, isAnimated: boolean) => {
