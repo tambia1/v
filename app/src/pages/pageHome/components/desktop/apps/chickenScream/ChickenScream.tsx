@@ -13,8 +13,8 @@ export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<State>("walk-2");
 	const timer = useRef(0);
 	const groundX = useRef(0);
-	const [pakPakSensitivity, setPakpakSensitivity] = useState(0.0);
-	const [pakKeekSensitivity, setPakKeekSensitivity] = useState(0.0);
+	const [pakPakSensitivity, setPakpakSensitivity] = useState(1.0);
+	const [pakKeekSensitivity, setPakKeekSensitivity] = useState(1.0);
 
 	const { isListening, volume } = useMicrophone();
 
@@ -59,6 +59,7 @@ export const ChickenScream = () => {
 			timer.current = 0;
 		} else {
 			if (timer.current < 600) {
+				groundX.current++;
 				return;
 			}
 
@@ -104,14 +105,14 @@ export const ChickenScream = () => {
 				<S.Row>
 					<Text>Pak-Pak sensitivity: {pakPakSensitivity.toFixed(2)}</Text>
 					<Button variant="styled" onClick={handleOnClickCalibratePakpak} disabled={calibrating !== "none"}>
-						Calibrate Pak-Pak
+						Calibrate
 					</Button>
 				</S.Row>
 
 				<S.Row>
 					<Text>Pa-Keek sensitivity: {pakKeekSensitivity.toFixed(2)}</Text>
 					<Button variant="styled" onClick={handleOnClickCalibratePakeek} disabled={calibrating !== "none"}>
-						Calibrate Pak-eek
+						Calibrate
 					</Button>
 				</S.Row>
 			</S.Col>
