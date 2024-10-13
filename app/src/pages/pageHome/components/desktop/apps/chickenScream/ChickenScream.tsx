@@ -2,17 +2,17 @@ import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
 import { Text } from "@src/components/text/Text";
-import { useEffect, useRef, useState } from "react";
+import { useAnimationFrame } from "@src/hooks/UseAnimationFrame";
+import { useEffect, useState } from "react";
 import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
-import type { State } from "./components/chicken/Chicken.types";
+import type { State as ChickenState } from "./components/chicken/Chicken.types";
 import { Sun } from "./components/sun/Sun";
 import { useMicrophone } from "./hooks/useMicrophone";
 
 export const ChickenScream = () => {
-	const [chickenState, setChickenState] = useState<State>("walk-2");
-	const timer = useRef(0);
-	const groundX = useRef(0);
+	const [chickenState, setChickenState] = useState<{ state: ChickenState; time: number }>({ state: "walk-2", time: 0 });
+
 	const [pakPakSensitivity, setPakpakSensitivity] = useState(1.0);
 	const [pakKeekSensitivity, setPakKeekSensitivity] = useState(1.0);
 
@@ -20,16 +20,22 @@ export const ChickenScream = () => {
 
 	const [calibrating, setCalibrating] = useState<"none" | "pak-pak" | "pak-keek">("none");
 
+	const [groundX, setGroundX] = useState(0);
+
+	const animationFrame = useAnimationFrame((deltaTime) => {
+		onAnimationFrame(deltaTime);
+	});
+
 	useEffect(() => {
-		const INTERVAL = 100;
-		const intervalId = setInterval(() => {
-			timer.current += INTERVAL;
-		}, INTERVAL);
+		console.log("222");
+
+		animationFrame.start();
 
 		return () => {
-			clearInterval(intervalId);
+			console.log("333");
+			animationFrame.stop();
 		};
-	}, []);
+	}, [animationFrame.start, animationFrame.stop]);
 
 	useEffect(() => {
 		if (calibrating === "pak-pak") {
@@ -44,28 +50,40 @@ export const ChickenScream = () => {
 			return;
 		}
 
-		if (volume > pakKeekSensitivity) {
-			setChickenState("jump");
-			timer.current = 0;
-			groundX.current += 2;
-		} else if (volume > pakPakSensitivity) {
-			groundX.current++;
-
-			if (timer.current < 300) {
-				return;
-			}
-
-			setChickenState(chickenState === "walk-1" ? "walk-2" : "walk-1");
-			timer.current = 0;
-		} else {
-			if (timer.current < 600) {
-				groundX.current++;
-				return;
-			}
-
-			setChickenState("idle");
+		if (chickenState.state === "idle" && performance.now() - chickenState.time < 300) {
+			return;
 		}
-	}, [volume, chickenState, pakPakSensitivity, pakKeekSensitivity, calibrating]);
+
+		if (volume > pakKeekSensitivity) {
+			setChickenState({ state: "jump", time: performance.now() });
+		} else if (volume > pakPakSensitivity) {
+			if (chickenState.state === "walk-1" && performance.now() - chickenState.time > 300) {
+				setChickenState({ state: "walk-2", time: performance.now() });
+			}
+
+			if (chickenState.state === "walk-2" && performance.now() - chickenState.time > 300) {
+				setChickenState({ state: "walk-1", time: performance.now() });
+			}
+
+			if (chickenState.state !== "walk-1" && chickenState.state !== "walk-2") {
+				setChickenState({ state: "walk-1", time: performance.now() });
+			}
+		} else {
+			setChickenState({ state: "idle", time: performance.now() });
+		}
+	}, [volume, chickenState.state, chickenState.time, pakPakSensitivity, pakKeekSensitivity, calibrating]);
+
+	const onAnimationFrame = (deltaTime: number) => {
+		console.log("eee", chickenState.state);
+
+		if (chickenState.state === "walk-1" || chickenState.state === "walk-2") {
+			const speed = 50;
+			setGroundX((prevGroundX) => prevGroundX + (speed * deltaTime) / 1000);
+		} else if (chickenState.state === "jump") {
+			const speed = 100;
+			setGroundX((prevGroundX) => prevGroundX + (speed * deltaTime) / 1000);
+		}
+	};
 
 	const handleOnClickCalibratePakpak = () => {
 		setPakpakSensitivity(0);
@@ -121,11 +139,11 @@ export const ChickenScream = () => {
 				<Sun />
 			</S.Sun>
 
-			<S.Chicken $isJumping={chickenState === "jump"}>
-				<Chicken state={chickenState} />
+			<S.Chicken $isJumping={chickenState.state === "jump"}>
+				<Chicken state={chickenState.state} />
 			</S.Chicken>
 
-			<S.Ground $x={groundX.current} />
+			<S.Ground $x={groundX} />
 		</S.ChickenScream>
 	);
 };
