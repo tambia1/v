@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ground from "./assets/ground.png";
+import stone from "./assets/stone.png";
 
 export const ChickenScream = styled.div`
 	width: 100%;
@@ -61,4 +62,18 @@ export const Sun = styled.div`
 	position: absolute;
 	right: 5rem;
 	bottom: 22rem;
+`;
+
+export const Stone = styled.div.attrs<{ $x: number }>((props) => ({
+	style: {
+		left: `${props.$x}px`,
+	},
+}))`
+	position: absolute;
+	height: 3rem;
+	width: 5rem;
+	bottom: 3.5rem;
+	background-image: url(${stone});
+	background-size: contain; 
+	background-repeat: repeat-x; 
 `;

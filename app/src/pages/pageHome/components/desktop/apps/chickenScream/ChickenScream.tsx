@@ -24,6 +24,8 @@ export const ChickenScream = () => {
 
 	const animationFrame = useAnimationFrame();
 
+	const screenWidth = window.innerWidth;
+
 	useEffect(() => {
 		if (chickenState.state === "walk-1" || chickenState.state === "walk-2") {
 			const speed = 50;
@@ -128,6 +130,7 @@ export const ChickenScream = () => {
 				<Chicken state={chickenState.state} />
 			</S.Chicken>
 
+			<S.Stone $x={screenWidth + 60 - (groundX % (screenWidth + 60 * 2))} />
 			<S.Ground $x={groundX} />
 		</S.ChickenScream>
 	);
