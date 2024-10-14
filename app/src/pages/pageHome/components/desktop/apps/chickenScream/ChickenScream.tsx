@@ -42,7 +42,7 @@ export const ChickenScream = () => {
 		}
 
 		if (calibrating === "pak-keek") {
-			setPakKeekSensitivity(Math.max(pakKeekSensitivity, volume));
+			setPakKeekSensitivity(Math.max(pakKeekSensitivity, pakPakSensitivity, volume));
 
 			return;
 		}
