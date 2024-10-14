@@ -3,7 +3,7 @@ import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
 import { Text } from "@src/components/text/Text";
 import { useAnimationFrame } from "@src/hooks/UseAnimationFrame";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
 import type { State as ChickenState } from "./components/chicken/Chicken.types";
@@ -22,28 +22,17 @@ export const ChickenScream = () => {
 
 	const [groundX, setGroundX] = useState(0);
 
-	const onAnimationFrame = useCallback(
-		(deltaTime: number) => {
-			if (chickenState.state === "walk-1" || chickenState.state === "walk-2") {
-				const speed = 50;
-				setGroundX((prevGroundX) => prevGroundX + (speed * deltaTime) / 1000);
-			} else if (chickenState.state === "jump") {
-				const speed = 100;
-				setGroundX((prevGroundX) => prevGroundX + (speed * deltaTime) / 1000);
-			}
-		},
-		[chickenState.state],
-	);
-
-	const animationFrame = useAnimationFrame(onAnimationFrame);
+	const animationFrame = useAnimationFrame();
 
 	useEffect(() => {
-		animationFrame.start();
-
-		return () => {
-			animationFrame.stop();
-		};
-	}, [animationFrame.start, animationFrame.stop]);
+		if (chickenState.state === "walk-1" || chickenState.state === "walk-2") {
+			const speed = 50;
+			setGroundX((prevGroundX) => prevGroundX + (speed * animationFrame.time.delta) / 1000);
+		} else if (chickenState.state === "jump") {
+			const speed = 100;
+			setGroundX((prevGroundX) => prevGroundX + (speed * animationFrame.time.delta) / 1000);
+		}
+	}, [animationFrame.time, chickenState.state]);
 
 	useEffect(() => {
 		if (calibrating === "pak-pak") {

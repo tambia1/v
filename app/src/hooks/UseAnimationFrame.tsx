@@ -1,9 +1,10 @@
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export const useAnimationFrame = (callback: (deltaTime: number) => void) => {
+export const useAnimationFrame = () => {
 	const refRequest = useRef<number>(0);
 	const refTime = useRef<number>(performance.now());
 	const fps = 60;
+	const [time, setTime] = useState({ now: 0, delta: 0 });
 
 	const run = useCallback(() => {
 		refRequest.current = requestAnimationFrame(run);
@@ -17,21 +18,19 @@ export const useAnimationFrame = (callback: (deltaTime: number) => void) => {
 		}
 
 		refTime.current = timeNow;
-		callback(timeDif);
-	}, [callback]);
-
-	const start = useCallback(() => {
-		refRequest.current = requestAnimationFrame(run);
-	}, [run]);
-
-	const stop = useCallback(() => {
-		if (refRequest.current) {
-			cancelAnimationFrame(refRequest.current);
-		}
+		setTime({ now: timeNow, delta: timeDif });
 	}, []);
 
+	useEffect(() => {
+		refRequest.current = requestAnimationFrame(run);
+
+		return () => {
+			cancelAnimationFrame(refRequest.current);
+			refRequest.current = 0;
+		};
+	}, [run]);
+
 	return {
-		start,
-		stop,
+		time,
 	};
 };
