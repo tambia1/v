@@ -117,13 +117,9 @@ export const ChickenScream = () => {
 					<Progress percent={volume * 100} />
 				</S.Row>
 
-				<S.Spacer />
-
 				<S.Row>
 					<Text>Volume: {volume.toFixed(2)}</Text>
 				</S.Row>
-
-				<S.Spacer />
 
 				<S.Row>
 					<Text>Pak-Pak sensitivity: {pakPakSensitivity.toFixed(2)}</Text>

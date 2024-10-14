@@ -25,6 +25,7 @@ export const Row = styled.div`
 	flex-direction: row;
 	gap: 0.5rem;
 	align-items: center;
+	height: 3rem;
 `;
 
 export const Col = styled.div`
