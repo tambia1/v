@@ -81,7 +81,7 @@ export const ChickenScream = () => {
 		}
 	}, [volume, chickenState.state, chickenState.time, pakPakSensitivity, pakKeekSensitivity, calibrating]);
 
-	const handleOnClickCalibratePakpak = () => {
+	const handleOnClickTrainPakpak = () => {
 		setPakpakSensitivity(0);
 		setCalibrating("pak-pak");
 
@@ -90,7 +90,7 @@ export const ChickenScream = () => {
 		}, 2000);
 	};
 
-	const handleOnClickCalibratePakeek = () => {
+	const handleOnClickTrainPakeek = () => {
 		setPakKeekSensitivity(0);
 		setCalibrating("pak-keek");
 
@@ -118,15 +118,15 @@ export const ChickenScream = () => {
 
 				<S.Row>
 					<Text>Pak-Pak sensitivity: {pakPakSensitivity.toFixed(2)}</Text>
-					<Button variant="styled" onClick={handleOnClickCalibratePakpak} disabled={calibrating !== "none"}>
-						Calibrate
+					<Button variant="styled" onClick={handleOnClickTrainPakpak} disabled={calibrating !== "none"}>
+						Train
 					</Button>
 				</S.Row>
 
 				<S.Row>
 					<Text>Pa-Keek sensitivity: {pakKeekSensitivity.toFixed(2)}</Text>
-					<Button variant="styled" onClick={handleOnClickCalibratePakeek} disabled={calibrating !== "none"}>
-						Calibrate
+					<Button variant="styled" onClick={handleOnClickTrainPakeek} disabled={calibrating !== "none"}>
+						Train
 					</Button>
 				</S.Row>
 			</S.Col>
