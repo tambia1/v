@@ -5,6 +5,7 @@ import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { type MouseEvent, useEffect, useState } from "react";
@@ -212,12 +213,6 @@ export const Datacenter = () => {
 										{sub.cloud === "azure" && <Icon iconName="iconMicrosoft" size="1rem" />}
 									</S.Row>
 									<S.Row>
-										<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
-										{sub.regions.map((region) => (
-											<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
-										))}
-									</S.Row>
-									<S.Row>
 										<S.SubscriptionsDetailText>Flash</S.SubscriptionsDetailText>
 										{!sub.redisOnFlash && <Icon iconName="iconSquare" />}
 										{sub.redisOnFlash && <Icon iconName="iconVSquare" />}
@@ -227,7 +222,33 @@ export const Datacenter = () => {
 										{!sub.multiAvailabilityZone && <Icon iconName="iconSquare" />}
 										{sub.multiAvailabilityZone && <Icon iconName="iconVSquare" />}
 									</S.Row>
+									{sub.regions.length <= 1 && (
+										<S.Row>
+											<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
+											{sub.regions.map((region) => (
+												<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
+											))}
+										</S.Row>
+									)}
 								</S.SubscriptionsDetailsRow>
+								{sub.regions.length > 1 && (
+									<S.SubscriptionsDetailsRowMap>
+										<S.WorldMapContainer>
+											<WorldMap
+												map={<WorldMap.Map />}
+												pins={sub.regions.map((region) => {
+													return (
+														<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
+															<S.Pin>
+																<Flag flagName={`${region.flag}` as IFlagName} />
+															</S.Pin>
+														</WorldMap.Pin>
+													);
+												})}
+											/>
+										</S.WorldMapContainer>
+									</S.SubscriptionsDetailsRowMap>
+								)}
 
 								<S.DatabasesHeader>
 									<S.ColIcon onClick={(e) => handleOnClickCollpseSubDbs(e, sub.id)}>
@@ -238,7 +259,7 @@ export const Datacenter = () => {
 									))}
 								</S.DatabasesHeader>
 
-								<S.Col>
+								<S.DatabasesRows>
 									{sub.dbs.map((db) => (
 										<S.Col key={db.id}>
 											<S.Row>
@@ -247,7 +268,7 @@ export const Datacenter = () => {
 
 											<S.DatabasesRow onClick={(e) => handleOnClickCollpseDb(e, db.id)}>
 												<S.IconCollapse $collapsed={db.collapsed}>
-													<Icon iconName="iconChevronDown" />
+													<Icon iconName="iconChevronDown" stroke="#ffffff" />
 												</S.IconCollapse>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
@@ -255,7 +276,7 @@ export const Datacenter = () => {
 													<S.Progress percent={Math.max(25, (db.usage / db.size) * 100)} />
 												</S.DatabasesText>
 												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
-													<Icon iconName="iconChevronRight" />
+													<Icon iconName="iconChevronRight" stroke="#ffffff" />
 												</S.ColIcon>
 											</S.DatabasesRow>
 
@@ -263,36 +284,36 @@ export const Datacenter = () => {
 												<S.DatabasesInfoRow>
 													<S.DatabasesInfoCell>
 														<S.DatabaseDetailText>Size</S.DatabaseDetailText>
-														<S.DatabaseDetailText>{convertBytes(db.size, "mb")}</S.DatabaseDetailText>
+														<S.DatabaseDetailValue>{convertBytes(db.size, "biggest")}</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
 
 													<S.DatabasesInfoCell>
 														<S.DatabaseDetailText>Usage</S.DatabaseDetailText>
-														<S.DatabaseDetailText>{convertBytes(db.usage, "mb")}</S.DatabaseDetailText>
+														<S.DatabaseDetailValue>{convertBytes(db.usage, "biggest")}</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
 
 													<S.DatabasesInfoCell>
-														<S.DatabaseDetailText>{Number(db.usage / db.size).toFixed(3)}%</S.DatabaseDetailText>
+														<S.DatabaseDetailValue>{Number(db.usage / db.size).toFixed(3)}%</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 
 												<S.DatabasesInfoRow>
 													<S.DatabasesInfoCell>
 														<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
-														{!db.highAvailability && <Icon iconName="iconSquare" />}
-														{db.highAvailability && <Icon iconName="iconVSquare" />}
+														{!db.highAvailability && <Icon iconName="iconSquare" stroke="#A99D5D" />}
+														{db.highAvailability && <Icon iconName="iconVSquare" stroke="#A99D5D" />}
 													</S.DatabasesInfoCell>
 
 													<S.DatabasesInfoCell>
-														<S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>
-														{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" />}
-														{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" />}
+														<S.DatabaseDetailText>HDD</S.DatabaseDetailText>
+														{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" stroke="#A99D5D" />}
+														{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" stroke="#A99D5D" />}
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 											</Collapsable>
 										</S.Col>
 									))}
-								</S.Col>
+								</S.DatabasesRows>
 							</Collapsable>
 						</S.DatabasesList>
 

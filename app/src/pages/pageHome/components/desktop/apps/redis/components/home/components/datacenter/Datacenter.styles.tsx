@@ -66,7 +66,7 @@ export const Row = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	gap: 0.5rem
+	gap: 0.5rem;
 `;
 
 const SubscriptionsWidth = css`
@@ -146,9 +146,17 @@ export const DatabasesHeader = styled.div`
 	gap: 0.5rem;
 	white-space: nowrap;
 	padding: 0.5rem 1rem;
-	background-color: ${(props) => props.theme.color.accentBgHover};
+	background-color: #252525;
+	color: #ffffff;
 
 	${DatabasesWidth}
+`;
+
+export const DatabasesRows = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	background-color: #252525;
 `;
 
 export const SubscriptionsLine = styled.div`
@@ -156,7 +164,7 @@ export const SubscriptionsLine = styled.div`
 	width: 100%;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	border-bottom: solid ${(props) => props.theme.color.normalFgSelected} 1px;
+	border-bottom: solid #252525 1px;
 `;
 
 export const DatabasesLine = styled.div`
@@ -164,7 +172,7 @@ export const DatabasesLine = styled.div`
 	width: 100%;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	border-bottom: dashed ${(props) => props.theme.color.normalFgSelected} 1px;
+	border-bottom: dashed #A99D5D 1px;
 `;
 
 export const IconCollapse = styled.div<{ $collapsed: boolean }>`
@@ -213,13 +221,23 @@ export const DatabasesText = styled.div`
 	align-items: center;
 	font-weight: normal;
 	flex-shrink: 0;
-	color: ${(props) => props.theme.color.errorFg};
+	color: #ffffff
 `;
 
 export const DatabaseDetailText = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: normal;
+	color: #ffffff
+
+`;
+
+export const DatabaseDetailValue = styled.div`
+	display: flex;
+	align-items: center;
+	font-weight: normal;
+	color: #A99D5D
+
 `;
 
 export const SubscriptionRow = styled.div`
@@ -262,16 +280,25 @@ export const SubscriptionsDetailsRow = styled.div`
 	}
 `;
 
+export const SubscriptionsDetailsRowMap = styled.div`
+	display: flex;
+	flex-direction: row;
+	padding: 1rem;
+	align-items: center;
+	gap: 1rem;
+	background-color: ${(props) => props.theme.color.normalBg};
+`;
+
 export const DatabasesRow = styled.div`
 	display: flex;
 	flex-direction: row;
 	padding: 1rem;
 	align-items: center;
 	gap: 0.5rem;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: #252525;
 
 	&:hover {
-		background-color: ${(props) => props.theme.color.normalBgHover};
+		background-color: #454545;
 	}
 
 	${DatabasesWidth}
@@ -283,11 +310,8 @@ export const DatabasesInfoRow = styled.div`
 	padding: 1rem;
 	align-items: center;
 	gap: 1rem;
-	background-color: ${(props) => props.theme.color.normalBg};
-
-	&:hover {
-		background-color: ${(props) => props.theme.color.normalBgHover};
-	}
+	color: #ffffff;
+	background-color: #252525;
 `;
 
 export const DatabasesInfoCell = styled.div`
@@ -297,16 +321,26 @@ export const DatabasesInfoCell = styled.div`
 `;
 
 export const Progress = styled(ProgressComponent)<{ percent: number }>`
-	border: 1px solid ${({ theme }) => theme.color.normalFg};
+	border: 1px solid #ffffff;
+`;
 
-	& > div > div {
-		background-color: ${({ theme }) => theme.color.normalFg};
-		${(props) => {
-			const percent = Math.min(100, Math.max(0, props.percent));
+export const WorldMapContainer = styled.div`
+	width: 100%;
+	max-width: 50rem;
+	height: 15rem;
+	display: flex;
+	justify-content: center;
 
-			return css`
-				background: linear-gradient(90deg, #4cae4c 0%, #4cae4c 60%, #f0ad4e ${180 - percent}%, #ff0000 ${200 - percent}%);
-			`;
-		}};
+	& > div {
+		max-width: 40rem;
+	}
+`;
+
+export const Pin = styled.div`
+	white-space: nowrap;
+	transition: scale 0.3s ease;
+
+	&:hover{
+		scale: 150%;
 	}
 `;
