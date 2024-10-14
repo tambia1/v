@@ -25,6 +25,13 @@ export const ChickenScream = () => {
 	const animationFrame = useAnimationFrame();
 
 	const screenWidth = window.innerWidth;
+	const stoneX = screenWidth + 60 - (groundX % (screenWidth + 60 * 2));
+	const stoneWidth = 60;
+	const chickenX = 100;
+	const chickenWidth = 40;
+
+	const [hits, setHits] = useState(0);
+	const [hitDetected, setHitDetected] = useState(false);
 
 	useEffect(() => {
 		if (chickenState.state === "walk-1" || chickenState.state === "walk-2") {
@@ -35,6 +42,17 @@ export const ChickenScream = () => {
 			setGroundX((prevGroundX) => prevGroundX + (speed * animationFrame.time.delta) / 1000);
 		}
 	}, [animationFrame.time, chickenState.state]);
+
+	useEffect(() => {
+		if (stoneX < chickenX && stoneX + stoneWidth > chickenX - chickenWidth) {
+			if (hitDetected === false && chickenState.state !== "jump") {
+				setHits(hits + 1);
+				setHitDetected(true);
+			}
+		} else {
+			setHitDetected(false);
+		}
+	}, [stoneX, hits, hitDetected, chickenState.state]);
 
 	useEffect(() => {
 		if (calibrating === "pak-pak") {
@@ -119,6 +137,10 @@ export const ChickenScream = () => {
 					<Button variant="styled" onClick={handleOnClickTrainPakeek} disabled={calibrating !== "none"}>
 						Train
 					</Button>
+				</S.Row>
+
+				<S.Row>
+					<Text>Hits: {hits}</Text>
 				</S.Row>
 			</S.Col>
 
