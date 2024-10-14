@@ -11,7 +11,7 @@ import { Sun } from "./components/sun/Sun";
 import { useMicrophone } from "./hooks/useMicrophone";
 
 export const ChickenScream = () => {
-	const [chickenState, setChickenState] = useState<{ state: ChickenState; time: number }>({ state: "walk-2", time: 0 });
+	const [chickenState, setChickenState] = useState<{ state: ChickenState; time: number }>({ state: "idle", time: 0 });
 
 	const [pakPakSensitivity, setPakpakSensitivity] = useState(1.0);
 	const [pakKeekSensitivity, setPakKeekSensitivity] = useState(1.0);
