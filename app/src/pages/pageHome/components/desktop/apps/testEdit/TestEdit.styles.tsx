@@ -21,11 +21,11 @@ export const Spacer = styled.div`
 export const Row = styled.div`
 	display: flex;
 	flex-direction: row;
-	gap: 0.5rem;
+	gap: 1rem;
 `;
 
 export const Col = styled.div`
 	display: flex;
-	flex-direction: col;
-	gap: 0.5rem;
+	flex-direction: column;
+	gap: 1rem;
 `;

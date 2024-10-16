@@ -1,8 +1,8 @@
-import { Text as Text } from "@src/components/text/Text.styles";
+import { Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
 export const Content = styled.div`
-	height: auto;
+	height: 100%;
 	width: auto;
 	padding: 1rem;
 	display: flex;
@@ -21,7 +21,7 @@ export const Line = styled.div`
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
-	height: auto;
+	height: 5rem;
 
 	color: ${(props) => props.theme.color.normalFg};
 	background-color: ${(props) => props.theme.color.normalBg};

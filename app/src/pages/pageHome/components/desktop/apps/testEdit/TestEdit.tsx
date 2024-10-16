@@ -20,10 +20,17 @@ export const TestEdit = () => {
 
 			<S.Spacer />
 
-			<S.Row>
-				<Text>Edit mode</Text>
-				<Switch switchState={isEditMode} onClickSwitch={handleOnClickSwitch} />
-			</S.Row>
+			<S.Col>
+				<S.Row>
+					<Text>Edit mode</Text>
+					<Switch switchState={isEditMode} onClickSwitch={handleOnClickSwitch} />
+				</S.Row>
+
+				<S.Row>
+					<Text>Edit mode</Text>
+					<Switch switchState={isEditMode} onClickSwitch={handleOnClickSwitch} />
+				</S.Row>
+			</S.Col>
 		</S.TestEdit>
 	);
 };
