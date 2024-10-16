@@ -23,7 +23,7 @@ export const User = styled.div`
 
 export const Box = styled.div`
 	position: relative;
-	width: 25rem;
+	width: 20rem;
 	height: auto;
 	box-sizing: border-box;
 	color: ${(props) => props.theme.color.boxColor1};
@@ -54,6 +54,7 @@ export const EmailImage = styled(Icon)`
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 	flex-shrink: 0;
+	box-sizing: border-box;
 `;
 
 export const EmailInput = styled.input`
@@ -63,6 +64,9 @@ export const EmailInput = styled.input`
 	border-radius: 0 5rem 5rem 0;
 	background-color: ${(props) => props.theme.color.boxColor3};
 	color: ${(props) => props.theme.color.boxColor1};
+	font-size: inherit;
+	font-weight: inherit;
+	padding-left: 0.5rem;
 
 	&::placeholder {
 		color: ${(props) => props.theme.color.boxColor5};
@@ -83,12 +87,12 @@ export const PasswordBox = styled.div<{ disabled: boolean }>`
 `;
 
 export const PasswordImage = styled(Icon)`
-	width: 100%;
 	width: 2rem;
 	background-color: ${(props) => props.theme.color.boxColor4};
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 	flex-shrink: 0;
+	box-sizing: border-box;
 `;
 
 export const PasswordInput = styled.input`
@@ -98,6 +102,9 @@ export const PasswordInput = styled.input`
 	border-radius: 0 5rem 5rem 0;
 	background-color: ${(props) => props.theme.color.boxColor3};
 	color: ${(props) => props.theme.color.boxColor1};
+	font-size: inherit;
+	font-weight: inherit;
+	padding-left: 0.5rem;
 
 	&::placeholder {
 		color: ${(props) => props.theme.color.boxColor5};
@@ -160,19 +167,19 @@ export const Loader = styled.div`
 	height: 2rem;
 `;
 
-export const Idle = styled.div`
+export const MessageIdle = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.boxColor4};
 	white-space: nowrap;
 `;
 
-export const Success = styled.div`
+export const MessageSuccess = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.successFg};
 	white-space: nowrap;
 `;
 
-export const Error = styled.div`
+export const MessageError = styled.div`
 	height: 2rem;
 	color: ${(props) => props.theme.color.errorFg};
 	white-space: nowrap;
@@ -198,6 +205,7 @@ export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+	gap: 1rem;
 	border-radius: 5rem;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
@@ -205,7 +213,6 @@ export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
 export const SocialLoginImage = styled(Icon)`
 	width: 2rem;
 	color: ${(props) => props.theme.color.boxColor4};
-	padding: 0.5rem;
 	flex-shrink: 0;
 	cursor: pointer;
 `;

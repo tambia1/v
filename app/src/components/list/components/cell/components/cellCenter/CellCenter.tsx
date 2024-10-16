@@ -1,5 +1,5 @@
+import type { ReactNode } from "react";
 import * as S from "./CellCenter.styles";
-import { ReactNode } from "react";
 
 export interface Props {
 	children?: ReactNode;

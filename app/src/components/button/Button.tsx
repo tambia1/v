@@ -11,7 +11,7 @@ export type Props = React.ComponentPropsWithoutRef<"button"> & {
 	onLongClick?: (e: TouchEvent | MouseEvent) => void;
 };
 
-export const Button = ({ className, children, variant: varian = "styled", onLongClick, ...rest }: Props) => {
+export const Button = ({ className, children, variant = "styled", onLongClick, ...rest }: Props) => {
 	const refButton = useRef<HTMLButtonElement>(null);
 
 	useTouch({
@@ -24,7 +24,7 @@ export const Button = ({ className, children, variant: varian = "styled", onLong
 	});
 
 	return (
-		<S.Button ref={refButton} className={className} $variant={varian} {...rest}>
+		<S.Button ref={refButton} className={className} $variant={variant} {...rest}>
 			{children}
 		</S.Button>
 	);

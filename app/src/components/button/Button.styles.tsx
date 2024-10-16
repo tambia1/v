@@ -9,6 +9,9 @@ export const Button = styled.button<{ $variant: IVariant }>`
 	cursor: pointer;
 	border: none;
 
+	font-size: inherit;
+	font-weight: inherit;
+
 	${(props) =>
 		props.$variant === "styled" &&
 		css`
@@ -22,6 +25,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			box-sizing: border-box;
 			width: fit-content;
 			min-width: 5em;
+			height: 2.5rem;
 			white-space: nowrap;
 
 			&:hover {
@@ -54,6 +58,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 
 			width: fit-content;
 			min-width: 5em;
+			height: 2.5rem;
 
 			&:hover {
 				background-color: ${(props) => props.theme.color.normalFgHover};
@@ -87,6 +92,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 
 			width: fit-content;
 			min-width: 5em;
+			height: 2.5rem;
 
 			&:hover {
 				background-color: ${(props) => props.theme.color.normalBgHover}
@@ -123,6 +129,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 
 			width: fit-content;
 			min-width: 5em;
+			height: 2.5rem;
 
 			&:hover {
 				--label-color: hsl(230, 55%, 80%);

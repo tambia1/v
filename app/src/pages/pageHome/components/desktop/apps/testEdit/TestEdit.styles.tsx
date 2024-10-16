@@ -22,10 +22,19 @@ export const Row = styled.div`
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
+	align-items: center;
 `;
 
 export const Col = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+`;
+
+export const Line = styled.div`
+	height: 0rem;
+	width: auto;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	border-top: solid ${(props) => props.theme.color.normalFgSelected} 1px;
 `;

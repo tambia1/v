@@ -1,12 +1,12 @@
 import { Button } from "@src/components/button/Button";
-import { useNotesStore } from "../../../store/UseNotesStore";
-import * as S from "./NotesContent.styles";
-import { useTranslation } from "react-i18next";
+import { Modal } from "@src/components/modal/Modal";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Modal } from "@src/components/modal/Modal";
-import { T } from "@src/locales/T";
+import { useTranslation } from "react-i18next";
+import { useNotesStore } from "../../../store/UseNotesStore";
+import * as S from "./NotesContent.styles";
 
 interface IContent {
 	newTitle: string;

@@ -1,19 +1,19 @@
 import styled, { css } from "styled-components";
 import lightBackground1 from "./background/theme1/bg_0.jpg";
-import lightBackground2 from "./background/theme2/bg_0.jpg";
-import lightBackground3 from "./background/theme3/bg_0.jpg";
-import lightBackground4 from "./background/theme4/bg_0.jpg";
-import lightBackground5 from "./background/theme5/bg_0.jpg";
-import lightBackground6 from "./background/theme6/bg_0.jpg";
-import lightBackground7 from "./background/theme7/bg_0.jpg";
-import lightBackground8 from "./background/theme8/bg_0.jpg";
 import darkBackground1 from "./background/theme1/bg_0_dark.jpg";
+import lightBackground2 from "./background/theme2/bg_0.jpg";
 import darkBackground2 from "./background/theme2/bg_0_dark.jpg";
+import lightBackground3 from "./background/theme3/bg_0.jpg";
 import darkBackground3 from "./background/theme3/bg_0_dark.jpg";
+import lightBackground4 from "./background/theme4/bg_0.jpg";
 import darkBackground4 from "./background/theme4/bg_0_dark.jpg";
+import lightBackground5 from "./background/theme5/bg_0.jpg";
 import darkBackground5 from "./background/theme5/bg_0_dark.jpg";
+import lightBackground6 from "./background/theme6/bg_0.jpg";
 import darkBackground6 from "./background/theme6/bg_0_dark.jpg";
+import lightBackground7 from "./background/theme7/bg_0.jpg";
 import darkBackground7 from "./background/theme7/bg_0_dark.jpg";
+import lightBackground8 from "./background/theme8/bg_0.jpg";
 import darkBackground8 from "./background/theme8/bg_0_dark.jpg";
 
 export const backgroundImages = [
@@ -40,8 +40,8 @@ export const Theme = styled.div`
 `;
 
 export const Background = css`
-	width: 5rem;
-	height: 5rem;
+	width: 2.5rem;
+	height: 100%;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: 50%;

@@ -53,8 +53,8 @@ export type IAppIcon = keyof typeof appIcons;
 
 export const Image = styled.div<{ $appIcon: IAppIcon | string }>`
 	border-radius: 0.5rem;
-	width: 5rem;
-	height: 5rem;
+	width: 4rem;
+	height: 4rem;
 	flex-shrink: 0;
 	background-image: url(${({ $appIcon }) => appIcons[$appIcon as IAppIcon] || $appIcon});
 	background-size: contain;
@@ -73,7 +73,7 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	gap: ${(props) => props.theme.size.xs};
 	padding: ${(props) => props.theme.size.xs};
 	width: 5rem;
-	height: 8rem;
+	height: 7rem;
 	overflow: hidden;
 	border-radius: 0.5rem;
 	position: relative;

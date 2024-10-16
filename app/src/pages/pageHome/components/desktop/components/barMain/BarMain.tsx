@@ -1,9 +1,9 @@
 import { Icon } from "@src/components/icon/Icon";
-import * as S from "./BarMain.styles";
-import { ITheme } from "@src/theme/Theme.types";
-import { ReactNode } from "react";
+import type { ITheme } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
-import { IBarPosition } from "../../Desktop.styles";
+import type { ReactNode } from "react";
+import type { IBarPosition } from "../../Desktop.styles";
+import * as S from "./BarMain.styles";
 
 interface Props {
 	barPosition: IBarPosition;
@@ -20,7 +20,7 @@ export const BarMain = ({ barPosition, onClickButtonTheme, onClickButtonClose, i
 	return (
 		<S.Container>
 			<S.IconClose onClick={onClickButtonClose} $isVisible={isVisibleButtonClose} $barPosition={barPosition}>
-				<Icon iconName="iconXCircle" size={theme.size.l} />
+				<Icon iconName="iconXCircle" />
 			</S.IconClose>
 
 			<S.Username>
@@ -29,7 +29,11 @@ export const BarMain = ({ barPosition, onClickButtonTheme, onClickButtonClose, i
 			</S.Username>
 
 			<S.IconTheme $isVisible={true} $barPosition={barPosition}>
-				{theme.themeName === "light" ? <Icon iconName="iconSun" onClick={() => onClickButtonTheme("dark")} /> : <Icon iconName="iconMoon" onClick={() => onClickButtonTheme("light")} />}
+				{theme.themeName === "light" ? (
+					<Icon iconName="iconSun" onClick={() => onClickButtonTheme("dark")} />
+				) : (
+					<Icon iconName="iconMoon" onClick={() => onClickButtonTheme("light")} />
+				)}
 			</S.IconTheme>
 		</S.Container>
 	);

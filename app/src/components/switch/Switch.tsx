@@ -2,11 +2,11 @@ import * as S from "./Switch.styles";
 
 export type SwitchState = "left" | "right";
 
-interface Props {
+type Props = {
 	className?: string;
 	switchState: SwitchState;
 	onClickSwitch: (switchState: SwitchState) => void;
-}
+};
 
 export const Switch = ({ className, onClickSwitch, switchState = "left" }: Props) => {
 	const handleOnClick = () => {
@@ -14,8 +14,8 @@ export const Switch = ({ className, onClickSwitch, switchState = "left" }: Props
 	};
 
 	return (
-		<S.Container className={className} onClick={handleOnClick}>
+		<S.Switch className={className} onClick={handleOnClick}>
 			<S.Dot $switchState={switchState} />
-		</S.Container>
+		</S.Switch>
 	);
 };

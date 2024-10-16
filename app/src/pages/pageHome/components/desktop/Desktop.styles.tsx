@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { backgroundImages } from "@apps/settings/components/page/components/theme/Theme.styles";
+import styled from "styled-components";
 
 export type IBarPosition = "top" | "bottom" | "left" | "right";
 
@@ -26,7 +26,7 @@ export const AppGroup = styled.div`
 	position: absolute;
 	inset: 1rem;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
 	align-content: start;
 `;
 
@@ -68,8 +68,8 @@ export const Container = styled.div<{ $barPosition: IBarPosition; $backgroundIma
 	background-position: 50%;
 
 	& ${Apps} {
-		width: ${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
-		height: ${({ $barPosition }) => ($barPosition === "top" || $barPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : `100%`)};
+		width: ${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : "100%")};
+		height: ${({ $barPosition }) => ($barPosition === "top" || $barPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : "100%")};
 
 		left: ${({ $barPosition }) => ($barPosition === "left" ? PAGE_BAR_SIZE : 0)};
 		top: ${({ $barPosition }) => ($barPosition === "top" ? PAGE_BAR_SIZE : 0)};
@@ -80,8 +80,8 @@ export const Container = styled.div<{ $barPosition: IBarPosition; $backgroundIma
 	}
 
 	& ${Bar} {
-		width: ${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `${PAGE_BAR_SIZE}` : `100%`)};
-		height: ${({ $barPosition }) => ($barPosition === "top" || $barPosition === "bottom" ? `${PAGE_BAR_SIZE}` : `100%`)};
+		width: ${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `${PAGE_BAR_SIZE}` : "100%")};
+		height: ${({ $barPosition }) => ($barPosition === "top" || $barPosition === "bottom" ? `${PAGE_BAR_SIZE}` : "100%")};
 
 		top: ${({ $barPosition }) => ($barPosition === "top" ? 0 : $barPosition === "bottom" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};
 		left: ${({ $barPosition }) => ($barPosition === "left" ? 0 : $barPosition === "right" ? `calc(100% - ${PAGE_BAR_SIZE})` : 0)};

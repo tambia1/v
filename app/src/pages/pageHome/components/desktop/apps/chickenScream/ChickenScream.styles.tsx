@@ -50,7 +50,7 @@ export const Ground = styled.div.attrs<{ $x: number }>((props) => ({
 	},
 }))`
 	position: absolute;
-	height: 5.5rem;
+	height: 5.6rem;
 	left: 0rem;
 	right: 0rem;
 	bottom: 0rem;

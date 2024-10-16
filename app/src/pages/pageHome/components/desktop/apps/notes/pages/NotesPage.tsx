@@ -1,15 +1,15 @@
-import * as S from "./NotesPage.styles";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Navigator } from "@src/components/navigator/Navigator";
-import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
-import { useState } from "react";
-import { NotesContent } from "./components/NotesContent/NotesContent";
+import { List } from "@src/components/list/List";
+import { Modal } from "@src/components/modal/Modal";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { Modal } from "@src/components/modal/Modal";
+import { useState } from "react";
 import { useNotesStore } from "../store/UseNotesStore";
-import { Text } from "@src/components/text/Text";
+import * as S from "./NotesPage.styles";
+import { NotesContent } from "./components/NotesContent/NotesContent";
 
 export const NotesPage = () => {
 	const navigator = useNavigator();
@@ -22,7 +22,7 @@ export const NotesPage = () => {
 		navigator.pushPage(
 			<Navigator.Page id={String(note.id)} title={note.title}>
 				<NotesContent id={note.id} title={note.title} text={note.text} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -33,7 +33,7 @@ export const NotesPage = () => {
 
 		newNotes[id] = {
 			id: id,
-			title: "My Note " + id,
+			title: `My Note ${id}`,
 			text: "Text",
 		};
 

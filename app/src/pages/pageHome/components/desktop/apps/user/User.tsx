@@ -1,15 +1,15 @@
-import * as S from "./User.styles";
-import { T } from "@src/locales/T";
-import { lang } from "@src/locales/i18n";
 import { QueryLogin } from "@apps/user/queries/QueryLogin";
 import { QueryUser } from "@apps/user/queries/QueryUser";
 import { StoreUser } from "@apps/user/stores/StoreUser";
+import { useGoogleLogin } from "@react-oauth/google";
+import { Loader } from "@src/components/loader/Loader";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useBarMain } from "../../hooks/UseBarMain";
-import { Loader } from "@src/components/loader/Loader";
 import { z } from "zod";
-import { useGoogleLogin } from "@react-oauth/google";
+import { useBarMain } from "../../hooks/UseBarMain";
+import * as S from "./User.styles";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -157,7 +157,7 @@ export const User = () => {
 					<S.EmailImage iconName="iconUser" />
 					<S.EmailInput
 						type="text"
-						placeholder={t(lang.user.email) + " (a, b)"}
+						placeholder={`${t(lang.user.email)} (a, b)`}
 						onChange={handleEmailChange}
 						value={inputData.email.value}
 						disabled={!!storeUser.token || isLoading}
@@ -169,7 +169,7 @@ export const User = () => {
 					<S.PasswordImage iconName="iconLock" />
 					<S.PasswordInput
 						type="password"
-						placeholder={t(lang.user.password) + " (a, b)"}
+						placeholder={`${t(lang.user.password)} (a, b)`}
 						onChange={handlePasswordChange}
 						value={inputData.password.value}
 						disabled={!!storeUser.token || isLoading}
@@ -200,9 +200,9 @@ export const User = () => {
 				<S.MessagesBox>
 					{isLoading && <Loader />}
 
-					{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}
-					{message.state === "error" && <S.Error>{message.message}</S.Error>}
-					{message.state === "success" && <S.Success>{message.message}</S.Success>}
+					{message.state === "idle" && <S.MessageIdle>{message.message}</S.MessageIdle>}
+					{message.state === "error" && <S.MessageError>{message.message}</S.MessageError>}
+					{message.state === "success" && <S.MessageSuccess>{message.message}</S.MessageSuccess>}
 				</S.MessagesBox>
 			</S.Box>
 		</S.User>

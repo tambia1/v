@@ -69,8 +69,6 @@ export const apps: IApp[][] = [
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user", "guest"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 		{ id: "chickenScream", roles: ["admin", "user", "guest"], title: <T>{lang.chickenScream.title}</T>, icon: "chickenScream", component: <ChickenScream /> },
-
-		{ id: "testEdit", roles: ["admin", "user", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
 	],
 	[
 		{ id: "testMfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },
@@ -85,5 +83,6 @@ export const apps: IApp[][] = [
 		{ id: "testTree", roles: ["admin"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestTree /> },
 		{ id: "testCounter", roles: ["admin"], title: <T>{lang.testCounter.title}</T>, icon: "test", component: <TestCouner /> },
 		{ id: "testMenu", roles: ["admin"], title: <T>{lang.testMenu.title}</T>, icon: "test", component: <TestMenu /> },
+		{ id: "testEdit", roles: ["admin"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
 	],
 ];

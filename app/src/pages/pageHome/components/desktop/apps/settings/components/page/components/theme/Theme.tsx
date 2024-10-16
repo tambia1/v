@@ -1,11 +1,11 @@
-import * as S from "./Theme.styles";
-import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
-import { useThemeContext } from "@src/theme/UseThemeContext";
-import { ITheme, themes } from "@src/theme/Theme.types";
+import { List } from "@src/components/list/List";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { type ITheme, themes } from "@src/theme/Theme.types";
+import { useThemeContext } from "@src/theme/UseThemeContext";
 import { useSearchParams } from "react-router-dom";
+import * as S from "./Theme.styles";
 import { ThemeStore } from "./store/ThemeStore";
 
 export const Theme = () => {

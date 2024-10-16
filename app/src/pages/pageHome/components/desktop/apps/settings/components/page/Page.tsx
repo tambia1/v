@@ -1,14 +1,14 @@
-import * as S from "./Page.styles";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Navigator } from "@src/components/navigator/Navigator";
-import { Language } from "./components/language/Language";
-import { Theme } from "./components/theme/Theme";
-import { Layout } from "./components/layout/Layout";
-import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
-import { About } from "./components/about/About";
+import { List } from "@src/components/list/List";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import * as S from "./Page.styles";
+import { About } from "./components/about/About";
+import { Language } from "./components/language/Language";
+import { Layout } from "./components/layout/Layout";
+import { Theme } from "./components/theme/Theme";
 
 export const Page = () => {
 	const navigator = useNavigator();
@@ -17,7 +17,7 @@ export const Page = () => {
 		navigator.pushPage(
 			<Navigator.Page id="language" title={<T>{lang.settings.language.title}</T>}>
 				<Language />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -25,7 +25,7 @@ export const Page = () => {
 		navigator.pushPage(
 			<Navigator.Page id="theme" title={<T>{lang.settings.theme.title}</T>}>
 				<Theme />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -33,7 +33,7 @@ export const Page = () => {
 		navigator.pushPage(
 			<Navigator.Page id="bar" title={<T>{lang.settings.layout.title}</T>}>
 				<Layout />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -41,7 +41,7 @@ export const Page = () => {
 		navigator.pushPage(
 			<Navigator.Page id="about" title={<T>{lang.settings.about.title}</T>}>
 				<About />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
