@@ -1,4 +1,4 @@
-import { ITheme } from "../../Theme.types";
+import type { ITheme } from "../../Theme.types";
 import imageBg from "./assets/bg.jpg";
 
 export const themeDark: ITheme = {
@@ -10,7 +10,7 @@ export const themeDark: ITheme = {
 		normalFg: "#e0e0e0",
 		normalBg: "#1e1e1e",
 		normalFgHover: "#ffffff",
-		normalBgHover: "#333333",
+		normalBgHover: "#33333388",
 		normalFgActive: "#ffffff",
 		normalBgActive: "#444444",
 		normalFgSelected: "#ffffff",
@@ -21,7 +21,7 @@ export const themeDark: ITheme = {
 		accentFg: "#ffffff",
 		accentBg: "#555555",
 		accentFgHover: "#ffffff",
-		accentBgHover: "#1e88e5",
+		accentBgHover: "#1e88e588",
 		accentFgActive: "#ffffff",
 		accentBgActive: "#0d47a1",
 		accentFgSelected: "#ffffff",
@@ -32,7 +32,7 @@ export const themeDark: ITheme = {
 		successFg: "#4caf50",
 		successBg: "#1e1e1e",
 		successFgHover: "#66bb6a",
-		successBgHover: "#1e1e1e",
+		successBgHover: "#1e1e1e88",
 		successFgActive: "#81c784",
 		successBgActive: "#1e1e1e",
 		successFgSelected: "#66bb6a",
@@ -43,7 +43,7 @@ export const themeDark: ITheme = {
 		errorFg: "#e57373",
 		errorBg: "#1e1e1e",
 		errorFgHover: "#f44336",
-		errorBgHover: "#1e1e1e",
+		errorBgHover: "#1e1e1e88",
 		errorFgActive: "#ef5350",
 		errorBgActive: "#1e1e1e",
 		errorFgSelected: "#f44336",
@@ -54,7 +54,7 @@ export const themeDark: ITheme = {
 		warningFg: "#ffb74d",
 		warningBg: "#1e1e1e",
 		warningFgHover: "#ff9800",
-		warningBgHover: "#1e1e1e",
+		warningBgHover: "#1e1e1e88",
 		warningFgActive: "#ffa726",
 		warningBgActive: "#1e1e1e",
 		warningFgSelected: "#ff9800",
