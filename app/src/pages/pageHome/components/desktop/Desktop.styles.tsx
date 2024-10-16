@@ -26,7 +26,7 @@ export const AppGroup = styled.div`
 	position: absolute;
 	inset: 1rem;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
 	align-content: start;
 `;
 
