@@ -26,6 +26,7 @@ import { Store } from "./apps/store/Store";
 import { TestAnimation } from "./apps/testAnimation/TestAnimation";
 import { TestCouner } from "./apps/testCounter/TestCouner";
 import { TestCube } from "./apps/testCube/TestCube";
+import { TestEdit } from "./apps/testEdit/TestEdit";
 import { TestGraphQl } from "./apps/testGraphQl/GraphQl";
 import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
@@ -68,6 +69,8 @@ export const apps: IApp[][] = [
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user", "guest"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 		{ id: "chickenScream", roles: ["admin", "user", "guest"], title: <T>{lang.chickenScream.title}</T>, icon: "chickenScream", component: <ChickenScream /> },
+
+		{ id: "testEdit", roles: ["admin", "user", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
 	],
 	[
 		{ id: "testMfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },

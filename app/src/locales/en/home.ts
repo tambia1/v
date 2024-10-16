@@ -193,4 +193,8 @@ export const translation: IHome = {
 	testCounter: {
 		title: "Test\nCounter",
 	},
+
+	testEdit: {
+		title: "Test\nEdit",
+	},
 };

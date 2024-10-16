@@ -193,4 +193,8 @@ export type IHome = {
 	testCounter: {
 		title: string;
 	};
+
+	testEdit: {
+		title: string;
+	};
 };
