@@ -1,7 +1,7 @@
+import type { ITheme } from "@src/theme/Theme.types";
 import styled from "styled-components";
-import ImageBgLight from "./components/talk/assets/bgLight.png";
 import ImageBgDark from "./components/talk/assets/bgDark.png";
-import { ITheme } from "@src/theme/Theme.types";
+import ImageBgLight from "./components/talk/assets/bgLight.png";
 
 const BgImages: { [K in ITheme["themeName"]]: string } = {
 	light: ImageBgLight,
@@ -24,9 +24,9 @@ export const Talks = styled.div`
 `;
 
 export const ClientName = styled.span`
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 `;
 
 export const ClientId = styled.span`
-	color: ${(props) => props.theme.color.normalFgDisabled};
+	color: ${(props) => props.theme.color.primaryFgDisabled};
 `;

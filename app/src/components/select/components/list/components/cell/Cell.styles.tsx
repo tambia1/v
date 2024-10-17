@@ -1,4 +1,4 @@
-import { Text as Text } from "@src/components/text/Text.styles";
+import { Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
 export const Content = styled.div`
@@ -15,15 +15,15 @@ export const Line = styled.div`
 	width: auto;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	border-top: solid ${(props) => props.theme.color.normalFgSelected} 1px;
+	border-top: solid ${(props) => props.theme.color.primaryFgSelected} 1px;
 `;
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
 	height: auto;
 
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 
 	box-sizing: border-box;
 
@@ -50,25 +50,25 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	}
 
 	&:hover ${Content} {
-		color: ${(props) => props.theme.color.normalFgHover};
-		background-color: ${(props) => props.theme.color.normalBgHover};
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 		cursor: pointer;
 	}
 
 	&:active ${Content} {
-		color: ${(props) => props.theme.color.normalFgActive};
-		background-color: ${(props) => props.theme.color.normalBgActive};
+		color: ${(props) => props.theme.color.primaryFgActive};
+		background-color: ${(props) => props.theme.color.primaryBgActive};
 	}
 
 	${(props) =>
 		!props.$isEnabled &&
 		css`
 			& ${Content} {
-				color: ${(props) => props.theme.color.normalFgDisabled};
-				background-color: ${(props) => props.theme.color.normalBgDisabled};
+				color: ${(props) => props.theme.color.primaryFgDisabled};
+				background-color: ${(props) => props.theme.color.primaryBgDisabled};
 
 				& ${Text} {
-					color: ${(props) => props.theme.color.normalFgDisabled};
+					color: ${(props) => props.theme.color.primaryFgDisabled};
 				}
 			}
 		`}
@@ -77,8 +77,8 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 		props.$isSelected &&
 		css`
 			& ${Content} {
-				color: ${(props) => props.theme.color.normalFgSelected};
-				background-color: ${(props) => props.theme.color.normalBgSelected};
+				color: ${(props) => props.theme.color.primaryFgSelected};
+				background-color: ${(props) => props.theme.color.primaryBgSelected};
 			}
 		`}
 `;

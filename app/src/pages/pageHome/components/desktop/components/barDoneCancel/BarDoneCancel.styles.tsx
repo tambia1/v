@@ -7,7 +7,7 @@ export const Container = styled.div`
 	height: 100%;
 	display: flex;
 	flex-shrink: 0;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 const Icon = css<{ $isVisible: boolean }>`
@@ -22,7 +22,7 @@ const Icon = css<{ $isVisible: boolean }>`
 	justify-content: center;
 
 	border-radius: 50%;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	transition: all 0.3s ease;
 
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};

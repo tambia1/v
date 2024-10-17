@@ -9,7 +9,7 @@ export const GameDelete = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Row = styled.div`

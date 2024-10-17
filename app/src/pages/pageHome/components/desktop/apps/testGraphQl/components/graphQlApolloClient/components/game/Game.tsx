@@ -1,7 +1,7 @@
-import { Text } from "@src/components/text/Text";
-import * as S from "./Game.styles";
 import { useQuery } from "@apollo/client";
-import { GET_GAME, IGame } from "../../graphql/game.query";
+import { Text } from "@src/components/text/Text";
+import { GET_GAME, type IGame } from "../../graphql/game.query";
+import * as S from "./Game.styles";
 
 export const Game = () => {
 	const { loading, error, data } = useQuery<IGame>(GET_GAME, {
@@ -16,13 +16,13 @@ export const Game = () => {
 			{data?.game && (
 				<S.Row>
 					<Text color="accentFg">id: </Text>
-					<Text color="normalFg">{data.game.id}</Text>
+					<Text color="primaryFg">{data.game.id}</Text>
 					<S.Space />
 					<Text color="accentFg">title: </Text>
-					<Text color="normalFg">{data.game.title}</Text>
+					<Text color="primaryFg">{data.game.title}</Text>
 					<S.Space />
 					<Text color="accentFg">platforms: </Text>
-					<Text color="normalFg">{data.game.platforms}</Text>
+					<Text color="primaryFg">{data.game.platforms}</Text>
 				</S.Row>
 			)}
 		</S.Game>

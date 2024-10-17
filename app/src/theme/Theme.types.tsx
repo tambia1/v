@@ -9,16 +9,27 @@ export interface ITheme {
 	color: {
 		transparent: string;
 
-		normalFg: string;
-		normalBg: string;
-		normalFgHover: string;
-		normalBgHover: string;
-		normalFgActive: string;
-		normalBgActive: string;
-		normalFgSelected: string;
-		normalBgSelected: string;
-		normalFgDisabled: string;
-		normalBgDisabled: string;
+		primaryFg: string;
+		primaryBg: string;
+		primaryFgHover: string;
+		primaryBgHover: string;
+		primaryFgActive: string;
+		primaryBgActive: string;
+		primaryFgSelected: string;
+		primaryBgSelected: string;
+		primaryFgDisabled: string;
+		primaryBgDisabled: string;
+
+		secondaryFg: string;
+		secondaryBg: string;
+		secondaryFgHover: string;
+		secondaryBgHover: string;
+		secondaryFgActive: string;
+		secondaryBgActive: string;
+		secondaryFgSelected: string;
+		secondaryBgSelected: string;
+		secondaryFgDisabled: string;
+		secondaryBgDisabled: string;
 
 		accentFg: string;
 		accentBg: string;

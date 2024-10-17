@@ -10,7 +10,7 @@ export const GraphQlApolloClient = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 
 	gap: 1rem;
 `;

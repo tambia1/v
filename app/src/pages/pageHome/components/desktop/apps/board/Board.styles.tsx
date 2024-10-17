@@ -13,7 +13,7 @@ export const Board = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Column = styled.div`
@@ -37,8 +37,8 @@ export const ColumnHeader = styled.div`
 	flex-shrink: 0;
 	justify-content: center;
 	align-items: center;
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	position: relative;
 `;
 
@@ -73,8 +73,8 @@ export const ColumnBody = styled.div<{ $isDragOn: boolean }>`
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.normalBgActive : props.theme.color.normalBg)};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.primaryBgActive : props.theme.color.primaryBg)};
 	padding: 1rem;
 	gap: 0.5rem;
 	overflow-x: hidden;
@@ -92,10 +92,10 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 	overflow: hidden;
 	transition: all 0.3s ease;
 
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentBgActive : props.theme.color.normalBg)};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentBgActive : props.theme.color.primaryBg)};
 
 	&:hover {
-		background-color: ${(props) => props.theme.color.normalBgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;
 

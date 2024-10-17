@@ -85,8 +85,8 @@ export const Chart = ({ className, lines }: Props) => {
 		const minValue = Math.min(...lines[0].data.map((item) => item[1]));
 		const maxValue = Math.max(...lines[0].data.map((item) => item[1]));
 
-		C.drawText(ctx, maxValue.toFixed(3).toString(), w - 50, 5, { textBaseline: "top", fillStyle: theme.color.normalFg });
-		C.drawText(ctx, minValue.toFixed(3).toString(), w - 50, h - 5, { textBaseline: "bottom", fillStyle: theme.color.normalFg });
+		C.drawText(ctx, maxValue.toFixed(3).toString(), w - 50, 5, { textBaseline: "top", fillStyle: theme.color.primaryFg });
+		C.drawText(ctx, minValue.toFixed(3).toString(), w - 50, h - 5, { textBaseline: "bottom", fillStyle: theme.color.primaryFg });
 	};
 
 	return (

@@ -36,7 +36,7 @@ export const Box = styled.div`
 	overflow: hidden;
 	border-radius: 16px;
 	box-shadow: 0px 0px 1rem #333333aa;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 export const EmailBox = styled.div<{ disabled: boolean }>`

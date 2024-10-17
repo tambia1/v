@@ -8,12 +8,12 @@ export const Input = styled.input`
 	display: flex;
 	overflow: auto;
 	outline: 0px solid transparent;
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	resize: none;
 
 	border-radius: 100rem;
-	border: 1px solid ${(props) => props.theme.color.normalFg};;
+	border: 1px solid ${(props) => props.theme.color.primaryFg};;
 	padding: 0rem calc(1rem - 1px) 0rem calc(1rem - 1px);
 	box-sizing: border-box;
 	white-space: nowrap;
@@ -22,7 +22,7 @@ export const Input = styled.input`
 	font-size: inherit;
 
 	&:disabled {
-		color: ${(props) => props.theme.color.normalFgDisabled};
-		background-color: ${(props) => props.theme.color.normalBgDisabled};
+		color: ${(props) => props.theme.color.primaryFgDisabled};
+		background-color: ${(props) => props.theme.color.primaryBgDisabled};
 	}
 `;

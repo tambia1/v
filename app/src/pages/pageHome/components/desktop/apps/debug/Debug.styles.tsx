@@ -10,7 +10,7 @@ export const Debug = styled.div`
 	box-sizing: border-box;
 	padding: 1rem;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Console = styled.div`
@@ -18,7 +18,7 @@ export const Console = styled.div`
 	width: 100%;
 	height: 100%;
 	white-space: pre-wrap;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	background-color: ${(props) => props.theme.color.accentBg};
 	padding: 1rem;
 	box-sizing: border-box;

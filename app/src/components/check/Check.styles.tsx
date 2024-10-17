@@ -9,6 +9,6 @@ export const Check = styled.div`
 export const Dot = styled.div<{ $checkState: boolean }>`
 	width: 50%;
 	height: 100%;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	border-radius: 100rem;
 `;

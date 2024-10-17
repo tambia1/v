@@ -10,7 +10,7 @@ export const Camera = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 export const Video = styled.video`
@@ -18,7 +18,7 @@ export const Video = styled.video`
 	display: flex;
 	width: 100%;
 	height: 100%;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 export const Image = styled.div<{ $image: string }>`
@@ -41,17 +41,17 @@ export const Buttons = styled.div`
 	margin-bottom: 3rem;
 
 	& ${Icon}[data-name='iconSave'] svg {
-		stroke: ${(props) => props.theme.color.normalFg};
+		stroke: ${(props) => props.theme.color.primaryFg};
 		fill: ${(props) => props.theme.color.successBg};
 	}
 
 	& ${Icon}[data-name='iconCamera'] svg {
-		stroke: ${(props) => props.theme.color.normalFg};
+		stroke: ${(props) => props.theme.color.primaryFg};
 		fill: ${(props) => props.theme.color.warningBg};
 	}
 
 	& ${Icon} svg {
-		stroke: ${(props) => props.theme.color.normalFg};
+		stroke: ${(props) => props.theme.color.primaryFg};
 		fill: ${(props) => props.theme.color.errorBg};
 	}
 `;

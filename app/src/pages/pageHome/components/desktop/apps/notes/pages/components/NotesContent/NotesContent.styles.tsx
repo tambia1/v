@@ -24,7 +24,7 @@ export const Title = styled.textarea`
 	border-radius: 1rem;
 	padding: 1rem;
 	outline: 0px solid transparent;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	resize: none;
 	border: none;
 `;
@@ -42,7 +42,7 @@ export const Content = styled.textarea`
 	border-radius: 1rem;
 	padding: 1rem;
 	outline: 0px solid transparent;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	resize: none;
 	border: none;
 `;

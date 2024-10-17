@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Table = styled.div`
-	color: ${({ theme }) => theme.color.normalFg};
-	background-color: ${({ theme }) => theme.color.normalBg};
+	color: ${({ theme }) => theme.color.primaryFg};
+	background-color: ${({ theme }) => theme.color.primaryBg};
 	display: flex;
 	flex-direction: column;
 	overflow: auto;
@@ -10,8 +10,8 @@ export const Table = styled.div`
 
 export const TableContainer = styled.table`
 	border-collapse: collapse;
-	color: ${({ theme }) => theme.color.normalFg};
-	background-color: ${({ theme }) => theme.color.normalBg};
+	color: ${({ theme }) => theme.color.primaryFg};
+	background-color: ${({ theme }) => theme.color.primaryBg};
 	border: 2px solid ${({ theme }) => theme.color.accentBg};
 `;
 

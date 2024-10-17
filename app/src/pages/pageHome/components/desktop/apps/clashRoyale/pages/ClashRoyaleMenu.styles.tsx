@@ -1,9 +1,4 @@
 import styled, { css } from "styled-components";
-import bg from "./game/images/misc/bg.webp";
-import splash0 from "./game/images/misc/splash_0.png";
-import splash1 from "./game/images/misc/splash_1.png";
-import splash2 from "./game/images/misc/splash_2.png";
-import buttonYellow from "./game/images/misc/button_yellow.png";
 import arenaIcon1 from "./game/images/arenas/arenaIcon1.png";
 import arenaIcon2 from "./game/images/arenas/arenaIcon2.png";
 import arenaIcon3 from "./game/images/arenas/arenaIcon3.png";
@@ -15,6 +10,11 @@ import arenaIcon8 from "./game/images/arenas/arenaIcon8.png";
 import arenaIcon9 from "./game/images/arenas/arenaIcon9.png";
 import arenaIcon10 from "./game/images/arenas/arenaIcon10.png";
 import arenaIcon11 from "./game/images/arenas/arenaIcon11.png";
+import bg from "./game/images/misc/bg.webp";
+import buttonYellow from "./game/images/misc/button_yellow.png";
+import splash0 from "./game/images/misc/splash_0.png";
+import splash1 from "./game/images/misc/splash_1.png";
+import splash2 from "./game/images/misc/splash_2.png";
 
 export const ClashRoyaleMenu = styled.div`
 	width: 100%;
@@ -26,7 +26,7 @@ export const ClashRoyaleMenu = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Page = styled.div`

@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
 import { Button } from "@components/button/Button";
+import styled, { css } from "styled-components";
 
 export const colors = ["red", "green", "blue", "yellow", "purple"];
 
@@ -13,7 +13,7 @@ export const TestAnimation = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Spacer = styled.div`

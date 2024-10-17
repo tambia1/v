@@ -9,7 +9,7 @@ export const Frame = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const IFrame = styled.iframe`

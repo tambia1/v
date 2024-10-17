@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { IBarPosition } from "../../Desktop.styles";
+import type { IBarPosition } from "../../Desktop.styles";
 
 export const Container = styled.div`
 	position: absolute;
@@ -8,7 +8,7 @@ export const Container = styled.div`
 	height: 100%;
 	display: flex;
 	flex-shrink: 0;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 const Icon = css<{ $isVisible: boolean }>`
@@ -22,7 +22,7 @@ const Icon = css<{ $isVisible: boolean }>`
 	justify-content: center;
 
 	border-radius: 50%;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	transition: all 0.3s ease;
 
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
@@ -48,7 +48,7 @@ export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPos
 	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `top: 0rem;` : `right: 0rem`)};
 
 	& svg {
-		fill: ${(props) => props.theme.color.normalBg};
+		fill: ${(props) => props.theme.color.primaryBg};
 	}
 
 	&:active {

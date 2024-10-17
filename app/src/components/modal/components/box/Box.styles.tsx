@@ -10,8 +10,8 @@ export const Box = styled.div`
 	flex-direction: column;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 
 	border-radius: 0.5rem;
 	overflow: hidden;

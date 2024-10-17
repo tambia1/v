@@ -11,7 +11,7 @@ export const Apps = styled.div`
 	height: 100%;
 	display: inline-grid;
 	gap: 0.5rem;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	opacity: 0;
 `;
 
@@ -61,8 +61,8 @@ export const Container = styled.div<{ $barPosition: IBarPosition; $backgroundIma
 	flex-direction: column;
 	position: relative;
 
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	background-image: url(${(props) => backgroundImages[props.$backgroundImageIndex][props.theme.themeName]});
 	background-size: cover;
 	background-position: 50%;

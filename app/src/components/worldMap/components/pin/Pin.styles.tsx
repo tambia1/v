@@ -7,5 +7,5 @@ export const Pin = styled.div<{ $lng: number; $lat: number }>`
 	background-color: ${(props) => props.theme.color.errorFg};
 	margin-top: ${({ $lat }) => `${$lat}px`};
 	margin-left: ${({ $lng }) => `${$lng}px`};
-	color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryBg};
 `;

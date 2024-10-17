@@ -19,8 +19,8 @@ export const Name = styled.input`
 	overflow: auto;
 	box-shadow: 0 0 0.5rem 0 #00000066;
 	outline: 0px solid transparent;
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	resize: none;
 	border: none;
 	box-sizing: border-box;

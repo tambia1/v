@@ -39,7 +39,7 @@ export const MenuList = styled.div<{ $visible: boolean }>`
 	width: 20rem;
 	height: 100%;
 	padding: 0%.5rem;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	transform: translateX(${(props) => (props.$visible ? "0%" : "-100%")});
 	opacity: ${(props) => (props.$visible ? 1 : 0)};
 	transition: all 0.3s ease;
@@ -56,8 +56,8 @@ export const MenuList = styled.div<{ $visible: boolean }>`
 	}
 
 	${Section} {
-		color: ${(props) => props.theme.color.normalBg};
-		background-color: ${(props) => props.theme.color.normalFg};
+		color: ${(props) => props.theme.color.primaryBg};
+		background-color: ${(props) => props.theme.color.primaryFg};
 		padding: 0.5rem;
 		width: auto;
 	}

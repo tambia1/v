@@ -1,6 +1,6 @@
 import fs from "fs";
-import readline from "readline";
 import path from "path";
+import readline from "readline";
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -29,7 +29,7 @@ function createAppFolder(appName, destinationPath) {
         padding: 1rem;
         box-sizing: border-box;
     
-        background-color: \${(props) => props.theme.color.normalBgSelected};
+        background-color: \${(props) => props.theme.color.primaryBgSelected};
     \`;
     `;
 

@@ -36,10 +36,10 @@ export const SubscriptionsList = styled.div`
 
 	overflow: auto;
 
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.primaryFg};
 	border-radius: 1rem;
 
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 
 	& > div:last-child > div:last-child {
 		display: none;
@@ -132,7 +132,7 @@ export const SubscriptionsHeader = styled.div`
 	padding: 1rem;
 	padding-top: 2rem;
 	padding-bottom: 1.5rem;
-	background-color: ${(props) => props.theme.color.normalBgActive};
+	background-color: ${(props) => props.theme.color.primaryBgActive};
 
 	${SubscriptionsWidth}
 `;
@@ -244,10 +244,10 @@ export const SubscriptionRow = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: ${(props) => props.theme.color.normalBgDisabled};
+	background-color: ${(props) => props.theme.color.primaryBgDisabled};
 
 	&:nth-child(odd){
-		background-color: ${(props) => props.theme.color.normalBgSelected};
+		background-color: ${(props) => props.theme.color.primaryBgSelected};
 	}
 `;
 
@@ -260,7 +260,7 @@ export const SubscriptionsDataRow = styled.div`
 	height: 3rem;
 
 	&:hover {
-		background-color: ${(props) => props.theme.color.normalBgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 
 	${SubscriptionsWidth}
@@ -272,7 +272,7 @@ export const SubscriptionsDetailsRow = styled.div`
 	padding: 1rem;
 	align-items: center;
 	gap: 1rem;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 
 	& > div {
 		width: auto;
@@ -286,7 +286,7 @@ export const SubscriptionsDetailsRowMap = styled.div`
 	padding: 1rem;
 	align-items: center;
 	gap: 1rem;
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 export const DatabasesRow = styled.div`

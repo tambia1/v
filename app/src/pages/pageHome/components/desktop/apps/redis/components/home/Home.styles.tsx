@@ -10,7 +10,7 @@ export const Home = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Spacer = styled.div`
@@ -29,7 +29,7 @@ export const Bar = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 const IconBar = css`
@@ -38,11 +38,11 @@ const IconBar = css`
 	margin: 0.5rem;
 
 	&:hover {
-		background-color: ${(props) => props.theme.color.normalBgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 
 	&:active {
-		background-color: ${(props) => props.theme.color.normalBgActive};
+		background-color: ${(props) => props.theme.color.primaryBgActive};
 	}
 `;
 

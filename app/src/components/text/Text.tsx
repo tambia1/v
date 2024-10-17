@@ -10,7 +10,7 @@ export interface Props {
 	bgcolor?: keyof ITheme["color"];
 }
 
-export const Text = ({ className, children, size = "m", color = "normalFg", bgcolor = "transparent", ...rest }: Props) => {
+export const Text = ({ className, children, size = "m", color = "primaryFg", bgcolor = "transparent", ...rest }: Props) => {
 	return (
 		<S.Text className={className} $size={size} $color={color} $bgcolor={bgcolor} {...rest}>
 			{children}

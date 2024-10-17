@@ -5,8 +5,8 @@ export const Tree = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 export const TreeNode = styled.div`
@@ -28,7 +28,7 @@ export const TreeFolderHeader = styled.div`
 	margin: 0.1rem;
 
 	color: ${(props) => props.theme.color.accentFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 
 	&:hover {
 		color: ${(props) => props.theme.color.accentFgHover};
@@ -61,12 +61,12 @@ export const TreeItem = styled.div`
 	align-items: center;
 	margin: 0.1rem;
 
-	color: ${(props) => props.theme.color.normalFg};
-	background-color: ${(props) => props.theme.color.normalBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 
 	&:hover {
-		color: ${(props) => props.theme.color.normalFgHover};
-		background-color: ${(props) => props.theme.color.normalBgHover};
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 
 	cursor: pointer;
@@ -83,6 +83,6 @@ export const TreeItemSelect = styled.div`
 
 export const IconFolder = styled(Icon)`
 	& > div > div > svg {
-		stroke: ${(props) => props.theme.color.normalFgActive};
+		stroke: ${(props) => props.theme.color.primaryFgActive};
 	}
 `;

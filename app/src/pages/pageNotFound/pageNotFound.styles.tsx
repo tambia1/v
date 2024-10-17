@@ -14,7 +14,7 @@ export const Box = styled.div`
 	width: 300px;
 	height: 100px;
 	box-sizing: border-box;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 
 	display: flex;
 	flex-direction: column;
@@ -29,13 +29,13 @@ export const Text = styled.div`
 	display: inline-flex;
 	padding-bottom: 6px;
 	align-self: flex-start;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	font-size: ${(props) => props.theme.size.m};
 `;
 
 export const Title = styled.div`
 	display: inline-flex;
 	padding-bottom: 6px;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	font-size: ${(props) => props.theme.size.l};
 `;

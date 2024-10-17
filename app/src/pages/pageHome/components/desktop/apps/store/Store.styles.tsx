@@ -12,7 +12,7 @@ export const Store = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 
 	background-image: url(${imageBg});
 	background-size: cover;
@@ -40,8 +40,8 @@ export const AppIcon = styled.div<{ url: string }>`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50%;
-	background-color: ${(props) => props.theme.color.normalBg};
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.normalFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
+	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.primaryFg};
 	border-radius: 15px;
 	cursor: pointer;
 `;

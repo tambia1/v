@@ -16,7 +16,7 @@ export const Headers = styled.div`
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
-	background-color: ${(props) => props.theme.color.normalBgActive};
+	background-color: ${(props) => props.theme.color.primaryBgActive};
 	z-index: 1;
 
 	& * {
@@ -34,7 +34,7 @@ export const Pages = styled.div`
 	position: relative;
 	overflow: hidden;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Header = styled.div`
@@ -64,13 +64,13 @@ export const BackContainer = styled.div<{ $isVisible: boolean }>`
 	align-items: center;
 	margin-left: 1rem;
 	border-radius: 1rem;
-	color: ${(props) => props.theme.color.normalFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	cursor: pointer;
 	transition: all 0.3s ease;
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "auto" : "none")};
 
 	&:active {
-		color: ${(props) => props.theme.color.normalFgActive};
+		color: ${(props) => props.theme.color.primaryFgActive};
 	}
 `;

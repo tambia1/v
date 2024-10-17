@@ -10,7 +10,7 @@ export const TestEdit = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.normalBgSelected};
+	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 export const Spacer = styled.div`
@@ -36,5 +36,5 @@ export const Line = styled.div`
 	width: auto;
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
-	border-top: solid ${(props) => props.theme.color.normalFgSelected} 1px;
+	border-top: solid ${(props) => props.theme.color.primaryFgSelected} 1px;
 `;

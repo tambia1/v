@@ -45,9 +45,9 @@ export const Button = styled.button<{ $variant: IVariant }>`
 	${(props) =>
 		props.$variant === "full" &&
 		css`
-			color: ${(props) => props.theme.color.normalBg};
-			background-color: ${(props) => props.theme.color.normalFg};
-			border-color: ${(props) => props.theme.color.normalFg};
+			color: ${(props) => props.theme.color.primaryBg};
+			background-color: ${(props) => props.theme.color.primaryFg};
+			border-color: ${(props) => props.theme.color.primaryFg};
 
 			border-width: 0.2rem;
 			border-style: solid;
@@ -61,26 +61,26 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			height: 2.5rem;
 
 			&:hover {
-				background-color: ${(props) => props.theme.color.normalFgHover};
+				background-color: ${(props) => props.theme.color.primaryFgHover};
 			}
 
 			&:active {
-				background-color: ${(props) => props.theme.color.normalFgActive};
+				background-color: ${(props) => props.theme.color.primaryFgActive};
 			}
 
 			&:disabled {
-				color: ${(props) => props.theme.color.normalBgDisabled};
-				background-color: ${(props) => props.theme.color.normalFgDisabled};
-				border-color: ${(props) => props.theme.color.normalFgDisabled};
+				color: ${(props) => props.theme.color.primaryBgDisabled};
+				background-color: ${(props) => props.theme.color.primaryFgDisabled};
+				border-color: ${(props) => props.theme.color.primaryFgDisabled};
 			}
 		`}
 
 	${(props) =>
 		props.$variant === "stroke" &&
 		css`
-			color: ${(props) => props.theme.color.normalFg};
-			background-color: ${(props) => props.theme.color.normalBg};
-			border-color: ${(props) => props.theme.color.normalFg};
+			color: ${(props) => props.theme.color.primaryFg};
+			background-color: ${(props) => props.theme.color.primaryBg};
+			border-color: ${(props) => props.theme.color.primaryFg};
 
 			border-width: 0.2rem;
 			border-style: solid;
@@ -95,17 +95,17 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			height: 2.5rem;
 
 			&:hover {
-				background-color: ${(props) => props.theme.color.normalBgHover}
+				background-color: ${(props) => props.theme.color.primaryBgHover}
 			}
 
 			&:active {
-				background-color: ${(props) => props.theme.color.normalBgActive}
+				background-color: ${(props) => props.theme.color.primaryBgActive}
 			}
 
 			&:disabled {
-				color: ${(props) => props.theme.color.normalFgDisabled}
-				background-color: ${(props) => props.theme.color.normalBgDisabled}
-				border-color: ${(props) => props.theme.color.normalBgDisabled}
+				color: ${(props) => props.theme.color.primaryFgDisabled}
+				background-color: ${(props) => props.theme.color.primaryBgDisabled}
+				border-color: ${(props) => props.theme.color.primaryBgDisabled}
 			}
 		`} 
 

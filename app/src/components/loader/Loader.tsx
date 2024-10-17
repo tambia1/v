@@ -7,6 +7,6 @@ interface Props {
 	color?: keyof ITheme["color"];
 }
 
-export const Loader = ({ className, color = "normalFg", size = "m" }: Props) => {
+export const Loader = ({ className, color = "primaryFg", size = "m" }: Props) => {
 	return <S.Loader className={className} iconName="iconLoader" color={color} size={size} />;
 };
