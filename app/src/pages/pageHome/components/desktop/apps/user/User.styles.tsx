@@ -62,6 +62,7 @@ export const EmailInput = styled.input`
 	background-color: ${(props) => props.theme.color.primaryBg};
 	font-size: inherit;
 	font-weight: inherit;
+	padding-right: 0.5rem;
 	
 	&::placeholder {
 		color: ${(props) => props.theme.color.quarteryFg};
@@ -97,6 +98,7 @@ export const PasswordInput = styled.input`
 	background-color: ${(props) => props.theme.color.primaryBg};
 	font-size: inherit;
 	font-weight: inherit;
+	padding-right: 0.5rem;
 	
 	&::placeholder {
 		color: ${(props) => props.theme.color.quarteryFg};
