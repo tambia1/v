@@ -40,7 +40,11 @@ export const Box = styled.div`
 	overflow: hidden;
 	border-radius: 16px;
 	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background: rgba(255, 255, 255, 0.2);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
 `;
 
 export const EmailBox = styled.div<{ disabled: boolean }>`
@@ -65,7 +69,7 @@ export const EmailInput = styled.input`
 	border: none;
 	border-radius: 0 5rem 5rem 0;
 	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background-color: ${(props) => props.theme.color.transparent};
 	font-size: inherit;
 	font-weight: inherit;
 	padding-right: 0.5rem;
@@ -101,7 +105,7 @@ export const PasswordInput = styled.input`
 	border: none;
 	border-radius: 0 5rem 5rem 0;
 	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background-color: ${(props) => props.theme.color.transparent};
 	font-size: inherit;
 	font-weight: inherit;
 	padding-right: 0.5rem;
