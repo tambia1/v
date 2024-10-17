@@ -10,10 +10,11 @@ export const Board = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	padding: 1rem;
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.primaryBgSelected};
+
+	overflow: auto;
 `;
 
 export const Column = styled.div`
@@ -43,12 +44,15 @@ export const ColumnHeader = styled.div`
 `;
 
 export const Columns = styled.div`
-	width: 100%;
-	height: 100%;
+	width: auto;
+	height: auto;
 
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+
+	margin: 1rem;
+
 
 	& > ${Column}:nth-child(1) ${ColumnHeader} {
 		background-color: #f48897;
@@ -108,6 +112,8 @@ export const HeaderIcon = styled(Icon).attrs({
 	position: absolute;
 	right: 1rem;
 
+	width: 2rem;
+	height: 2rem;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 

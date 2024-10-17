@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
-import * as S from "./Board.styles";
-import { Modal } from "@src/components/modal/Modal";
 import { Input } from "@src/components/input/Input";
+import { Modal } from "@src/components/modal/Modal";
+import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { Text } from "@src/components/text/Text";
+import { useRef, useState } from "react";
+import * as S from "./Board.styles";
 
 type BoardProps = {
 	title: string;
@@ -82,7 +82,7 @@ export const Board = () => {
 				}
 
 				return board;
-			})
+			}),
 		);
 
 		setActiveItem({ board: "", task: "" });
@@ -133,7 +133,7 @@ export const Board = () => {
 					}
 
 					return board;
-				})
+				}),
 			);
 		} else {
 			setBoards(
@@ -149,7 +149,7 @@ export const Board = () => {
 					}
 
 					return board;
-				})
+				}),
 			);
 		}
 
@@ -215,7 +215,7 @@ export const Board = () => {
 							onTextChange={(value) => {
 								setModalText(value);
 							}}
-						></Input>
+						/>
 					</S.ModalContent>
 				}
 				buttons={[
