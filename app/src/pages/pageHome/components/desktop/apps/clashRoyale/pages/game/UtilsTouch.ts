@@ -1,5 +1,5 @@
 export const UtilsTouch = {
-	listenToTouches: function ({
+	listenToTouches: ({
 		div,
 		onTouchStart,
 		onTouchMove,
@@ -11,7 +11,7 @@ export const UtilsTouch = {
 		onTouchMove?: (e: TouchEvent | MouseEvent, sx: number, sy: number, x: number, y: number, time: number) => void;
 		onTouchEnd?: (e: TouchEvent | MouseEvent, sx: number, sy: number, x: number, y: number, time: number) => void;
 		onTouchCancel?: (e: TouchEvent | MouseEvent, sx: number, sy: number, x: number, y: number, time: number) => void;
-	}) {
+	}) => {
 		//detect touch device
 		const isTouchScreen = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.maxTouchPoints > 0;
 
@@ -22,19 +22,35 @@ export const UtilsTouch = {
 		const MOUSE_OUT = "mouseout";
 
 		let status: "" | "down" | "move" | "up" | "out" = "";
-		let boundingX: number = 0;
-		let boundingY: number = 0;
-		let sx: number = 0;
-		let sy: number = 0;
-		let timeStart: number = 0;
-		let timeEnd: number = 0;
+		let boundingX = 0;
+		let boundingY = 0;
+		let sx = 0;
+		let sy = 0;
+		let timeStart = 0;
+		let timeEnd = 0;
 
 		const getX = (e: TouchEvent | MouseEvent) => {
-			return (e as TouchEvent).touches?.[0]?.pageX || (e as MouseEvent).pageX || 0;
+			if ("changedTouches" in e && e.changedTouches?.[0]) {
+				return e.changedTouches[0].pageX;
+			}
+
+			if ("touches" in e && e.touches?.[0]) {
+				return e.touches[0].pageX;
+			}
+
+			return (e as MouseEvent).pageX || 0;
 		};
 
 		const getY = (e: TouchEvent | MouseEvent) => {
-			return (e as TouchEvent).touches?.[0]?.pageY || (e as MouseEvent).pageY || 0;
+			if ("changedTouches" in e && e.changedTouches?.[0]) {
+				return e.changedTouches[0].pageY;
+			}
+
+			if ("touches" in e && e.touches?.[0]) {
+				return e.touches[0].pageY;
+			}
+
+			return (e as MouseEvent).pageY || 0;
 		};
 
 		div.addEventListener(MOUSE_DOWN, (e: TouchEvent | MouseEvent) => {
@@ -61,7 +77,7 @@ export const UtilsTouch = {
 			const mouseMoveListener = (e: TouchEvent | MouseEvent) => {
 				// e.preventDefault();
 
-				if (status == "down" || status == "move") {
+				if (status === "down" || status === "move") {
 					status = "move";
 					div.setAttribute("isPressed", "true");
 
@@ -89,14 +105,14 @@ export const UtilsTouch = {
 
 				const time = timeEnd - timeStart;
 
-				if (status == "down" || status == "move") {
+				if (status === "down" || status === "move") {
 					status = "up";
 					div.setAttribute("isPressed", "false");
 
 					onTouchEnd?.(e, sx, sy, x, y, time);
 				}
 
-				if (status == "out") {
+				if (status === "out") {
 					status = "";
 					onTouchCancel?.(e, sx, sy, x, y, time);
 				}
@@ -108,7 +124,7 @@ export const UtilsTouch = {
 			const mouseOutListener = () => {
 				// e.preventDefault();
 
-				if (status == "down") {
+				if (status === "down") {
 					status = "out";
 					div.setAttribute("isPressed", "false");
 				}
@@ -120,7 +136,7 @@ export const UtilsTouch = {
 			const mouseEnterListener = () => {
 				// e.preventDefault();
 
-				if (status == "out") {
+				if (status === "out") {
 					status = "down";
 					div.setAttribute("isPressed", "true");
 				}
