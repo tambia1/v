@@ -61,7 +61,7 @@ export const Image = styled.div<{ $appIcon: IAppIcon | string }>`
 	background-repeat: no-repeat;
 	background-position: 50%;
 	background-color: ${(props) => props.theme.color.primaryBg};
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.primaryFg};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 15px;
 `;
 
@@ -80,12 +80,15 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 
 	transition: all 0.3s ease;
 
+	color: ${(props) => props.theme.color.primaryBg};
+	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFg};
+
 	&:hover {
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover}aa;
 	}
 
 	&:active {
-		background-color: ${(props) => props.theme.color.primaryBgActive};
+		background-color: ${(props) => props.theme.color.primaryBgActive}88;
 	}
 
 	${(props) =>

@@ -31,8 +31,8 @@ export const TreeFolderHeader = styled.div`
 	background-color: ${(props) => props.theme.color.primaryBg};
 
 	&:hover {
-		color: ${(props) => props.theme.color.accentFgHover};
-		background-color: ${(props) => props.theme.color.accentBgHover};
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;
 

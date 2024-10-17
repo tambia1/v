@@ -44,7 +44,7 @@ export const MenuList = styled.div<{ $visible: boolean }>`
 	opacity: ${(props) => (props.$visible ? 1 : 0)};
 	transition: all 0.3s ease;
 	z-index: 2;
-	box-shadow: ${(props) => props.theme.color.shadow};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 
 	${List} {
 		box-shadow: none;

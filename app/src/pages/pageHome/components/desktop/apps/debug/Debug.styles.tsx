@@ -22,5 +22,5 @@ export const Console = styled.div`
 	background-color: ${(props) => props.theme.color.accentBg};
 	padding: 1rem;
 	box-sizing: border-box;
-	box-shadow: ${(props) => props.theme.color.shadow};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 `;

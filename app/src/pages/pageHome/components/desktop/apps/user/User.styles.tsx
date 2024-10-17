@@ -1,4 +1,3 @@
-import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
 import styled from "styled-components";
 import imageUserLoggedIn from "./assets/userLoggedIn.png";
@@ -26,7 +25,6 @@ export const Box = styled.div`
 	width: 20rem;
 	height: auto;
 	box-sizing: border-box;
-	color: ${(props) => props.theme.color.boxColor1};
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -35,7 +33,8 @@ export const Box = styled.div`
 	padding: 2rem;
 	overflow: hidden;
 	border-radius: 16px;
-	box-shadow: 0px 0px 1rem #333333aa;
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFg};
 	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
@@ -43,14 +42,13 @@ export const EmailBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 5rem;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
 export const EmailImage = styled(Icon)`
-	width: 2rem;
-	background-color: ${(props) => props.theme.color.boxColor4};
+	width: 3rem;
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 	flex-shrink: 0;
@@ -59,21 +57,19 @@ export const EmailImage = styled(Icon)`
 
 export const EmailInput = styled.input`
 	width: 100%;
-	border: solid 1px ${(props) => props.theme.color.boxColor4};
-	border-left: none;
+	border: none;
 	border-radius: 0 5rem 5rem 0;
-	background-color: ${(props) => props.theme.color.boxColor3};
-	color: ${(props) => props.theme.color.boxColor1};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	font-size: inherit;
 	font-weight: inherit;
-	padding-left: 0.5rem;
-
+	
 	&::placeholder {
-		color: ${(props) => props.theme.color.boxColor5};
+		color: ${(props) => props.theme.color.quarteryFg};
 	}
 
 	&:disabled {
-		color: ${(props) => props.theme.color.boxColor5};
+		color: ${(props) => props.theme.color.primaryFgDisabled};
 	}
 `;
 
@@ -81,14 +77,13 @@ export const PasswordBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 5rem;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
 export const PasswordImage = styled(Icon)`
-	width: 2rem;
-	background-color: ${(props) => props.theme.color.boxColor4};
+	width: 3rem;
 	padding: 0.5rem;
 	border-radius: 5rem 0 0 5rem;
 	flex-shrink: 0;
@@ -97,21 +92,19 @@ export const PasswordImage = styled(Icon)`
 
 export const PasswordInput = styled.input`
 	width: 100%;
-	border: solid 1px ${(props) => props.theme.color.boxColor4};
-	border-left: none;
+	border: none;
 	border-radius: 0 5rem 5rem 0;
-	background-color: ${(props) => props.theme.color.boxColor3};
-	color: ${(props) => props.theme.color.boxColor1};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	font-size: inherit;
 	font-weight: inherit;
-	padding-left: 0.5rem;
-
+	
 	&::placeholder {
-		color: ${(props) => props.theme.color.boxColor5};
+		color: ${(props) => props.theme.color.quarteryFg};
 	}
 
 	&:disabled {
-		color: ${(props) => props.theme.color.boxColor5};
+		color: ${(props) => props.theme.color.primaryFgDisabled};
 	}
 `;
 
@@ -122,36 +115,6 @@ export const ButtonBox = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: end;
-`;
-
-export const ButtonLogin = styled(Button)`
-	background-image: none;
-	background-color: ${(props) => props.theme.color.boxColor4};
-	color: ${(props) => props.theme.color.boxColor1};
-	text-shadow: none;
-	border: solid 1px ${(props) => props.theme.color.boxColor4};
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
-
-	&:active {
-		background-color: ${(props) => props.theme.color.boxColor4};
-		background-image: none;
-		box-shadow: none;
-	}
-`;
-
-export const ButtonLogout = styled(Button)`
-	background-image: none;
-	background-color: ${(props) => props.theme.color.boxColor7};
-	color: ${(props) => props.theme.color.boxColor1};
-	text-shadow: none;
-	border: solid 1px ${(props) => props.theme.color.boxColor8};
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor8};
-
-	&:active {
-		background-color: ${(props) => props.theme.color.boxColor8};
-		background-image: none;
-		box-shadow: none;
-	}
 `;
 
 export const StateBox = styled.div`
@@ -169,7 +132,7 @@ export const Loader = styled.div`
 
 export const MessageIdle = styled.div`
 	height: 2rem;
-	color: ${(props) => props.theme.color.boxColor4};
+	color: ${(props) => props.theme.color.primaryFg};
 	white-space: nowrap;
 `;
 
@@ -198,7 +161,7 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	background-size: 125%;
 	border-radius: 50%;
 	background-repeat: no-repeat;
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.boxColor4};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 `;
 
 export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
@@ -212,7 +175,7 @@ export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
 
 export const SocialLoginImage = styled(Icon)`
 	width: 2rem;
-	color: ${(props) => props.theme.color.boxColor4};
+	color: ${(props) => props.theme.color.primaryFg};
 	flex-shrink: 0;
 	cursor: pointer;
 `;

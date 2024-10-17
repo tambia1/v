@@ -1,11 +1,11 @@
-import { useState } from "react";
-import * as S from "./Layout.styles";
-import { List } from "@src/components/list/List";
 import { Icon } from "@src/components/icon/Icon";
+import { List } from "@src/components/list/List";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import type { IBarPosition } from "@src/pages/pageHome/components/desktop/Desktop.styles";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { IBarPosition } from "@src/pages/pageHome/components/desktop/Desktop.styles";
+import * as S from "./Layout.styles";
 
 export const Layout = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -26,51 +26,51 @@ export const Layout = () => {
 
 			<List>
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("top")}>
-					<List.Cell.Image>
+					<List.Cell.Left>
 						<Icon iconName="iconArrowUpCircle" />
-					</List.Cell.Image>
-					<List.Cell.Text>
+					</List.Cell.Left>
+					<List.Cell.Center>
 						<T>{lang.settings.layout.top}</T>
-					</List.Cell.Text>
-					<List.Cell.Arrow>
+					</List.Cell.Center>
+					<List.Cell.Right>
 						<Icon iconName={barPosition === "top" ? "iconCheck" : ""} />
-					</List.Cell.Arrow>
+					</List.Cell.Right>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("bottom")}>
-					<List.Cell.Image>
+					<List.Cell.Left>
 						<Icon iconName="iconArrowDownCircle" />
-					</List.Cell.Image>
-					<List.Cell.Text>
+					</List.Cell.Left>
+					<List.Cell.Center>
 						<T>{lang.settings.layout.bottom}</T>
-					</List.Cell.Text>
-					<List.Cell.Arrow>
+					</List.Cell.Center>
+					<List.Cell.Right>
 						<Icon iconName={barPosition === "bottom" ? "iconCheck" : ""} />
-					</List.Cell.Arrow>
+					</List.Cell.Right>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("left")}>
-					<List.Cell.Image>
+					<List.Cell.Left>
 						<Icon iconName="iconArrowLeftCircle" />
-					</List.Cell.Image>
-					<List.Cell.Text>
+					</List.Cell.Left>
+					<List.Cell.Center>
 						<T>{lang.settings.layout.left}</T>
-					</List.Cell.Text>
-					<List.Cell.Arrow>
+					</List.Cell.Center>
+					<List.Cell.Right>
 						<Icon iconName={barPosition === "left" ? "iconCheck" : ""} />
-					</List.Cell.Arrow>
+					</List.Cell.Right>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("right")}>
-					<List.Cell.Image>
+					<List.Cell.Left>
 						<Icon iconName="iconArrowRightCircle" />
-					</List.Cell.Image>
-					<List.Cell.Text>
+					</List.Cell.Left>
+					<List.Cell.Center>
 						<T>{lang.settings.layout.right}</T>
-					</List.Cell.Text>
-					<List.Cell.Arrow>
+					</List.Cell.Center>
+					<List.Cell.Right>
 						<Icon iconName={barPosition === "right" ? "iconCheck" : ""} />
-					</List.Cell.Arrow>
+					</List.Cell.Right>
 				</List.Cell>
 			</List>
 		</S.Layout>

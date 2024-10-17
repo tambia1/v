@@ -1,3 +1,4 @@
+import { Button } from "@src/components/button/Button";
 import { Loader } from "@src/components/loader/Loader";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
@@ -127,14 +128,14 @@ export const User = () => {
 
 				<S.ButtonBox>
 					{storeUser.csrf === "" && (
-						<S.ButtonLogin onClick={handleOnClickDirectLogin} disabled={isLoading}>
+						<Button onClick={handleOnClickDirectLogin} disabled={isLoading}>
 							<T>{lang.user.login}</T>
-						</S.ButtonLogin>
+						</Button>
 					)}
 					{storeUser.csrf !== "" && (
-						<S.ButtonLogout onClick={handleOnClickLogout} disabled={isLoading}>
+						<Button onClick={handleOnClickLogout} disabled={isLoading}>
 							<T>{lang.user.logout}</T>
-						</S.ButtonLogout>
+						</Button>
 					)}
 				</S.ButtonBox>
 
@@ -148,9 +149,9 @@ export const User = () => {
 				<S.MessagesBox>
 					{isLoading && <Loader />}
 
-					{message.state === "idle" && <S.Idle>{message.message}</S.Idle>}
-					{message.state === "error" && <S.ErrorMessage>{message.message}</S.ErrorMessage>}
-					{message.state === "success" && <S.SuccessMessage>{message.message}</S.SuccessMessage>}
+					{message.state === "idle" && <S.MessageIdle>{message.message}</S.MessageIdle>}
+					{message.state === "error" && <S.MessageError>{message.message}</S.MessageError>}
+					{message.state === "success" && <S.MessageSuccess>{message.message}</S.MessageSuccess>}
 				</S.MessagesBox>
 			</S.Box>
 		</S.User>

@@ -1,12 +1,12 @@
-import * as S from "./StocksPage.styles";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Navigator } from "@src/components/navigator/Navigator";
 import { List } from "@src/components/list/List";
-import { Stock } from "./components/stock/Stock";
+import { Loader } from "@src/components/loader/Loader";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { IStockOk, QueryStocks } from "../queries/QueryStocks";
-import { Loader } from "@src/components/loader/Loader";
+import { type IStockOk, QueryStocks } from "../queries/QueryStocks";
+import * as S from "./StocksPage.styles";
+import { Stock } from "./components/stock/Stock";
 
 export const StocksPage = () => {
 	const navigator = useNavigator();
@@ -17,7 +17,7 @@ export const StocksPage = () => {
 		navigator.pushPage(
 			<Navigator.Page id={stock.meta.symbol} title={stock.meta.symbol}>
 				<Stock stock={stock} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 
@@ -34,7 +34,7 @@ export const StocksPage = () => {
 					.filter((stock) => stock.status === "ok")
 					.map((stock) => (
 						<List.Cell key={stock.meta.symbol} onClick={() => handleOnSymbol(stock as IStockOk)}>
-							<List.Cell.Text>{stock.meta.symbol}</List.Cell.Text>
+							<List.Cell.Center>{stock.meta.symbol}</List.Cell.Center>
 						</List.Cell>
 					))}
 			</List>

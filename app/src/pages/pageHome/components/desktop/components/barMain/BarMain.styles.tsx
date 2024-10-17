@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import type { IBarPosition } from "../../Desktop.styles";
 
-export const Container = styled.div`
+export const BarMain = styled.div`
 	position: absolute;
 	overflow: hidden;
 	width: 100%;
@@ -9,12 +9,14 @@ export const Container = styled.div`
 	display: flex;
 	flex-shrink: 0;
 	background-color: ${(props) => props.theme.color.primaryBg};
+	display: flex;
 `;
 
 const Icon = css<{ $isVisible: boolean }>`
 	position: absolute;
-	width: 4rem;
-	height: 4rem;
+	width: 2rem;
+	height: 2rem;
+	padding: 0.5rem;
 
 	display: flex;
 	flex-shrink: 0;
@@ -32,7 +34,7 @@ const Icon = css<{ $isVisible: boolean }>`
 
 export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
 	${Icon}
-	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `bottom: 0rem;` : `left: 0rem`)};
+	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "bottom: 0rem;" : "left: 0rem")};
 
 	& svg {
 		fill: ${(props) => props.theme.color.errorBg};
@@ -45,7 +47,7 @@ export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: IBarPos
 
 export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
 	${Icon}
-	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? `top: 0rem;` : `right: 0rem`)};
+	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "top: 0rem;" : "right: 0rem")};
 
 	& svg {
 		fill: ${(props) => props.theme.color.primaryBg};
@@ -59,7 +61,7 @@ export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPos
 export const Username = styled.div`
 	position: absolute;
 	width: 4rem;
-	height: 4rem;
+	height: 3rem;
 	bottom: 0rem;
 	right: 5rem;
 
@@ -73,10 +75,10 @@ export const Username = styled.div`
 	white-space: nowrap;
 `;
 
-export const Success = styled.div`
+export const MessageSuccess = styled.div`
 	color: ${(props) => props.theme.color.successFg};
 `;
 
-export const Error = styled.div`
+export const MessageError = styled.div`
 	color: ${(props) => props.theme.color.errorFg};
 `;

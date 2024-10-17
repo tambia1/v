@@ -16,6 +16,8 @@ export const Store = styled.div`
 
 	background-image: url(${imageBg});
 	background-size: cover;
+
+	overflow: auto;
 `;
 
 export const Title = styled(Text).attrs({ size: "l" })``;
@@ -41,7 +43,8 @@ export const AppIcon = styled.div<{ url: string }>`
 	background-repeat: no-repeat;
 	background-position: 50%;
 	background-color: ${(props) => props.theme.color.primaryBg};
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.primaryFg};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+
 	border-radius: 15px;
 	cursor: pointer;
 `;

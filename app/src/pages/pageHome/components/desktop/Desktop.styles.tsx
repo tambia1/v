@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export type IBarPosition = "top" | "bottom" | "left" | "right";
 
-const PAGE_BAR_SIZE = "4rem";
+const PAGE_BAR_SIZE = "3rem";
 
 export const Apps = styled.div`
 	position: relative;
@@ -48,7 +48,7 @@ export const App = styled.div`
 export const Bar = styled.div`
 	position: absolute;
 	width: 100%;
-	height: 5rem;
+	height: 3rem;
 	z-index: 1;
 	opacity: 0;
 `;

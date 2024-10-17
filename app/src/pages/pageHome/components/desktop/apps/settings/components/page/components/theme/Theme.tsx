@@ -32,27 +32,27 @@ export const Theme = () => {
 
 			<List>
 				<List.Cell onClick={() => handleOnClickTheme("light")}>
-					<List.Cell.Image>
+					<List.Cell.Left>
 						<Icon iconName="iconSun" />
-					</List.Cell.Image>
-					<List.Cell.Text>
+					</List.Cell.Left>
+					<List.Cell.Center>
 						<T>{lang.settings.theme.light}</T>
-					</List.Cell.Text>
-					<List.Cell.Arrow>
+					</List.Cell.Center>
+					<List.Cell.Right>
 						<Icon iconName={theme.themeName === "light" ? "iconCheck" : ""} />
-					</List.Cell.Arrow>
+					</List.Cell.Right>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickTheme("dark")}>
-					<List.Cell.Image>
+					<List.Cell.Left>
 						<Icon iconName="iconMoon" />
-					</List.Cell.Image>
-					<List.Cell.Text>
+					</List.Cell.Left>
+					<List.Cell.Center>
 						<T>{lang.settings.theme.dark}</T>
-					</List.Cell.Text>
-					<List.Cell.Arrow>
+					</List.Cell.Center>
+					<List.Cell.Right>
 						<Icon iconName={theme.themeName === "dark" ? "iconCheck" : ""} />
-					</List.Cell.Arrow>
+					</List.Cell.Right>
 				</List.Cell>
 			</List>
 
@@ -63,15 +63,15 @@ export const Theme = () => {
 			<List>
 				{S.backgroundImages.map((backgroundImage, index) => (
 					<List.Cell key={index} onClick={() => handleOnClickBackground(index)}>
-						<List.Cell.Image>
+						<List.Cell.Left>
 							<S.BackgroundImage $backgroundImageIndex={index} />
-						</List.Cell.Image>
-						<List.Cell.Text>
+						</List.Cell.Left>
+						<List.Cell.Center>
 							<T>{backgroundImage ? "" : lang.settings.theme.noBackground}</T>
-						</List.Cell.Text>
-						<List.Cell.Arrow>
+						</List.Cell.Center>
+						<List.Cell.Right>
 							<Icon iconName={themeStore.backgroundImageIndex === index ? "iconCheck" : ""} />
-						</List.Cell.Arrow>
+						</List.Cell.Right>
 					</List.Cell>
 				))}
 			</List>

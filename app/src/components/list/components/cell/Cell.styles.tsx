@@ -22,7 +22,7 @@ export const Line = styled.div`
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
-	height: 2.5rem;
+	height: 3rem;
 
 	color: ${(props) => props.theme.color.primaryFg};
 	background-color: ${(props) => props.theme.color.primaryBg};

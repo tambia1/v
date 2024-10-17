@@ -18,14 +18,14 @@ export const BarMain = ({ barPosition, onClickButtonTheme, onClickButtonClose, i
 	const { theme } = useThemeContext();
 
 	return (
-		<S.Container>
+		<S.BarMain>
 			<S.IconClose onClick={onClickButtonClose} $isVisible={isVisibleButtonClose} $barPosition={barPosition}>
 				<Icon iconName="iconXCircle" />
 			</S.IconClose>
 
 			<S.Username>
-				{userNameType === "success" && <S.Success>{userName}</S.Success>}
-				{userNameType === "error" && <S.Error>{userName}</S.Error>}
+				{userNameType === "success" && <S.MessageSuccess>{userName}</S.MessageSuccess>}
+				{userNameType === "error" && <S.MessageError>{userName}</S.MessageError>}
 			</S.Username>
 
 			<S.IconTheme $isVisible={true} $barPosition={barPosition}>
@@ -35,6 +35,6 @@ export const BarMain = ({ barPosition, onClickButtonTheme, onClickButtonClose, i
 					<Icon iconName="iconMoon" onClick={() => onClickButtonTheme("light")} />
 				)}
 			</S.IconTheme>
-		</S.Container>
+		</S.BarMain>
 	);
 };

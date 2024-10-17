@@ -12,8 +12,8 @@ export const Container = styled.div`
 
 const Icon = css<{ $isVisible: boolean }>`
 	position: absolute;
-	width: 4rem;
-	height: 4rem;
+	width: 3rem;
+	height: 3rem;
 	top: 0rem;
 
 	display: flex;

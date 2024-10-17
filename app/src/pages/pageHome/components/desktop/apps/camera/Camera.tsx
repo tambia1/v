@@ -1,8 +1,8 @@
-import * as S from "./Camera.styles";
-import { useRef, useState } from "react";
 import { Icon } from "@src/components/icon/Icon";
-import { useTheme } from "styled-components";
 import { Loader } from "@src/components/loader/Loader";
+import { useRef, useState } from "react";
+import { useTheme } from "styled-components";
+import * as S from "./Camera.styles";
 
 type ICameraFacingMode = "user" | "environment";
 
@@ -79,7 +79,7 @@ export const Camera = () => {
 
 			<S.Buttons>
 				{cameraState === "play" && <Icon iconName="iconPauseCircle" size={theme.size.xl} onClick={handleCapture} />}
-				{cameraState === "play" && <Icon iconName="iconCamera" size={theme.size.xl} onClick={handleCameraFace} />}
+				{cameraState === "play" && <Icon iconName="iconRefreshCw" size={theme.size.xl} onClick={handleCameraFace} />}
 				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.xl} onClick={handleCamera} />}
 				{cameraState === "pause" && capturedImage && <Icon iconName="iconSave" size={theme.size.xl} onClick={handleCamera} />}
 			</S.Buttons>

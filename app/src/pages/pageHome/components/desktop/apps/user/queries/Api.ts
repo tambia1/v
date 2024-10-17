@@ -1,7 +1,7 @@
 import { Promises } from "@src/services/Promises";
-import { MutateLoginResult, MutateLogoutResult, MutateTokenResult } from "./QueryLogin";
-import { QueryUserResult } from "./QueryUser";
 import { dbTokens, dbUsers } from "../db/db";
+import type { MutateLoginResult, MutateLogoutResult, MutateTokenResult } from "./QueryLogin";
+import type { QueryUserResult } from "./QueryUser";
 
 const DELAY = 1000;
 
@@ -20,7 +20,7 @@ export const sendLogin = async (email: string, password: string): Promise<Mutate
 		result.error = 1;
 		result.message = "invalid name or password";
 	} else {
-		const token = "token_" + Math.floor(Math.random() * 1_000_000);
+		const token = `token_${Math.floor(Math.random() * 1_000_000)}`;
 
 		dbTokens[token] = { userId, time: Date.now() };
 		result.token = token;

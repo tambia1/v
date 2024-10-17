@@ -23,8 +23,8 @@ export const Splash = styled.div`
 export const Logo = styled.div`
 	background-image: url(${logo});
 	background-size: contain;
-	width: 10rem;
-	height: 10rem;
+	width: 8rem;
+	height: 8rem;
 `;
 
 export const Text = styled.div`

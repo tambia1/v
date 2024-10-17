@@ -21,7 +21,7 @@ export const Column = styled.div`
 	min-height: 20rem;
 	display: flex;
 	flex-direction: column;
-	box-shadow: ${(props) => props.theme.color.shadow};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	min-width: 0;
 	transition: all 0.3s ease;
 
@@ -88,11 +88,11 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 	width: auto;
 	min-height: 5rem;
 	padding: 0.5rem;
-	box-shadow: ${(props) => props.theme.color.shadow};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	overflow: hidden;
 	transition: all 0.3s ease;
 
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentBgActive : props.theme.color.primaryBg)};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentFg : props.theme.color.primaryBg)};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};

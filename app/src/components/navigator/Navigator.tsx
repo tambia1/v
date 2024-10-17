@@ -174,12 +174,12 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 			<S.Navigator className={className} data-items={navigatorItems.length}>
 				<S.Headers>
 					<S.Back>
-						<S.BackContainer onClick={handleClose} $isVisible={onClose !== undefined && navigatorItems.length === 1}>
+						<S.BackButton onClick={handleClose} $isVisible={onClose !== undefined && navigatorItems.length === 1}>
 							<Icon iconName="iconX" size={theme.size.l} />
-						</S.BackContainer>
-						<S.BackContainer onClick={handleBack} $isVisible={navigatorItems.length > 1}>
+						</S.BackButton>
+						<S.BackButton onClick={handleBack} $isVisible={navigatorItems.length > 1}>
 							<Icon iconName="iconChevronLeft" size={theme.size.l} />
-						</S.BackContainer>
+						</S.BackButton>
 					</S.Back>
 					<S.Header>
 						{navigatorItems.map((navigatorItem) => (

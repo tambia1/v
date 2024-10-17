@@ -27,6 +27,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			min-width: 5em;
 			height: 2.5rem;
 			white-space: nowrap;
+			box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 
 			&:hover {
 			}
@@ -34,6 +35,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			&:active {
 				box-shadow: inset 0 0 3px 0px #bbbbbb, inset 0 0 10px #dddddd;
 				background-image: linear-gradient(to top, #fdfdfd 0%, #ffffff 20%, #d8d9db 100%);
+				box-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFg};
 			}
 
 			&:disabled {

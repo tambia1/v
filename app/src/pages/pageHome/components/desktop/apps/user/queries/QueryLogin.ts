@@ -1,6 +1,6 @@
-import { useMutation, UseMutationOptions } from "@tanstack/react-query";
-import { QueryResult } from "./Query.types";
+import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { sendLogin, sendLogout, sendToken } from "./Api";
+import type { QueryResult } from "./Query.types";
 
 interface MutateLoginProps {
 	email: string;

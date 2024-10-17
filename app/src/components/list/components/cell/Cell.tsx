@@ -3,6 +3,7 @@ import * as S from "./Cell.styles";
 import { CellCenter } from "./components/cellCenter/CellCenter";
 import { CellLeft } from "./components/cellLeft/CellLeft";
 import { CellRight } from "./components/cellRight/CellRight";
+import { CellEnd } from "./components/cellSubtext/CellEnd";
 
 export interface Props extends HTMLProps<HTMLDivElement> {
 	$isEnabled?: boolean;
@@ -19,6 +20,7 @@ export const Cell = ({ children, $isEnabled: isEnabled, $isSelected: isSelected,
 	);
 };
 
-Cell.Text = CellCenter;
-Cell.Image = CellLeft;
-Cell.Arrow = CellRight;
+Cell.Left = CellLeft;
+Cell.Center = CellCenter;
+Cell.Right = CellRight;
+Cell.End = CellEnd;

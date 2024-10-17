@@ -20,7 +20,7 @@ export const Title = styled.textarea`
 	flex-direction: column;
 	flex-shrink: 0;
 	overflow: auto;
-	box-shadow: 0 0 0.5rem 0 #00000066;
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 1rem;
 	padding: 1rem;
 	outline: 0px solid transparent;
@@ -38,7 +38,7 @@ export const Content = styled.textarea`
 	flex-shrink: 0;
 	flex-grow: 1;
 	overflow: auto;
-	box-shadow: 0 0 0.5rem 0 #00000066;
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 1rem;
 	padding: 1rem;
 	outline: 0px solid transparent;

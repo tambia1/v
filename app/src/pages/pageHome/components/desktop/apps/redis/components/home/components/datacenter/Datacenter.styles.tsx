@@ -36,7 +36,7 @@ export const SubscriptionsList = styled.div`
 
 	overflow: auto;
 
-	box-shadow: ${(props) => props.theme.color.shadow} ${(props) => props.theme.color.primaryFg};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 1rem;
 
 	background-color: ${(props) => props.theme.color.primaryBg};

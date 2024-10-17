@@ -1,5 +1,5 @@
-import { ITheme, themes } from "@src/theme/Theme.types";
-import { ReactNode, useState } from "react";
+import { type ITheme, themes } from "@src/theme/Theme.types";
+import { type ReactNode, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { ThemeContext } from "./UseThemeContext";
 

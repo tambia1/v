@@ -1,6 +1,7 @@
 import { QueryLogin } from "@apps/user/queries/QueryLogin";
 import { QueryUser } from "@apps/user/queries/QueryUser";
 import { StoreUser } from "@apps/user/stores/StoreUser";
+import { Button } from "@components/button/Button";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Loader } from "@src/components/loader/Loader";
 import { T } from "@src/locales/T";
@@ -80,7 +81,7 @@ export const User = () => {
 
 			return;
 		}
-	}, [queryUser.isLoading, queryUser.data?.error, isLoginPerformed]);
+	}, [queryUser.isLoading, queryUser.data?.message, queryUser.data?.error, isLoginPerformed]);
 
 	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
@@ -179,14 +180,14 @@ export const User = () => {
 
 				<S.ButtonBox>
 					{storeUser.token === "" && (
-						<S.ButtonLogin onClick={handleOnClickDirectLogin} disabled={isLoading}>
+						<Button onClick={handleOnClickDirectLogin} disabled={isLoading}>
 							<T>{lang.user.login}</T>
-						</S.ButtonLogin>
+						</Button>
 					)}
 					{storeUser.token !== "" && (
-						<S.ButtonLogout onClick={handleOnClickLogout} disabled={isLoading}>
+						<Button onClick={handleOnClickLogout} disabled={isLoading}>
 							<T>{lang.user.logout}</T>
-						</S.ButtonLogout>
+						</Button>
 					)}
 				</S.ButtonBox>
 
