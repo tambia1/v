@@ -33,7 +33,6 @@ export const Box = styled.div`
 	padding: 2rem;
 	overflow: hidden;
 	border-radius: 16px;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	color: ${(props) => props.theme.color.primaryFg};
 	background-color: ${(props) => props.theme.color.primaryBg};
 `;
@@ -42,9 +41,9 @@ export const EmailBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 5rem;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+	border: 1px solid #8f9092;
 `;
 
 export const EmailImage = styled(Icon)`
@@ -77,9 +76,9 @@ export const PasswordBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 	border-radius: 5rem;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
+	border: 1px solid #8f9092;
 `;
 
 export const PasswordImage = styled(Icon)`
@@ -158,7 +157,6 @@ export const UserImage = styled.div<{ $logState: "loggedIn" | "loggedOut" }>`
 	background-size: 125%;
 	border-radius: 50%;
 	background-repeat: no-repeat;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
 `;
 
 export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
