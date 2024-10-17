@@ -137,19 +137,16 @@ export const Loader = styled.div`
 `;
 
 export const MessageIdle = styled.div`
-	height: 2rem;
 	color: ${(props) => props.theme.color.primaryFg};
 	white-space: nowrap;
 `;
 
 export const MessageSuccess = styled.div`
-	height: 2rem;
 	color: ${(props) => props.theme.color.successFg};
 	white-space: nowrap;
 `;
 
 export const MessageError = styled.div`
-	height: 2rem;
 	color: ${(props) => props.theme.color.errorFg};
 	white-space: nowrap;
 `;
