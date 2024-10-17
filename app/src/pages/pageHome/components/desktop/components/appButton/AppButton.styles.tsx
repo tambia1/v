@@ -71,9 +71,10 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	justify-content: start;
 	flex-direction: column;
 	gap: ${(props) => props.theme.size.xs};
+    width: 100%;
+    height: 8rem;
 	padding: ${(props) => props.theme.size.xs};
-	width: 5rem;
-	height: 7rem;
+    box-sizing: border-box;
 	overflow: hidden;
 	border-radius: 0.5rem;
 	position: relative;
@@ -195,7 +196,6 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 `;
 
 export const Title = styled.div`
-	font-size: ${(props) => props.theme.size.s};
 	text-align: center;
 	word-break: normal;
 	white-space: pre-wrap;

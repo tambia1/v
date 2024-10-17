@@ -20,7 +20,7 @@ export const Spacer = styled.div`
 
 export const Bar = styled.div`
 	width: 100%;
-	height: 5rem;
+	height: 3rem;
 
 	display: flex;
 	flex-direction: row;
@@ -33,9 +33,10 @@ export const Bar = styled.div`
 `;
 
 const IconBar = css`
+	width: 2rem;
+	height: 2rem;
 	cursor: pointer;
 	padding: 0.5rem;
-	margin: 0.5rem;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};
