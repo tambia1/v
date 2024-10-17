@@ -1,9 +1,8 @@
 import { Animation } from "./Animation";
 import { Shoot } from "./Shoot";
+import type { IType as IShootType } from "./Shoot";
 import { UtilsImage } from "./UtilsImage";
-import { IType as IShootType } from "./Shoot";
 
-import imageCastleRuin from "./images/castles/castleRuin.webp";
 import imageCastle1 from "./images/castles/castle1.webp";
 import imageCastle2 from "./images/castles/castle2.webp";
 import imageCastle3 from "./images/castles/castle3.webp";
@@ -14,6 +13,7 @@ import imageCastle7 from "./images/castles/castle7.webp";
 import imageCastle8 from "./images/castles/castle8.webp";
 import imageCastle9 from "./images/castles/castle8.webp";
 import imageCastle10 from "./images/castles/castle8.webp";
+import imageCastleRuin from "./images/castles/castleRuin.webp";
 
 export type IType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
 type ICastle = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
@@ -36,30 +36,30 @@ export class Castle {
 	private type: IType = "castleRuin";
 	private image: HTMLImageElement = types[this.type].image;
 
-	private x: number = 0;
-	private y: number = 0;
-	private w: number = 0;
-	private h: number = 0;
-	private cx: number = 0;
-	private cy: number = 0;
-	private cw: number = 0;
-	private ch: number = 0;
-	private life: number = 0;
-	private lifeMax: number = 0;
+	private x = 0;
+	private y = 0;
+	private w = 0;
+	private h = 0;
+	private cx = 0;
+	private cy = 0;
+	private cw = 0;
+	private ch = 0;
+	private life = 0;
+	private lifeMax = 0;
 
-	private lifeStrokeStyle: string = "#ffffff66";
-	private lifeFillStyle: string = "#99999966";
+	private lifeStrokeStyle = "#ffffff66";
+	private lifeFillStyle = "#99999966";
 
 	private weaponSpeed: number = types[this.type].weaponSpeed;
 	private weaponDamage: number = types[this.type].weaponDamage;
 	private weaponRange: number = types[this.type].weaponRange;
 	private shootType: IShootType | null = types[this.type].shootType;
 	private shoot: Shoot | null = null;
-	private isAttacking: boolean = false;
-	private weaponRangeFillStyle: string = "#ffffff33";
+	private isAttacking = false;
+	private weaponRangeFillStyle = "#ffffff33";
 	private animationWeaponRangeAlpha: Animation = new Animation({});
-	private weaponRangeAlpha: number = 0;
-	private weaponRangeAlphaTiming: number = 0;
+	private weaponRangeAlpha = 0;
+	private weaponRangeAlphaTiming = 0;
 
 	constructor(type: IType) {
 		this.init();

@@ -1,5 +1,5 @@
-import { Arena, IType as IArenaType } from "./Arena";
-import { Player, IType as IPlayerType } from "./Player";
+import { Arena, type IType as IArenaType } from "./Arena";
+import { type IType as IPlayerType, Player } from "./Player";
 import { UtilsCanvas } from "./UtilsCanvas";
 import { UtilsMath } from "./UtilsMath";
 import { UtilsPath } from "./UtilsPath";
@@ -30,11 +30,11 @@ export class Game {
 
 	private adapter: number[][] = [];
 
-	private requestAnimationFrameId: number = 0;
+	private requestAnimationFrameId = 0;
 
-	private timeOld: number = 0;
-	private timeNow: number = 0;
-	private timeDif: number = 0;
+	private timeOld = 0;
+	private timeNow = 0;
+	private timeDif = 0;
 
 	constructor({ board, goodPlayerName, badPlayerName, arenaType, onGameOver }: IGameProps) {
 		this.board = board;
@@ -70,9 +70,9 @@ export class Game {
 			div: this.canvas,
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				//up
-				if (this.isXYInsideGrid(x, y) == false) {
+				if (this.isXYInsideGrid(x, y) === false) {
 					this.selectStack(x, y);
-				} else if (this.isXYInsideSafeArea(x, y) == true) {
+				} else if (this.isXYInsideSafeArea(x, y) === true) {
 					this.putSelectedStackOnGrid(x, y);
 				}
 			},
@@ -86,9 +86,40 @@ export class Game {
 	private initPlayers() {
 		this.players = [];
 		this.players.push(
-			new Player(this.goodPlayerName, "good", ["tank", "knight", "paladin", "goblin", "wolf", "golem", "orc", "sorcerer", "ninja", "snake", "giant", "musketeer", "hogRider", "amazon"])
+			new Player(this.goodPlayerName, "good", [
+				"tank",
+				"knight",
+				"paladin",
+				"goblin",
+				"wolf",
+				"golem",
+				"orc",
+				"sorcerer",
+				"ninja",
+				"snake",
+				"giant",
+				"musketeer",
+				"hogRider",
+				"amazon",
+			]),
 		);
-		this.players.push(new Player(this.badPlayerName, "bad", ["tank", "knight", "paladin", "goblin", "wolf", "golem", "orc", "sorcerer", "ninja", "snake", "musketeer", "hogRider", "amazon"]));
+		this.players.push(
+			new Player(this.badPlayerName, "bad", [
+				"tank",
+				"knight",
+				"paladin",
+				"goblin",
+				"wolf",
+				"golem",
+				"orc",
+				"sorcerer",
+				"ninja",
+				"snake",
+				"musketeer",
+				"hogRider",
+				"amazon",
+			]),
+		);
 	}
 
 	private initAdapter() {
@@ -156,17 +187,17 @@ export class Game {
 		let isStackSelected = false;
 
 		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() == "good") {
+			if (this.players[i].getType() === "good") {
 				this.players[i].setStackSelected(-1);
 
 				for (let j = 1; j < this.players[i].getStacks().length; j++) {
-					if (this.players[i].getStacks()[j] == null) {
+					if (this.players[i].getStacks()[j] === null) {
 						continue;
 					}
 
 					const isStackPressed = this.players[i].getStacks()[j]?.isXYInsideUnit(x, y);
 
-					if (isStackPressed == true) {
+					if (isStackPressed === true) {
 						isStackSelected = true;
 
 						this.players[i].setStackSelected(j);
@@ -179,9 +210,9 @@ export class Game {
 		}
 
 		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() == "bad") {
+			if (this.players[i].getType() === "bad") {
 				for (let j = 0; j < this.players[i].getCastles().length; j++) {
-					if (isStackSelected == true) {
+					if (isStackSelected === true) {
 						this.players[i].getCastles()[j].setWeaponRangeOpacity(this.players[i].getCastles()[j].getWeaponRangeOpacity(), 1, 300);
 					} else {
 						this.players[i].getCastles()[j].setWeaponRangeOpacity(this.players[i].getCastles()[j].getWeaponRangeOpacity(), 0, 300);
@@ -193,7 +224,7 @@ export class Game {
 
 	private putSelectedStackOnGrid(x: number, y: number) {
 		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() == "good") {
+			if (this.players[i].getType() === "good") {
 				this.players[i].putSelectedStackOnGrid(x, y);
 			}
 		}
@@ -204,7 +235,11 @@ export class Game {
 
 		a: for (let i = 0; i < this.players.length; i++) {
 			for (let j = 0; j < this.players[i].getCastles().length; j++) {
-				if (this.players[i].getType() == "bad" && this.players[i].getCastles()[j].isXYInsideWeaponRange(x, y) == true && this.players[i].getCastles()[j].getLife() > 0) {
+				if (
+					this.players[i].getType() === "bad" &&
+					this.players[i].getCastles()[j].isXYInsideWeaponRange(x, y) === true &&
+					this.players[i].getCastles()[j].getLife() > 0
+				) {
 					isSafe = false;
 					break a;
 				}
@@ -240,7 +275,7 @@ export class Game {
 
 	private update(timeDif: number) {
 		//if gameOver then do not update anything
-		if (this.winner != -1) {
+		if (this.winner !== -1) {
 			return;
 		}
 
@@ -274,7 +309,7 @@ export class Game {
 
 		for (let i = 0; i < this.players.length; i++) {
 			for (let j = 0; j < this.players[i].getUnits().length; j++) {
-				if (this.players[i].getUnits()[j].getIsAttacking() == false) {
+				if (this.players[i].getUnits()[j].getIsAttacking() === false) {
 					const m = timeDif / this.players[i].getUnits()[j].getMoveSpeed();
 
 					// let oldX = this.players[i].getUnits()[j].getX();
@@ -300,20 +335,20 @@ export class Game {
 					}
 				}
 
-				if (this.players[i].getUnits()[j].getDirection() == "up") {
-					if (this.players[i].getUnits()[j].getIsAttacking() == false && this.players[i].getUnits()[j].getState() != "walkUp") {
+				if (this.players[i].getUnits()[j].getDirection() === "up") {
+					if (this.players[i].getUnits()[j].getIsAttacking() === false && this.players[i].getUnits()[j].getState() !== "walkUp") {
 						this.players[i].getUnits()[j].setState("walkUp");
 					}
 
-					if (this.players[i].getUnits()[j].getIsAttacking() == true && this.players[i].getUnits()[j].getState() != "attackUp") {
+					if (this.players[i].getUnits()[j].getIsAttacking() === true && this.players[i].getUnits()[j].getState() !== "attackUp") {
 						this.players[i].getUnits()[j].setState("attackUp");
 					}
 				} else {
-					if (this.players[i].getUnits()[j].getIsAttacking() == false && this.players[i].getUnits()[j].getState() != "walkDown") {
+					if (this.players[i].getUnits()[j].getIsAttacking() === false && this.players[i].getUnits()[j].getState() !== "walkDown") {
 						this.players[i].getUnits()[j].setState("walkDown");
 					}
 
-					if (this.players[i].getUnits()[j].getIsAttacking() == true && this.players[i].getUnits()[j].getState() != "attackDown") {
+					if (this.players[i].getUnits()[j].getIsAttacking() === true && this.players[i].getUnits()[j].getState() !== "attackDown") {
 						this.players[i].getUnits()[j].setState("attackDown");
 					}
 				}
@@ -325,7 +360,7 @@ export class Game {
 		//update attacks
 		for (let a = 0; a < this.players.length; a++) {
 			for (let b = 0; b < this.players.length; b++) {
-				if (this.players[a].getType() == this.players[b].getType()) {
+				if (this.players[a].getType() === this.players[b].getType()) {
 					continue;
 				}
 
@@ -334,7 +369,10 @@ export class Game {
 
 				for (let i = 0; i < playerAUnitsAndCastles.length; i++) {
 					for (let j = 0; j < playerBUnitsAndCastles.length; j++) {
-						if (playerAUnitsAndCastles[i].getLife() > 0 && playerAUnitsAndCastles[i].isXYInsideWeaponRange(playerBUnitsAndCastles[j].getX(), playerBUnitsAndCastles[j].getY()) == true) {
+						if (
+							playerAUnitsAndCastles[i].getLife() > 0 &&
+							playerAUnitsAndCastles[i].isXYInsideWeaponRange(playerBUnitsAndCastles[j].getX(), playerBUnitsAndCastles[j].getY()) === true
+						) {
 							playerAUnitsAndCastles[i].startAttacking(playerBUnitsAndCastles[j].getX(), playerBUnitsAndCastles[j].getY());
 
 							const weaponSpeed = timeDif / playerAUnitsAndCastles[i].getWeaponSpeed();
@@ -353,16 +391,16 @@ export class Game {
 		for (let i = 0; i < this.players.length; i++) {
 			//dead units
 			for (let j = 0; j < this.players[i].getUnits().length; j++) {
-				if (this.players[i].getUnits()[j].getLife() == 0) {
+				if (this.players[i].getUnits()[j].getLife() === 0) {
 					for (let a = 0; a < this.players.length; a++) {
 						for (let b = 0; b < this.players[a].getUnits().length; b++) {
-							if (this.players[a].getUnits()[b].isXYInsideWeaponRange(this.players[i].getUnits()[j].getX(), this.players[i].getUnits()[j].getY()) == true) {
+							if (this.players[a].getUnits()[b].isXYInsideWeaponRange(this.players[i].getUnits()[j].getX(), this.players[i].getUnits()[j].getY()) === true) {
 								this.players[a].getUnits()[b].stopAttacking();
 							}
 						}
 
 						for (let b = 0; b < this.players[a].getCastles().length; b++) {
-							if (this.players[a].getCastles()[b].isXYInsideWeaponRange(this.players[i].getUnits()[j].getX(), this.players[i].getUnits()[j].getY()) == true) {
+							if (this.players[a].getCastles()[b].isXYInsideWeaponRange(this.players[i].getUnits()[j].getX(), this.players[i].getUnits()[j].getY()) === true) {
 								this.players[a].getCastles()[b].stopAttacking();
 							}
 						}
@@ -375,10 +413,12 @@ export class Game {
 
 			//dead castles
 			for (let j = 0; j < this.players[i].getCastles().length; j++) {
-				if (this.players[i].getCastles()[j].getLife() == 0) {
+				if (this.players[i].getCastles()[j].getLife() === 0) {
 					for (let a = 0; a < this.players.length; a++) {
 						for (let b = 0; b < this.players[a].getUnits().length; b++) {
-							if (this.players[a].getUnits()[b].isXYInsideWeaponRange(this.players[i].getCastles()[j].getX(), this.players[i].getCastles()[j].getY()) == true) {
+							if (
+								this.players[a].getUnits()[b].isXYInsideWeaponRange(this.players[i].getCastles()[j].getX(), this.players[i].getCastles()[j].getY()) === true
+							) {
 								this.players[a].getUnits()[b].stopAttacking();
 							}
 						}
@@ -407,12 +447,12 @@ export class Game {
 				}
 			}
 
-			if (isAllCastlesRuined == false) {
+			if (isAllCastlesRuined === false) {
 				playersStillAlive.push(i);
 			}
 		}
 
-		if (playersStillAlive.length == 1) {
+		if (playersStillAlive.length === 1) {
 			this.winner = playersStillAlive[0];
 
 			this.onGameOver?.();
@@ -421,8 +461,8 @@ export class Game {
 
 	private updatePlayerBadAi(_timeDif: number) {
 		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() == "bad") {
-				if (this.players[i].getStackSelected() == -1) {
+			if (this.players[i].getType() === "bad") {
+				if (this.players[i].getStackSelected() === -1) {
 					const j = UtilsMath.getRandomNumber(1, this.players[i].getStacks().length - 1);
 
 					if (this.players[i].getStacks()[j] != null) {
@@ -550,7 +590,7 @@ export class Game {
 		const minutes = Math.floor(this.timeLeft / 60);
 		const seconds = Math.floor(this.timeLeft % 60);
 
-		ctx.fillText(minutes + ":" + (seconds < 10 ? "0" : "") + seconds, 420, 170);
+		ctx.fillText(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, 420, 170);
 
 		ctx.font = "bold 8px clashRoyaleFont";
 		ctx.fillStyle = "#FFFDBC";
@@ -618,7 +658,7 @@ export class Game {
 	}
 
 	private drawGameOver(ctx: CanvasRenderingContext2D) {
-		if (this.winner != -1) {
+		if (this.winner !== -1) {
 			ctx.save();
 
 			ctx.font = "bold 16px clashRoyaleFont";
@@ -631,7 +671,7 @@ export class Game {
 			ctx.textBaseline = "middle";
 
 			ctx.fillText("Game Over", 270, 250);
-			ctx.fillText(this.players[this.winner].getPlayerName() + " Wins !", 270, 280);
+			ctx.fillText(`${this.players[this.winner].getPlayerName()} Wins !`, 270, 280);
 
 			ctx.restore();
 		}

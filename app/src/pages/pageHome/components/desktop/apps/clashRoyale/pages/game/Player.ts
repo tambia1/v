@@ -1,5 +1,5 @@
-import { Castle, IType as ICastleType } from "./Castle";
-import { IType as IUnitType, Unit } from "./Unit";
+import { Castle, type IType as ICastleType } from "./Castle";
+import { type IType as IUnitType, Unit } from "./Unit";
 import { UtilsImage } from "./UtilsImage";
 import { UtilsMath } from "./UtilsMath";
 
@@ -76,14 +76,14 @@ export class Player {
 	private units: Unit[] = [];
 
 	private stacks: (Unit | null)[] = [null, null, null, null, null];
-	private stackSelected: number = -1;
-	private energy: number = 0;
-	private energyMax: number = 0;
-	private energyTiming: number = 0;
+	private stackSelected = -1;
+	private energy = 0;
+	private energyMax = 0;
+	private energyTiming = 0;
 
-	private elixir: number = 0;
-	private elixirMax: number = 0;
-	private elixirTiming: number = 0;
+	private elixir = 0;
+	private elixirMax = 0;
+	private elixirTiming = 0;
 
 	constructor(playerName: string, type: IType, deck: IUnitType[]) {
 		this.type = type;
@@ -169,7 +169,7 @@ export class Player {
 		ctx.save();
 
 		const x = 125;
-		const y = this.type == "good" ? 650 : 95;
+		const y = this.type === "good" ? 650 : 95;
 		const w = 430 - x;
 		const h = 10;
 
@@ -252,7 +252,7 @@ export class Player {
 	}
 
 	public putSelectedStackOnGrid(x: number, y: number) {
-		if (this.stackSelected != -1) {
+		if (this.stackSelected !== -1) {
 			const unit = this.stacks[this.stackSelected];
 
 			if (unit != null && this.elixir >= unit.getElixirNeeded()) {
@@ -295,12 +295,12 @@ export class Player {
 				isNextStackUnique = true;
 
 				for (let i = 1; i < this.stacks.length; i++) {
-					if (this.stacks[0].getType() == this.stacks[i]?.getType()) {
+					if (this.stacks[0].getType() === this.stacks[i]?.getType()) {
 						isNextStackUnique = false;
 						break;
 					}
 				}
-			} while (isNextStackUnique == false);
+			} while (isNextStackUnique === false);
 
 			this.stacks[0].setXY(styles[this.type].stacks[0].x, styles[this.type].stacks[0].y);
 			this.stacks[0].setOpacity(0, 1, 700);

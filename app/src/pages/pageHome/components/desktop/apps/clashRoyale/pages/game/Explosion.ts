@@ -33,21 +33,21 @@ const types: { [K in IType]: IExplosion } = {
 export class Explosion {
 	private type: IType = "explosion1";
 	private image: HTMLImageElement = types[this.type].image;
-	private frames: number = 0;
-	private size: number = 0;
-	private cols: number = 0;
-	private time: number = 0;
+	private frames = 0;
+	private size = 0;
+	private cols = 0;
+	private time = 0;
 
-	private isExploding: boolean = false;
+	private isExploding = false;
 	private animation: Animation = new Animation({});
-	private sprite: number = 0;
+	private sprite = 0;
 
-	private x: number = 0;
-	private y: number = 0;
-	private w: number = 0;
-	private h: number = 0;
-	private cx: number = 0;
-	private cy: number = 0;
+	private x = 0;
+	private y = 0;
+	private w = 0;
+	private h = 0;
+	private cx = 0;
+	private cy = 0;
 
 	constructor(type: IType) {
 		this.setType(type);
@@ -113,7 +113,7 @@ export class Explosion {
 	}
 
 	public onExplosionFinish() {
-		if (this.isExploding == true) {
+		if (this.isExploding === true) {
 			this.startExplosion();
 		} else {
 			this.stopExplosion();
