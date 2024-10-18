@@ -36,7 +36,7 @@ export const WorldMap = ({ className, map, mapFixX = MAP_FIX_X, mapFixY = MAP_FI
 				resizeObserver.unobserve(mapRef.current);
 			}
 		};
-	}, [mapRef]);
+	}, []);
 
 	useEffect(() => {
 		updateMapSize();
@@ -85,15 +85,15 @@ const getXYFromLngLat = (
 	const fixX = imageWidth * mapFixX;
 	const fixY = imageHeight * mapFixY;
 
-	imageWidth += fixW;
-	imageHeight += fixH;
+	const imageWidthFixed = imageWidth + fixW;
+	const imageHeightFixed = imageHeight + fixH;
 
-	let x = (lng + 180) * (imageWidth / 360);
+	let x = (lng + 180) * (imageWidthFixed / 360);
 
 	const latRad = (lat * Math.PI) / 180;
 	const mercN = Math.log(Math.tan(Math.PI / 4 + latRad / 2));
 
-	let y = imageHeight / 2 - (imageWidth * mercN) / (2 * Math.PI) / (imageWidth / imageHeight);
+	let y = imageHeightFixed / 2 - (imageWidthFixed * mercN) / (2 * Math.PI) / (imageWidthFixed / imageHeightFixed);
 
 	x = x + fixX - fixW / 2;
 	y = y + fixY - fixH / 2;
