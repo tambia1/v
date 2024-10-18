@@ -36,9 +36,7 @@ export const SpinPage = () => {
 		spinStore.setData(arr);
 	};
 
-	const handleDataChange = (e: React.FormEvent<HTMLInputElement>, index: number) => {
-		const value = e.currentTarget.value;
-
+	const handleTextChange = (value: string, index: number) => {
 		const arr = [...spinStore.data.slice(0, index), value, ...spinStore.data.slice(index + 1)];
 
 		spinStore.setData(arr);
@@ -49,9 +47,7 @@ export const SpinPage = () => {
 			<List.Section>
 				<S.CellGrid onClick={handleOnClickAddChoice}>
 					<Icon iconName="iconPlusCircle" />
-					<span>
-						<T>{lang.spin.add}</T>
-					</span>
+					<T>{lang.spin.add}</T>
 				</S.CellGrid>
 			</List.Section>
 
@@ -59,13 +55,23 @@ export const SpinPage = () => {
 				{spinStore.data.map((datum, index) => (
 					<List.Cell key={index}>
 						<S.CellGrid>
-							<Icon
-								iconName="iconMinusCircle"
-								onClick={(e) => {
-									handleOnClickRemoveChoice(e, index);
-								}}
-							/>
-							<S.Input value={datum} placeholder={t(lang.spin.add)} onChange={(e) => handleDataChange(e, index)} />
+							<List.Cell.Left>
+								<Icon
+									iconName="iconMinusCircle"
+									onClick={(e) => {
+										handleOnClickRemoveChoice(e, index);
+									}}
+								/>
+							</List.Cell.Left>
+							<List.Cell.Center>
+								<S.InputText
+									value={datum}
+									placeholder={t(lang.spin.add)}
+									onTextChange={(value) => {
+										handleTextChange(value, index);
+									}}
+								/>
+							</List.Cell.Center>
 						</S.CellGrid>
 					</List.Cell>
 				))}

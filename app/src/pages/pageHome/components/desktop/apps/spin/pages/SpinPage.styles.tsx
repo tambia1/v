@@ -1,4 +1,5 @@
 import { Icon } from "@src/components/icon/Icon.styles";
+import { Input } from "@src/components/input/Input";
 import styled from "styled-components";
 
 export const SpinPage = styled.div`
@@ -39,8 +40,9 @@ export const Buttons = styled.div`
 	margin-top: 2rem;
 `;
 
-export const Input = styled.input`
+export const InputText = styled(Input)`
 	width: 100%;
 	border: none;
 	background-color: transparent;
+	padding: 0;
 `;
