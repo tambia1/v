@@ -1,6 +1,9 @@
 export const crdbs = {
 	crdbs: [
 		{
+			id: 1486,
+			name: "cache-M2F8RP1Y",
+			memory_size_in_mb: 4096,
 			causal_consistency: false,
 			crdb_instances: [
 				{
@@ -598,10 +601,7 @@ export const crdbs = {
 					},
 				],
 			},
-			id: 1486,
 			guid: "949928ca-7a57-4e5c-95c0-dde32b8739d8",
-			memory_size_in_mb: 4096,
-			name: "cache-M2F8RP1Y",
 			shard_key_regex: [
 				{
 					id: 2976,
@@ -632,6 +632,9 @@ export const crdbs = {
 			preferred_proxy_policy: null,
 		},
 		{
+			id: 1487,
+			name: "cache-M2F8RET2",
+			memory_size_in_mb: 4096,
 			causal_consistency: false,
 			crdb_instances: [
 				{
@@ -1229,10 +1232,7 @@ export const crdbs = {
 					},
 				],
 			},
-			id: 1487,
 			guid: "0cc8708a-09cd-4864-bcd3-3fe447455590",
-			memory_size_in_mb: 4096,
-			name: "cache-M2F8RET2",
 			shard_key_regex: [
 				{
 					id: 2978,

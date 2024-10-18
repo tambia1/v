@@ -77,7 +77,7 @@ export const Datacenter = () => {
 										usage: crdb.crdb_instances[0].usage,
 										size: crdb.memory_size_in_mb * 1024 * 1024,
 										highAvailability: true,
-										dataPersistence: "disabled",
+										dataPersistence: crdb.default_db_config.data_persistence,
 									}))
 							: bdbs
 									.filter((bdb) => bdb.subscription === sub.id)
@@ -233,7 +233,7 @@ export const Datacenter = () => {
 								</S.SubscriptionsDetailsRow>
 								{sub.regions.length > 1 && (
 									<S.SubscriptionsDetailsColMap>
-										<S.SubscriptionsDetailText>Region</S.SubscriptionsDetailText>
+										<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
 										<S.WorldMapContainer>
 											<WorldMap
 												map={<WorldMap.Map />}
@@ -309,6 +309,7 @@ export const Datacenter = () => {
 														<S.DatabaseDetailText>HDD</S.DatabaseDetailText>
 														{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" stroke="#A99D5D" />}
 														{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" stroke="#A99D5D" />}
+														{db.dataPersistence}
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 											</Collapsable>

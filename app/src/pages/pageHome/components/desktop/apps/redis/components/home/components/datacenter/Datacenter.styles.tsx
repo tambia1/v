@@ -320,6 +320,7 @@ export const DatabasesInfoCell = styled.div`
 	display: flex;
 	flex-direction: row;
 	gap: 0.5rem;
+	align-items: center;
 `;
 
 export const Progress = styled(ProgressComponent)<{ percent: number }>`
