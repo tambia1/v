@@ -23,6 +23,7 @@ export type PlanCloud = (typeof plans.plans)[number]["cloud"];
 export type Subscription = (typeof subs.subscriptions)[number];
 
 export type Bdb = (typeof bdbs.bdbs)[number];
+export type BdbDataPersistence = (typeof bdbs.bdbs)[number]["data_persistence"];
 
 export type Crdb = (typeof crdbs.crdbs)[number];
 

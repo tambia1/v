@@ -1,4 +1,5 @@
 import { Collapsable } from "@src/components/collapsable/Collapsable.styles";
+import { Flag } from "@src/components/flag/Flag.styles";
 import { Progress as ProgressComponent } from "@src/components/progress/Progress";
 import styled, { css } from "styled-components";
 
@@ -285,7 +286,7 @@ export const SubscriptionsDetailsColMap = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-	align-items: start;
+	align-items: center;
 	gap: 1rem;
 	background-color: ${(props) => props.theme.color.primaryBg};
 `;
@@ -328,9 +329,9 @@ export const Progress = styled(ProgressComponent)<{ percent: number }>`
 `;
 
 export const WorldMapContainer = styled.div`
-	width: 100%;
+	width: 20rem;
 	max-width: 50rem;
-	height: 15rem;
+	height: 10rem;
 	display: flex;
 	justify-content: center;
 
@@ -340,10 +341,17 @@ export const WorldMapContainer = styled.div`
 `;
 
 export const Pin = styled.div`
+	width: 1rem;
+	height: 1rem;
 	white-space: nowrap;
 	transition: scale 0.3s ease;
 
 	&:hover{
 		scale: 150%;
+	}
+
+	& ${Flag} {
+		width: 100%;
+		height: 100%;
 	}
 `;

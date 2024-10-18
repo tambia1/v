@@ -26,6 +26,15 @@ import { Subscription } from "./components/subscription/Subscription";
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
 
+const dataPersistenceMap = {
+	disabled: "Disabled",
+	aof: "Append only file every 1 sec",
+	"aof:every_write": "Append only file every write",
+	"snapshot:3600": "Snapshot every 1 hour",
+	"snapshot:21600": "Snapshot every 6 hour",
+	"snapshot:43200": "Snapshot every 12 hour",
+};
+
 export const Datacenter = () => {
 	const navigator = useNavigator();
 	const [data, setData] = useState<DataCenterType[]>([]);
@@ -233,7 +242,6 @@ export const Datacenter = () => {
 								</S.SubscriptionsDetailsRow>
 								{sub.regions.length > 1 && (
 									<S.SubscriptionsDetailsColMap>
-										<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
 										<S.WorldMapContainer>
 											<WorldMap
 												map={<WorldMap.Map />}
@@ -309,7 +317,7 @@ export const Datacenter = () => {
 														<S.DatabaseDetailText>HDD</S.DatabaseDetailText>
 														{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" stroke="#A99D5D" />}
 														{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" stroke="#A99D5D" />}
-														{db.dataPersistence}
+														{dataPersistenceMap[db.dataPersistence as keyof typeof dataPersistenceMap]}
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 											</Collapsable>
