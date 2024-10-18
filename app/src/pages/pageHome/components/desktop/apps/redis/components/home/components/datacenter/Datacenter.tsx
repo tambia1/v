@@ -194,7 +194,7 @@ export const Datacenter = () => {
 							<S.SubscriptionsText>
 								{sub.type === "free" && <Icon iconName="iconStar" fill="yellow" />}
 								{sub.type === "paid" && <Icon iconName="iconServerSingle" fill="lightGreen" />}
-								{sub.type === "rcp" && <Icon iconName="iconServer" fill="gold" />}
+								{sub.type === "rcp" && <Icon iconName="iconGrid" fill="gold" />}
 								{sub.type === "aarcp" && <Icon iconName="iconGlobe" fill="cyan" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
