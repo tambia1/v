@@ -268,7 +268,7 @@ export const Datacenter = () => {
 
 											<S.DatabasesRow onClick={(e) => handleOnClickCollpseDb(e, db.id)}>
 												<S.IconCollapse $collapsed={db.collapsed}>
-													<Icon iconName="iconChevronDown" stroke="#ffffff" />
+													<Icon iconName="iconChevronDown" />
 												</S.IconCollapse>
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
@@ -276,7 +276,7 @@ export const Datacenter = () => {
 													<S.Progress percent={Math.max(25, (db.usage / db.size) * 100)} />
 												</S.DatabasesText>
 												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
-													<Icon iconName="iconChevronRight" stroke="#ffffff" />
+													<Icon iconName="iconChevronRight" />
 												</S.ColIcon>
 											</S.DatabasesRow>
 

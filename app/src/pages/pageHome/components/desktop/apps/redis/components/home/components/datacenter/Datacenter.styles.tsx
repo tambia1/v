@@ -147,7 +147,7 @@ export const DatabasesHeader = styled.div`
 	white-space: nowrap;
 	padding: 0.5rem 1rem;
 	background-color: #252525;
-	color: #ffffff;
+	color: #A99D5D;
 
 	${DatabasesWidth}
 `;
@@ -248,7 +248,7 @@ export const SubscriptionRow = styled.div`
 	background-color: ${(props) => props.theme.color.primaryBgDisabled};
 
 	&:nth-child(odd){
-		background-color: ${(props) => props.theme.color.primaryBgSelected};
+		background-color: ${(props) => props.theme.color.ternaryBg};
 	}
 `;
 
@@ -296,6 +296,7 @@ export const DatabasesRow = styled.div`
 	padding: 1rem;
 	align-items: center;
 	gap: 0.5rem;
+	color: #ffffff;
 	background-color: #252525;
 
 	&:hover {
