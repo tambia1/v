@@ -123,15 +123,13 @@ const DatabasesWidth = css`
 
 export const SubscriptionsHeader = styled.div`
 	width: auto;
-	height: auto;
+	height: 3rem;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	gap: 0.5rem;
 	white-space: nowrap;
-	padding: 1rem;
-	padding-top: 2rem;
-	padding-bottom: 1.5rem;
+	padding: 0rem 1rem;
 	background-color: ${(props) => props.theme.color.primaryBgActive};
 
 	${SubscriptionsWidth}
@@ -242,6 +240,7 @@ export const DatabaseDetailValue = styled.div`
 
 export const SubscriptionRow = styled.div`
 	width: 100%;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	background-color: ${(props) => props.theme.color.primaryBgDisabled};
@@ -254,7 +253,7 @@ export const SubscriptionRow = styled.div`
 export const SubscriptionsDataRow = styled.div`
 	display: flex;
 	flex-direction: row;
-	padding: 1rem;
+	padding: 0rem 1rem;
 	align-items: center;
 	gap: 0.5rem;
 	height: 3rem;
