@@ -1,4 +1,4 @@
-import { useQuery, UseQueryOptions } from "@tanstack/react-query";
+import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
 import { stocksData } from "./QueryStocksData";
 
 const API_KEY = "08f42b10a3844a79b80e4cc2782e4f10";
@@ -16,13 +16,13 @@ export interface QuerySymbolsResult {
 	}[];
 }
 
-interface QuerySymbolsProps {}
+type QuerySymbolsProps = {};
 
 const symbols = (props: QuerySymbolsProps, options?: Partial<UseQueryOptions<QuerySymbolsResult, Error>>) => {
 	return useQuery({
 		queryKey: ["stocks", { ...props }],
 		queryFn: async () => {
-			const response = await fetch(`https://api.twelvedata.com/stocks?country=%22United%20States%22`);
+			const response = await fetch("https://api.twelvedata.com/stocks?country=%22United%20States%22");
 
 			if (!response.ok) {
 				throw new Error("Network response was not ok");
@@ -64,7 +64,7 @@ export type IStockError = {
 
 export type QueryStocksResult = { status: "error" } | { [K: string]: IStockOk | IStockError };
 
-interface QueryStocksProps {}
+type QueryStocksProps = {};
 
 const stocks = (props: QueryStocksProps, options?: Partial<UseQueryOptions<QueryStocksResult, Error>>) => {
 	return useQuery({
