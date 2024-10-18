@@ -96,7 +96,7 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 	overflow: hidden;
 	transition: all 0.3s ease;
 
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.accentFg : props.theme.color.primaryBg)};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.primaryBgActive : props.theme.color.primaryBg)};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};
@@ -112,8 +112,6 @@ export const HeaderIcon = styled(Icon).attrs({
 	position: absolute;
 	right: 1rem;
 
-	width: 2rem;
-	height: 2rem;
 	padding: 0.5rem;
 	border-radius: 0.5rem;
 
