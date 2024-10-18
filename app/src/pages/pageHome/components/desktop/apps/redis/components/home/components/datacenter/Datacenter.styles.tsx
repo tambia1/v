@@ -281,11 +281,11 @@ export const SubscriptionsDetailsRow = styled.div`
 	}
 `;
 
-export const SubscriptionsDetailsRowMap = styled.div`
+export const SubscriptionsDetailsColMap = styled.div`
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	padding: 1rem;
-	align-items: center;
+	align-items: start;
 	gap: 1rem;
 	background-color: ${(props) => props.theme.color.primaryBg};
 `;

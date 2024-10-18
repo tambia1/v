@@ -224,7 +224,7 @@ export const Datacenter = () => {
 									</S.Row>
 									{sub.regions.length <= 1 && (
 										<S.Row>
-											<S.SubscriptionsDetailText>Regions</S.SubscriptionsDetailText>
+											<S.SubscriptionsDetailText>Region</S.SubscriptionsDetailText>
 											{sub.regions.map((region) => (
 												<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
 											))}
@@ -232,7 +232,8 @@ export const Datacenter = () => {
 									)}
 								</S.SubscriptionsDetailsRow>
 								{sub.regions.length > 1 && (
-									<S.SubscriptionsDetailsRowMap>
+									<S.SubscriptionsDetailsColMap>
+										<S.SubscriptionsDetailText>Region</S.SubscriptionsDetailText>
 										<S.WorldMapContainer>
 											<WorldMap
 												map={<WorldMap.Map />}
@@ -247,7 +248,7 @@ export const Datacenter = () => {
 												})}
 											/>
 										</S.WorldMapContainer>
-									</S.SubscriptionsDetailsRowMap>
+									</S.SubscriptionsDetailsColMap>
 								)}
 
 								<S.DatabasesHeader>
