@@ -50,6 +50,7 @@ export const Header = styled.div`
 	margin-left: 1rem;
 	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryBg};
 	font-size: ${(props) => props.theme.fontSize.title};
+	font-weight: bold;
 `;
 
 export const Back = styled.div`
