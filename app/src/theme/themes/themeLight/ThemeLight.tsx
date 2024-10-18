@@ -24,7 +24,7 @@ export const themeLight: ITheme = {
 		ternaryFg: "#161616",
 		ternaryBg: "#E4E4E4",
 
-		quarteryFg: "#999999",
+		quarteryFg: "#aaaaaa",
 		quarteryBg: "#ffffff",
 
 		accentFg: "#007AFF",
@@ -46,8 +46,10 @@ export const themeLight: ITheme = {
 	},
 
 	fontSize: {
-		title: "130%",
+		title: "180%",
+		caption: "140%",
 		text: "100%",
+		note: "80%",
 	},
 
 	size: {

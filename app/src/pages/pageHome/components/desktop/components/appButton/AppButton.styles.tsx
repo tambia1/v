@@ -75,14 +75,10 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
     height: 8rem;
 	padding: ${(props) => props.theme.size.xs};
     box-sizing: border-box;
-	overflow: hidden;
 	border-radius: 0.5rem;
 	position: relative;
 
 	transition: all 0.3s ease;
-
-	color: ${(props) => props.theme.color.primaryBg};
-	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFg};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover}aa;
@@ -199,6 +195,9 @@ export const Title = styled.div`
 	text-align: center;
 	word-break: normal;
 	white-space: pre-wrap;
+	color: ${(props) => props.theme.color.primaryBg};
+	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFg};
+	font-size: ${(props) => props.theme.fontSize.note};
 `;
 
 export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`

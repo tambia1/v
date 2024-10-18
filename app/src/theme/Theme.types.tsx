@@ -49,7 +49,9 @@ export interface ITheme {
 
 	fontSize: {
 		title: string;
+		caption: string;
 		text: string;
+		note: string;
 	};
 
 	size: {

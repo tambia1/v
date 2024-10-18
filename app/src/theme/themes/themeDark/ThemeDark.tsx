@@ -46,8 +46,10 @@ export const themeDark: ITheme = {
 	},
 
 	fontSize: {
-		title: "130%",
+		title: "180%",
+		caption: "140%",
 		text: "100%",
+		note: "80%",
 	},
 
 	size: {

@@ -10,12 +10,13 @@ export const BarMain = styled.div`
 	flex-shrink: 0;
 	background-color: ${(props) => props.theme.color.primaryBg};
 	display: flex;
+	align-items: center;
 `;
 
 const Icon = css<{ $isVisible: boolean }>`
 	position: absolute;
-	width: 2rem;
-	height: 2rem;
+	width: 1.5rem;
+	height: 1.5rem;
 	padding: 0.5rem;
 
 	display: flex;
@@ -63,7 +64,7 @@ export const Username = styled.div`
 	width: 4rem;
 	height: 3rem;
 	bottom: 0rem;
-	right: 5rem;
+	right: 3rem;
 
 	display: flex;
 	flex-shrink: 0;

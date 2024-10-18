@@ -15,9 +15,9 @@ export const Content = styled.div`
 export const Line = styled.div`
 	height: 0rem;
 	width: auto;
-	margin-left: 0.5rem;
-	margin-right: 0.5rem;
-	border-top: solid ${(props) => props.theme.color.primaryFgSelected} 1px;
+	margin-left: 3rem;
+	margin-right: 0rem;
+	border-top: solid ${(props) => props.theme.color.quarteryFg} 1px;
 `;
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`

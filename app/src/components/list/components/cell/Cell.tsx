@@ -1,9 +1,9 @@
 import type { HTMLProps, ReactNode } from "react";
 import * as S from "./Cell.styles";
 import { CellCenter } from "./components/cellCenter/CellCenter";
+import { CellEnd } from "./components/cellEnd/CellEnd";
 import { CellLeft } from "./components/cellLeft/CellLeft";
 import { CellRight } from "./components/cellRight/CellRight";
-import { CellEnd } from "./components/cellSubtext/CellEnd";
 
 export interface Props extends HTMLProps<HTMLDivElement> {
 	$isEnabled?: boolean;
