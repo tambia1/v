@@ -33,8 +33,8 @@ export const Bar = styled.div`
 `;
 
 const IconBar = css`
-	width: 2rem;
-	height: 2rem;
+	width: 1.5rem;
+	height: 1.5rem;
 	cursor: pointer;
 	padding: 0.5rem;
 
