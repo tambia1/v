@@ -63,13 +63,12 @@ export const Back = styled.div`
 
 export const BackButton = styled.div<{ $isVisible: boolean }>`
 	position: absolute;
-	width: 3rem;
-	height: 3rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	padding: 0.5rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-left: 1rem;
-	margin-right: 1rem;
 	border-radius: 1rem;
 	cursor: pointer;
 	transition: all 0.3s ease;
