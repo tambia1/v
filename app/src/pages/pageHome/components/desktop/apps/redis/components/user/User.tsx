@@ -15,11 +15,11 @@ export const User = () => {
 
 	const [inputData, setInputData] = useState({
 		email: {
-			value: "tambi.ashmoz.30@redis.com",
+			value: "",
 			disabled: false,
 		},
 		password: {
-			value: "Aa123456789.",
+			value: "",
 			disabled: false,
 		},
 	});

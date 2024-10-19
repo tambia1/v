@@ -46,16 +46,18 @@ export const Box = styled.div`
 
 export const EmailBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
+	height: 2.5rem;
 	display: flex;
 	flex-direction: row;
+    align-items: center;
 	border-radius: 5rem;
-	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 	border: 1px solid #8f9092;
+    box-sizing: border-box;
+	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
 export const EmailImage = styled(Icon)`
-	width: 3rem;
-	padding: 0.5rem;
+	width: 2.5rem;
 	border-radius: 5rem 0 0 5rem;
 	flex-shrink: 0;
 	box-sizing: border-box;
@@ -82,16 +84,18 @@ export const EmailInput = styled.input`
 
 export const PasswordBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
+	height: 2.5rem;
 	display: flex;
 	flex-direction: row;
+    align-items: center;
 	border-radius: 5rem;
-	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 	border: 1px solid #8f9092;
+    box-sizing: border-box;
+	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
 export const PasswordImage = styled(Icon)`
-	width: 3rem;
-	padding: 0.5rem;
+	width: 2.5rem;
 	border-radius: 5rem 0 0 5rem;
 	flex-shrink: 0;
 	box-sizing: border-box;
