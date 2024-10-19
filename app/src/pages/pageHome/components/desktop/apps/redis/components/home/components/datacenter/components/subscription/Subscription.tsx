@@ -7,6 +7,7 @@ import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { regionsLocations } from "../../../../../../data/regionsLocations";
 import type { Plan as PlanType, Region, Subscription as SubscriptionType } from "../../../../../../queries/Query.types";
 import { QueryPlans } from "../../../../../../queries/QueryPlans";
 import { QueryRegions } from "../../../../../../queries/QueryRegions";
@@ -109,7 +110,11 @@ export const Subscription = ({ subscriptionId }: Props) => {
 					map={<WorldMap.Map />}
 					pins={regions.map((region) => {
 						return (
-							<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
+							<WorldMap.Pin
+								key={region.city_name}
+								lng={regionsLocations.find((item) => item.id === region.id)?.longitude || 0}
+								lat={regionsLocations.find((item) => item.id === region.id)?.latitude || 0}
+							>
 								<S.Pin>
 									<Flag flagName={`${region.flag}` as IFlagName} />
 									{region.city_name}

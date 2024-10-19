@@ -9,6 +9,7 @@ import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { type MouseEvent, useEffect, useState } from "react";
+import { regionsLocations } from "../../../../data/regionsLocations";
 import type { Region } from "../../../../queries/Query.types";
 import { convertBytes } from "../../../../queries/Query.utils";
 import { QueryBdbs } from "../../../../queries/QueryBdbs";
@@ -247,7 +248,11 @@ export const Datacenter = () => {
 												map={<WorldMap.Map />}
 												pins={sub.regions.map((region) => {
 													return (
-														<WorldMap.Pin key={region.city_name} lng={region.longitude} lat={region.latitude}>
+														<WorldMap.Pin
+															key={region.city_name}
+															lng={regionsLocations.find((item) => item.id === region.id)?.longitude || 0}
+															lat={regionsLocations.find((item) => item.id === region.id)?.latitude || 0}
+														>
 															<S.Pin>
 																<Flag flagName={`${region.flag}` as IFlagName} />
 															</S.Pin>
