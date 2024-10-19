@@ -72,7 +72,7 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	flex-direction: column;
 	gap: ${(props) => props.theme.size.xs};
     width: 100%;
-    height: 8rem;
+    height: 7rem;
 	padding: ${(props) => props.theme.size.xs};
     box-sizing: border-box;
 	border-radius: 0.5rem;
