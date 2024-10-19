@@ -250,8 +250,8 @@ export const Datacenter = () => {
 													return (
 														<WorldMap.Pin
 															key={region.city_name}
-															lng={regionsLocations.find((item) => item.id === region.id)?.longitude || 0}
-															lat={regionsLocations.find((item) => item.id === region.id)?.latitude || 0}
+															lng={regionsLocations[region.id as keyof typeof regionsLocations]?.longitude || 0}
+															lat={regionsLocations[region.id as keyof typeof regionsLocations]?.latitude || 0}
 														>
 															<S.Pin>
 																<Flag flagName={`${region.flag}` as IFlagName} />
