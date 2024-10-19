@@ -65,11 +65,7 @@ export const Home = () => {
 					</S.Transition>
 
 					<S.Transition $visible={selectedMenuId === "about"}>
-						<Navigator>
-							<Navigator.Page id={selectedMenuId} title={<T>{lang.redis.menu.data.dataAccess}</T>}>
-								<About />
-							</Navigator.Page>
-						</Navigator>
+						<About />
 					</S.Transition>
 				</Menu>
 			</S.Container>

@@ -9,6 +9,9 @@ export const About = styled.div`
 
 	padding: 1rem;
 	box-sizing: border-box;
+
+	color: ${(props) => props.theme.color.secondaryFg};
+	background-color: ${(props) => props.theme.color.secondaryBg};
 `;
 
 export const Spacer = styled.div`

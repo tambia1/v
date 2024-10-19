@@ -6,6 +6,7 @@ import { Section } from "../list/components/section/Section.styles";
 export const Menu = styled.div`
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 `;
 
 export const Content = styled.div`
@@ -45,6 +46,7 @@ export const MenuList = styled.div<{ $visible: boolean }>`
 	transition: all 0.3s ease;
 	z-index: 2;
 	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+	overflow: auto;
 
 	${List} {
 		box-shadow: none;
