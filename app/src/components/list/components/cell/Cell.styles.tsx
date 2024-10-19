@@ -2,7 +2,7 @@ import { Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
 export const Content = styled.div`
-	height: calc(100% - 1px);;
+	height: calc(100% - 1px);
 	width: auto;
 	padding: 0.5rem;
 	display: flex;

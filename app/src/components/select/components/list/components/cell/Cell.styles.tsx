@@ -2,25 +2,27 @@ import { Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
 
 export const Content = styled.div`
-	height: auto;
+	height: calc(100% - 1px);
 	width: auto;
-	padding: 1rem;
+	padding: 0.5rem;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	gap: 1rem;
+	box-sizing: border-box;
 `;
 
 export const Line = styled.div`
 	height: 0rem;
 	width: auto;
-	margin-left: 1rem;
-	margin-right: 1rem;
-	border-top: solid ${(props) => props.theme.color.primaryFgSelected} 1px;
+	margin-left: 3rem;
+	margin-right: 0rem;
+	border-top: solid ${(props) => props.theme.color.quarteryFg} 1px;
 `;
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
-	height: auto;
+	height: 3rem;
 
 	color: ${(props) => props.theme.color.primaryFg};
 	background-color: ${(props) => props.theme.color.primaryBg};
