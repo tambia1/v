@@ -183,7 +183,7 @@ export const Datacenter = () => {
 			<S.SubscriptionsList>
 				<S.SubscriptionsHeader>
 					<S.ColIcon onClick={(e) => handleOnClickCollpseAll(e)}>
-						<Icon iconName="iconMinusCircle" />
+						<Icon iconName="iconXCircle" />
 					</S.ColIcon>
 					{subsTitles.map((col, index) => (
 						<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
@@ -266,7 +266,7 @@ export const Datacenter = () => {
 
 								<S.DatabasesHeader>
 									<S.ColIcon onClick={(e) => handleOnClickCollpseSubDbs(e, sub.id)}>
-										<Icon iconName="iconMinusCircle" />
+										<Icon iconName="iconXCircle" />
 									</S.ColIcon>
 									{dbsTitles.map((col, index) => (
 										<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
