@@ -25,7 +25,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			box-sizing: border-box;
 			width: fit-content;
 			min-width: 5em;
-			height: 2.5rem;
+			height: 3rem;
 			white-space: nowrap;
 
 			&:hover {
@@ -58,7 +58,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 
 			width: fit-content;
 			min-width: 5em;
-			height: 2.5rem;
+			height: 3rem;
 
 			&:hover {
 				background-color: ${(props) => props.theme.color.primaryFgHover};
@@ -92,7 +92,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 
 			width: fit-content;
 			min-width: 5em;
-			height: 2.5rem;
+			height: 3rem;
 
 			&:hover {
 				background-color: ${(props) => props.theme.color.primaryBgHover}
@@ -129,7 +129,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 
 			width: fit-content;
 			min-width: 5em;
-			height: 2.5rem;
+			height: 3rem;
 
 			&:hover {
 				--label-color: hsl(230, 55%, 80%);

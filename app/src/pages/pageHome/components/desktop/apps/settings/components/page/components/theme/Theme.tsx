@@ -67,7 +67,7 @@ export const Theme = () => {
 							<S.BackgroundImage $backgroundImageIndex={index} />
 						</List.Cell.Left>
 						<List.Cell.Center>
-							<T>{backgroundImage ? "" : lang.settings.theme.noBackground}</T>
+							<T>{backgroundImage.light ? "" : lang.settings.theme.noBackground}</T>
 						</List.Cell.Center>
 						<List.Cell.Right>
 							<Icon iconName={themeStore.backgroundImageIndex === index ? "iconCheck" : ""} />

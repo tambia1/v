@@ -1,4 +1,5 @@
 import { Button } from "@src/components/button/Button";
+import { Input } from "@src/components/input/Input";
 import styled from "styled-components";
 
 export const NameBar = styled.div`
@@ -12,24 +13,8 @@ export const NameBar = styled.div`
 	gap: 1rem;
 `;
 
-export const Name = styled.input`
-	display: flex;
+export const InputName = styled(Input)`
 	width: 100%;
-	height: auto;
-	overflow: auto;
-	box-shadow: 0 0 0.5rem 0 #00000066;
-	outline: 0px solid transparent;
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
-	resize: none;
-	border: none;
-	box-sizing: border-box;
-
-	border-width: 0.2rem;
-	border-style: solid;
-
-	padding: 0.5rem;
-	border-radius: 0.5rem;
 	font-size: 150%;
 `;
 

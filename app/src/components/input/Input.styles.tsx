@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Input = styled.input`
 	width: fit-content;
 	min-width: 5rem;
-	height: 2.5rem;
+	height: 3rem;
 
 	display: flex;
 	overflow: auto;

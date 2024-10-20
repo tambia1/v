@@ -112,14 +112,15 @@ export const HeaderIcon = styled(Icon).attrs({
 	position: absolute;
 	right: 1rem;
 
-	padding: 0.5rem;
+	padding: 1rem;
 	border-radius: 0.5rem;
 
 	cursor: pointer;
 	transition: all 0.3s ease;
 
-	&:active {
-		opacity: 0.5;
+	&:hover{
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;
 

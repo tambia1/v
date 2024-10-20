@@ -15,16 +15,16 @@ export const BarMain = styled.div`
 
 const Icon = css<{ $isVisible: boolean }>`
 	position: absolute;
-	width: 1.5rem;
-	height: 1.5rem;
-	padding: 0.5rem;
+	width: 4rem;
+	height: 4rem;
+	margin: 0.5rem;
+	border-radius: 0.5rem;
 
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
 
-	border-radius: 50%;
 	color: ${(props) => props.theme.color.primaryFg};
 	transition: all 0.3s ease;
 
@@ -41,8 +41,9 @@ export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: IBarPos
 		fill: ${(props) => props.theme.color.errorBg};
 	}
 
-	&:active {
-		opacity: 0.5;
+	&:hover{
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;
 
@@ -54,24 +55,22 @@ export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPos
 		fill: ${(props) => props.theme.color.primaryBg};
 	}
 
-	&:active {
-		opacity: 0.5;
+	&:hover{
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;
 
 export const Username = styled.div`
 	position: absolute;
 	width: 4rem;
-	height: 3rem;
-	bottom: 0rem;
-	right: 3rem;
+	right: 5rem;
 
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
 
-	border-radius: 50%;
 	transition: all 0.3s ease;
 	white-space: nowrap;
 `;

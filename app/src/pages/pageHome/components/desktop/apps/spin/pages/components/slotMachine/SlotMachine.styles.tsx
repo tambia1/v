@@ -33,7 +33,7 @@ export const SlotMachine = styled.div`
 `;
 
 export const Slot_1 = styled.div`
-width: 10.4rem;
+	width: 10.4rem;
     height: 3.6rem;
     display: flex;
     flex-direction: column;

@@ -28,13 +28,16 @@ export const BarMain = ({ barPosition, onClickButtonTheme, onClickButtonClose, i
 				{userNameType === "error" && <S.MessageError>{userName}</S.MessageError>}
 			</S.Username>
 
-			<S.IconTheme $isVisible={true} $barPosition={barPosition}>
-				{theme.themeName === "light" ? (
-					<Icon iconName="iconSun" onClick={() => onClickButtonTheme("dark")} />
-				) : (
-					<Icon iconName="iconMoon" onClick={() => onClickButtonTheme("light")} />
-				)}
-			</S.IconTheme>
+			{theme.themeName === "light" && (
+				<S.IconTheme $isVisible={true} $barPosition={barPosition} onClick={() => onClickButtonTheme("dark")}>
+					<Icon iconName="iconSun" />
+				</S.IconTheme>
+			)}
+			{theme.themeName === "dark" && (
+				<S.IconTheme $isVisible={true} $barPosition={barPosition} onClick={() => onClickButtonTheme("light")}>
+					<Icon iconName="iconMoon" />
+				</S.IconTheme>
+			)}
 		</S.BarMain>
 	);
 };

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import type { SwitchState } from "./Switch";
 
 export const Switch = styled.div`
-	width: 5rem;
-	height: 2.5rem;
+	width: 6rem;
+	height: 3rem;
 	display: flex;
 	background-color: ${(props) => props.theme.color.primaryFg};
 	border-radius: 100rem;

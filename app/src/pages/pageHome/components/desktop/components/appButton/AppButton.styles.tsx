@@ -53,8 +53,8 @@ export type IAppIcon = keyof typeof appIcons;
 
 export const Image = styled.div<{ $appIcon: IAppIcon | string }>`
 	border-radius: 0.5rem;
-	width: 4rem;
-	height: 4rem;
+	width: 6rem;
+	height: 6rem;
 	flex-shrink: 0;
 	background-image: url(${({ $appIcon }) => appIcons[$appIcon as IAppIcon] || $appIcon});
 	background-size: contain;
@@ -72,8 +72,8 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	flex-direction: column;
 	gap: ${(props) => props.theme.size.xs};
     width: 100%;
-    height: 7rem;
-	padding: ${(props) => props.theme.size.xs};
+    height: 11rem;
+	padding: ${(props) => props.theme.size.s};
     box-sizing: border-box;
 	border-radius: 0.5rem;
 	position: relative;
@@ -197,7 +197,7 @@ export const Title = styled.div`
 	white-space: pre-wrap;
 	color: ${(props) => props.theme.color.primaryBg};
 	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFg};
-	font-size: ${(props) => props.theme.fontSize.note};
+	font-size: ${(props) => props.theme.fontSize.body};
 `;
 
 export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`

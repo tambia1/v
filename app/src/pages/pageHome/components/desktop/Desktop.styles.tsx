@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export type IBarPosition = "top" | "bottom" | "left" | "right";
 
-const PAGE_BAR_SIZE = "3rem";
+const PAGE_BAR_SIZE = "5rem";
 
 export const Apps = styled.div`
 	position: relative;
@@ -26,7 +26,7 @@ export const AppGroup = styled.div`
 	position: absolute;
 	inset: 1rem;
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
 	align-content: start;
 `;
 
@@ -48,7 +48,7 @@ export const App = styled.div`
 export const Bar = styled.div`
 	position: absolute;
 	width: 100%;
-	height: 3rem;
+	height: auto;
 	z-index: 1;
 	opacity: 0;
 `;

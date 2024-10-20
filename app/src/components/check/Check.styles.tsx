@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Icon } from "../icon/Icon.styles";
 
 export const Check = styled.div`
-	width: 2.5rem;
-	height: 2.5rem;
+	width: 3rem;
+	height: 3rem;
 	display: flex;
 	overflow: hidden;
 

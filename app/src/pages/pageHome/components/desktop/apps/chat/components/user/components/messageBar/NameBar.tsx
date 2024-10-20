@@ -1,7 +1,7 @@
 import { T } from "@src/locales/T";
-import * as S from "./NameBar.styles";
-import { useState } from "react";
 import { lang } from "@src/locales/i18n";
+import { useState } from "react";
+import * as S from "./NameBar.styles";
 
 interface Props {
 	name: string;
@@ -11,14 +11,14 @@ interface Props {
 export const NameBar = ({ name, onClickSet }: Props) => {
 	const [content, setContent] = useState<string>(name);
 
-	const handleTextChange = (e: React.FormEvent<HTMLInputElement>) => {
-		setContent(e.currentTarget.value);
+	const handleTextChange = (value: string) => {
+		setContent(value);
 	};
 
 	return (
 		<S.NameBar>
-			<S.Name value={content} onChange={handleTextChange} />
-			<S.ButtonSet variant="full" onClick={() => onClickSet(content)}>
+			<S.InputName value={content} onTextChange={handleTextChange} />
+			<S.ButtonSet variant="styled" onClick={() => onClickSet(content)}>
 				<T>{lang.chat.set}</T>
 			</S.ButtonSet>
 		</S.NameBar>

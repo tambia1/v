@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const Content = styled.div`
 	height: 100%;
 	width: auto;
-	padding: 0.5rem;
+	padding: 0.5rem 1.5rem;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -22,7 +22,7 @@ export const Line = styled.div`
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
-	height: 3rem;
+	height: 3.5rem;
 
 	color: ${(props) => props.theme.color.primaryFg};
 	background-color: ${(props) => props.theme.color.primaryBg};

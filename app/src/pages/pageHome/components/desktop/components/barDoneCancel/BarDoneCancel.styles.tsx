@@ -12,16 +12,16 @@ export const Container = styled.div`
 
 const Icon = css<{ $isVisible: boolean }>`
 	position: absolute;
-	width: 3rem;
-	height: 3rem;
-	top: 0rem;
+	width: 4rem;
+	height: 4rem;
+	margin: 0.5rem;
+	border-radius: 0.5rem;
 
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
 	justify-content: center;
 
-	border-radius: 50%;
 	color: ${(props) => props.theme.color.primaryFg};
 	transition: all 0.3s ease;
 
@@ -38,8 +38,9 @@ export const IconDone = styled.div<{ $isVisible: boolean }>`
 		stroke: ${(props) => props.theme.color.successFg};
 	}
 
-	&:active {
-		opacity: 0.5;
+	&:hover{
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;
 
@@ -51,7 +52,8 @@ export const IconCancel = styled.div<{ $isVisible: boolean }>`
 		stroke: ${(props) => props.theme.color.errorFg};
 	}
 
-	&:active {
-		opacity: 0.5;
+	&:hover{
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;

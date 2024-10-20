@@ -35,9 +35,6 @@ export const Item = styled.div<{ $numberOfItems: number }>`
 
 	overflow: hidden;
 
-	border: solid 1px black;
-	box-sizing: border-box;
-
 	position: relative;
 
 	font-size: 250%;

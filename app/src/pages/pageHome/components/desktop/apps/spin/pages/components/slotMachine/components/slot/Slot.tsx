@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Animation, AnimationLooper, type ICallbackResult } from "@src/utils/Animation";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import * as S from "./Slot.styles";
-import { Animation, AnimationLooper, ICallbackResult } from "@src/utils/Animation";
 
 export type ISlotState = "spin" | "stop";
 

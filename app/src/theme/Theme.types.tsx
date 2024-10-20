@@ -49,8 +49,15 @@ export interface ITheme {
 
 	fontSize: {
 		title: string;
-		caption: string;
-		text: string;
+		header: string;
+		body: string;
+		note: string;
+	};
+
+	fontWeight: {
+		title: string;
+		header: string;
+		body: string;
 		note: string;
 	};
 
