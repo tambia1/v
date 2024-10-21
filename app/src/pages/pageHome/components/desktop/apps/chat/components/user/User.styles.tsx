@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import ImageBgLight from "@apps/chat/assets/bgLight.png";
 import ImageBgDark from "@apps/chat/assets/bgDark.png";
-import { ITheme } from "@src/theme/Theme.types";
+import ImageBgLight from "@apps/chat/assets/bgLight.png";
+import type { ITheme } from "@src/theme/Theme.types";
+import styled from "styled-components";
 
 const BgImages: { [K in ITheme["themeName"]]: string } = {
 	light: ImageBgLight,

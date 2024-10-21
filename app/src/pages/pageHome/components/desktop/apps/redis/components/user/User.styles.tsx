@@ -28,7 +28,7 @@ export const User = styled.div`
 
 export const Box = styled.div`
 	position: relative;
-	width: 20rem;
+	width: 25rem;
 	height: auto;
 	box-sizing: border-box;
 	display: flex;
@@ -46,7 +46,7 @@ export const Box = styled.div`
 
 export const EmailBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
-	height: 2.5rem;
+	height: 3rem;
 	display: flex;
 	flex-direction: row;
     align-items: center;
@@ -84,7 +84,7 @@ export const EmailInput = styled.input`
 
 export const PasswordBox = styled.div<{ disabled: boolean }>`
 	width: 100%;
-	height: 2.5rem;
+	height: 3rem;
 	display: flex;
 	flex-direction: row;
     align-items: center;
