@@ -72,8 +72,16 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Input</Text>
-					<Input value={inputValue} onTextChange={handleOnTextChange} />
-					<Input value={inputValue} onTextChange={handleOnTextChange} disabled />
+
+					<S.Row>
+						<Input value={inputValue} onTextChange={handleOnTextChange} />
+						enabled
+					</S.Row>
+
+					<S.Row>
+						<Input value={inputValue} onTextChange={handleOnTextChange} disabled />
+						disabled
+					</S.Row>
 				</S.Col>
 
 				<S.Line />
@@ -82,9 +90,22 @@ export const TestEdit = () => {
 					<Text>Button</Text>
 					<S.Row>
 						<Button variant="styled">Button Text</Button>
+						variant=styled
+					</S.Row>
+
+					<S.Row>
 						<Button variant="full">Button Text</Button>
+						variant=full
+					</S.Row>
+
+					<S.Row>
 						<Button variant="stroke">Button Text</Button>
+						variant=stroke
+					</S.Row>
+
+					<S.Row>
 						<Button variant="link">Button Text</Button>
+						variant=link
 					</S.Row>
 				</S.Col>
 
