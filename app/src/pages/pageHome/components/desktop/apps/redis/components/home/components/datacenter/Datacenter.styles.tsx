@@ -126,7 +126,7 @@ const DatabasesWidth = css`
 
 export const SubscriptionsHeader = styled.div`
 	width: auto;
-	height: 3rem;
+	height: 4rem;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -259,7 +259,7 @@ export const SubscriptionsDataRow = styled.div`
 	padding: 0rem 1rem;
 	align-items: center;
 	gap: 0.5rem;
-	height: 3rem;
+	height: 4rem;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};
