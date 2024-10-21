@@ -11,6 +11,8 @@ export const TestEdit = styled.div`
 	box-sizing: border-box;
 
 	background-color: ${(props) => props.theme.color.primaryBgSelected};
+
+	overflow: auto;
 `;
 
 export const Spacer = styled.div`

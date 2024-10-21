@@ -1,10 +1,14 @@
 import { Button } from "@src/components/button/Button";
 import { Check } from "@src/components/check/Check";
+import { Flag } from "@src/components/flag/Flag";
+import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
+import { List } from "@src/components/list/List";
+import { Select } from "@src/components/select/Select";
 import { Switch, type SwitchState } from "@src/components/switch/Switch";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
-import { lang } from "@src/locales/i18n";
+import i18n, { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import * as S from "./TestEdit.styles";
 
@@ -82,6 +86,79 @@ export const TestEdit = () => {
 						<Button variant="stroke">Button Text</Button>
 						<Button variant="link">Button Text</Button>
 					</S.Row>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Select</Text>
+					<Select selectedIndex={0} onClickItem={() => {}}>
+						<Select.Item>Item 0</Select.Item>
+						<Select.Item>Item 1</Select.Item>
+						<Select.Item>Item 2</Select.Item>
+					</Select>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>List</Text>
+					<List>
+						<List.Cell onClick={() => {}}>
+							<List.Cell.Left>
+								<Flag flagName="gb" />
+							</List.Cell.Left>
+							<List.Cell.Center>
+								<T>{lang.settings.language.english}</T>
+							</List.Cell.Center>
+							<List.Cell.Right>
+								<Icon iconName={i18n.language === "en" ? "iconCheck" : ""} />
+							</List.Cell.Right>
+						</List.Cell>
+
+						<List.Cell onClick={() => {}}>
+							<List.Cell.Left>
+								<Flag flagName="fi" />
+							</List.Cell.Left>
+							<List.Cell.Center>
+								<T>{lang.settings.language.finnish}</T>
+							</List.Cell.Center>
+							<List.Cell.Right>
+								<Icon iconName={i18n.language === "fi" ? "iconCheck" : ""} />
+							</List.Cell.Right>
+						</List.Cell>
+
+						<List.Cell onClick={() => {}}>
+							<List.Cell.Left>
+								<Icon iconName="iconGlobe" />
+							</List.Cell.Left>
+							<List.Cell.Center>
+								<T>{lang.settings.language.title}</T>
+							</List.Cell.Center>
+							<List.Cell.Right>
+								<Icon iconName="iconChevronRight" />
+							</List.Cell.Right>
+						</List.Cell>
+
+						<List.Cell onClick={() => {}}>
+							<List.Cell.Left>
+								<Icon iconName="iconLayout" />
+							</List.Cell.Left>
+							<List.Cell.Center>
+								<T>{lang.settings.layout.title}</T>
+							</List.Cell.Center>
+							<List.Cell.End>
+								<T>Top</T>
+							</List.Cell.End>
+							<List.Cell.Right>
+								<Icon iconName="iconChevronRight" />
+							</List.Cell.Right>
+						</List.Cell>
+
+						<List.Cell onClick={() => {}}>
+							<T>{lang.settings.about.title}</T>
+						</List.Cell>
+					</List>
 				</S.Col>
 			</S.Col>
 		</S.TestEdit>
