@@ -1,4 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
+import { Input } from "@src/components/input/Input";
 import styled from "styled-components";
 import imageBg from "./assets/login_bg.svg";
 import imageUserLoggedIn from "./assets/userLoggedIn.png";
@@ -63,7 +64,7 @@ export const EmailImage = styled(Icon)`
 	box-sizing: border-box;
 `;
 
-export const EmailInput = styled.input`
+export const EmailInput = styled(Input)`
 	width: 100%;
 	border: none;
 	border-radius: 0 5rem 5rem 0;
@@ -79,6 +80,7 @@ export const EmailInput = styled.input`
 
 	&:disabled {
 		color: ${(props) => props.theme.color.primaryFgDisabled};
+		background-color: transparent;
 	}
 `;
 
@@ -101,7 +103,7 @@ export const PasswordImage = styled(Icon)`
 	box-sizing: border-box;
 `;
 
-export const PasswordInput = styled.input`
+export const PasswordInput = styled(Input)`
 	width: 100%;
 	border: none;
 	border-radius: 0 5rem 5rem 0;
@@ -117,6 +119,7 @@ export const PasswordInput = styled.input`
 
 	&:disabled {
 		color: ${(props) => props.theme.color.primaryFgDisabled};
+		background-color: transparent;
 	}
 `;
 

@@ -81,7 +81,17 @@ export const User = () => {
 
 			return;
 		}
-	}, [queryUser.isLoading, queryUser.data?.message, queryUser.data?.error, isLoginPerformed]);
+	}, [
+		queryUser.isLoading,
+		queryUser.data?.error,
+		queryUser.data?.firstName,
+		queryUser.data?.lastName,
+		queryUser.data?.role,
+		storeUser.setRole,
+		isLoginPerformed,
+		// barMain.onClickClose,
+		// t,
+	]);
 
 	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
@@ -91,13 +101,13 @@ export const User = () => {
 		barMain.onClickClose();
 	};
 
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputData({ ...inputData, email: { ...inputData.email, value: e.target.value } });
+	const handleEmailChange = (value: string) => {
+		setInputData({ ...inputData, email: { ...inputData.email, value } });
 		setMessage({ state: "", message: "" });
 	};
 
-	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputData({ ...inputData, password: { ...inputData.password, value: e.target.value } });
+	const handlePasswordChange = (value: string) => {
+		setInputData({ ...inputData, password: { ...inputData.password, value } });
 		setMessage({ state: "", message: "" });
 	};
 
@@ -159,7 +169,7 @@ export const User = () => {
 					<S.EmailInput
 						type="text"
 						placeholder={`${t(lang.user.email)} (a, b)`}
-						onChange={handleEmailChange}
+						onTextChange={handleEmailChange}
 						value={inputData.email.value}
 						disabled={!!storeUser.token || isLoading}
 						autoComplete="off"
@@ -171,7 +181,7 @@ export const User = () => {
 					<S.PasswordInput
 						type="password"
 						placeholder={`${t(lang.user.password)} (a, b)`}
-						onChange={handlePasswordChange}
+						onTextChange={handlePasswordChange}
 						value={inputData.password.value}
 						disabled={!!storeUser.token || isLoading}
 						autoComplete="off"

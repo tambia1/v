@@ -76,13 +76,13 @@ export const User = () => {
 		}
 	};
 
-	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputData({ ...inputData, email: { ...inputData.email, value: e.target.value } });
+	const handleEmailChange = (value: string) => {
+		setInputData({ ...inputData, email: { ...inputData.email, value } });
 		setMessage({ state: "", message: "" });
 	};
 
-	const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setInputData({ ...inputData, password: { ...inputData.password, value: e.target.value } });
+	const handlePasswordChange = (value: string) => {
+		setInputData({ ...inputData, password: { ...inputData.password, value } });
 		setMessage({ state: "", message: "" });
 	};
 
@@ -107,7 +107,7 @@ export const User = () => {
 					<S.EmailInput
 						type="text"
 						placeholder={t(lang.user.email)}
-						onChange={handleEmailChange}
+						onTextChange={handleEmailChange}
 						value={inputData.email.value}
 						disabled={!!storeUser.csrf || isLoading}
 						autoComplete="off"
@@ -119,7 +119,7 @@ export const User = () => {
 					<S.PasswordInput
 						type="password"
 						placeholder={t(lang.user.password)}
-						onChange={handlePasswordChange}
+						onTextChange={handlePasswordChange}
 						value={inputData.password.value}
 						disabled={!!storeUser.csrf || isLoading}
 						autoComplete="off"
