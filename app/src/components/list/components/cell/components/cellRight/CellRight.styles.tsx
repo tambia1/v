@@ -2,8 +2,8 @@ import { Icon } from "@src/components/icon/Icon.styles";
 import styled from "styled-components";
 
 export const CellRight = styled.div`
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 2rem;
+	height: 2rem;
 	display: flex;
 	align-items: center;
 	flex-shrink: 0;
