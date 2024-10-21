@@ -1,5 +1,6 @@
 import { Text } from "@src/components/text/Text.styles";
 import styled, { css } from "styled-components";
+import type { LineState } from "./Cell";
 
 export const Content = styled.div`
 	height: 100%;
@@ -12,10 +13,10 @@ export const Content = styled.div`
 	box-sizing: border-box;
 `;
 
-export const Line = styled.div`
+export const Line = styled.div<{ $lineState: LineState }>`
 	height: 0rem;
 	width: auto;
-	margin-left: 4rem;
+	margin-left: ${(props) => (props.$lineState === "long" ? "0rem" : "4rem")};
 	margin-right: 0rem;
 	border-top: solid ${(props) => props.theme.color.quarteryFg} 1px;
 `;

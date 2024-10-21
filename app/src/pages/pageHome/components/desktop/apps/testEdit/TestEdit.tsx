@@ -4,6 +4,7 @@ import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
 import { List } from "@src/components/list/List";
+import { Progress } from "@src/components/progress/Progress";
 import { Select } from "@src/components/select/Select";
 import { Switch, type SwitchState } from "@src/components/switch/Switch";
 import { Text } from "@src/components/text/Text";
@@ -107,6 +108,13 @@ export const TestEdit = () => {
 						<Button variant="link">Button Text</Button>
 						variant=link
 					</S.Row>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Progress</Text>
+					<Progress percent={75} />
 				</S.Col>
 
 				<S.Line />

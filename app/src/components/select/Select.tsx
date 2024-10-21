@@ -44,6 +44,7 @@ export const Select = ({ className, children, selectedIndex, onClickItem }: Prop
 							onClick={() => {
 								handleOnClickCell(index);
 							}}
+							$lineState="long"
 						>
 							<List.Cell.Center>{item}</List.Cell.Center>
 						</List.Cell>
