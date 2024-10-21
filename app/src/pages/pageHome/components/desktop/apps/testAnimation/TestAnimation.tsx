@@ -1,7 +1,7 @@
 import { Text } from "@src/components/text/Text";
-import * as S from "./TestAnimation.styles";
+import { Animation, AnimationLooper, type ICallbackResult } from "@src/utils/Animation";
 import { useEffect, useRef, useState } from "react";
-import { Animation, AnimationLooper, ICallbackResult } from "@src/utils/Animation";
+import * as S from "./TestAnimation.styles";
 
 export const TestAnimation = () => {
 	const [animations, setAnimations] = useState<Animation[]>([]);
@@ -203,7 +203,7 @@ export const TestAnimation = () => {
 
 	return (
 		<S.TestAnimation>
-			<Text size="l">Test Animation</Text>
+			<Text fontSize="header">Test Animation</Text>
 
 			<S.Spacer />
 

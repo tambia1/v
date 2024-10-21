@@ -34,23 +34,23 @@ export const About = () => {
 
 	return (
 		<S.About>
-			<Text size="l">{t(lang.settings.about.text)}</Text>
+			<Text fontSize="header">{t(lang.settings.about.text)}</Text>
 
 			<S.Spacer />
-			<Text size="m">
+			<Text fontSize="body">
 				{dimensions.width}x{dimensions.height}
 			</Text>
 
 			<S.Spacer />
-			<Text size="m">{dimensions.orientation}</Text>
+			<Text fontSize="body">{dimensions.orientation}</Text>
 
 			<S.Spacer />
-			<Text size="m">{navigator.userAgent}</Text>
-			<Text size="m">{Device.getDeviceInfo().deviceName}</Text>
-			<Text size="m">{Device.getDeviceInfo().iosName}</Text>
-			<Text size="m">{Device.getDeviceInfo().iosVersion}</Text>
-			<Text size="m">{Device.getDeviceInfo().browserName}</Text>
-			<Text size="m">{Device.getDeviceInfo().browserVersion}</Text>
+			<Text fontSize="body">{navigator.userAgent}</Text>
+			<Text fontSize="body">{Device.getDeviceInfo().deviceName}</Text>
+			<Text fontSize="body">{Device.getDeviceInfo().iosName}</Text>
+			<Text fontSize="body">{Device.getDeviceInfo().iosVersion}</Text>
+			<Text fontSize="body">{Device.getDeviceInfo().browserName}</Text>
+			<Text fontSize="body">{Device.getDeviceInfo().browserVersion}</Text>
 		</S.About>
 	);
 };

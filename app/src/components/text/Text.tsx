@@ -5,14 +5,15 @@ import * as S from "./Text.styles";
 export interface Props {
 	className?: string;
 	children?: ReactNode;
-	size?: keyof ITheme["size"];
 	color?: keyof ITheme["color"];
 	bgcolor?: keyof ITheme["color"];
+	fontSize?: keyof ITheme["fontSize"];
+	fontWeight?: keyof ITheme["fontWeight"];
 }
 
-export const Text = ({ className, children, size = "m", color = "primaryFg", bgcolor = "transparent", ...rest }: Props) => {
+export const Text = ({ className, children, color = "primaryFg", bgcolor = "transparent", fontSize = "body", fontWeight = "body", ...rest }: Props) => {
 	return (
-		<S.Text className={className} $size={size} $color={color} $bgcolor={bgcolor} {...rest}>
+		<S.Text className={className} $color={color} $bgcolor={bgcolor} $fontSize={fontSize} $fontWeight={fontWeight} {...rest}>
 			{children}
 		</S.Text>
 	);

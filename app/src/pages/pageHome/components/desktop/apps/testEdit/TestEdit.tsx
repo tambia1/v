@@ -14,17 +14,11 @@ import { useState } from "react";
 import * as S from "./TestEdit.styles";
 
 export const TestEdit = () => {
-	const [isEnabledMode, setIsEnabledMode] = useState<SwitchState>("left");
-
 	const [switchState, setSwitchState] = useState<SwitchState>("left");
 
 	const [checkState, setCheckState] = useState(true);
 
 	const [inputValue, setInputValue] = useState("Test");
-
-	const handleOnClickSwitchEnabled = () => {
-		setIsEnabledMode(isEnabledMode === "left" ? "right" : "left");
-	};
 
 	const handleOnClickSwitch = () => {
 		setSwitchState(switchState === "left" ? "right" : "left");
@@ -40,7 +34,7 @@ export const TestEdit = () => {
 
 	return (
 		<S.TestEdit>
-			<Text size="l">
+			<Text fontSize="title">
 				<T>{lang.testEdit.title}</T>
 			</Text>
 
@@ -48,12 +42,27 @@ export const TestEdit = () => {
 			<S.Spacer />
 
 			<S.Col>
-				<S.Row>
-					<S.Col>
-						<Text>Enabled mode</Text>
-						<Switch switchState={isEnabledMode} onClickSwitch={handleOnClickSwitchEnabled} />
-					</S.Col>
-				</S.Row>
+				<S.Line />
+
+				<S.Col>
+					<Text>Typography</Text>
+					<S.Row>
+						<Text fontSize="title">Test</Text>
+						<Text>size="title"</Text>
+					</S.Row>
+					<S.Row>
+						<Text fontSize="header">Test</Text>
+						<Text>size="header"</Text>
+					</S.Row>
+					<S.Row>
+						<Text fontSize="body">Test</Text>
+						<Text>size="body"</Text>
+					</S.Row>
+					<S.Row>
+						<Text fontSize="note">Test</Text>
+						<Text>size="note"</Text>
+					</S.Row>
+				</S.Col>
 
 				<S.Line />
 
@@ -91,22 +100,22 @@ export const TestEdit = () => {
 					<Text>Button</Text>
 					<S.Row>
 						<Button variant="styled">Button Text</Button>
-						variant=styled
+						variant="styled"
 					</S.Row>
 
 					<S.Row>
 						<Button variant="full">Button Text</Button>
-						variant=full
+						variant="full"
 					</S.Row>
 
 					<S.Row>
 						<Button variant="stroke">Button Text</Button>
-						variant=stroke
+						variant="stroke"
 					</S.Row>
 
 					<S.Row>
 						<Button variant="link">Button Text</Button>
-						variant=link
+						variant="link"
 					</S.Row>
 				</S.Col>
 

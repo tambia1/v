@@ -5,10 +5,10 @@ import * as S from "./About.styles";
 export const About = () => {
 	return (
 		<S.About>
-			<Text size="l">About</Text>
+			<Text fontSize="header">About</Text>
 
 			<S.Spacer />
-			<Text size="m">App Version: {version}</Text>
+			<Text fontSize="body">App Version: {version}</Text>
 		</S.About>
 	);
 };

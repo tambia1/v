@@ -1,10 +1,10 @@
-import * as S from "./Stock.styles";
+import { Chart, type ILine } from "@src/components/chart/Chart";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
-import { Chart, ILine } from "@src/components/chart/Chart";
-import { IStockOk } from "../../../queries/QueryStocks";
 import { useTheme } from "styled-components";
+import type { IStockOk } from "../../../queries/QueryStocks";
+import * as S from "./Stock.styles";
 
 interface Props {
 	stock: IStockOk;
@@ -23,7 +23,7 @@ export const Stock = ({ stock }: Props) => {
 
 	return (
 		<S.Symbol>
-			<Text size="l">{t(lang.stocks.exchange, { exchange: stock.meta.exchange })}</Text>
+			<Text fontSize="header">{t(lang.stocks.exchange, { exchange: stock.meta.exchange })}</Text>
 
 			<S.Chart>
 				<Chart lines={lines} />

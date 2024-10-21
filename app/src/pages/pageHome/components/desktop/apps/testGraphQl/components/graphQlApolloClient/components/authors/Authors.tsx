@@ -14,8 +14,8 @@ export const Authors = () => {
 	return (
 		<S.Authors>
 			<Text>Authors:</Text>
-			{loading && <Text size="l">Loading...</Text>}
-			{error && <Text size="l">Error: {error.message}</Text>}
+			{loading && <Text fontSize="header">Loading...</Text>}
+			{error && <Text fontSize="header">Error: {error.message}</Text>}
 			{data?.authors && (
 				<S.Table>
 					{data.authors.map((author) => (

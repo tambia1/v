@@ -82,31 +82,31 @@ export const Database = ({ databaseId }: Props) => {
 
 	return (
 		<S.Database>
-			<Text size="l">{t(lang.redis.database.title)}</Text>
+			<Text fontSize="header">{t(lang.redis.database.title)}</Text>
 
 			<S.Row>
-				<Text size="m">Subscription ID:</Text>
-				<Text size="m">{sub.id}</Text>
+				<Text fontSize="body">Subscription ID:</Text>
+				<Text fontSize="body">{sub.id}</Text>
 			</S.Row>
 
 			<S.Row>
-				<Text size="m">Database ID:</Text>
-				<Text size="m">{bdb?.id || crdb?.id}</Text>
+				<Text fontSize="body">Database ID:</Text>
+				<Text fontSize="body">{bdb?.id || crdb?.id}</Text>
 			</S.Row>
 
 			<S.Row>
 				<Icon iconName="iconRedis" size="3rem" />
-				<Text size="m">{convertBytes(getDbSize({ bdb, crdb, plan }), "biggest")}</Text>
+				<Text fontSize="body">{convertBytes(getDbSize({ bdb, crdb, plan }), "biggest")}</Text>
 			</S.Row>
 
 			<S.Row>
 				<Icon iconName="iconDatabase" size="3rem" />
-				<Text size="m"> {crdb ? "true" : String(bdb?.replication)}</Text>
+				<Text fontSize="body"> {crdb ? "true" : String(bdb?.replication)}</Text>
 			</S.Row>
 
 			<S.Row>
 				<Icon iconName="iconHardDrive" size="3rem" />
-				<Text size="m">{crdb ? "disabled" : String(bdb?.data_persistence)}</Text>
+				<Text fontSize="body">{crdb ? "disabled" : String(bdb?.data_persistence)}</Text>
 			</S.Row>
 		</S.Database>
 	);

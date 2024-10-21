@@ -83,24 +83,24 @@ export const Subscription = ({ subscriptionId }: Props) => {
 
 	return (
 		<S.Subscription>
-			<Text size="l">{t(lang.redis.subscription.title)}</Text>
+			<Text fontSize="header">{t(lang.redis.subscription.title)}</Text>
 
 			<S.Spacer />
 
 			<S.Row>
-				<Text size="m">ID:</Text>
-				<Text size="m">{sub.id}</Text>
+				<Text fontSize="body">ID:</Text>
+				<Text fontSize="body">{sub.id}</Text>
 			</S.Row>
 
 			<S.Row>
-				<Text size="m">Cloud: </Text>
+				<Text fontSize="body">Cloud: </Text>
 				{plan.cloud.toLocaleLowerCase() === "aws" && <Icon iconName="iconAmazon" size="1rem" />}
 				{plan.cloud.toLocaleLowerCase() === "gcp" && <Icon iconName="iconGoogle" size="1rem" />}
 				{plan.cloud.toLocaleLowerCase() === "azure" && <Icon iconName="iconMicrosoft" size="1rem" />}
 			</S.Row>
 
 			<S.Row>
-				<Text size="m">ROF: </Text>
+				<Text fontSize="body">ROF: </Text>
 				{String(plan.is_rof)}
 			</S.Row>
 

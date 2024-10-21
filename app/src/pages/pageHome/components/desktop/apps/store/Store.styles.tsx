@@ -20,7 +20,7 @@ export const Store = styled.div`
 	overflow: auto;
 `;
 
-export const Title = styled(Text).attrs({ size: "l" })``;
+export const Title = styled(Text).attrs({ fontSize: "header" })``;
 
 export const Group = styled.div`
 	display: flex;

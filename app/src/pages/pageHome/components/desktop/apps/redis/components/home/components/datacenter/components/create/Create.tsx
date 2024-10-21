@@ -18,7 +18,7 @@ export const Create = () => {
 
 	return (
 		<S.Create>
-			<Text size="l">{t(lang.redis.create.title)}</Text>
+			<Text fontSize="header">{t(lang.redis.create.title)}</Text>
 
 			<S.Spacer />
 			<Select selectedIndex={0} onClickItem={() => {}}>
@@ -37,7 +37,7 @@ export const Create = () => {
 			<Counter val={0} onClickMinus={() => {}} onClickPlus={() => {}} />
 
 			<S.Spacer />
-			<Text size="m">Cloud vendors</Text>
+			<Text fontSize="body">Cloud vendors</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => plan.cloud.toLowerCase()))).map((cloud) => (
 					<S.Col key={cloud}>{cloud}</S.Col>
@@ -45,7 +45,7 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
-			<Text size="m">Server size</Text>
+			<Text fontSize="body">Server size</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => convertBytes(plan.size, "biggest")))).map((size) => (
 					<S.Col key={size}>{size}</S.Col>
@@ -53,7 +53,7 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
-			<Text size="m">Regions</Text>
+			<Text fontSize="body">Regions</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => plan.region))).map((size) => (
 					<S.Col key={size}>{size}</S.Col>
@@ -61,7 +61,7 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
-			<Text size="m">Number of databases</Text>
+			<Text fontSize="body">Number of databases</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => plan.max_bdbs))).map((maxBdbs) => (
 					<S.Col key={maxBdbs}>{maxBdbs}</S.Col>
@@ -69,7 +69,7 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
-			<Text size="m">High availability</Text>
+			<Text fontSize="body">High availability</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => (plan.is_multi_az ? "multi" : plan.replication === "default" ? "none" : "single")))).map((highAvailability) => (
 					<S.Col key={highAvailability}>{highAvailability}</S.Col>
@@ -77,7 +77,7 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
-			<Text size="m">Data persistence</Text>
+			<Text fontSize="body">Data persistence</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => plan.data_persistence))).map((dataPersistence) => (
 					<S.Col key={dataPersistence}>{dataPersistence}</S.Col>
@@ -85,7 +85,7 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
-			<Text size="m">Auto failover</Text>
+			<Text fontSize="body">Auto failover</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => String(plan.auto_failover)))).map((autoFailover) => (
 					<S.Col key={autoFailover}>{autoFailover}</S.Col>
@@ -93,7 +93,7 @@ export const Create = () => {
 			</S.Row>
 
 			<S.Spacer />
-			<Text size="m">Max Connection</Text>
+			<Text fontSize="body">Max Connection</Text>
 			<S.Row>
 				{Array.from(new Set(plans.map((plan) => plan.max_connections || "unlimited"))).map((maxConnections) => (
 					<S.Col key={maxConnections}>{maxConnections}</S.Col>

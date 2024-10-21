@@ -1,9 +1,9 @@
+import { Menu, type MenuGroup } from "@src/components/menu/Menu";
 import { Text } from "@src/components/text/Text";
-import * as S from "./TestMenu.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
-import { Menu, MenuGroup } from "@src/components/menu/Menu";
+import * as S from "./TestMenu.styles";
 
 type MenuItemId = "add" | "remove" | "update" | "about";
 
@@ -35,7 +35,7 @@ export const TestMenu = () => {
 
 	return (
 		<S.TestMenu>
-			<Text size="l">
+			<Text fontSize="header">
 				<T>{lang.testMenu.title}</T>
 			</Text>
 
@@ -43,7 +43,13 @@ export const TestMenu = () => {
 
 			<S.MenuIcon iconName="iconMenu" onClick={handleOnClickMenuBackground} />
 
-			<Menu $visible={isMenuVisible} menuGroups={menuGroups} selectedMenuId="add" onClickBackground={handleOnClickMenuBackground} onClickItem={handleOnClickMenuItem} />
+			<Menu
+				$visible={isMenuVisible}
+				menuGroups={menuGroups}
+				selectedMenuId="add"
+				onClickBackground={handleOnClickMenuBackground}
+				onClickItem={handleOnClickMenuItem}
+			/>
 		</S.TestMenu>
 	);
 };

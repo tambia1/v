@@ -9,7 +9,7 @@ import * as S from "./Layout.styles";
 
 export const Layout = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [barPosition, setBarPosition] = useState<IBarPosition>((searchParams.get("bar") as IBarPosition) || "bottom");
+	const [barPosition, setBarPosition] = useState<IBarPosition>((searchParams.get("bar") as IBarPosition) || "top");
 
 	const handleOnClickChangeBarPosition = (barPosition: IBarPosition) => {
 		setBarPosition(barPosition);

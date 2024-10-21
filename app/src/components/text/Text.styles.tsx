@@ -1,16 +1,14 @@
-import { ITheme } from "@src/theme/Theme.types";
+import type { ITheme } from "@src/theme/Theme.types";
 import styled from "styled-components";
 
-const sizes: { [K in keyof ITheme["size"]]: string } = {
-	xs: "50%",
-	s: "80%",
-	m: "100%",
-	l: "120%",
-	xl: "150%",
-};
-
-export const Text = styled.div<{ $size?: keyof ITheme["size"]; $color?: keyof ITheme["color"]; $bgcolor?: keyof ITheme["color"] }>`
-	color: ${({ theme, $color }) => ($color ? theme.color[$color] : "inherit")};
-	background-color: ${({ theme, $bgcolor }) => ($bgcolor ? theme.color[$bgcolor] : "inherit")};
-	font-size: ${({ $size }) => sizes[$size || "m"]};
+export const Text = styled.div<{
+	$color: keyof ITheme["color"];
+	$bgcolor: keyof ITheme["color"];
+	$fontSize: keyof ITheme["fontSize"];
+	$fontWeight: keyof ITheme["fontWeight"];
+}>`
+	color: ${(props) => props.theme.color[props.$color]};
+	background-color: ${(props) => props.theme.color[props.$bgcolor]};
+	font-size: ${(props) => props.theme.fontSize[props.$fontSize]};
+	font-weight: ${(props) => props.theme.fontWeight[props.$fontWeight]};
 `;

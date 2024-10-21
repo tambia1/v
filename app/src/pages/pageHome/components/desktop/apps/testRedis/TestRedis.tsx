@@ -1,9 +1,9 @@
+import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
-import * as S from "./TestRedis.styles";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { Button } from "@src/components/button/Button";
 import { useState } from "react";
+import * as S from "./TestRedis.styles";
 
 export const TestRedis = () => {
 	const [message, setMessage] = useState("");
@@ -13,9 +13,9 @@ export const TestRedis = () => {
 			setMessage("Sending message...");
 			const response = await fetch("http://localhost:5004/setRedisKey?value=Jim");
 			const data = await response.json();
-			setMessage("Message received: " + data.message);
+			setMessage(`Message received: ${data.message}`);
 		} catch (error) {
-			setMessage("Error setting firstName in Redis: " + error);
+			setMessage(`Error setting firstName in Redis: ${error}`);
 		}
 	};
 
@@ -24,15 +24,15 @@ export const TestRedis = () => {
 			setMessage("Getting message...");
 			const response = await fetch("http://localhost:5004/getRedisKey");
 			const data = await response.json();
-			setMessage("Message received: " + data.value);
+			setMessage(`Message received: ${data.value}`);
 		} catch (error) {
-			setMessage("Error getting firstName in Redis: " + error);
+			setMessage(`Error getting firstName in Redis: ${error}`);
 		}
 	};
 
 	return (
 		<S.TestRedis>
-			<Text size="l">
+			<Text fontSize="header">
 				<T>{lang.testRedis.title}</T>
 			</Text>
 
