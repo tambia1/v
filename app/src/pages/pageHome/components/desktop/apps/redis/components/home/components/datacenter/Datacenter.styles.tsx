@@ -16,7 +16,7 @@ export const Page = styled.div`
 	overflow-y: overlay;
 	scrollbar-gutter: stable;
 
-	font-size: ${(props) => props.theme.fontSize.note};
+	font-size: ${(props) => props.theme.fontSize.body};
 `;
 
 export const Spacer = styled.div`
@@ -87,16 +87,13 @@ const SubscriptionsWidth = css`
 		justify-content: left;
 	}
 	& > div:nth-child(3) {
-		width: 4rem;
+		width: 5rem;
 		justify-content: left;
 	}
 	& > div:nth-child(4) {
 		width: 2rem;
 	}
 	& > div:nth-child(5) {
-		width: 2rem;
-	}
-	& > div:nth-child(6) {
 		width: 2rem;
 	}
 `;
