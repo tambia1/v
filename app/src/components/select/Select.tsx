@@ -1,8 +1,8 @@
 import { Icon } from "@src/components/icon/Icon";
 import { type ReactNode, useState } from "react";
+import { List } from "../list/List";
 import * as S from "./Select.styles";
 import { Item } from "./components/item/Item";
-import { List } from "./components/list/List";
 
 export interface Props {
 	className?: string;
@@ -27,14 +27,15 @@ export const Select = ({ className, children, selectedIndex, onClickItem }: Prop
 		<S.Select className={className}>
 			<List>
 				<List.Cell onClick={handleOnClickButton}>
-					<List.Cell.CellCenter>{children[selectedIndex]}</List.Cell.CellCenter>
-					<List.Cell.CellRight>
+					<List.Cell.Center>{children[selectedIndex]}</List.Cell.Center>
+					<List.Cell.Right>
 						<S.ContainerIconArrow $isOpen={isOpen}>
 							<Icon iconName="iconChevronDown" />
 						</S.ContainerIconArrow>
-					</List.Cell.CellRight>
+					</List.Cell.Right>
 				</List.Cell>
 			</List>
+
 			<S.ListContainer $isOpen={isOpen}>
 				<List>
 					{children.map((item, index) => (
@@ -44,7 +45,7 @@ export const Select = ({ className, children, selectedIndex, onClickItem }: Prop
 								handleOnClickCell(index);
 							}}
 						>
-							{item}
+							<List.Cell.Center>{item}</List.Cell.Center>
 						</List.Cell>
 					))}
 				</List>
