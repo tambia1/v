@@ -20,23 +20,22 @@ export const Spacer = styled.div`
 
 export const Bar = styled.div`
 	width: 100%;
-	height: 3rem;
+	height: 4rem;
 
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-
-	box-sizing: border-box;
+	flex-shrink: 0;
 
 	background-color: ${(props) => props.theme.color.primaryBgSelected};
 `;
 
 const IconBar = css`
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 2rem;
+	height: 2rem;
 	cursor: pointer;
-	padding: 0.5rem;
+	padding: 1rem;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};

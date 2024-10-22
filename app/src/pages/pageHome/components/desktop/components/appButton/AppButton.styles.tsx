@@ -70,10 +70,10 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	align-items: center;
 	justify-content: start;
 	flex-direction: column;
-	gap: ${(props) => props.theme.size.xs};
+	gap: 0.5rem;
     width: 100%;
-    height: 11rem;
-	padding: ${(props) => props.theme.size.s};
+    height: 10rem;
+	padding: 0.5rem;
     box-sizing: border-box;
 	border-radius: 0.5rem;
 	position: relative;
