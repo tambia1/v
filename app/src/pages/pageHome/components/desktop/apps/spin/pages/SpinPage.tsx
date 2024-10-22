@@ -55,15 +55,15 @@ export const SpinPage = () => {
 				{spinStore.data.map((datum, index) => (
 					<List.Cell key={index}>
 						<S.CellGrid>
-							<List.Cell.Left>
+							<List.Cell.Icon>
 								<Icon
 									iconName="iconMinusCircle"
 									onClick={(e) => {
 										handleOnClickRemoveChoice(e, index);
 									}}
 								/>
-							</List.Cell.Left>
-							<List.Cell.Center>
+							</List.Cell.Icon>
+							<List.Cell.Text>
 								<S.InputText
 									value={datum}
 									placeholder={t(lang.spin.add)}
@@ -71,7 +71,7 @@ export const SpinPage = () => {
 										handleTextChange(value, index);
 									}}
 								/>
-							</List.Cell.Center>
+							</List.Cell.Text>
 						</S.CellGrid>
 					</List.Cell>
 				))}

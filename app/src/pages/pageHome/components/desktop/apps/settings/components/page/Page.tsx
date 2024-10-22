@@ -53,42 +53,42 @@ export const Page = () => {
 
 			<List>
 				<List.Cell onClick={handleOnClickLanguage}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Icon iconName="iconGlobe" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.language.title}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName="iconChevronRight" />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 
 				<List.Cell onClick={handleOnClickTheme}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Icon iconName="iconAperture" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.theme.title}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName="iconChevronRight" />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 
 				<List.Cell onClick={handleOnClickLayout}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Icon iconName="iconLayout" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.layout.title}</T>
-					</List.Cell.Center>
-					<List.Cell.End>
+					</List.Cell.Text>
+					<List.Cell.Info>
 						<T>Top</T>
-					</List.Cell.End>
-					<List.Cell.Right>
+					</List.Cell.Info>
+					<List.Cell.Image>
 						<Icon iconName="iconChevronRight" />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 
 				<List.Cell onClick={handleOnClickAbout}>

@@ -49,7 +49,7 @@ export const ContextMenu = ({ className, children, visible, onClickCover, refBut
 };
 
 ContextMenu.Cell = List.Cell;
-ContextMenu.Cell.Left = List.Cell.Left;
-ContextMenu.Cell.Center = List.Cell.Center;
-ContextMenu.Cell.Right = List.Cell.Right;
-ContextMenu.Cell.End = List.Cell.End;
+ContextMenu.Cell.Icon = List.Cell.Icon;
+ContextMenu.Cell.Text = List.Cell.Text;
+ContextMenu.Cell.Image = List.Cell.Image;
+ContextMenu.Cell.Info = List.Cell.Info;

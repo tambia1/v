@@ -46,10 +46,10 @@ export const StocksPage = () => {
 					.filter((stock) => stock.status === "ok")
 					.map((stock) => (
 						<List.Cell key={stock.meta.symbol} onClick={() => handleOnSymbol(stock as IStockOk)}>
-							<List.Cell.Left>
+							<List.Cell.Icon>
 								<Icon iconName={iconMap[stock.meta.symbol] ?? ""} />
-							</List.Cell.Left>
-							<List.Cell.Center>{stock.meta.symbol}</List.Cell.Center>
+							</List.Cell.Icon>
+							<List.Cell.Text>{stock.meta.symbol}</List.Cell.Text>
 						</List.Cell>
 					))}
 			</List>

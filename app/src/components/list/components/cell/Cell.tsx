@@ -1,9 +1,9 @@
 import type { HTMLProps, ReactNode } from "react";
 import * as S from "./Cell.styles";
-import { CellCenter } from "./components/cellCenter/CellCenter";
-import { CellEnd } from "./components/cellEnd/CellEnd";
-import { CellLeft } from "./components/cellLeft/CellLeft";
-import { CellRight } from "./components/cellRight/CellRight";
+import { CellInfo } from "./components/cellEnd/CellInfo";
+import { CellIcon } from "./components/cellIcon/CellIcon";
+import { CellImage } from "./components/cellImage/CellImage";
+import { CellText } from "./components/cellText/CellText";
 
 export type LineState = "long" | "short";
 
@@ -23,7 +23,7 @@ export const Cell = ({ children, $isEnabled, $isSelected, $lineState = "short", 
 	);
 };
 
-Cell.Left = CellLeft;
-Cell.Center = CellCenter;
-Cell.Right = CellRight;
-Cell.End = CellEnd;
+Cell.Icon = CellIcon;
+Cell.Text = CellText;
+Cell.Image = CellImage;
+Cell.Info = CellInfo;

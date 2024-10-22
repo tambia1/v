@@ -1,17 +1,14 @@
 import { Icon } from "@src/components/icon/Icon.styles";
 import styled from "styled-components";
 
-export const CellEnd = styled.div`
-	width: auto;
+export const CellText = styled.div`
+	width: 100%;
 	height: 100%;
 	display: flex;
 	align-items: center;
-	flex-shrink: 0;
-	color: ${(props) => props.theme.color.quarteryFg};
 
 	& ${Icon} {
 		width: 100%;
 		height: 100%;
 	}
-
 `;

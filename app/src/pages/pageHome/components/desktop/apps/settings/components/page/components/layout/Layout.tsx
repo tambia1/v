@@ -26,51 +26,51 @@ export const Layout = () => {
 
 			<List>
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("top")}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Icon iconName="iconArrowUpCircle" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.layout.top}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName={barPosition === "top" ? "iconCheck" : ""} />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("bottom")}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Icon iconName="iconArrowDownCircle" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.layout.bottom}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName={barPosition === "bottom" ? "iconCheck" : ""} />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("left")}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Icon iconName="iconArrowLeftCircle" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.layout.left}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName={barPosition === "left" ? "iconCheck" : ""} />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickChangeBarPosition("right")}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Icon iconName="iconArrowRightCircle" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.layout.right}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName={barPosition === "right" ? "iconCheck" : ""} />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 			</List>
 		</S.Layout>

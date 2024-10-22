@@ -27,27 +27,27 @@ export const Language = () => {
 
 			<List>
 				<List.Cell onClick={() => handleOnClickChangeLanguage("en")}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Flag flagName="gb" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.language.english}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName={i18n.language === "en" ? "iconCheck" : ""} />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 
 				<List.Cell onClick={() => handleOnClickChangeLanguage("fi")}>
-					<List.Cell.Left>
+					<List.Cell.Icon>
 						<Flag flagName="fi" />
-					</List.Cell.Left>
-					<List.Cell.Center>
+					</List.Cell.Icon>
+					<List.Cell.Text>
 						<T>{lang.settings.language.finnish}</T>
-					</List.Cell.Center>
-					<List.Cell.Right>
+					</List.Cell.Text>
+					<List.Cell.Image>
 						<Icon iconName={i18n.language === "fi" ? "iconCheck" : ""} />
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 			</List>
 		</S.Language>

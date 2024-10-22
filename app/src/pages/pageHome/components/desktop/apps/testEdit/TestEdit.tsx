@@ -191,10 +191,10 @@ export const TestEdit = () => {
 							}}
 							$lineState="long"
 						>
-							<ContextMenu.Cell.Center>Item 0</ContextMenu.Cell.Center>
-							<ContextMenu.Cell.Right>
+							<ContextMenu.Cell.Text>Item 0</ContextMenu.Cell.Text>
+							<ContextMenu.Cell.Image>
 								<Icon iconName={contextMenuSelectedItem === 0 ? "iconCheck" : ""} />
-							</ContextMenu.Cell.Right>
+							</ContextMenu.Cell.Image>
 						</ContextMenu.Cell>
 						<ContextMenu.Cell
 							onClick={() => {
@@ -202,10 +202,10 @@ export const TestEdit = () => {
 							}}
 							$lineState="long"
 						>
-							<ContextMenu.Cell.Center>Item 1</ContextMenu.Cell.Center>
-							<ContextMenu.Cell.Right>
+							<ContextMenu.Cell.Text>Item 1</ContextMenu.Cell.Text>
+							<ContextMenu.Cell.Image>
 								<Icon iconName={contextMenuSelectedItem === 1 ? "iconCheck" : ""} />
-							</ContextMenu.Cell.Right>
+							</ContextMenu.Cell.Image>
 						</ContextMenu.Cell>
 						<ContextMenu.Cell
 							onClick={() => {
@@ -213,10 +213,10 @@ export const TestEdit = () => {
 							}}
 							$lineState="long"
 						>
-							<ContextMenu.Cell.Center>Item 2</ContextMenu.Cell.Center>
-							<ContextMenu.Cell.Right>
+							<ContextMenu.Cell.Text>Item 2</ContextMenu.Cell.Text>
+							<ContextMenu.Cell.Image>
 								<Icon iconName={contextMenuSelectedItem === 2 ? "iconCheck" : ""} />
-							</ContextMenu.Cell.Right>
+							</ContextMenu.Cell.Image>
 						</ContextMenu.Cell>
 					</ContextMenu>
 				</S.Col>
@@ -227,54 +227,54 @@ export const TestEdit = () => {
 					<Text>List</Text>
 					<List>
 						<List.Cell onClick={() => {}}>
-							<List.Cell.Left>
+							<List.Cell.Icon>
 								<Flag flagName="gb" />
-							</List.Cell.Left>
-							<List.Cell.Center>
+							</List.Cell.Icon>
+							<List.Cell.Text>
 								<T>{lang.settings.language.english}</T>
-							</List.Cell.Center>
-							<List.Cell.Right>
+							</List.Cell.Text>
+							<List.Cell.Image>
 								<Icon iconName={i18n.language === "en" ? "iconCheck" : ""} />
-							</List.Cell.Right>
+							</List.Cell.Image>
 						</List.Cell>
 
 						<List.Cell onClick={() => {}}>
-							<List.Cell.Left>
+							<List.Cell.Icon>
 								<Flag flagName="fi" />
-							</List.Cell.Left>
-							<List.Cell.Center>
+							</List.Cell.Icon>
+							<List.Cell.Text>
 								<T>{lang.settings.language.finnish}</T>
-							</List.Cell.Center>
-							<List.Cell.Right>
+							</List.Cell.Text>
+							<List.Cell.Image>
 								<Icon iconName={i18n.language === "fi" ? "iconCheck" : ""} />
-							</List.Cell.Right>
+							</List.Cell.Image>
 						</List.Cell>
 
 						<List.Cell onClick={() => {}}>
-							<List.Cell.Left>
+							<List.Cell.Icon>
 								<Icon iconName="iconGlobe" />
-							</List.Cell.Left>
-							<List.Cell.Center>
+							</List.Cell.Icon>
+							<List.Cell.Text>
 								<T>{lang.settings.language.title}</T>
-							</List.Cell.Center>
-							<List.Cell.Right>
+							</List.Cell.Text>
+							<List.Cell.Image>
 								<Icon iconName="iconChevronRight" />
-							</List.Cell.Right>
+							</List.Cell.Image>
 						</List.Cell>
 
 						<List.Cell onClick={() => {}}>
-							<List.Cell.Left>
+							<List.Cell.Icon>
 								<Icon iconName="iconLayout" />
-							</List.Cell.Left>
-							<List.Cell.Center>
+							</List.Cell.Icon>
+							<List.Cell.Text>
 								<T>{lang.settings.layout.title}</T>
-							</List.Cell.Center>
-							<List.Cell.End>
+							</List.Cell.Text>
+							<List.Cell.Info>
 								<T>Top</T>
-							</List.Cell.End>
-							<List.Cell.Right>
+							</List.Cell.Info>
+							<List.Cell.Image>
 								<Icon iconName="iconChevronRight" />
-							</List.Cell.Right>
+							</List.Cell.Image>
 						</List.Cell>
 
 						<List.Cell onClick={() => {}}>

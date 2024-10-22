@@ -27,12 +27,12 @@ export const Select = ({ className, children, selectedIndex, onClickItem }: Prop
 		<S.Select className={className}>
 			<List>
 				<List.Cell onClick={handleOnClickButton}>
-					<List.Cell.Center>{children[selectedIndex]}</List.Cell.Center>
-					<List.Cell.Right>
+					<List.Cell.Text>{children[selectedIndex]}</List.Cell.Text>
+					<List.Cell.Image>
 						<S.ContainerIconArrow $isOpen={isOpen}>
 							<Icon iconName="iconChevronDown" />
 						</S.ContainerIconArrow>
-					</List.Cell.Right>
+					</List.Cell.Image>
 				</List.Cell>
 			</List>
 
@@ -46,7 +46,7 @@ export const Select = ({ className, children, selectedIndex, onClickItem }: Prop
 							}}
 							$lineState="long"
 						>
-							<List.Cell.Center>{item}</List.Cell.Center>
+							<List.Cell.Text>{item}</List.Cell.Text>
 						</List.Cell>
 					))}
 				</List>
