@@ -1,6 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { Check } from "@src/components/check/Check";
 import { Counter } from "@src/components/counter/Counter";
+import { Cover } from "@src/components/cover/Cover";
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
@@ -11,7 +12,7 @@ import { Switch, type SwitchState } from "@src/components/switch/Switch";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import i18n, { lang } from "@src/locales/i18n";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import * as S from "./TestEdit.styles";
 
 export const TestEdit = () => {
@@ -22,6 +23,9 @@ export const TestEdit = () => {
 	const [counter, setCounter] = useState(0);
 
 	const [inputValue, setInputValue] = useState("Test");
+
+	const [isCoverVisible, setIsCoverVisible] = useState(false);
+	const refButtonSubmenu = useRef(null);
 
 	const handleOnClickSwitch = () => {
 		setSwitchState(switchState === "left" ? "right" : "left");
@@ -41,6 +45,10 @@ export const TestEdit = () => {
 
 	const handleOnClickPlusCounter = () => {
 		setCounter(counter + 1);
+	};
+
+	const handleOnclickCover = () => {
+		setIsCoverVisible(!isCoverVisible);
 	};
 
 	return (
@@ -153,6 +161,37 @@ export const TestEdit = () => {
 						<Select.Item>Item 1</Select.Item>
 						<Select.Item>Item 2</Select.Item>
 					</Select>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Sumbenu</Text>
+					<Button variant="link" onClick={handleOnclickCover} ref={refButtonSubmenu}>
+						Submenu
+					</Button>
+					<Cover visible={isCoverVisible} onClickCover={handleOnclickCover} refButton={refButtonSubmenu}>
+						<List>
+							<List.Cell onClick={() => {}} $lineState="long">
+								<List.Cell.Center>Item 0</List.Cell.Center>
+								<List.Cell.Right>
+									<Icon iconName="iconCheck" />
+								</List.Cell.Right>
+							</List.Cell>
+							<List.Cell onClick={() => {}} $lineState="long">
+								<List.Cell.Center>Item 1</List.Cell.Center>
+								<List.Cell.Right>
+									<Icon iconName="" />
+								</List.Cell.Right>
+							</List.Cell>
+							<List.Cell onClick={() => {}} $lineState="long">
+								<List.Cell.Center>Item 2</List.Cell.Center>
+								<List.Cell.Right>
+									<Icon iconName="" />
+								</List.Cell.Right>
+							</List.Cell>
+						</List>
+					</Cover>
 				</S.Col>
 
 				<S.Line />

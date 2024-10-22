@@ -1,4 +1,4 @@
-export const getElementPositionRelativeToParent = function (element: HTMLElement, parent: HTMLElement) {
+export const getElementPositionRelativeToParent = (element: HTMLElement, parent: HTMLElement) => {
 	let top = 0;
 	let left = 0;
 	let elm: HTMLElement | null = element;
@@ -7,9 +7,13 @@ export const getElementPositionRelativeToParent = function (element: HTMLElement
 		top = elm.offsetTop;
 		left = elm.offsetLeft;
 
-		while ((elm = elm.offsetParent as HTMLElement) != undefined && elm != parent) {
+		elm = elm.parentElement;
+
+		while (elm !== null && elm !== parent) {
 			top += elm.offsetTop;
 			left += elm.offsetLeft;
+
+			elm = elm.parentElement;
 		}
 	}
 
@@ -41,8 +45,8 @@ export const moveElement = (props: {
 		}
 	}
 
-	cloneElement.style.position = `absolute`;
-	cloneElement.style.zIndex = `999`;
+	cloneElement.style.position = "absolute";
+	cloneElement.style.zIndex = "999";
 	cloneElement.style.left = `${props.source.x}px`;
 	cloneElement.style.top = `${props.source.y}px`;
 	cloneElement.style.width = `${sourceComputerStyle.width}`;

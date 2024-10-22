@@ -132,12 +132,12 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			height: 3rem;
 
 			&:hover {
-				--label-color: hsl(230, 55%, 80%);
+				--label-color: hsl(230, 55%, 70%);
 				color: var(--label-color);
 			}
 
 			&:active {
-				--label-color: hsl(230, 55%, 85%);
+				--label-color: hsl(230, 55%, 75%);
 				color: var(--label-color);
 			}
 
