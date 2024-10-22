@@ -1,7 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { Check } from "@src/components/check/Check";
+import { ContextMenu } from "@src/components/contextMenu/ContextMenu";
 import { Counter } from "@src/components/counter/Counter";
-import { Cover } from "@src/components/cover/Cover";
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
@@ -27,6 +27,8 @@ export const TestEdit = () => {
 	const [isCoverVisible, setIsCoverVisible] = useState(false);
 	const refButtonSubmenu = useRef(null);
 
+	const [contextMenuSelectedItem, setContextMenuSelectedItem] = useState(0);
+
 	const handleOnClickSwitch = () => {
 		setSwitchState(switchState === "left" ? "right" : "left");
 	};
@@ -47,8 +49,12 @@ export const TestEdit = () => {
 		setCounter(counter + 1);
 	};
 
-	const handleOnclickCover = () => {
+	const handleOnClickContextMenuCover = () => {
 		setIsCoverVisible(!isCoverVisible);
+	};
+
+	const handleOnclickContextMenu = (index: number) => {
+		setContextMenuSelectedItem(index);
 	};
 
 	return (
@@ -66,20 +72,28 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Typography</Text>
 					<S.Row>
-						<Text fontSize="title">Test</Text>
-						<Text>size="title"</Text>
+						<Text fontSize="title" fontWeight="title">
+							Test
+						</Text>
+						<Text>title</Text>
 					</S.Row>
 					<S.Row>
-						<Text fontSize="header">Test</Text>
-						<Text>size="header"</Text>
+						<Text fontSize="header" fontWeight="header">
+							Test
+						</Text>
+						<Text>header</Text>
 					</S.Row>
 					<S.Row>
-						<Text fontSize="body">Test</Text>
-						<Text>size="body"</Text>
+						<Text fontSize="body" fontWeight="body">
+							Test
+						</Text>
+						<Text>body</Text>
 					</S.Row>
 					<S.Row>
-						<Text fontSize="note">Test</Text>
-						<Text>size="note"</Text>
+						<Text fontSize="note" fontWeight="note">
+							Test
+						</Text>
+						<Text>note</Text>
 					</S.Row>
 				</S.Col>
 
@@ -166,32 +180,47 @@ export const TestEdit = () => {
 				<S.Line />
 
 				<S.Col>
-					<Text>Sumbenu</Text>
-					<Button variant="link" onClick={handleOnclickCover} ref={refButtonSubmenu}>
-						Submenu
+					<Text>Contextmenu</Text>
+					<Button variant="link" onClick={handleOnClickContextMenuCover} ref={refButtonSubmenu}>
+						Open menu
 					</Button>
-					<Cover visible={isCoverVisible} onClickCover={handleOnclickCover} refButton={refButtonSubmenu}>
+					<ContextMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover} refButton={refButtonSubmenu}>
 						<List>
-							<List.Cell onClick={() => {}} $lineState="long">
+							<List.Cell
+								onClick={() => {
+									handleOnclickContextMenu(0);
+								}}
+								$lineState="long"
+							>
 								<List.Cell.Center>Item 0</List.Cell.Center>
 								<List.Cell.Right>
-									<Icon iconName="iconCheck" />
+									<Icon iconName={contextMenuSelectedItem === 0 ? "iconCheck" : ""} />
 								</List.Cell.Right>
 							</List.Cell>
-							<List.Cell onClick={() => {}} $lineState="long">
+							<List.Cell
+								onClick={() => {
+									handleOnclickContextMenu(1);
+								}}
+								$lineState="long"
+							>
 								<List.Cell.Center>Item 1</List.Cell.Center>
 								<List.Cell.Right>
-									<Icon iconName="" />
+									<Icon iconName={contextMenuSelectedItem === 1 ? "iconCheck" : ""} />
 								</List.Cell.Right>
 							</List.Cell>
-							<List.Cell onClick={() => {}} $lineState="long">
+							<List.Cell
+								onClick={() => {
+									handleOnclickContextMenu(2);
+								}}
+								$lineState="long"
+							>
 								<List.Cell.Center>Item 2</List.Cell.Center>
 								<List.Cell.Right>
-									<Icon iconName="" />
+									<Icon iconName={contextMenuSelectedItem === 2 ? "iconCheck" : ""} />
 								</List.Cell.Right>
 							</List.Cell>
 						</List>
-					</Cover>
+					</ContextMenu>
 				</S.Col>
 
 				<S.Line />

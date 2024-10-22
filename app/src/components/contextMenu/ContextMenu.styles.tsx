@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Cover = styled.div<{ $visible: boolean }>`
+export const ContextMenu = styled.div<{ $visible: boolean }>`
 	width: 100%;
 	height: 100%;
 	display: ${(props) => (props.$visible ? "block" : "none")};
@@ -28,6 +28,7 @@ export const Items = styled.div<{ $left: number; $top: number }>`
 	position: absolute;
 	left: ${(props) => `${props.$left}px`};
 	top: ${(props) => `${props.$top}px`};
+	width: 20rem;
 `;
 
 export const ItemsContainer = styled.div<{ $isOpen: boolean }>`
