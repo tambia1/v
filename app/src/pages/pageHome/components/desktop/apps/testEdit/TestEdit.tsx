@@ -1,5 +1,6 @@
 import { Button } from "@src/components/button/Button";
 import { Check } from "@src/components/check/Check";
+import { Counter } from "@src/components/counter/Counter";
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
@@ -18,6 +19,8 @@ export const TestEdit = () => {
 
 	const [checkState, setCheckState] = useState(true);
 
+	const [counter, setCounter] = useState(0);
+
 	const [inputValue, setInputValue] = useState("Test");
 
 	const handleOnClickSwitch = () => {
@@ -30,6 +33,14 @@ export const TestEdit = () => {
 
 	const handleOnclickCheck = () => {
 		setCheckState(!checkState);
+	};
+
+	const handleOnClickMinusCounter = () => {
+		setCounter(counter - 1);
+	};
+
+	const handleOnClickPlusCounter = () => {
+		setCounter(counter + 1);
 	};
 
 	return (
@@ -76,6 +87,13 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Check</Text>
 					<Check checkState={checkState} onClickCheck={handleOnclickCheck} />
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Counter</Text>
+					<Counter val={counter} onClickMinus={handleOnClickMinusCounter} onClickPlus={handleOnClickPlusCounter} />
 				</S.Col>
 
 				<S.Line />

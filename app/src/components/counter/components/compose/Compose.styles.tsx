@@ -5,7 +5,7 @@ export const Compose = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	gap: 1rem;
+	gap: 2rem;
 `;
 
 export const IconCounter = styled(Icon)`
