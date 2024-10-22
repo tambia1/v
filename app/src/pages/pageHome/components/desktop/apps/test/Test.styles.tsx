@@ -10,7 +10,8 @@ export const Test = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.primaryBgSelected};
+	color: ${(props) => props.theme.color.secondaryFg};
+	background-color: ${(props) => props.theme.color.secondaryBg};
 `;
 
 export const Spacer = styled.div`

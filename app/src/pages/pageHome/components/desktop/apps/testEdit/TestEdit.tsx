@@ -4,6 +4,7 @@ import { ContextMenu } from "@src/components/contextMenu/ContextMenu";
 import { Counter } from "@src/components/counter/Counter";
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
+import { IconButton } from "@src/components/iconButton/IconButton";
 import { Input } from "@src/components/input/Input";
 import { List } from "@src/components/list/List";
 import { Progress } from "@src/components/progress/Progress";
@@ -181,9 +182,8 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Contextmenu</Text>
-					<Button variant="link" onClick={handleOnClickContextMenuCover} ref={refButtonSubmenu}>
-						Open menu
-					</Button>
+					<IconButton iconName="iconMoreVertical" onClick={handleOnClickContextMenuCover} ref={refButtonSubmenu} />
+
 					<ContextMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover} refButton={refButtonSubmenu}>
 						<ContextMenu.Item checked={contextMenuSelectedItem === 0} onClick={() => handleOnclickContextMenu(0)}>
 							Item A
