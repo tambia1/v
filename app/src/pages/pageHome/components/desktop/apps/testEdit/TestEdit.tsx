@@ -185,39 +185,15 @@ export const TestEdit = () => {
 						Open menu
 					</Button>
 					<ContextMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover} refButton={refButtonSubmenu}>
-						<ContextMenu.Cell
-							onClick={() => {
-								handleOnclickContextMenu(0);
-							}}
-							$lineState="long"
-						>
-							<ContextMenu.Cell.Text>Item 0</ContextMenu.Cell.Text>
-							<ContextMenu.Cell.Image>
-								<Icon iconName={contextMenuSelectedItem === 0 ? "iconCheck" : ""} />
-							</ContextMenu.Cell.Image>
-						</ContextMenu.Cell>
-						<ContextMenu.Cell
-							onClick={() => {
-								handleOnclickContextMenu(1);
-							}}
-							$lineState="long"
-						>
-							<ContextMenu.Cell.Text>Item 1</ContextMenu.Cell.Text>
-							<ContextMenu.Cell.Image>
-								<Icon iconName={contextMenuSelectedItem === 1 ? "iconCheck" : ""} />
-							</ContextMenu.Cell.Image>
-						</ContextMenu.Cell>
-						<ContextMenu.Cell
-							onClick={() => {
-								handleOnclickContextMenu(2);
-							}}
-							$lineState="long"
-						>
-							<ContextMenu.Cell.Text>Item 2</ContextMenu.Cell.Text>
-							<ContextMenu.Cell.Image>
-								<Icon iconName={contextMenuSelectedItem === 2 ? "iconCheck" : ""} />
-							</ContextMenu.Cell.Image>
-						</ContextMenu.Cell>
+						<ContextMenu.Item checked={contextMenuSelectedItem === 0} onClick={() => handleOnclickContextMenu(0)}>
+							Item A
+						</ContextMenu.Item>
+						<ContextMenu.Item checked={contextMenuSelectedItem === 1} onClick={() => handleOnclickContextMenu(1)}>
+							Item B
+						</ContextMenu.Item>
+						<ContextMenu.Item checked={contextMenuSelectedItem === 2} onClick={() => handleOnclickContextMenu(2)}>
+							Item C
+						</ContextMenu.Item>
 					</ContextMenu>
 				</S.Col>
 

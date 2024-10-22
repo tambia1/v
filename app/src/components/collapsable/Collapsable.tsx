@@ -1,11 +1,11 @@
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import * as S from "./Collapsable.styles";
 
-export interface Props {
+export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	children?: ReactNode;
 	collapsed: boolean;
-}
+};
 
 export const Collapsable = ({ className, children, collapsed, ...rest }: Props) => {
 	return (

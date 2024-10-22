@@ -1,6 +1,7 @@
 import { type HTMLAttributes, type ReactNode, type RefObject, useLayoutEffect, useRef, useState } from "react";
 import { List } from "../list/List";
 import * as S from "./ContextMenu.styles";
+import { Item } from "./components/item/Item";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
@@ -48,8 +49,4 @@ export const ContextMenu = ({ className, children, visible, onClickCover, refBut
 	);
 };
 
-ContextMenu.Cell = List.Cell;
-ContextMenu.Cell.Icon = List.Cell.Icon;
-ContextMenu.Cell.Text = List.Cell.Text;
-ContextMenu.Cell.Image = List.Cell.Image;
-ContextMenu.Cell.Info = List.Cell.Info;
+ContextMenu.Item = Item;
