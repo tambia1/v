@@ -185,41 +185,39 @@ export const TestEdit = () => {
 						Open menu
 					</Button>
 					<ContextMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover} refButton={refButtonSubmenu}>
-						<List>
-							<List.Cell
-								onClick={() => {
-									handleOnclickContextMenu(0);
-								}}
-								$lineState="long"
-							>
-								<List.Cell.Center>Item 0</List.Cell.Center>
-								<List.Cell.Right>
-									<Icon iconName={contextMenuSelectedItem === 0 ? "iconCheck" : ""} />
-								</List.Cell.Right>
-							</List.Cell>
-							<List.Cell
-								onClick={() => {
-									handleOnclickContextMenu(1);
-								}}
-								$lineState="long"
-							>
-								<List.Cell.Center>Item 1</List.Cell.Center>
-								<List.Cell.Right>
-									<Icon iconName={contextMenuSelectedItem === 1 ? "iconCheck" : ""} />
-								</List.Cell.Right>
-							</List.Cell>
-							<List.Cell
-								onClick={() => {
-									handleOnclickContextMenu(2);
-								}}
-								$lineState="long"
-							>
-								<List.Cell.Center>Item 2</List.Cell.Center>
-								<List.Cell.Right>
-									<Icon iconName={contextMenuSelectedItem === 2 ? "iconCheck" : ""} />
-								</List.Cell.Right>
-							</List.Cell>
-						</List>
+						<ContextMenu.Cell
+							onClick={() => {
+								handleOnclickContextMenu(0);
+							}}
+							$lineState="long"
+						>
+							<ContextMenu.Cell.Center>Item 0</ContextMenu.Cell.Center>
+							<ContextMenu.Cell.Right>
+								<Icon iconName={contextMenuSelectedItem === 0 ? "iconCheck" : ""} />
+							</ContextMenu.Cell.Right>
+						</ContextMenu.Cell>
+						<ContextMenu.Cell
+							onClick={() => {
+								handleOnclickContextMenu(1);
+							}}
+							$lineState="long"
+						>
+							<ContextMenu.Cell.Center>Item 1</ContextMenu.Cell.Center>
+							<ContextMenu.Cell.Right>
+								<Icon iconName={contextMenuSelectedItem === 1 ? "iconCheck" : ""} />
+							</ContextMenu.Cell.Right>
+						</ContextMenu.Cell>
+						<ContextMenu.Cell
+							onClick={() => {
+								handleOnclickContextMenu(2);
+							}}
+							$lineState="long"
+						>
+							<ContextMenu.Cell.Center>Item 2</ContextMenu.Cell.Center>
+							<ContextMenu.Cell.Right>
+								<Icon iconName={contextMenuSelectedItem === 2 ? "iconCheck" : ""} />
+							</ContextMenu.Cell.Right>
+						</ContextMenu.Cell>
 					</ContextMenu>
 				</S.Col>
 

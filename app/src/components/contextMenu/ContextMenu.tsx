@@ -1,4 +1,5 @@
 import { type HTMLAttributes, type ReactNode, type RefObject, useLayoutEffect, useRef, useState } from "react";
+import { List } from "../list/List";
 import * as S from "./ContextMenu.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
@@ -39,8 +40,16 @@ export const ContextMenu = ({ className, children, visible, onClickCover, refBut
 	return (
 		<S.ContextMenu ref={refCover} className={className} onClick={handleOnClick} $visible={visible} {...rest}>
 			<S.Items $left={position.left} $top={position.top}>
-				<S.ItemsContainer $isOpen={isItemsOpen}>{children}</S.ItemsContainer>
+				<S.ItemsContainer $isOpen={isItemsOpen}>
+					<List>{children}</List>
+				</S.ItemsContainer>
 			</S.Items>
 		</S.ContextMenu>
 	);
 };
+
+ContextMenu.Cell = List.Cell;
+ContextMenu.Cell.Left = List.Cell.Left;
+ContextMenu.Cell.Center = List.Cell.Center;
+ContextMenu.Cell.Right = List.Cell.Right;
+ContextMenu.Cell.End = List.Cell.End;
