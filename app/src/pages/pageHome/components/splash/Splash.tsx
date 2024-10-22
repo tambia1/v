@@ -1,5 +1,4 @@
 import { version } from "@src/../package.json";
-import { Progress } from "@src/components/progress/Progress";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { Files } from "@src/services/Files";
 import { Promises } from "@src/services/Promises";
@@ -54,9 +53,9 @@ export const Splash = ({ onFinish }: Props) => {
 	return (
 		<S.Splash>
 			<S.Logo ref={refLogo} />
-			<S.Progress ref={refProgress}>
-				<Progress percent={progress} />
-			</S.Progress>
+			<S.ProgressContainer ref={refProgress}>
+				<S.Progress percent={progress} />
+			</S.ProgressContainer>
 			<S.Version>{version}</S.Version>
 		</S.Splash>
 	);

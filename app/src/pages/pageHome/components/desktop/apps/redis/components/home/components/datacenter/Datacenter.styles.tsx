@@ -1,6 +1,7 @@
 import { Collapsable } from "@src/components/collapsable/Collapsable.styles";
 import { Flag } from "@src/components/flag/Flag.styles";
 import { Progress as ProgressComponent } from "@src/components/progress/Progress";
+import { ProgressValue } from "@src/components/progress/Progress.styles";
 import styled, { css } from "styled-components";
 
 export const Page = styled.div`
@@ -323,6 +324,10 @@ export const DatabasesInfoCell = styled.div`
 
 export const Progress = styled(ProgressComponent)<{ percent: number }>`
 	border: 1px solid #ffffff;
+
+	& ${ProgressValue}{
+		background-color: #ffffff;
+	}
 `;
 
 export const WorldMapContainer = styled.div`
