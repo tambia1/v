@@ -5,21 +5,22 @@ import { data } from "./Data";
 import * as S from "./TestTable.styles";
 
 export const TestTable = () => {
-	const [selectIndex, setSelectIndex] = useState(0);
 	const [tableType, setTableType] = useState<IType>("horizontal");
 
 	const onClickSelect = (index: number) => {
 		const map: IType[] = ["horizontal", "vertical"];
 
-		setSelectIndex(index);
 		setTableType(map[index]);
 	};
 
 	return (
 		<S.TestTable>
-			<Select selectedIndex={selectIndex} onClickItem={onClickSelect}>
-				<Select.Item>Horizontal</Select.Item>
-				<Select.Item>Vertical</Select.Item>
+			<Select onClickOption={onClickSelect}>
+				<Select.Display>{tableType}</Select.Display>
+				<Select.Options>
+					<Select.Options.Item>Horizontal</Select.Options.Item>
+					<Select.Options.Item>Vertical</Select.Options.Item>
+				</Select.Options>
 			</Select>
 
 			<S.TableContainer>

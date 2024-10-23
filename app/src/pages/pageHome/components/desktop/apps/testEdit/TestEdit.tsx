@@ -28,6 +28,8 @@ export const TestEdit = () => {
 	const [isCoverVisible, setIsCoverVisible] = useState(false);
 	const refButtonSubmenu = useRef(null);
 
+	const [selectedOption, setSelectedOption] = useState(0);
+
 	const [contextMenuSelectedItem, setContextMenuSelectedItem] = useState(0);
 
 	const handleOnClickSwitch = () => {
@@ -56,6 +58,10 @@ export const TestEdit = () => {
 
 	const handleOnclickContextMenu = (index: number) => {
 		setContextMenuSelectedItem(index);
+	};
+
+	const handleOnClickSelectOption = (index: number) => {
+		setSelectedOption(index);
 	};
 
 	return (
@@ -171,10 +177,13 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Select</Text>
-					<Select selectedIndex={0} onClickItem={() => {}}>
-						<Select.Item>Item 0</Select.Item>
-						<Select.Item>Item 1</Select.Item>
-						<Select.Item>Item 2</Select.Item>
+					<Select onClickOption={handleOnClickSelectOption}>
+						<Select.Display>{`Item ${selectedOption}`}</Select.Display>
+						<Select.Options>
+							<Select.Options.Item>Item 0</Select.Options.Item>
+							<Select.Options.Item>Item 1</Select.Options.Item>
+							<Select.Options.Item>Item 2</Select.Options.Item>
+						</Select.Options>
 					</Select>
 				</S.Col>
 

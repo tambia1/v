@@ -1,58 +1,35 @@
-import { Icon } from "@src/components/icon/Icon";
 import { type HTMLAttributes, type ReactNode, useState } from "react";
-import { List } from "../list/List";
 import * as S from "./Select.styles";
-import { Item } from "./components/item/Item";
+import { Display } from "./components/display/Display";
+import { Options } from "./components/options/Options";
+import { ContextSelect } from "./context/UseContextSelect";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	children: ReactNode[];
-	selectedIndex: number;
-	onClickItem: (index: number) => void;
+	onClickOption: (index: number) => void;
 };
 
-export const Select = ({ className, children, selectedIndex, onClickItem, ...rest }: Props) => {
+export const Select = ({ className, children, onClickOption, ...rest }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	const handleOnClickButton = () => {
+	const handleOnClickDisplay = () => {
 		setIsOpen(!isOpen);
 	};
 
-	const handleOnClickCell = (index: number) => {
-		onClickItem(index);
+	const handleOnClickOption = (index: number) => {
+		onClickOption(index);
 		setIsOpen(false);
 	};
 
 	return (
 		<S.Select className={className} {...rest}>
-			<List>
-				<List.Cell onClick={handleOnClickButton}>
-					<List.Cell.Text>{children[selectedIndex]}</List.Cell.Text>
-					<List.Cell.Image>
-						<S.ContainerIconArrow $isOpen={isOpen}>
-							<Icon iconName="iconChevronDown" />
-						</S.ContainerIconArrow>
-					</List.Cell.Image>
-				</List.Cell>
-			</List>
-
-			<S.ListContainer $isOpen={isOpen}>
-				<List>
-					{children.map((item, index) => (
-						<List.Cell
-							key={index}
-							onClick={() => {
-								handleOnClickCell(index);
-							}}
-							$lineState="long"
-						>
-							<List.Cell.Text>{item}</List.Cell.Text>
-						</List.Cell>
-					))}
-				</List>
-			</S.ListContainer>
+			<ContextSelect.Provider value={{ isOpen, setIsOpen, onClickDisplay: handleOnClickDisplay, onClickOption: handleOnClickOption }}>
+				{children}
+			</ContextSelect.Provider>
 		</S.Select>
 	);
 };
 
-Select.Item = Item;
+Select.Display = Display;
+Select.Options = Options;
