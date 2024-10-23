@@ -77,7 +77,7 @@ export const menuGroups: MenuGroup<MenuItemId>[] = [
 				id: "about",
 				content: (
 					<>
-						<Icon iconName="iconRedisDisk" />
+						<Icon iconName="iconRedisDissolved" />
 						<T>{lang.redis.menu.about.about}</T>
 					</>
 				),

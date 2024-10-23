@@ -201,9 +201,9 @@ import iconPocket from "./assets/pocket.svg";
 import iconPower from "./assets/power.svg";
 import iconPrinter from "./assets/printer.svg";
 import iconRadio from "./assets/radio.svg";
-import iconRedisDisk from "./assets/redis-disk.svg";
-import iconRedisFlash from "./assets/redis-flash.svg";
-import iconRedisReplica from "./assets/redis-replica.svg";
+import iconRedisActivated from "./assets/redis-activated.svg";
+import iconRedisDisabled from "./assets/redis-disabaled.svg";
+import iconRedisDissolved from "./assets/redis-dissolved.svg";
 import iconRedis from "./assets/redis.svg";
 import iconRefreshCcw from "./assets/refresh-ccw.svg";
 import iconRefreshCw from "./assets/refresh-cw.svg";
@@ -497,9 +497,9 @@ export const Icons = {
 	iconPower,
 	iconPrinter,
 	iconRadio,
-	iconRedisDisk,
-	iconRedisFlash,
-	iconRedisReplica,
+	iconRedisActivated,
+	iconRedisDisabled,
+	iconRedisDissolved,
 	iconRedis,
 	iconRefreshCcw,
 	iconRefreshCw,

@@ -85,7 +85,8 @@ export const Datacenter = () => {
 										name: crdb.name,
 										id: crdb.id,
 										usage: crdb.crdb_instances[0].usage,
-										size: crdb.memory_size_in_mb * 1024 * 1024,
+										memorySize: crdb.memory_size_in_mb * 1024 * 1024,
+										dbSize: (crdb.memory_size_in_mb * 1024 * 1024) / 4,
 										highAvailability: true,
 										dataPersistence: crdb.default_db_config.data_persistence,
 									}))
@@ -96,7 +97,8 @@ export const Datacenter = () => {
 										name: bdb.name,
 										id: bdb.id,
 										usage: bdb.usage,
-										size: bdb.size || plan.size,
+										memorySize: bdb.size || plan.size,
+										dbSize: bdb.replication ? (bdb.size || plan.size) / 2 : bdb.size || plan.size,
 										highAvailability: bdb.replication,
 										dataPersistence: bdb.data_persistence,
 									})),
@@ -218,9 +220,9 @@ export const Datacenter = () => {
 								<S.SubscriptionsDetailsRow>
 									<S.Row>
 										<S.SubscriptionsDetailText>Vendor</S.SubscriptionsDetailText>
-										{sub.cloud === "aws" && <Icon iconName="iconAmazon" size="1rem" />}
-										{sub.cloud === "gcp" && <Icon iconName="iconGoogle" size="1rem" />}
-										{sub.cloud === "azure" && <Icon iconName="iconMicrosoft" size="1rem" />}
+										{sub.cloud === "aws" && <Icon iconName="iconAmazon" />}
+										{sub.cloud === "gcp" && <Icon iconName="iconGoogle" />}
+										{sub.cloud === "azure" && <Icon iconName="iconMicrosoft" />}
 									</S.Row>
 									<S.Row>
 										<S.SubscriptionsDetailText>Flash</S.SubscriptionsDetailText>
@@ -287,7 +289,7 @@ export const Datacenter = () => {
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>
-													<S.Progress percent={Math.max(25, (db.usage / db.size) * 100)} />
+													<S.Progress percent={Math.max(25, (db.usage / db.memorySize) * 100)} />
 												</S.DatabasesText>
 												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
 													<Icon iconName="iconChevronRight" />
@@ -297,8 +299,8 @@ export const Datacenter = () => {
 											<Collapsable collapsed={db.collapsed}>
 												<S.DatabasesInfoRow>
 													<S.DatabasesInfoCell>
-														<S.DatabaseDetailText>Size</S.DatabaseDetailText>
-														<S.DatabaseDetailValue>{convertBytes(db.size, "biggest")}</S.DatabaseDetailValue>
+														<S.DatabaseDetailText>Memory Size</S.DatabaseDetailText>
+														<S.DatabaseDetailValue>{convertBytes(db.memorySize, "biggest")}</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
 
 													<S.DatabasesInfoCell>
@@ -307,22 +309,36 @@ export const Datacenter = () => {
 													</S.DatabasesInfoCell>
 
 													<S.DatabasesInfoCell>
-														<S.DatabaseDetailValue>{Number(db.usage / db.size).toFixed(3)}%</S.DatabaseDetailValue>
+														<S.DatabaseDetailValue>{Number(db.usage / db.memorySize).toFixed(3)}%</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 
 												<S.DatabasesInfoRow>
 													<S.DatabasesInfoCell>
-														<S.DatabaseDetailText>Replica</S.DatabaseDetailText>
-														{!db.highAvailability && <Icon iconName="iconSquare" stroke="#A99D5D" />}
-														{db.highAvailability && <Icon iconName="iconVSquare" stroke="#A99D5D" />}
+														<Icon iconName="iconRedis" />
+														<S.DatabaseDetailText>DB Size</S.DatabaseDetailText>
+														<S.DatabaseDetailValue>{convertBytes(db.dbSize, "biggest")}</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
+												</S.DatabasesInfoRow>
 
+												<S.DatabasesInfoRow>
 													<S.DatabasesInfoCell>
-														<S.DatabaseDetailText>HDD</S.DatabaseDetailText>
-														{db.dataPersistence === "disabled" && <Icon iconName="iconSquare" stroke="#A99D5D" />}
-														{db.dataPersistence !== "disabled" && <Icon iconName="iconVSquare" stroke="#A99D5D" />}
-														{dataPersistenceMap[db.dataPersistence as keyof typeof dataPersistenceMap]}
+														{db.highAvailability && <Icon iconName="iconRedisActivated" />}
+														{!db.highAvailability && <Icon iconName="iconRedisDisabled" />}
+														{db.highAvailability && <S.DatabaseDetailText>Replica Size</S.DatabaseDetailText>}
+														{!db.highAvailability && <S.DatabaseDetailTextDisabled>Replica Size</S.DatabaseDetailTextDisabled>}
+														{db.highAvailability && <S.DatabaseDetailValue>{convertBytes(db.dbSize, "biggest")}</S.DatabaseDetailValue>}
+														{!db.highAvailability && <S.DatabaseDetailValue>None</S.DatabaseDetailValue>}
+													</S.DatabasesInfoCell>
+												</S.DatabasesInfoRow>
+
+												<S.DatabasesInfoRow>
+													<S.DatabasesInfoCell>
+														{db.dataPersistence !== "disabled" && <Icon iconName="iconHardDrive" stroke="#ffffff" />}
+														{db.dataPersistence === "disabled" && <Icon iconName="iconHardDrive" stroke="#999999" />}
+														{db.dataPersistence !== "disabled" && <S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>}
+														{db.dataPersistence === "disabled" && <S.DatabaseDetailTextDisabled>Data Persistence</S.DatabaseDetailTextDisabled>}
+														<S.DatabaseDetailValue>{dataPersistenceMap[db.dataPersistence as keyof typeof dataPersistenceMap]}</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 											</Collapsable>

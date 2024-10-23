@@ -234,6 +234,14 @@ export const DatabaseDetailText = styled.div`
 
 `;
 
+export const DatabaseDetailTextDisabled = styled.div`
+	display: flex;
+	align-items: center;
+	font-weight: normal;
+	color: #999999
+
+`;
+
 export const DatabaseDetailValue = styled.div`
 	display: flex;
 	align-items: center;
