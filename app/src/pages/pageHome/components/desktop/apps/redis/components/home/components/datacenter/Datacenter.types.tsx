@@ -14,9 +14,9 @@ export type DataCenterType = {
 		collapsed: boolean;
 		id: number;
 		name: string;
-		usage: number;
 		memorySize: number;
 		dbSize: number;
+		usage: number;
 		highAvailability: boolean;
 		dataPersistence: string;
 	}[];
