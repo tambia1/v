@@ -92,9 +92,12 @@ const SubscriptionsWidth = css`
 		justify-content: left;
 	}
 	& > div:nth-child(4) {
-		width: 2rem;
+		width: 5rem;
 	}
 	& > div:nth-child(5) {
+		width: 2rem;
+	}
+	& > div:nth-child(6) {
 		width: 2rem;
 	}
 `;
@@ -112,7 +115,7 @@ const DatabasesWidth = css`
 		flex-shrink: 1;
 	}
 	& > div:nth-child(3) {
-		width: 5rem;
+		width: 7rem;
 	}
 	& > div:nth-child(4) {
 		width: 5rem;
