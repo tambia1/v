@@ -6,17 +6,12 @@ export const Check = styled.div`
 	height: 3rem;
 	display: flex;
 	overflow: hidden;
+	cursor: pointer;
+	flex-shrink: 0;
 
 	& ${Icon}{
 		width: 120%;
-    	height: 120%;
-    	margin: -10%;
+		height: 120%;
+		margin: -10%;
 	}
-`;
-
-export const Dot = styled.div<{ $checkState: boolean }>`
-	width: 50%;
-	height: 100%;
-	background-color: ${(props) => props.theme.color.primaryBg};
-	border-radius: 100rem;
 `;

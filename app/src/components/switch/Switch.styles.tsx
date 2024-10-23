@@ -10,6 +10,7 @@ export const Switch = styled.div`
 	overflow: hidden;
 	padding: 0.2rem;
 	box-sizing: border-box;
+	cursor: pointer;
 `;
 
 export const Dot = styled.div<{ $switchState: SwitchState }>`

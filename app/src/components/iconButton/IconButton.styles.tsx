@@ -10,6 +10,7 @@ export const IconButton = styled.div`
 	justify-content: center;
 	overflow: hidden;
 	cursor: pointer;
+	transition: all 0.3s ease;
 
 	&:hover{
 		color: ${(props) => props.theme.color.primaryFgHover};

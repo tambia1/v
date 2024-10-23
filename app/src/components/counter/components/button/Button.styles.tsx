@@ -11,7 +11,7 @@ export const Button = styled.div`
 
 	& ${Icon}{
 		width: 120%;
-    	height: 120%;
-    	margin: -10%;
+		height: 120%;
+		margin: -10%;
 	}
 `;
