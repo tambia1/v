@@ -17,13 +17,13 @@ export const TestSelect = () => {
 
 			<Space />
 
-			<Select onClickOption={handleOnClickSelectOption}>
+			<Select onClickItem={handleOnClickSelectOption}>
 				<Select.Display>{`Item ${selectedOption}`}</Select.Display>
-				<Select.Options>
-					<Select.Options.Item>Item 0</Select.Options.Item>
-					<Select.Options.Item>Item 1</Select.Options.Item>
-					<Select.Options.Item>Item 2</Select.Options.Item>
-				</Select.Options>
+				<Select.Items>
+					<Select.Items.Item>Item 0</Select.Items.Item>
+					<Select.Items.Item>Item 1</Select.Items.Item>
+					<Select.Items.Item>Item 2</Select.Items.Item>
+				</Select.Items>
 			</Select>
 		</S.TestSelect>
 	);

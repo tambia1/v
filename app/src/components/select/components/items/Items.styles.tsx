@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Options = styled.div<{ $isOpen: boolean }>`
+export const Items = styled.div<{ $isOpen: boolean }>`
 	margin-top: 0.5rem;
 	display: grid;
 	grid-template-rows: ${({ $isOpen }) => ($isOpen ? "1fr" : "0fr")};

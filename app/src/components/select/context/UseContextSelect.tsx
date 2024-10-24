@@ -4,7 +4,7 @@ export const ContextSelect = createContext<{
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 	onClickDisplay: () => void;
-	onClickOption: (index: number) => void;
+	onClickItem: (index: number) => void;
 } | null>(null);
 
 export const useContextSelect = () => {

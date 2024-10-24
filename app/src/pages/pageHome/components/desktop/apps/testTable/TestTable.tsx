@@ -15,12 +15,12 @@ export const TestTable = () => {
 
 	return (
 		<S.TestTable>
-			<Select onClickOption={onClickSelect}>
+			<Select onClickItem={onClickSelect}>
 				<Select.Display>{tableType}</Select.Display>
-				<Select.Options>
-					<Select.Options.Item>Horizontal</Select.Options.Item>
-					<Select.Options.Item>Vertical</Select.Options.Item>
-				</Select.Options>
+				<Select.Items>
+					<Select.Items.Item>Horizontal</Select.Items.Item>
+					<Select.Items.Item>Vertical</Select.Items.Item>
+				</Select.Items>
 			</Select>
 
 			<S.TableContainer>

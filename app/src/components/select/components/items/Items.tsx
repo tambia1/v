@@ -1,24 +1,24 @@
 import { List } from "@src/components/list/List";
 import type { HTMLAttributes, ReactNode } from "react";
 import { useContextSelect } from "../../context/UseContextSelect";
-import * as S from "./Options.styles";
+import * as S from "./Items.styles";
 import { Item } from "./components/item/Item";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	children: ReactNode[];
 };
 
-export const Options = ({ children }: Props) => {
+export const Items = ({ children }: Props) => {
 	const contextSelect = useContextSelect();
 
 	return (
-		<S.Options $isOpen={contextSelect.isOpen}>
+		<S.Items $isOpen={contextSelect.isOpen}>
 			<List>
 				{children.map((item, index) => (
 					<List.Cell
 						key={index}
 						onClick={() => {
-							contextSelect.onClickOption(index);
+							contextSelect.onClickItem(index);
 						}}
 						$lineState="long"
 					>
@@ -26,8 +26,8 @@ export const Options = ({ children }: Props) => {
 					</List.Cell>
 				))}
 			</List>
-		</S.Options>
+		</S.Items>
 	);
 };
 
-Options.Item = Item;
+Items.Item = Item;

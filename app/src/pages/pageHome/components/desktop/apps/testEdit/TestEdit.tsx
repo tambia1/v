@@ -25,8 +25,8 @@ export const TestEdit = () => {
 
 	const [inputValue, setInputValue] = useState("Test");
 
-	const [isCoverVisible, setIsCoverVisible] = useState(false);
-	const [contextMenuSelectedItem, setContextMenuSelectedItem] = useState(0);
+	const [isPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
+	const [popupMenuSelectedItem, setPopupMenuSelectedItem] = useState(0);
 
 	const [selectedOption, setSelectedOption] = useState(0);
 
@@ -50,12 +50,13 @@ export const TestEdit = () => {
 		setCounter(counter + 1);
 	};
 
-	const handleOnClickContextMenuCover = () => {
-		setIsCoverVisible(!isCoverVisible);
+	const handleOnClickPopupMenu = () => {
+		setIsPopupMenuOpen(!isPopupMenuOpen);
 	};
 
-	const handleOnclickContextMenu = (index: number) => {
-		setContextMenuSelectedItem(index);
+	const handleOnClickPopupMenuItem = (index: number) => {
+		setPopupMenuSelectedItem(index);
+		setIsPopupMenuOpen(false);
 	};
 
 	const handleOnClickSelectOption = (index: number) => {
@@ -177,13 +178,13 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Select</Text>
-					<Select onClickOption={handleOnClickSelectOption}>
+					<Select onClickItem={handleOnClickSelectOption}>
 						<Select.Display>{`Item ${selectedOption}`}</Select.Display>
-						<Select.Options>
-							<Select.Options.Item>Item 0</Select.Options.Item>
-							<Select.Options.Item>Item 1</Select.Options.Item>
-							<Select.Options.Item>Item 2</Select.Options.Item>
-						</Select.Options>
+						<Select.Items>
+							<Select.Items.Item>Item 0</Select.Items.Item>
+							<Select.Items.Item>Item 1</Select.Items.Item>
+							<Select.Items.Item>Item 2</Select.Items.Item>
+						</Select.Items>
 					</Select>
 				</S.Col>
 
@@ -192,22 +193,12 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Popup Menu</Text>
 
-					<PopupMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover}>
-						<PopupMenu.Button>
-							<IconButton iconName="iconMoreVertical" onClick={handleOnClickContextMenuCover} />
-						</PopupMenu.Button>
+					<IconButton iconName="iconMoreVertical" onClick={handleOnClickPopupMenu} />
 
-						<PopupMenu.Items>
-							<PopupMenu.Items.Item checked={contextMenuSelectedItem === 0} onClick={() => handleOnclickContextMenu(0)}>
-								Item A
-							</PopupMenu.Items.Item>
-							<PopupMenu.Items.Item checked={contextMenuSelectedItem === 1} onClick={() => handleOnclickContextMenu(1)}>
-								Item B
-							</PopupMenu.Items.Item>
-							<PopupMenu.Items.Item checked={contextMenuSelectedItem === 2} onClick={() => handleOnclickContextMenu(2)}>
-								Item C
-							</PopupMenu.Items.Item>
-						</PopupMenu.Items>
+					<PopupMenu isOpen={isPopupMenuOpen} checkedItemIndex={popupMenuSelectedItem} onClickItem={handleOnClickPopupMenuItem}>
+						<PopupMenu.Item>Item A</PopupMenu.Item>
+						<PopupMenu.Item>Item B</PopupMenu.Item>
+						<PopupMenu.Item>Item C</PopupMenu.Item>
 					</PopupMenu>
 				</S.Col>
 

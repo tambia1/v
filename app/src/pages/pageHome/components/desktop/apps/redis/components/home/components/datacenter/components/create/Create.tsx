@@ -21,21 +21,21 @@ export const Create = () => {
 			<Text fontSize="header">{t(lang.redis.create.title)}</Text>
 
 			<S.Spacer />
-			<Select onClickOption={() => {}}>
+			<Select onClickItem={() => {}}>
 				<Select.Display>
 					<Icon iconName="iconAmazon" />
 				</Select.Display>
-				<Select.Options>
-					<Select.Options.Item>
+				<Select.Items>
+					<Select.Items.Item>
 						<Icon iconName="iconAmazon" />
-					</Select.Options.Item>
-					<Select.Options.Item>
+					</Select.Items.Item>
+					<Select.Items.Item>
 						<Icon iconName="iconGoogle" />
-					</Select.Options.Item>
-					<Select.Options.Item>
+					</Select.Items.Item>
+					<Select.Items.Item>
 						<Icon iconName="iconMicrosoft" />
-					</Select.Options.Item>
-				</Select.Options>
+					</Select.Items.Item>
+				</Select.Items>
 			</Select>
 
 			<S.Spacer />
