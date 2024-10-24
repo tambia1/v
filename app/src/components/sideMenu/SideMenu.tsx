@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { List } from "../list/List";
-import * as S from "./Menu.styles";
+import * as S from "./SideMenu.styles";
 
 export type MenuGroup<MenuItemId> = {
 	content: ReactNode;
@@ -22,7 +22,7 @@ export interface Props<MenuItemId> {
 	onClickItem: (id: MenuItemId) => void;
 }
 
-export const Menu = <MenuItemId extends string>({
+export const SideMenu = <MenuItemId extends string>({
 	children,
 	className,
 	$visible,
@@ -39,7 +39,7 @@ export const Menu = <MenuItemId extends string>({
 	};
 
 	return (
-		<S.Menu className={className} {...rest} onClick={handleOnClickBackground}>
+		<S.SideMenu className={className} {...rest} onClick={handleOnClickBackground}>
 			<S.Container>
 				<S.Content>{children}</S.Content>
 
@@ -61,6 +61,6 @@ export const Menu = <MenuItemId extends string>({
 					))}
 				</S.MenuList>
 			</S.Container>
-		</S.Menu>
+		</S.SideMenu>
 	);
 };

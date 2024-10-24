@@ -3,7 +3,7 @@ import { List } from "../list/List.styles";
 import { Cell } from "../list/components/cell/Cell.styles";
 import { Section } from "../list/components/section/Section.styles";
 
-export const Menu = styled.div`
+export const SideMenu = styled.div`
 	width: 100%;
 	height: 100%;
 	overflow: hidden;

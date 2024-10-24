@@ -1,5 +1,5 @@
-import { Menu } from "@src/components/menu/Menu";
 import { Navigator } from "@src/components/navigator/Navigator";
+import { SideMenu } from "@src/components/sideMenu/SideMenu";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
@@ -41,7 +41,7 @@ export const Home = () => {
 			</S.Bar>
 
 			<S.Container>
-				<Menu
+				<SideMenu
 					$visible={isMenuVisible}
 					menuGroups={menuGroups}
 					selectedMenuId={selectedMenuId}
@@ -67,7 +67,7 @@ export const Home = () => {
 					<S.Transition $visible={selectedMenuId === "about"}>
 						<About />
 					</S.Transition>
-				</Menu>
+				</SideMenu>
 			</S.Container>
 		</S.Home>
 	);

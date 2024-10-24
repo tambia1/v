@@ -1,4 +1,4 @@
-import { Menu, type MenuGroup } from "@src/components/menu/Menu";
+import { type MenuGroup, SideMenu } from "@src/components/sideMenu/SideMenu";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
@@ -43,7 +43,7 @@ export const TestMenu = () => {
 
 			<S.MenuIcon iconName="iconMenu" onClick={handleOnClickMenuBackground} />
 
-			<Menu
+			<SideMenu
 				$visible={isMenuVisible}
 				menuGroups={menuGroups}
 				selectedMenuId="add"
