@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
-import { useContextMenu } from "../../context/UseContextMenu";
+import { useContextMenu } from "../../context/UsePopupMenu";
 import * as S from "./Button.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {

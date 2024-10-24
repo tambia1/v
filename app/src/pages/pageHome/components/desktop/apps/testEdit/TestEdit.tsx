@@ -1,12 +1,12 @@
 import { Button } from "@src/components/button/Button";
 import { Check } from "@src/components/check/Check";
-import { ContextMenu } from "@src/components/contextMenu/ContextMenu";
 import { Counter } from "@src/components/counter/Counter";
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { IconButton } from "@src/components/iconButton/IconButton";
 import { Input } from "@src/components/input/Input";
 import { List } from "@src/components/list/List";
+import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
 import { Progress } from "@src/components/progress/Progress";
 import { Select } from "@src/components/select/Select";
 import { Switch, type SwitchState } from "@src/components/switch/Switch";
@@ -193,23 +193,23 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Contextmenu</Text>
 
-					<ContextMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover}>
-						<ContextMenu.Button>
+					<PopupMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover}>
+						<PopupMenu.Button>
 							<IconButton iconName="iconMoreVertical" onClick={handleOnClickContextMenuCover} />
-						</ContextMenu.Button>
+						</PopupMenu.Button>
 
-						<ContextMenu.Items>
-							<ContextMenu.Items.Item checked={contextMenuSelectedItem === 0} onClick={() => handleOnclickContextMenu(0)}>
+						<PopupMenu.Items>
+							<PopupMenu.Items.Item checked={contextMenuSelectedItem === 0} onClick={() => handleOnclickContextMenu(0)}>
 								Item A
-							</ContextMenu.Items.Item>
-							<ContextMenu.Items.Item checked={contextMenuSelectedItem === 1} onClick={() => handleOnclickContextMenu(1)}>
+							</PopupMenu.Items.Item>
+							<PopupMenu.Items.Item checked={contextMenuSelectedItem === 1} onClick={() => handleOnclickContextMenu(1)}>
 								Item B
-							</ContextMenu.Items.Item>
-							<ContextMenu.Items.Item checked={contextMenuSelectedItem === 2} onClick={() => handleOnclickContextMenu(2)}>
+							</PopupMenu.Items.Item>
+							<PopupMenu.Items.Item checked={contextMenuSelectedItem === 2} onClick={() => handleOnclickContextMenu(2)}>
 								Item C
-							</ContextMenu.Items.Item>
-						</ContextMenu.Items>
-					</ContextMenu>
+							</PopupMenu.Items.Item>
+						</PopupMenu.Items>
+					</PopupMenu>
 				</S.Col>
 
 				<S.Line />

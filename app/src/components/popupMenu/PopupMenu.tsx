@@ -1,8 +1,8 @@
 import { type HTMLAttributes, type ReactNode, useLayoutEffect, useRef, useState } from "react";
-import * as S from "./ContextMenu.styles";
+import * as S from "./PopupMenu.styles";
 import { Button } from "./components/button/Button";
 import { Items } from "./components/items/Items";
-import { Context } from "./context/UseContextMenu";
+import { Context } from "./context/UsePopupMenu";
 
 export type PositionVer = "top" | "middle" | "bottom";
 export type PositionHor = "left" | "center" | "right";
@@ -16,7 +16,7 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 	PositionHor?: PositionHor;
 };
 
-export const ContextMenu = ({ className, children, visible, onClickCover, PositionVer = "bottom", PositionHor = "right", ...rest }: Props) => {
+export const PopupMenu = ({ className, children, visible, onClickCover, PositionVer = "bottom", PositionHor = "right", ...rest }: Props) => {
 	const refCover = useRef<HTMLDivElement>(null);
 	const refItems = useRef<HTMLDivElement>(null);
 	const refButton = useRef<HTMLDivElement>(null);
@@ -67,5 +67,5 @@ export const ContextMenu = ({ className, children, visible, onClickCover, Positi
 	);
 };
 
-ContextMenu.Button = Button;
-ContextMenu.Items = Items;
+PopupMenu.Button = Button;
+PopupMenu.Items = Items;
