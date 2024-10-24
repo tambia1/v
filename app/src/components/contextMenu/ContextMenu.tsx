@@ -51,7 +51,7 @@ export const ContextMenu = ({ className, children, visible, onClickCover, refBut
 		} else {
 			setIsItemsOpen(false);
 		}
-	}, [refButton.current, visible, PositionVer, PositionHor]);
+	}, [refButton, visible, PositionVer, PositionHor]);
 
 	const handleOnClick = () => {
 		onClickCover?.();
