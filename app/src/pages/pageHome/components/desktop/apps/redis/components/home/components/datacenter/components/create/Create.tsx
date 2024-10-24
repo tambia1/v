@@ -39,7 +39,9 @@ export const Create = () => {
 			</Select>
 
 			<S.Spacer />
-			<Counter val={0} onClickMinus={() => {}} onClickPlus={() => {}} />
+			<Counter onClickMinus={() => {}} onClickPlus={() => {}}>
+				0
+			</Counter>
 
 			<S.Spacer />
 			<Text fontSize="body">Cloud vendors</Text>

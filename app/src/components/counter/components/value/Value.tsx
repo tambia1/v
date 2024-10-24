@@ -1,14 +1,15 @@
 import { Text } from "@src/components/text/Text";
+import type { ReactNode } from "react";
 import * as S from "./Value.styles";
 
 type Props = {
-	val: string | number;
+	children?: ReactNode;
 };
 
-export const Value = ({ val }: Props) => {
+export const Value = ({ children }: Props) => {
 	return (
 		<S.Value>
-			<Text>{val}</Text>
+			<Text>{children}</Text>
 		</S.Value>
 	);
 };

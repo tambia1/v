@@ -13,20 +13,22 @@ export const TestCouner = () => {
 
 			<S.Spacer />
 
-			<Counter val={6} onClickMinus={() => {}} onClickPlus={() => {}} />
+			<Counter onClickMinus={() => {}} onClickPlus={() => {}}>
+				6
+			</Counter>
 
 			<S.Spacer />
 
 			<Counter.Compose>
 				<Counter.Minus iconName="iconMinusCircle" onClick={() => {}} />
 				<Counter.Plus iconName="iconPlusCircle" onClick={() => {}} />
-				<Counter.Value val={7} />
+				<Counter.Value>7</Counter.Value>
 			</Counter.Compose>
 
 			<S.Spacer />
 
 			<Counter.Compose>
-				<Counter.Value val={3} />
+				<Counter.Value>3</Counter.Value>
 				<Counter.Plus iconName="iconPlusSquare" onClick={() => {}} />
 				<Counter.Minus iconName="iconMinusSquare" onClick={() => {}} />
 			</Counter.Compose>

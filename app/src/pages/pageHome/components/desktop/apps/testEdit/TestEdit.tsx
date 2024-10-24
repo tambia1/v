@@ -122,7 +122,9 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Counter</Text>
-					<Counter val={counter} onClickMinus={handleOnClickMinusCounter} onClickPlus={handleOnClickPlusCounter} />
+					<Counter onClickMinus={handleOnClickMinusCounter} onClickPlus={handleOnClickPlusCounter}>
+						{counter}
+					</Counter>
 				</S.Col>
 
 				<S.Line />
