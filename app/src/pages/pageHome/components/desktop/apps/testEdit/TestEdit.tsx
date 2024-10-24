@@ -77,7 +77,7 @@ export const TestEdit = () => {
 				<S.Line />
 
 				<S.Col>
-					<Text>Typography</Text>
+					<Text>Text</Text>
 					<S.Row>
 						<Text fontSize="title" fontWeight="title">
 							Test
