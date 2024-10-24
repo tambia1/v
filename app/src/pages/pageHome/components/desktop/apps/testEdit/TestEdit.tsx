@@ -26,10 +26,9 @@ export const TestEdit = () => {
 	const [inputValue, setInputValue] = useState("Test");
 
 	const [isCoverVisible, setIsCoverVisible] = useState(false);
+	const [contextMenuSelectedItem, setContextMenuSelectedItem] = useState(0);
 
 	const [selectedOption, setSelectedOption] = useState(0);
-
-	const [contextMenuSelectedItem, setContextMenuSelectedItem] = useState(0);
 
 	const handleOnClickSwitch = () => {
 		setSwitchState(switchState === "left" ? "right" : "left");
