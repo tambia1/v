@@ -1,6 +1,6 @@
 import { type RefObject, createContext, useContext } from "react";
 
-export const Context = createContext<{
+export const ContextPopupMenu = createContext<{
 	refButton: RefObject<HTMLDivElement>;
 	refItems: RefObject<HTMLDivElement>;
 	refCover: RefObject<HTMLDivElement>;
@@ -11,7 +11,7 @@ export const Context = createContext<{
 } | null>(null);
 
 export const useContextMenu = () => {
-	const context = useContext(Context);
+	const context = useContext(ContextPopupMenu);
 
 	if (!context) {
 		throw new Error("useContextMenu must be rendered as a child component");

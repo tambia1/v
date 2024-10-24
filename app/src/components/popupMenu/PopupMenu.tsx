@@ -2,7 +2,7 @@ import { type HTMLAttributes, type ReactNode, useLayoutEffect, useRef, useState 
 import * as S from "./PopupMenu.styles";
 import { Button } from "./components/button/Button";
 import { Items } from "./components/items/Items";
-import { Context } from "./context/UsePopupMenu";
+import { ContextPopupMenu } from "./context/UsePopupMenu";
 
 export type PositionVer = "top" | "middle" | "bottom";
 export type PositionHor = "left" | "center" | "right";
@@ -60,9 +60,9 @@ export const PopupMenu = ({ className, children, visible, onClickCover, Position
 
 	return (
 		<S.ContextMenu className={className} {...rest}>
-			<Context.Provider value={{ refCover, refButton, refItems, position, isItemsOpen, isVisible: visible, onClickCover: handleOnClickCover }}>
+			<ContextPopupMenu.Provider value={{ refCover, refButton, refItems, position, isItemsOpen, isVisible: visible, onClickCover: handleOnClickCover }}>
 				{children}
-			</Context.Provider>
+			</ContextPopupMenu.Provider>
 		</S.ContextMenu>
 	);
 };

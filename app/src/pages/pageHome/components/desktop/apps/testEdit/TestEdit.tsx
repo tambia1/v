@@ -191,7 +191,7 @@ export const TestEdit = () => {
 				<S.Line />
 
 				<S.Col>
-					<Text>Contextmenu</Text>
+					<Text>Popup Menu</Text>
 
 					<PopupMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover}>
 						<PopupMenu.Button>
