@@ -181,7 +181,16 @@ export const TestEdit = () => {
 					<Select onClickItem={handleOnClickSelectOption}>
 						<Select.Display>{`Item ${selectedOption}`}</Select.Display>
 						<Select.Items>
-							<Select.Items.Item>Item 0</Select.Items.Item>
+							<Select.Items.Item>
+								<Select.Items.Item.Icon>
+									<Icon iconName={"iconInfo"} />
+								</Select.Items.Item.Icon>
+								<Select.Items.Item.Text>Item A</Select.Items.Item.Text>
+								<Select.Items.Item.Info>info</Select.Items.Item.Info>
+								<Select.Items.Item.Image>
+									<Icon iconName={"iconCheck"} />
+								</Select.Items.Item.Image>
+							</Select.Items.Item>
 							<Select.Items.Item>Item 1</Select.Items.Item>
 							<Select.Items.Item>Item 2</Select.Items.Item>
 						</Select.Items>

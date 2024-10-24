@@ -22,7 +22,7 @@ export const Items = ({ children }: Props) => {
 						}}
 						$lineState="long"
 					>
-						<List.Cell.Text>{item}</List.Cell.Text>
+						{item}
 					</List.Cell>
 				))}
 			</List>
