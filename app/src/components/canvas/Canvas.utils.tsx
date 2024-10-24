@@ -1,4 +1,4 @@
-import { IXY } from "./Canvas.types";
+import type { IXY } from "./Canvas.types";
 
 export const reverseYAxis = (ctx: CanvasRenderingContext2D) => {
 	ctx.scale(1, -1);
@@ -91,7 +91,7 @@ export const drawText = (
 		shadowBlur?: number;
 		textAlign?: CanvasTextAlign;
 		textBaseline?: CanvasTextBaseline;
-	}
+	},
 ) => {
 	ctx.save();
 
@@ -120,4 +120,22 @@ export const drawGradient = (ctx: CanvasRenderingContext2D, x: number, y: number
 	ctx.fillRect(x, y, w, h);
 
 	ctx.restore();
+};
+
+export const drawRect = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, fillStyle: string) => {
+	ctx.save();
+
+	ctx.fillStyle = getRgba(fillStyle);
+	ctx.fillRect(x, y, w, h);
+
+	ctx.restore();
+};
+
+export const getRgba = (hexa: string) => {
+	const r = Number.parseInt(hexa.slice(1, 3), 16);
+	const g = Number.parseInt(hexa.slice(3, 5), 16);
+	const b = Number.parseInt(hexa.slice(5, 7), 16);
+	const a = Number.parseInt(hexa.slice(7, 9) || "ff", 16) / 255;
+
+	return `rgba(${r}, ${g}, ${b}, ${a})`;
 };
