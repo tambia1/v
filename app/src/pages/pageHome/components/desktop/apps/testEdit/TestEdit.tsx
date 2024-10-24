@@ -13,7 +13,7 @@ import { Switch, type SwitchState } from "@src/components/switch/Switch";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import i18n, { lang } from "@src/locales/i18n";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import * as S from "./TestEdit.styles";
 
 export const TestEdit = () => {
@@ -26,7 +26,6 @@ export const TestEdit = () => {
 	const [inputValue, setInputValue] = useState("Test");
 
 	const [isCoverVisible, setIsCoverVisible] = useState(false);
-	const refButtonSubmenu = useRef(null);
 
 	const [selectedOption, setSelectedOption] = useState(0);
 
@@ -193,18 +192,23 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Contextmenu</Text>
-					<IconButton iconName="iconMoreVertical" onClick={handleOnClickContextMenuCover} ref={refButtonSubmenu} />
 
-					<ContextMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover} refButton={refButtonSubmenu}>
-						<ContextMenu.Item checked={contextMenuSelectedItem === 0} onClick={() => handleOnclickContextMenu(0)}>
-							Item A
-						</ContextMenu.Item>
-						<ContextMenu.Item checked={contextMenuSelectedItem === 1} onClick={() => handleOnclickContextMenu(1)}>
-							Item B
-						</ContextMenu.Item>
-						<ContextMenu.Item checked={contextMenuSelectedItem === 2} onClick={() => handleOnclickContextMenu(2)}>
-							Item C
-						</ContextMenu.Item>
+					<ContextMenu visible={isCoverVisible} onClickCover={handleOnClickContextMenuCover}>
+						<ContextMenu.Button>
+							<IconButton iconName="iconMoreVertical" onClick={handleOnClickContextMenuCover} />
+						</ContextMenu.Button>
+
+						<ContextMenu.Items>
+							<ContextMenu.Items.Item checked={contextMenuSelectedItem === 0} onClick={() => handleOnclickContextMenu(0)}>
+								Item A
+							</ContextMenu.Items.Item>
+							<ContextMenu.Items.Item checked={contextMenuSelectedItem === 1} onClick={() => handleOnclickContextMenu(1)}>
+								Item B
+							</ContextMenu.Items.Item>
+							<ContextMenu.Items.Item checked={contextMenuSelectedItem === 2} onClick={() => handleOnclickContextMenu(2)}>
+								Item C
+							</ContextMenu.Items.Item>
+						</ContextMenu.Items>
 					</ContextMenu>
 				</S.Col>
 

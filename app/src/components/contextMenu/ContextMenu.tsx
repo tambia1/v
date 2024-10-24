@@ -1,7 +1,8 @@
-import { type HTMLAttributes, type ReactNode, type RefObject, useLayoutEffect, useRef, useState } from "react";
-import { List } from "../list/List";
+import { type HTMLAttributes, type ReactNode, useLayoutEffect, useRef, useState } from "react";
 import * as S from "./ContextMenu.styles";
-import { Item } from "./components/item/Item";
+import { Button } from "./components/button/Button";
+import { Items } from "./components/items/Items";
+import { Context } from "./context/UseContextMenu";
 
 export type PositionVer = "top" | "middle" | "bottom";
 export type PositionHor = "left" | "center" | "right";
@@ -11,14 +12,14 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 	children: ReactNode;
 	visible: boolean;
 	onClickCover?: () => void;
-	refButton: RefObject<HTMLElement>;
 	PositionVer?: PositionVer;
 	PositionHor?: PositionHor;
 };
 
-export const ContextMenu = ({ className, children, visible, onClickCover, refButton, PositionVer = "bottom", PositionHor = "right", ...rest }: Props) => {
+export const ContextMenu = ({ className, children, visible, onClickCover, PositionVer = "bottom", PositionHor = "right", ...rest }: Props) => {
 	const refCover = useRef<HTMLDivElement>(null);
 	const refItems = useRef<HTMLDivElement>(null);
+	const refButton = useRef<HTMLDivElement>(null);
 	const [position, setPosition] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
 	const [isItemsOpen, setIsItemsOpen] = useState(false);
 
@@ -51,21 +52,20 @@ export const ContextMenu = ({ className, children, visible, onClickCover, refBut
 		} else {
 			setIsItemsOpen(false);
 		}
-	}, [refButton, visible, PositionVer, PositionHor]);
+	}, [visible, PositionVer, PositionHor]);
 
-	const handleOnClick = () => {
+	const handleOnClickCover = () => {
 		onClickCover?.();
 	};
 
 	return (
-		<S.ContextMenu ref={refCover} className={className} onClick={handleOnClick} $visible={visible} {...rest}>
-			<S.Items ref={refItems} $left={position.left} $top={position.top}>
-				<S.ItemsContainer $isOpen={isItemsOpen}>
-					<List>{children}</List>
-				</S.ItemsContainer>
-			</S.Items>
+		<S.ContextMenu className={className} {...rest}>
+			<Context.Provider value={{ refCover, refButton, refItems, position, isItemsOpen, isVisible: visible, onClickCover: handleOnClickCover }}>
+				{children}
+			</Context.Provider>
 		</S.ContextMenu>
 	);
 };
 
-ContextMenu.Item = Item;
+ContextMenu.Button = Button;
+ContextMenu.Items = Items;
