@@ -211,6 +211,10 @@ export const subs = {
 			errors: [],
 		},
 		{
+			id: 127231,
+			name: "PRO-aws-active-active-M2M4TCGW",
+			plan: 34564,
+			account: 128493,
 			aa_rcp: {
 				crdb_regions: [
 					{
@@ -683,7 +687,6 @@ export const subs = {
 				status: "active",
 				errors: [],
 			},
-			account: 128493,
 			backup_interval_configurable: true,
 			billing_item: null,
 			cancel_reason: null,
@@ -691,7 +694,6 @@ export const subs = {
 			creation_date: "2024-10-23T17:12:21Z",
 			expiration_date: null,
 			expiration_days_left: null,
-			id: 127231,
 			initial_charge: 0.0,
 			initial_payment_info: null,
 			pricing_version: null,
@@ -742,10 +744,8 @@ export const subs = {
 					errors: null,
 				},
 			],
-			name: "PRO-aws-active-active-M2M4TCGW",
 			next_payment_date: null,
 			period: 0,
-			plan: 34564,
 			rcp: null,
 			recurring_charge: null,
 			recurring_payment_info: 63492,

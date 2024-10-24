@@ -1,6 +1,10 @@
 export const crdbs = {
 	crdbs: [
 		{
+			id: 1504,
+			memory_size_in_mb: 4096,
+			name: "cache-M2M4RTTZ",
+			subscription: 127231,
 			causal_consistency: false,
 			crdb_instances: [
 				{
@@ -565,10 +569,7 @@ export const crdbs = {
 					},
 				],
 			},
-			id: 1504,
 			guid: "5d4edc35-e093-4372-9a57-402de462d52b",
-			memory_size_in_mb: 4096,
-			name: "cache-M2M4RTTZ",
 			shard_key_regex: [
 				{
 					id: 3012,
@@ -582,7 +583,6 @@ export const crdbs = {
 				},
 			],
 			sharding_type: "default-regex-rules",
-			subscription: 127231,
 			import_status: {
 				bdb_import_id: 51043614,
 				import_status: "succeeded",
@@ -599,6 +599,10 @@ export const crdbs = {
 			preferred_proxy_policy: null,
 		},
 		{
+			id: 1505,
+			memory_size_in_mb: 4096,
+			name: "cache-M2M4R9ET",
+			subscription: 127231,
 			causal_consistency: false,
 			crdb_instances: [
 				{
@@ -1196,10 +1200,7 @@ export const crdbs = {
 					},
 				],
 			},
-			id: 1505,
 			guid: "262d08f1-c588-4439-aeb0-d2de567e0382",
-			memory_size_in_mb: 4096,
-			name: "cache-M2M4R9ET",
 			shard_key_regex: [
 				{
 					id: 3014,
@@ -1213,7 +1214,6 @@ export const crdbs = {
 				},
 			],
 			sharding_type: "default-regex-rules",
-			subscription: 127231,
 			import_status: {
 				bdb_import_id: 51043619,
 				import_status: "succeeded",
@@ -1230,6 +1230,10 @@ export const crdbs = {
 			preferred_proxy_policy: null,
 		},
 		{
+			id: 1506,
+			memory_size_in_mb: 4096,
+			name: "cache-M2M4QMWQ",
+			subscription: 127231,
 			causal_consistency: false,
 			crdb_instances: [
 				{
@@ -1827,10 +1831,7 @@ export const crdbs = {
 					},
 				],
 			},
-			id: 1506,
 			guid: "54f41cbf-50cf-4e05-8d1a-119470324f73",
-			memory_size_in_mb: 4096,
-			name: "cache-M2M4QMWQ",
 			shard_key_regex: [
 				{
 					id: 3016,
@@ -1844,7 +1845,6 @@ export const crdbs = {
 				},
 			],
 			sharding_type: "default-regex-rules",
-			subscription: 127231,
 			import_status: {
 				bdb_import_id: 51043624,
 				import_status: "succeeded",
