@@ -70,7 +70,7 @@ export const WorldMap = ({ className, map, mapFixX = MAP_FIX_X, mapFixY = MAP_FI
 WorldMap.Pin = Pin;
 WorldMap.Map = S.Map;
 
-const getXYFromLngLat = (
+export const getXYFromLngLat = (
 	lng: number,
 	lat: number,
 	imageWidth: number,
