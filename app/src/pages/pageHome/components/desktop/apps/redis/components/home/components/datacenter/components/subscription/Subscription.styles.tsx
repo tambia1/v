@@ -31,8 +31,6 @@ export const WorldMapContainer = styled.div`
 export const Pin = styled.div`
 	width: 1.5rem;
 	height: 1.5rem;
-	margin-left: -0.5rem;
-	margin-top: -0.5rem;
 	white-space: nowrap;
 	transition: scale 0.3s ease;
 
@@ -41,6 +39,8 @@ export const Pin = styled.div`
 	}
 
 	& ${Flag} {
+		margin-left: -50%;
+		margin-top: -50%;
 		width: 100%;
 		height: 100%;
 		box-shadow: 0px 0px 5px 5px #ffffff88;
