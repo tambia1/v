@@ -1,4 +1,4 @@
-import { type HTMLAttributes, type ReactNode, useEffect } from "react";
+import { type HTMLAttributes, type ReactElement, type ReactNode, useEffect } from "react";
 import { Icon } from "../icon/Icon";
 import { List } from "../list/List";
 import * as S from "./PopupMenu.styles";
@@ -8,12 +8,12 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	children: ReactNode[];
 	isOpen: boolean;
-	checkedItemIndex: number;
-	onClickItem: (index: number) => void;
+	checkedItem: string;
+	onClickItem: (index: number, value: string) => void;
 	onClickOutside: () => void;
 };
 
-export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onClickItem, onClickOutside, ...rest }: Props) => {
+export const PopupMenu = ({ className, children, isOpen, checkedItem, onClickItem, onClickOutside, ...rest }: Props) => {
 	useEffect(() => {
 		const handleOnClickOutside = () => {
 			if (isOpen) {
@@ -32,8 +32,9 @@ export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onCli
 		};
 	}, [onClickOutside, isOpen]);
 
-	const handleClickItem = (index: number) => {
-		onClickItem(index);
+	const handleClickItem = (index: number, item: ReactNode) => {
+		const value = (item as React.ReactElement).props.value;
+		onClickItem(index, value);
 	};
 
 	return (
@@ -41,10 +42,10 @@ export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onCli
 			<S.Items $isOpen={isOpen} {...rest}>
 				<List>
 					{children.map((item, index) => (
-						<List.Cell key={index} $lineState="long" onClick={() => handleClickItem(index)}>
+						<List.Cell key={index} $lineState="long" onClick={() => handleClickItem(index, item)}>
 							<List.Cell.Text>{item}</List.Cell.Text>
 							<List.Cell.Image>
-								<Icon iconName={index === checkedItemIndex ? "iconCheck" : ""} />
+								<Icon iconName={(item as ReactElement).props.value === checkedItem ? "iconCheck" : ""} />
 							</List.Cell.Image>
 						</List.Cell>
 					))}

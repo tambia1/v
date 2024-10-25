@@ -10,6 +10,7 @@ export const Page = styled.div`
 
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
 
 	padding: 1rem;
 	box-sizing: border-box;
@@ -25,6 +26,31 @@ export const Spacer = styled.div`
 
 export const Pressable = styled.span`
 	cursor: pointer;
+`;
+
+export const ListBar = styled.div`
+	width: 100%;
+	max-width: 50rem;
+	height: auto;
+
+	display: flex;
+	flex-direction: row;
+	flex-shrink: 0;
+	justify-content: space-between;
+	align-items: center;
+`;
+
+export const ListBarCell = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-shrink: 0;
+	align-items: center;
+	gap: 0.5rem;
+`;
+
+export const ListBarFilter = styled.div`
+	position: absolute;
+	margin-top: 4rem;
 `;
 
 export const SubscriptionsList = styled.div`
@@ -68,6 +94,7 @@ export const Row = styled.div`
 	width: 100%;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	gap: 0.5rem;
 `;
 
@@ -276,6 +303,7 @@ export const SubscriptionsDataRow = styled.div`
 `;
 
 export const SubscriptionsDetailsRow = styled.div`
+	overflow: hidden;
 	display: flex;
 	flex-direction: row;
 	padding: 1rem;

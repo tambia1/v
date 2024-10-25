@@ -18,7 +18,7 @@ export const Items = ({ children }: Props) => {
 					<List.Cell
 						key={index}
 						onClick={(e) => {
-							contextSelect.onClickItem(e, index);
+							contextSelect.onClickItem(e, index, item);
 						}}
 						$lineState="long"
 					>

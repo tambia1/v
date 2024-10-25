@@ -26,13 +26,13 @@ export const Create = () => {
 					<Icon iconName="iconAmazon" />
 				</Select.Display>
 				<Select.Items>
-					<Select.Items.Item>
+					<Select.Items.Item value="amazon">
 						<Icon iconName="iconAmazon" />
 					</Select.Items.Item>
-					<Select.Items.Item>
+					<Select.Items.Item value="google">
 						<Icon iconName="iconGoogle" />
 					</Select.Items.Item>
-					<Select.Items.Item>
+					<Select.Items.Item value="microsoft">
 						<Icon iconName="iconMicrosoft" />
 					</Select.Items.Item>
 				</Select.Items>

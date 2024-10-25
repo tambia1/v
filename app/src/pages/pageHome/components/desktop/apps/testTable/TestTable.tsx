@@ -7,7 +7,7 @@ import * as S from "./TestTable.styles";
 export const TestTable = () => {
 	const [tableType, setTableType] = useState<IType>("horizontal");
 
-	const onClickSelect = (index: number) => {
+	const onClickSelect = (index: number, _value: string) => {
 		const map: IType[] = ["horizontal", "vertical"];
 
 		setTableType(map[index]);
@@ -18,8 +18,8 @@ export const TestTable = () => {
 			<Select onClickItem={onClickSelect}>
 				<Select.Display>{tableType}</Select.Display>
 				<Select.Items>
-					<Select.Items.Item>Horizontal</Select.Items.Item>
-					<Select.Items.Item>Vertical</Select.Items.Item>
+					<Select.Items.Item value="hor">Horizontal</Select.Items.Item>
+					<Select.Items.Item value="var">Vertical</Select.Items.Item>
 				</Select.Items>
 			</Select>
 

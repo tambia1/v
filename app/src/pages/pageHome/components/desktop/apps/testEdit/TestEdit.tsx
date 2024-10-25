@@ -26,7 +26,7 @@ export const TestEdit = () => {
 	const [inputValue, setInputValue] = useState("Test");
 
 	const [isPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
-	const [popupMenuSelectedItem, setPopupMenuSelectedItem] = useState(0);
+	const [popupMenuSelectedItem, setPopupMenuSelectedItem] = useState("item_0");
 
 	const [selectedOption, setSelectedOption] = useState(0);
 
@@ -54,8 +54,8 @@ export const TestEdit = () => {
 		setIsPopupMenuOpen(!isPopupMenuOpen);
 	};
 
-	const handleOnClickPopupMenuItem = (index: number) => {
-		setPopupMenuSelectedItem(index);
+	const handleOnClickPopupMenuItem = (_index: number, value: string) => {
+		setPopupMenuSelectedItem(value);
 		setIsPopupMenuOpen(false);
 	};
 
@@ -173,7 +173,7 @@ export const TestEdit = () => {
 					<Select onClickItem={handleOnClickSelectOption}>
 						<Select.Display>{`Item ${selectedOption}`}</Select.Display>
 						<Select.Items>
-							<Select.Items.Item>
+							<Select.Items.Item value="item_0">
 								<Select.Items.Item.Icon>
 									<Icon iconName={"iconInfo"} />
 								</Select.Items.Item.Icon>
@@ -183,8 +183,8 @@ export const TestEdit = () => {
 									<Icon iconName={"iconCheck"} />
 								</Select.Items.Item.Image>
 							</Select.Items.Item>
-							<Select.Items.Item>Item 1</Select.Items.Item>
-							<Select.Items.Item>Item 2</Select.Items.Item>
+							<Select.Items.Item value="item_1">Item 1</Select.Items.Item>
+							<Select.Items.Item value="item_2">Item 2</Select.Items.Item>
 						</Select.Items>
 					</Select>
 				</S.Col>
@@ -198,13 +198,13 @@ export const TestEdit = () => {
 
 					<PopupMenu
 						isOpen={isPopupMenuOpen}
-						checkedItemIndex={popupMenuSelectedItem}
+						checkedItem={popupMenuSelectedItem}
 						onClickItem={handleOnClickPopupMenuItem}
 						onClickOutside={handleOnClickPopupMenu}
 					>
-						<PopupMenu.Item>Item A</PopupMenu.Item>
-						<PopupMenu.Item>Item B</PopupMenu.Item>
-						<PopupMenu.Item>Item C</PopupMenu.Item>
+						<PopupMenu.Item value="item_a">Item A</PopupMenu.Item>
+						<PopupMenu.Item value="item_b">Item B</PopupMenu.Item>
+						<PopupMenu.Item value="item_c">Item C</PopupMenu.Item>
 					</PopupMenu>
 				</S.Col>
 

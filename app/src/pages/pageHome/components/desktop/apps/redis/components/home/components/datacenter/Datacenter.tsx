@@ -2,9 +2,12 @@ import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Flag } from "@src/components/flag/Flag";
 import type { IFlagName } from "@src/components/flag/Flag.types";
 import { Icon } from "@src/components/icon/Icon";
+import { IconButton } from "@src/components/iconButton/IconButton";
+import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
 import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
@@ -19,7 +22,7 @@ import { QueryRegions } from "../../../../queries/QueryRegions";
 import { QuerySubscriptions } from "../../../../queries/QuerySubscriptions";
 import { StoreUser } from "../../../user/stores/StoreUser";
 import * as S from "./Datacenter.styles";
-import type { DataCenterType } from "./Datacenter.types";
+import type { DataCenterType, Filter } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
 import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
@@ -47,6 +50,11 @@ export const Datacenter = () => {
 	const queryBdbs = QueryBdbs.bdbs({ csrf: storeUser.csrf });
 	const queryCrdbs = QueryCrdbs.crdbs({ csrf: storeUser.csrf });
 	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
+
+	const [searchValue, setSearchValue] = useState("");
+
+	const [filter, setFilter] = useState<Filter>("dbs");
+	const [isFilterPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
 
 	useEffect(() => {
 		const plans = queryPlans.data?.response?.plans;
@@ -172,6 +180,23 @@ export const Datacenter = () => {
 		);
 	};
 
+	const handleOnClickFilter = () => {
+		setIsPopupMenuOpen(!isFilterPopupMenuOpen);
+	};
+
+	const handleOnTextChangeSearch = (value: string) => {
+		setSearchValue(value);
+	};
+
+	const handleOnClicFilter = () => {
+		setIsPopupMenuOpen(!isFilterPopupMenuOpen);
+	};
+
+	const handleOnClickFilterPopupMenuItem = (_index: number, value: string) => {
+		setFilter(value as Filter);
+		setIsPopupMenuOpen(false);
+	};
+
 	if (!isDataReady) {
 		return (
 			<S.Page>
@@ -182,6 +207,25 @@ export const Datacenter = () => {
 
 	return (
 		<S.Page>
+			<S.ListBar>
+				<S.ListBarCell>
+					<Icon iconName="iconSearch" />
+
+					<Input value={searchValue} onTextChange={handleOnTextChangeSearch} />
+				</S.ListBarCell>
+
+				<S.ListBarCell>
+					<IconButton iconName="iconFilter" onClick={handleOnClickFilter} />
+
+					<S.ListBarFilter>
+						<PopupMenu isOpen={isFilterPopupMenuOpen} checkedItem={filter} onClickItem={handleOnClickFilterPopupMenuItem} onClickOutside={handleOnClicFilter}>
+							<PopupMenu.Item value="subs">Subscriptions</PopupMenu.Item>
+							<PopupMenu.Item value="dbs">Databases</PopupMenu.Item>
+						</PopupMenu>
+					</S.ListBarFilter>
+				</S.ListBarCell>
+			</S.ListBar>
+
 			<S.SubscriptionsList>
 				<S.SubscriptionsHeader>
 					<S.ColIcon onClick={(e) => handleOnClickCollpseAll(e)}>

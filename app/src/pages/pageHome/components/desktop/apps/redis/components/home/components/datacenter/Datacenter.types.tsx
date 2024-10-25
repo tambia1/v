@@ -21,3 +21,5 @@ export type DataCenterType = {
 		dataPersistence: string;
 	}[];
 };
+
+export type Filter = "subs" | "dbs";

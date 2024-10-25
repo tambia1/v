@@ -47,9 +47,9 @@ export const themeDark: ITheme = {
 
 	font: {
 		title: { size: "180%", weight: "bold" },
-		header: { size: "140%", weight: "regular" },
-		body: { size: "100%", weight: "regular" },
-		note: { size: "80%", weight: "regular" },
+		header: { size: "140%", weight: "normal" },
+		body: { size: "100%", weight: "normal" },
+		note: { size: "80%", weight: "normal" },
 	},
 
 	size: {

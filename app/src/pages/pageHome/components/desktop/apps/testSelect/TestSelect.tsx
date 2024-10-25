@@ -7,7 +7,7 @@ import * as S from "./TestSelect.styles";
 export const TestSelect = () => {
 	const [selectedOption, setSelectedOption] = useState(1);
 
-	const handleOnClickSelectOption = (index: number) => {
+	const handleOnClickSelectOption = (index: number, _value: string) => {
 		setSelectedOption(index);
 	};
 
@@ -20,9 +20,9 @@ export const TestSelect = () => {
 			<Select onClickItem={handleOnClickSelectOption}>
 				<Select.Display>{`Item ${selectedOption}`}</Select.Display>
 				<Select.Items>
-					<Select.Items.Item>Item 0</Select.Items.Item>
-					<Select.Items.Item>Item 1</Select.Items.Item>
-					<Select.Items.Item>Item 2</Select.Items.Item>
+					<Select.Items.Item value="item_0">Item 0</Select.Items.Item>
+					<Select.Items.Item value="item_1">Item 1</Select.Items.Item>
+					<Select.Items.Item value="item_2">Item 2</Select.Items.Item>
 				</Select.Items>
 			</Select>
 		</S.TestSelect>

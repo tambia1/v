@@ -13,4 +13,5 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	transition: all 0.3s ease;
 	position: absolute;
 	width: 20rem;
+	z-index: 1;
 `;

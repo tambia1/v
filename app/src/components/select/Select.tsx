@@ -7,7 +7,7 @@ import { ContextSelect } from "./context/UseContextSelect";
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	children: ReactNode[];
-	onClickItem: (index: number) => void;
+	onClickItem: (index: number, value: string) => void;
 };
 
 export const Select = ({ className, children, onClickItem, ...rest }: Props) => {
@@ -35,10 +35,13 @@ export const Select = ({ className, children, onClickItem, ...rest }: Props) => 
 		setIsOpen(!isOpen);
 	};
 
-	const handleOnClickItem = (event: React.MouseEvent, index: number) => {
+	const handleOnClickItem = (event: React.MouseEvent, index: number, item: ReactNode) => {
 		event.stopPropagation();
-		onClickItem(index);
+
 		setIsOpen(false);
+
+		const value = (item as React.ReactElement).props.value;
+		onClickItem(index, value);
 	};
 
 	return (
