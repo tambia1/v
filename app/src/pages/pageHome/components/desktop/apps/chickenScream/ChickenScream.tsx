@@ -1,4 +1,6 @@
 import { Button } from "@src/components/button/Button";
+import { Canvas } from "@src/components/canvas/Canvas";
+import { drawRect } from "@src/components/canvas/Canvas.utils";
 import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
 import { Text } from "@src/components/text/Text";
@@ -16,7 +18,8 @@ export const ChickenScream = () => {
 	const [pakPakSensitivity, setPakpakSensitivity] = useState(1.0);
 	const [pakKeekSensitivity, setPakKeekSensitivity] = useState(1.0);
 
-	const { isListening, volume } = useMicrophone();
+	const { isListening, volume, volumeArray } = useMicrophone();
+	const [arr, setArr] = useState<Uint8Array[]>([]);
 
 	const [calibrating, setCalibrating] = useState<"none" | "pak-pak" | "pak-keek">("none");
 
@@ -90,6 +93,12 @@ export const ChickenScream = () => {
 		}
 	}, [volume, chickenState.state, chickenState.time, pakPakSensitivity, pakKeekSensitivity, calibrating]);
 
+	useEffect(() => {
+		if (volumeArray) {
+			setArr((p) => [...(p.length < 200 ? p : p.slice(1)), volumeArray]);
+		}
+	}, [volumeArray]);
+
 	const handleOnClickTrainPakpak = () => {
 		setPakpakSensitivity(0);
 		setCalibrating("pak-pak");
@@ -139,6 +148,23 @@ export const ChickenScream = () => {
 					<Text>Hits: {hits}</Text>
 				</S.Row>
 			</S.Col>
+
+			<Canvas
+				draw={(ctx: CanvasRenderingContext2D) => {
+					const w = 200;
+					const h = 128;
+
+					drawRect(ctx, 0, 0, w, h, "#000000");
+
+					for (let j = 0; j < arr.length; j++) {
+						for (let i = 0; i < arr[j].length; i++) {
+							if (arr[j][i] > 0) {
+								drawRect(ctx, j, 127 - i, 1, 1, `rgba(${arr[j][i]}, ${arr[j][i]}, 0, 255)`);
+							}
+						}
+					}
+				}}
+			/>
 
 			<S.Sun>
 				<Sun />

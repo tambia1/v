@@ -125,10 +125,14 @@ export const drawGradient = (ctx: CanvasRenderingContext2D, x: number, y: number
 export const drawRect = (ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, fillStyle: string) => {
 	ctx.save();
 
-	ctx.fillStyle = getRgba(fillStyle);
+	ctx.fillStyle = getColor(fillStyle);
 	ctx.fillRect(x, y, w, h);
 
 	ctx.restore();
+};
+
+export const getColor = (color: string) => {
+	return color.startsWith("#") ? getRgba(color) : color;
 };
 
 export const getRgba = (hexa: string) => {

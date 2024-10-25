@@ -6,6 +6,7 @@ export const useMicrophone = () => {
 	const audioStreamRef = useRef<MediaStream | null>(null);
 	const [isListening, setIsListening] = useState(false);
 	const [volume, setVolume] = useState(0);
+	const [volumeArray, setVolumeArray] = useState<Uint8Array>();
 
 	useEffect(() => {
 		const startListening = async () => {
@@ -47,6 +48,8 @@ export const useMicrophone = () => {
 					const normalizedVolume = averageVolume / 255;
 					setVolume(normalizedVolume);
 
+					setVolumeArray(dataArray);
+
 					requestAnimationFrame(checkVolume);
 				};
 
@@ -70,5 +73,5 @@ export const useMicrophone = () => {
 		};
 	}, []);
 
-	return { isListening, volume };
+	return { isListening, volume, volumeArray };
 };
