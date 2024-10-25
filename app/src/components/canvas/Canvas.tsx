@@ -1,47 +1,44 @@
-import { useCallback, useEffect, useRef } from "react";
+import { type HTMLAttributes, useCallback, useEffect, useRef } from "react";
 
-interface Props {
+export type Props = HTMLAttributes<HTMLCanvasElement> & {
 	className?: string;
 	draw: (ctx: CanvasRenderingContext2D) => void;
-}
+};
 
-export const Canvas = ({ className, draw }: Props) => {
+export const Canvas = ({ className, draw, ...rest }: Props) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-	const handleOnResize = useCallback(
-		(entries: ResizeObserverEntry[]) => {
-			if (!canvasRef.current) {
-				return;
-			}
+	const handleOnResize = useCallback(() => {
+		if (!canvasRef.current) {
+			return;
+		}
 
-			const canvas = canvasRef.current;
+		const canvas = canvasRef.current;
 
-			if (!canvas) {
-				return;
-			}
+		if (!canvas) {
+			return;
+		}
 
-			const ctx = canvas.getContext("2d");
+		const ctx = canvas.getContext("2d");
 
-			if (!ctx) {
-				return;
-			}
+		if (!ctx) {
+			return;
+		}
 
-			canvas.width = entries[0].contentRect.width;
-			canvas.height = entries[0].contentRect.height;
+		canvas.width = canvas.clientWidth;
+		canvas.height = canvas.clientHeight;
 
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			ctx.scale(1, 1);
-			ctx.translate(0, 0);
-			ctx.lineWidth = 1;
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.scale(1, 1);
+		ctx.translate(0, 0);
+		ctx.lineWidth = 1;
 
-			ctx.save();
+		ctx.save();
 
-			draw(ctx);
+		draw(ctx);
 
-			ctx.restore();
-		},
-		[draw],
-	);
+		ctx.restore();
+	}, [draw]);
 
 	useEffect(() => {
 		const parent = canvasRef.current?.parentElement;
@@ -61,5 +58,5 @@ export const Canvas = ({ className, draw }: Props) => {
 		};
 	}, [handleOnResize]);
 
-	return <canvas className={className} ref={canvasRef} width={100} height={100} />;
+	return <canvas className={className} ref={canvasRef} width={100} height={100} {...rest} />;
 };
