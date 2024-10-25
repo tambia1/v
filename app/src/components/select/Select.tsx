@@ -16,7 +16,11 @@ export const Select = ({ className, children, onClickItem, ...rest }: Props) => 
 	useEffect(() => {
 		const handleOnClickOutside = () => {
 			if (isOpen) {
-				setIsOpen(false);
+				setTimeout(() => {
+					if (isOpen) {
+						setIsOpen(false);
+					}
+				}, 10);
 			}
 		};
 

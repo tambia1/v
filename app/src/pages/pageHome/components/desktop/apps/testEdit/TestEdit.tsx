@@ -59,10 +59,6 @@ export const TestEdit = () => {
 		setIsPopupMenuOpen(false);
 	};
 
-	const handleOnClickPopupMenuOutside = () => {
-		setIsPopupMenuOpen(false);
-	};
-
 	const handleOnClickSelectOption = (index: number) => {
 		setSelectedOption(index);
 	};
@@ -212,7 +208,7 @@ export const TestEdit = () => {
 						isOpen={isPopupMenuOpen}
 						checkedItemIndex={popupMenuSelectedItem}
 						onClickItem={handleOnClickPopupMenuItem}
-						onClickOutside={handleOnClickPopupMenuOutside}
+						onClickOutside={handleOnClickPopupMenu}
 					>
 						<PopupMenu.Item>Item A</PopupMenu.Item>
 						<PopupMenu.Item>Item B</PopupMenu.Item>

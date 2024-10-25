@@ -15,10 +15,8 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 
 export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onClickItem, onClickOutside, ...rest }: Props) => {
 	useEffect(() => {
-		const handleOnClickOutside = (e: MouseEvent) => {
+		const handleOnClickOutside = () => {
 			if (isOpen) {
-				e.stopPropagation();
-
 				setTimeout(() => {
 					if (isOpen) {
 						onClickOutside();
@@ -34,8 +32,7 @@ export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onCli
 		};
 	}, [onClickOutside, isOpen]);
 
-	const handleClickItem = (e: React.MouseEvent, index: number) => {
-		e.stopPropagation();
+	const handleClickItem = (index: number) => {
 		onClickItem(index);
 	};
 
@@ -44,7 +41,7 @@ export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onCli
 			<S.Items $isOpen={isOpen} {...rest}>
 				<List>
 					{children.map((item, index) => (
-						<List.Cell key={index} $lineState="long" onClick={(e) => handleClickItem(e, index)}>
+						<List.Cell key={index} $lineState="long" onClick={() => handleClickItem(index)}>
 							<List.Cell.Text>{item}</List.Cell.Text>
 							<List.Cell.Image>
 								<Icon iconName={index === checkedItemIndex ? "iconCheck" : ""} />
