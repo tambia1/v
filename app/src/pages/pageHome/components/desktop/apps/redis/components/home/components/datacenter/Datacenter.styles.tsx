@@ -46,6 +46,7 @@ export const ListBarCell = styled.div`
 	flex-shrink: 0;
 	align-items: center;
 	gap: 0.5rem;
+	justify-content: end;
 `;
 
 export const ListBarFilter = styled.div`
