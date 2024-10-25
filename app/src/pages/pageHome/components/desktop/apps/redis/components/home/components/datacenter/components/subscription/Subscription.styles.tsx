@@ -1,3 +1,4 @@
+import { Flag } from "@src/components/flag/Flag.styles";
 import styled from "styled-components";
 
 export const Subscription = styled.div`
@@ -17,8 +18,7 @@ export const Spacer = styled.div`
 `;
 
 export const WorldMapContainer = styled.div`
-	width: 100%;
-	max-width: 50rem;
+	width: 30rem;
 	height: 15rem;
 	display: flex;
 	justify-content: center;
@@ -29,11 +29,21 @@ export const WorldMapContainer = styled.div`
 `;
 
 export const Pin = styled.div`
+	width: 1.5rem;
+	height: 1.5rem;
+	margin-left: -0.5rem;
+	margin-top: -0.5rem;
 	white-space: nowrap;
 	transition: scale 0.3s ease;
 
 	&:hover{
 		scale: 150%;
+	}
+
+	& ${Flag} {
+		width: 100%;
+		height: 100%;
+		box-shadow: 0px 0px 5px 5px #ffffff88;
 	}
 `;
 

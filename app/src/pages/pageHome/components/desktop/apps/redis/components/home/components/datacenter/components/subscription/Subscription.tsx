@@ -94,9 +94,9 @@ export const Subscription = ({ subscriptionId }: Props) => {
 
 			<S.Row>
 				<Text fontSize="body">Cloud: </Text>
-				{plan.cloud.toLocaleLowerCase() === "aws" && <Icon iconName="iconAmazon" size="1rem" />}
-				{plan.cloud.toLocaleLowerCase() === "gcp" && <Icon iconName="iconGoogle" size="1rem" />}
-				{plan.cloud.toLocaleLowerCase() === "azure" && <Icon iconName="iconMicrosoft" size="1rem" />}
+				{plan.cloud.toLocaleLowerCase() === "aws" && <Icon iconName="iconAmazon" />}
+				{plan.cloud.toLocaleLowerCase() === "gcp" && <Icon iconName="iconGoogle" />}
+				{plan.cloud.toLocaleLowerCase() === "azure" && <Icon iconName="iconMicrosoft" />}
 			</S.Row>
 
 			<S.Row>
