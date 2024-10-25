@@ -150,21 +150,24 @@ export const ChickenScream = () => {
 			</S.Col>
 
 			<Canvas
+				style={{ width: "200px", height: "128px" }}
 				draw={(ctx: CanvasRenderingContext2D) => {
-					const w = 200;
-					const h = 128;
+					const w = ctx.canvas.width;
+					const h = ctx.canvas.height;
 
 					drawRect(ctx, 0, 0, w, h, "#000000");
 
 					for (let j = 0; j < arr.length; j++) {
 						for (let i = 0; i < arr[j].length; i++) {
-							if (arr[j][i] > 0) {
-								drawRect(ctx, j, 127 - i, 1, 1, `rgba(${arr[j][i]}, ${arr[j][i]}, 0, 255)`);
+							if (arr[j][i] >= 0) {
+								drawRect(ctx, j, 127 - i, 1, 1, `rgba(${arr[j][i]}, ${arr[j][i]}, 0, ${arr[j][i]})`);
 							}
 						}
 					}
 				}}
 			/>
+
+			<S.Spacer />
 
 			<S.Sun>
 				<Sun />
