@@ -15,9 +15,15 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 
 export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onClickItem, onClickOutside, ...rest }: Props) => {
 	useEffect(() => {
-		const handleOnClickOutside = () => {
+		const handleOnClickOutside = (e: MouseEvent) => {
 			if (isOpen) {
-				onClickOutside();
+				e.stopPropagation();
+
+				setTimeout(() => {
+					if (isOpen) {
+						onClickOutside();
+					}
+				}, 10);
 			}
 		};
 
@@ -28,8 +34,8 @@ export const PopupMenu = ({ className, children, isOpen, checkedItemIndex, onCli
 		};
 	}, [onClickOutside, isOpen]);
 
-	const handleClickItem = (event: React.MouseEvent, index: number) => {
-		event.stopPropagation();
+	const handleClickItem = (e: React.MouseEvent, index: number) => {
+		e.stopPropagation();
 		onClickItem(index);
 	};
 
