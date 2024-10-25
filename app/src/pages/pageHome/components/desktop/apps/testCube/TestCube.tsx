@@ -25,7 +25,7 @@ export const TestCube = () => {
 
 	return (
 		<S.TestCube>
-			<Text fontSize="header">
+			<Text variant="header">
 				<T>{lang.testCube.title}</T>
 			</Text>
 

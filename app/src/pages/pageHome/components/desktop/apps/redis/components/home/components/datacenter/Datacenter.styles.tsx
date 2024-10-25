@@ -16,8 +16,6 @@ export const Page = styled.div`
 
 	overflow-y: overlay;
 	scrollbar-gutter: stable;
-
-	font-size: ${(props) => props.theme.fontSize.body};
 `;
 
 export const Spacer = styled.div`

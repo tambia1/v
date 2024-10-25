@@ -14,8 +14,8 @@ export const Games = () => {
 	return (
 		<S.Games>
 			<Text>Games:</Text>
-			{loading && <Text fontSize="header">Loading...</Text>}
-			{error && <Text fontSize="header">Error: {error.message}</Text>}
+			{loading && <Text variant="header">Loading...</Text>}
+			{error && <Text variant="header">Error: {error.message}</Text>}
 			{data?.games && (
 				<S.Table>
 					{data.games.map((game) => (

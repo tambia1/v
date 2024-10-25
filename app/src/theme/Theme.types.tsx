@@ -47,18 +47,11 @@ export interface ITheme {
 		box: string;
 	};
 
-	fontSize: {
-		title: string;
-		header: string;
-		body: string;
-		note: string;
-	};
-
-	fontWeight: {
-		title: string;
-		header: string;
-		body: string;
-		note: string;
+	font: {
+		title: { size: string; weight: string };
+		header: { size: string; weight: string };
+		body: { size: string; weight: string };
+		note: { size: string; weight: string };
 	};
 
 	size: {

@@ -6,7 +6,7 @@ import * as S from "./Test.styles";
 export const Test = () => {
 	return (
 		<S.Test>
-			<Text fontSize="header">
+			<Text variant="header">
 				<T>{lang.test.title}</T>
 			</Text>
 

@@ -32,7 +32,7 @@ export const TestRedis = () => {
 
 	return (
 		<S.TestRedis>
-			<Text fontSize="header">
+			<Text variant="header">
 				<T>{lang.testRedis.title}</T>
 			</Text>
 

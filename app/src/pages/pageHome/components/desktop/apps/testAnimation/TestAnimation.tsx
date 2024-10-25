@@ -203,7 +203,7 @@ export const TestAnimation = () => {
 
 	return (
 		<S.TestAnimation>
-			<Text fontSize="header">Test Animation</Text>
+			<Text variant="header">Test Animation</Text>
 
 			<S.Spacer />
 

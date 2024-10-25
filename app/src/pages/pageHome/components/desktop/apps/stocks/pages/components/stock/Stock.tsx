@@ -23,7 +23,7 @@ export const Stock = ({ stock }: Props) => {
 
 	return (
 		<S.Symbol>
-			<Text fontSize="header">{t(lang.stocks.exchange, { exchange: stock.meta.exchange })}</Text>
+			<Text variant="header">{t(lang.stocks.exchange, { exchange: stock.meta.exchange })}</Text>
 
 			<S.Chart>
 				<Chart lines={lines} />

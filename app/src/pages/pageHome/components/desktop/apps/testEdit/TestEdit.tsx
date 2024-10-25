@@ -65,7 +65,7 @@ export const TestEdit = () => {
 
 	return (
 		<S.TestEdit>
-			<Text fontSize="title">
+			<Text variant="title">
 				<T>{lang.testEdit.title}</T>
 			</Text>
 
@@ -78,27 +78,19 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Text</Text>
 					<S.Row>
-						<Text fontSize="title" fontWeight="title">
-							Test
-						</Text>
+						<Text variant="title">Test</Text>
 						<Text>title</Text>
 					</S.Row>
 					<S.Row>
-						<Text fontSize="header" fontWeight="header">
-							Test
-						</Text>
+						<Text variant="header">Test</Text>
 						<Text>header</Text>
 					</S.Row>
 					<S.Row>
-						<Text fontSize="body" fontWeight="body">
-							Test
-						</Text>
+						<Text variant="body">Test</Text>
 						<Text>body</Text>
 					</S.Row>
 					<S.Row>
-						<Text fontSize="note" fontWeight="note">
-							Test
-						</Text>
+						<Text variant="note">Test</Text>
 						<Text>note</Text>
 					</S.Row>
 				</S.Col>

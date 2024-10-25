@@ -11,8 +11,8 @@ export const Game = () => {
 	return (
 		<S.Game>
 			<Text>Game:</Text>
-			{loading && <Text fontSize="header">Loading...</Text>}
-			{error && <Text fontSize="header">Error: {error.message}</Text>}
+			{loading && <Text variant="header">Loading...</Text>}
+			{error && <Text variant="header">Error: {error.message}</Text>}
 			{data?.game && (
 				<S.Row>
 					<Text color="accentFg">id: </Text>

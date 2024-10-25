@@ -19,7 +19,7 @@ export const GraphQlApolloClient = () => {
 	return (
 		<ApolloProvider client={client}>
 			<S.GraphQlApolloClient>
-				<Text fontSize="header">GraphQL ApolloClient</Text>
+				<Text variant="header">GraphQL ApolloClient</Text>
 
 				<Games />
 				<Authors />

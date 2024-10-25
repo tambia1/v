@@ -197,7 +197,6 @@ export const Title = styled.div`
 	white-space: pre-wrap;
 	color: ${(props) => props.theme.color.primaryBg};
 	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFg};
-	font-size: ${(props) => props.theme.fontSize.body};
 `;
 
 export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`

@@ -7,13 +7,12 @@ export interface Props {
 	children?: ReactNode;
 	color?: keyof ITheme["color"];
 	bgcolor?: keyof ITheme["color"];
-	fontSize?: keyof ITheme["fontSize"];
-	fontWeight?: keyof ITheme["fontWeight"];
+	variant?: keyof ITheme["font"];
 }
 
-export const Text = ({ className, children, color = "primaryFg", bgcolor = "transparent", fontSize = "body", fontWeight = "body", ...rest }: Props) => {
+export const Text = ({ className, children, color = "primaryFg", bgcolor = "transparent", variant = "body", ...rest }: Props) => {
 	return (
-		<S.Text className={className} $color={color} $bgcolor={bgcolor} $fontSize={fontSize} $fontWeight={fontWeight} {...rest}>
+		<S.Text className={className} $color={color} $bgcolor={bgcolor} $variant={variant} {...rest}>
 			{children}
 		</S.Text>
 	);

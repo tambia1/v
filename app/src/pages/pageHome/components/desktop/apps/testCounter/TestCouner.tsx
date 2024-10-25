@@ -7,7 +7,7 @@ import * as S from "./TestCouner.styles";
 export const TestCouner = () => {
 	return (
 		<S.TestCouner>
-			<Text fontSize="header">
+			<Text variant="header">
 				<T>{lang.testCounter.title}</T>
 			</Text>
 

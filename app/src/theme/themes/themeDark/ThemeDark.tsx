@@ -45,18 +45,11 @@ export const themeDark: ITheme = {
 		box: "3px 3px 20px -5px",
 	},
 
-	fontSize: {
-		title: "180%",
-		header: "140%",
-		body: "100%",
-		note: "80%",
-	},
-
-	fontWeight: {
-		title: "bold",
-		header: "regular",
-		body: "regular",
-		note: "regular",
+	font: {
+		title: { size: "180%", weight: "bold" },
+		header: { size: "140%", weight: "regular" },
+		body: { size: "100%", weight: "regular" },
+		note: { size: "80%", weight: "regular" },
 	},
 
 	size: {

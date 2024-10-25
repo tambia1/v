@@ -9,7 +9,7 @@ export const Section = styled.div`
 	margin-bottom: 1rem;
 	max-width: 40rem;
 	white-space: nowrap;
-	font-size: ${(props) => props.theme.fontSize.header};
-	font-weight: ${(props) => props.theme.fontWeight.header};
+	font-size: ${(props) => props.theme.font.header.size};
+	font-weight: ${(props) => props.theme.font.header.weight};
 
 `;

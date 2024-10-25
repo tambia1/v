@@ -122,7 +122,7 @@ export const TestTree = () => {
 
 	return (
 		<S.TestTree>
-			<Text fontSize="header">
+			<Text variant="header">
 				<T>{lang.testTree.title}</T>
 			</Text>
 

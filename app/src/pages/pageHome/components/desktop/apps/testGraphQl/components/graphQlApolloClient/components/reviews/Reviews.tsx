@@ -14,8 +14,8 @@ export const Reviews = () => {
 	return (
 		<S.Reviews>
 			<Text>Reviews:</Text>
-			{loading && <Text fontSize="header">Loading...</Text>}
-			{error && <Text fontSize="header">Error: {error.message}</Text>}
+			{loading && <Text variant="header">Loading...</Text>}
+			{error && <Text variant="header">Error: {error.message}</Text>}
 			{data?.reviews && (
 				<S.Table>
 					{data.reviews.map((review) => (

@@ -35,7 +35,7 @@ export const TestMenu = () => {
 
 	return (
 		<S.TestMenu>
-			<Text fontSize="header">
+			<Text variant="header">
 				<T>{lang.testMenu.title}</T>
 			</Text>
 
