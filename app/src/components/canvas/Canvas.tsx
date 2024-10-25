@@ -58,5 +58,5 @@ export const Canvas = ({ className, draw, ...rest }: Props) => {
 		};
 	}, [handleOnResize]);
 
-	return <canvas className={className} ref={canvasRef} width={100} height={100} {...rest} />;
+	return <canvas className={className} ref={canvasRef} style={{ width: "100%", height: "100%" }} {...rest} />;
 };
