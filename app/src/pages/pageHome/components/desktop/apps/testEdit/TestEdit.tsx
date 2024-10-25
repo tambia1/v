@@ -185,7 +185,7 @@ export const TestEdit = () => {
 								<Select.Items.Item.Icon>
 									<Icon iconName={"iconInfo"} />
 								</Select.Items.Item.Icon>
-								<Select.Items.Item.Text>Item A</Select.Items.Item.Text>
+								<Select.Items.Item.Text>Item 0</Select.Items.Item.Text>
 								<Select.Items.Item.Info>info</Select.Items.Item.Info>
 								<Select.Items.Item.Image>
 									<Icon iconName={"iconCheck"} />
@@ -204,7 +204,12 @@ export const TestEdit = () => {
 
 					<IconButton iconName="iconMoreVertical" onClick={handleOnClickPopupMenu} />
 
-					<PopupMenu isOpen={isPopupMenuOpen} checkedItemIndex={popupMenuSelectedItem} onClickItem={handleOnClickPopupMenuItem}>
+					<PopupMenu
+						isOpen={isPopupMenuOpen}
+						checkedItemIndex={popupMenuSelectedItem}
+						onClickItem={handleOnClickPopupMenuItem}
+						onClickOutside={handleOnClickPopupMenu}
+					>
 						<PopupMenu.Item>Item A</PopupMenu.Item>
 						<PopupMenu.Item>Item B</PopupMenu.Item>
 						<PopupMenu.Item>Item C</PopupMenu.Item>

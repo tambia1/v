@@ -1,4 +1,4 @@
-import { type HTMLAttributes, type ReactNode, useState } from "react";
+import { type HTMLAttributes, type ReactNode, useEffect, useState } from "react";
 import * as S from "./Select.styles";
 import { Display } from "./components/display/Display";
 import { Items } from "./components/items/Items";
@@ -13,11 +13,26 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 export const Select = ({ className, children, onClickItem, ...rest }: Props) => {
 	const [isOpen, setIsOpen] = useState(false);
 
+	useEffect(() => {
+		const handleOnClickOutside = () => {
+			if (isOpen) {
+				setIsOpen(false);
+			}
+		};
+
+		document.addEventListener("mouseup", handleOnClickOutside);
+
+		return () => {
+			document.removeEventListener("mouseup", handleOnClickOutside);
+		};
+	}, [isOpen]);
+
 	const handleOnClickDisplay = () => {
 		setIsOpen(!isOpen);
 	};
 
-	const handleOnClickItem = (index: number) => {
+	const handleOnClickItem = (event: React.MouseEvent, index: number) => {
+		event.stopPropagation();
 		onClickItem(index);
 		setIsOpen(false);
 	};
