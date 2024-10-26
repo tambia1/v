@@ -126,13 +126,19 @@ export const Datacenter = () => {
 
 	useEffect(() => {
 		if (searchValue !== "") {
-			const newData = data.filter((item) => Search.fuzzySearch(searchValue, item.name).length > 0);
+			if (filter === "subs") {
+				const newData = data.filter((sub) => Search.fuzzySearch(searchValue, sub.name).length > 0);
 
-			setDataToDisplay(newData);
+				setDataToDisplay(newData);
+			} else if (filter === "dbs") {
+				const newData = data.filter((sub) => sub.dbs.filter((db) => Search.fuzzySearch(searchValue, db.name).length > 0).length > 0);
+
+				setDataToDisplay(newData);
+			}
 		} else {
 			setDataToDisplay(data);
 		}
-	}, [data, searchValue]);
+	}, [data, searchValue, filter]);
 
 	const handleOnClickSubscription = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
 		e.stopPropagation();
