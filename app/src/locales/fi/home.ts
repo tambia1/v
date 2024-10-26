@@ -149,6 +149,10 @@ export const translation: IHome = {
 		title: "Test",
 	},
 
+	testShared: {
+		title: "Test Shared",
+	},
+
 	testSelect: {
 		title: "Test Select",
 		item0: "Item 0",

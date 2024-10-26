@@ -149,6 +149,10 @@ export type IHome = {
 		title: string;
 	};
 
+	testShared: {
+		title: string;
+	};
+
 	testSelect: {
 		title: string;
 		item0: string;
