@@ -153,9 +153,8 @@ const DatabasesWidth = css`
 
 export const SubscriptionsHeader = styled.div<{ $visible: boolean }>`
 	width: auto;
-	height: 0rem;
 	display: ${(props) => (props.$visible ? "flex" : "none")};
-	display: flex;
+	height: 4rem;
 	flex-direction: row;
 	align-items: center;
 	gap: 0.5rem;
