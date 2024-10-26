@@ -1,29 +1,30 @@
-export interface IXY {
+export type IXY = {
 	x: number;
 	y: number;
-}
+};
 
-export interface IWH {
+export type IWH = {
 	w: number;
 	h: number;
-}
+};
 
-export interface ICircle {
+export type ICircle = {
 	x: number;
 	y: number;
 	r: number;
-}
+};
 
-export interface IXYWH extends IXY, IWH {}
+export type IXYWH = IXY & IWH;
 
-export interface IXXYYWH extends IXY, IWH {
-	x1: number;
-	x2: number;
-	y1: number;
-	y2: number;
-}
+export type IXXYYWH = IXY &
+	IWH & {
+		x1: number;
+		x2: number;
+		y1: number;
+		y2: number;
+	};
 
-export interface IRect extends IXXYYWH {
+export type IRect = IXXYYWH & {
 	xc: number;
 	yc: number;
-}
+};
