@@ -58,6 +58,18 @@ export const Datacenter = () => {
 
 	const [searchValue, setSearchValue] = useState("");
 
+	/*
+	useEffect(() => {
+		if (storeUser.loginResponse.response) {
+			queryPlans.refetch();
+			querySubs.refetch();
+			queryBdbs.refetch();
+			queryCrdbs.refetch();
+			queryRegions.refetch();
+		}
+	}, [storeUser.loginResponse.response, queryPlans, querySubs, queryBdbs, queryCrdbs, queryRegions]);
+	*/
+
 	useEffect(() => {
 		const plans = queryPlans.data?.response?.plans;
 		const subs = querySubs.data?.response?.subscriptions;

@@ -69,6 +69,8 @@ export const User = () => {
 
 		setIsLoading(false);
 
+		storeUser.setLoginResponse(queryLoginResult);
+
 		if (queryLoginResult.error === 0 && queryLoginResult.response) {
 			setMessage({ state: "success", message: "Login success" });
 		} else {
