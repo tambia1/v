@@ -153,8 +153,10 @@ const DatabasesWidth = css`
 
 export const SubscriptionsHeader = styled.div<{ $visible: boolean }>`
 	width: auto;
-	display: ${(props) => (props.$visible ? "flex" : "none")};
-	height: 4rem;
+	display: flex;
+	height: ${(props) => (props.$visible ? "4rem" : "0rem")};
+	transition: all 0.3s ease;
+	overflow: hidden;
 	flex-direction: row;
 	align-items: center;
 	gap: 0.5rem;
@@ -289,12 +291,14 @@ export const SubscriptionRow = styled.div`
 `;
 
 export const SubscriptionsDataRow = styled.div<{ $visible: boolean }>`
-	display: ${(props) => (props.$visible ? "flex" : "none")};
+	height: ${(props) => (props.$visible ? "4rem" : "0rem")};
+	transition: all 0.3s ease;
+	overflow: hidden;
+	display: flex;
 	flex-direction: row;
 	padding: 0rem 1rem;
 	align-items: center;
 	gap: 0.5rem;
-	height: 4rem;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};
@@ -304,10 +308,12 @@ export const SubscriptionsDataRow = styled.div<{ $visible: boolean }>`
 `;
 
 export const SubscriptionsDetailsRow = styled.div<{ $visible: boolean }>`
-	display: ${(props) => (props.$visible ? "flex" : "none")};
+	height: ${(props) => (props.$visible ? "4rem" : "0rem")};
+	transition: all 0.3s ease;
+	display: flex;
 	overflow: hidden;
 	flex-direction: row;
-	padding: 1rem;
+	padding: 0rem 1rem;
 	align-items: center;
 	gap: 1rem;
 	background-color: ${(props) => props.theme.color.primaryBg};
@@ -319,18 +325,22 @@ export const SubscriptionsDetailsRow = styled.div<{ $visible: boolean }>`
 `;
 
 export const SubscriptionsDetailsColMap = styled.div<{ $visible: boolean }>`
-	display: ${(props) => (props.$visible ? "flex" : "none")};
+	height: ${(props) => (props.$visible ? "15rem" : "0rem")};
+	transition: all 0.3s ease;
+	overflow: hidden;
+	display: flex;
 	flex-direction: column;
-	padding: 1rem;
+	padding: 0rem 1rem;
 	align-items: center;
 	gap: 1rem;
 	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 export const DatabasesRow = styled.div`
+	height: 4rem;
 	display: flex;
 	flex-direction: row;
-	padding: 1rem;
+	padding: 0rem 1rem;
 	align-items: center;
 	gap: 0.5rem;
 	color: #ffffff;
