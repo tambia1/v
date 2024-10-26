@@ -30,7 +30,7 @@ export const Canvas = ({ className, draw, ...rest }: Props) => {
 
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.scale(1, 1);
-		ctx.translate(0, 0);
+		ctx.translate(0.5, 0.5);
 		ctx.lineWidth = 1;
 
 		ctx.save();

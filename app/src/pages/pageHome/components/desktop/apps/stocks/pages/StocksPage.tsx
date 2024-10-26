@@ -35,11 +35,11 @@ export const StocksPage = () => {
 
 	return (
 		<S.StocksPage>
-			<S.Loader>{query.isLoading && <Loader />}</S.Loader>
-
 			<List.Section>
 				<T>{lang.stocks.title}</T>
 			</List.Section>
+
+			<S.Loader>{query.isLoading && <Loader />}</S.Loader>
 
 			<List>
 				{Object.values(query.data || {})
@@ -50,6 +50,9 @@ export const StocksPage = () => {
 								<Icon iconName={iconMap[stock.meta.symbol] ?? ""} />
 							</List.Cell.Icon>
 							<List.Cell.Text>{stock.meta.symbol}</List.Cell.Text>
+							<List.Cell.Image>
+								<Icon iconName="iconChevronRight" />
+							</List.Cell.Image>
 						</List.Cell>
 					))}
 			</List>

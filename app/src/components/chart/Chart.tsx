@@ -28,23 +28,32 @@ export const Chart = ({ className, lines }: Props) => {
 
 		C.drawLines(ctx, axisX, "#000000");
 
-		for (let i = 100; i < w; i += 100) {
+		for (let i = 0; i < w; i += 100) {
 			const points: IXY[] = [
 				{ x: i, y: 0 },
 				{ x: i, y: h },
 			];
 
-			C.drawLines(ctx, points, "#999999");
+			C.drawLines(ctx, points, "#000000");
 		}
 
-		for (let i = 100; i < w; i += 100) {
+		for (let i = 1; i < w; i += 100) {
 			const points: IXY[] = [
 				{ x: 0, y: h - i },
 				{ x: w, y: h - i },
 			];
 
-			C.drawLines(ctx, points, "#999999");
+			C.drawLines(ctx, points, "#000000");
 		}
+
+		C.drawLines(
+			ctx,
+			[
+				{ x: 0, y: 0 },
+				{ x: w, y: 0 },
+			],
+			"#000000",
+		);
 
 		for (let i = 0; i < lines.length; i++) {
 			const minValue = Math.min(...lines[i].data.map((item) => item[1]));
