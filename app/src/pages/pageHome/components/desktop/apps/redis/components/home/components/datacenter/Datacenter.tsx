@@ -227,7 +227,7 @@ export const Datacenter = () => {
 			</S.ListBar>
 
 			<S.SubscriptionsList>
-				<S.SubscriptionsHeader>
+				<S.SubscriptionsHeader $visible={filter === "subs"}>
 					<S.ColIcon onClick={(e) => handleOnClickCollpseAll(e)}>
 						<Icon iconName="iconChevronsDown" />
 					</S.ColIcon>
@@ -241,7 +241,7 @@ export const Datacenter = () => {
 
 				{data.map((sub) => (
 					<S.SubscriptionRow key={sub.id}>
-						<S.SubscriptionsDataRow onClick={(e) => handleOnClickCollpseSub(e, sub.id)}>
+						<S.SubscriptionsDataRow $visible={filter === "subs"} onClick={(e) => handleOnClickCollpseSub(e, sub.id)}>
 							<S.IconCollapse $collapsed={sub.collapsed}>
 								<Icon iconName="iconArrowDownCircle" />
 							</S.IconCollapse>
@@ -260,8 +260,8 @@ export const Datacenter = () => {
 						</S.SubscriptionsDataRow>
 
 						<S.DatabasesList>
-							<Collapsable collapsed={sub.collapsed}>
-								<S.SubscriptionsDetailsRow>
+							<Collapsable collapsed={sub.collapsed && filter === "subs"}>
+								<S.SubscriptionsDetailsRow $visible={filter === "subs"}>
 									<S.Row>
 										<S.SubscriptionsDetailText>Vendor</S.SubscriptionsDetailText>
 										{sub.cloud === "aws" && <Icon iconName="iconAmazon" />}
@@ -288,7 +288,7 @@ export const Datacenter = () => {
 									)}
 								</S.SubscriptionsDetailsRow>
 								{sub.regions.length > 1 && (
-									<S.SubscriptionsDetailsColMap>
+									<S.SubscriptionsDetailsColMap $visible={filter === "subs"}>
 										<S.WorldMapContainer>
 											<WorldMap
 												map={<WorldMap.Map />}

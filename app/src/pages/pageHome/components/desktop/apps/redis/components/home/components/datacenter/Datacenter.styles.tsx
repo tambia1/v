@@ -151,9 +151,10 @@ const DatabasesWidth = css`
 	}
 `;
 
-export const SubscriptionsHeader = styled.div`
+export const SubscriptionsHeader = styled.div<{ $visible: boolean }>`
 	width: auto;
-	height: 4rem;
+	height: 0rem;
+	display: ${(props) => (props.$visible ? "flex" : "none")};
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -288,8 +289,8 @@ export const SubscriptionRow = styled.div`
 	}
 `;
 
-export const SubscriptionsDataRow = styled.div`
-	display: flex;
+export const SubscriptionsDataRow = styled.div<{ $visible: boolean }>`
+	display: ${(props) => (props.$visible ? "flex" : "none")};
 	flex-direction: row;
 	padding: 0rem 1rem;
 	align-items: center;
@@ -303,9 +304,9 @@ export const SubscriptionsDataRow = styled.div`
 	${SubscriptionsWidth}
 `;
 
-export const SubscriptionsDetailsRow = styled.div`
+export const SubscriptionsDetailsRow = styled.div<{ $visible: boolean }>`
+	display: ${(props) => (props.$visible ? "flex" : "none")};
 	overflow: hidden;
-	display: flex;
 	flex-direction: row;
 	padding: 1rem;
 	align-items: center;
@@ -318,8 +319,8 @@ export const SubscriptionsDetailsRow = styled.div`
 	}
 `;
 
-export const SubscriptionsDetailsColMap = styled.div`
-	display: flex;
+export const SubscriptionsDetailsColMap = styled.div<{ $visible: boolean }>`
+	display: ${(props) => (props.$visible ? "flex" : "none")};
 	flex-direction: column;
 	padding: 1rem;
 	align-items: center;
