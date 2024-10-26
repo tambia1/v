@@ -53,7 +53,7 @@ export const Datacenter = () => {
 
 	const [searchValue, setSearchValue] = useState("");
 
-	const [filter, setFilter] = useState<Filter>("dbs");
+	const [filter, setFilter] = useState<Filter>("subs");
 	const [isFilterPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
 
 	useEffect(() => {
