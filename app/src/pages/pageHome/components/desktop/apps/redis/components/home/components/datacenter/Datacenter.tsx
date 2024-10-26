@@ -11,6 +11,7 @@ import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
 import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { Search } from "@src/utils/Search";
 import { type MouseEvent, useEffect, useState } from "react";
 import { regionsLocations } from "../../../../data/regionsLocations";
 import type { Region } from "../../../../queries/Query.types";
@@ -42,6 +43,7 @@ const dataPersistenceMap = {
 export const Datacenter = () => {
 	const navigator = useNavigator();
 	const [data, setData] = useState<DataCenterType[]>([]);
+	const [dataToDisplay, setDataToDisplay] = useState<DataCenterType[]>([]);
 	const [isDataReady, setIsDataReady] = useState(false);
 
 	const storeUser = StoreUser();
@@ -51,10 +53,10 @@ export const Datacenter = () => {
 	const queryCrdbs = QueryCrdbs.crdbs({ csrf: storeUser.csrf });
 	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
 
-	const [searchValue, setSearchValue] = useState("");
-
 	const [filter, setFilter] = useState<Filter>("subs");
 	const [isFilterPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
+
+	const [searchValue, setSearchValue] = useState("");
 
 	useEffect(() => {
 		const plans = queryPlans.data?.response?.plans;
@@ -121,6 +123,16 @@ export const Datacenter = () => {
 		setData(newData);
 		setIsDataReady(true);
 	}, [queryPlans.data, querySubs.data, queryBdbs.data, queryCrdbs.data, queryRegions.data]);
+
+	useEffect(() => {
+		if (searchValue !== "") {
+			const newData = data.filter((item) => Search.fuzzySearch(searchValue, item.name).length > 0);
+
+			setDataToDisplay(newData);
+		} else {
+			setDataToDisplay(data);
+		}
+	}, [data, searchValue]);
 
 	const handleOnClickSubscription = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
 		e.stopPropagation();
@@ -239,7 +251,7 @@ export const Datacenter = () => {
 					</S.ColIcon>
 				</S.SubscriptionsHeader>
 
-				{data.map((sub) => (
+				{dataToDisplay.map((sub) => (
 					<S.SubscriptionRow key={sub.id}>
 						<S.SubscriptionsDataRow $visible={filter === "subs"} onClick={(e) => handleOnClickCollpseSub(e, sub.id)}>
 							<S.IconCollapse $collapsed={sub.collapsed}>

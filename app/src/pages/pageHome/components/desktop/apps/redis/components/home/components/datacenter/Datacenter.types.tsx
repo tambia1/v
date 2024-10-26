@@ -1,10 +1,9 @@
-import type { ReactNode } from "react";
 import type { PlanCloud, PlanType, Region } from "../../../../queries/Query.types";
 
 export type DataCenterType = {
 	collapsed: boolean;
 	id: number;
-	name: ReactNode;
+	name: string;
 	type: PlanType;
 	cloud: PlanCloud;
 	redisOnFlash: boolean;
