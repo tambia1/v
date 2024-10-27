@@ -98,6 +98,7 @@ export const Datacenter = () => {
 						: (sub.minimal_pricing_regions.map((subRegion) => regions.find((region) => region.name === subRegion.region_name)) as Region[]),
 					redisOnFlash: plan.is_rof,
 					multiAvailabilityZone: plan.is_multi_az,
+					subPrice: 0,
 					dbs:
 						plan.plan_type === "aarcp"
 							? crdbs
@@ -111,6 +112,8 @@ export const Datacenter = () => {
 										usage: crdb.crdb_instances[0].usage,
 										highAvailability: true,
 										dataPersistence: crdb.default_db_config.data_persistence,
+										shardCount: crdb.crdb_instances.reduce((pv, cv) => pv + cv.shards_count, 0),
+										dbPrice: plan.price || sub.minimal_pricing_regions.reduce((pv, cv) => pv + cv.price, 0),
 									}))
 							: bdbs
 									.filter((bdb) => bdb.subscription === sub.id)
@@ -123,8 +126,12 @@ export const Datacenter = () => {
 										usage: bdb.usage,
 										highAvailability: bdb.replication,
 										dataPersistence: bdb.data_persistence,
+										shardCount: bdb.shard_type_pricing_bdb_regions?.[0].shards_count || 0,
+										dbPrice: plan.price || sub.minimal_pricing_regions.reduce((pv, cv) => pv + cv.price, 0),
 									})),
 				};
+
+				dataCenterItem.subPrice = dataCenterItem.dbs.reduce((pv, cv) => pv + cv.dbPrice, 0);
 
 				newData.push(dataCenterItem);
 			}
@@ -316,6 +323,10 @@ export const Datacenter = () => {
 											))}
 										</S.Row>
 									)}
+									<S.Row>
+										<S.SubscriptionsDetailText>Price</S.SubscriptionsDetailText>
+										<S.SubscriptionsDetailText>$ {sub.subPrice}</S.SubscriptionsDetailText>
+									</S.Row>
 								</S.SubscriptionsDetailsRow>
 								{sub.regions.length > 1 && (
 									<S.SubscriptionsDetailsColMap $visible={filter === "subs"}>
@@ -413,6 +424,21 @@ export const Datacenter = () => {
 														{db.dataPersistence !== "disabled" && <S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>}
 														{db.dataPersistence === "disabled" && <S.DatabaseDetailTextDisabled>Data Persistence</S.DatabaseDetailTextDisabled>}
 														<S.DatabaseDetailValue>{dataPersistenceMap[db.dataPersistence as keyof typeof dataPersistenceMap]}</S.DatabaseDetailValue>
+													</S.DatabasesInfoCell>
+												</S.DatabasesInfoRow>
+
+												<S.DatabasesInfoRow>
+													<S.DatabasesInfoCell>
+														{db.shardCount > 0 && <S.DatabaseDetailText>Shard Count</S.DatabaseDetailText>}
+														{db.shardCount === 0 && <S.DatabaseDetailTextDisabled>Shard Count</S.DatabaseDetailTextDisabled>}
+														<S.DatabaseDetailValue>{db.shardCount}</S.DatabaseDetailValue>
+													</S.DatabasesInfoCell>
+												</S.DatabasesInfoRow>
+
+												<S.DatabasesInfoRow>
+													<S.DatabasesInfoCell>
+														<S.DatabaseDetailText>Price</S.DatabaseDetailText>
+														<S.DatabaseDetailValue>$ {db.dbPrice}</S.DatabaseDetailValue>
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 											</Collapsable>

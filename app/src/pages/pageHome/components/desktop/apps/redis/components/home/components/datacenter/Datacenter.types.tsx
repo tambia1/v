@@ -9,6 +9,7 @@ export type DataCenterType = {
 	redisOnFlash: boolean;
 	multiAvailabilityZone: boolean;
 	regions: Region[];
+	subPrice: number;
 	dbs: {
 		collapsed: boolean;
 		id: number;
@@ -18,6 +19,8 @@ export type DataCenterType = {
 		usage: number;
 		highAvailability: boolean;
 		dataPersistence: string;
+		shardCount: number;
+		dbPrice: number;
 	}[];
 };
 
