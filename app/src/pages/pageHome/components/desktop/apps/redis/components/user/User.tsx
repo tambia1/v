@@ -30,10 +30,9 @@ export const User = () => {
 	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
 	const [isLoading, setIsLoading] = useState(false);
 
+	const storeUser = StoreUser();
 	const mutateLogin = ApiLogin.mutateLogin();
 	const queryCsrf = ApiCsrf.quryCsrf({ enabled: message.state === "success" });
-
-	const storeUser = StoreUser();
 
 	useEffect(() => {
 		const csrf = queryCsrf.data?.response?.csrfToken?.csrf_token || "111";
