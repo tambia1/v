@@ -35,7 +35,7 @@ export const User = () => {
 	const queryCsrf = ApiCsrf.quryCsrf({ enabled: message.state === "success" });
 
 	useEffect(() => {
-		const csrf = queryCsrf.data?.response?.csrfToken?.csrf_token || "111";
+		const csrf = queryCsrf.data?.response?.csrfToken?.csrf_token;
 
 		if (message.state === "success" && csrf && !queryCsrf.isLoading) {
 			storeUser.setCsrf(csrf);
