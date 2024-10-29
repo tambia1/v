@@ -311,11 +311,15 @@ export const Datacenter = () => {
 											))}
 										</S.Row>
 									)}
+								</S.SubscriptionsDetailsRow>
+
+								<S.SubscriptionsDetailsRow $visible={filter === "subs"}>
 									<S.Row>
 										<S.SubscriptionsDetailText>Price</S.SubscriptionsDetailText>
 										<S.SubscriptionsDetailText>$ {sub.subPrice}</S.SubscriptionsDetailText>
 									</S.Row>
 								</S.SubscriptionsDetailsRow>
+
 								{sub.regions.length > 1 && (
 									<S.SubscriptionsDetailsColMap $visible={filter === "subs"}>
 										<S.WorldMapContainer>
