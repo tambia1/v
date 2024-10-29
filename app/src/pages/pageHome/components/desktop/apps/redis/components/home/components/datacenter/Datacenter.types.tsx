@@ -1,4 +1,4 @@
-import type { PlanCloud, PlanType, Region } from "../../../../queries/Query.types";
+import type { PlanCloud, PlanType, Region } from "../../../../api/Api.types";
 
 export type DataCenterType = {
 	collapsed: boolean;

@@ -1,18 +1,18 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { regions as fakeResponse } from "../data/regions";
-import type { QueryResult, Region } from "./Query.types";
+import { me as fakeResponse } from "../data/me";
+import type { Me, QueryResult } from "./Api.types";
 
 type Props = {
 	csrf: string;
 };
 
-type Result = QueryResult<Region[]>;
+type Result = QueryResult<Me>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=all", {
+		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/users/me", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -53,14 +53,14 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const regions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const quryMe = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["regions"],
+		queryKey: ["me"],
 		queryFn: () => get(props),
 		...options,
 	});
 };
 
-export const QueryRegions = {
-	regions,
+export const ApiMe = {
+	quryMe,
 };

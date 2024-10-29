@@ -1,6 +1,6 @@
 import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { login as fakeResponse } from "../data/login";
-import type { Login, QueryResult } from "./Query.types";
+import type { Login, QueryResult } from "./Api.types";
 
 type Props = {
 	email: string;
@@ -60,7 +60,7 @@ const send = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const login = (options?: UseMutationOptions<Result, Error, Props, unknown>) => {
+const mutateLogin = (options?: UseMutationOptions<Result, Error, Props, unknown>) => {
 	const { mutateAsync } = useMutation({
 		...options,
 		mutationFn: (props: Props) => send(props),
@@ -69,6 +69,6 @@ const login = (options?: UseMutationOptions<Result, Error, Props, unknown>) => {
 	return mutateAsync;
 };
 
-export const QueryLogin = {
-	login,
+export const ApiLogin = {
+	mutateLogin,
 };

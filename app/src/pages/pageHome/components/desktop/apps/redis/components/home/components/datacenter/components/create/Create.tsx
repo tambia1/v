@@ -4,8 +4,8 @@ import { Select } from "@src/components/select/Select";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useTranslation } from "react-i18next";
-import { convertBytes } from "../../../../../../queries/Query.utils";
-import { QueryPlans } from "../../../../../../queries/QueryPlans";
+import { convertBytes } from "../../../../../../api/Api.utils";
+import { ApiPlans } from "../../../../../../api/ApiPlans";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Create.styles";
 
@@ -13,7 +13,7 @@ export const Create = () => {
 	const { t } = useTranslation();
 
 	const storeUser = StoreUser();
-	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: false });
+	const queryPlans = ApiPlans.quryPlans({ csrf: storeUser.csrf, only_customer_plans: false });
 	const plans = queryPlans.data?.response?.plans || [];
 
 	return (

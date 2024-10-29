@@ -4,12 +4,12 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import type { Bdb, Crdb, Plan, Subscription } from "../../../../../../queries/Query.types";
-import { convertBytes, getDbSize } from "../../../../../../queries/Query.utils";
-import { QueryBdbs } from "../../../../../../queries/QueryBdbs";
-import { QueryCrdbs } from "../../../../../../queries/QueryCrdbs";
-import { QueryPlans } from "../../../../../../queries/QueryPlans";
-import { QuerySubscriptions } from "../../../../../../queries/QuerySubscriptions";
+import type { Bdb, Crdb, Plan, Subscription } from "../../../../../../api/Api.types";
+import { convertBytes, getDbSize } from "../../../../../../api/Api.utils";
+import { Bdbs } from "../../../../../../api/ApiBdbs";
+import { Crdbs } from "../../../../../../api/ApiCrdbs";
+import { ApiPlans } from "../../../../../../api/ApiPlans";
+import { ApiSubscriptions } from "../../../../../../api/ApiSubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Database.styles";
 
@@ -21,10 +21,10 @@ export const Database = ({ databaseId }: Props) => {
 	const { t } = useTranslation();
 
 	const storeUser = StoreUser();
-	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: true });
-	const querySubs = QuerySubscriptions.subscriptions({ csrf: storeUser.csrf });
-	const queryBdbs = QueryBdbs.bdbs({ csrf: storeUser.csrf });
-	const queryCrdbs = QueryCrdbs.crdbs({ csrf: storeUser.csrf });
+	const queryPlans = ApiPlans.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
+	const querySubs = ApiSubscriptions.qurySubscriptions({ csrf: storeUser.csrf });
+	const queryBdbs = Bdbs.quryBdbs({ csrf: storeUser.csrf });
+	const queryCrdbs = Crdbs.quryCrdbs({ csrf: storeUser.csrf });
 
 	const [sub, setSub] = useState<Subscription | undefined>(undefined);
 	const [plan, setPlan] = useState<Plan | undefined>(undefined);

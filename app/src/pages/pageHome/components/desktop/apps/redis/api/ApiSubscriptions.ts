@@ -1,18 +1,20 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { me as fakeResponse } from "../data/me";
-import type { Me, QueryResult } from "./Query.types";
+import { subs as fakeResponse } from "../data/subs";
+import type { QueryResult, Subscription } from "./Api.types";
 
 type Props = {
 	csrf: string;
 };
 
-type Result = QueryResult<Me>;
+type Result = QueryResult<{
+	subscriptions: Subscription[];
+}>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/users/me", {
+		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -53,14 +55,14 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const me = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const qurySubscriptions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["me"],
+		queryKey: ["subscriptions"],
 		queryFn: () => get(props),
 		...options,
 	});
 };
 
-export const QueryMe = {
-	me,
+export const ApiSubscriptions = {
+	qurySubscriptions,
 };

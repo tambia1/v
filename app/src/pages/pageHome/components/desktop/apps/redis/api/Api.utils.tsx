@@ -1,4 +1,4 @@
-import type { Bdb, Crdb, Plan } from "./Query.types";
+import type { Bdb, Crdb, Plan } from "./Api.types";
 
 export const convertBytes = (bytes: number, unit: "bytes" | "mb" | "gb" | "tb" | "biggest") => {
 	const factor = {
@@ -28,5 +28,5 @@ export const convertBytes = (bytes: number, unit: "bytes" | "mb" | "gb" | "tb" |
 };
 
 export const getDbSize = ({ bdb, crdb, plan }: { bdb?: Bdb; crdb?: Crdb; plan?: Plan }) => {
-	return bdb?.size || plan?.size || (crdb?.memory_size_in_mb || 0) * 1024 * 1024;
+	return plan?.size || bdb?.size || (crdb?.memory_size_in_mb || 0) * 1024 * 1024;
 };

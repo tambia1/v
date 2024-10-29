@@ -1,20 +1,18 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { bdbs as fakeResponse } from "../data/bdbs";
-import type { Bdb, QueryResult } from "./Query.types";
+import { regions as fakeResponse } from "../data/regions";
+import type { QueryResult, Region } from "./Api.types";
 
 type Props = {
 	csrf: string;
 };
 
-type Result = QueryResult<{
-	bdbs: Bdb[];
-}>;
+type Result = QueryResult<Region[]>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/bdbs?productType=unifiedrc", {
+		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=all", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -55,14 +53,14 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const bdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+const quryRegions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["bdbs"],
+		queryKey: ["regions"],
 		queryFn: () => get(props),
 		...options,
 	});
 };
 
-export const QueryBdbs = {
-	bdbs,
+export const ApiRegions = {
+	quryRegions,
 };

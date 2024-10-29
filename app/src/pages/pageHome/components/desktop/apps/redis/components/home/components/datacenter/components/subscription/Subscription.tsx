@@ -7,11 +7,11 @@ import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import type { Plan as PlanType, Region, Subscription as SubscriptionType } from "../../../../../../api/Api.types";
+import { ApiPlans } from "../../../../../../api/ApiPlans";
+import { ApiRegions } from "../../../../../../api/ApiRegions";
+import { ApiSubscriptions } from "../../../../../../api/ApiSubscriptions";
 import { regionsLocations } from "../../../../../../data/regionsLocations";
-import type { Plan as PlanType, Region, Subscription as SubscriptionType } from "../../../../../../queries/Query.types";
-import { QueryPlans } from "../../../../../../queries/QueryPlans";
-import { QueryRegions } from "../../../../../../queries/QueryRegions";
-import { QuerySubscriptions } from "../../../../../../queries/QuerySubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Subscription.styles";
 
@@ -23,9 +23,9 @@ export const Subscription = ({ subscriptionId }: Props) => {
 	const { t } = useTranslation();
 
 	const storeUser = StoreUser();
-	const queryPlans = QueryPlans.plans({ csrf: storeUser.csrf, only_customer_plans: true });
-	const querySubs = QuerySubscriptions.subscriptions({ csrf: storeUser.csrf });
-	const queryRegions = QueryRegions.regions({ csrf: storeUser.csrf });
+	const queryPlans = ApiPlans.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
+	const querySubs = ApiSubscriptions.qurySubscriptions({ csrf: storeUser.csrf });
+	const queryRegions = ApiRegions.quryRegions({ csrf: storeUser.csrf });
 
 	const [sub, setSub] = useState<SubscriptionType | null>(null);
 	const [regions, setRegions] = useState<Region[]>([]);

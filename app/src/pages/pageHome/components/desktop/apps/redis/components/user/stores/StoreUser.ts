@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import type { Login, QueryResult } from "../../../queries/Query.types";
+import type { Login, QueryResult } from "../../../api/Api.types";
 
 interface State {
 	csrf: string;
