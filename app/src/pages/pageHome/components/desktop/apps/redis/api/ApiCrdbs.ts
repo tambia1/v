@@ -63,6 +63,6 @@ const quryCrdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error
 	});
 };
 
-export const Crdbs = {
+export const ApiCrdbs = {
 	quryCrdbs,
 };

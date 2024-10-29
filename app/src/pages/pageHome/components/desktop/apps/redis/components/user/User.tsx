@@ -5,7 +5,7 @@ import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import { Csrf } from "../../api/ApiCsrf";
+import { ApiCsrf } from "../../api/ApiCsrf";
 import { ApiLogin } from "../../api/ApiLogin";
 import * as S from "./User.styles";
 import { StoreUser } from "./stores/StoreUser";
@@ -30,8 +30,8 @@ export const User = () => {
 	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
 	const [isLoading, setIsLoading] = useState(false);
 
-	const queryLogin = ApiLogin.mutateLogin();
-	const queryCsrf = Csrf.quryCsrf({ enabled: message.state === "success" });
+	const mutateLogin = ApiLogin.mutateLogin();
+	const queryCsrf = ApiCsrf.quryCsrf({ enabled: message.state === "success" });
 
 	const storeUser = StoreUser();
 
@@ -65,7 +65,7 @@ export const User = () => {
 
 		const email = inputData.email.value;
 		const password = inputData.password.value;
-		const queryLoginResult = await queryLogin({ email, password });
+		const queryLoginResult = await mutateLogin({ email, password });
 
 		setIsLoading(false);
 

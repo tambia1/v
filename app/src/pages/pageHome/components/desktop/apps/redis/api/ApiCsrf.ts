@@ -62,6 +62,6 @@ const quryCsrf = (options?: Partial<UseQueryOptions<Result, Error>>) => {
 	});
 };
 
-export const Csrf = {
+export const ApiCsrf = {
 	quryCsrf,
 };

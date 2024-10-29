@@ -15,8 +15,8 @@ import { Search } from "@src/utils/Search";
 import { type MouseEvent, useEffect, useState } from "react";
 import type { Region } from "../../../../api/Api.types";
 import { convertBytes } from "../../../../api/Api.utils";
-import { Bdbs } from "../../../../api/ApiBdbs";
-import { Crdbs } from "../../../../api/ApiCrdbs";
+import { ApiBdbs } from "../../../../api/ApiBdbs";
+import { ApiCrdbs } from "../../../../api/ApiCrdbs";
 import { ApiPlans } from "../../../../api/ApiPlans";
 import { ApiRegions } from "../../../../api/ApiRegions";
 import { ApiSubscriptions } from "../../../../api/ApiSubscriptions";
@@ -49,8 +49,8 @@ export const Datacenter = () => {
 	const storeUser = StoreUser();
 	const queryPlans = ApiPlans.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
 	const querySubs = ApiSubscriptions.qurySubscriptions({ csrf: storeUser.csrf });
-	const queryBdbs = Bdbs.quryBdbs({ csrf: storeUser.csrf });
-	const queryCrdbs = Crdbs.quryCrdbs({ csrf: storeUser.csrf });
+	const queryBdbs = ApiBdbs.quryBdbs({ csrf: storeUser.csrf });
+	const queryCrdbs = ApiCrdbs.quryCrdbs({ csrf: storeUser.csrf });
 	const queryRegions = ApiRegions.quryRegions({ csrf: storeUser.csrf });
 
 	const [filter, setFilter] = useState<Filter>("subs");

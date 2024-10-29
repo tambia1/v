@@ -63,6 +63,6 @@ const quryBdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error>
 	});
 };
 
-export const Bdbs = {
+export const ApiBdbs = {
 	quryBdbs,
 };

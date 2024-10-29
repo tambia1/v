@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { Bdb, Crdb, Plan, Subscription } from "../../../../../../api/Api.types";
 import { convertBytes, getDbSize } from "../../../../../../api/Api.utils";
-import { Bdbs } from "../../../../../../api/ApiBdbs";
-import { Crdbs } from "../../../../../../api/ApiCrdbs";
+import { ApiBdbs } from "../../../../../../api/ApiBdbs";
+import { ApiCrdbs } from "../../../../../../api/ApiCrdbs";
 import { ApiPlans } from "../../../../../../api/ApiPlans";
 import { ApiSubscriptions } from "../../../../../../api/ApiSubscriptions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
@@ -23,8 +23,8 @@ export const Database = ({ databaseId }: Props) => {
 	const storeUser = StoreUser();
 	const queryPlans = ApiPlans.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
 	const querySubs = ApiSubscriptions.qurySubscriptions({ csrf: storeUser.csrf });
-	const queryBdbs = Bdbs.quryBdbs({ csrf: storeUser.csrf });
-	const queryCrdbs = Crdbs.quryCrdbs({ csrf: storeUser.csrf });
+	const queryBdbs = ApiBdbs.quryBdbs({ csrf: storeUser.csrf });
+	const queryCrdbs = ApiCrdbs.quryCrdbs({ csrf: storeUser.csrf });
 
 	const [sub, setSub] = useState<Subscription | undefined>(undefined);
 	const [plan, setPlan] = useState<Plan | undefined>(undefined);
