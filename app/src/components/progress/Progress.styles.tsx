@@ -26,7 +26,7 @@ export const ProgressValue = styled.div.attrs<{ $width: number }>((props) => ({
 }))`
 	height: 100%;
 	position: relative;
-	border-radius: 100rem;
+	border-radius: 0rem;
 	background-color: ${({ theme }) => theme.color.primaryFg};
 	transition: all 0.05s linear;
 `;

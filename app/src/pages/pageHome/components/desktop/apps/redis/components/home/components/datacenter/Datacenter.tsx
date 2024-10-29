@@ -362,7 +362,7 @@ export const Datacenter = () => {
 												<S.DatabasesText>{db.name}</S.DatabasesText>
 												<S.DatabasesText>{db.id}</S.DatabasesText>
 												<S.DatabasesText>
-													<S.Progress percent={Math.max(25, (db.usage / db.memorySize) * 100)} />
+													<S.Progress percent={Math.max(10, (db.usage / db.memorySize) * 100)} />
 												</S.DatabasesText>
 												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
 													<Icon iconName="iconChevronRight" />
