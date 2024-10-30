@@ -102,6 +102,7 @@ export const Datacenter = () => {
 										dataPersistence: crdb.default_db_config.data_persistence,
 										shardCount: crdb.crdb_instances.reduce((pv, cv) => pv + cv.shards_count, 0),
 										dbPrice: plan.price || sub.minimal_pricing_regions.reduce((pv, cv) => pv + cv.price, 0),
+										modules: crdb.default_db_config.module_list.map((item) => item.module.capability_name),
 									}))
 							: bdbs
 									.filter((bdb) => bdb.subscription === sub.id)
@@ -116,6 +117,7 @@ export const Datacenter = () => {
 										dataPersistence: bdb.data_persistence,
 										shardCount: bdb.shard_type_pricing_bdb_regions?.[0].shards_count || 0,
 										dbPrice: plan.price || sub.minimal_pricing_regions.reduce((pv, cv) => pv + cv.price, 0),
+										modules: bdb.bdb_modules.map((item) => item.module.capability_name),
 									})),
 				};
 
@@ -427,6 +429,17 @@ export const Datacenter = () => {
 														{db.shardCount > 0 && <S.DatabaseDetailText>Shard Count</S.DatabaseDetailText>}
 														{db.shardCount === 0 && <S.DatabaseDetailTextDisabled>Shard Count</S.DatabaseDetailTextDisabled>}
 														<S.DatabaseDetailValue>{db.shardCount}</S.DatabaseDetailValue>
+													</S.DatabasesInfoCell>
+												</S.DatabasesInfoRow>
+
+												<S.DatabasesInfoRow>
+													<S.DatabasesInfoCell>
+														{db.modules.length > 0 && <S.DatabaseDetailText>Modules</S.DatabaseDetailText>}
+														{db.modules.length === 0 && <S.DatabaseDetailTextDisabled>Modules</S.DatabaseDetailTextDisabled>}
+														{db.modules.includes("Probabilistic") && <Icon iconName="iconActivity" stroke="#E80990" />}
+														{db.modules.includes("JSON") && <Icon iconName="iconTable" stroke="#E80990" />}
+														{db.modules.includes("Time series") && <Icon iconName="iconClock" stroke="#E80990" />}
+														{db.modules.includes("Search and query") && <Icon iconName="iconSearch" stroke="#E80990" />}
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 

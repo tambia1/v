@@ -20,6 +20,7 @@ export type DataCenterType = {
 		highAvailability: boolean;
 		dataPersistence: string;
 		shardCount: number;
+		modules: string[];
 		dbPrice: number;
 	}[];
 };
