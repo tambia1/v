@@ -29,7 +29,7 @@ import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
-const dbsTitles = ["DATABASE", "ID", "USAGE", ""];
+const dbsTitles = ["DATABASE", "ID", "USAGE"];
 
 const dataPersistenceMap = {
 	disabled: "Disabled",
@@ -350,6 +350,9 @@ export const Datacenter = () => {
 									{dbsTitles.map((col, index) => (
 										<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 									))}
+									<S.ColIcon onClick={(e) => handleOnClickCreate(e)}>
+										<Icon iconName="iconPlusCircle" />
+									</S.ColIcon>
 								</S.DatabasesHeader>
 
 								<S.DatabasesRows>

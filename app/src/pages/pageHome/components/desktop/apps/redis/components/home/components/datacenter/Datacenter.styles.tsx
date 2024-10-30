@@ -169,13 +169,13 @@ export const SubscriptionsHeader = styled.div<{ $visible: boolean }>`
 
 export const DatabasesHeader = styled.div`
 	width: auto;
-	height: auto;
+	height: 2.5rem;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	gap: 0.5rem;
 	white-space: nowrap;
-	padding: 0.5rem 1rem;
+	padding: 0rem 1rem;
 	background-color: #252525;
 	color: #A99D5D;
 
