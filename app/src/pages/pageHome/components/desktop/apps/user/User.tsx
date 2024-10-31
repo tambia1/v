@@ -89,7 +89,7 @@ export const User = () => {
 		queryUser.data?.role,
 		storeUser.setRole,
 		isLoginPerformed,
-		// barMain.onClickClose,
+		// barMain,
 		// t,
 	]);
 

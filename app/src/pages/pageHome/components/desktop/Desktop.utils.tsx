@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { IApp } from "./Desktop.apps";
-import { IApp as IStoreApp } from "./stores/StoreApps";
-import { IRole } from "./Desktop.types";
+import type { IApp } from "./Desktop.apps";
+import type { IRole } from "./Desktop.types";
 import { Frame } from "./apps/frame/Frame";
+import type { IApp as IStoreApp } from "./stores/StoreApps";
 
 export const removeAppsNotFittingByRoles = (apps: IApp[][], role: IRole) => {
 	const appsGroups = useMemo(() => {
@@ -37,7 +37,7 @@ export const getExternalApps = (storeApps: IStoreApp[]) => {
 					title: app.name,
 					icon: app.icon,
 					component: <Frame title={app.name} url={app.url} />,
-				} as IApp)
+				}) as IApp,
 		);
 
 		return apps;

@@ -1,5 +1,6 @@
 import { QueryUser } from "@apps/user/queries/QueryUser";
 import { StoreUser } from "@apps/user/stores/StoreUser";
+import { Loader } from "@src/components/loader/Loader";
 import { Modal } from "@src/components/modal/Modal";
 import { Pager } from "@src/components/pager/Pager";
 import { Suspension } from "@src/components/suspension/Suspension";
@@ -13,7 +14,7 @@ import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearch
 import { Promises } from "@src/services/Promises";
 import { type ITheme, themes } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
-import { type ErrorInfo, type ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
+import { type ErrorInfo, type ReactNode, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
@@ -50,6 +51,8 @@ export const Desktop = () => {
 	const allApps: IApp[][] = [...apps, externalApps];
 	const appsByRole = getAppsByRoles(allApps, storeUser.role);
 
+	console.log("bbb", storeUser.role, queryUser.data?.role);
+
 	useLayoutEffect(() => {
 		animationApp.play("disappear");
 	}, [animationApp.play]);
@@ -77,6 +80,12 @@ export const Desktop = () => {
 			setBar({ isReady: true, position: barPosition });
 		}, []),
 	});
+
+	useEffect(() => {
+		if (queryUser?.data?.role) {
+			storeUser.setRole(queryUser.data.role);
+		}
+	}, [queryUser?.data?.role, storeUser.setRole]);
 
 	const handleOnClickApplication = (appId: string) => {
 		if (isShakeMode) {
@@ -187,7 +196,7 @@ export const Desktop = () => {
 			<S.Bar>
 				<BarMain
 					barPosition={bar.position}
-					userName={queryUser.data?.firstName ? queryUser.data.firstName : <T>{lang.home.guest}</T>}
+					userName={queryUser.isLoading ? <Loader /> : queryUser.data?.firstName ? queryUser.data.firstName : <T>{lang.home.guest}</T>}
 					userNameType={queryUser.data?.firstName ? "success" : "error"}
 					onClickButtonTheme={handleOnClickTheme}
 					onClickButtonClose={handleOnClickClose}

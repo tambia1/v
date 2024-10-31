@@ -1,4 +1,4 @@
-import { IRole } from "@src/pages/pageHome/components/desktop/Desktop.types";
+import type { IRole } from "@src/pages/pageHome/components/desktop/Desktop.types";
 import { create } from "zustand";
 
 interface State {
