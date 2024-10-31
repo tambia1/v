@@ -1,5 +1,5 @@
-import { QueryLogin } from "@apps/user/queries/QueryLogin";
-import { QueryUser } from "@apps/user/queries/QueryUser";
+import { ApiLogin } from "@apps/user/api/ApiLogin";
+import { ApiUser } from "@apps/user/api/ApiUser";
 import { StoreUser } from "@apps/user/stores/StoreUser";
 import { Button } from "@components/button/Button";
 import { useGoogleLogin } from "@react-oauth/google";
@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { useBarMain } from "../../hooks/UseBarMain";
 import * as S from "./User.styles";
+import type { IMessage } from "./User.types";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -31,24 +32,101 @@ export const User = () => {
 	const emailSchema = z.string().min(1).max(5);
 	const passwordSchema = z.string().min(1).max(5);
 
-	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
-	const [isLoading, setIsLoading] = useState(false);
-
-	const mutateLogin = QueryLogin.login();
-	const mutateLogout = QueryLogin.logout();
-	const mutateToken = QueryLogin.token();
-
-	const [isLoginPerformed, setIsLoginPerformed] = useState(false);
-
 	const storeUser = StoreUser();
-	const queryUser = QueryUser.queryUser({ token: storeUser.token }, { enabled: false });
+	const queryUser = ApiUser.queryUser({ token: storeUser.token });
+	const mutateLogin = ApiLogin.mutateLogin();
+	const mutateLogout = ApiLogin.mutateLogout();
+	const mutateToken = ApiLogin.mutateToken();
+
+	const [isLoading, setIsLoading] = useState(false);
+	const [message, setMessage] = useState<IMessage>({ state: "idle", message: "" });
+	const [timeoutExit, setTimeoutExit] = useState<NodeJS.Timeout>();
+
+	useEffect(() => {
+		if (storeUser.token && queryUser.data) {
+			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data.firstName, lastName: queryUser.data.lastName }) });
+
+			storeUser.setRole(queryUser.data.role);
+		}
+	}, [storeUser.token, storeUser.setRole, queryUser.data, t]);
+
+	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
+		if (e.target !== e.currentTarget) {
+			return;
+		}
+
+		barMain.onClickClose();
+	};
+
+	const handleEmailChange = (value: string) => {
+		setInputData({ ...inputData, email: { ...inputData.email, value } });
+		setMessage({ state: "idle", message: "" });
+	};
+
+	const handlePasswordChange = (value: string) => {
+		setInputData({ ...inputData, password: { ...inputData.password, value } });
+		setMessage({ state: "idle", message: "" });
+	};
+
+	const handleOnClickDirectLogin = async () => {
+		const emailSchemaResult = emailSchema.safeParse(inputData.email.value);
+		const passwordSchemaResult = passwordSchema.safeParse(inputData.password.value);
+
+		if (!emailSchemaResult.success || !passwordSchemaResult.success) {
+			setMessage({ state: "error", message: t(lang.user.error) });
+
+			return;
+		}
+
+		setIsLoading(true);
+		const mutateResult = await mutateLogin({ email: inputData.email.value, password: inputData.password.value });
+		setIsLoading(false);
+
+		if (mutateResult.error === 0) {
+			onLoginSuccess(mutateResult.token);
+		} else {
+			onLoginError();
+		}
+	};
+
+	const handleOnClickLogout = async () => {
+		clearTimeout(timeoutExit);
+
+		storeUser.setToken("");
+		storeUser.setRole("guest");
+
+		setMessage({ state: "idle", message: "" });
+
+		mutateLogout({ token: storeUser.token });
+
+		setInputData({ ...inputData, email: { ...inputData.email, value: "", disabled: false }, password: { ...inputData.password, value: "", disabled: false } });
+	};
+
+	const onLoginSuccess = async (token: string) => {
+		storeUser.setToken(token);
+		queryUser.refetch();
+
+		setMessage({ state: "idle", message: t(lang.user.loading) });
+
+		const timeout = setTimeout(barMain.onClickClose, 1000);
+		setTimeoutExit(timeout);
+	};
+
+	const onLoginError = () => {
+		storeUser.setToken("");
+		storeUser.setRole("guest");
+		setMessage({ state: "error", message: t(lang.user.error) });
+	};
+
+	const handleGoogleLogin = () => {
+		performGoogleLogin();
+	};
 
 	const performGoogleLogin = useGoogleLogin({
 		onSuccess: async (tokenResponse) => {
 			const token = tokenResponse.access_token;
 
 			setIsLoading(true);
-			setIsLoginPerformed(true);
 			const mutateResult = await mutateToken({ token });
 			setIsLoading(false);
 
@@ -62,102 +140,6 @@ export const User = () => {
 			onLoginError();
 		},
 	});
-
-	useEffect(() => {
-		if (queryUser.isLoading) {
-			setMessage({ state: "idle", message: t(lang.user.loading) });
-
-			return;
-		}
-
-		if (queryUser.data?.error === 0) {
-			setMessage({ state: "success", message: t(lang.user.welcome, { firstName: queryUser.data.firstName, lastName: queryUser.data.lastName }) });
-
-			storeUser.setRole(queryUser.data.role);
-
-			if (isLoginPerformed) {
-				setTimeout(barMain.onClickClose, 1000);
-			}
-
-			return;
-		}
-	}, [
-		queryUser.isLoading,
-		queryUser.data?.error,
-		queryUser.data?.firstName,
-		queryUser.data?.lastName,
-		queryUser.data?.role,
-		storeUser.setRole,
-		isLoginPerformed,
-		// barMain,
-		// t,
-	]);
-
-	const handleOnClickBackground = (e: React.MouseEvent<HTMLElement>) => {
-		if (e.target !== e.currentTarget) {
-			return;
-		}
-
-		barMain.onClickClose();
-	};
-
-	const handleEmailChange = (value: string) => {
-		setInputData({ ...inputData, email: { ...inputData.email, value } });
-		setMessage({ state: "", message: "" });
-	};
-
-	const handlePasswordChange = (value: string) => {
-		setInputData({ ...inputData, password: { ...inputData.password, value } });
-		setMessage({ state: "", message: "" });
-	};
-
-	const handleOnClickDirectLogin = async () => {
-		const emailSchemaResult = emailSchema.safeParse(inputData.email.value);
-		const passwordSchemaResult = passwordSchema.safeParse(inputData.password.value);
-
-		if (!emailSchemaResult.success || !passwordSchemaResult.success) {
-			setMessage({ state: "error", message: "Invalid name or password" });
-
-			return;
-		}
-
-		setIsLoading(true);
-		setIsLoginPerformed(true);
-		const mutateResult = await mutateLogin({ email: inputData.email.value, password: inputData.password.value });
-		setIsLoading(false);
-
-		if (mutateResult.error === 0) {
-			onLoginSuccess(mutateResult.token);
-		} else {
-			onLoginError();
-		}
-	};
-
-	const handleOnClickLogout = async () => {
-		setMessage({ state: "idle", message: "" });
-
-		storeUser.setToken("");
-		storeUser.setRole("guest");
-
-		mutateLogout({ token: storeUser.token });
-
-		setInputData({ ...inputData, email: { ...inputData.email, value: "", disabled: false }, password: { ...inputData.password, value: "", disabled: false } });
-	};
-
-	const handleGoogleLogin = () => {
-		performGoogleLogin();
-	};
-
-	const onLoginSuccess = (token: string) => {
-		storeUser.setToken(token);
-		queryUser.refetch();
-	};
-
-	const onLoginError = () => {
-		storeUser.setToken("");
-		storeUser.setRole("guest");
-		setMessage({ state: "error", message: "Invalid name or password" });
-	};
 
 	return (
 		<S.User onClick={handleOnClickBackground}>

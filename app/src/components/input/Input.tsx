@@ -1,4 +1,4 @@
-import { type InputHTMLAttributes, useState } from "react";
+import type { InputHTMLAttributes } from "react";
 import * as S from "./Input.styles";
 
 export type Props = InputHTMLAttributes<HTMLInputElement> & {
@@ -10,12 +10,9 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const Input = ({ className, value, placeholder, onTextChange, disabled, ...rest }: Props) => {
-	const [content, setContent] = useState<string>(value);
-
 	const handleTextChange = (e: React.FormEvent<HTMLInputElement>) => {
-		setContent(e.currentTarget.value);
 		onTextChange(e.currentTarget.value);
 	};
 
-	return <S.Input className={className} value={content} placeholder={placeholder} onChange={handleTextChange} type="text" disabled={disabled} {...rest} />;
+	return <S.Input className={className} value={value} placeholder={placeholder} onChange={handleTextChange} type="text" disabled={disabled} {...rest} />;
 };

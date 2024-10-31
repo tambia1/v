@@ -1,6 +1,6 @@
 import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { sendLogin, sendLogout, sendToken } from "./Api";
-import type { QueryResult } from "./Query.types";
+import type { QueryResult } from "./Api.types";
 
 interface MutateLoginProps {
 	email: string;
@@ -11,7 +11,7 @@ export interface MutateLoginResult extends QueryResult {
 	token: string;
 }
 
-const login = (options?: UseMutationOptions<MutateLoginResult, Error, MutateLoginProps, unknown>) => {
+const mutateLogin = (options?: UseMutationOptions<MutateLoginResult, Error, MutateLoginProps, unknown>) => {
 	const { mutateAsync } = useMutation({
 		...options,
 		mutationFn: (props: MutateLoginProps) => sendLogin(props.email, props.password),
@@ -26,7 +26,7 @@ interface MutateLogoutProps {
 
 export interface MutateLogoutResult extends QueryResult {}
 
-const logout = (options?: UseMutationOptions<MutateLogoutResult, Error, MutateLogoutProps, unknown>) => {
+const mutateLogout = (options?: UseMutationOptions<MutateLogoutResult, Error, MutateLogoutProps, unknown>) => {
 	const { mutateAsync } = useMutation({
 		...options,
 		mutationFn: (props: MutateLogoutProps) => sendLogout(props.token),
@@ -41,7 +41,7 @@ interface MutateTokenProps {
 
 export interface MutateTokenResult extends QueryResult {}
 
-const token = (options?: UseMutationOptions<MutateTokenResult, Error, MutateTokenProps, unknown>) => {
+const mutateToken = (options?: UseMutationOptions<MutateTokenResult, Error, MutateTokenProps, unknown>) => {
 	const { mutateAsync } = useMutation({
 		...options,
 		mutationFn: (props: MutateTokenProps) => sendToken(props.token),
@@ -50,8 +50,8 @@ const token = (options?: UseMutationOptions<MutateTokenResult, Error, MutateToke
 	return mutateAsync;
 };
 
-export const QueryLogin = {
-	login,
-	logout,
-	token,
+export const ApiLogin = {
+	mutateLogin,
+	mutateLogout,
+	mutateToken,
 };

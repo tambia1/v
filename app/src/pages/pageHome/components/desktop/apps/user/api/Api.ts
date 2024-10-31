@@ -1,7 +1,7 @@
 import { Promises } from "@src/services/Promises";
 import { dbTokens, dbUsers } from "../db/db";
-import type { MutateLoginResult, MutateLogoutResult, MutateTokenResult } from "./QueryLogin";
-import type { QueryUserResult } from "./QueryUser";
+import type { MutateLoginResult, MutateLogoutResult, MutateTokenResult } from "./ApiLogin";
+import type { QueryUserResult } from "./ApiUser";
 
 const DELAY = 500;
 

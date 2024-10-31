@@ -29,6 +29,7 @@ export const translation: IHome = {
 		logout: "Logout",
 		welcome: "Welcome {{firstName}} {{lastName}}!",
 		loading: "Loading user data...",
+		error: "Login error",
 	},
 
 	calculator: {

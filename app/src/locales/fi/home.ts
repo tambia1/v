@@ -29,6 +29,7 @@ export const translation: IHome = {
 		logout: "ulos",
 		welcome: "Tervetuloa {{firstName}} {{lastName}}!",
 		loading: "Ladataan käyttäjätietoja...",
+		error: "Kirjautumisvirhe",
 	},
 
 	calculator: {

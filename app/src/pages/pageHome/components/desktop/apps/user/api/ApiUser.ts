@@ -1,7 +1,7 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import type { IRole } from "./../../../Desktop.types";
+import type { IRole } from "../../../Desktop.types";
 import { getUser } from "./Api";
-import type { QueryResult } from "./Query.types";
+import type { QueryResult } from "./Api.types";
 
 export interface QueryUserResult extends QueryResult {
 	firstName: string;
@@ -22,6 +22,6 @@ const queryUser = (props: QueryUserProps, options?: Partial<UseQueryOptions<Quer
 	});
 };
 
-export const QueryUser = {
+export const ApiUser = {
 	queryUser,
 };
