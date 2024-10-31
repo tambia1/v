@@ -8,6 +8,7 @@ import { z } from "zod";
 import { ApiCsrf } from "../../api/ApiCsrf";
 import { ApiLogin } from "../../api/ApiLogin";
 import * as S from "./User.styles";
+import type { IMessage } from "./User.types";
 import { StoreUser } from "./stores/StoreUser";
 
 export const User = () => {
@@ -27,8 +28,8 @@ export const User = () => {
 	const emailSchema = z.string().min(1).max(100);
 	const passwordSchema = z.string().min(1).max(100);
 
-	const [message, setMessage] = useState<{ state: "" | "idle" | "error" | "success"; message: string }>({ state: "", message: "" });
 	const [isLoading, setIsLoading] = useState(false);
+	const [message, setMessage] = useState<IMessage>({ state: "idle", message: "" });
 
 	const storeUser = StoreUser();
 	const mutateLogin = ApiLogin.mutateLogin();
@@ -79,12 +80,12 @@ export const User = () => {
 
 	const handleEmailChange = (value: string) => {
 		setInputData({ ...inputData, email: { ...inputData.email, value } });
-		setMessage({ state: "", message: "" });
+		setMessage({ state: "idle", message: "" });
 	};
 
 	const handlePasswordChange = (value: string) => {
 		setInputData({ ...inputData, password: { ...inputData.password, value } });
-		setMessage({ state: "", message: "" });
+		setMessage({ state: "idle", message: "" });
 	};
 
 	const handleOnClickLogout = async () => {
