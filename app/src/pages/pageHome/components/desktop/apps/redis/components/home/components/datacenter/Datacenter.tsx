@@ -417,7 +417,7 @@ export const Datacenter = () => {
 												<S.DatabasesInfoRow>
 													<S.DatabasesInfoCell>
 														{db.dataPersistence !== "disabled" && <Icon iconName="iconHardDrive" stroke="#ffffff" />}
-														{db.dataPersistence === "disabled" && <Icon iconName="iconHardDrive" stroke="#999999" />}
+														{db.dataPersistence === "disabled" && <Icon iconName="iconHardDrive" stroke="#666666" />}
 														{db.dataPersistence !== "disabled" && <S.DatabaseDetailText>Data Persistence</S.DatabaseDetailText>}
 														{db.dataPersistence === "disabled" && <S.DatabaseDetailTextDisabled>Data Persistence</S.DatabaseDetailTextDisabled>}
 														<S.DatabaseDetailValue>{dataPersistenceMap[db.dataPersistence as keyof typeof dataPersistenceMap]}</S.DatabaseDetailValue>
@@ -426,20 +426,13 @@ export const Datacenter = () => {
 
 												<S.DatabasesInfoRow>
 													<S.DatabasesInfoCell>
-														{db.shardCount > 0 && <S.DatabaseDetailText>Shard Count</S.DatabaseDetailText>}
-														{db.shardCount === 0 && <S.DatabaseDetailTextDisabled>Shard Count</S.DatabaseDetailTextDisabled>}
-														<S.DatabaseDetailValue>{db.shardCount}</S.DatabaseDetailValue>
-													</S.DatabasesInfoCell>
-												</S.DatabasesInfoRow>
-
-												<S.DatabasesInfoRow>
-													<S.DatabasesInfoCell>
 														{db.modules.length > 0 && <S.DatabaseDetailText>Modules</S.DatabaseDetailText>}
 														{db.modules.length === 0 && <S.DatabaseDetailTextDisabled>Modules</S.DatabaseDetailTextDisabled>}
-														{db.modules.includes("Probabilistic") && <Icon iconName="iconActivity" stroke="#E80990" />}
-														{db.modules.includes("JSON") && <Icon iconName="iconTable" stroke="#E80990" />}
-														{db.modules.includes("Time series") && <Icon iconName="iconClock" stroke="#E80990" />}
-														{db.modules.includes("Search and query") && <Icon iconName="iconSearch" stroke="#E80990" />}
+														{db.modules.length === 0 && <S.DatabaseDetailValue>None</S.DatabaseDetailValue>}
+														{<S.IconModule iconName="iconTrendingUp" $enabled={db.modules.includes("Probabilistic")} />}
+														{<S.IconModule iconName="iconSettings" $enabled={db.modules.includes("JSON")} />}
+														{<S.IconModule iconName="iconClock" $enabled={db.modules.includes("Time series")} />}
+														{<S.IconModule iconName="iconSearch" $enabled={db.modules.includes("Search and query")} />}
 													</S.DatabasesInfoCell>
 												</S.DatabasesInfoRow>
 

@@ -1,5 +1,6 @@
 import { Collapsable } from "@src/components/collapsable/Collapsable.styles";
 import { Flag } from "@src/components/flag/Flag.styles";
+import { Icon } from "@src/components/icon/Icon";
 import { Progress as ProgressComponent } from "@src/components/progress/Progress";
 import { ProgressValue } from "@src/components/progress/Progress.styles";
 import styled, { css } from "styled-components";
@@ -266,7 +267,7 @@ export const DatabaseDetailTextDisabled = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: normal;
-	color: #999999
+	color: #666666
 
 `;
 
@@ -275,7 +276,6 @@ export const DatabaseDetailValue = styled.div`
 	align-items: center;
 	font-weight: normal;
 	color: #A99D5D
-
 `;
 
 export const SubscriptionRow = styled.div`
@@ -403,4 +403,8 @@ export const Pin = styled.div`
 		height: 100%;
 		box-shadow: 0px 0px 5px 5px #ffffff88;
 	}
+`;
+
+export const IconModule = styled(Icon)<{ $enabled: boolean }>`
+	color: ${(props) => (props.$enabled ? "#A99D5D" : "#666666")} 
 `;
