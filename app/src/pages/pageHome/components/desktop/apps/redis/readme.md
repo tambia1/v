@@ -1,10 +1,13 @@
-    make sure you have:
-    /etc/hosts
-    127.0.0.1 test.redislabs.com
+make sure you have:
+/etc/hosts
+127.0.0.1 test.redislabs.com
 
-    browser:
-    https://test.redislabs.com:5000/v
+browser:
+https://test.redislabs.com:5000/v
 
-    use direct login
+use direct login:
+email and password
 
-    on fetch data error it will use fake data
+
+
+on fetch data error it will use fake data

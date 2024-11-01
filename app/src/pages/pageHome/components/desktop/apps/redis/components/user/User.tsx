@@ -65,13 +65,13 @@ export const User = () => {
 
 		const email = inputData.email.value;
 		const password = inputData.password.value;
-		const queryLoginResult = await mutateLogin({ email, password });
+		const mutateLoginResult = await mutateLogin({ email, password });
 
 		setIsLoading(false);
 
-		storeUser.setLoginResponse(queryLoginResult);
+		storeUser.setLoginResponse(mutateLoginResult);
 
-		if (queryLoginResult.error === 0 && queryLoginResult.response) {
+		if (mutateLoginResult.error === 0 && mutateLoginResult.response) {
 			setMessage({ state: "success", message: "Login success" });
 		} else {
 			setMessage({ state: "error", message: "Invalid name or password" });

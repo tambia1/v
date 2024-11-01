@@ -127,10 +127,10 @@ export const User = () => {
 			const token = tokenResponse.access_token;
 
 			setIsLoading(true);
-			const mutateResult = await mutateToken({ token });
+			const mutateTokenResult = await mutateToken({ token });
 			setIsLoading(false);
 
-			if (mutateResult.error === 0) {
+			if (mutateTokenResult.error === 0) {
 				onLoginSuccess(token);
 			} else {
 				onLoginError();
