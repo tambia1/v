@@ -1,7 +1,7 @@
-import { mutateLogin } from "./login/mutateLogin";
-import { mutateLogout } from "./login/mutateLogout";
-import { mutateToken } from "./login/mutateToken";
-import { queryUser } from "./user/queryUser,";
+import { mutateLogin } from "./login/MutateLogin";
+import { mutateLogout } from "./login/MutateLogout";
+import { mutateToken } from "./login/MutateToken";
+import { queryUser } from "./user/QueryUser,";
 
 export const Api = {
 	login: {

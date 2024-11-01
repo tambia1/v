@@ -1,7 +1,7 @@
 import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { dbTokens, dbUsers } from "../../db/db";
 import type { QueryResult } from "../Api.types";
-import type { MutateLoginResult } from "./mutateLogin";
+import type { MutateLoginResult } from "./MutateLogin";
 
 type MutateTokenProps = {
 	token: string;
