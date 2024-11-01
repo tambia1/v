@@ -19,12 +19,12 @@ export const Spacer = styled.div`
 export const Col = styled.div`
 	display: flex;
 	flex-direction: column;
+	gap: 1rem;
 `;
 
 export const Row = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	margin-top: 2rem;
 	gap: 1rem;
 `;
