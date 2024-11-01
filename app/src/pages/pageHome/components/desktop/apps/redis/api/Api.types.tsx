@@ -28,3 +28,25 @@ export type BdbDataPersistence = (typeof bdbs.bdbs)[number]["data_persistence"];
 export type Crdb = (typeof crdbs.crdbs)[number];
 
 export type Region = (typeof regions)[number];
+
+export const cloudMap = {
+	aws: "AWS",
+	gcp: "GCP",
+	azure: "Azure",
+};
+
+export const dataPersistenceMap = {
+	disabled: "Disabled",
+	aof: "Append only file every 1 sec",
+	"aof:every_write": "Append only file every write",
+	"snapshot:3600": "Snapshot every 1 hour",
+	"snapshot:21600": "Snapshot every 6 hour",
+	"snapshot:43200": "Snapshot every 12 hour",
+};
+
+export const modulesMap = {
+	bf: "Probabilistic",
+	rejson: "JSON",
+	timeseries: "Time series",
+	searchlight: "Search and query",
+};

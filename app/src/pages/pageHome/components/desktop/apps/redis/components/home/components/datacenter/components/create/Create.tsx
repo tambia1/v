@@ -1,12 +1,26 @@
 import { Button } from "@src/components/button/Button";
 import { Loader } from "@src/components/loader/Loader";
+import { Select } from "@src/components/select/Select";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Api } from "../../../../../../api/Api";
+import { cloudMap, type dataPersistenceMap, type modulesMap } from "../../../../../../api/Api.types";
+import { plansAll } from "../../../../../../data/plansAll";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Create.styles";
+
+type ISelections = {
+	cloud: keyof typeof cloudMap;
+	flash: boolean;
+	replicaZone: boolean;
+	regions: number[];
+	dbSize: number;
+	replica: boolean;
+	dataPersistence: keyof typeof dataPersistenceMap;
+	moduls: (keyof typeof modulesMap)[];
+};
 
 export const Create = () => {
 	const { t } = useTranslation();
@@ -22,6 +36,19 @@ export const Create = () => {
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState("");
+
+	const [selections, setSelections] = useState<ISelections>({
+		cloud: "aws",
+		flash: false,
+		replicaZone: false,
+		regions: [],
+		dbSize: 30,
+		replica: false,
+		dataPersistence: "aof",
+		moduls: ["bf", "rejson", "timeseries", "searchlight"],
+	});
+
+	console.log("aaa", selections);
 
 	const handleCreateBdb = async () => {
 		setIsLoading(true);
@@ -46,6 +73,18 @@ export const Create = () => {
 		setMessage(mutateCreateBdbResult.error === 0 ? "success" : "error");
 	};
 
+	const handleOnClickVendor = (_index: number, value: string) => {
+		setSelections({ ...selections, cloud: value as ISelections["cloud"] });
+	};
+
+	const handleOnClickFlash = (_index: number, value: string) => {
+		setSelections({ ...selections, flash: value === "true" });
+	};
+
+	const handleOnClickReplicationZone = (_index: number, value: string) => {
+		setSelections({ ...selections, flash: value === "true" });
+	};
+
 	return (
 		<S.Create>
 			<Text>{t(lang.redis.create.title)}</Text>
@@ -53,11 +92,55 @@ export const Create = () => {
 			<S.Spacer />
 
 			<S.Col>
-				<Button variant="full" onClick={handleCreateBdb}>
-					Create bdb
-				</Button>
-				{isLoading && <Loader />}
-				{message && <Text>{message}</Text>}
+				<S.Col>
+					<S.Row>Vendor</S.Row>
+					<Select onClickItem={handleOnClickVendor}>
+						<Select.Display>{cloudMap[selections.cloud as keyof typeof cloudMap]}</Select.Display>
+						<Select.Items>
+							{Object.keys(cloudMap).map((key) => (
+								<Select.Items.Item key={key} value={key}>
+									{cloudMap[key as keyof typeof cloudMap]}
+								</Select.Items.Item>
+							))}
+						</Select.Items>
+					</Select>
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Flash</S.Row>
+					<Select onClickItem={handleOnClickFlash}>
+						<Select.Display>{String(selections.flash).toUpperCase()}</Select.Display>
+						<Select.Items>
+							{["true", "false"].map((flash) => (
+								<Select.Items.Item key={flash} value={flash}>
+									{flash.toUpperCase()}
+								</Select.Items.Item>
+							))}
+						</Select.Items>
+					</Select>
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Replication zone</S.Row>
+					<Select onClickItem={handleOnClickReplicationZone}>
+						<Select.Display>{String(selections.flash).toUpperCase()}</Select.Display>
+						<Select.Items>
+							{["true", "false"].map((replicationZone) => (
+								<Select.Items.Item key={replicationZone} value={replicationZone}>
+									{replicationZone.toUpperCase()}
+								</Select.Items.Item>
+							))}
+						</Select.Items>
+					</Select>
+				</S.Col>
+
+				<S.Col>
+					<Button variant="full" onClick={handleCreateBdb}>
+						Create Subscription & Database
+					</Button>
+					{isLoading && <Loader />}
+					{message && <Text>{message}</Text>}
+				</S.Col>
 			</S.Col>
 		</S.Create>
 	);

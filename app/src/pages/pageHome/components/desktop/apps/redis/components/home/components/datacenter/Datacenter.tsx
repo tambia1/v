@@ -14,7 +14,7 @@ import { lang } from "@src/locales/i18n";
 import { Search } from "@src/utils/Search";
 import { type MouseEvent, useEffect, useState } from "react";
 import { Api } from "../../../../api/Api";
-import type { Region } from "../../../../api/Api.types";
+import { type Region, dataPersistenceMap } from "../../../../api/Api.types";
 import { convertBytes } from "../../../../api/Api.utils";
 import { regionsLocations } from "../../../../data/regionsLocations";
 import { StoreUser } from "../../../user/stores/StoreUser";
@@ -26,15 +26,6 @@ import { Subscription } from "./components/subscription/Subscription";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE"];
-
-const dataPersistenceMap = {
-	disabled: "Disabled",
-	aof: "Append only file every 1 sec",
-	"aof:every_write": "Append only file every write",
-	"snapshot:3600": "Snapshot every 1 hour",
-	"snapshot:21600": "Snapshot every 6 hour",
-	"snapshot:43200": "Snapshot every 12 hour",
-};
 
 export const Datacenter = () => {
 	const navigator = useNavigator();
