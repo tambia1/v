@@ -1,18 +1,20 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { regions as fakeResponse } from "../data/regions";
-import type { QueryResult, Region } from "./Api.types";
+import { subs as fakeResponse } from "../../data/subs";
+import type { QueryResult, Subscription } from "../Api.types";
 
 type Props = {
 	csrf: string;
 };
 
-type Result = QueryResult<Region[]>;
+type Result = QueryResult<{
+	subscriptions: Subscription[];
+}>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans/cloud_regions?type=all", {
+		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/subscriptions?productType=unifiedrc&includeNextPaymentDate=true", {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -53,14 +55,10 @@ const get = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-const quryRegions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+export const qurySubscriptions = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["regions"],
+		queryKey: ["subscriptions"],
 		queryFn: () => get(props),
 		...options,
 	});
-};
-
-export const ApiRegions = {
-	quryRegions,
 };

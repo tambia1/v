@@ -1,20 +1,22 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { crdbs as fakeResponse } from "../data/crdbs";
-import type { Crdb, QueryResult } from "./Api.types";
+import { plans as fakeUserPlans } from "../../data/plans";
+import { plansAll as fakeAllPlans } from "../../data/plansAll";
+import type { Plan, QueryResult } from "../Api.types";
 
 type Props = {
 	csrf: string;
+	only_customer_plans: boolean;
 };
 
 type Result = QueryResult<{
-	crdbs: Crdb[];
+	plans: Plan[];
 }>;
 
 const get = async (props: Props): Promise<Result> => {
 	let result: Result;
 
 	try {
-		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/crdbs", {
+		const response = await fetch(`https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/plans?only_customer_plans=${props.only_customer_plans}`, {
 			method: "GET",
 			headers: {
 				"Content-Type": "application/json",
@@ -48,21 +50,17 @@ const get = async (props: Props): Promise<Result> => {
 		result = {
 			error: 0,
 			message: "fake",
-			response: fakeResponse,
+			response: props.only_customer_plans ? fakeUserPlans : fakeAllPlans,
 		};
 	}
 
 	return result;
 };
 
-const quryCrdbs = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
+export const quryPlans = (props: Props, options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
-		queryKey: ["crdbs"],
+		queryKey: ["plans", props.only_customer_plans],
 		queryFn: () => get(props),
 		...options,
 	});
-};
-
-export const ApiCrdbs = {
-	quryCrdbs,
 };

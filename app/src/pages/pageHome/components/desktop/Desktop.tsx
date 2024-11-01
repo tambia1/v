@@ -1,4 +1,3 @@
-import { ApiUser } from "@apps/user/api/ApiUser";
 import { Loader } from "@src/components/loader/Loader";
 import { Modal } from "@src/components/modal/Modal";
 import { Pager } from "@src/components/pager/Pager";
@@ -21,6 +20,7 @@ import { useBarSearchParams } from "../../hooks/useBarSearchParams";
 import { type IApp, apps } from "./Desktop.apps";
 import * as S from "./Desktop.styles";
 import { removeAppsNotFittingByRoles as getAppsByRoles, getExternalApps } from "./Desktop.utils";
+import { Api } from "./apps/user/api/Api";
 import { AppButton } from "./components/appButton/AppButton";
 import { BarDoneCancel } from "./components/barDoneCancel/BarDoneCancel";
 import { BarMain } from "./components/barMain/BarMain";
@@ -43,7 +43,7 @@ export const Desktop = () => {
 	const [isShakeMode, setIsShakeMode] = useState(false);
 
 	const storeUser = StoreUser();
-	const queryUser = ApiUser.queryUser({ token: storeUser.token }, { enabled: !!storeUser.token });
+	const queryUser = Api.user.queryUser({ token: storeUser.token }, { enabled: !!storeUser.token });
 
 	const storeApps = StoreApps();
 	const externalApps = getExternalApps(storeApps.apps);

@@ -4,11 +4,7 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ApiBdb } from "../../../../../../api/ApiBdbs";
-import { ApiCrdbs } from "../../../../../../api/ApiCrdbs";
-import { ApiPlans } from "../../../../../../api/ApiPlans";
-import { ApiRegions } from "../../../../../../api/ApiRegions";
-import { ApiSubscriptions } from "../../../../../../api/ApiSubscriptions";
+import { Api } from "../../../../../../api/Api";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Create.styles";
 
@@ -16,13 +12,13 @@ export const Create = () => {
 	const { t } = useTranslation();
 
 	const storeUser = StoreUser();
-	const mutateCreateBdbd = ApiBdb.mutateCreateBdb();
+	const mutateCreateBdbd = Api.bdb.mutateCreateBdb();
 
-	const queryPlans = ApiPlans.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
-	const querySubs = ApiSubscriptions.qurySubscriptions({ csrf: storeUser.csrf });
-	const queryBdbs = ApiBdb.quryBdbs({ csrf: storeUser.csrf });
-	const queryCrdbs = ApiCrdbs.quryCrdbs({ csrf: storeUser.csrf });
-	const queryRegions = ApiRegions.quryRegions({ csrf: storeUser.csrf });
+	const queryPlans = Api.plan.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
+	const querySubs = Api.subscription.qurySubscriptions({ csrf: storeUser.csrf });
+	const queryBdbs = Api.bdb.quryBdbs({ csrf: storeUser.csrf });
+	const queryCrdbs = Api.crdb.quryCrdbs({ csrf: storeUser.csrf });
+	const queryRegions = Api.region.quryRegions({ csrf: storeUser.csrf });
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState("");

@@ -13,13 +13,9 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { Search } from "@src/utils/Search";
 import { type MouseEvent, useEffect, useState } from "react";
+import { Api } from "../../../../api/Api";
 import type { Region } from "../../../../api/Api.types";
 import { convertBytes } from "../../../../api/Api.utils";
-import { ApiBdb } from "../../../../api/ApiBdbs";
-import { ApiCrdbs } from "../../../../api/ApiCrdbs";
-import { ApiPlans } from "../../../../api/ApiPlans";
-import { ApiRegions } from "../../../../api/ApiRegions";
-import { ApiSubscriptions } from "../../../../api/ApiSubscriptions";
 import { regionsLocations } from "../../../../data/regionsLocations";
 import { StoreUser } from "../../../user/stores/StoreUser";
 import * as S from "./Datacenter.styles";
@@ -47,11 +43,11 @@ export const Datacenter = () => {
 	const [isDataReady, setIsDataReady] = useState(false);
 
 	const storeUser = StoreUser();
-	const queryPlans = ApiPlans.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
-	const querySubs = ApiSubscriptions.qurySubscriptions({ csrf: storeUser.csrf });
-	const queryBdbs = ApiBdb.quryBdbs({ csrf: storeUser.csrf });
-	const queryCrdbs = ApiCrdbs.quryCrdbs({ csrf: storeUser.csrf });
-	const queryRegions = ApiRegions.quryRegions({ csrf: storeUser.csrf });
+	const queryPlans = Api.plan.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
+	const querySubs = Api.subscription.qurySubscriptions({ csrf: storeUser.csrf });
+	const queryBdbs = Api.bdb.quryBdbs({ csrf: storeUser.csrf });
+	const queryCrdbs = Api.crdb.quryCrdbs({ csrf: storeUser.csrf });
+	const queryRegions = Api.region.quryRegions({ csrf: storeUser.csrf });
 
 	const [filter, setFilter] = useState<Filter>("subs");
 	const [isFilterPopupMenuOpen, setIsPopupMenuOpen] = useState(false);

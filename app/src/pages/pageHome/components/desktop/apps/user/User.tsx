@@ -1,10 +1,8 @@
-import { ApiUser } from "@apps/user/api/ApiUser";
 import { Button } from "@components/button/Button";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Loader } from "@src/components/loader/Loader";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { ApiLogin } from "@src/pages/pageHome/components/desktop/apps/user/api/ApiLogin";
 import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stores/StoreUser";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -12,6 +10,7 @@ import { z } from "zod";
 import { useBarMain } from "../../hooks/UseBarMain";
 import * as S from "./User.styles";
 import type { IMessage } from "./User.types";
+import { Api } from "./api/Api";
 
 export const User = () => {
 	const { t } = useTranslation();
@@ -33,10 +32,10 @@ export const User = () => {
 	const passwordSchema = z.string().min(1).max(5);
 
 	const storeUser = StoreUser();
-	const queryUser = ApiUser.queryUser({ token: storeUser.token });
-	const mutateLogin = ApiLogin.mutateLogin();
-	const mutateLogout = ApiLogin.mutateLogout();
-	const mutateToken = ApiLogin.mutateToken();
+	const queryUser = Api.user.queryUser({ token: storeUser.token });
+	const mutateLogin = Api.login.mutateLogin();
+	const mutateLogout = Api.login.mutateLogout();
+	const mutateToken = Api.login.mutateToken();
 
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState<IMessage>({ state: "idle", message: "" });

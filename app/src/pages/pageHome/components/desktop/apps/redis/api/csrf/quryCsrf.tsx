@@ -1,6 +1,6 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import { csrf as fakeResponse } from "../data/csrf";
-import type { QueryResult } from "./Api.types";
+import { csrf as fakeResponse } from "../../data/csrf";
+import type { QueryResult } from "../Api.types";
 
 type Result = QueryResult<{
 	csrfToken: {
@@ -54,14 +54,10 @@ const get = async (): Promise<Result> => {
 	return result;
 };
 
-const quryCsrf = (options?: Partial<UseQueryOptions<Result, Error>>) => {
+export const quryCsrf = (options?: Partial<UseQueryOptions<Result, Error>>) => {
 	return useQuery({
 		queryKey: ["csrf"],
 		queryFn: () => get(),
 		...options,
 	});
-};
-
-export const ApiCsrf = {
-	quryCsrf,
 };
