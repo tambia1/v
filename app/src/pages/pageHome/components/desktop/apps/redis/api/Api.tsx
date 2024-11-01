@@ -1,14 +1,14 @@
-import { mutateCreateBdb } from "./bdb/MmutateCreateBdb";
-import { mutateDeleteBdb } from "./bdb/MmutateDeleteBdb";
-import { quryBdbs } from "./bdb/QqueryBdbs";
-import { quryCrdbs } from "./crdb/QquryCrdbs";
-import { quryCsrf } from "./csrf/QquryCsrf";
-import { mutateLogin } from "./login/MmutateLogin";
-import { mutateLogout } from "./login/MmutateLogout";
-import { quryMe } from "./me/QquryMe";
-import { quryPlans } from "./plan/QquryPlans";
-import { quryRegions } from "./region/QquryRegions";
-import { qurySubscriptions } from "./subscription/QqurySubscriptions";
+import { mutateCreateBdb } from "./bdb/MutateCreateBdb";
+import { mutateDeleteBdb } from "./bdb/MutateDeleteBdb";
+import { quryBdbs } from "./bdb/QueryBdbs";
+import { quryCrdbs } from "./crdb/QuryCrdbs";
+import { quryCsrf } from "./csrf/QuryCsrf";
+import { mutateLogin } from "./login/MutateLogin";
+import { mutateLogout } from "./login/MutateLogout";
+import { quryMe } from "./me/QuryMe";
+import { quryPlans } from "./plan/QuryPlans";
+import { quryRegions } from "./region/QuryRegions";
+import { qurySubscriptions } from "./subscription/QurySubscriptions";
 
 export const Api = {
 	login: {
