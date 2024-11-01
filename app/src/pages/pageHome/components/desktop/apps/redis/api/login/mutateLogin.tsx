@@ -50,7 +50,7 @@ const send = async (props: Props): Promise<Result> => {
 		};
 	}
 
-	if (result.error !== 0) {
+	if (result.error !== 0 && props.email === "a" && props.password === "a") {
 		result = {
 			error: 0,
 			message: "fake",
