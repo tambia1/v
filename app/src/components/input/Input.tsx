@@ -5,14 +5,32 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
 	className?: string;
 	value: string;
 	placeholder?: string;
-	onTextChange: (content: string) => void;
 	disabled?: boolean;
+	onTextChange?: (content: string) => void;
+	onPressEnter?: () => void;
 };
 
-export const Input = ({ className, value, placeholder, onTextChange, disabled, ...rest }: Props) => {
+export const Input = ({ className, value, placeholder, disabled, onTextChange, onPressEnter, ...rest }: Props) => {
 	const handleTextChange = (e: React.FormEvent<HTMLInputElement>) => {
-		onTextChange(e.currentTarget.value);
+		onTextChange?.(e.currentTarget.value);
 	};
 
-	return <S.Input className={className} value={value} placeholder={placeholder} onChange={handleTextChange} type="text" disabled={disabled} {...rest} />;
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+		if (e.key === "Enter") {
+			onPressEnter?.();
+		}
+	};
+
+	return (
+		<S.Input
+			className={className}
+			value={value}
+			placeholder={placeholder}
+			type="text"
+			disabled={disabled}
+			onChange={handleTextChange}
+			onKeyDown={handleKeyDown}
+			{...rest}
+		/>
+	);
 };

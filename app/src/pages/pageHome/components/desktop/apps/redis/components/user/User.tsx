@@ -88,6 +88,10 @@ export const User = () => {
 		setMessage({ state: "idle", message: "" });
 	};
 
+	const handlePasswordPressEnter = () => {
+		handleOnClickDirectLogin();
+	};
+
 	const handleOnClickLogout = async () => {
 		setMessage({ state: "idle", message: "" });
 		setInputData({
@@ -122,6 +126,7 @@ export const User = () => {
 						type="password"
 						placeholder={t(lang.user.password)}
 						onTextChange={handlePasswordChange}
+						onPressEnter={handlePasswordPressEnter}
 						value={inputData.password.value}
 						disabled={!!storeUser.csrf || isLoading}
 						autoComplete="off"

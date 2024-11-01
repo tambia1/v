@@ -68,6 +68,10 @@ export const User = () => {
 		setMessage({ state: "idle", message: "" });
 	};
 
+	const handlePasswordPressEnter = () => {
+		handleOnClickDirectLogin();
+	};
+
 	const handleOnClickDirectLogin = async () => {
 		const emailSchemaResult = emailSchema.safeParse(inputData.email.value);
 		const passwordSchemaResult = passwordSchema.safeParse(inputData.password.value);
@@ -164,6 +168,7 @@ export const User = () => {
 						type="password"
 						placeholder={`${t(lang.user.password)} (a, b)`}
 						onTextChange={handlePasswordChange}
+						onPressEnter={handlePasswordPressEnter}
 						value={inputData.password.value}
 						disabled={!!storeUser.token || isLoading}
 						autoComplete="off"
