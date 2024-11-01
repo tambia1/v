@@ -1,5 +1,4 @@
 import { ApiUser } from "@apps/user/api/ApiUser";
-import { StoreUser } from "@apps/user/stores/StoreUser";
 import { Loader } from "@src/components/loader/Loader";
 import { Modal } from "@src/components/modal/Modal";
 import { Pager } from "@src/components/pager/Pager";
@@ -9,6 +8,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import type { ILanguageName } from "@src/locales/i18n.types";
 import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/theme/store/ThemeStore";
+import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stores/StoreUser";
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { Promises } from "@src/services/Promises";

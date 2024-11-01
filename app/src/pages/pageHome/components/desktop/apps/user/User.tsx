@@ -1,11 +1,11 @@
-import { ApiLogin } from "@apps/user/api/ApiLogin";
 import { ApiUser } from "@apps/user/api/ApiUser";
-import { StoreUser } from "@apps/user/stores/StoreUser";
 import { Button } from "@components/button/Button";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Loader } from "@src/components/loader/Loader";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { ApiLogin } from "@src/pages/pageHome/components/desktop/apps/user/api/ApiLogin";
+import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stores/StoreUser";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
