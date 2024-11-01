@@ -11,8 +11,8 @@ export type MutateTokenResult = QueryResult & {};
 
 export const mutateToken = (options?: UseMutationOptions<MutateTokenResult, Error, MutateTokenProps, unknown>) => {
 	const { mutateAsync } = useMutation({
-		...options,
 		mutationFn: (props: MutateTokenProps) => sendToken(props.token),
+		...options,
 	});
 
 	return mutateAsync;

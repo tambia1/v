@@ -14,8 +14,8 @@ export type MutateLoginResult = QueryResult & {
 
 export const mutateLogin = (options?: UseMutationOptions<MutateLoginResult, Error, MutateLoginProps, unknown>) => {
 	const { mutateAsync } = useMutation({
-		...options,
 		mutationFn: (props: MutateLoginProps) => sendLogin(props.email, props.password),
+		...options,
 	});
 
 	return mutateAsync;

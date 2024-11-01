@@ -3,6 +3,7 @@ import { SideMenu } from "@src/components/sideMenu/SideMenu";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
+import { Api } from "../../api/Api";
 import { StoreUser } from "../user/stores/StoreUser";
 import * as S from "./Home.styles";
 import { type MenuItemId, menuGroups } from "./Home.types";
@@ -12,10 +13,12 @@ import { Test } from "./components/test/Test";
 
 export const Home = () => {
 	const storeUser = StoreUser();
+	const mutateLogout = Api.login.mutateLogout();
 	const [isMenuVisible, setIsMenuVisible] = useState(false);
 	const [selectedMenuId, setSelectedMenutId] = useState<MenuItemId>("dataCenter");
 
-	const handleOnClickLogout = () => {
+	const handleOnClickLogout = async () => {
+		await mutateLogout();
 		storeUser.setCsrf("");
 		setIsMenuVisible(false);
 	};

@@ -79,8 +79,8 @@ const send = async (props: Props): Promise<Result> => {
 
 export const mutateCreateBdb = (options?: UseMutationOptions<Result, Error, Props, unknown>) => {
 	const { mutateAsync } = useMutation({
-		...options,
 		mutationFn: (props: Props) => send(props),
+		...options,
 	});
 
 	return mutateAsync;

@@ -2,14 +2,9 @@ import { type UseMutationOptions, useMutation } from "@tanstack/react-query";
 import { login as fakeResponse } from "../../data/login";
 import type { Login, QueryResult } from "../Api.types";
 
-type Props = {
-	email: string;
-	password: string;
-};
-
 type Result = QueryResult<Login>;
 
-const send = async (props: Props): Promise<Result> => {
+const send = async (): Promise<Result> => {
 	let result: Result = {
 		error: 1,
 		message: "error",
@@ -17,16 +12,11 @@ const send = async (props: Props): Promise<Result> => {
 
 	try {
 		const response = await fetch("https://app-sm.k8s-gh.sm-qa.qa.redislabs.com/api/v1/login", {
-			method: "POST",
+			method: "DELETE",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			credentials: "include",
-			body: JSON.stringify({
-				auth_mode: "direct",
-				password: props.password,
-				username: props.email,
-			}),
 		});
 
 		const res = await response.json();
@@ -61,9 +51,9 @@ const send = async (props: Props): Promise<Result> => {
 	return result;
 };
 
-export const mutateLogin = (options?: UseMutationOptions<Result, Error, Props, unknown>) => {
+export const mutateLogout = (options?: UseMutationOptions<Result, Error, void, unknown>) => {
 	const { mutateAsync } = useMutation({
-		mutationFn: (props: Props) => send(props),
+		mutationFn: () => send(),
 		...options,
 	});
 

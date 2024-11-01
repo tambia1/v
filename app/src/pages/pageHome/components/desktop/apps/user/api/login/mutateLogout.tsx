@@ -11,8 +11,8 @@ export type MutateLogoutResult = QueryResult & {};
 
 export const mutateLogout = (options?: UseMutationOptions<MutateLogoutResult, Error, MutateLogoutProps, unknown>) => {
 	const { mutateAsync } = useMutation({
-		...options,
 		mutationFn: (props: MutateLogoutProps) => sendLogout(props.token),
+		...options,
 	});
 
 	return mutateAsync;
