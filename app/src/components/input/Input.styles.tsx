@@ -13,7 +13,7 @@ export const Input = styled.input`
 	resize: none;
 
 	border-radius: 100rem;
-	border: 1px solid ${(props) => props.theme.color.primaryFg};;
+	border: 1px solid ${(props) => props.theme.color.primaryBgActive};
 	padding: 0rem calc(1rem - 1px) 0rem calc(1rem - 1px);
 	box-sizing: border-box;
 	white-space: nowrap;
