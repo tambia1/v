@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Input = styled.input`
 	width: fit-content;
-	min-width: 5rem;
+	min-width: 20rem;
 	height: 3rem;
 
 	display: flex;

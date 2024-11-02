@@ -1,5 +1,6 @@
 import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
+import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
 import { Select } from "@src/components/select/Select";
 import { Text } from "@src/components/text/Text";
@@ -39,6 +40,8 @@ export const Create = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState("");
 
+	const [databaseName, setDatabaseName] = useState(Date.now().toString(16).toUpperCase());
+
 	const [selections, setSelections] = useState<ISelections>({
 		cloud: "aws",
 		flash: false,
@@ -49,8 +52,6 @@ export const Create = () => {
 		dataPersistence: "aof",
 		modules: ["bf", "rejson", "timeseries", "searchlight"],
 	});
-
-	console.log("aaa", selections);
 
 	const handleCreateBdb = async () => {
 		setIsLoading(true);
@@ -73,6 +74,10 @@ export const Create = () => {
 		setIsLoading(false);
 
 		setMessage(mutateCreateBdbResult.error === 0 ? "success" : "error");
+	};
+
+	const handleOnTextChange = (value: string) => {
+		setDatabaseName(value);
 	};
 
 	const handleOnClickVendor = (_index: number, value: string) => {
@@ -120,6 +125,11 @@ export const Create = () => {
 			<S.Spacer />
 
 			<S.Col>
+				<S.Col>
+					<S.Row>Database name</S.Row>
+					<Input value={databaseName} onTextChange={handleOnTextChange} />
+				</S.Col>
+
 				<S.Col>
 					<S.Row>Vendor</S.Row>
 					<Select onClickItem={handleOnClickVendor}>
