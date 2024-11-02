@@ -11,13 +11,27 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	width: 20rem;
 	z-index: 1;
 
-	& ${List}{
-		overflow-y: auto;
-		max-height: 20rem;
-	}
+	background-color: ${(props) => props.theme.color.primaryBg};
+	border-radius: 1rem;
+	max-height: 20rem;
 
-	& ${List}::-webkit-scrollbar-track {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
+	& ${List}{
+		overflow-y: hidden;
+
+		&::-webkit-scrollbar-track {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		animation: ${({ $isOpen }) => ($isOpen ? "expand 0s ease forwards 0.3s" : "none")};
+
+		@keyframes expand {
+			0% {
+				overflow-y: hidden;
+			}
+			100% {
+				overflow-y: auto;
+			}
+		}
 	}
 `;
