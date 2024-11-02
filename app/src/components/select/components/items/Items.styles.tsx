@@ -1,3 +1,4 @@
+import { List } from "@src/components/list/List.styles";
 import styled from "styled-components";
 
 export const Items = styled.div<{ $isOpen: boolean }>`
@@ -9,4 +10,14 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	position: absolute;
 	width: 20rem;
 	z-index: 1;
+
+	& ${List}{
+		overflow-y: scroll;
+		max-height: 20rem;
+	}
+
+	& ${List}::-webkit-scrollbar-track {
+		margin-top: 1rem;
+		margin-bottom: 1rem;
+	}
 `;

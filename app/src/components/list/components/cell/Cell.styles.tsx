@@ -32,6 +32,7 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 
 	display: flex;
 	flex-direction: column;
+	flex-shrink: 0;
 
 	overflow: hidden;
 	border-radius: 0rem 0rem 0rem 0rem;
