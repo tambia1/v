@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { List } from "../list/List.styles";
 
 export const PopupMenu = styled.div`
 	width: 20rem;
@@ -14,4 +15,27 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	position: absolute;
 	width: 20rem;
 	z-index: 1;
+	background-color: ${(props) => props.theme.color.primaryBg};
+	border-radius: 1rem;
+	max-height: 20rem;
+
+	& ${List}{
+		overflow-y: hidden;
+
+		&::-webkit-scrollbar-track {
+			margin-top: 1rem;
+			margin-bottom: 1rem;
+		}
+
+		animation: ${({ $isOpen }) => ($isOpen ? "expand 0s ease forwards 0.3s" : "none")};
+
+		@keyframes expand {
+			0% {
+				overflow-y: hidden;
+			}
+			100% {
+				overflow-y: auto;
+			}
+		}
+	}
 `;

@@ -10,7 +10,6 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	position: absolute;
 	width: 20rem;
 	z-index: 1;
-
 	background-color: ${(props) => props.theme.color.primaryBg};
 	border-radius: 1rem;
 	max-height: 20rem;
