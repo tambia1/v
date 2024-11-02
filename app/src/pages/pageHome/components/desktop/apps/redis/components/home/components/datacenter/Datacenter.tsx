@@ -277,7 +277,7 @@ export const Datacenter = () => {
 							<Collapsable collapsed={sub.collapsed && filter === "subs"}>
 								<S.SubscriptionsDetailsRow $visible={filter === "subs"}>
 									<S.Row>
-										<S.SubscriptionsDetailText>Vendor</S.SubscriptionsDetailText>
+										<S.SubscriptionsDetailText>Cloud</S.SubscriptionsDetailText>
 										{sub.cloud === "aws" && <Icon iconName="iconAmazon" />}
 										{sub.cloud === "gcp" && <Icon iconName="iconGoogle" />}
 										{sub.cloud === "azure" && <Icon iconName="iconMicrosoft" />}

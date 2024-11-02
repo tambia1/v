@@ -1,4 +1,5 @@
 import { Button } from "@src/components/button/Button";
+import { Counter } from "@src/components/counter/Counter";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
@@ -9,17 +10,20 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Api } from "../../../../../../api/Api";
 import { cloudMap, dataPersistenceMap, modulesMap } from "../../../../../../api/Api.types";
+import { convertBytes } from "../../../../../../api/Api.utils";
+import { plansAll } from "../../../../../../data/plansAll";
 // import { plansAll } from "../../../../../../data/plansAll";
 import { regions } from "../../../../../../data/regions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Create.styles";
 
 type ISelections = {
+	dbName: string;
 	cloud: keyof typeof cloudMap;
 	flash: boolean;
 	replicaZone: boolean;
 	regions: string[];
-	dbSize: number;
+	dbSize: string;
 	replica: boolean;
 	dataPersistence: keyof typeof dataPersistenceMap;
 	modules: (keyof typeof modulesMap)[];
@@ -40,16 +44,15 @@ export const Create = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState("");
 
-	const [databaseName, setDatabaseName] = useState(Date.now().toString(16).toUpperCase());
-
 	const [selections, setSelections] = useState<ISelections>({
+		dbName: Date.now().toString(16).toUpperCase(),
 		cloud: "aws",
 		flash: false,
 		replicaZone: false,
-		regions: [],
-		dbSize: 30,
+		regions: ["us-east-1"],
+		dbSize: convertBytes(30 * 2 ** 20, "mb"),
 		replica: false,
-		dataPersistence: "aof",
+		dataPersistence: "disabled",
 		modules: ["bf", "rejson", "timeseries", "searchlight"],
 	});
 
@@ -77,10 +80,10 @@ export const Create = () => {
 	};
 
 	const handleOnTextChange = (value: string) => {
-		setDatabaseName(value);
+		setSelections({ ...selections, dbName: value });
 	};
 
-	const handleOnClickVendor = (_index: number, value: string) => {
+	const handleOnClickCloud = (_index: number, value: string) => {
 		setSelections({ ...selections, cloud: value as ISelections["cloud"] });
 	};
 
@@ -118,6 +121,38 @@ export const Create = () => {
 		});
 	};
 
+	const hanldeOnClickMinus = () => {
+		const dbSizes = Array.from(new Set(plansAll.plans.map((plan) => convertBytes(plan.size, "mb"))));
+		const dbSize = dbSizes[dbSizes.indexOf(selections.dbSize) - 1];
+
+		if (dbSize) {
+			setSelections({ ...selections, dbSize: dbSize });
+		}
+	};
+
+	const hanldeOnClickPlus = () => {
+		const dbSizes = Array.from(new Set(plansAll.plans.map((plan) => convertBytes(plan.size, "mb"))));
+		const dbSize = dbSizes[dbSizes.indexOf(selections.dbSize) + 1];
+
+		if (dbSize) {
+			setSelections({ ...selections, dbSize: dbSize });
+		}
+	};
+
+	const getMatchingPlans = (selections: ISelections) => {
+		const plans: string[] = plansAll.plans
+			.filter((plan) => plan.cloud.toLowerCase() === selections.cloud.toLowerCase())
+			.filter((plan) => selections.regions.includes(plan.region))
+			.filter((plan) => plan.is_rof === selections.flash)
+			.filter((plan) => plan.is_multi_az === selections.replicaZone)
+			.filter((plan) => plan.supports_replica === selections.replica)
+			.filter((plan) => plan.data_persistence === selections.dataPersistence)
+			.filter((plan) => plan.supports_redis_modules)
+			.map((plan) => `${plan.id} - ${plan.name}`);
+
+		return plans.join(", ");
+	};
+
 	return (
 		<S.Create>
 			<Text>{t(lang.redis.create.title)}</Text>
@@ -126,13 +161,18 @@ export const Create = () => {
 
 			<S.Col>
 				<S.Col>
-					<S.Row>Database name</S.Row>
-					<Input value={databaseName} onTextChange={handleOnTextChange} />
+					<S.Row>Matching Plans</S.Row>
+					<S.Row>{getMatchingPlans(selections)}</S.Row>
 				</S.Col>
 
 				<S.Col>
-					<S.Row>Vendor</S.Row>
-					<Select onClickItem={handleOnClickVendor}>
+					<S.Row>Database name</S.Row>
+					<Input value={selections.dbName} onTextChange={handleOnTextChange} />
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Cloud</S.Row>
+					<Select onClickItem={handleOnClickCloud}>
 						<Select.Display>{cloudMap[selections.cloud as keyof typeof cloudMap]}</Select.Display>
 						<Select.Items>
 							{Object.keys(cloudMap).map((key) => (
@@ -236,6 +276,13 @@ export const Create = () => {
 							))}
 						</Select.Items>
 					</Select>
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Size</S.Row>
+					<Counter onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus}>
+						{selections.dbSize}
+					</Counter>
 				</S.Col>
 
 				<S.Col>
