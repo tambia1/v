@@ -23,7 +23,7 @@ type ISelections = {
 	flash: boolean;
 	replicaZone: boolean;
 	regions: string[];
-	dbSize: string;
+	dbSize: number;
 	replica: boolean;
 	dataPersistence: keyof typeof dataPersistenceMap;
 	modules: (keyof typeof modulesMap)[];
@@ -50,7 +50,7 @@ export const Create = () => {
 		flash: false,
 		replicaZone: false,
 		regions: ["us-east-1"],
-		dbSize: convertBytes(30 * 2 ** 20, "mb"),
+		dbSize: 30 * 2 ** 20,
 		replica: false,
 		dataPersistence: "disabled",
 		modules: ["bf", "rejson", "timeseries", "searchlight"],
@@ -122,7 +122,7 @@ export const Create = () => {
 	};
 
 	const hanldeOnClickMinus = () => {
-		const dbSizes = Array.from(new Set(plansAll.plans.map((plan) => convertBytes(plan.size, "mb"))));
+		const dbSizes = Array.from(new Set(plansAll.plans.map((plan) => plan.size)));
 		const dbSize = dbSizes[dbSizes.indexOf(selections.dbSize) - 1];
 
 		if (dbSize) {
@@ -131,7 +131,7 @@ export const Create = () => {
 	};
 
 	const hanldeOnClickPlus = () => {
-		const dbSizes = Array.from(new Set(plansAll.plans.map((plan) => convertBytes(plan.size, "mb"))));
+		const dbSizes = Array.from(new Set(plansAll.plans.map((plan) => plan.size)));
 		const dbSize = dbSizes[dbSizes.indexOf(selections.dbSize) + 1];
 
 		if (dbSize) {
@@ -145,9 +145,10 @@ export const Create = () => {
 			.filter((plan) => selections.regions.includes(plan.region))
 			.filter((plan) => plan.is_rof === selections.flash)
 			.filter((plan) => plan.is_multi_az === selections.replicaZone)
-			.filter((plan) => plan.supports_replica === selections.replica)
+			.filter((plan) => (plan.replication === "user-selection-in-memory" && selections.replica) || (plan.replication === "default" && !selections.replica))
 			.filter((plan) => plan.data_persistence === selections.dataPersistence)
 			.filter((plan) => plan.supports_redis_modules)
+			.filter((plan) => plan.size === selections.dbSize)
 			.map((plan) => `${plan.id} - ${plan.name}`);
 
 		return plans.join(", ");
@@ -281,7 +282,7 @@ export const Create = () => {
 				<S.Col>
 					<S.Row>Size</S.Row>
 					<Counter onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus}>
-						{selections.dbSize}
+						{convertBytes(selections.dbSize, "biggest")}
 					</Counter>
 				</S.Col>
 
