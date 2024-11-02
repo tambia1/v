@@ -138,7 +138,7 @@ export const translation: IHome = {
 			title: "Subscription",
 		},
 		create: {
-			title: "Build",
+			title: "Create",
 		},
 	},
 
