@@ -12,7 +12,7 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	z-index: 1;
 
 	& ${List}{
-		overflow-y: scroll;
+		overflow-y: auto;
 		max-height: 20rem;
 	}
 

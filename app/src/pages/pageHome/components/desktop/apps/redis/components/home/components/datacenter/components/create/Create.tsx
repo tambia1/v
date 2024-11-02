@@ -7,7 +7,7 @@ import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Api } from "../../../../../../api/Api";
-import { cloudMap, type dataPersistenceMap, type modulesMap } from "../../../../../../api/Api.types";
+import { cloudMap, dataPersistenceMap, modulesMap } from "../../../../../../api/Api.types";
 // import { plansAll } from "../../../../../../data/plansAll";
 import { regions } from "../../../../../../data/regions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
@@ -21,7 +21,7 @@ type ISelections = {
 	dbSize: number;
 	replica: boolean;
 	dataPersistence: keyof typeof dataPersistenceMap;
-	moduls: (keyof typeof modulesMap)[];
+	modules: (keyof typeof modulesMap)[];
 };
 
 export const Create = () => {
@@ -47,7 +47,7 @@ export const Create = () => {
 		dbSize: 30,
 		replica: false,
 		dataPersistence: "aof",
-		moduls: ["bf", "rejson", "timeseries", "searchlight"],
+		modules: ["bf", "rejson", "timeseries", "searchlight"],
 	});
 
 	console.log("aaa", selections);
@@ -87,6 +87,25 @@ export const Create = () => {
 		setSelections({ ...selections, flash: value === "true" });
 	};
 
+	const handleOnClickReplica = (_index: number, value: string) => {
+		setSelections({ ...selections, replica: value === "true" });
+	};
+
+	const handleOnClickDataPersistence = (_index: number, value: string) => {
+		setSelections({ ...selections, dataPersistence: value as ISelections["dataPersistence"] });
+	};
+
+	const handleOnClickModules = (_index: number, value: string) => {
+		const selectedModule = value as keyof typeof modulesMap;
+
+		setSelections({
+			...selections,
+			modules: selections.modules.includes(selectedModule)
+				? selections.modules.filter((module) => module !== selectedModule)
+				: [...selections.modules, selectedModule],
+		});
+	};
+
 	const handleOnClickRegion = (_index: number, value: string) => {
 		setSelections({
 			...selections,
@@ -109,6 +128,25 @@ export const Create = () => {
 							{Object.keys(cloudMap).map((key) => (
 								<Select.Items.Item key={key} value={key}>
 									{cloudMap[key as keyof typeof cloudMap]}
+								</Select.Items.Item>
+							))}
+						</Select.Items>
+					</Select>
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Regions</S.Row>
+					<Select onClickItem={handleOnClickRegion}>
+						<Select.Display>{String(selections.regions.length === 1 ? selections.regions[0] : `${selections.regions.length}`)}</Select.Display>
+						<Select.Items>
+							{regions.map((region) => (
+								<Select.Items.Item key={region.id} value={region.name}>
+									<Select.Items.Item.Text>{region.name}</Select.Items.Item.Text>
+									{selections.regions.includes(region.name) && (
+										<Select.Items.Item.Image>
+											<Icon iconName="iconCheck" />
+										</Select.Items.Item.Image>
+									)}
 								</Select.Items.Item>
 							))}
 						</Select.Items>
@@ -144,16 +182,44 @@ export const Create = () => {
 				</S.Col>
 
 				<S.Col>
-					<S.Row>Regions</S.Row>
-					<Select onClickItem={handleOnClickRegion}>
-						<Select.Display>{String(selections.regions.length === 1 ? selections.regions[0] : `${selections.regions.length}`)}</Select.Display>
+					<S.Row>Replica</S.Row>
+					<Select onClickItem={handleOnClickReplica}>
+						<Select.Display>{String(selections.replica).toUpperCase()}</Select.Display>
 						<Select.Items>
-							{regions.map((region) => (
-								<Select.Items.Item key={region.id} value={region.name}>
-									<Select.Items.Item.Text>{region.name}</Select.Items.Item.Text>
-									{selections.regions.includes(region.name) && (
+							{["true", "false"].map((replica) => (
+								<Select.Items.Item key={replica} value={replica}>
+									{replica.toUpperCase()}
+								</Select.Items.Item>
+							))}
+						</Select.Items>
+					</Select>
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Data persistence</S.Row>
+					<Select onClickItem={handleOnClickDataPersistence}>
+						<Select.Display>{dataPersistenceMap[selections.dataPersistence as keyof typeof dataPersistenceMap]}</Select.Display>
+						<Select.Items>
+							{Object.keys(dataPersistenceMap).map((key) => (
+								<Select.Items.Item key={key} value={key}>
+									{dataPersistenceMap[key as keyof typeof dataPersistenceMap]}
+								</Select.Items.Item>
+							))}
+						</Select.Items>
+					</Select>
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Modules</S.Row>
+					<Select onClickItem={handleOnClickModules}>
+						<Select.Display>{String(selections.modules.length === 1 ? selections.modules[0] : `${selections.modules.length}`)}</Select.Display>
+						<Select.Items>
+							{Object.keys(modulesMap).map((module) => (
+								<Select.Items.Item key={module} value={module}>
+									<Select.Items.Item.Text>{modulesMap[module as keyof typeof modulesMap]}</Select.Items.Item.Text>
+									{selections.modules.includes(module as keyof typeof modulesMap) && (
 										<Select.Items.Item.Image>
-											<Icon iconName="iconCheck" />{" "}
+											<Icon iconName="iconCheck" />
 										</Select.Items.Item.Image>
 									)}
 								</Select.Items.Item>
