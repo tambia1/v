@@ -28,6 +28,16 @@ const Icon = css<{ $isVisible: boolean }>`
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 	cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "none")};
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
+
+	& svg {
+		stroke: ${(props) => props.theme.color.primaryFg};
+		fill: ${(props) => props.theme.color.primaryBg};
+	}
+
+	&:hover{
+		color: ${(props) => props.theme.color.primaryFgHover};
+		background-color: ${(props) => props.theme.color.primaryBgHover};
+	}
 `;
 
 export const IconDone = styled.div<{ $isVisible: boolean }>`
@@ -37,11 +47,6 @@ export const IconDone = styled.div<{ $isVisible: boolean }>`
 	& svg {
 		stroke: ${(props) => props.theme.color.successFg};
 	}
-
-	&:hover{
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
-	}
 `;
 
 export const IconCancel = styled.div<{ $isVisible: boolean }>`
@@ -50,10 +55,5 @@ export const IconCancel = styled.div<{ $isVisible: boolean }>`
 
 	& svg {
 		stroke: ${(props) => props.theme.color.errorFg};
-	}
-
-	&:hover{
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 `;

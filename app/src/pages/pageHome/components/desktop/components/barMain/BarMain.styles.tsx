@@ -31,27 +31,9 @@ const Icon = css<{ $isVisible: boolean }>`
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 	cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "none")};
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
-`;
-
-export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
-	${Icon}
-	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "bottom: 0rem;" : "left: 0rem")};
 
 	& svg {
-		fill: ${(props) => props.theme.color.errorBg};
-	}
-
-	&:hover{
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
-	}
-`;
-
-export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
-	${Icon}
-	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "top: 0rem;" : "right: 0rem")};
-
-	& svg {
+		stroke: ${(props) => props.theme.color.primaryFg};
 		fill: ${(props) => props.theme.color.primaryBg};
 	}
 
@@ -59,6 +41,16 @@ export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPos
 		color: ${(props) => props.theme.color.primaryFgHover};
 		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
+`;
+
+export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
+	${Icon}
+	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "bottom: 0rem;" : "left: 0rem")};
+`;
+
+export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
+	${Icon}
+	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "top: 0rem;" : "right: 0rem")};
 `;
 
 export const Username = styled.div`

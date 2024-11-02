@@ -13,9 +13,9 @@ export type Props = {
 export const Counter = ({ className, children, onClickMinus, onClickPlus, ...rest }: Props) => {
 	return (
 		<Counter.Compose {...rest} className={className}>
-			<Value>{children}</Value>
 			<Button iconName="iconMinusSquare" onClick={onClickMinus} />
 			<Button iconName="iconPlusSquare" onClick={onClickPlus} />
+			<Value>{children}</Value>
 		</Counter.Compose>
 	);
 };

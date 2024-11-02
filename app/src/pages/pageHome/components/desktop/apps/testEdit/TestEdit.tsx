@@ -185,6 +185,11 @@ export const TestEdit = () => {
 							</Select.Items.Item>
 							<Select.Items.Item value="item_1">Item 1</Select.Items.Item>
 							<Select.Items.Item value="item_2">Item 2</Select.Items.Item>
+							<Select.Items.Item value="item_3">Item 3</Select.Items.Item>
+							<Select.Items.Item value="item_4">Item 4</Select.Items.Item>
+							<Select.Items.Item value="item_5">Item 5</Select.Items.Item>
+							<Select.Items.Item value="item_6">Item 6</Select.Items.Item>
+							<Select.Items.Item value="item_7">Item 7</Select.Items.Item>
 						</Select.Items>
 					</Select>
 				</S.Col>
