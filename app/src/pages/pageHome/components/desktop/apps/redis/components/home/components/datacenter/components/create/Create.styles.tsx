@@ -9,8 +9,6 @@ export const Create = styled.div`
 
 	padding: 1rem;
 	box-sizing: border-box;
-
-	margin-bottom: 20rem;
 `;
 
 export const Spacer = styled.div`
