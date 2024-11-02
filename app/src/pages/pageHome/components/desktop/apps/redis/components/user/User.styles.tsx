@@ -185,7 +185,8 @@ export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
 `;
 
 export const SocialLoginImage = styled(Icon)`
-	width: 2rem;
+	width: 3rem;
+	height: 3rem;
 	color: ${(props) => props.theme.color.primaryFg};
 	flex-shrink: 0;
 	cursor: pointer;
