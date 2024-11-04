@@ -52,7 +52,7 @@ export const Splash = ({ onFinish }: Props) => {
 
 	return (
 		<S.Splash>
-			<S.Logo ref={refLogo} />
+			<S.Logo ref={refLogo} role="img" aria-label="logo" />
 			<S.ProgressContainer ref={refProgress}>
 				<S.Progress percent={progress} />
 			</S.ProgressContainer>

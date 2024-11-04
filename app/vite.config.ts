@@ -1,12 +1,12 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import react from "@vitejs/plugin-react";
 import * as fs from "fs";
 import * as path from "path";
-import { PluginOption, defineConfig, Plugin } from "vite";
-import checker from "vite-plugin-checker";
 import federation from "@originjs/vite-plugin-federation";
+import react from "@vitejs/plugin-react";
+import { type Plugin, type PluginOption, defineConfig } from "vite";
+import checker from "vite-plugin-checker";
 
 export default defineConfig({
 	base: "/v",

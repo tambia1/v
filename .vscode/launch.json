@@ -58,7 +58,14 @@
 			}
 		},
 		{
-			"name": "app test",
+			"name": "app unit testing",
+			"command": "npm run test",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "app functional testing",
 			"command": "npm run test",
 			"request": "launch",
 			"type": "node-terminal",
@@ -104,6 +111,13 @@
 			"command": "",
 			"request": "launch",
 			"type": "node-terminal"
+		},
+		{
+			"name": "playwright install",
+			"command": "npx playwright install chromium",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "playwright test",
