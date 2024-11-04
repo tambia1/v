@@ -1,17 +1,19 @@
 import { expect, test } from "@playwright/test";
 
 test("Desktop", async ({ page }) => {
+	let screenshotCounter = 0;
+
 	await page.context().clearCookies();
 	await page.goto("https://localhost:5000/v/", { waitUntil: "commit" });
 
 	const splash = await page.getByLabel("logo");
 	await expect(splash).toBeVisible();
-	await expect(page).toHaveScreenshot("desktop_splash.png");
+	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_splash.png`);
 
 	const home = await page.getByText("Guest");
 	await expect(home).toBeVisible();
 	await page.waitForTimeout(1000);
-	await expect(page).toHaveScreenshot("desktop_guest.png");
+	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_guest.png`);
 
 	await page.getByText("User").click();
 	await page.getByPlaceholder("Email (a, b)").click();
@@ -21,19 +23,19 @@ test("Desktop", async ({ page }) => {
 	await page.getByRole("button", { name: "Login" }).click();
 	const welcome = await page.getByText("Welcome John Admin!");
 	await expect(welcome).toBeVisible();
-	await expect(page).toHaveScreenshot("desktop_login.png");
+	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_login.png`);
 
 	await expect(welcome).not.toBeVisible();
-	await expect(page).toHaveScreenshot("desktop_user.png");
+	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_user.png`);
 
 	const appSettings = await page.getByText("Settings");
 	await expect(appSettings).toBeVisible();
 	await appSettings.click();
 	await expect(page.getByText("Appearance")).toBeVisible();
-	await expect(page).toHaveScreenshot("desktop_settings.png");
+	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_settings.png`);
 
 	await page.locator("svg").filter({ hasText: "iconXCircle" }).click();
 	const userName = await page.getByText("John");
 	await expect(userName).toBeVisible();
-	await expect(page).toHaveScreenshot("desktop_home.png");
+	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_home.png`);
 });
