@@ -18,7 +18,8 @@
 		"e2e:debug": "playwright test --debug",
 		"e2e:manual": "playwright test --ui",
 		"e2e:update": "playwright test --update-snapshots",
-		"e2e:codegen": "playwright codegen --viewport-size=390,844"
+		"e2e:codegen": "playwright codegen --viewport-size=390,844",
+		"e2e:ci": "playwright test --config ./playwright.config.ts"
 	},
 	"dependencies": {
 		"@apollo/client": "3.11.8",
