@@ -14,8 +14,9 @@
 		"release": "node ./src/scripts/release.js",
 		"biome": "biome check .",
 		"e2e": "playwright test",
+		"e2e:debug": "playwright test --debug",
 		"e2e:show": "playwright test --headed",
-		"e2e:debug": "playwright test --ui",
+		"e2e:manual": "playwright test --ui",
 		"e2e:update": "playwright test --update-snapshots",
 		"e2e:codegen": "playwright codegen --viewport-size=390,844"
 	},
