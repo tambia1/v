@@ -1,10 +1,12 @@
 import { expect, test } from "@playwright/test";
 
+const BASE_URL = process.env.BASE_URL || "https://localhost:5000";
+
 test("Desktop", async ({ page }) => {
 	let screenshotCounter = 0;
 
 	await page.context().clearCookies();
-	await page.goto("https://localhost:5000/v/", { waitUntil: "commit" });
+	await page.goto(`${BASE_URL}/v/`, { waitUntil: "commit" });
 
 	const splash = await page.getByLabel("logo");
 	await expect(splash).toBeVisible();
