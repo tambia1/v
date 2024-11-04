@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install dependencies
+        run: npm i -D @playwright/test
+
       - name: Run Playwright tests
         run: npx playwright test ./app/e2e 
         
