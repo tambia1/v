@@ -23,11 +23,13 @@ jobs:
 
       - name: Install Playwright browsers
         working-directory: ./app
-        run: npx playwright install
+        run: npx playwright install --with-deps  
+
+      - name: Install Playwright
+        working-directory: ./app 
+        run: npm i -D @playwright/test
 
       - name: Run Playwright tests
-        env: 
-          PLAYWRIGHT_BROWSERS_PATH: 0
         working-directory: ./app
         run: npm run e2e
       
