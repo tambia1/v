@@ -58,15 +58,15 @@
 			}
 		},
 		{
-			"name": "app unit testing",
+			"name": "app test",
 			"command": "npm run test",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/"
 		},
 		{
-			"name": "app functional testing",
-			"command": "npm run test",
+			"name": "app e2e",
+			"command": "npm run e2e",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/"
