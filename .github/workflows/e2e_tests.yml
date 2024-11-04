@@ -18,12 +18,14 @@ jobs:
           node-version: lts/*
           
       - name: Install dependencies
+        working-directory: ./app  
         run: npm install
 
       - name: Run Playwright tests
         env: 
           PLAYWRIGHT_BROWSERS_PATH: 0
-        run: npm run e2e 
+        working-directory: ./app  
+        run: npm run e2e
       
       - uses: actions/upload-artifact@v4
         if: always()
