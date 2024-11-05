@@ -1,18 +1,18 @@
 import { Pages } from "@pages/Pages.types";
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Theme } from "@src/theme/Theme";
-import { GlobalStyle } from "@src/styles/globalStyles";
-import { I18nextProvider } from "react-i18next";
-import { useEffect } from "react";
-import { useTranslation } from "react-i18next";
-import { PageHome } from "./pages/pageHome/PageHome";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Device } from "./utils/Device";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { GlobalStyle } from "@src/styles/globalStyles";
+import { Theme } from "@src/theme/Theme";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useEffect } from "react";
+import { I18nextProvider } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { PageHome } from "./pages/pageHome/PageHome";
+import { Device } from "./utils/Device";
 
-const VITE_GOOGLE_AUTH = (import.meta.env.VITE_GOOGLE_AUTH || "") as string;
+const VITE_GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH || "";
 
 export const App = () => {
 	const { i18n } = useTranslation();

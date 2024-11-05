@@ -3,12 +3,12 @@ import { type ReactNode, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { ThemeContext } from "./UseThemeContext";
 
-const themeName: ITheme["themeName"] = import.meta.env.VITE_THEME || "light";
+const themeName: ITheme["themeName"] = import.meta.env.THEME || "light";
 const defaultTheme = themes[themeName];
 
-interface Props {
+type Props = {
 	children: ReactNode;
-}
+};
 
 export const Theme = ({ children }: Props) => {
 	const [theme, setCurrentTheme] = useState(defaultTheme);
