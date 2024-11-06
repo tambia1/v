@@ -13,10 +13,10 @@ export type ITouch = {
 	status: IStatus;
 };
 
-interface Props {
+type Props = {
 	ref: RefObject<HTMLElement>;
 	onTouch: (touch: ITouch) => void;
-}
+};
 
 export const useTouch = ({ ref, onTouch }: Props) => {
 	useEffect(() => {

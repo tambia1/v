@@ -41,7 +41,7 @@ export const Desktop = () => {
 	const animationApp = useAnimation(refApp);
 	const [isErrorLoadingComponent, setIsErrorLoadingComponent] = useState(false);
 	const [isShakeMode, setIsShakeMode] = useState(false);
-	const [touchState, setTouchState] = useState<"none" | "pagerMove" | "appPress">("none");
+	const isPagerMoving = useRef(false);
 
 	const storeUser = StoreUser();
 	const queryUser = Api.user.queryUser({ token: storeUser.token }, { enabled: !!storeUser.token });
@@ -162,13 +162,10 @@ export const Desktop = () => {
 
 						<Pager
 							onMouseMove={() => {
-								console.log("move");
-
-								setTouchState("pagerMove");
+								isPagerMoving.current = true;
 							}}
-							onMouseUp={(_pageIndex) => {
-								console.log("up");
-								setTouchState("none");
+							onMouseUp={() => {
+								isPagerMoving.current = false;
 							}}
 						>
 							{appsByRole.map((appsGroup, i) => {
@@ -185,7 +182,7 @@ export const Desktop = () => {
 													onLongPress={handleLongPressApplication}
 													isLoading={app.id === loadingAppId}
 													isShakeMode={isShakeMode}
-													isPreventClick={touchState === "pagerMove"}
+													isPreventTouch={isPagerMoving}
 												/>
 											);
 										})}

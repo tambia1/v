@@ -1,10 +1,10 @@
 import { Icon } from "@src/components/icon/Icon";
 import { type ITouch, useTouch } from "@src/hooks/UseTouch";
-import { type ReactNode, useRef } from "react";
+import { type MutableRefObject, type ReactNode, useRef } from "react";
 import { StoreApps } from "../../stores/StoreApps";
 import * as S from "./AppButton.styles";
 
-interface Props {
+type Props = {
 	id: string;
 	title: ReactNode;
 	icon: S.IAppIcon | string;
@@ -12,10 +12,10 @@ interface Props {
 	onLongPress: (id: string) => void;
 	isLoading: boolean;
 	isShakeMode: boolean;
-	isPreventClick: boolean;
-}
+	isPreventTouch?: MutableRefObject<boolean>;
+};
 
-export const AppButton = ({ id, title, icon, onClick, onLongPress, isPreventClick, isLoading, isShakeMode }: Props) => {
+export const AppButton = ({ id, title, icon, onClick, onLongPress, isPreventTouch, isLoading, isShakeMode, ...rest }: Props) => {
 	const refButton = useRef<HTMLDivElement>(null);
 	const storeApps = StoreApps();
 	const isExternalApp = storeApps.apps.findIndex((item) => item.name === id) >= 0;
@@ -23,7 +23,7 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isPreventClic
 	useTouch({
 		ref: refButton,
 		onTouch: ({ status, time }: ITouch) => {
-			if (isPreventClick) {
+			if (isPreventTouch?.current) {
 				return;
 			}
 
@@ -44,7 +44,7 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isPreventClic
 	});
 
 	return (
-		<S.AppButton ref={refButton} $isLoading={isLoading} $isShakeMode={isShakeMode}>
+		<S.AppButton ref={refButton} $isLoading={isLoading} $isShakeMode={isShakeMode} {...rest}>
 			<S.Image $appIcon={icon} />
 			<S.Title>{title}</S.Title>
 
