@@ -12,9 +12,10 @@ interface Props {
 	onLongPress: (id: string) => void;
 	isLoading: boolean;
 	isShakeMode: boolean;
+	isPreventClick: boolean;
 }
 
-export const AppButton = ({ id, title, icon, onClick, onLongPress, isLoading, isShakeMode }: Props) => {
+export const AppButton = ({ id, title, icon, onClick, onLongPress, isPreventClick, isLoading, isShakeMode }: Props) => {
 	const refButton = useRef<HTMLDivElement>(null);
 	const storeApps = StoreApps();
 	const isExternalApp = storeApps.apps.findIndex((item) => item.name === id) >= 0;
@@ -22,6 +23,10 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isLoading, is
 	useTouch({
 		ref: refButton,
 		onTouch: ({ status, time }: ITouch) => {
+			if (isPreventClick) {
+				return;
+			}
+
 			if (status === "long") {
 				onLongPress?.(id);
 			} else if (status === "up" && time < 700) {

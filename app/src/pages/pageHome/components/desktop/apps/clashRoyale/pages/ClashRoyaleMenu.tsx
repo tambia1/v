@@ -26,7 +26,7 @@ export const ClashRoyaleMenu = () => {
 				<S.Bg />
 				<S.Splash>
 					<S.PagingContainer>
-						<Pager onChange={(pageIndex) => setPageIndex(pageIndex)}>
+						<Pager onMouseUp={(pageIndex) => setPageIndex(pageIndex)}>
 							<S.PagingItem1 />
 							<S.PagingItem2 />
 							<S.PagingItem3 />
