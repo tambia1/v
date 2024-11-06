@@ -5,12 +5,13 @@ import * as S from "./Pager.styles";
 interface Props {
 	className?: string;
 	children: ReactNode[];
-	onChange: (pageIndex: number) => void;
 	disabled?: boolean;
 	initialPageIndex?: number;
+	onMouseUp?: (pageIndex: number) => void;
+	onMouseMove?: () => void;
 }
 
-export const Pager = ({ className, children: pages, onChange, disabled = false, initialPageIndex = 0 }: Props) => {
+export const Pager = ({ className, children: pages, onMouseUp, onMouseMove, disabled = false, initialPageIndex = 0 }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
 	const [pageIndex, setPageIndex] = useState(initialPageIndex);
@@ -18,9 +19,9 @@ export const Pager = ({ className, children: pages, onChange, disabled = false, 
 	useEffect(() => {
 		if (refPagesPanel.current) {
 			translate(refPagesPanel.current, -initialPageIndex * 100, false);
-			onChange(initialPageIndex);
+			onMouseUp?.(initialPageIndex);
 		}
-	}, []);
+	}, [initialPageIndex, onMouseUp]);
 
 	useTouch({
 		ref: refPages,
@@ -51,6 +52,7 @@ export const Pager = ({ className, children: pages, onChange, disabled = false, 
 				//set transform/transition
 				const gapInPercent = (gap / divPagesPanel.clientWidth) * 100;
 				translate(refPagesPanel.current, -pageIndex * 100 + gapInPercent, false);
+				onMouseMove?.();
 			}
 
 			if (status === "up") {
@@ -72,7 +74,7 @@ export const Pager = ({ className, children: pages, onChange, disabled = false, 
 
 				setPageIndex(index);
 				translate(refPagesPanel.current, -index * 100, true);
-				onChange(index);
+				onMouseUp?.(index);
 			}
 		},
 	});
