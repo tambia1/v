@@ -18,7 +18,8 @@
 		"test:visuals:debug": "playwright test --debug",
 		"test:visuals:manual": "playwright test --ui",
 		"test:visuals:update": "playwright test --update-snapshots",
-		"test:visuals:codegen": "playwright codegen --viewport-size=390,844"
+		"test:visuals:codegen": "playwright codegen --viewport-size=390,844",
+		"test:visuals:reporter": "playwright test --reporter=list"
 	},
 	"dependencies": {
 		"@apollo/client": "3.11.8",
