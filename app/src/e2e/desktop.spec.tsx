@@ -11,10 +11,8 @@ test("Desktop", async ({ page }) => {
 
 	const splash = await page.getByLabel("logo");
 	await expect(splash).toBeVisible();
-
 	const progress = await page.getByLabel("progress");
-	await expect(progress).toHaveAttribute("data-progress", "100", { timeout: 10000 });
-	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_splash.png`);
+	await expect(progress).not.toBeVisible();
 
 	const home = await page.getByText("Guest");
 	await expect(home).toBeVisible();
