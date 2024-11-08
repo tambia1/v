@@ -42,5 +42,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: ./app/visuals-temp/report  
+          path: ./app/visuals-temp/report/index.html 
           retention-days: 30
