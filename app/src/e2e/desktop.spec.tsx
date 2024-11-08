@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 const BASE_URL = "https://localhost:5000";
+// const BASE_URL = "https://tambia1.github.io";
 
 test("Desktop", async ({ page }) => {
 	let screenshotCounter = 0;
@@ -10,6 +11,9 @@ test("Desktop", async ({ page }) => {
 
 	const splash = await page.getByLabel("logo");
 	await expect(splash).toBeVisible();
+
+	const progress = await page.getByLabel("progress");
+	await expect(progress).toHaveAttribute("data-progress", "100", { timeout: 10000 });
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_splash.png`);
 
 	const home = await page.getByText("Guest");
