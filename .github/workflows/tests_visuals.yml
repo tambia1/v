@@ -10,6 +10,11 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./app
+
     steps:
       - uses: actions/checkout@v4
       
@@ -18,21 +23,20 @@ jobs:
           node-version: lts/*
           
       - name: Install dependencies
-        working-directory: ./app 
         run: npm install
 
       - name: Install Playwright browsers
-        working-directory: ./app
         run: npx playwright install --with-deps  
 
       - name: Install Playwright
-        working-directory: ./app 
         run: npm i -D @playwright/test
 
       - name: Run Playwright tests
-        working-directory: ./app
         run: npm run test:visuals 
-      
+        env:
+          VITE_ENV: prod
+    
+          
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
