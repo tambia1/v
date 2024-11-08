@@ -13,7 +13,7 @@ import { PageHome } from "./pages/pageHome/PageHome";
 import { Device } from "./utils/Device";
 
 const ENV = import.meta.env.VITE_ENV || "dev";
-const GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH || "";
+const GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH || "dev";
 
 export const App = () => {
 	const { i18n } = useTranslation();
