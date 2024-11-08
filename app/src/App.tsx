@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PageHome } from "./pages/pageHome/PageHome";
 import { Device } from "./utils/Device";
 
+const VITE_MODE = import.meta.env.VITE_MODE || "dev";
 const VITE_GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH || "";
 
 export const App = () => {
@@ -37,7 +38,7 @@ export const App = () => {
 							</Routes>
 						</Theme>
 
-						<ReactQueryDevtools initialIsOpen={false} />
+						{VITE_MODE === "dev" && <ReactQueryDevtools initialIsOpen={false} />}
 					</QueryClientProvider>
 				</BrowserRouter>
 			</I18nextProvider>
