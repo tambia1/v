@@ -1,12 +1,15 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 import federation from "@originjs/vite-plugin-federation";
 import react from "@vitejs/plugin-react";
 import { type Plugin, type PluginOption, defineConfig } from "vite";
 import checker from "vite-plugin-checker";
+
+import * as dotenv from "dotenv";
+dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
 export default defineConfig({
 	base: "/v",

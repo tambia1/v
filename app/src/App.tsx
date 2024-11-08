@@ -12,10 +12,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PageHome } from "./pages/pageHome/PageHome";
 import { Device } from "./utils/Device";
 
-import "dotenv/config";
-
-const VITE_MODE = import.meta.env.VITE_MODE || "dev";
-const VITE_GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH || "";
+const ENV = import.meta.env.VITE_ENV;
+const GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH;
 
 export const App = () => {
 	const { i18n } = useTranslation();
@@ -28,7 +26,7 @@ export const App = () => {
 	}, []);
 
 	return (
-		<GoogleOAuthProvider clientId={VITE_GOOGLE_AUTH}>
+		<GoogleOAuthProvider clientId={GOOGLE_AUTH}>
 			<I18nextProvider i18n={i18n}>
 				<BrowserRouter basename="/v">
 					<QueryClientProvider client={queryClient}>
@@ -40,7 +38,7 @@ export const App = () => {
 							</Routes>
 						</Theme>
 
-						{VITE_MODE === "dev" && <ReactQueryDevtools initialIsOpen={false} />}
+						{ENV === "dev" && <ReactQueryDevtools initialIsOpen={false} />}
 					</QueryClientProvider>
 				</BrowserRouter>
 			</I18nextProvider>

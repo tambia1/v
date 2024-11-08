@@ -5,7 +5,7 @@ interface ImportMeta {
 }
 
 interface ImportMetaEnv {
-	readonly VITE_MODE: "dev" | "staging" | "production";
+	readonly VITE_ENV: "dev" | "qa" | "prod";
 
 	readonly VITE_THEME: "light" | "dark";
 	readonly VITE_LANGUAGE: string;

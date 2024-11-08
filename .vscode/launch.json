@@ -54,7 +54,7 @@
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/",
 			"env": {
-				"NODE_ENV": "development"
+				"ENV": "dev"
 			}
 		},
 		{
@@ -69,7 +69,10 @@
 			"command": "npm run test:visuals",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
+			"cwd": "${workspaceFolder}/app/",
+			"env": {
+				"ENV": "dev"
+			}
 		},
 		{
 			"name": "app coverage",
@@ -105,6 +108,40 @@
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/src/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
+			"name": "env dev",
+			"command": "export ENV='dev'",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "env qa",
+			"command": "export ENV='qa'",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "env prod",
+			"command": "export ENV='prod'",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
+			"name": "env list",
+			"command": "printenv",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
 		},
 		{
 			"name": "---------------------------------",
@@ -254,20 +291,14 @@
 			"command": "node index.js",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testGraphQl/server/",
-			"env": {
-				"NODE_ENV": "development"
-			}
+			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testGraphQl/server/"
 		},
 		{
 			"name": "server redis",
 			"command": "node index.js",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testRedis/server/",
-			"env": {
-				"NODE_ENV": "development"
-			}
+			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testRedis/server/"
 		},
 		{
 			"name": "---------------------------------",
