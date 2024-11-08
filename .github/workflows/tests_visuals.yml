@@ -37,9 +37,10 @@ jobs:
           VITE_ENV: prod
           VITE_BASE_URL: https://tambia1.github.io/v
               
-      - uses: actions/upload-artifact@v4
+      - name: Upload Playwright Report
         if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
         with:
           name: playwright-report
-          path: playwright-report/
+          path: ./app/visuals-temp/report  
           retention-days: 30
