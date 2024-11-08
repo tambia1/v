@@ -12,6 +12,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PageHome } from "./pages/pageHome/PageHome";
 import { Device } from "./utils/Device";
 
+import "dotenv/config";
+
 const VITE_MODE = import.meta.env.VITE_MODE || "dev";
 const VITE_GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH || "";
 

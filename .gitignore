@@ -1,29 +1,15 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
 
 node_modules
-dist-ssr
-*.local
 
-# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 !.vscode/launch.json
-.idea
-.DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
 coverage
 
-app/.env
+app/env/*
+!app/env/.env.example
+
 app/tsconfig.tsbuildinfo
 app/visuals-temp
+
