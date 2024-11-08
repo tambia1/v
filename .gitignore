@@ -26,4 +26,4 @@ coverage/*
 
 app/.env
 app/tsconfig.tsbuildinfo
-app/e2e-temp
+app/visuals-temp

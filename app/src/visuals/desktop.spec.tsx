@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-const BASE_URL = "https://localhost:5000";
-// const BASE_URL = "https://tambia1.github.io";
+// const BASE_URL = "https://localhost:5000";
+const BASE_URL = "https://tambia1.github.io";
 
 test("Desktop", async ({ page }) => {
 	let screenshotCounter = 0;
