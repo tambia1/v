@@ -157,74 +157,24 @@
 			"cwd": "${workspaceFolder}/app/"
 		},
 		{
-			"name": "playwright test",
-			"command": "npx playwright test",
+			"name": "playwright test visuals",
+			"command": "npm run test:visuals",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
+			"cwd": "${workspaceFolder}/app/",
+			"env": {
+				"ENV": "prod"
+			}
 		},
 		{
-			"name": "playwright test --headed",
-			"command": "npx playwright test --headed",
+			"name": "playwright test visuals - show",
+			"command": "npm run test:visuals:show",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright test --ui",
-			"command": "npx playwright test --ui",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright test --update-snapshots",
-			"command": "npx playwright test --update-snapshots",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright browser",
-			"command": "npx playwright test --project=chromium",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright test file",
-			"command": "npx playwright test example",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright debug mode",
-			"command": "npx playwright test --debug",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright codegen",
-			"command": "npx playwright codegen http://localhost:5000/v",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright codegen har",
-			"command": "npx playwright codegen http://localhost:5000/v --save-har aaa.har --viewport-size=430,932",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "playwright report",
-			"command": "npx playwright show-report",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
+			"cwd": "${workspaceFolder}/app/",
+			"env": {
+				"ENV": "prod"
+			}
 		},
 		{
 			"name": "---------------------------------",
