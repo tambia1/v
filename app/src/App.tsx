@@ -12,8 +12,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PageHome } from "./pages/pageHome/PageHome";
 import { Device } from "./utils/Device";
 
-const ENV = import.meta.env.VITE_ENV;
-const GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH;
+const ENV = import.meta.env.VITE_ENV || "dev";
+const GOOGLE_AUTH = import.meta.env.VITE_GOOGLE_AUTH || "";
 
 export const App = () => {
 	const { i18n } = useTranslation();

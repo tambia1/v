@@ -3,11 +3,6 @@ import { expect, test } from "@playwright/test";
 test("Desktop", async ({ page }) => {
 	let screenshotCounter = 0;
 
-	console.log("===============");
-	console.log(`${process.env.VITE_ENV}`);
-	console.log(`${process.env.VITE_BASE_URL}`);
-	console.log("===============");
-
 	await page.context().clearCookies();
 	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "commit" });
 

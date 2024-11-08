@@ -71,7 +71,7 @@
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/",
 			"env": {
-				"ENV": "dev"
+				"ENV": "prod"
 			}
 		},
 		{

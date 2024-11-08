@@ -8,7 +8,7 @@ node_modules
 coverage
 
 app/env/*
-!app/env/.env.example
+!app/env/.env
 
 app/tsconfig.tsbuildinfo
 app/visuals-temp
