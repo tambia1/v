@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const ANIMATION_TIME = 500;
+const ANIMATION_TIME = 1000;
 
 test("Desktop", async ({ page }) => {
 	let screenshotCounter = 0;
@@ -24,22 +24,22 @@ test("Desktop", async ({ page }) => {
 	await page.getByPlaceholder("Password (a, b)").click();
 	await page.getByPlaceholder("Password (a, b)").fill("a");
 	await page.getByRole("button", { name: "Login" }).click();
+
 	const welcome = await page.getByText("Welcome John Admin!");
 	await expect(welcome).toBeVisible();
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_login.png`);
-
 	await expect(welcome).not.toBeVisible();
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_user.png`);
 
 	const appSettings = await page.getByText("Settings");
 	await expect(appSettings).toBeVisible();
 	await appSettings.click();
-	await expect(page.getByText("Appearance")).toBeVisible();
+	await page.waitForLoadState("networkidle");
 	await page.waitForTimeout(ANIMATION_TIME);
+	await page.getByText("Appearance").waitFor({ state: "visible" });
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_settings.png`);
 
 	await page.locator("svg").filter({ hasText: "iconXCircle" }).click();
-	const userName = await page.getByText("John");
-	await expect(userName).toBeVisible();
+	await page.getByText("John").waitFor({ state: "visible" });
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_home.png`);
 });
