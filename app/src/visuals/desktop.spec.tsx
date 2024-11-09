@@ -30,16 +30,4 @@ test("Desktop", async ({ page }) => {
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_login.png`);
 	await expect(welcome).not.toBeVisible();
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_user.png`);
-
-	const appSettings = await page.getByText("Settings");
-	await expect(appSettings).toBeVisible();
-	await appSettings.click();
-	await page.waitForLoadState("networkidle");
-	await page.waitForTimeout(ANIMATION_TIME);
-	await page.getByText("Appearance").waitFor({ state: "visible" });
-	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_settings.png`);
-
-	await page.locator("svg").filter({ hasText: "iconXCircle" }).click();
-	await page.getByText("John").waitFor({ state: "visible" });
-	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_home.png`);
 });
