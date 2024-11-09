@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+const ANIMATION_TIME = 500;
+
 test("Desktop", async ({ page }) => {
 	let screenshotCounter = 0;
 
@@ -13,7 +15,7 @@ test("Desktop", async ({ page }) => {
 
 	const home = await page.getByText("Guest");
 	await expect(home).toBeVisible();
-	await page.waitForTimeout(1000);
+	await page.waitForTimeout(ANIMATION_TIME);
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_guest.png`);
 
 	await page.getByText("User").click();
@@ -33,6 +35,7 @@ test("Desktop", async ({ page }) => {
 	await expect(appSettings).toBeVisible();
 	await appSettings.click();
 	await expect(page.getByText("Appearance")).toBeVisible();
+	await page.waitForTimeout(ANIMATION_TIME);
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_settings.png`);
 
 	await page.locator("svg").filter({ hasText: "iconXCircle" }).click();
