@@ -29,6 +29,7 @@
 			"url": "https://localhost:5000/v",
 			"webRoot": "${workspaceFolder}/app",
 			"runtimeExecutable": "/usr/bin/brave-browser-stable",
+			"runtimeArgs": ["--new-window"],
 			"sourceMapPathOverrides": {
 				"\\mnt\\c\\*": "C:/*"
 			},
