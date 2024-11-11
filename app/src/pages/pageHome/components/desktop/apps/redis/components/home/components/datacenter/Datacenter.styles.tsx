@@ -383,7 +383,18 @@ export const WorldMapContainer = styled.div`
 	height: 15rem;
 	display: flex;
 	justify-content: center;
+`;
 
+export const RegionValue = styled.div`
+	display: flex;
+	align-items: center;
+	font-weight: normal;
+	color: #A99D5D;
+	text-shadow: 0px 0px 5px #ffffff;
+	opacity: 0;
+	transition: all 0.3s ease;
+	pointer-events: none;
+	transform: translate3d(0px, -10px, 0px);
 `;
 
 export const Pin = styled.div`
@@ -394,6 +405,10 @@ export const Pin = styled.div`
 
 	&:hover{
 		scale: 150%;
+
+		& ${RegionValue}{
+			opacity: 1;
+		} 
 	}
 
 	& ${Flag} {

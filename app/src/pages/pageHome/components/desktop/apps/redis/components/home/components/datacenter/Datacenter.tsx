@@ -11,134 +11,31 @@ import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
 import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { Search } from "@src/utils/Search";
-import { type MouseEvent, useEffect, useState } from "react";
-import { Api } from "../../../../api/Api";
-import { type Region, dataPersistenceMap } from "../../../../api/Api.types";
+import { useState } from "react";
+import { dataPersistenceMap } from "../../../../api/Api.types";
 import { convertBytes } from "../../../../api/Api.utils";
 import { regionsLocations } from "../../../../data/regionsLocations";
-import { StoreUser } from "../../../user/stores/StoreUser";
 import * as S from "./Datacenter.styles";
-import type { DataCenterType, Filter } from "./Datacenter.types";
+import type { Filter } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
 import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
+import { UseDatacenter } from "./hooks/UseDatacenter";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE"];
 
 export const Datacenter = () => {
 	const navigator = useNavigator();
-	const [data, setData] = useState<DataCenterType[]>([]);
-	const [dataToDisplay, setDataToDisplay] = useState<DataCenterType[]>([]);
-	const [isDataReady, setIsDataReady] = useState(false);
-
-	const storeUser = StoreUser();
-	const queryPlans = Api.plan.quryPlans({ csrf: storeUser.csrf, only_customer_plans: true });
-	const querySubs = Api.subscription.qurySubscriptions({ csrf: storeUser.csrf });
-	const queryBdbs = Api.bdb.quryBdbs({ csrf: storeUser.csrf });
-	const queryCrdbs = Api.crdb.quryCrdbs({ csrf: storeUser.csrf });
-	const queryRegions = Api.region.quryRegions({ csrf: storeUser.csrf });
 
 	const [filter, setFilter] = useState<Filter>("subs");
 	const [isFilterPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
 
 	const [searchValue, setSearchValue] = useState("");
 
-	useEffect(() => {
-		const plans = queryPlans.data?.response?.plans;
-		const subs = querySubs.data?.response?.subscriptions;
-		const bdbs = queryBdbs.data?.response?.bdbs;
-		const crdbs = queryCrdbs.data?.response?.crdbs;
-		const regions = queryRegions.data?.response;
+	const { data, isDataReady, collpseAll, collpseSub, collpseSubDbs, collpseDb } = UseDatacenter({ searchValue, filter });
 
-		if (!plans || !subs || !bdbs || !crdbs || !regions) {
-			return;
-		}
-
-		const newData: DataCenterType[] = [];
-
-		subs.forEach((sub) => {
-			const plan = plans.find((plan) => plan.id === sub.plan);
-
-			if (plan) {
-				const dataCenterItem: DataCenterType = {
-					collapsed: true,
-					id: sub.id,
-					name: sub.name,
-					type: plan.plan_type,
-					cloud: plan.cloud.toLocaleLowerCase(),
-					regions: plan.region
-						? ([regions.find((region) => region.name === plan.region)] as Region[])
-						: (sub.minimal_pricing_regions.map((subRegion) => regions.find((region) => region.name === subRegion.region_name)) as Region[]),
-					redisOnFlash: plan.is_rof,
-					multiAvailabilityZone: plan.is_multi_az,
-					subPrice: 0,
-					dbs:
-						plan.plan_type === "aarcp"
-							? crdbs
-									.filter((crdb) => crdb.subscription === sub.id)
-									.map((crdb) => ({
-										collapsed: true,
-										name: crdb.name,
-										id: crdb.id,
-										memorySize: crdb.memory_size_in_mb * 1024 * 1024,
-										dbSize: (crdb.memory_size_in_mb * 1024 * 1024) / 4,
-										usage: crdb.crdb_instances[0].usage,
-										highAvailability: true,
-										dataPersistence: crdb.default_db_config.data_persistence,
-										shardCount: crdb.crdb_instances.reduce((pv, cv) => pv + cv.shards_count, 0),
-										dbPrice: plan.price || sub.minimal_pricing_regions.reduce((pv, cv) => pv + cv.price, 0),
-										modules: crdb.default_db_config.module_list.map((item) => item.module.capability_name),
-									}))
-							: bdbs
-									.filter((bdb) => bdb.subscription === sub.id)
-									.map((bdb) => ({
-										collapsed: true,
-										name: bdb.name,
-										id: bdb.id,
-										memorySize: bdb.size || plan.size,
-										dbSize: bdb.replication ? (bdb.size || plan.size) / 2 : bdb.size || plan.size,
-										usage: bdb.usage,
-										highAvailability: bdb.replication,
-										dataPersistence: bdb.data_persistence,
-										shardCount: bdb.shard_type_pricing_bdb_regions?.[0].shards_count || 0,
-										dbPrice: plan.price || sub.minimal_pricing_regions.reduce((pv, cv) => pv + cv.price, 0),
-										modules: bdb.bdb_modules.map((item) => item.module.capability_name),
-									})),
-				};
-
-				dataCenterItem.subPrice = dataCenterItem.dbs.reduce((pv, cv) => pv + cv.dbPrice, 0);
-
-				newData.push(dataCenterItem);
-			}
-		});
-
-		newData.sort((a, b) => b.id - a.id);
-
-		setData(newData);
-		setIsDataReady(true);
-	}, [queryPlans.data, querySubs.data, queryBdbs.data, queryCrdbs.data, queryRegions.data]);
-
-	useEffect(() => {
-		if (searchValue !== "") {
-			if (filter === "subs") {
-				const newData = data.filter((sub) => Search.fuzzySearch(searchValue, sub.name).length > 0);
-
-				setDataToDisplay(newData);
-			} else if (filter === "dbs") {
-				const newData = data.filter((sub) => sub.dbs.filter((db) => Search.fuzzySearch(searchValue, db.name).length > 0).length > 0);
-
-				setDataToDisplay(newData);
-			}
-		} else {
-			setDataToDisplay(data);
-		}
-	}, [data, searchValue, filter]);
-
-	const handleOnClickSubscription = (e: MouseEvent<HTMLDivElement>, subscriptionId: number) => {
-		e.stopPropagation();
-
+	const handleOnClickSubscription = (subscriptionId: number) => {
 		navigator.pushPage(
 			<Navigator.Page id="subscription" title={<T>{lang.redis.subscription.title}</T>}>
 				<Subscription subscriptionId={subscriptionId} />
@@ -146,9 +43,7 @@ export const Datacenter = () => {
 		);
 	};
 
-	const handleOnClickDatabase = (e: MouseEvent<HTMLDivElement>, databaseId: number) => {
-		e.stopPropagation();
-
+	const handleOnClickDatabase = (databaseId: number) => {
 		navigator.pushPage(
 			<Navigator.Page id="database" title={<T>{lang.redis.database.title}</T>}>
 				<Database databaseId={databaseId} />
@@ -156,37 +51,23 @@ export const Datacenter = () => {
 		);
 	};
 
-	const handleOnClickCollpseAll = (e: MouseEvent<HTMLDivElement>) => {
-		e.stopPropagation();
-
-		const collapseState = data.some((sub) => !sub.collapsed);
-
-		setData(data.map((sub) => ({ ...sub, collapsed: collapseState, dbs: sub.dbs.map((db) => ({ ...db, collapsed: true })) })));
+	const handleOnClickCollpseAll = () => {
+		collpseAll();
 	};
 
-	const handleOnClickCollpseSub = (e: MouseEvent<HTMLDivElement>, subId: number) => {
-		e.stopPropagation();
-
-		setData(data.map((sub) => (sub.id === subId ? { ...sub, collapsed: !sub.collapsed } : sub)));
+	const handleOnClickCollpseSub = (subId: number) => {
+		collpseSub(subId);
 	};
 
-	const handleOnClickCollpseSubDbs = (e: MouseEvent<HTMLDivElement>, subId: number) => {
-		e.stopPropagation();
-
-		const collapseState = data.find((sub) => sub.id === subId)?.dbs.some((db) => !db.collapsed) ?? true;
-
-		setData(data.map((sub) => (sub.id === subId ? { ...sub, dbs: sub.dbs.map((db) => ({ ...db, collapsed: collapseState })) } : sub)));
+	const handleOnClickCollpseSubDbs = (subId: number) => {
+		collpseSubDbs(subId);
 	};
 
-	const handleOnClickCollpseDb = (e: MouseEvent<HTMLDivElement>, dbId: number) => {
-		e.stopPropagation();
-
-		setData(data.map((sub) => ({ ...sub, dbs: sub.dbs.map((db) => (db.id === dbId ? { ...db, collapsed: !db.collapsed } : db)) })));
+	const handleOnClickCollpseDb = (dbId: number) => {
+		collpseDb(dbId);
 	};
 
-	const handleOnClickCreate = (e: MouseEvent<HTMLDivElement>) => {
-		e.stopPropagation();
-
+	const handleOnClickCreate = () => {
 		navigator.pushPage(
 			<Navigator.Page id="create" title={<T>{lang.redis.create.title}</T>}>
 				<Create />
@@ -242,20 +123,20 @@ export const Datacenter = () => {
 
 			<S.SubscriptionsList>
 				<S.SubscriptionsHeader $visible={filter === "subs"}>
-					<S.ColIcon onClick={(e) => handleOnClickCollpseAll(e)}>
+					<S.ColIcon onClick={() => handleOnClickCollpseAll()}>
 						<Icon iconName="iconChevronsDown" />
 					</S.ColIcon>
 					{subsTitles.map((col, index) => (
 						<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 					))}
-					<S.ColIcon onClick={(e) => handleOnClickCreate(e)}>
+					<S.ColIcon onClick={() => handleOnClickCreate()}>
 						<Icon iconName="iconPlusCircle" />
 					</S.ColIcon>
 				</S.SubscriptionsHeader>
 
-				{dataToDisplay.map((sub) => (
+				{data.map((sub) => (
 					<S.SubscriptionRow key={sub.id}>
-						<S.SubscriptionsDataRow $visible={filter === "subs"} onClick={(e) => handleOnClickCollpseSub(e, sub.id)}>
+						<S.SubscriptionsDataRow $visible={filter === "subs"} onClick={() => handleOnClickCollpseSub(sub.id)}>
 							<S.IconCollapse $collapsed={sub.collapsed}>
 								<Icon iconName="iconArrowDownCircle" />
 							</S.IconCollapse>
@@ -268,7 +149,7 @@ export const Datacenter = () => {
 								{sub.type === "aarcp" && <Icon iconName="iconGlobe" fill="cyan" />}
 							</S.SubscriptionsText>
 							<S.SubscriptionsText>{sub.dbs.length}</S.SubscriptionsText>
-							<S.ColIcon onClick={(e) => handleOnClickSubscription(e, sub.id)}>
+							<S.ColIcon onClick={() => handleOnClickSubscription(sub.id)}>
 								<Icon iconName="iconArrowRightCircle" />
 							</S.ColIcon>
 						</S.SubscriptionsDataRow>
@@ -322,6 +203,7 @@ export const Datacenter = () => {
 															lat={regionsLocations[region.id as keyof typeof regionsLocations]?.latitude || 0}
 														>
 															<S.Pin>
+																<S.RegionValue>{region.name}</S.RegionValue>
 																<Flag flagName={`${region.flag}` as IFlagName} />
 															</S.Pin>
 														</WorldMap.Pin>
@@ -333,13 +215,13 @@ export const Datacenter = () => {
 								)}
 
 								<S.DatabasesHeader>
-									<S.ColIcon onClick={(e) => handleOnClickCollpseSubDbs(e, sub.id)}>
+									<S.ColIcon onClick={() => handleOnClickCollpseSubDbs(sub.id)}>
 										<Icon iconName="iconChevronsDown" />
 									</S.ColIcon>
 									{dbsTitles.map((col, index) => (
 										<S.SubscriptionsText key={index}>{col}</S.SubscriptionsText>
 									))}
-									<S.ColIcon onClick={(e) => handleOnClickCreate(e)}>
+									<S.ColIcon onClick={() => handleOnClickCreate()}>
 										<Icon iconName="iconPlusCircle" />
 									</S.ColIcon>
 								</S.DatabasesHeader>
@@ -351,7 +233,7 @@ export const Datacenter = () => {
 												<S.DatabasesLine />
 											</S.Row>
 
-											<S.DatabasesRow onClick={(e) => handleOnClickCollpseDb(e, db.id)}>
+											<S.DatabasesRow onClick={() => handleOnClickCollpseDb(db.id)}>
 												<S.IconCollapse $collapsed={db.collapsed}>
 													<Icon iconName="iconChevronDown" />
 												</S.IconCollapse>
@@ -360,7 +242,7 @@ export const Datacenter = () => {
 												<S.DatabasesText>
 													<S.Progress percent={Math.max(10, (db.usage / db.memorySize) * 100)} />
 												</S.DatabasesText>
-												<S.ColIcon onClick={(e) => handleOnClickDatabase(e, db.id)}>
+												<S.ColIcon onClick={() => handleOnClickDatabase(db.id)}>
 													<Icon iconName="iconChevronRight" />
 												</S.ColIcon>
 											</S.DatabasesRow>
