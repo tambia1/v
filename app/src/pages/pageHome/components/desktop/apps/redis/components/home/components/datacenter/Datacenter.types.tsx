@@ -15,6 +15,7 @@ export type DataCenterType = {
 		flag: string;
 		longitude: number;
 		latitude: number;
+		cidr: string;
 	}[];
 	subPrice: number;
 	dbs: {

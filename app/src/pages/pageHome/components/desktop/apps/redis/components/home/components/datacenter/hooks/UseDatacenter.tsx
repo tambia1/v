@@ -46,8 +46,11 @@ export const UseDatacenter = ({ searchValue, filter }: Props) => {
 					type: plan.plan_type,
 					cloud: plan.cloud.toLocaleLowerCase(),
 					regions: plan.region
-						? [getRegionInfo(regions.find((region) => region.name === plan.region)?.name || "")]
-						: sub.minimal_pricing_regions.map((subRegion) => getRegionInfo(regions.find((region) => region.name === subRegion.region_name)?.name || "")),
+						? [{ ...getRegionInfo(regions.find((region) => region.name === plan.region)?.name || ""), cidr: "0.0.0.0" }]
+						: sub.minimal_pricing_regions.map((subRegion) => ({
+								...getRegionInfo(regions.find((region) => region.name === subRegion.region_name)?.name || ""),
+								cidr: "1.1.1.1",
+							})),
 					redisOnFlash: plan.is_rof,
 					multiAvailabilityZone: plan.is_multi_az,
 					subPrice: 0,

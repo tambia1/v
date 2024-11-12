@@ -198,7 +198,7 @@ export const Datacenter = () => {
 													return (
 														<WorldMap.Pin key={region.city} lng={region.longitude} lat={region.latitude}>
 															<S.Pin>
-																<S.RegionValue>{region.name}</S.RegionValue>
+																<S.RegionValue>{region.cidr}</S.RegionValue>
 																<Flag flagName={`${region.flag}` as IFlagName} />
 															</S.Pin>
 														</WorldMap.Pin>
