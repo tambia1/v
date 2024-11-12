@@ -1,4 +1,4 @@
-import type { PlanCloud, PlanType, Region } from "../../../../api/Api.types";
+import type { PlanCloud, PlanType } from "../../../../api/Api.types";
 
 export type DataCenterType = {
 	collapsed: boolean;
@@ -8,7 +8,14 @@ export type DataCenterType = {
 	cloud: PlanCloud;
 	redisOnFlash: boolean;
 	multiAvailabilityZone: boolean;
-	regions: Region[];
+	regions: {
+		id: number;
+		name: string;
+		city: string;
+		flag: string;
+		longitude: number;
+		latitude: number;
+	}[];
 	subPrice: number;
 	dbs: {
 		collapsed: boolean;

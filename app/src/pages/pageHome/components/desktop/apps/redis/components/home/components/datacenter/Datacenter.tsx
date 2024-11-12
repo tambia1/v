@@ -14,7 +14,6 @@ import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { dataPersistenceMap } from "../../../../api/Api.types";
 import { convertBytes } from "../../../../api/Api.utils";
-import { regionsLocations } from "../../../../data/regionsLocations";
 import * as S from "./Datacenter.styles";
 import type { Filter } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
@@ -177,7 +176,7 @@ export const Datacenter = () => {
 										<S.Row>
 											<S.SubscriptionsDetailText>Region</S.SubscriptionsDetailText>
 											{sub.regions.map((region) => (
-												<Flag key={region.city_name} flagName={`${region.flag}` as IFlagName} />
+												<Flag key={region.city} flagName={`${region.flag}` as IFlagName} />
 											))}
 										</S.Row>
 									)}
@@ -197,11 +196,7 @@ export const Datacenter = () => {
 												map={<WorldMap.Map />}
 												pins={sub.regions.map((region) => {
 													return (
-														<WorldMap.Pin
-															key={region.city_name}
-															lng={regionsLocations[region.id as keyof typeof regionsLocations]?.longitude || 0}
-															lat={regionsLocations[region.id as keyof typeof regionsLocations]?.latitude || 0}
-														>
+														<WorldMap.Pin key={region.city} lng={region.longitude} lat={region.latitude}>
 															<S.Pin>
 																<S.RegionValue>{region.name}</S.RegionValue>
 																<Flag flagName={`${region.flag}` as IFlagName} />
