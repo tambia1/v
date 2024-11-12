@@ -389,8 +389,8 @@ export const RegionValue = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: normal;
-	color: #A99D5D;
-	text-shadow: 0px 0px 5px #ffffff;
+	color: #ffffff;
+	text-shadow: 0px 0px 3px #000000;
 	opacity: 0;
 	transition: all 0.3s ease;
 	pointer-events: none;
