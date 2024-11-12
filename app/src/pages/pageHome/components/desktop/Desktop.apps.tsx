@@ -39,13 +39,13 @@ const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ defa
 const Notes = lazy(() => import("@apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("@apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
 
-export interface IApp {
+export type IApp = {
 	id: string;
 	roles: IRole[];
 	title: React.ReactNode;
 	icon: IAppIcon;
 	component: React.ReactElement;
-}
+};
 
 export const apps: IApp[][] = [
 	[
