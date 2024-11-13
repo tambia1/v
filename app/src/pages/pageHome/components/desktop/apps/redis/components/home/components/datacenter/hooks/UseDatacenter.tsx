@@ -1,7 +1,7 @@
 import { Search } from "@src/utils/Search";
 import { useEffect, useState } from "react";
 import { Api } from "../../../../../api/Api";
-import { getRegionInfo } from "../../../../../api/Api.utils";
+import { getCidr, getRegion } from "../../../../../api/Api.utils";
 import { StoreUser } from "../../../../user/stores/StoreUser";
 import type { DataCenterType, Filter } from "./../Datacenter.types";
 
@@ -46,10 +46,10 @@ export const UseDatacenter = ({ searchValue, filter }: Props) => {
 					type: plan.plan_type,
 					cloud: plan.cloud.toLocaleLowerCase(),
 					regions: plan.region
-						? [{ ...getRegionInfo(regions.find((region) => region.name === plan.region)?.name || ""), cidr: "0.0.0.0" }]
+						? [{ ...getRegion(regions.find((region) => region.name === plan.region)?.name || ""), cidr: "" }]
 						: sub.minimal_pricing_regions.map((subRegion) => ({
-								...getRegionInfo(regions.find((region) => region.name === subRegion.region_name)?.name || ""),
-								cidr: "1.1.1.1",
+								...getRegion(regions.find((region) => region.name === subRegion.region_name)?.name || ""),
+								cidr: getCidr(subRegion.region_name, sub),
 							})),
 					redisOnFlash: plan.is_rof,
 					multiAvailabilityZone: plan.is_multi_az,

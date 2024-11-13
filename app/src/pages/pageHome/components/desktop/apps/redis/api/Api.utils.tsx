@@ -1,6 +1,6 @@
 import { regions } from "../data/regions";
 import { regionsLocations } from "../data/regionsLocations";
-import type { Bdb, Crdb, Plan } from "./Api.types";
+import type { Bdb, Crdb, Plan, Subscription } from "./Api.types";
 
 export const convertBytes = (bytes: number, unit: "bytes" | "mb" | "gb" | "tb" | "biggest") => {
 	const factor = {
@@ -33,7 +33,7 @@ export const getDbSize = ({ bdb, crdb, plan }: { bdb?: Bdb; crdb?: Crdb; plan?: 
 	return plan?.size || bdb?.size || (crdb?.memory_size_in_mb || 0) * 1024 * 1024;
 };
 
-export const getRegionInfo = (regionName: string) => {
+export const getRegion = (regionName: string) => {
 	const region = regions.find((region) => region.name === regionName);
 
 	return {
@@ -44,4 +44,10 @@ export const getRegionInfo = (regionName: string) => {
 		longitude: regionsLocations[region?.id as keyof typeof regionsLocations]?.longitude || 0,
 		latitude: regionsLocations[region?.id as keyof typeof regionsLocations]?.latitude || 0,
 	};
+};
+
+export const getCidr = (regionName: string, subsciption: Subscription) => {
+	return (
+		subsciption.aa_rcp?.crdb_regions.find((item) => item.region_name === regionName)?.networking.cidr || subsciption.rcp?.cloud.networking.cidr || "0.0.0.0"
+	);
 };

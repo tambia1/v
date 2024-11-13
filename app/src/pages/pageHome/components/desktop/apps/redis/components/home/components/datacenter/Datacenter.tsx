@@ -292,7 +292,6 @@ export const Datacenter = () => {
 													<S.DatabasesInfoCell>
 														{db.modules.length > 0 && <S.DatabaseDetailText>Modules</S.DatabaseDetailText>}
 														{db.modules.length === 0 && <S.DatabaseDetailTextDisabled>Modules</S.DatabaseDetailTextDisabled>}
-														{db.modules.length === 0 && <S.DatabaseDetailValue>None</S.DatabaseDetailValue>}
 														{<S.IconModule iconName="iconTrendingUp" $enabled={db.modules.includes("Probabilistic")} />}
 														{<S.IconModule iconName="iconSettings" $enabled={db.modules.includes("JSON")} />}
 														{<S.IconModule iconName="iconClock" $enabled={db.modules.includes("Time series")} />}
