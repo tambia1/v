@@ -2,24 +2,27 @@ import { type ITouch, useTouch } from "@src/hooks/UseTouch";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import * as S from "./Pager.styles";
 
-interface Props {
+type Props = {
 	className?: string;
 	children: ReactNode[];
 	disabled?: boolean;
 	initialPageIndex?: number;
 	onMouseUp?: (pageIndex: number) => void;
-	onMouseMove?: () => void;
-}
+	onMouseMove?: (pageIndex: number) => void;
+};
 
 export const Pager = ({ className, children: pages, onMouseUp, onMouseMove, disabled = false, initialPageIndex = 0 }: Props) => {
 	const refPages = useRef<HTMLDivElement>(null);
 	const refPagesPanel = useRef<HTMLDivElement>(null);
+	const refInited = useRef<boolean>(false);
 	const [pageIndex, setPageIndex] = useState(initialPageIndex);
 
 	useEffect(() => {
-		if (refPagesPanel.current) {
+		if (!refInited.current && refPagesPanel.current) {
 			translate(refPagesPanel.current, -initialPageIndex * 100, false);
 			onMouseUp?.(initialPageIndex);
+
+			refInited.current = true;
 		}
 	}, [initialPageIndex, onMouseUp]);
 
@@ -52,7 +55,7 @@ export const Pager = ({ className, children: pages, onMouseUp, onMouseMove, disa
 				//set transform/transition
 				const gapInPercent = (gap / divPagesPanel.clientWidth) * 100;
 				translate(refPagesPanel.current, -pageIndex * 100 + gapInPercent, false);
-				onMouseMove?.();
+				onMouseMove?.(pageIndex);
 			}
 
 			if (status === "up") {
