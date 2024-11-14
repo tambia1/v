@@ -1,7 +1,7 @@
-import styled, { RuleSet, css } from "styled-components";
-import speedometer from "./images/speedometer.png";
+import styled, { type RuleSet, css } from "styled-components";
 import caliper from "./images/caliper.png";
 import compass from "./images/compass.png";
+import speedometer from "./images/speedometer.png";
 
 export const Speed = styled.div`
 	width: 100%;
@@ -24,7 +24,6 @@ export const Speedometer = styled.div`
 	height: 230px;
 	top: 20px;
 	left: 0px;
-	background-color: #ffffff;
 `;
 
 export const SpeedometerImage = styled.div`
@@ -181,11 +180,11 @@ export const GpsIndicator = styled.div<{ $enabled: boolean }>`
 	${(props) =>
 		props.$enabled
 			? css`
-					text-shadow: 0px 1px 2px #00ff00;
-			  `
+					text-shadow: 0px 1px 3px #00ff00;
+			`
 			: css`
-					text-shadow: 0px 1px 2px #ff0000;
-			  `}
+					text-shadow: 0px 1px 3px #ff0000;
+			`}
 `;
 
 const Indicator = css`
@@ -405,7 +404,7 @@ export const MaxSpeed = styled.div`
 	z-index: 2;
 `;
 
-export const Error = styled.div`
+export const ErrorMessage = styled.div`
 	position: absolute;
 	width: 100%;
 	top: 230px;

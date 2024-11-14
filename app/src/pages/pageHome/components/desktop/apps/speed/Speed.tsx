@@ -1,5 +1,5 @@
-import * as S from "./Speed.styles";
 import { useEffect, useRef, useState } from "react";
+import * as S from "./Speed.styles";
 
 export const Speed = () => {
 	const geolocationPointer = useRef(0);
@@ -24,7 +24,11 @@ export const Speed = () => {
 	const [indicatorAltEnabledTop, setIndicatorAltEnabledTop] = useState("0px");
 
 	useEffect(() => {
-		geolocationPointer.current = navigator.geolocation.watchPosition(handleOnGpsOk, handleOnGpsError, { enableHighAccuracy: true, timeout: 10000, maximumAge: 5000 });
+		geolocationPointer.current = navigator.geolocation.watchPosition(handleOnGpsOk, handleOnGpsError, {
+			enableHighAccuracy: true,
+			timeout: 10000,
+			maximumAge: 5000,
+		});
 
 		return () => {
 			navigator.geolocation.clearWatch(geolocationPointer.current);
@@ -77,28 +81,28 @@ export const Speed = () => {
 		degree = Math.max(0, degree);
 		degree = Math.min(degree, 240);
 
-		setCaliperRotateDegree(degree + "deg");
+		setCaliperRotateDegree(`${degree}deg`);
 		setSpeedValue(speed.toFixed(2));
 	};
 
 	const drawCompass = (heading: number) => {
-		setCompassRotateDegree(heading + "deg");
+		setCompassRotateDegree(`${heading}deg`);
 	};
 
 	const drawLat = (latitude: number) => {
-		setIndicatorLatEnabledTop(62 - (62 / 180.0) * (latitude + 96) + "px");
+		setIndicatorLatEnabledTop(`${62 - (62 / 180.0) * (latitude + 96)}px`);
 	};
 
 	const drawLng = (longitude: number) => {
-		setIndicatorLngEnabledTop(62 - (62 / 360.0) * (longitude + 164) + "px");
+		setIndicatorLngEnabledTop(`${62 - (62 / 360.0) * (longitude + 164)}px`);
 	};
 
 	const drawAccuracy = (accuracy: number) => {
-		setIndicatorAccurecyEnabledTop((62 / 500.0) * accuracy + "px");
+		setIndicatorAccurecyEnabledTop(`${(62 / 500.0) * accuracy}px`);
 	};
 
 	const drawAltitide = (altitude: number) => {
-		setIndicatorAltEnabledTop((62 / 1000.0) * altitude + "px");
+		setIndicatorAltEnabledTop(`${(62 / 1000.0) * altitude}px`);
 	};
 
 	return (
@@ -159,7 +163,7 @@ export const Speed = () => {
 
 				<S.MaxSpeed onClick={handleOnClickMacSpeed} />
 
-				<S.Error>{errorMessage}</S.Error>
+				<S.ErrorMessage>{errorMessage}</S.ErrorMessage>
 			</S.Speedometer>
 		</S.Speed>
 	);
