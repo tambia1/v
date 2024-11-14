@@ -36,11 +36,7 @@ export const User = () => {
 			<S.PagingContainer>
 				<Pager
 					initialPageIndex={storeChat.avatar}
-					onMouseMove={() => {
-						console.log("move");
-					}}
 					onMouseUp={(pageIndex) => {
-						console.log("up", pageIndex);
 						handleChangeAvatar(pageIndex);
 					}}
 				>
