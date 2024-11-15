@@ -3,7 +3,7 @@ const fuzzySearch = (textToSearch: string, textToSearchInto: string) => {
 
 	for (let i = 0, j = 0; i < textToSearch.length; i++) {
 		for (; j < textToSearchInto.length; j++) {
-			if (textToSearch[i].toLowerCase() == textToSearchInto[j].toLowerCase()) {
+			if (textToSearch[i].toLowerCase() === textToSearchInto[j].toLowerCase()) {
 				matches.push(j);
 				j++;
 
@@ -12,7 +12,7 @@ const fuzzySearch = (textToSearch: string, textToSearchInto: string) => {
 		}
 	}
 
-	const result = matches.length == textToSearch.length ? matches : [];
+	const result = matches.length === textToSearch.length ? matches : [];
 
 	return result;
 };

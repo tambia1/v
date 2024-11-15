@@ -1,4 +1,5 @@
 import type React from "react";
+import type { ReactNode } from "react";
 
 interface Props {
 	text: string;
@@ -6,7 +7,7 @@ interface Props {
 	matchCallback: (matches: RegExpMatchArray) => React.ReactNode;
 }
 
-export const reactStringReplace = ({ text, regexp, matchCallback }: Props) => {
+export const replaceStringReact = ({ text, regexp, matchCallback }: Props) => {
 	const result: React.ReactNode[] = [];
 
 	const matches = text.matchAll(regexp);
@@ -29,4 +30,12 @@ export const reactStringReplace = ({ text, regexp, matchCallback }: Props) => {
 	}
 
 	return result;
+};
+
+export const replaceString = (text: string, replacements: { [K: string]: ReactNode }) => {
+	const pattern = new RegExp(`(${Object.keys(replacements).join("|")})`, "g");
+	const split = text.split(pattern);
+	const map = split.map((item) => replacements[item] || item);
+
+	return map;
 };
