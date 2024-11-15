@@ -281,8 +281,10 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Size</S.Row>
-					<Input value={convertBytes(selections.dbSize, "biggest")} size="s" textAlign="center" />
-					<Stepper onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus} />
+					<S.Row>
+						<Input value={convertBytes(selections.dbSize, "biggest")} size="m" textAlign="center" />
+						<Stepper onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus} />
+					</S.Row>
 				</S.Col>
 
 				<S.Col>
