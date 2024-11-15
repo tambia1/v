@@ -1,4 +1,5 @@
-import { Counter } from "@src/components/counter/Counter";
+import { Input } from "@src/components/input/Input";
+import { Stepper } from "@src/components/stepper/Stepper";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
@@ -13,25 +14,24 @@ export const TestCouner = () => {
 
 			<S.Spacer />
 
-			<Counter onClickMinus={() => {}} onClickPlus={() => {}}>
-				6
-			</Counter>
+			<S.Row>
+				<Stepper onClickMinus={() => {}} onClickPlus={() => {}} />
+				<Input value={"0"} size="s" textAlign="center" />
+			</S.Row>
 
 			<S.Spacer />
 
-			<Counter.Compose>
-				<Counter.Minus iconName="iconMinusCircle" onClick={() => {}} />
-				<Counter.Plus iconName="iconPlusCircle" onClick={() => {}} />
-				<Counter.Value>7</Counter.Value>
-			</Counter.Compose>
+			<Stepper.Compose>
+				<Stepper.Minus iconName="iconMinusCircle" onClick={() => {}} />
+				<Stepper.Plus iconName="iconPlusCircle" onClick={() => {}} />
+			</Stepper.Compose>
 
 			<S.Spacer />
 
-			<Counter.Compose>
-				<Counter.Value>3</Counter.Value>
-				<Counter.Plus iconName="iconPlusSquare" onClick={() => {}} />
-				<Counter.Minus iconName="iconMinusSquare" onClick={() => {}} />
-			</Counter.Compose>
+			<Stepper.Compose>
+				<Stepper.Plus iconName="iconPlusSquare" onClick={() => {}} />
+				<Stepper.Minus iconName="iconMinusSquare" onClick={() => {}} />
+			</Stepper.Compose>
 		</S.TestCouner>
 	);
 };

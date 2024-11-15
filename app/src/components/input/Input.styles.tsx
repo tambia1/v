@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-export const Input = styled.input`
-	width: fit-content;
-	min-width: 20rem;
+export const Input = styled.input<{ $width: string; $textALign: string }>`
+	width: ${(props) => props.$width};
 	height: 3rem;
 
 	display: flex;
@@ -20,6 +19,8 @@ export const Input = styled.input`
 
 	font-weight: inherit;
 	font-size: inherit;
+
+	text-align: ${(props) => props.$textALign};
 
 	&:disabled {
 		color: ${(props) => props.theme.color.primaryFgDisabled};

@@ -1,10 +1,8 @@
-import { Icon } from "@src/components/icon/Icon.styles";
 import styled from "styled-components";
 
 export const Button = styled.div`
-	width: 3rem;
+	width: 6rem;
 	height: 3rem;
-	border-radius: 0.5rem;
 
 	display: flex;
 	flex-shrink: 0;
@@ -12,23 +10,23 @@ export const Button = styled.div`
 	justify-content: center;
 
 	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	transition: all 0.3s ease;
 
 	cursor: pointer;
-
-	& svg {
-		stroke: ${(props) => props.theme.color.primaryFg};
-		fill: ${(props) => props.theme.color.primaryBg};
-	}
 
 	&:hover{
 		color: ${(props) => props.theme.color.primaryFgHover};
 		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
 
-	& ${Icon}{
-		width: 120%;
-		height: 120%;
-		margin: -10%;
-	} 
+	&:active{
+		color: ${(props) => props.theme.color.primaryFgActive};
+		background-color: ${(props) => props.theme.color.primaryBgActive};
+	}
+
+	&:disabled{
+		color: ${(props) => props.theme.color.primaryFgDisabled};
+		background-color: ${(props) => props.theme.color.primaryBgDisabled};
+	}
 `;

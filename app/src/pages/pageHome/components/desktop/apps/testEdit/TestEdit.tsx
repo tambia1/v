@@ -1,6 +1,5 @@
 import { Button } from "@src/components/button/Button";
 import { Check } from "@src/components/check/Check";
-import { Counter } from "@src/components/counter/Counter";
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { IconButton } from "@src/components/iconButton/IconButton";
@@ -9,6 +8,7 @@ import { List } from "@src/components/list/List";
 import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
 import { Progress } from "@src/components/progress/Progress";
 import { Select } from "@src/components/select/Select";
+import { Stepper } from "@src/components/stepper/Stepper";
 import { Switch, type SwitchState } from "@src/components/switch/Switch";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
@@ -42,11 +42,11 @@ export const TestEdit = () => {
 		setCheckState(!checkState);
 	};
 
-	const handleOnClickMinusCounter = () => {
+	const handleOnClickMinusStepper = () => {
 		setCounter(counter - 1);
 	};
 
-	const handleOnClickPlusCounter = () => {
+	const handleOnClickPlusStepper = () => {
 		setCounter(counter + 1);
 	};
 
@@ -112,10 +112,11 @@ export const TestEdit = () => {
 				<S.Line />
 
 				<S.Col>
-					<Text>Counter</Text>
-					<Counter onClickMinus={handleOnClickMinusCounter} onClickPlus={handleOnClickPlusCounter}>
-						{counter}
-					</Counter>
+					<Text>Stepper</Text>
+					<S.Row>
+						<Input value={String(counter)} size="s" textAlign="center" />
+						<Stepper onClickMinus={handleOnClickMinusStepper} onClickPlus={handleOnClickPlusStepper} />
+					</S.Row>
 				</S.Col>
 
 				<S.Line />

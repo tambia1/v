@@ -1,4 +1,4 @@
-import { ITheme } from "@src/theme/Theme.types";
+import type { ITheme } from "@src/theme/Theme.types";
 import styled from "styled-components";
 
 const sizes: { [K in keyof ITheme["size"]]: string } = {

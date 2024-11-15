@@ -1,9 +1,9 @@
 import { Button } from "@src/components/button/Button";
-import { Counter } from "@src/components/counter/Counter";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
 import { Select } from "@src/components/select/Select";
+import { Stepper } from "@src/components/stepper/Stepper";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
@@ -281,9 +281,8 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Size</S.Row>
-					<Counter onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus}>
-						{convertBytes(selections.dbSize, "biggest")}
-					</Counter>
+					<Input value={convertBytes(selections.dbSize, "biggest")} size="s" textAlign="center" />
+					<Stepper onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus} />
 				</S.Col>
 
 				<S.Col>

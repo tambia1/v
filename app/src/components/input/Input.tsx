@@ -1,16 +1,27 @@
 import type { InputHTMLAttributes } from "react";
 import * as S from "./Input.styles";
 
-export type Props = InputHTMLAttributes<HTMLInputElement> & {
+const sizes = {
+	s: "5rem",
+	m: "10rem",
+	l: "20rem",
+} as const;
+
+export type ISize = keyof typeof sizes;
+export type ITextAlign = "left" | "center" | "right";
+
+export type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	className?: string;
 	value: string;
 	placeholder?: string;
 	disabled?: boolean;
+	size?: ISize;
+	textAlign?: ITextAlign;
 	onTextChange?: (content: string) => void;
 	onPressEnter?: () => void;
 };
 
-export const Input = ({ className, value, placeholder, disabled, onTextChange, onPressEnter, ...rest }: Props) => {
+export const Input = ({ className, value, placeholder, disabled, size = "l", textAlign = "left", onTextChange, onPressEnter, ...rest }: Props) => {
 	const handleTextChange = (e: React.FormEvent<HTMLInputElement>) => {
 		onTextChange?.(e.currentTarget.value);
 	};
@@ -24,6 +35,8 @@ export const Input = ({ className, value, placeholder, disabled, onTextChange, o
 	return (
 		<S.Input
 			className={className}
+			$width={sizes[size]}
+			$textALign={textAlign}
 			value={value}
 			placeholder={placeholder}
 			type="text"
