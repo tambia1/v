@@ -1,3 +1,4 @@
+import { Icon } from "@src/components/icon/Icon";
 import { Text } from "@src/components/text/Text";
 import styled from "styled-components";
 import imageBg from "./assets/bg.jpg";
@@ -28,6 +29,7 @@ export const Group = styled.div`
 `;
 
 export const App = styled.div`
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	padding: 1rem;
@@ -53,4 +55,11 @@ export const AppName = styled.div`
 	display: flex;
 	align-items: center;
 	margin-left: 1rem;
+`;
+
+export const AppExistIcon = styled(Icon)<{ $isVisible: boolean }>`
+	position: absolute;
+	left: 5rem;
+	top: 0rem;
+	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
 `;

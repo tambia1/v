@@ -1,10 +1,10 @@
 import { Modal } from "@src/components/modal/Modal";
+import { T } from "@src/locales/T";
+import { lang } from "@src/locales/i18n";
+import { useState } from "react";
 import { StoreApps } from "../../stores/StoreApps";
 import * as S from "./Store.styles";
-import { useState } from "react";
-import { lang } from "@src/locales/i18n";
-import { T } from "@src/locales/T";
-import { IApp } from "./Store.types";
+import type { IApp } from "./Store.types";
 import { stores } from "./Stores.data";
 
 export const Store = () => {
@@ -50,7 +50,8 @@ export const Store = () => {
 
 						{group.apps.map((app) => (
 							<S.App key={app.name}>
-								<S.AppIcon url={app.icon} onClick={() => handleOnClickAppIcon(app)}></S.AppIcon>
+								<S.AppExistIcon iconName="iconCheckCircle" $isVisible={!!storeApps.apps.find((item) => item.name === app.name)} />
+								<S.AppIcon url={app.icon} onClick={() => handleOnClickAppIcon(app)} />
 								<S.AppName>{app.name}</S.AppName>
 							</S.App>
 						))}

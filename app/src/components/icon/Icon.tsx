@@ -2,13 +2,13 @@ import { ReactSVG } from "react-svg";
 import * as S from "./Icon.styles";
 import { type IIconName, Icons } from "./Icon.types";
 
-export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+export type Props = React.HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	iconName: IIconName;
 	size?: string;
 	fill?: string;
 	stroke?: string;
-}
+};
 
 export const Icon = ({ className, iconName, size = "2rem", fill, stroke, ...rest }: Props) => {
 	return (
