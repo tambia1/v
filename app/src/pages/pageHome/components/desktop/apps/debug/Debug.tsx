@@ -1,6 +1,6 @@
 import * as S from "./Debug.styles";
 
-const log: string[] = [];
+const log: string[] = ["Console"];
 
 export const logger = (text: string) => {
 	log.push(text);
