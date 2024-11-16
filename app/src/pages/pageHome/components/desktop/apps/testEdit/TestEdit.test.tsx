@@ -1,5 +1,5 @@
 import { Theme } from "@src/theme/Theme";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { TestEdit } from "./TestEdit";
 
 const renderComponent = () => {
