@@ -3,31 +3,15 @@ import { themeLight } from "./themes/themeLight/ThemeLight";
 
 export const themes = { light: themeLight, dark: themeDark };
 
-export interface ITheme {
+type IColorGroup = "primary" | "secondary" | "ternary" | "quartery";
+type IColorState = "" | "Hover" | "Active" | "Selected" | "Disabled";
+type IColorType = `${IColorGroup}${"Fg" | "Bg"}${IColorState}`;
+
+export type ITheme = {
 	themeName: keyof typeof themes;
 
-	color: {
+	color: { [key in IColorType]: string } & {
 		transparent: string;
-
-		primaryFg: string;
-		primaryBg: string;
-		primaryFgHover: string;
-		primaryBgHover: string;
-		primaryFgActive: string;
-		primaryBgActive: string;
-		primaryFgSelected: string;
-		primaryBgSelected: string;
-		primaryFgDisabled: string;
-		primaryBgDisabled: string;
-
-		secondaryFg: string;
-		secondaryBg: string;
-
-		ternaryFg: string;
-		ternaryBg: string;
-
-		quarteryFg: string;
-		quarteryBg: string;
 
 		accentFg: string;
 		accentBg: string;
@@ -65,4 +49,4 @@ export interface ITheme {
 	image: {
 		bg: string;
 	};
-}
+};
