@@ -9,7 +9,7 @@ import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
 import { Progress } from "@src/components/progress/Progress";
 import { Select } from "@src/components/select/Select";
 import { Stepper } from "@src/components/stepper/Stepper";
-import { Switch, type SwitchState } from "@src/components/switch/Switch";
+import { Switch } from "@src/components/switch/Switch";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import i18n, { lang } from "@src/locales/i18n";
@@ -17,11 +17,11 @@ import { useState } from "react";
 import * as S from "./TestEdit.styles";
 
 export const TestEdit = () => {
-	const [switchState, setSwitchState] = useState<SwitchState>("left");
+	const [switchChecked, setSwitchChecked] = useState(false);
 
 	const [checkState, setCheckState] = useState(true);
 
-	const [counter, setCounter] = useState(0);
+	const [stepperValue, setStepperValue] = useState(0);
 
 	const [inputValue, setInputValue] = useState("Test");
 
@@ -31,7 +31,7 @@ export const TestEdit = () => {
 	const [selectedOption, setSelectedOption] = useState(0);
 
 	const handleOnClickSwitch = () => {
-		setSwitchState(switchState === "left" ? "right" : "left");
+		setSwitchChecked(!switchChecked);
 	};
 
 	const handleOnTextChange = (value: string) => {
@@ -43,11 +43,11 @@ export const TestEdit = () => {
 	};
 
 	const handleOnClickMinusStepper = () => {
-		setCounter(counter - 1);
+		setStepperValue(stepperValue - 1);
 	};
 
 	const handleOnClickPlusStepper = () => {
-		setCounter(counter + 1);
+		setStepperValue(stepperValue + 1);
 	};
 
 	const handleOnClickPopupMenu = () => {
@@ -99,7 +99,7 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Switch</Text>
-					<Switch switchState={switchState} onClickSwitch={handleOnClickSwitch} />
+					<Switch data-testid="switch-test" checked={switchChecked} onClickSwitch={handleOnClickSwitch} />
 				</S.Col>
 
 				<S.Line />
@@ -114,7 +114,7 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Stepper</Text>
 					<S.Row>
-						<Input value={String(counter)} size="s" textAlign="center" />
+						<Input value={String(stepperValue)} size="s" textAlign="center" />
 						<Stepper onClickMinus={handleOnClickMinusStepper} onClickPlus={handleOnClickPlusStepper} />
 					</S.Row>
 				</S.Col>

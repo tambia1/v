@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import type { SwitchState } from "./Switch";
 
 export const Switch = styled.div`
 	width: 6rem;
@@ -13,10 +12,10 @@ export const Switch = styled.div`
 	cursor: pointer;
 `;
 
-export const Dot = styled.div<{ $switchState: SwitchState }>`
+export const Dot = styled.div<{ $checked: boolean }>`
 	width: 50%;
 	height: 100%;
-	transform: translateX(${({ $switchState }) => ($switchState === "left" ? "0%" : "100%")});
+	transform: translateX(${({ $checked }) => ($checked ? "100%" : "0%")});
 	transition: all 0.3s ease;
 	background-color: ${(props) => props.theme.color.primaryBg};
 	border-radius: 100rem;
