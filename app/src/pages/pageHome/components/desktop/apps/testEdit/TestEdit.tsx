@@ -106,7 +106,7 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Check</Text>
-					<Check checkState={checkState} onClickCheck={handleOnclickCheck} />
+					<Check data-testid="check-test" checked={checkState} onClickCheck={handleOnclickCheck} />
 				</S.Col>
 
 				<S.Line />

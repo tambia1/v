@@ -60,6 +60,7 @@ export default defineConfig({
 	test: {
 		globals: true,
 		environment: "jsdom",
+		setupFiles: "./vitest-setup.ts",
 		css: true,
 		include: ["./src/**/*.test.{ts,tsx}"],
 		exclude: ["./playwright-tests/**", "**/node_modules/**"],

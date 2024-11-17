@@ -4,19 +4,19 @@ import * as S from "./Check.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
-	checkState: boolean;
+	checked: boolean;
 	onClickCheck: (checkState: boolean) => void;
 };
 
-export const Check = ({ className, onClickCheck, checkState = false, ...rest }: Props) => {
+export const Check = ({ className, onClickCheck, checked = false, ...rest }: Props) => {
 	const handleOnClick = () => {
-		onClickCheck(checkState);
+		onClickCheck(checked);
 	};
 
 	return (
-		<Check.Compose className={className} onClick={handleOnClick} {...rest}>
-			{!checkState && <Icon iconName="iconSquare" />}
-			{checkState && <Icon iconName="iconVSquare" />}
+		<Check.Compose className={className} onClick={handleOnClick} aria-checked={checked} {...rest}>
+			{!checked && <Icon iconName="iconSquare" />}
+			{checked && <Icon iconName="iconVSquare" />}
 		</Check.Compose>
 	);
 };
