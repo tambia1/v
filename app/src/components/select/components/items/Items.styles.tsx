@@ -16,10 +16,11 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 
 	& ${List}{
 		overflow-y: hidden;
+		scrollbar-gutter: stable;
 
 		&::-webkit-scrollbar-track {
-			margin-top: 1rem;
-			margin-bottom: 1rem;
+			margin-top: 0.1rem;
+			margin-bottom: 0.1rem;
 		}
 
 		animation: ${({ $isOpen }) => ($isOpen ? "expand 0s ease forwards 0.3s" : "none")};

@@ -37,20 +37,8 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	overflow: hidden;
 	border-radius: 0rem 0rem 0rem 0rem;
 
-	&:first-child {
-		border-radius: 1rem 1rem 0rem 0rem;
-	}
-
-	&:last-child {
-		border-radius: 0rem 0rem 1rem 1rem;
-	}
-
 	&:last-child ${Line} {
 		display: none;
-	}
-
-	&:only-child {
-		border-radius: 1rem 1rem 1rem 1rem;
 	}
 
 	&:hover ${Content} {

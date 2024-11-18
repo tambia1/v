@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 		}
 
 		& *::-webkit-scrollbar-track {
-			background: var(--scrollbarColor);
+			background-color: var(--scrollbarColor);
 			border-radius: 5px;
 		}
 
@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
 	}
 
 	ul {
-  		padding-left: 2rem;
+		padding-left: 2rem;
 	}
 `;
 
