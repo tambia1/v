@@ -41,7 +41,7 @@ i18n.use(initReactI18next).init({
 
 export type ILang = GetTypeAsObjectPath<IResources["en"]["translation"], "">;
 
-type IValue = string | { [key: string]: string | IValue };
+type IValue = string | { [key: string]: IValue };
 
 export const lang: ILang = ((language: IResources["en"]["translation"]) => {
 	const get = (v: IValue, str: string): IValue => {
