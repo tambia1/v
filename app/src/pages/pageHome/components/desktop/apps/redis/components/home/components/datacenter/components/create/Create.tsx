@@ -151,7 +151,7 @@ export const Create = () => {
 			.filter((plan) => plan.size === selections.dbSize)
 			.map((plan) => `${plan.id} - ${plan.name}`);
 
-		return plans.join(", ");
+		return plans.length > 0 ? plans.join(", ") : "New plan";
 	};
 
 	return (
@@ -163,7 +163,9 @@ export const Create = () => {
 			<S.Col>
 				<S.Col>
 					<S.Row>Matching Plans</S.Row>
-					<S.Row>{getMatchingPlans(selections)}</S.Row>
+					<S.Row>
+						<Text color="successFg">{getMatchingPlans(selections)}</Text>
+					</S.Row>
 				</S.Col>
 
 				<S.Col>

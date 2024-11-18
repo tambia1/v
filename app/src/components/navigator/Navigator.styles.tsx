@@ -18,7 +18,6 @@ export const Headers = styled.div`
 	align-items: center;
 	color: ${(props) => props.theme.color.ternaryFg};
 	background-color: ${(props) => props.theme.color.ternaryBg};
-	text-shadow: 0px 1px 3px #ff0000;
 	z-index: 1;
 
 	& * {
@@ -36,8 +35,8 @@ export const Pages = styled.div`
 	position: relative;
 	overflow: hidden;
 
-	color: ${(props) => props.theme.color.secondaryFg};
-	background-color: ${(props) => props.theme.color.secondaryBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 `;
 
 export const Header = styled.div`

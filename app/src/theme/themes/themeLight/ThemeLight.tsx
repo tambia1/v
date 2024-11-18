@@ -18,7 +18,7 @@ export const themeLight: ITheme = {
 		primaryFgDisabled: "#b3b3b3",
 		primaryBgDisabled: "#f2f2f2",
 
-		secondaryFg: "#161616",
+		secondaryFg: "#888888",
 		secondaryBg: "#F2F2F2",
 		secondaryFgHover: "#1a1a1a",
 		secondaryBgHover: "#c7c7c7",
