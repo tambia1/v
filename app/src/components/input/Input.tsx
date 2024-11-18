@@ -3,8 +3,8 @@ import * as S from "./Input.styles";
 
 const sizes = {
 	s: "5rem",
-	m: "10rem",
-	l: "20rem",
+	m: "12rem",
+	l: "25rem",
 } as const;
 
 export type ISize = keyof typeof sizes;

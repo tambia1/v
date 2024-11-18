@@ -19,7 +19,7 @@ export const Board = styled.div`
 
 export const Column = styled.div`
 	width: 100%;
-	min-height: 20rem;
+	min-height: 25rem;
 	display: flex;
 	flex-direction: column;
 	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};

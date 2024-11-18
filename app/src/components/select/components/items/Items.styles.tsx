@@ -8,11 +8,11 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
 	transition: all 0.3s ease;
 	position: absolute;
-	width: 20rem;
+	width: 25rem;
 	z-index: 1;
 	background-color: ${(props) => props.theme.color.primaryBg};
 	border-radius: 1rem;
-	max-height: 20rem;
+	max-height: 25rem;
 
 	& ${List}{
 		overflow-y: hidden;

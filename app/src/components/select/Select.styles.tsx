@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const Select = styled.div`
-	width: 20rem;
+	width: 25rem;
 	position: relative;
 `;

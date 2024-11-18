@@ -17,8 +17,8 @@ export const Clock = styled.div`
 
 export const ClockCircle = styled.div`
 	position: relative;
-	width: 20rem;
-	height: 20rem;
+	width: 25rem;
+	height: 25rem;
 	border-radius: 50%;
 	display: flex;
 	flex-direction: column;
@@ -28,7 +28,7 @@ export const ClockCircle = styled.div`
 	box-shadow: 0px 0px 10px 0px #000000;
 `;
 
-export const Number = styled.div<{ $number: number }>`
+export const Numbers = styled.div<{ $number: number }>`
 	transform: rotate(${({ $number }) => 30 * $number}deg);
 	position: absolute;
 	display: flex;
@@ -39,7 +39,7 @@ export const Number = styled.div<{ $number: number }>`
 	color: #000000;
 `;
 
-export const NumberBox = styled.div<{ $number: number }>`
+export const NumbersBox = styled.div<{ $number: number }>`
 	position: relative;
 	transform: rotate(${({ $number }) => -30 * $number}deg);
 	display: flex;
@@ -48,7 +48,7 @@ export const NumberBox = styled.div<{ $number: number }>`
 	text-align: center;
 `;
 
-export const NumberMarker = styled.div<{ $number: number }>`
+export const NumbersMarker = styled.div<{ $number: number }>`
 	background-color: #000000;
 	width: 0.2rem;
 	height: 0.5rem;
@@ -57,7 +57,7 @@ export const NumberMarker = styled.div<{ $number: number }>`
 	box-shadow: 0px 0px 1px 0px #00000088;
 `;
 
-export const NumberText = styled.span`
+export const NumbersText = styled.span`
 	text-shadow: 0px 0px 1px #00000088;
 `;
 

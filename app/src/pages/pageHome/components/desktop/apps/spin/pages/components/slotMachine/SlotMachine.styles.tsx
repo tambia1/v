@@ -17,7 +17,7 @@ export const Spin = styled.div`
 `;
 
 export const SlotMachine = styled.div`
-	width: 20rem;
+	width: 25rem;
 	height: 25rem;
 
 	display: flex;
