@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const Progress = styled.div`
-	width: 25rem;
+export const Progress = styled.div<{ $width: string }>`
+	width: ${(props) => props.$width};
 	height: 2rem;
 	padding: 1px;
 	box-sizing: border-box;
