@@ -3,7 +3,7 @@ import * as S from "./Input.styles";
 
 const sizes = {
 	s: "5rem",
-	m: "12rem",
+	m: "15rem",
 	l: "25rem",
 } as const;
 

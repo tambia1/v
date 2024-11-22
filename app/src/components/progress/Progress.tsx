@@ -2,7 +2,7 @@ import * as S from "./Progress.styles";
 
 const sizes = {
 	s: "5rem",
-	m: "12rem",
+	m: "15rem",
 	l: "25rem",
 } as const;
 
