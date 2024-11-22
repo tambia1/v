@@ -8,12 +8,12 @@ test("Desktop", async ({ page }) => {
 	await page.context().clearCookies();
 	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "commit" });
 
-	const splash = await page.getByLabel("logo");
+	const splash = page.getByLabel("logo");
 	await expect(splash).toBeVisible();
-	const progress = await page.getByLabel("progress");
+	const progress = page.getByLabel("progress");
 	await expect(progress).not.toBeVisible();
 
-	const home = await page.getByText("Guest");
+	const home = page.getByText("Guest");
 	await expect(home).toBeVisible();
 	await page.waitForTimeout(ANIMATION_TIME);
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_guest.png`);
@@ -25,7 +25,7 @@ test("Desktop", async ({ page }) => {
 	await page.getByPlaceholder("Password (a, b)").fill("a");
 	await page.getByRole("button", { name: "Login" }).click();
 
-	const welcome = await page.getByText("Welcome John Admin!");
+	const welcome = page.getByText("Welcome John Admin!");
 	await expect(welcome).toBeVisible();
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_login.png`);
 	await expect(welcome).not.toBeVisible();
