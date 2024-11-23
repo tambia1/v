@@ -1,7 +1,8 @@
-import { expect, test } from "@playwright/test";
-import { ANIMATION_TIME } from "./utils";
+import { type Page, expect } from "@playwright/test";
 
-test("Desktop", async ({ page }) => {
+export const ANIMATION_TIME = 500;
+
+export const performLogin = async (page: Page) => {
 	await page.context().clearCookies();
 	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "commit" });
 
@@ -13,7 +14,6 @@ test("Desktop", async ({ page }) => {
 	const home = page.getByText("Guest");
 	await expect(home).toBeVisible();
 	await page.waitForTimeout(ANIMATION_TIME);
-	await expect(page).toHaveScreenshot("desktop_guest.png");
 
 	await page.getByText("User").click();
 	await page.getByPlaceholder("Email (a, b)").click();
@@ -24,7 +24,5 @@ test("Desktop", async ({ page }) => {
 
 	const welcome = page.getByText("Welcome John Admin!");
 	await expect(welcome).toBeVisible();
-	await expect(page).toHaveScreenshot("desktop_login.png");
 	await expect(welcome).not.toBeVisible();
-	await expect(page).toHaveScreenshot("desktop_user.png");
-});
+};
