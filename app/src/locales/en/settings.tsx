@@ -28,7 +28,7 @@ export const translation: ISettings = {
 			right: "Right",
 		},
 		about: {
-			title: "About",
+			title: "About app",
 			text: `App Version: ${version}`,
 		},
 	},
