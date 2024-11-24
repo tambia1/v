@@ -10,7 +10,7 @@ type Props = {
 	filter: Filter;
 };
 
-export const UseDatacenter = ({ searchValue, filter }: Props) => {
+export const useDatacenter = ({ searchValue, filter }: Props) => {
 	const [data, setData] = useState<DataCenterType[]>([]);
 	const [dataToDisplay, setDataToDisplay] = useState<DataCenterType[]>([]);
 	const [isDataReady, setIsDataReady] = useState(false);

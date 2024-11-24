@@ -19,7 +19,7 @@ import type { Filter } from "./Datacenter.types";
 import { Create } from "./components/create/Create";
 import { Database } from "./components/database/Database";
 import { Subscription } from "./components/subscription/Subscription";
-import { UseDatacenter } from "./hooks/UseDatacenter";
+import { useDatacenter } from "./hooks/UseDatacenter";
 
 const subsTitles = ["SUBSCRIPTION", "ID", "TYPE", "DB"];
 const dbsTitles = ["DATABASE", "ID", "USAGE"];
@@ -32,7 +32,7 @@ export const Datacenter = () => {
 
 	const [searchValue, setSearchValue] = useState("");
 
-	const { data, isDataReady, collpseAll, collpseSub, collpseSubDbs, collpseDb } = UseDatacenter({ searchValue, filter });
+	const { data, isDataReady, collpseAll, collpseSub, collpseSubDbs, collpseDb } = useDatacenter({ searchValue, filter });
 
 	const handleOnClickSubscription = (subscriptionId: number) => {
 		navigator.pushPage(

@@ -1,10 +1,10 @@
 /*
 
 
-import { UseChild } from "./UseChild";
+import { useChild } from "./UseChild";
 
-export const UseParent = () => {
-	const { func2 } = UseChild(UseParent);
+export const useParent = () => {
+	const { func2 } = useChild(UseParent);
 
 	const func1 = () => {
 		console.log("aaa", "func1");
@@ -16,9 +16,9 @@ export const UseParent = () => {
 
 
 
-import type { UseParent } from "./UseParent";
+import type { useParent } from "./UseParent";
 
-export const UseChild = <T extends typeof UseParent>(_t: T) => {
+export const useChild = <T extends typeof UseParent>(_t: T) => {
 	const func2 = () => {
 		console.log("aaa", "func2");
 	};
