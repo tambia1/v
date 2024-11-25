@@ -143,11 +143,11 @@ export const Create = () => {
 		const plans: string[] = plansAll.plans
 			.filter((plan) => plan.cloud.toLowerCase() === selections.cloud.toLowerCase())
 			.filter((plan) => selections.regions.includes(plan.region))
-			// .filter((plan) => plan.is_rof === selections.flash)
-			// .filter((plan) => plan.is_multi_az === selections.replicaZone)
-			// .filter((plan) => (plan.replication === "user-selection-in-memory" && selections.replica) || (plan.replication === "default" && !selections.replica))
-			// .filter((plan) => plan.data_persistence === selections.dataPersistence)
-			// .filter((plan) => plan.supports_redis_modules)
+			.filter((plan) => plan.is_rof === selections.flash)
+			.filter((plan) => plan.is_multi_az === selections.replicaZone)
+			.filter((plan) => (plan.replication === "user-selection-in-memory" && selections.replica) || (plan.replication === "default" && !selections.replica))
+			.filter((plan) => plan.data_persistence === selections.dataPersistence)
+			.filter((plan) => plan.supports_redis_modules)
 			.filter((plan) => plan.size === selections.dbSize)
 			.map((plan) => `${plan.id} - ${plan.name}`);
 
@@ -170,12 +170,12 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Database name</S.Row>
-					<Input value={selections.dbName} onTextChange={handleOnTextChange} />
+					<Input value={selections.dbName} onTextChange={handleOnTextChange} size="xl" />
 				</S.Col>
 
 				<S.Col>
 					<S.Row>Cloud</S.Row>
-					<Select onClickItem={handleOnClickCloud}>
+					<Select onClickItem={handleOnClickCloud} size="xl">
 						<Select.Display>{cloudMap[selections.cloud as keyof typeof cloudMap]}</Select.Display>
 						<Select.Items>
 							{Object.keys(cloudMap).map((key) => (
@@ -189,7 +189,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Regions</S.Row>
-					<Select onClickItem={handleOnClickRegion} isCloseOnSelectItem={false}>
+					<Select onClickItem={handleOnClickRegion} isCloseOnSelectItem={false} size="xl">
 						<Select.Display>{String(selections.regions.length === 1 ? selections.regions[0] : `+ ${selections.regions.length} regions`)}</Select.Display>
 						<Select.Items>
 							{regions.map((region) => (
@@ -208,7 +208,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Flash</S.Row>
-					<Select onClickItem={handleOnClickFlash}>
+					<Select onClickItem={handleOnClickFlash} size="xl">
 						<Select.Display>{String(selections.flash).toUpperCase()}</Select.Display>
 						<Select.Items>
 							{["true", "false"].map((flash) => (
@@ -222,7 +222,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Replication zone</S.Row>
-					<Select onClickItem={handleOnClickReplicationZone}>
+					<Select onClickItem={handleOnClickReplicationZone} size="xl">
 						<Select.Display>{String(selections.replicaZone).toUpperCase()}</Select.Display>
 						<Select.Items>
 							{["true", "false"].map((replicationZone) => (
@@ -236,7 +236,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Replica</S.Row>
-					<Select onClickItem={handleOnClickReplica}>
+					<Select onClickItem={handleOnClickReplica} size="xl">
 						<Select.Display>{String(selections.replica).toUpperCase()}</Select.Display>
 						<Select.Items>
 							{["true", "false"].map((replica) => (
@@ -250,7 +250,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Data persistence</S.Row>
-					<Select onClickItem={handleOnClickDataPersistence}>
+					<Select onClickItem={handleOnClickDataPersistence} size="xl">
 						<Select.Display>{dataPersistenceMap[selections.dataPersistence as keyof typeof dataPersistenceMap]}</Select.Display>
 						<Select.Items>
 							{Object.keys(dataPersistenceMap).map((key) => (
@@ -264,7 +264,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Modules</S.Row>
-					<Select onClickItem={handleOnClickModules}>
+					<Select onClickItem={handleOnClickModules} size="xl">
 						<Select.Display>{String(selections.modules.length === 1 ? selections.modules[0] : `${selections.modules.length}`)}</Select.Display>
 						<Select.Items>
 							{Object.keys(modulesMap).map((module) => (
@@ -290,7 +290,7 @@ export const Create = () => {
 				</S.Col>
 
 				<S.Col>
-					<Button variant="full" onClick={handleCreateBdb}>
+					<Button variant="full" onClick={handleCreateBdb} size="fitContent">
 						Create Subscription & Database
 					</Button>
 					{isLoading && <Loader />}

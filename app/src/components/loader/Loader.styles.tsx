@@ -1,5 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
-import { ITheme } from "@src/theme/Theme.types";
+import type { ITheme } from "@src/theme/Theme.types";
 import styled from "styled-components";
 
 export const Loader = styled(Icon)<{ size: keyof ITheme["size"]; color: keyof ITheme["color"] }>`

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import type { IVariant } from "./Button";
 
-export const Button = styled.button<{ $variant: IVariant }>`
+export const Button = styled.button<{ $variant: IVariant; $width: string }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -23,7 +23,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			transition: all 0.1s ease;
 			padding: 0.5rem 1rem 0.5rem 1rem;
 			box-sizing: border-box;
-			width: fit-content;
+			width: ${props.$width};
 			min-width: 5em;
 			height: 3rem;
 			white-space: nowrap;
@@ -56,7 +56,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			padding: 0.5rem 1rem 0.5rem 1rem;
 			border-radius: 5rem;
 
-			width: fit-content;
+			width: ${props.$width};
 			min-width: 5em;
 			height: 3rem;
 
@@ -90,7 +90,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			border-radius: 5rem;
 			font-size: 100%;
 
-			width: fit-content;
+			width: ${props.$width};
 			min-width: 5em;
 			height: 3rem;
 
@@ -127,7 +127,7 @@ export const Button = styled.button<{ $variant: IVariant }>`
 			border-radius: 0.5rem;
 			font-size: 100%;
 
-			width: fit-content;
+			width: ${props.$width};
 			min-width: 5em;
 			height: 3rem;
 

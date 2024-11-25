@@ -1,9 +1,11 @@
 import * as S from "./Progress.styles";
 
 const sizes = {
-	s: "5rem",
+	xs: "5rem",
+	s: "10rem",
 	m: "15rem",
-	l: "25rem",
+	l: "20rem",
+	xl: "28rem",
 } as const;
 
 export type ISize = keyof typeof sizes;
@@ -15,7 +17,7 @@ export type Props = {
 	percent: number;
 };
 
-export const Progress = ({ className, ariaLabel, percent = 0, size = "l" }: Props) => {
+export const Progress = ({ className, ariaLabel, percent = 0, size = "m" }: Props) => {
 	const width = Math.round(Math.min(100, Math.max(0, percent)));
 
 	return (
