@@ -1,4 +1,4 @@
-import { type HTMLAttributes, type ReactNode, useEffect, useState } from "react";
+import { type HTMLAttributes, type ReactNode, useEffect, useRef, useState } from "react";
 import * as S from "./Select.styles";
 import { Display } from "./components/display/Display";
 import { Items } from "./components/items/Items";
@@ -8,18 +8,18 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	children: ReactNode[];
 	onClickItem: (index: number, value: string) => void;
+	isCloseOnSelectItem?: boolean;
 };
 
-export const Select = ({ className, children, onClickItem, ...rest }: Props) => {
+export const Select = ({ className, children, isCloseOnSelectItem = true, onClickItem, ...rest }: Props) => {
+	const refSelect = useRef<HTMLDivElement>(null);
 	const [isOpen, setIsOpen] = useState(false);
 
 	useEffect(() => {
-		const handleOnClickOutside = () => {
-			if (isOpen) {
+		const handleOnClickOutside = (e: MouseEvent) => {
+			if (isOpen && refSelect.current && !refSelect.current.contains(e.target as Node)) {
 				setTimeout(() => {
-					if (isOpen) {
-						setIsOpen(false);
-					}
+					setIsOpen(false);
 				}, 10);
 			}
 		};
@@ -35,17 +35,19 @@ export const Select = ({ className, children, onClickItem, ...rest }: Props) => 
 		setIsOpen(!isOpen);
 	};
 
-	const handleOnClickItem = (event: React.MouseEvent, index: number, item: ReactNode) => {
-		event.stopPropagation();
+	const handleOnClickItem = (e: React.MouseEvent, index: number, item: ReactNode) => {
+		e.stopPropagation();
 
-		setIsOpen(false);
+		if (isCloseOnSelectItem) {
+			setIsOpen(false);
+		}
 
 		const value = (item as React.ReactElement).props.value;
 		onClickItem(index, value);
 	};
 
 	return (
-		<S.Select className={className} {...rest}>
+		<S.Select ref={refSelect} className={className} {...rest}>
 			<ContextSelect.Provider value={{ isOpen, setIsOpen, onClickDisplay: handleOnClickDisplay, onClickItem: handleOnClickItem }}>
 				{children}
 			</ContextSelect.Provider>

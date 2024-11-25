@@ -92,7 +92,7 @@ export const Create = () => {
 	};
 
 	const handleOnClickReplicationZone = (_index: number, value: string) => {
-		setSelections({ ...selections, flash: value === "true" });
+		setSelections({ ...selections, replicaZone: value === "true" });
 	};
 
 	const handleOnClickReplica = (_index: number, value: string) => {
@@ -143,11 +143,11 @@ export const Create = () => {
 		const plans: string[] = plansAll.plans
 			.filter((plan) => plan.cloud.toLowerCase() === selections.cloud.toLowerCase())
 			.filter((plan) => selections.regions.includes(plan.region))
-			.filter((plan) => plan.is_rof === selections.flash)
-			.filter((plan) => plan.is_multi_az === selections.replicaZone)
-			.filter((plan) => (plan.replication === "user-selection-in-memory" && selections.replica) || (plan.replication === "default" && !selections.replica))
-			.filter((plan) => plan.data_persistence === selections.dataPersistence)
-			.filter((plan) => plan.supports_redis_modules)
+			// .filter((plan) => plan.is_rof === selections.flash)
+			// .filter((plan) => plan.is_multi_az === selections.replicaZone)
+			// .filter((plan) => (plan.replication === "user-selection-in-memory" && selections.replica) || (plan.replication === "default" && !selections.replica))
+			// .filter((plan) => plan.data_persistence === selections.dataPersistence)
+			// .filter((plan) => plan.supports_redis_modules)
 			.filter((plan) => plan.size === selections.dbSize)
 			.map((plan) => `${plan.id} - ${plan.name}`);
 
@@ -189,8 +189,8 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Regions</S.Row>
-					<Select onClickItem={handleOnClickRegion}>
-						<Select.Display>{String(selections.regions.length === 1 ? selections.regions[0] : `${selections.regions.length}`)}</Select.Display>
+					<Select onClickItem={handleOnClickRegion} isCloseOnSelectItem={false}>
+						<Select.Display>{String(selections.regions.length === 1 ? selections.regions[0] : `+ ${selections.regions.length} regions`)}</Select.Display>
 						<Select.Items>
 							{regions.map((region) => (
 								<Select.Items.Item key={region.id} value={region.name}>
@@ -223,7 +223,7 @@ export const Create = () => {
 				<S.Col>
 					<S.Row>Replication zone</S.Row>
 					<Select onClickItem={handleOnClickReplicationZone}>
-						<Select.Display>{String(selections.flash).toUpperCase()}</Select.Display>
+						<Select.Display>{String(selections.replicaZone).toUpperCase()}</Select.Display>
 						<Select.Items>
 							{["true", "false"].map((replicationZone) => (
 								<Select.Items.Item key={replicationZone} value={replicationZone}>
