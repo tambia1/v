@@ -1,7 +1,7 @@
 import { Pages } from "@pages/Pages.types";
 import { Button } from "@src/components/button/Button";
 import { useNavigate } from "react-router-dom";
-import * as S from "./pageNotFound1.styles";
+import * as S from "./PageNotFound.styles";
 
 export const PageNotFound = () => {
 	const navigate = useNavigate();
