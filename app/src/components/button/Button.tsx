@@ -23,7 +23,7 @@ export type Props = React.ComponentPropsWithoutRef<"button"> & {
 	size?: ISize;
 };
 
-export const Button = forwardRef<HTMLButtonElement, Props>(({ className, children, variant = "styled", size = "m", onLongClick, ...rest }, ref) => {
+export const Button = forwardRef<HTMLButtonElement, Props>(({ className, children, variant = "styled", size = "s", onLongClick, ...rest }, ref) => {
 	const refButton = useRef<HTMLButtonElement>(null);
 
 	useTouch({
