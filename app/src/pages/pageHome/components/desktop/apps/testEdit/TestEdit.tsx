@@ -10,6 +10,7 @@ import { Progress } from "@src/components/progress/Progress";
 import { Select } from "@src/components/select/Select";
 import { Stepper } from "@src/components/stepper/Stepper";
 import { Switch } from "@src/components/switch/Switch";
+import { Tab } from "@src/components/tab/Tab";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import i18n, { lang } from "@src/locales/i18n";
@@ -28,7 +29,19 @@ export const TestEdit = () => {
 	const [isPopupMenuOpen, setIsPopupMenuOpen] = useState(false);
 	const [popupMenuSelectedItem, setPopupMenuSelectedItem] = useState("item_0");
 
-	const [selectedOption, setSelectedOption] = useState(0);
+	const [selectSingleSelection, setSelectSingleSelection] = useState(0);
+
+	const [selectMultiItems, setSelectMultiItems] = useState([
+		{ value: "Item 0", isSelected: false },
+		{ value: "Item 1", isSelected: false },
+		{ value: "Item 2", isSelected: false },
+		{ value: "Item 3", isSelected: false },
+		{ value: "Item 4", isSelected: false },
+		{ value: "Item 5", isSelected: false },
+	]);
+	const selectMultiSelections = selectMultiItems.filter((item) => item.isSelected);
+
+	const [selectdTabIndex, setSelectedTabIndex] = useState(0);
 
 	const handleOnClickSwitch = () => {
 		setSwitchChecked(!switchChecked);
@@ -59,8 +72,23 @@ export const TestEdit = () => {
 		setIsPopupMenuOpen(false);
 	};
 
-	const handleOnClickSelectOption = (index: number) => {
-		setSelectedOption(index);
+	const handleOnClickSelectSingle = (index: number) => {
+		setSelectSingleSelection(index);
+	};
+
+	const handleOnClickSelectMulti = (index: number) => {
+		const updatedItems = [...selectMultiItems];
+
+		updatedItems[index] = {
+			...updatedItems[index],
+			isSelected: !updatedItems[index].isSelected,
+		};
+
+		setSelectMultiItems(updatedItems);
+	};
+
+	const handleOnClickTab = (index: number, _value: string) => {
+		setSelectedTabIndex(index);
 	};
 
 	return (
@@ -170,9 +198,9 @@ export const TestEdit = () => {
 				<S.Line />
 
 				<S.Col>
-					<Text>Select</Text>
-					<Select onClickItem={handleOnClickSelectOption}>
-						<Select.Display>{`Item ${selectedOption}`}</Select.Display>
+					<Text>Select - Single</Text>
+					<Select onClickItem={handleOnClickSelectSingle}>
+						<Select.Display>{`Item ${selectSingleSelection}`}</Select.Display>
 						<Select.Items>
 							<Select.Items.Item value="item_0">
 								<Select.Items.Item.Icon>
@@ -191,6 +219,27 @@ export const TestEdit = () => {
 							<Select.Items.Item value="item_5">Item 5</Select.Items.Item>
 							<Select.Items.Item value="item_6">Item 6</Select.Items.Item>
 							<Select.Items.Item value="item_7">Item 7</Select.Items.Item>
+						</Select.Items>
+					</Select>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Select - Multi</Text>
+					<Select onClickItem={handleOnClickSelectMulti} isCloseOnSelectItem={false}>
+						<Select.Display>{selectMultiSelections.length === 0 ? "Nothing selected" : `${selectMultiSelections.length} items selected`}</Select.Display>
+						<Select.Items>
+							{selectMultiItems.map((item) => (
+								<Select.Items.Item value={item.value} key={item.value}>
+									<Select.Items.Item.Text>{item.value}</Select.Items.Item.Text>
+									{item.isSelected && (
+										<Select.Items.Item.Image>
+											<Icon iconName={"iconCheck"} />
+										</Select.Items.Item.Image>
+									)}
+								</Select.Items.Item>
+							))}
 						</Select.Items>
 					</Select>
 				</S.Col>
@@ -274,6 +323,20 @@ export const TestEdit = () => {
 							<T>{lang.settings.about.title}</T>
 						</List.Cell>
 					</List>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Tab</Text>
+					<S.Row>
+						<Tab onClickItem={handleOnClickTab} selectedTabIndex={selectdTabIndex}>
+							<Tab.Item value="tab_0">Tab 0</Tab.Item>
+							<Tab.Item value="tab_1">Tab 1</Tab.Item>
+							<Tab.Item value="tab_2">Tab 2</Tab.Item>
+						</Tab>
+					</S.Row>
+					<Text>Selected tab {selectdTabIndex}</Text>
 				</S.Col>
 			</S.Col>
 		</S.TestEdit>

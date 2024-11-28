@@ -14,7 +14,7 @@ const sizes = {
 
 export type ISize = keyof typeof sizes;
 
-export type IVariant = "styled" | "full" | "stroke" | "link" | "none";
+export type IVariant = "styled" | "full" | "stroke" | "link" | "text" | "none";
 
 export type Props = React.ComponentPropsWithoutRef<"button"> & {
 	className?: string;

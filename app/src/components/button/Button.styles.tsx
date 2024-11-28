@@ -147,5 +147,40 @@ export const Button = styled.button<{ $variant: IVariant; $width: string }>`
 			}
 		`}
 
+		${(props) =>
+			props.$variant === "text" &&
+			css`
+			color: ${(props) => props.theme.color.primaryFg};
+			background-color: transparent;
+			border-color: transparent;
+
+			border-width: 0.2rem;
+			border-style: solid;
+			box-sizing: border-box;
+
+			padding: 0.5rem 1rem 0.5rem 1rem;
+			border-radius: 0.5rem;
+			font-size: 100%;
+
+			width: ${props.$width};
+			min-width: 5em;
+			height: 3rem;
+
+			&:hover {
+				color: ${(props) => props.theme.color.primaryFgHover};
+				color: var(--label-color);
+			}
+
+			&:active {
+				color: ${(props) => props.theme.color.primaryFgActive};
+				color: var(--label-color);
+			}
+
+			&:disabled {
+				color: ${(props) => props.theme.color.primaryFgDisabled};
+				color: var(--label-color);
+			}
+		`}
+
 		${(props) => props.$variant === "none" && css``}
 `;

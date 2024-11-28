@@ -16,7 +16,7 @@ export type ISize = keyof typeof sizes;
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
-	children: ReactNode[];
+	children: ReactNode;
 	onClickItem: (index: number, value: string) => void;
 	isCloseOnSelectItem?: boolean;
 	size?: ISize;
