@@ -9,7 +9,4 @@ export const Compose = styled.div`
 	overflow: hidden;
 	background-color: ${(props) => props.theme.color.primaryBgHover};
 	border-radius: 5rem;
-	& *{
-		transition: all 0.3s ease;
-	}
 `;
