@@ -140,32 +140,6 @@ export const TestEdit = () => {
 				<S.Line />
 
 				<S.Col>
-					<Text>Stepper</Text>
-					<S.Row>
-						<Input value={String(stepperValue)} textAlign="center" />
-						<Stepper onClickMinus={handleOnClickMinusStepper} onClickPlus={handleOnClickPlusStepper} />
-					</S.Row>
-				</S.Col>
-
-				<S.Line />
-
-				<S.Col>
-					<Text>Input</Text>
-
-					<S.Row>
-						<Input value={inputValue} onTextChange={handleOnTextChange} />
-						enabled
-					</S.Row>
-
-					<S.Row>
-						<Input value={inputValue} onTextChange={handleOnTextChange} disabled />
-						disabled
-					</S.Row>
-				</S.Col>
-
-				<S.Line />
-
-				<S.Col>
 					<Text>Button</Text>
 					<S.Row>
 						<Button variant="styled">Button Text</Button>
@@ -193,6 +167,32 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Progress</Text>
 					<Progress percent={75} />
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Input</Text>
+
+					<S.Row>
+						<Input value={inputValue} onTextChange={handleOnTextChange} />
+						enabled
+					</S.Row>
+
+					<S.Row>
+						<Input value={inputValue} onTextChange={handleOnTextChange} disabled />
+						disabled
+					</S.Row>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Stepper</Text>
+					<S.Row>
+						<Input value={String(stepperValue)} textAlign="center" />
+						<Stepper onClickMinus={handleOnClickMinusStepper} onClickPlus={handleOnClickPlusStepper} />
+					</S.Row>
 				</S.Col>
 
 				<S.Line />

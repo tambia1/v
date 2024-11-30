@@ -12,6 +12,8 @@ export const Check = styled.div`
 	justify-content: center;
 
 	color: ${(props) => props.theme.color.primaryFg};
+	overflow: hidden;
+
 	transition: all 0.3s ease;
 
 	cursor: pointer;
