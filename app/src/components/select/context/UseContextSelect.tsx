@@ -5,6 +5,7 @@ export const ContextSelect = createContext<{
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 	onClickDisplay: () => void;
 	onClickItem: (event: React.MouseEvent, index: number, item: ReactNode) => void;
+	width: string;
 } | null>(null);
 
 export const useContextSelect = () => {

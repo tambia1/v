@@ -12,7 +12,7 @@ export const Items = ({ children }: Props) => {
 	const contextSelect = useContextSelect();
 
 	return (
-		<S.Items $isOpen={contextSelect.isOpen}>
+		<S.Items $isOpen={contextSelect.isOpen} $width={contextSelect.width}>
 			<List>
 				{children.map((item, index) => (
 					<List.Cell
