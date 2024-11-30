@@ -19,8 +19,8 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 		scrollbar-gutter: stable;
 
 		&::-webkit-scrollbar-track {
-			margin-top: 0.1rem;
-			margin-bottom: 0.1rem;
+			margin-top: 0.5rem;
+			margin-bottom: 0.5rem;
 		}
 
 		animation: ${({ $isOpen }) => ($isOpen ? "expand 0s ease forwards 0.3s" : "none")};

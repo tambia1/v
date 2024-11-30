@@ -142,7 +142,7 @@ export const TestEdit = () => {
 				<S.Col>
 					<Text>Stepper</Text>
 					<S.Row>
-						<Input value={String(stepperValue)} size="s" textAlign="center" />
+						<Input value={String(stepperValue)} textAlign="center" />
 						<Stepper onClickMinus={handleOnClickMinusStepper} onClickPlus={handleOnClickPlusStepper} />
 					</S.Row>
 				</S.Col>
