@@ -92,17 +92,17 @@ export const Database = ({ databaseId }: Props) => {
 			</S.Row>
 
 			<S.Row>
-				<Icon iconName="iconRedis" size="3rem" />
+				<Icon iconName="iconRedis" size="xs" />
 				<Text variant="body">{convertBytes(getDbSize({ bdb, crdb, plan }), "biggest")}</Text>
 			</S.Row>
 
 			<S.Row>
-				<Icon iconName="iconDatabase" size="3rem" />
+				<Icon iconName="iconDatabase" size="xs" />
 				<Text variant="body"> {crdb ? "true" : String(bdb?.replication)}</Text>
 			</S.Row>
 
 			<S.Row>
-				<Icon iconName="iconHardDrive" size="3rem" />
+				<Icon iconName="iconHardDrive" size="xs" />
 				<Text variant="body">{crdb ? "disabled" : String(bdb?.data_persistence)}</Text>
 			</S.Row>
 		</S.Database>

@@ -13,4 +13,5 @@ export const List = styled.div`
 
 	border-radius: 1rem;
 	border: 1px solid ${(props) => props.theme.color.primaryBgActive};
+	box-sizing: border-box;
 `;

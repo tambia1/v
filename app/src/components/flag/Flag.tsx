@@ -1,16 +1,20 @@
+import type { ITheme } from "@src/theme/Theme.types";
 import { ReactSVG } from "react-svg";
+import { useTheme } from "styled-components";
 import * as S from "./Flag.styles";
 import { Flags, type IFlagName } from "./Flag.types";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
 	flagName: IFlagName;
-	size?: string;
+	size?: keyof ITheme["size"];
 }
 
-export const Flag = ({ className, flagName, size = "2rem", ...rest }: Props) => {
+export const Flag = ({ className, flagName, size = "xxs", ...rest }: Props) => {
+	const theme = useTheme();
+
 	return (
-		<S.Flag className={className} $size={size} {...rest} data-name={flagName}>
+		<S.Flag className={className} $size={theme.size[size]} {...rest} data-name={flagName}>
 			<ReactSVG src={Flags[flagName]} title={flagName} />
 		</S.Flag>
 	);

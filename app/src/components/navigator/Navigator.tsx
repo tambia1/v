@@ -1,4 +1,3 @@
-import { useThemeContext } from "@src/theme/UseThemeContext";
 import { useState } from "react";
 import { Icon } from "../icon/Icon";
 import * as S from "./Navigator.styles";
@@ -28,7 +27,6 @@ export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" |
 export type ICallback = (key: string) => boolean;
 
 export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
-	const { theme } = useThemeContext();
 	const [navigatorItems, setNavigatorItems] = useState<INavigatorItem[]>(
 		children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : [],
 	);
@@ -175,10 +173,10 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 				<S.Headers>
 					<S.Back>
 						<S.BackButton onClick={handleClose} $isVisible={onClose !== undefined && navigatorItems.length === 1}>
-							<Icon iconName="iconX" size={theme.size.xs} />
+							<Icon iconName="iconX" size="xs" />
 						</S.BackButton>
 						<S.BackButton onClick={handleBack} $isVisible={navigatorItems.length > 1}>
-							<Icon iconName="iconChevronLeft" size={theme.size.xs} />
+							<Icon iconName="iconChevronLeft" size="xs" />
 						</S.BackButton>
 					</S.Back>
 					<S.Header>

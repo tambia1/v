@@ -1,13 +1,11 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 import { useRef, useState } from "react";
-import { useTheme } from "styled-components";
 import * as S from "./Camera.styles";
 
 type ICameraFacingMode = "user" | "environment";
 
 export const Camera = () => {
-	const theme = useTheme();
 	const [capturedImage, setCapturedImage] = useState<string | null>(null);
 	const [cameraState, setCameraState] = useState<"play" | "pause">("pause");
 	const [isLoading, setIsLoading] = useState(false);
@@ -78,10 +76,10 @@ export const Camera = () => {
 			<S.Image ref={refImg} $image={capturedImage ? capturedImage : ""} />
 
 			<S.Buttons>
-				{cameraState === "play" && <Icon iconName="iconPauseCircle" size={theme.size.s} onClick={handleCapture} />}
-				{cameraState === "play" && <Icon iconName="iconRefreshCw" size={theme.size.s} onClick={handleCameraFace} />}
-				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.s} onClick={handleCamera} />}
-				{cameraState === "pause" && capturedImage && <Icon iconName="iconSave" size={theme.size.s} onClick={handleCamera} />}
+				{cameraState === "play" && <Icon iconName="iconPauseCircle" size="s" onClick={handleCapture} />}
+				{cameraState === "play" && <Icon iconName="iconRefreshCw" size="s" onClick={handleCameraFace} />}
+				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size="s" onClick={handleCamera} />}
+				{cameraState === "pause" && capturedImage && <Icon iconName="iconSave" size="s" onClick={handleCamera} />}
 			</S.Buttons>
 		</S.Camera>
 	);

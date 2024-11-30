@@ -37,7 +37,7 @@ export const Cover = styled.div<{ $visible: boolean }>`
 export const MenuList = styled.div<{ $visible: boolean }>`
 	position: absolute;
 	top: 0;
-	width: 15rem;
+	width: 20rem;
 	height: 100%;
 	padding: 0%.5rem;
 	background-color: ${(props) => props.theme.color.primaryBg};

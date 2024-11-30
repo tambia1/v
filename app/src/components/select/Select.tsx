@@ -1,28 +1,21 @@
+import type { ITheme } from "@src/theme/Theme.types";
 import { type HTMLAttributes, type ReactNode, useEffect, useRef, useState } from "react";
+import { useTheme } from "styled-components";
 import * as S from "./Select.styles";
 import { Display } from "./components/display/Display";
 import { Items } from "./components/items/Items";
 import { ContextSelect } from "./context/UseContextSelect";
-
-const sizes = {
-	xs: "5rem",
-	s: "10rem",
-	m: "15rem",
-	l: "20rem",
-	xl: "28rem",
-} as const;
-
-export type ISize = keyof typeof sizes;
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	children: ReactNode;
 	onClickItem: (index: number, value: string) => void;
 	isCloseOnSelectItem?: boolean;
-	size?: ISize;
+	size?: keyof ITheme["size"];
 };
 
-export const Select = ({ className, children, isCloseOnSelectItem = true, onClickItem, size = "m", ...rest }: Props) => {
+export const Select = ({ className, children, isCloseOnSelectItem = true, onClickItem, size = "xl", ...rest }: Props) => {
+	const theme = useTheme();
 	const refSelect = useRef<HTMLDivElement>(null);
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -58,7 +51,7 @@ export const Select = ({ className, children, isCloseOnSelectItem = true, onClic
 	};
 
 	return (
-		<S.Select ref={refSelect} className={className} $width={sizes[size]} {...rest}>
+		<S.Select ref={refSelect} className={className} $width={theme.size[size]} {...rest}>
 			<ContextSelect.Provider value={{ isOpen, setIsOpen, onClickDisplay: handleOnClickDisplay, onClickItem: handleOnClickItem }}>
 				{children}
 			</ContextSelect.Provider>
