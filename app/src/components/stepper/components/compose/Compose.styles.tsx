@@ -6,6 +6,7 @@ export const Compose = styled.div`
 	height: 3rem;
 	display: flex;
 	flex-direction: row;
+	flex-shrink: 0;
 	align-items: center;
 	box-sizing: border-box;
 	border-radius: 3rem;

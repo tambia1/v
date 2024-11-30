@@ -175,10 +175,10 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 				<S.Headers>
 					<S.Back>
 						<S.BackButton onClick={handleClose} $isVisible={onClose !== undefined && navigatorItems.length === 1}>
-							<Icon iconName="iconX" size={theme.size.l} />
+							<Icon iconName="iconX" size={theme.size.xs} />
 						</S.BackButton>
 						<S.BackButton onClick={handleBack} $isVisible={navigatorItems.length > 1}>
-							<Icon iconName="iconChevronLeft" size={theme.size.l} />
+							<Icon iconName="iconChevronLeft" size={theme.size.xs} />
 						</S.BackButton>
 					</S.Back>
 					<S.Header>

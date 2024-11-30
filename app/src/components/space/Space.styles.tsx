@@ -1,15 +1,8 @@
 import type { ITheme } from "@src/theme/Theme.types";
 import styled from "styled-components";
+import type { IDirection } from "./Space.types";
 
-const sizes: { [K in keyof ITheme["size"]]: string } = {
-	xs: "0.5rem",
-	s: "1rem",
-	m: "2rem",
-	l: "3rem",
-	xl: "4rem",
-};
-
-export const Space = styled.div<{ $size: keyof ITheme["size"] }>`
-	width: 100%;
-	height: ${({ $size }) => sizes[$size]};
+export const Space = styled.div<{ $size: keyof ITheme["size"]; $direction: IDirection }>`
+	width: ${(props) => (props.$direction === "horizontal" ? props.theme.size[props.$size] : "100%")};
+	height: ${(props) => (props.$direction === "vertical" ? props.theme.size[props.$size] : "100%")};
 `;

@@ -70,7 +70,7 @@ export const Camera = () => {
 		<S.Camera>
 			{isLoading && (
 				<S.Loader>
-					<Loader size="xl" />
+					<Loader size="s" />
 				</S.Loader>
 			)}
 
@@ -78,10 +78,10 @@ export const Camera = () => {
 			<S.Image ref={refImg} $image={capturedImage ? capturedImage : ""} />
 
 			<S.Buttons>
-				{cameraState === "play" && <Icon iconName="iconPauseCircle" size={theme.size.xl} onClick={handleCapture} />}
-				{cameraState === "play" && <Icon iconName="iconRefreshCw" size={theme.size.xl} onClick={handleCameraFace} />}
-				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.xl} onClick={handleCamera} />}
-				{cameraState === "pause" && capturedImage && <Icon iconName="iconSave" size={theme.size.xl} onClick={handleCamera} />}
+				{cameraState === "play" && <Icon iconName="iconPauseCircle" size={theme.size.s} onClick={handleCapture} />}
+				{cameraState === "play" && <Icon iconName="iconRefreshCw" size={theme.size.s} onClick={handleCameraFace} />}
+				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size={theme.size.s} onClick={handleCamera} />}
+				{cameraState === "pause" && capturedImage && <Icon iconName="iconSave" size={theme.size.s} onClick={handleCamera} />}
 			</S.Buttons>
 		</S.Camera>
 	);

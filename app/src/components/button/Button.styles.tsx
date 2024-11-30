@@ -1,7 +1,8 @@
+import type { ITheme } from "@src/theme/Theme.types";
 import styled, { css } from "styled-components";
 import type { IVariant } from "./Button";
 
-export const Button = styled.button<{ $variant: IVariant; $width: string }>`
+export const Button = styled.button<{ $variant: IVariant; $width: keyof ITheme["size"] }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -23,7 +24,7 @@ export const Button = styled.button<{ $variant: IVariant; $width: string }>`
 			transition: all 0.1s ease;
 			padding: 0.5rem 1rem 0.5rem 1rem;
 			box-sizing: border-box;
-			width: ${props.$width};
+			width: ${(p) => p.theme.size[props.$width]};
 			min-width: 5em;
 			height: 3rem;
 			white-space: nowrap;
@@ -56,7 +57,7 @@ export const Button = styled.button<{ $variant: IVariant; $width: string }>`
 			padding: 0.5rem 1rem 0.5rem 1rem;
 			border-radius: 5rem;
 
-			width: ${props.$width};
+			width: ${(p) => p.theme.size[props.$width]};
 			min-width: 5em;
 			height: 3rem;
 
@@ -90,7 +91,7 @@ export const Button = styled.button<{ $variant: IVariant; $width: string }>`
 			border-radius: 5rem;
 			font-size: 100%;
 
-			width: ${props.$width};
+			width: ${(p) => p.theme.size[props.$width]};
 			min-width: 5em;
 			height: 3rem;
 
@@ -127,7 +128,7 @@ export const Button = styled.button<{ $variant: IVariant; $width: string }>`
 			border-radius: 0.5rem;
 			font-size: 100%;
 
-			width: ${props.$width};
+			width: ${(p) => p.theme.size[props.$width]};
 			min-width: 5em;
 			height: 3rem;
 
@@ -162,7 +163,7 @@ export const Button = styled.button<{ $variant: IVariant; $width: string }>`
 			border-radius: 0.5rem;
 			font-size: 100%;
 
-			width: ${props.$width};
+			width: ${(p) => p.theme.size[props.$width]};
 			min-width: 5em;
 			height: 3rem;
 

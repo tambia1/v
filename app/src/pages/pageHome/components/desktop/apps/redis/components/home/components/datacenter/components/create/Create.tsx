@@ -290,7 +290,7 @@ export const Create = () => {
 				</S.Col>
 
 				<S.Col>
-					<Button variant="full" onClick={handleCreateBdb} size="fitContent">
+					<Button variant="full" onClick={handleCreateBdb} size="content">
 						Create Subscription & Database
 					</Button>
 					{isLoading && <Loader />}

@@ -1,10 +1,10 @@
+import { useEffect, useRef } from "react";
+import { useStoreTalk } from "../../../../stores/StoreTalk";
+import type { IAvatar } from "../../../avatar/Avatar.styles";
 import * as S from "./Talk.styles";
-import { MessageBar } from "./messageBar/MessageBar";
 import { BubbleMe } from "./bubbleMe/BubbleMe";
 import { BubbleOther } from "./bubbleOther/BubbleOther";
-import { useStoreTalk } from "../../../../stores/StoreTalk";
-import { useEffect, useRef } from "react";
-import { IAvatar } from "../../../avatar/Avatar.styles";
+import { MessageBar } from "./messageBar/MessageBar";
 
 interface Props {
 	sendMessage: (message: string) => void;
@@ -31,8 +31,12 @@ export const Talk = ({ sendMessage }: Props) => {
 			<S.Messages ref={messagesRef}>
 				{messages.map((message) => (
 					<S.Message key={message.messageId}>
-						{message.clientId === client.clientId && <BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />}
-						{message.clientId !== client.clientId && <BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />}
+						{message.clientId === client.clientId && (
+							<BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />
+						)}
+						{message.clientId !== client.clientId && (
+							<BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />
+						)}
 					</S.Message>
 				))}
 			</S.Messages>

@@ -1,7 +1,7 @@
+import type { ITheme } from "@src/theme/Theme.types";
 import styled from "styled-components";
-import ImageBgLight from "./assets/bgLight.png";
 import ImageBgDark from "./assets/bgDark.png";
-import { ITheme } from "@src/theme/Theme.types";
+import ImageBgLight from "./assets/bgLight.png";
 
 const BgImages: { [K in ITheme["themeName"]]: string } = {
 	light: ImageBgLight,

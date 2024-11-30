@@ -15,6 +15,8 @@ export const Clock = () => {
 			setHour(date.getHours());
 		};
 
+		tick();
+
 		const timer = setInterval(tick, 1000);
 
 		return () => {

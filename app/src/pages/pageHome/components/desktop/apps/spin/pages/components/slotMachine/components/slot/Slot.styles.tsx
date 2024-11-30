@@ -37,7 +37,7 @@ export const Item = styled.div<{ $numberOfItems: number }>`
 
 	position: relative;
 
-	font-size: 250%;
+	font-size: 200%;
 
 	&:nth-child(even) {
 		background-color: ${(props) => props.theme.color.primaryBg};

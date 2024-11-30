@@ -77,11 +77,15 @@ export const themeLight: ITheme = {
 	},
 
 	size: {
-		xs: "0.5rem",
-		s: "1.0rem",
-		m: "1.5rem",
-		l: "2.0rem",
-		xl: "2.5rem",
+		content: "fit-content",
+		available: "100%",
+		xxs: "2.0rem",
+		xs: "2.5rem",
+		s: "5rem",
+		m: "10rem",
+		l: "15rem",
+		xl: "20rem",
+		xxl: "28rem",
 	},
 
 	image: {

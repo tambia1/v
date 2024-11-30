@@ -1,19 +1,19 @@
-import * as S from "./Talks.styles";
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Navigator } from "@src/components/navigator/Navigator";
 import { List } from "@src/components/list/List";
-import { Talk } from "./components/talk/Talk";
+import { Modal } from "@src/components/modal/Modal";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import config from "@src/config.json";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import { useState } from "react";
-import { IClient, IDataGet } from "../../../../Chat.types";
-import { useStoreTalk } from "../../stores/StoreTalk";
-import config from "@src/config.json";
-import { Avatar } from "../avatar/Avatar";
-import { IAvatar } from "../avatar/Avatar.styles";
 import { logger } from "../../../../../debug/Debug";
-import { Modal } from "@src/components/modal/Modal";
+import type { IClient, IDataGet } from "../../../../Chat.types";
+import { useWebSocket } from "../../../../hooks/UseWebSocket";
+import { useStoreTalk } from "../../stores/StoreTalk";
+import { Avatar } from "../avatar/Avatar";
+import type { IAvatar } from "../avatar/Avatar.styles";
+import * as S from "./Talks.styles";
+import { Talk } from "./components/talk/Talk";
 
 const HOST = config.host;
 const PORT = config.chat.port;
@@ -87,7 +87,7 @@ export const Talks = ({ name, avatar }: Props) => {
 		navigator.pushPage(
 			<Navigator.Page id="talk" title={"Group"}>
 				<Talk sendMessage={sendMessage} />
-			</Navigator.Page>
+			</Navigator.Page>,
 		);
 	};
 

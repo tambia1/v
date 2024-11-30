@@ -1,18 +1,8 @@
 import { type ITouch, useTouch } from "@src/hooks/UseTouch";
+import type { ITheme } from "@src/theme/Theme.types";
 import type React from "react";
 import { forwardRef, useImperativeHandle, useRef } from "react";
 import * as S from "./Button.styles";
-
-const sizes = {
-	fitContent: "fit-content",
-	xs: "5rem",
-	s: "10rem",
-	m: "15rem",
-	l: "20rem",
-	xl: "28rem",
-} as const;
-
-export type ISize = keyof typeof sizes;
 
 export type IVariant = "styled" | "full" | "stroke" | "link" | "text" | "none";
 
@@ -20,10 +10,10 @@ export type Props = React.ComponentPropsWithoutRef<"button"> & {
 	className?: string;
 	variant?: IVariant;
 	onLongClick?: (e: TouchEvent | MouseEvent) => void;
-	size?: ISize;
+	size?: keyof ITheme["size"];
 };
 
-export const Button = forwardRef<HTMLButtonElement, Props>(({ className, children, variant = "styled", size = "s", onLongClick, ...rest }, ref) => {
+export const Button = forwardRef<HTMLButtonElement, Props>(({ className, children, variant = "styled", size = "m", onLongClick, ...rest }, ref) => {
 	const refButton = useRef<HTMLButtonElement>(null);
 
 	useTouch({
@@ -38,7 +28,7 @@ export const Button = forwardRef<HTMLButtonElement, Props>(({ className, childre
 	useImperativeHandle(ref, () => refButton.current as HTMLButtonElement, []);
 
 	return (
-		<S.Button ref={refButton} className={className} $variant={variant} $width={sizes[size]} {...rest}>
+		<S.Button ref={refButton} className={className} $variant={variant} $width={size} {...rest}>
 			{children}
 		</S.Button>
 	);
