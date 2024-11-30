@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { List } from "../list/List.styles";
 
 export const PopupMenu = styled.div`
-	width: 25rem;
 	position: relative;
 `;
 
@@ -13,7 +12,7 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
 	transition: all 0.3s ease;
 	position: absolute;
-	width: 25rem;
+	width: 20rem;
 	z-index: 1;
 	background-color: ${(props) => props.theme.color.primaryBg};
 	border-radius: 1rem;
