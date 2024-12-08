@@ -1,5 +1,5 @@
 import type { ITheme } from "@src/theme/Theme.types";
-import { type HTMLAttributes, type ReactNode, useEffect, useRef, useState } from "react";
+import { type HTMLAttributes, type ReactElement, useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import * as S from "./Select.styles";
 import { Display } from "./components/display/Display";
@@ -8,7 +8,7 @@ import { ContextSelect } from "./context/UseContextSelect";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
-	children: ReactNode;
+	children: ReactElement<{ value: string }>[] | ReactElement<{ value: string }>;
 	onClickItem: (index: number, value: string) => void;
 	isCloseOnSelectItem?: boolean;
 	size?: keyof ITheme["size"];
@@ -39,14 +39,14 @@ export const Select = ({ className, children, isCloseOnSelectItem = true, onClic
 		setIsOpen(!isOpen);
 	};
 
-	const handleOnClickItem = (e: React.MouseEvent, index: number, item: ReactNode) => {
+	const handleOnClickItem = (e: React.MouseEvent, index: number, item: ReactElement<{ value: string }>) => {
 		e.stopPropagation();
 
 		if (isCloseOnSelectItem) {
 			setIsOpen(false);
 		}
 
-		const value = (item as React.ReactElement).props.value;
+		const value = item.props.value;
 		onClickItem(index, value);
 	};
 

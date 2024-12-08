@@ -37,7 +37,7 @@ export const Desktop = () => {
 	const { i18n } = useTranslation();
 	const themeStore = ThemeStore();
 	const [loadingAppId, setLoadingAppId] = useState("");
-	const refApp = useRef(null);
+	const refApp = useRef<HTMLDivElement>(null);
 	const animationApp = useAnimation(refApp);
 	const [isErrorLoadingComponent, setIsErrorLoadingComponent] = useState(false);
 	const [isShakeMode, setIsShakeMode] = useState(false);
@@ -50,6 +50,7 @@ export const Desktop = () => {
 	const externalApps = getExternalApps(storeApps.apps);
 
 	const allApps: IApp[][] = [...apps, externalApps];
+	// const allApps: IApp[][] = [];
 	const appsByRole = getAppsByRoles(allApps, storeUser.role);
 
 	useLayoutEffect(() => {

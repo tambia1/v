@@ -54,7 +54,7 @@ export const Pager = ({ className, children: pages, onMouseUp, onMouseMove, disa
 
 				//set transform/transition
 				const gapInPercent = (gap / divPagesPanel.clientWidth) * 100;
-				translate(refPagesPanel.current, -pageIndex * 100 + gapInPercent, false);
+				translate(divPagesPanel, -pageIndex * 100 + gapInPercent, false);
 				onMouseMove?.(pageIndex);
 			}
 
@@ -76,7 +76,7 @@ export const Pager = ({ className, children: pages, onMouseUp, onMouseMove, disa
 				}
 
 				setPageIndex(index);
-				translate(refPagesPanel.current, -index * 100, true);
+				translate(divPagesPanel, -index * 100, true);
 				onMouseUp?.(index);
 			}
 		},

@@ -1,10 +1,10 @@
-import { type Dispatch, type ReactNode, type SetStateAction, createContext, useContext } from "react";
+import { type Dispatch, type ReactElement, type SetStateAction, createContext, useContext } from "react";
 
 export const ContextSelect = createContext<{
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 	onClickDisplay: () => void;
-	onClickItem: (event: React.MouseEvent, index: number, item: ReactNode) => void;
+	onClickItem: (event: React.MouseEvent, index: number, item: ReactElement<{ value: string }>) => void;
 	width: string;
 } | null>(null);
 

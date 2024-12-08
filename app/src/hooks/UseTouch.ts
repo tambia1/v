@@ -1,4 +1,4 @@
-import { type RefObject, useEffect } from "react";
+import { type Ref, type RefObject, useEffect } from "react";
 
 export type IStatus = "down" | "move" | "up" | "out" | "long";
 export type ITouch = {
@@ -14,15 +14,15 @@ export type ITouch = {
 };
 
 type Props = {
-	ref: RefObject<HTMLElement>;
+	ref?: Ref<HTMLElement>;
 	onTouch: (touch: ITouch) => void;
 };
 
 export const useTouch = ({ ref, onTouch }: Props) => {
 	useEffect(() => {
-		const div = ref.current;
+		const element = (ref as RefObject<HTMLElement>)?.current;
 
-		if (!div) {
+		if (!element) {
 			return;
 		}
 
@@ -59,8 +59,8 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 		const mouseDownListener = (e: TouchEvent | MouseEvent) => {
 			status = "down";
 
-			boundingX = div.getBoundingClientRect().left + window.scrollX + 0.5;
-			boundingY = div.getBoundingClientRect().top + window.scrollY + 0.5;
+			boundingX = element.getBoundingClientRect().left + window.scrollX + 0.5;
+			boundingY = element.getBoundingClientRect().top + window.scrollY + 0.5;
 
 			xStart = Math.floor(getX(e) - boundingX);
 			yStart = Math.floor(getY(e) - boundingY);
@@ -138,16 +138,16 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 			}
 		};
 
-		div.addEventListener(MOUSE_DOWN, mouseDownListener, { passive: false });
+		element.addEventListener(MOUSE_DOWN, mouseDownListener, { passive: false });
 
 		status = "up";
 
 		return () => {
-			div.removeEventListener(MOUSE_DOWN, mouseDownListener);
+			element.removeEventListener(MOUSE_DOWN, mouseDownListener);
 			document.removeEventListener(MOUSE_MOVE, mouseMoveListener);
 			document.removeEventListener(MOUSE_UP, mouseUpListener);
 			document.removeEventListener(MOUSE_OUT, mouseOutListener);
 			document.removeEventListener(MOUSE_ENTER, mouseEnterListener);
 		};
-	}, [ref.current, onTouch]);
+	}, [ref, onTouch]);
 };

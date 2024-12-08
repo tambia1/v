@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const useWebSocket = ({ url, onMessage, onOpen, onClose, onError }: Props) => {
-	const refWs = useRef<WebSocket>();
+	const refWs = useRef<WebSocket>(null);
 
 	useEffect(() => {
 		const ws = new WebSocket(url);
@@ -39,7 +39,7 @@ export const useWebSocket = ({ url, onMessage, onOpen, onClose, onError }: Props
 		return () => {
 			ws?.close();
 		};
-	}, [url]);
+	}, [url, onOpen, onClose, onError, onMessage]);
 
 	const sendMessage = (message: string) => {
 		if (refWs.current) {

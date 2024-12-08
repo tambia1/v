@@ -30,7 +30,7 @@ import { TestEdit } from "./apps/testEdit/TestEdit";
 import { TestGraphQl } from "./apps/testGraphQl/GraphQl";
 import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
-import { TestShared } from "./apps/testShared/TestShared";
+// import { TestShared } from "./apps/testShared/TestShared";
 import { TestTree } from "./apps/testTree/TestTree";
 import type { IAppIcon } from "./components/appButton/AppButton.styles";
 
@@ -65,7 +65,6 @@ export const apps: IApp[][] = [
 		{ id: "speed", roles: ["admin", "user", "guest"], title: <T>{lang.speed.title}</T>, icon: "speed", component: <Speed /> },
 		{ id: "board", roles: ["admin", "user", "guest"], title: <T>{lang.board.title}</T>, icon: "board", component: <Board /> },
 		{ id: "redis", roles: ["admin", "user"], title: <T>{lang.redis.title}</T>, icon: "redis", component: <Redis /> },
-
 		{ id: "tetris", roles: ["admin", "user", "guest"], title: <T>{lang.tetris.title}</T>, icon: "tetris", component: <Tetris /> },
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user", "guest"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
@@ -74,7 +73,7 @@ export const apps: IApp[][] = [
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
 		{ id: "testMfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },
-		{ id: "testShared", roles: ["admin"], title: <T>{lang.testShared.title}</T>, icon: "test", component: <TestShared /> },
+		// { id: "testShared", roles: ["admin"], title: <T>{lang.testShared.title}</T>, icon: "test", component: <TestShared /> },
 		{ id: "testEdit", roles: ["admin", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
 		{ id: "testSelect", roles: ["admin"], title: <T>{lang.testSelect.title}</T>, icon: "test", component: <TestSelect /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },

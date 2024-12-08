@@ -1,9 +1,9 @@
-import * as S from "./PageHome.styles";
-import { Splash } from "./components/splash/Splash";
-import { Desktop } from "./components/desktop/Desktop";
-import { useLayoutEffect, useRef, useState } from "react";
+import { dependencies, version } from "@src/../package.json";
 import { useAnimation } from "@src/hooks/UseAnimation";
-import { version, dependencies } from "@src/../package.json";
+import { useLayoutEffect, useRef, useState } from "react";
+import * as S from "./PageHome.styles";
+import { Desktop } from "./components/desktop/Desktop";
+import { Splash } from "./components/splash/Splash";
 
 export const PageHome = () => {
 	const refSplash = useRef(null);
@@ -20,7 +20,7 @@ export const PageHome = () => {
 		};
 
 		run();
-	}, []);
+	}, [animationDesktop.play, animationSplash.play]);
 
 	const handleSplashOnFinish = async () => {
 		await animationDesktop.play("show");

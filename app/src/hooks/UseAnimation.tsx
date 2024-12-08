@@ -25,11 +25,11 @@ export type IAnimation = keyof typeof Animations;
 
 type IResolve = (value: void | PromiseLike<void>) => void;
 
-export const useAnimation = (ref: RefObject<HTMLElement>) => {
-	const refResolve = useRef<IResolve>();
+export const useAnimation = (ref: RefObject<HTMLElement | null>) => {
+	const refResolve = useRef<IResolve>(null);
 
 	useLayoutEffect(() => {
-		const div = ref.current;
+		const div = ref?.current;
 
 		if (!div) {
 			return;
@@ -43,7 +43,7 @@ export const useAnimation = (ref: RefObject<HTMLElement>) => {
 			// e.stopPropagation();
 
 			refResolve.current?.();
-			refResolve.current = undefined;
+			refResolve.current = null;
 		};
 
 		div.addEventListener("animationstart", onAnimationStart);
@@ -53,11 +53,11 @@ export const useAnimation = (ref: RefObject<HTMLElement>) => {
 			div.removeEventListener("animationstart", onAnimationStart);
 			div.removeEventListener("animationend", onAnimationEnd);
 		};
-	}, [ref.current]);
+	}, [ref?.current]);
 
 	const play = useCallback(
 		(animation: IAnimation) => {
-			const div = ref.current;
+			const div = ref?.current;
 
 			if (!div) {
 				return;

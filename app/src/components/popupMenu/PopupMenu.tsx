@@ -1,4 +1,4 @@
-import { type HTMLAttributes, type ReactElement, type ReactNode, useEffect } from "react";
+import { type HTMLAttributes, type ReactElement, useEffect } from "react";
 import { Icon } from "../icon/Icon";
 import { List } from "../list/List";
 import * as S from "./PopupMenu.styles";
@@ -6,7 +6,7 @@ import { Item } from "./components/item/Item";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
-	children: ReactNode[];
+	children: ReactElement<{ value: string }>[];
 	isOpen: boolean;
 	checkedItem: string;
 	onClickItem: (index: number, value: string) => void;
@@ -32,8 +32,8 @@ export const PopupMenu = ({ className, children, isOpen, checkedItem, onClickIte
 		};
 	}, [onClickOutside, isOpen]);
 
-	const handleClickItem = (index: number, item: ReactNode) => {
-		const value = (item as React.ReactElement).props.value;
+	const handleClickItem = (index: number, item: ReactElement<{ value: string }>) => {
+		const value = item.props.value;
 		onClickItem(index, value);
 	};
 
@@ -45,7 +45,7 @@ export const PopupMenu = ({ className, children, isOpen, checkedItem, onClickIte
 						<List.Cell key={index} $lineState="long" onClick={() => handleClickItem(index, item)}>
 							<List.Cell.Text>{item}</List.Cell.Text>
 							<List.Cell.Image>
-								<Icon iconName={(item as ReactElement).props.value === checkedItem ? "iconCheck" : ""} />
+								<Icon iconName={item.props.value === checkedItem ? "iconCheck" : ""} />
 							</List.Cell.Image>
 						</List.Cell>
 					))}

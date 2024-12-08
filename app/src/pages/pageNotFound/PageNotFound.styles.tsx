@@ -15,6 +15,8 @@ export const Box = styled.div`
 	height: 100px;
 	box-sizing: border-box;
 	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
+	gap: 2rem;
 
 	display: flex;
 	flex-direction: column;
@@ -23,19 +25,4 @@ export const Box = styled.div`
 
 	background-color: #0008;
 	border-radius: 5px;
-`;
-
-export const Text = styled.div`
-	display: inline-flex;
-	padding-bottom: 6px;
-	align-self: flex-start;
-	color: ${(props) => props.theme.color.primaryFg};
-	font-size: ${(props) => props.theme.size.m};
-`;
-
-export const Title = styled.div`
-	display: inline-flex;
-	padding-bottom: 6px;
-	color: ${(props) => props.theme.color.primaryFg};
-	font-size: ${(props) => props.theme.size.l};
 `;

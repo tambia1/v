@@ -1,11 +1,11 @@
 import { List } from "@src/components/list/List";
-import type { HTMLAttributes, ReactNode } from "react";
+import type { HTMLAttributes, ReactElement } from "react";
 import { useContextSelect } from "../../context/UseContextSelect";
 import * as S from "./Items.styles";
 import { Item } from "./components/item/Item";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
-	children: ReactNode[];
+	children: ReactElement<{ value: string }>[];
 };
 
 export const Items = ({ children }: Props) => {

@@ -14,7 +14,7 @@ type Props = {
 	mapFixH?: number;
 	mapFixX?: number;
 	mapFixY?: number;
-	pins: ReactElement[];
+	pins: ReactElement<{ lng: number; lat: number }>[];
 };
 
 export const WorldMap = ({ className, map, mapFixX = MAP_FIX_X, mapFixY = MAP_FIX_Y, mapFixW = MAP_FIX_W, mapFixH = MAP_FIX_H, pins }: Props) => {

@@ -1,18 +1,18 @@
-import type { ReactNode } from "react";
+import type { ReactElement } from "react";
 import { Button } from "../button/Button";
 import { Compose } from "./components/compose/Compose";
 import { Item } from "./components/item/Item";
 
 export type Props = {
 	className?: string;
-	children: ReactNode[];
+	children: ReactElement<{ value: string }>[];
 	onClickItem: (index: number, value: string) => void;
 	selectedTabIndex: number;
 };
 
 export const Tab = ({ children, className, selectedTabIndex, onClickItem, ...rest }: Props) => {
-	const handleClickItem = (index: number, item: ReactNode) => {
-		const value = (item as React.ReactElement).props.value;
+	const handleClickItem = (index: number, item: ReactElement<{ value: string }>) => {
+		const value = item.props.value;
 		onClickItem(index, value);
 	};
 
