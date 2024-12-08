@@ -19,7 +19,7 @@ export const Theme = ({ children }: Props) => {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>
+			<ThemeContext value={{ theme, setTheme }}>{children}</ThemeContext>
 		</ThemeProvider>
 	);
 };

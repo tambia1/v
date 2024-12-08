@@ -168,7 +168,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 	};
 
 	return (
-		<NavigatorContext.Provider value={{ pages: navigatorItems, pushPage, popPage, goHome, addPage, removePage, addListener, removeListener }}>
+		<NavigatorContext value={{ pages: navigatorItems, pushPage, popPage, goHome, addPage, removePage, addListener, removeListener }}>
 			<S.Navigator className={className} data-items={navigatorItems.length}>
 				<S.Headers>
 					<S.Back>
@@ -200,7 +200,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 					))}
 				</S.Pages>
 			</S.Navigator>
-		</NavigatorContext.Provider>
+		</NavigatorContext>
 	);
 };
 

@@ -155,7 +155,7 @@ export const Desktop = () => {
 
 	return (
 		<S.Container $barPosition={bar.position} $backgroundImageIndex={themeStore.backgroundImageIndex}>
-			<BarMainContext.Provider value={{ onClickClose: handleOnClickClose }}>
+			<BarMainContext value={{ onClickClose: handleOnClickClose }}>
 				<S.Apps>
 					<S.AppsContainer>
 						<S.AppContainer ref={refApp}>{currentApp && <S.App>{currentApp}</S.App>}</S.AppContainer>
@@ -192,7 +192,7 @@ export const Desktop = () => {
 						</Pager>
 					</S.AppsContainer>
 				</S.Apps>
-			</BarMainContext.Provider>
+			</BarMainContext>
 
 			<S.Bar>
 				<BarMain

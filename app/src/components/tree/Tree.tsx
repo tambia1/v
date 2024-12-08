@@ -203,9 +203,9 @@ interface Props {
 export const Tree = ({ nodes, setNodes, Item = ItemDefault, Folder = FolderDefault }: Props) => {
 	return (
 		<S.Tree>
-			<TreeContext.Provider value={{ originalNodes: nodes, setOriginalNodes: setNodes }}>
+			<TreeContext value={{ originalNodes: nodes, setOriginalNodes: setNodes }}>
 				<Nodes nodes={nodes} Item={Item} Folder={Folder} />
-			</TreeContext.Provider>
+			</TreeContext>
 		</S.Tree>
 	);
 };

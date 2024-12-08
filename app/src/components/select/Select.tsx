@@ -52,9 +52,9 @@ export const Select = ({ className, children, isCloseOnSelectItem = true, onClic
 
 	return (
 		<S.Select ref={refSelect} className={className} $width={theme.size[size]} {...rest}>
-			<ContextSelect.Provider value={{ isOpen, setIsOpen, onClickDisplay: handleOnClickDisplay, onClickItem: handleOnClickItem, width: theme.size[size] }}>
+			<ContextSelect value={{ isOpen, setIsOpen, onClickDisplay: handleOnClickDisplay, onClickItem: handleOnClickItem, width: theme.size[size] }}>
 				{children}
-			</ContextSelect.Provider>
+			</ContextSelect>
 		</S.Select>
 	);
 };
