@@ -50,7 +50,6 @@ export const Desktop = () => {
 	const externalApps = getExternalApps(storeApps.apps);
 
 	const allApps: IApp[][] = [...apps, externalApps];
-	// const allApps: IApp[][] = [];
 	const appsByRole = getAppsByRoles(allApps, storeUser.role);
 
 	useLayoutEffect(() => {
