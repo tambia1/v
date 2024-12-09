@@ -38,22 +38,19 @@ export const Table = ({ className, data, type }: Props) => {
 				</S.TableContainer>
 			)}
 
-			{type === "vertical" && (
-				<>
-					{data.rows.map((row, i) => (
-						<S.TableContainer key={i}>
-							<S.TableRows>
-								{data.cols.map((col, i) => (
-									<S.TableRow key={i}>
-										<S.TableCellHead>{col}</S.TableCellHead>
-										<S.TableCellData>{row[i]}</S.TableCellData>
-									</S.TableRow>
-								))}
-							</S.TableRows>
-						</S.TableContainer>
-					))}
-				</>
-			)}
+			{type === "vertical" &&
+				data.rows.map((row, i) => (
+					<S.TableContainer key={i}>
+						<S.TableRows>
+							{data.cols.map((col, i) => (
+								<S.TableRow key={i}>
+									<S.TableCellHead>{col}</S.TableCellHead>
+									<S.TableCellData>{row[i]}</S.TableCellData>
+								</S.TableRow>
+							))}
+						</S.TableRows>
+					</S.TableContainer>
+				))}
 		</S.Table>
 	);
 };
