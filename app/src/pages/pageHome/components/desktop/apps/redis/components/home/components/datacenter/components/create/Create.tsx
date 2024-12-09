@@ -45,7 +45,7 @@ export const Create = () => {
 	const [message, setMessage] = useState("");
 
 	const [selections, setSelections] = useState<ISelections>({
-		dbName: Date.now().toString(16).toUpperCase(),
+		dbName: `DB-${Date.now().toString(16).toUpperCase()}`,
 		cloud: "aws",
 		flash: false,
 		replicaZone: false,
@@ -151,7 +151,7 @@ export const Create = () => {
 			.filter((plan) => plan.size === selections.dbSize)
 			.map((plan) => `${plan.id} - ${plan.name}`);
 
-		return plans.length > 0 ? plans.join(", ") : "New plan";
+		return plans;
 	};
 
 	return (
@@ -162,9 +162,17 @@ export const Create = () => {
 
 			<S.Col>
 				<S.Col>
-					<S.Row>Matching Plans</S.Row>
+					<Button variant="styled" onClick={handleCreateBdb} size="content">
+						Create
+					</Button>
+					{isLoading && <Loader />}
+					{message && <Text>{message}</Text>}
+				</S.Col>
+
+				<S.Col>
+					<S.Row>Matching Plans: {getMatchingPlans(selections).length}</S.Row>
 					<S.Row>
-						<Text color="successFg">{getMatchingPlans(selections)}</Text>
+						<Text color="successFg">{getMatchingPlans(selections).join(", ")}</Text>
 					</S.Row>
 				</S.Col>
 
@@ -287,14 +295,6 @@ export const Create = () => {
 						<Input value={convertBytes(selections.dbSize, "biggest")} size="m" textAlign="center" />
 						<Stepper onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus} />
 					</S.Row>
-				</S.Col>
-
-				<S.Col>
-					<Button variant="full" onClick={handleCreateBdb} size="content">
-						Create Subscription & Database
-					</Button>
-					{isLoading && <Loader />}
-					{message && <Text>{message}</Text>}
 				</S.Col>
 			</S.Col>
 		</S.Create>

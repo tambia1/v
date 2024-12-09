@@ -14,6 +14,7 @@ export const Create = styled.div`
 export const Spacer = styled.div`
 	width: 100%;
 	height: 1rem;
+	flex-shrink: 0;
 `;
 
 export const Col = styled.div`
