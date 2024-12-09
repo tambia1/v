@@ -29,7 +29,7 @@ export const Transition = ({ className, children }: Props) => {
 		};
 
 		run();
-	}, [children]);
+	}, [children, childB, animationA.play, animationB.play]);
 
 	return (
 		<S.Transition className={className}>
