@@ -29,3 +29,16 @@ export const Row = styled.div`
 	align-items: center;
 	gap: 1rem;
 `;
+
+export const Matches = styled.div`
+	white-space: nowrap; 
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+`;
+
+export const TableContainer = styled.div`
+	margin-top: 1rem;
+	width: 100%;
+	height: 20rem;
+	display: grid;
+`;

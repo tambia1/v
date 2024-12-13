@@ -4,12 +4,13 @@ import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
 import { Select } from "@src/components/select/Select";
 import { Stepper } from "@src/components/stepper/Stepper";
+import { Table } from "@src/components/table/Table";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Api } from "../../../../../../api/Api";
-import { cloudMap, dataPersistenceMap, modulesMap } from "../../../../../../api/Api.types";
+import { dataPersistenceMap, modulesMap } from "../../../../../../api/Api.types";
 import { convertBytes } from "../../../../../../api/Api.utils";
 import { plansAll } from "../../../../../../data/plansAll";
 // import { plansAll } from "../../../../../../data/plansAll";
@@ -17,15 +18,26 @@ import { regions } from "../../../../../../data/regions";
 import { StoreUser } from "../../../../../user/stores/StoreUser";
 import * as S from "./Create.styles";
 
+const listCloudMap = {
+	all: "All",
+	aws: "AWS",
+	gcp: "GCP",
+	azure: "Azure",
+};
+
+const listRegions = [{ id: -1, name: "All" }, ...regions];
+
+const listDataPersistence = { all: "All", ...dataPersistenceMap };
+
 type ISelections = {
 	dbName: string;
-	cloud: keyof typeof cloudMap;
-	flash: boolean;
-	replicaZone: boolean;
+	cloud: keyof typeof listCloudMap;
+	flash: string;
+	replicaZone: string;
 	regions: string[];
 	dbSize: number;
-	replica: boolean;
-	dataPersistence: keyof typeof dataPersistenceMap;
+	replica: string;
+	dataPersistence: keyof typeof listDataPersistence;
 	modules: (keyof typeof modulesMap)[];
 };
 
@@ -47,11 +59,11 @@ export const Create = () => {
 	const [selections, setSelections] = useState<ISelections>({
 		dbName: `DB-${Date.now().toString(16).toUpperCase()}`,
 		cloud: "aws",
-		flash: false,
-		replicaZone: false,
+		flash: "false",
+		replicaZone: "false",
 		regions: ["us-east-1"],
 		dbSize: 30 * 2 ** 20,
-		replica: false,
+		replica: "false",
 		dataPersistence: "disabled",
 		modules: ["bf", "rejson", "timeseries", "searchlight"],
 	});
@@ -88,15 +100,15 @@ export const Create = () => {
 	};
 
 	const handleOnClickFlash = (_index: number, value: string) => {
-		setSelections({ ...selections, flash: value === "true" });
+		setSelections({ ...selections, flash: value.toLocaleLowerCase() });
 	};
 
 	const handleOnClickReplicationZone = (_index: number, value: string) => {
-		setSelections({ ...selections, replicaZone: value === "true" });
+		setSelections({ ...selections, replicaZone: value.toLocaleLowerCase() });
 	};
 
 	const handleOnClickReplica = (_index: number, value: string) => {
-		setSelections({ ...selections, replica: value === "true" });
+		setSelections({ ...selections, replica: value.toLocaleLowerCase() });
 	};
 
 	const handleOnClickDataPersistence = (_index: number, value: string) => {
@@ -140,18 +152,40 @@ export const Create = () => {
 	};
 
 	const getMatchingPlans = (selections: ISelections) => {
-		const plans: string[] = plansAll.plans
-			.filter((plan) => plan.cloud.toLowerCase() === selections.cloud.toLowerCase())
-			.filter((plan) => selections.regions.includes(plan.region))
-			.filter((plan) => plan.is_rof === selections.flash)
-			.filter((plan) => plan.is_multi_az === selections.replicaZone)
-			.filter((plan) => (plan.replication === "user-selection-in-memory" && selections.replica) || (plan.replication === "default" && !selections.replica))
-			.filter((plan) => plan.data_persistence === selections.dataPersistence)
-			.filter((plan) => plan.supports_redis_modules)
-			.filter((plan) => plan.size === selections.dbSize)
-			.map((plan) => `${plan.id} - ${plan.name}`);
+		const plans = plansAll.plans
+			.filter((plan) => plan.cloud.toLowerCase() === selections.cloud.toLowerCase() || selections.cloud === "all")
+			.filter((plan) => selections.regions.includes(plan.region) || selections.regions.includes("All"))
+			.filter((plan) => selections.flash === String(plan.is_rof) || selections.flash === "all")
+			.filter((plan) => selections.replicaZone === String(plan.is_multi_az) || selections.replicaZone === "all")
+			// .filter(
+			// 	(plan) =>
+			// 		(plan.replication === "user-selection-in-memory" && selections.replica) ||
+			// 		(plan.replication === "default" && !selections.replica) ||
+			// 		selections.replica === "all",
+			// )
+			.filter((plan) => selections.dataPersistence === plan.data_persistence || selections.dataPersistence === "all")
+			// .filter((plan) => plan.supports_redis_modules)
+			.filter((plan) => plan.size === selections.dbSize);
+		// .map((plan) => `${plan.id} - ${plan.name}`);
 
 		return plans;
+	};
+
+	const mathces = getMatchingPlans(selections);
+
+	const matchingPlansData = {
+		cols: ["ID", "NAME", "CLOUD", "REGION", "FLASH", "REPLICATION ZONE", "REPLICA", "DATA PERSISTENCE", "MODULES"],
+		rows: mathces.map((match) => [
+			match.id,
+			match.name,
+			match.cloud,
+			match.region,
+			match.is_rof ? "TRUE" : "FALSE",
+			match.supports_replica ? "TRUE" : "FALSE",
+			match.replication === "default" ? "TRUE" : "FALSE",
+			match.data_persistence,
+			match.supports_redis_modules ? "TRUE" : "FALSE",
+		]),
 	};
 
 	return (
@@ -170,10 +204,10 @@ export const Create = () => {
 				</S.Col>
 
 				<S.Col>
-					<S.Row>Matching Plans: {getMatchingPlans(selections).length}</S.Row>
-					<S.Row>
-						<Text color="successFg">{getMatchingPlans(selections).join(", ")}</Text>
-					</S.Row>
+					<S.Row>Matching Plans: {mathces.length}</S.Row>
+					<S.TableContainer>
+						<Table data={matchingPlansData} type="horizontal" />
+					</S.TableContainer>
 				</S.Col>
 
 				<S.Col>
@@ -182,13 +216,21 @@ export const Create = () => {
 				</S.Col>
 
 				<S.Col>
+					<S.Row>Size</S.Row>
+					<S.Row>
+						<Input value={convertBytes(selections.dbSize, "biggest")} textAlign="center" size="xl" />
+						<Stepper onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus} />
+					</S.Row>
+				</S.Col>
+
+				<S.Col>
 					<S.Row>Cloud</S.Row>
 					<Select onClickItem={handleOnClickCloud} size="xl">
-						<Select.Display>{cloudMap[selections.cloud as keyof typeof cloudMap]}</Select.Display>
+						<Select.Display>{listCloudMap[selections.cloud as keyof typeof listCloudMap]}</Select.Display>
 						<Select.Items>
-							{Object.keys(cloudMap).map((key) => (
+							{Object.keys(listCloudMap).map((key) => (
 								<Select.Items.Item key={key} value={key}>
-									{cloudMap[key as keyof typeof cloudMap]}
+									{listCloudMap[key as keyof typeof listCloudMap]}
 								</Select.Items.Item>
 							))}
 						</Select.Items>
@@ -200,16 +242,18 @@ export const Create = () => {
 					<Select onClickItem={handleOnClickRegion} isCloseOnSelectItem={false} size="xl">
 						<Select.Display>{String(selections.regions.length === 1 ? selections.regions[0] : `+ ${selections.regions.length} regions`)}</Select.Display>
 						<Select.Items>
-							{regions.map((region) => (
-								<Select.Items.Item key={region.id} value={region.name}>
-									<Select.Items.Item.Text>{region.name}</Select.Items.Item.Text>
-									{selections.regions.includes(region.name) && (
-										<Select.Items.Item.Image>
-											<Icon iconName="iconCheck" />
-										</Select.Items.Item.Image>
-									)}
-								</Select.Items.Item>
-							))}
+							{listRegions
+								.sort((a, b) => a.name.localeCompare(b.name))
+								.map((region) => (
+									<Select.Items.Item key={region.id} value={region.name}>
+										<Select.Items.Item.Text>{region.name}</Select.Items.Item.Text>
+										{selections.regions.includes(region.name) && (
+											<Select.Items.Item.Image>
+												<Icon iconName="iconCheck" />
+											</Select.Items.Item.Image>
+										)}
+									</Select.Items.Item>
+								))}
 						</Select.Items>
 					</Select>
 				</S.Col>
@@ -219,7 +263,7 @@ export const Create = () => {
 					<Select onClickItem={handleOnClickFlash} size="xl">
 						<Select.Display>{String(selections.flash).toUpperCase()}</Select.Display>
 						<Select.Items>
-							{["true", "false"].map((flash) => (
+							{["all", "true", "false"].map((flash) => (
 								<Select.Items.Item key={flash} value={flash}>
 									{flash.toUpperCase()}
 								</Select.Items.Item>
@@ -233,7 +277,7 @@ export const Create = () => {
 					<Select onClickItem={handleOnClickReplicationZone} size="xl">
 						<Select.Display>{String(selections.replicaZone).toUpperCase()}</Select.Display>
 						<Select.Items>
-							{["true", "false"].map((replicationZone) => (
+							{["all", "true", "false"].map((replicationZone) => (
 								<Select.Items.Item key={replicationZone} value={replicationZone}>
 									{replicationZone.toUpperCase()}
 								</Select.Items.Item>
@@ -247,7 +291,7 @@ export const Create = () => {
 					<Select onClickItem={handleOnClickReplica} size="xl">
 						<Select.Display>{String(selections.replica).toUpperCase()}</Select.Display>
 						<Select.Items>
-							{["true", "false"].map((replica) => (
+							{["all", "true", "false"].map((replica) => (
 								<Select.Items.Item key={replica} value={replica}>
 									{replica.toUpperCase()}
 								</Select.Items.Item>
@@ -259,11 +303,11 @@ export const Create = () => {
 				<S.Col>
 					<S.Row>Data persistence</S.Row>
 					<Select onClickItem={handleOnClickDataPersistence} size="xl">
-						<Select.Display>{dataPersistenceMap[selections.dataPersistence as keyof typeof dataPersistenceMap]}</Select.Display>
+						<Select.Display>{listDataPersistence[selections.dataPersistence as keyof typeof listDataPersistence]}</Select.Display>
 						<Select.Items>
-							{Object.keys(dataPersistenceMap).map((key) => (
+							{Object.keys(listDataPersistence).map((key) => (
 								<Select.Items.Item key={key} value={key}>
-									{dataPersistenceMap[key as keyof typeof dataPersistenceMap]}
+									{listDataPersistence[key as keyof typeof listDataPersistence]}
 								</Select.Items.Item>
 							))}
 						</Select.Items>
@@ -288,15 +332,9 @@ export const Create = () => {
 						</Select.Items>
 					</Select>
 				</S.Col>
-
-				<S.Col>
-					<S.Row>Size</S.Row>
-					<S.Row>
-						<Input value={convertBytes(selections.dbSize, "biggest")} size="m" textAlign="center" />
-						<Stepper onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus} />
-					</S.Row>
-				</S.Col>
 			</S.Col>
+
+			<S.Spacer />
 		</S.Create>
 	);
 };
