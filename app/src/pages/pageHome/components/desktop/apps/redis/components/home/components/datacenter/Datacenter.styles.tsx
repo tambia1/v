@@ -53,6 +53,7 @@ export const ListBarCell = styled.div`
 export const ListBarFilter = styled.div`
 	position: absolute;
 	margin-top: 4rem;
+	margin-right: 20rem;
 `;
 
 export const SubscriptionsList = styled.div`
