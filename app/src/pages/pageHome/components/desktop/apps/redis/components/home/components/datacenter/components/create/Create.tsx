@@ -1,4 +1,7 @@
 import { Button } from "@src/components/button/Button";
+import { Check } from "@src/components/check/Check";
+import { Flag } from "@src/components/flag/Flag";
+import type { IFlagName } from "@src/components/flag/Flag.types";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
@@ -157,16 +160,10 @@ export const Create = () => {
 			.filter((plan) => selections.regions.includes(plan.region) || selections.regions.includes("All"))
 			.filter((plan) => selections.flash === String(plan.is_rof) || selections.flash === "all")
 			.filter((plan) => selections.replicaZone === String(plan.is_multi_az) || selections.replicaZone === "all")
-			// .filter(
-			// 	(plan) =>
-			// 		(plan.replication === "user-selection-in-memory" && selections.replica) ||
-			// 		(plan.replication === "default" && !selections.replica) ||
-			// 		selections.replica === "all",
-			// )
+			.filter((plan) => (plan.replication === "default" && selections.replica) || selections.replica === "all")
 			.filter((plan) => selections.dataPersistence === plan.data_persistence || selections.dataPersistence === "all")
-			// .filter((plan) => plan.supports_redis_modules)
+			.filter((plan) => plan.supports_redis_modules && selections.modules.length !== 0)
 			.filter((plan) => plan.size === selections.dbSize);
-		// .map((plan) => `${plan.id} - ${plan.name}`);
 
 		return plans;
 	};
@@ -174,17 +171,20 @@ export const Create = () => {
 	const mathces = getMatchingPlans(selections);
 
 	const matchingPlansData = {
-		cols: ["ID", "NAME", "CLOUD", "REGION", "FLASH", "REPLICATION ZONE", "REPLICA", "DATA PERSISTENCE", "MODULES"],
+		cols: ["ID", "NAME", "CLOUD", "REGION", "FLASH", "ZONE", "REPLICA", "DATA PERSISTENCE", "MODULES"],
 		rows: mathces.map((match) => [
 			match.id,
 			match.name,
 			match.cloud,
-			match.region,
-			match.is_rof ? "TRUE" : "FALSE",
-			match.supports_replica ? "TRUE" : "FALSE",
-			match.replication === "default" ? "TRUE" : "FALSE",
-			match.data_persistence,
-			match.supports_redis_modules ? "TRUE" : "FALSE",
+			<Flag
+				key={regions.find((region) => region.name === match.region)?.name as IFlagName}
+				flagName={`${regions.find((region) => region.name === match.region)?.flag}` as IFlagName}
+			/>,
+			<Check key={String(match.is_rof)} checked={match.is_rof} />,
+			<Check key={String(match.is_multi_az)} checked={match.is_multi_az} />,
+			<Check key={match.replication} checked={match.replication === "default"} />,
+			dataPersistenceMap[match.data_persistence.includes("aof") ? "aof:every_write" : "disabled"],
+			<Check key={String(match.supports_redis_modules)} checked={match.supports_redis_modules} />,
 		]),
 	};
 
