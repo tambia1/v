@@ -9,7 +9,7 @@ export const Compose = styled.div`
 	flex-shrink: 0;
 	align-items: center;
 	box-sizing: border-box;
-	border-radius: 3rem;
+	border-radius: 10rem;
 	border: 1px solid ${(props) => props.theme.color.primaryBgActive};
 	overflow: hidden;
 

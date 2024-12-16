@@ -10,17 +10,17 @@ export const Items = styled.div<{ $isOpen: boolean; $width: string }>`
 	position: absolute;
 	width: ${(props) => props.$width};
 	z-index: 1;
-	background-color: ${(props) => props.theme.color.primaryBg};
-	border-radius: 1rem;
-	max-height: 25rem;
+	border-radius: 2rem;
+	max-height: 20rem;
+	overflow-y: hidden;
 
 	& ${List}{
 		overflow-y: hidden;
 		scrollbar-gutter: stable;
 
 		&::-webkit-scrollbar-track {
-			margin-top: 0.5rem;
-			margin-bottom: 0.5rem;
+			margin-top: 1.5rem;
+			margin-bottom: 1.5rem;
 		}
 
 		animation: ${({ $isOpen }) => ($isOpen ? "expand 0s ease forwards 0.3s" : "none")};
