@@ -15,7 +15,7 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	width: 20rem;
 	z-index: 1;
 	background-color: ${(props) => props.theme.color.primaryBg};
-	border-radius: 1rem;
+	border-radius: 2rem;
 	max-height: 25rem;
 
 	& ${List}{
