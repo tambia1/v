@@ -209,8 +209,8 @@ export const Datacenter = () => {
 									</S.SubscriptionsDetailsColMap>
 								)}
 
-								<S.DatabasesHeader>
-									<S.ColIcon onClick={() => handleOnClickCollpseSubDbs(sub.id)}>
+								<S.DatabasesHeader onClick={() => handleOnClickCollpseSubDbs(sub.id)}>
+									<S.ColIcon>
 										<Icon iconName="iconChevronsDown" />
 									</S.ColIcon>
 									{dbsTitles.map((col, index) => (

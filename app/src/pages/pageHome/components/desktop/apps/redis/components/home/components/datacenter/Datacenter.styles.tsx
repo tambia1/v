@@ -180,6 +180,7 @@ export const DatabasesHeader = styled.div`
 	padding: 0rem 1rem;
 	background-color: #252525;
 	color: #A99D5D;
+	cursor: pointer;
 
 	${DatabasesWidth}
 `;
@@ -300,6 +301,7 @@ export const SubscriptionsDataRow = styled.div<{ $visible: boolean }>`
 	padding: 0rem 1rem;
 	align-items: center;
 	gap: 0.5rem;
+	cursor: pointer;
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};
@@ -346,6 +348,7 @@ export const DatabasesRow = styled.div`
 	gap: 0.5rem;
 	color: #ffffff;
 	background-color: #252525;
+	cursor: pointer;
 
 	&:hover {
 		background-color: #454545;
