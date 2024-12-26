@@ -36,7 +36,7 @@ export const Splash = ({ onFinish }: Props) => {
 				setProgress((i / (imagesToCache.length - 1)) * 100);
 			}
 
-			setProgress(100);
+			setProgress(3);
 
 			const timeEnd = Date.now();
 			const timeToWait = Math.max(0, 500 - (timeEnd - timeStart)) + 500;
