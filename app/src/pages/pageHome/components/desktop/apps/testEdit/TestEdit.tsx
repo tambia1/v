@@ -336,7 +336,6 @@ export const TestEdit = () => {
 							<Tab.Item value="tab_2">Tab 2</Tab.Item>
 						</Tab>
 					</S.Row>
-					<Text>Selected tab {selectdTabIndex}</Text>
 				</S.Col>
 			</S.Col>
 		</S.TestEdit>
