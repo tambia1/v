@@ -44,7 +44,7 @@ export const Chwazi = () => {
 
 		timeoutRef.current = setTimeout(() => {
 			selectRandomCircle();
-		}, 5000);
+		}, 2000);
 	};
 
 	const selectRandomCircle = () => {

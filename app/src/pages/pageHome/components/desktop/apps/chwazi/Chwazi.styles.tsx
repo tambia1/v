@@ -30,12 +30,12 @@ export const Chwazi = styled.div`
 
 export const Circle = styled.div<{ color: string }>`
 	position: absolute;
-	width: 5rem;
-	height: 5rem;
+	width: 8rem;
+	height: 8rem;
 	background-color: ${(props) => props.color};
 	border-radius: 50%;
 	animation: ${grow} 1s forwards;
 	pointer-events: none;
-	margin-left: -2.5rem;
-	margin-top: -2.5rem;
+	margin-left: -4rem;
+	margin-top: -4rem;
 `;

@@ -17,7 +17,7 @@ const preventIosDoubleClickToZoom = () => {
 const preventDesktopContextMenu = () => {
 	const deviceType = typeof window.orientation !== "undefined" || navigator.userAgent.indexOf("Mobile") !== -1 ? "Mobile" : "Desktop";
 
-	if (deviceType === "Desktop") {
+	if (deviceType === "Desktop" || deviceType === "Mobile") {
 		document.body.onselectstart = () => false;
 		document.body.oncontextmenu = () => false;
 	}
