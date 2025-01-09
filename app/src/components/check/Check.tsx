@@ -6,15 +6,16 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	checked: boolean;
 	onClickCheck?: (checkState: boolean) => void;
+	disabled?: boolean;
 };
 
-export const Check = ({ className, onClickCheck, checked = false, ...rest }: Props) => {
+export const Check = ({ className, onClickCheck, checked = false, disabled = false, ...rest }: Props) => {
 	const handleOnClick = () => {
 		onClickCheck?.(checked);
 	};
 
 	return (
-		<Check.Compose className={className} onClick={handleOnClick} aria-checked={checked} {...rest}>
+		<Check.Compose className={className} onClick={handleOnClick} aria-checked={checked} disabled={disabled} {...rest}>
 			{!checked && <Icon iconName="iconSquare" />}
 			{checked && <Icon iconName="iconVSquare" />}
 		</Check.Compose>

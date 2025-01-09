@@ -41,3 +41,7 @@ export const Line = styled.div`
 	margin-right: 0.5rem;
 	border-top: solid ${(props) => props.theme.color.primaryFgSelected} 1px;
 `;
+
+export const Cell = styled.div`
+	width: 15rem;
+`;

@@ -105,6 +105,7 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Text</Text>
+
 					<S.Row>
 						<Text variant="title">Test</Text>
 						<Text>title</Text>
@@ -127,38 +128,99 @@ export const TestEdit = () => {
 
 				<S.Col>
 					<Text>Switch</Text>
-					<Switch data-testid="switch-test" checked={switchChecked} onClickSwitch={handleOnClickSwitch} />
+
+					<S.Row>
+						<S.Cell>Enables</S.Cell>
+						<S.Cell>Disabled</S.Cell>
+					</S.Row>
+
+					<S.Row>
+						<S.Cell>
+							<Switch data-testid="switch-test" checked={switchChecked} onClickSwitch={handleOnClickSwitch} />
+						</S.Cell>
+						<S.Cell>
+							<Switch disabled data-testid="switch-test" checked={false} onClickSwitch={() => {}} />
+						</S.Cell>
+					</S.Row>
 				</S.Col>
 
 				<S.Line />
 
 				<S.Col>
 					<Text>Check</Text>
-					<Check data-testid="check-test" checked={checkState} onClickCheck={handleOnclickCheck} />
+
+					<S.Row>
+						<S.Cell>Enables</S.Cell>
+						<S.Cell>Disabled</S.Cell>
+					</S.Row>
+
+					<S.Row>
+						<S.Cell>
+							<Check data-testid="check-test" checked={checkState} onClickCheck={handleOnclickCheck} />
+						</S.Cell>
+						<S.Cell>
+							<Check disabled data-testid="check-test" checked={checkState} onClickCheck={handleOnclickCheck} />
+						</S.Cell>
+					</S.Row>
 				</S.Col>
 
 				<S.Line />
 
 				<S.Col>
 					<Text>Button</Text>
+
 					<S.Row>
-						<Button variant="styled">Button Text</Button>
-						variant="styled"
+						<S.Cell />
+						<S.Cell>Enables</S.Cell>
+						<S.Cell>Disabled</S.Cell>
 					</S.Row>
 
 					<S.Row>
-						<Button variant="full">Button Text</Button>
-						variant="full"
+						<S.Cell>variant="styled"</S.Cell>
+						<S.Cell>
+							<Button variant="styled">Button Text</Button>
+						</S.Cell>
+						<S.Cell>
+							<Button variant="styled" disabled>
+								Button Text
+							</Button>
+						</S.Cell>
 					</S.Row>
 
 					<S.Row>
-						<Button variant="stroke">Button Text</Button>
-						variant="stroke"
+						<S.Cell>variant="full"</S.Cell>
+						<S.Cell>
+							<Button variant="full">Button Text</Button>
+						</S.Cell>
+						<S.Cell>
+							<Button variant="full" disabled>
+								Button Text
+							</Button>
+						</S.Cell>
 					</S.Row>
 
 					<S.Row>
-						<Button variant="link">Button Text</Button>
-						variant="link"
+						<S.Cell> variant="stroke"</S.Cell>
+						<S.Cell>
+							<Button variant="stroke">Button Text</Button>
+						</S.Cell>
+						<S.Cell>
+							<Button variant="stroke" disabled>
+								Button Text
+							</Button>
+						</S.Cell>
+					</S.Row>
+
+					<S.Row>
+						<S.Cell>variant="link"</S.Cell>
+						<S.Cell>
+							<Button variant="link">Button Text</Button>
+						</S.Cell>
+						<S.Cell>
+							<Button variant="link" disabled>
+								Button Text
+							</Button>
+						</S.Cell>
 					</S.Row>
 				</S.Col>
 
@@ -175,13 +237,13 @@ export const TestEdit = () => {
 					<Text>Input</Text>
 
 					<S.Row>
-						<Input value={inputValue} onTextChange={handleOnTextChange} />
-						enabled
+						<S.Cell>Enables</S.Cell>
+						<S.Cell>Disabled</S.Cell>
 					</S.Row>
 
 					<S.Row>
+						<Input value={inputValue} onTextChange={handleOnTextChange} />
 						<Input value={inputValue} onTextChange={handleOnTextChange} disabled />
-						disabled
 					</S.Row>
 				</S.Col>
 

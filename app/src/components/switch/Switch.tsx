@@ -1,18 +1,22 @@
+import type { HTMLAttributes } from "react";
 import * as S from "./Switch.styles";
 
-type Props = {
+type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	checked: boolean;
 	onClickSwitch: (checked: boolean) => void;
+	disabled?: boolean;
 };
 
-export const Switch = ({ className, onClickSwitch, checked = false, ...rest }: Props) => {
+export const Switch = ({ className, onClickSwitch, checked = false, disabled = false, ...rest }: Props) => {
 	const handleOnClick = () => {
-		onClickSwitch(checked);
+		if (!disabled) {
+			onClickSwitch(checked);
+		}
 	};
 
 	return (
-		<S.Switch className={className} onClick={handleOnClick} aria-checked={checked} {...rest}>
+		<S.Switch className={className} onClick={handleOnClick} aria-checked={checked} disabled={disabled} {...rest}>
 			<S.Dot $checked={checked} />
 		</S.Switch>
 	);

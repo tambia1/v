@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const Switch = styled.div`
+export const Switch = styled.div<{ disabled: boolean }>`
 	width: 6rem;
 	height: 3rem;
 	display: flex;
-	background-color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => (props.disabled ? props.theme.color.primaryFgDisabled : props.theme.color.primaryFg)};
 	border-radius: 100rem;
 	overflow: hidden;
 	padding: 0.2rem;

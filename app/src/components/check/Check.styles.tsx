@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Icon } from "../icon/Icon.styles";
 
-export const Check = styled.div`
+export const Check = styled.div<{ disabled: boolean }>`
 	width: 3rem;
 	height: 3rem;
 	border-radius: 0.5rem;
@@ -11,16 +11,14 @@ export const Check = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.primaryFg};
 	overflow: hidden;
-
 	transition: all 0.3s ease;
 
 	cursor: pointer;
 
 	& svg {
-		stroke: ${(props) => props.theme.color.primaryFg};
-		fill: ${(props) => props.theme.color.primaryBg};
+		stroke: ${(props) => (props.disabled ? props.theme.color.primaryFgDisabled : props.theme.color.primaryFg)};
+		fill: ${(props) => (props.disabled ? props.theme.color.primaryBgDisabled : props.theme.color.primaryBg)};
 	}
 
 	&:hover{
