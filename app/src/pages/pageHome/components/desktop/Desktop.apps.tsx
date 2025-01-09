@@ -17,6 +17,7 @@ import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";
 import { ChickenScream } from "./apps/chickenScream/ChickenScream";
+import { Chwazi } from "./apps/chwazi/Chwazi";
 import { Debug } from "./apps/debug/Debug";
 import { Redis } from "./apps/redis/Redis";
 import { Speed } from "./apps/speed/Speed";
@@ -69,6 +70,7 @@ export const apps: IApp[][] = [
 		{ id: "ninja", roles: ["admin", "user", "guest"], title: <T>{lang.ninja.title}</T>, icon: "ninja", component: <Ninja /> },
 		{ id: "clashRoyale", roles: ["admin", "user", "guest"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 		{ id: "chickenScream", roles: ["admin", "user", "guest"], title: <T>{lang.chickenScream.title}</T>, icon: "chickenScream", component: <ChickenScream /> },
+		{ id: "chwazi", roles: ["admin", "user", "guest"], title: <T>{lang.chwazi.title}</T>, icon: "chwazi", component: <Chwazi /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },

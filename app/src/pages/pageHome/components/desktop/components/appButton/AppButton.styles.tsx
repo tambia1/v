@@ -5,6 +5,7 @@ import calendar from "./assets/calendar.png";
 import camera from "./assets/camera.png";
 import chat from "./assets/chat.png";
 import chickenScream from "./assets/chickenScream.png";
+import chwazi from "./assets/chwazi.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 import clock from "./assets/clock.png";
 import ninja from "./assets/ninja.png";
@@ -47,6 +48,7 @@ export const appIcons = {
 	board,
 	redis,
 	chickenScream,
+	chwazi,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;

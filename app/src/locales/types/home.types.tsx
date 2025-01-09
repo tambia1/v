@@ -103,6 +103,10 @@ export type IHome = {
 		title: string;
 	};
 
+	chwazi: {
+		title: string;
+	};
+
 	mfe: {
 		title: string;
 	};

@@ -103,6 +103,10 @@ export const translation: IHome = {
 		title: "Chicken Scream",
 	},
 
+	chwazi: {
+		title: "Chwazi",
+	},
+
 	mfe: {
 		title: "Micro Frontend",
 	},
