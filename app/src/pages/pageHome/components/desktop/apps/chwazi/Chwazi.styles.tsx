@@ -26,7 +26,7 @@ const glow = keyframes`
 	}
 `;
 
-export const Chwazi = styled.div<{ $isGlow: boolean }>`
+export const Chwazi = styled.div<{ $isGlowing: boolean }>`
 	position: relative;
 
 	width: 100%;
@@ -41,7 +41,7 @@ export const Chwazi = styled.div<{ $isGlow: boolean }>`
 	background-color: #000000;
 
 	${(props) =>
-		props.$isGlow &&
+		props.$isGlowing &&
 		css`
 			animation: ${glow} 0.3s forwards;
 	`}
