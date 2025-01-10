@@ -12,7 +12,7 @@ const grow = keyframes`
 	}
 `;
 
-export const Chwazi = styled.div`
+export const Chwazi = styled.div<{ glow?: boolean }>`
 	position: relative;
 
 	width: 100%;
@@ -25,7 +25,9 @@ export const Chwazi = styled.div`
 	box-sizing: border-box;
 
 	color: ${(props) => props.theme.color.primaryBg};
-	background-color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => (props.glow ? props.theme.color.primaryBg : props.theme.color.primaryFg)};
+
+	transition: all 0.3s ease;
 `;
 
 export const Circle = styled.div<{ color: string }>`
