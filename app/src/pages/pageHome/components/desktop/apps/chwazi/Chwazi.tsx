@@ -14,6 +14,7 @@ export const Chwazi = () => {
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	const [isGlowing, setIsGlowing] = useState(false);
+	const [isProgressing, setIsProgressing] = useState(false);
 
 	useEffect(() => {
 		return () => {
@@ -52,10 +53,12 @@ export const Chwazi = () => {
 
 		setCircles(newCircles);
 		setIsGlowing(false);
+		setIsProgressing(true);
 
 		timeoutRef.current = setTimeout(() => {
 			selectRandomCircle(newCircles);
 			setIsGlowing(true);
+			setIsProgressing(false);
 		}, 2000);
 	};
 
@@ -63,6 +66,7 @@ export const Chwazi = () => {
 		const remainingCircles = circles.filter((c) => !Array.from(e.changedTouches).some((t) => t.identifier === c.id));
 
 		setCircles(remainingCircles);
+		setIsProgressing(false);
 
 		clearTimeout(timeoutRef.current || undefined);
 	};
@@ -80,6 +84,7 @@ export const Chwazi = () => {
 
 	return (
 		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd} $isGlowing={isGlowing}>
+			<S.ProgressBar $isProgressing={isProgressing} />
 			{circles.map((circle) => (
 				<S.Circle key={circle.id} color={circle.color} style={{ left: circle.x, top: circle.y }} />
 			))}

@@ -26,6 +26,15 @@ const glow = keyframes`
 	}
 `;
 
+const progress = keyframes`
+	0% {
+		width: 0%;
+	}
+	100% {
+		width: 100%;
+	}
+`;
+
 export const Chwazi = styled.div<{ $isGlowing: boolean }>`
 	position: relative;
 
@@ -57,4 +66,17 @@ export const Circle = styled.div<{ color: string }>`
 	pointer-events: none;
 	margin-left: -6rem;
 	margin-top: -6rem;
+`;
+
+export const ProgressBar = styled.div<{ $isProgressing: boolean }>`
+	width: 0%;
+	height: 1rem; 
+	border-radius: 0.5rem;
+	background-color: #ffffff;
+
+	${(props) =>
+		props.$isProgressing &&
+		css`
+			animation: ${progress} 2s forwards; 
+		`}
 `;
