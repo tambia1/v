@@ -38,13 +38,15 @@ export const Chwazi = () => {
 		const boundingY = element.getBoundingClientRect().top + window.scrollY;
 
 		const newCircles = touches.map((touch) => {
+			const existingCircle = circles.find((circle) => circle.id === touch.identifier);
+
 			const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
 			return {
 				id: touch.identifier,
 				x: Math.floor(touch.clientX - boundingX),
 				y: Math.floor(touch.clientY - boundingY),
-				color: randomColor,
+				color: existingCircle?.color || randomColor,
 			};
 		});
 
