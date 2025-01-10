@@ -49,9 +49,11 @@ export const Chwazi = () => {
 		});
 
 		setCircles(newCircles);
+		setAnimateGlow(false);
 
 		timeoutRef.current = setTimeout(() => {
 			selectRandomCircle(newCircles);
+			setAnimateGlow(true);
 		}, 2000);
 	};
 
@@ -72,16 +74,10 @@ export const Chwazi = () => {
 		const selectedCircle = newCircles[randomIndex];
 
 		setCircles([selectedCircle]);
-
-		setAnimateGlow(true);
-
-		setTimeout(() => {
-			setAnimateGlow(false);
-		}, 300);
 	};
 
 	return (
-		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd} $glow={animateGlow}>
+		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd} $isGlow={animateGlow}>
 			{circles.map((circle) => (
 				<S.Circle key={circle.id} color={circle.color} style={{ left: circle.x, top: circle.y }} />
 			))}

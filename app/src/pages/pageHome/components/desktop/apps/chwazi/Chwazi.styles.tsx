@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 const grow = keyframes`
 	0% {
@@ -12,7 +12,21 @@ const grow = keyframes`
 	}
 `;
 
-export const Chwazi = styled.div<{ $glow: boolean }>`
+const glow = keyframes`
+	0% {
+		background-color: #000000;
+	}
+
+	50% {
+		background-color: #ffffff;
+	}
+
+	100% {
+		background-color: #000000;
+	}
+`;
+
+export const Chwazi = styled.div<{ $isGlow: boolean }>`
 	position: relative;
 
 	width: 100%;
@@ -24,10 +38,13 @@ export const Chwazi = styled.div<{ $glow: boolean }>`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	color: ${(props) => props.theme.color.primaryBg};
-	background-color: ${(props) => (props.$glow ? props.theme.color.primaryBg : props.theme.color.primaryFg)};
+	background-color: #000000;
 
-	transition: all 0.3s ease;
+	${(props) =>
+		props.$isGlow &&
+		css`
+			animation: ${glow} 0.3s forwards;
+	`}
 `;
 
 export const Circle = styled.div<{ color: string }>`
