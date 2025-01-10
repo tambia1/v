@@ -15,6 +15,12 @@ export const Chwazi = () => {
 
 	const [animateGlow, setAnimateGlow] = useState(false);
 
+	useEffect(() => {
+		return () => {
+			clearTimeout(timeoutRef.current || undefined);
+		};
+	}, []);
+
 	const handleOnTouchStart = (e: TouchEvent<HTMLDivElement>) => {
 		if (!refContainer.current) {
 			return;
@@ -32,7 +38,7 @@ export const Chwazi = () => {
 		const boundingY = element.getBoundingClientRect().top + window.scrollY;
 
 		const newCircles = touches.map((touch) => {
-			const randomColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+			const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
 			return {
 				id: touch.identifier,
@@ -47,6 +53,14 @@ export const Chwazi = () => {
 		timeoutRef.current = setTimeout(() => {
 			selectRandomCircle(newCircles);
 		}, 2000);
+	};
+
+	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+		const remainingCircles = circles.filter((c) => !Array.from(e.changedTouches).some((t) => t.identifier === c.id));
+
+		setCircles(remainingCircles);
+
+		clearTimeout(timeoutRef.current || undefined);
 	};
 
 	const selectRandomCircle = (newCircles: Circle[]) => {
@@ -66,22 +80,8 @@ export const Chwazi = () => {
 		}, 300);
 	};
 
-	useEffect(() => {
-		return () => {
-			if (timeoutRef.current) {
-				clearTimeout(timeoutRef.current);
-			}
-		};
-	}, []);
-
-	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
-		const remainingCircles = circles.filter((c) => !Array.from(e.changedTouches).some((t) => t.identifier === c.id));
-
-		setCircles(remainingCircles);
-	};
-
 	return (
-		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd} {...(animateGlow ? { glow: true } : {})}>
+		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd} $glow={animateGlow}>
 			{circles.map((circle) => (
 				<S.Circle key={circle.id} color={circle.color} style={{ left: circle.x, top: circle.y }} />
 			))}
