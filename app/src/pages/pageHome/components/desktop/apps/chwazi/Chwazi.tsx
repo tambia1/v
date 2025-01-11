@@ -68,6 +68,10 @@ export const Chwazi = () => {
 			return;
 		}
 
+		if (selectedCircle) {
+			return;
+		}
+
 		const element = containerRef.current;
 		const newCircles = getCircles(e, element);
 
