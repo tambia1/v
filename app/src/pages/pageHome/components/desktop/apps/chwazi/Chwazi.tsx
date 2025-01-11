@@ -53,7 +53,11 @@ export const Chwazi = () => {
 
 		setCircles(newCircles);
 		setIsGlowing(false);
-		setIsProgressing(true);
+		setIsProgressing(false);
+
+		setTimeout(() => {
+			setIsProgressing(true);
+		}, 100);
 
 		timeoutRef.current = setTimeout(() => {
 			selectRandomCircle(newCircles);
