@@ -10,13 +10,13 @@ type Circle = {
 
 export const Chwazi = () => {
 	const [circles, setCircles] = useState<Circle[]>([]);
-	const refContainer = useRef<HTMLDivElement>(null);
-	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+	const [selectedCircle, setSelectedCircle] = useState<Circle | null>(null);
 
 	const [isGlowing, setIsGlowing] = useState(false);
 	const [isProgressing, setIsProgressing] = useState(false);
 
-	const [selectedTouch, setSelectedTouch] = useState(-1);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	useEffect(() => {
 		return () => {
@@ -25,7 +25,7 @@ export const Chwazi = () => {
 	}, []);
 
 	const handleOnTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-		if (!refContainer.current) {
+		if (!containerRef.current) {
 			return;
 		}
 
@@ -34,7 +34,7 @@ export const Chwazi = () => {
 			timeoutRef.current = null;
 		}
 
-		const element = refContainer.current;
+		const element = containerRef.current;
 		const newCircles = getCircles(e, element);
 
 		setCircles(newCircles);
@@ -53,11 +53,11 @@ export const Chwazi = () => {
 	};
 
 	const handleOnTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-		if (!refContainer.current) {
+		if (!containerRef.current) {
 			return;
 		}
 
-		const element = refContainer.current;
+		const element = containerRef.current;
 		const newCircles = getCircles(e, element);
 
 		setCircles(newCircles);
@@ -68,19 +68,18 @@ export const Chwazi = () => {
 
 		setCircles(remainingCircles);
 		setIsProgressing(false);
-		setSelectedTouch(-1);
+		setSelectedCircle(null);
 
 		clearTimeout(timeoutRef.current || undefined);
 	};
 
 	const getCircles = (e: TouchEvent<HTMLDivElement>, element: HTMLDivElement) => {
 		const touches = Array.from(e.touches);
-		const filteredTouches = touches.filter((v) => selectedTouch === -1 || v.identifier === selectedTouch);
 
 		const boundingX = element.getBoundingClientRect().left + window.scrollX;
 		const boundingY = element.getBoundingClientRect().top + window.scrollY;
 
-		const newCircles = filteredTouches.map((touch) => {
+		const newCircles = touches.map((touch) => {
 			const existingCircle = circles.find((circle) => circle.id === touch.identifier);
 			const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
@@ -99,15 +98,18 @@ export const Chwazi = () => {
 		const randomIndex = Math.floor(Math.random() * circles.length);
 		const selectedCircle = circles[randomIndex];
 
-		setSelectedTouch(selectedCircle.id);
+		setSelectedCircle(selectedCircle);
 	};
 
 	return (
-		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchMove={handleOnTouchMove} onTouchEnd={handleOnTouchEnd} $isGlowing={isGlowing}>
+		<S.Chwazi ref={containerRef} onTouchStart={handleOnTouchStart} onTouchMove={handleOnTouchMove} onTouchEnd={handleOnTouchEnd} $isGlowing={isGlowing}>
 			<S.ProgressBar $isProgressing={isProgressing} />
+
 			{circles.map((circle) => (
 				<S.Circle key={circle.id} color={circle.color} style={{ left: circle.x, top: circle.y }} />
 			))}
+
+			{selectedCircle && <S.Circle key={selectedCircle.id} color={selectedCircle.color} style={{ left: selectedCircle.x, top: selectedCircle.y }} />}
 		</S.Chwazi>
 	);
 };
