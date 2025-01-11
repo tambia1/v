@@ -77,6 +77,6 @@ export const ProgressBar = styled.div<{ $isProgressing: boolean }>`
 	${(props) =>
 		props.$isProgressing &&
 		css`
-			animation: ${progress} 2s forwards; 
+			animation: ${progress} 1.8s linear forwards; 
 		`}
 `;
