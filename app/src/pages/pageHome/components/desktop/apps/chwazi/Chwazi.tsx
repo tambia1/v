@@ -14,6 +14,7 @@ export const Chwazi = () => {
 
 	const [isGlowing, setIsGlowing] = useState(false);
 	const [isProgressing, setIsProgressing] = useState(false);
+	const [state, setState] = useState<"idle" | "started" | "ended">("idle");
 
 	const containerRef = useRef<HTMLDivElement>(null);
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -23,6 +24,15 @@ export const Chwazi = () => {
 			clearTimeout(timeoutRef.current || undefined);
 		};
 	}, []);
+
+	useEffect(() => {
+		if (state === "ended") {
+			const randomIndex = Math.floor(Math.random() * circles.length);
+			const selectedCircle = circles[randomIndex];
+
+			setSelectedCircle(selectedCircle);
+		}
+	}, [state, circles]);
 
 	const handleOnTouchStart = (e: TouchEvent<HTMLDivElement>) => {
 		if (!containerRef.current) {
@@ -37,6 +47,7 @@ export const Chwazi = () => {
 		const element = containerRef.current;
 		const newCircles = getCircles(e, element);
 
+		setState("started");
 		setCircles(newCircles);
 		setIsGlowing(false);
 		setIsProgressing(false);
@@ -46,7 +57,7 @@ export const Chwazi = () => {
 		}, 100);
 
 		timeoutRef.current = setTimeout(() => {
-			selectRandomCircle();
+			setState("ended");
 			setIsGlowing(true);
 			setIsProgressing(false);
 		}, 2000);
@@ -54,6 +65,10 @@ export const Chwazi = () => {
 
 	const handleOnTouchMove = (e: TouchEvent<HTMLDivElement>) => {
 		if (!containerRef.current) {
+			return;
+		}
+
+		if (selectedCircle) {
 			return;
 		}
 
@@ -66,6 +81,7 @@ export const Chwazi = () => {
 	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
 		const remainingCircles = circles.filter((c) => !Array.from(e.changedTouches).some((t) => t.identifier === c.id));
 
+		setState("idle");
 		setCircles(remainingCircles);
 		setIsProgressing(false);
 		setSelectedCircle(null);
@@ -94,22 +110,16 @@ export const Chwazi = () => {
 		return newCircles;
 	};
 
-	const selectRandomCircle = () => {
-		const randomIndex = Math.floor(Math.random() * circles.length);
-		const selectedCircle = circles[randomIndex];
-
-		setSelectedCircle(selectedCircle);
-	};
-
 	return (
 		<S.Chwazi ref={containerRef} onTouchStart={handleOnTouchStart} onTouchMove={handleOnTouchMove} onTouchEnd={handleOnTouchEnd} $isGlowing={isGlowing}>
 			<S.ProgressBar $isProgressing={isProgressing} />
 
-			{circles.map((circle) => (
-				<S.Circle key={circle.id} color={circle.color} style={{ left: circle.x, top: circle.y }} />
-			))}
+			{!selectedCircle &&
+				circles.map((circle) => <S.Circle key={circle.id} color={circle.color} style={{ left: circle.x, top: circle.y }} $isAnimate={true} />)}
 
-			{selectedCircle && <S.Circle key={selectedCircle.id} color={selectedCircle.color} style={{ left: selectedCircle.x, top: selectedCircle.y }} />}
+			{selectedCircle && (
+				<S.Circle key={selectedCircle.id} color={selectedCircle.color} style={{ left: selectedCircle.x, top: selectedCircle.y }} $isAnimate={false} />
+			)}
 		</S.Chwazi>
 	);
 };

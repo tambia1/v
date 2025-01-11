@@ -56,16 +56,21 @@ export const Chwazi = styled.div<{ $isGlowing: boolean }>`
 	`}
 `;
 
-export const Circle = styled.div<{ color: string }>`
+export const Circle = styled.div<{ color: string; $isAnimate: boolean }>`
 	position: absolute;
 	width: 12rem;
 	height: 12rem;
 	background-color: ${(props) => props.color};
 	border-radius: 50%;
-	animation: ${grow} 1s forwards;
 	pointer-events: none;
 	margin-left: -6rem;
 	margin-top: -6rem;
+
+	${(props) =>
+		props.$isAnimate &&
+		css`
+			animation: ${grow} 1s ease-out forwards;
+		`}
 `;
 
 export const ProgressBar = styled.div<{ $isProgressing: boolean }>`
