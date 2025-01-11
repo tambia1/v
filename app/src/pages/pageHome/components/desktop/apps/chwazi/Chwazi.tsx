@@ -32,8 +32,46 @@ export const Chwazi = () => {
 			timeoutRef.current = null;
 		}
 
-		const touches = Array.from(e.touches);
 		const element = refContainer.current;
+		const newCircles = getCircles(e, element);
+
+		setCircles(newCircles);
+		setIsGlowing(false);
+		setIsProgressing(false);
+
+		setTimeout(() => {
+			setIsProgressing(true);
+		}, 100);
+
+		timeoutRef.current = setTimeout(() => {
+			selectRandomCircle();
+			setIsGlowing(true);
+			setIsProgressing(false);
+		}, 2000);
+	};
+
+	const handleOnTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+		if (!refContainer.current) {
+			return;
+		}
+
+		const element = refContainer.current;
+		const newCircles = getCircles(e, element);
+
+		setCircles(newCircles);
+	};
+
+	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
+		const remainingCircles = circles.filter((c) => !Array.from(e.changedTouches).some((t) => t.identifier === c.id));
+
+		setCircles(remainingCircles);
+		setIsProgressing(false);
+
+		clearTimeout(timeoutRef.current || undefined);
+	};
+
+	const getCircles = (e: TouchEvent<HTMLDivElement>, element: HTMLDivElement) => {
+		const touches = Array.from(e.touches);
 
 		const boundingX = element.getBoundingClientRect().left + window.scrollX;
 		const boundingY = element.getBoundingClientRect().top + window.scrollY;
@@ -51,43 +89,24 @@ export const Chwazi = () => {
 			};
 		});
 
-		setCircles(newCircles);
-		setIsGlowing(false);
-		setIsProgressing(false);
-
-		setTimeout(() => {
-			setIsProgressing(true);
-		}, 100);
-
-		timeoutRef.current = setTimeout(() => {
-			selectRandomCircle(newCircles);
-			setIsGlowing(true);
-			setIsProgressing(false);
-		}, 2000);
+		return newCircles;
 	};
 
-	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
-		const remainingCircles = circles.filter((c) => !Array.from(e.changedTouches).some((t) => t.identifier === c.id));
+	const selectRandomCircle = () => {
+		setCircles((prevCircles) => {
+			if (prevCircles.length === 0) {
+				return [];
+			}
 
-		setCircles(remainingCircles);
-		setIsProgressing(false);
+			const randomIndex = Math.floor(Math.random() * prevCircles.length);
+			const selectedCircle = prevCircles[randomIndex];
 
-		clearTimeout(timeoutRef.current || undefined);
-	};
-
-	const selectRandomCircle = (newCircles: Circle[]) => {
-		if (newCircles.length === 0) {
-			return;
-		}
-
-		const randomIndex = Math.floor(Math.random() * newCircles.length);
-		const selectedCircle = newCircles[randomIndex];
-
-		setCircles([selectedCircle]);
+			return [selectedCircle];
+		});
 	};
 
 	return (
-		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchEnd={handleOnTouchEnd} $isGlowing={isGlowing}>
+		<S.Chwazi ref={refContainer} onTouchStart={handleOnTouchStart} onTouchMove={handleOnTouchMove} onTouchEnd={handleOnTouchEnd} $isGlowing={isGlowing}>
 			<S.ProgressBar $isProgressing={isProgressing} />
 			{circles.map((circle) => (
 				<S.Circle key={circle.id} color={circle.color} style={{ left: circle.x, top: circle.y }} />
