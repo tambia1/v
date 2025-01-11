@@ -16,6 +16,8 @@ export const Chwazi = () => {
 	const [isGlowing, setIsGlowing] = useState(false);
 	const [isProgressing, setIsProgressing] = useState(false);
 
+	const [selectedTouch, setSelectedTouch] = useState(-1);
+
 	useEffect(() => {
 		return () => {
 			clearTimeout(timeoutRef.current || undefined);
@@ -66,19 +68,20 @@ export const Chwazi = () => {
 
 		setCircles(remainingCircles);
 		setIsProgressing(false);
+		setSelectedTouch(-1);
 
 		clearTimeout(timeoutRef.current || undefined);
 	};
 
 	const getCircles = (e: TouchEvent<HTMLDivElement>, element: HTMLDivElement) => {
 		const touches = Array.from(e.touches);
+		const filteredTouches = touches.filter((v) => selectedTouch === -1 || v.identifier === selectedTouch);
 
 		const boundingX = element.getBoundingClientRect().left + window.scrollX;
 		const boundingY = element.getBoundingClientRect().top + window.scrollY;
 
-		const newCircles = touches.map((touch) => {
+		const newCircles = filteredTouches.map((touch) => {
 			const existingCircle = circles.find((circle) => circle.id === touch.identifier);
-
 			const randomColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
 
 			return {
@@ -93,16 +96,10 @@ export const Chwazi = () => {
 	};
 
 	const selectRandomCircle = () => {
-		setCircles((prevCircles) => {
-			if (prevCircles.length === 0) {
-				return [];
-			}
+		const randomIndex = Math.floor(Math.random() * circles.length);
+		const selectedCircle = circles[randomIndex];
 
-			const randomIndex = Math.floor(Math.random() * prevCircles.length);
-			const selectedCircle = prevCircles[randomIndex];
-
-			return [selectedCircle];
-		});
+		setSelectedTouch(selectedCircle.id);
 	};
 
 	return (
