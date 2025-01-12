@@ -7,7 +7,7 @@ type Props = {
 export const useInterval = ({ callback }: Props) => {
 	const intervalIdRef = useRef<number | null>(null);
 
-	const [isActive, setIsActive] = useState(false);
+	const [starter, setStarter] = useState(-1);
 	const [isPerformCallback, setIsPerformCallback] = useState(false);
 
 	useEffect(() => {
@@ -15,6 +15,14 @@ export const useInterval = ({ callback }: Props) => {
 			clearInterval(intervalIdRef.current || undefined);
 		};
 	}, []);
+
+	useEffect(() => {
+		if (starter !== -1) {
+			intervalIdRef.current = window.setTimeout(() => {
+				setIsPerformCallback(true);
+			}, starter);
+		}
+	}, [starter]);
 
 	useEffect(() => {
 		if (isPerformCallback) {
@@ -25,28 +33,24 @@ export const useInterval = ({ callback }: Props) => {
 	}, [isPerformCallback, callback]);
 
 	const start = (interval: number) => {
-		if (isActive || interval <= 0) {
+		if (starter !== -1 || interval <= 0) {
 			return;
 		}
 
-		setIsActive(true);
-
-		intervalIdRef.current = window.setInterval(() => {
-			setIsPerformCallback(true);
-		}, interval);
+		setStarter(interval);
 	};
 
 	const stop = () => {
-		if (!isActive) {
-			return;
-		}
-
-		setIsActive(false);
+		setStarter(-1);
 		setIsPerformCallback(false);
 		clearInterval(intervalIdRef.current || undefined);
 
 		intervalIdRef.current = null;
 	};
 
-	return { start, stop, isActive };
+	return {
+		start,
+		stop,
+		isActive: starter !== -1,
+	};
 };
