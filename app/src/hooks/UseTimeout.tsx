@@ -7,7 +7,7 @@ type Props = {
 export const useTimeout = ({ callback }: Props) => {
 	const timeoutIdRef = useRef<number | null>(null);
 
-	const [isActive, setIsActive] = useState(false);
+	const [starter, setStarter] = useState(-1);
 	const [isPerformCallback, setIsPerformCallback] = useState(false);
 
 	useEffect(() => {
@@ -17,36 +17,40 @@ export const useTimeout = ({ callback }: Props) => {
 	}, []);
 
 	useEffect(() => {
+		if (starter !== -1) {
+			timeoutIdRef.current = window.setTimeout(() => {
+				setIsPerformCallback(true);
+			}, starter);
+		}
+	}, [starter]);
+
+	useEffect(() => {
 		if (isPerformCallback) {
 			callback();
-			setIsActive(false);
+			setStarter(-1);
 			setIsPerformCallback(false);
 		}
 	}, [isPerformCallback, callback]);
 
 	const start = (timeout: number) => {
-		if (isActive || timeout <= 0) {
+		if (starter !== -1 || timeout <= 0) {
 			return;
 		}
 
-		setIsActive(true);
-
-		timeoutIdRef.current = window.setTimeout(() => {
-			setIsPerformCallback(true);
-		}, timeout);
+		setStarter(timeout);
 	};
 
 	const stop = () => {
-		if (!isActive) {
-			return;
-		}
-
-		setIsActive(false);
+		setStarter(-1);
 		setIsPerformCallback(false);
 		clearTimeout(timeoutIdRef.current || undefined);
 
 		timeoutIdRef.current = null;
 	};
 
-	return { start, stop, isActive };
+	return {
+		start,
+		stop,
+		isActive: starter !== -1,
+	};
 };
