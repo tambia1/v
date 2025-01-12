@@ -4,8 +4,8 @@ type Props = {
 	callback: () => void;
 };
 
-export const useTimeout = ({ callback }: Props) => {
-	const timeoutIdRef = useRef<number | null>(null);
+export const useInterval = ({ callback }: Props) => {
+	const intervalIdRef = useRef<number | null>(null);
 	const startTimeRef = useRef<number | null>(null);
 
 	const [isActive, setIsActive] = useState(false);
@@ -14,7 +14,7 @@ export const useTimeout = ({ callback }: Props) => {
 
 	useEffect(() => {
 		return () => {
-			clearTimeout(timeoutIdRef.current || undefined);
+			clearInterval(intervalIdRef.current || undefined);
 		};
 	}, []);
 
@@ -25,18 +25,18 @@ export const useTimeout = ({ callback }: Props) => {
 		}
 	}, [isPerformCallback, callback]);
 
-	const start = (timeout: number) => {
-		if (isActive || timeout <= 0) {
+	const start = (interval: number) => {
+		if (isActive || interval <= 0) {
 			return;
 		}
 
 		setIsActive(true);
-		setRemainingTime(timeout);
+		setRemainingTime(interval);
 		startTimeRef.current = Date.now();
 
-		timeoutIdRef.current = window.setTimeout(() => {
+		intervalIdRef.current = window.setInterval(() => {
 			setIsPerformCallback(true);
-		}, timeout);
+		}, interval);
 	};
 
 	const stop = () => {
@@ -46,19 +46,19 @@ export const useTimeout = ({ callback }: Props) => {
 
 		setIsActive(false);
 		setIsPerformCallback(false);
-		clearTimeout(timeoutIdRef.current || undefined);
+		clearInterval(intervalIdRef.current || undefined);
 
 		const elapsedTime = Date.now() - (startTimeRef.current ?? 0);
 		setRemainingTime((prev) => Math.max(0, prev - elapsedTime));
 	};
 
 	const reset = () => {
-		clearTimeout(timeoutIdRef.current || undefined);
+		clearInterval(intervalIdRef.current || undefined);
 		setIsActive(false);
 		setRemainingTime(0);
 
 		startTimeRef.current = null;
-		timeoutIdRef.current = null;
+		intervalIdRef.current = null;
 	};
 
 	return { start, stop, reset, isActive, remainingTime };
