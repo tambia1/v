@@ -20,12 +20,6 @@ export const Chwazi = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-	const { start, stop, isActive } = useTimeout({
-		callback: () => {
-			console.log("timeout", isActive);
-		},
-	});
-
 	useEffect(() => {
 		return () => {
 			clearTimeout(timeoutRef.current || undefined);
@@ -42,10 +36,6 @@ export const Chwazi = () => {
 	}, [state, circles]);
 
 	const handleOnTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-		if (!isActive) {
-			start(1000);
-		}
-
 		if (!containerRef.current) {
 			return;
 		}
@@ -90,10 +80,6 @@ export const Chwazi = () => {
 	};
 
 	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
-		if (isActive) {
-			stop();
-		}
-
 		const remainingCircles = circles.filter((c) => !Array.from(e.changedTouches).some((t) => t.identifier === c.id));
 
 		setState("idle");
