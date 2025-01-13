@@ -14,9 +14,7 @@ export const Chwazi = () => {
 	const [circles, setCircles] = useState<Circle[]>([]);
 	const timeoutPick = useTimeout({
 		delay: 2000,
-		callback: () => {
-			setIsPick(true);
-		},
+		callback: () => setIsPick(true),
 	});
 
 	const [isGlowing, setIsGlowing] = useState(false);
@@ -29,14 +27,16 @@ export const Chwazi = () => {
 			const newCircles = getCircles(event);
 			setCircles(newCircles);
 
+			setIsGlowing(false);
+			setEvent(null);
+
 			if (newCircles.length > 0) {
 				setIsProgressing(true);
 				timeoutPick.start();
 			} else {
+				setIsProgressing(false);
 				timeoutPick.stop();
 			}
-
-			setEvent(null);
 		}
 	}, [event, timeoutPick]);
 
