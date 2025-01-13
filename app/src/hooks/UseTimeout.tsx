@@ -1,56 +1,45 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 type Props = {
+	delay: number;
 	callback: () => void;
 };
 
-export const useTimeout = ({ callback }: Props) => {
+export const useTimeout = ({ delay, callback }: Props) => {
 	const timeoutIdRef = useRef<number | null>(null);
-
-	const [starter, setStarter] = useState(-1);
-	const [isPerformCallback, setIsPerformCallback] = useState(false);
+	const isActiveRef = useRef(false);
 
 	useEffect(() => {
 		return () => {
-			clearTimeout(timeoutIdRef.current || undefined);
+			stop();
 		};
 	}, []);
 
-	useEffect(() => {
-		if (starter !== -1) {
-			timeoutIdRef.current = window.setTimeout(() => {
-				setIsPerformCallback(true);
-			}, starter);
-		}
-	}, [starter]);
-
-	useEffect(() => {
-		if (isPerformCallback) {
-			callback();
-			setStarter(-1);
-			setIsPerformCallback(false);
-		}
-	}, [isPerformCallback, callback]);
-
-	const start = (timeout: number) => {
-		if (starter !== -1 || timeout <= 0) {
+	const start = () => {
+		if (isActiveRef.current) {
 			return;
 		}
 
-		setStarter(timeout);
+		stop();
+
+		isActiveRef.current = true;
+
+		timeoutIdRef.current = window.setTimeout(() => {
+			isActiveRef.current = false;
+			callback();
+		}, delay);
 	};
 
 	const stop = () => {
-		setStarter(-1);
-		setIsPerformCallback(false);
-		clearTimeout(timeoutIdRef.current || undefined);
+		isActiveRef.current = false;
 
+		clearTimeout(timeoutIdRef.current || undefined);
 		timeoutIdRef.current = null;
 	};
 
 	return {
 		start,
 		stop,
-		isActive: starter !== -1,
+		isActive: isActiveRef.current,
 	};
 };
