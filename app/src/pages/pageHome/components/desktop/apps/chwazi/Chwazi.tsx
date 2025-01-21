@@ -11,53 +11,63 @@ type Circle = {
 };
 
 export const Chwazi = () => {
+	const [event, setEvent] = useState<TouchEvent<HTMLDivElement> | null>(null);
 	const [circles, setCircles] = useState<Circle[]>([]);
-	const timeoutPick = useTimeout({
-		delay: 2000,
-		callback: () => setIsPick(true),
-	});
-
 	const [isGlowing, setIsGlowing] = useState(false);
 	const [isProgressing, setIsProgressing] = useState(false);
-	const [event, setEvent] = useState<TouchEvent<HTMLDivElement> | null>(null);
-	const [isPick, setIsPick] = useState(false);
+	const [status, setStatus] = useState<"idle" | "started" | "ended" | "picked">("idle");
+
+	const timeoutPick = useTimeout({
+		delay: 2000,
+		callback: () => setStatus("ended"),
+	});
 
 	useEffect(() => {
 		if (event) {
 			const newCircles = getCircles(event);
 			setCircles(newCircles);
 
-			setIsGlowing(false);
-			setEvent(null);
-
 			if (newCircles.length > 0) {
+				setStatus("started");
 				setIsProgressing(true);
-				timeoutPick.start();
 			} else {
+				setStatus("idle");
 				setIsProgressing(false);
-				timeoutPick.stop();
 			}
+
+			setEvent(null);
 		}
-	}, [event, timeoutPick]);
+	}, [event]);
 
 	useEffect(() => {
-		if (isPick) {
+		if (status === "ended") {
 			const randomIndex = Math.floor(Math.random() * circles.length);
 
-			circles[randomIndex].isSelected = true;
+			const newCircles = circles.map((circle, index) => ({
+				...circle,
+				isSelected: index === randomIndex,
+			}));
 
-			setCircles([...circles]);
+			setCircles(newCircles);
 			setIsGlowing(true);
-			setIsPick(false);
+			setStatus("picked");
 			setEvent(null);
 
 			timeoutPick.stop();
 		}
-	}, [isPick, circles, timeoutPick]);
+	}, [status, circles, timeoutPick]);
 
 	const handleOnTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+		if (status === "picked") {
+			return;
+		}
+
 		setEvent(e);
 		setIsProgressing(false);
+		setIsGlowing(false);
+
+		timeoutPick.stop();
+		timeoutPick.start();
 	};
 
 	const handleOnTouchMove = (e: TouchEvent<HTMLDivElement>) => {
@@ -67,6 +77,9 @@ export const Chwazi = () => {
 	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
 		setEvent(e);
 		setIsProgressing(false);
+		setIsGlowing(false);
+
+		timeoutPick.stop();
 	};
 
 	const getCircles = (e: TouchEvent<HTMLDivElement>) => {
