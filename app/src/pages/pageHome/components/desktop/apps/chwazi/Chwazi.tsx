@@ -41,21 +41,22 @@ export const Chwazi = () => {
 
 	useEffect(() => {
 		if (status === "ended") {
-			const randomIndex = Math.floor(Math.random() * circles.length);
+			setCircles((prevCircles) => {
+				const randomIndex = Math.floor(Math.random() * prevCircles.length);
 
-			const newCircles = circles.map((circle, index) => ({
-				...circle,
-				isSelected: index === randomIndex,
-			}));
+				return prevCircles.map((circle, index) => ({
+					...circle,
+					isSelected: index === randomIndex,
+				}));
+			});
 
-			setCircles(newCircles);
 			setIsGlowing(true);
 			setStatus("picked");
 			setEvent(null);
 
 			timeoutPick.stop();
 		}
-	}, [status, circles, timeoutPick]);
+	}, [status, timeoutPick]);
 
 	const handleOnTouchStart = (e: TouchEvent<HTMLDivElement>) => {
 		if (status === "picked") {
