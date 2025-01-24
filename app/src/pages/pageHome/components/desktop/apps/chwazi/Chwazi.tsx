@@ -65,8 +65,6 @@ export const Chwazi = () => {
 		}
 
 		setEvent(e);
-		setIsProgressing(false);
-		setIsGlowing(false);
 
 		timeoutPick.stop();
 		timeoutPick.start();
@@ -78,10 +76,10 @@ export const Chwazi = () => {
 
 	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
 		setEvent(e);
-		// setIsProgressing(false);
-		// setIsGlowing(false);
 
-		// timeoutPick.stop();
+		if (status !== "picked") {
+			timeoutPick.stop();
+		}
 	};
 
 	const getCircles = (e: TouchEvent<HTMLDivElement>, circles: Circle[]) => {
