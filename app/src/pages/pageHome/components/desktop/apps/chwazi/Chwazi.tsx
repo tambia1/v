@@ -35,7 +35,6 @@ export const Chwazi = () => {
 				setIsProgressing(false);
 			}
 
-			setIsGlowing(false);
 			setEvent(null);
 		}
 	}, [event, circles]);
@@ -65,6 +64,8 @@ export const Chwazi = () => {
 		}
 
 		setEvent(e);
+		setIsProgressing(false);
+		setIsGlowing(false);
 
 		timeoutPick.stop();
 		timeoutPick.start();
