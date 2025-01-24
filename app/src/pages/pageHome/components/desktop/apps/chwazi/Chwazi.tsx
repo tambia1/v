@@ -99,7 +99,7 @@ export const Chwazi = () => {
 				x: Math.floor(touch.clientX - boundingX),
 				y: Math.floor(touch.clientY - boundingY),
 				color: existingCircle?.color || randomColor,
-				isSelected: existingCircle?.isSelected || true,
+				isSelected: existingCircle ? existingCircle.isSelected : true,
 			};
 
 			return circle;
