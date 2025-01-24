@@ -10,7 +10,7 @@
 	"orientation": "portrait",
 	"lang": "en",
 	"dir": "ltr",
-	"start_url": ".",
+	"start_url": ".?v=1",
 	"icons": [
 		{
 			"src": "./src/assets/icon_120x120.png",
