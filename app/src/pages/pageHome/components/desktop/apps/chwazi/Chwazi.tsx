@@ -24,7 +24,7 @@ export const Chwazi = () => {
 
 	useEffect(() => {
 		if (event) {
-			const newCircles = getCircles(event);
+			const newCircles = getCircles(event, circles);
 			setCircles(() => newCircles);
 
 			if (newCircles.length > 0) {
@@ -37,7 +37,7 @@ export const Chwazi = () => {
 
 			setEvent(null);
 		}
-	}, [event]);
+	}, [event, circles]);
 
 	useEffect(() => {
 		if (status === "ended") {
@@ -83,7 +83,7 @@ export const Chwazi = () => {
 		timeoutPick.stop();
 	};
 
-	const getCircles = (e: TouchEvent<HTMLDivElement>) => {
+	const getCircles = (e: TouchEvent<HTMLDivElement>, circles: Circle[]) => {
 		const touches = Array.from(e.touches);
 		const element = e.target as HTMLDivElement;
 
