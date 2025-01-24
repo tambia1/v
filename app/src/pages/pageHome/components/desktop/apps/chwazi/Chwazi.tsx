@@ -79,6 +79,9 @@ export const Chwazi = () => {
 		setEvent(e);
 
 		if (status !== "picked") {
+			setIsProgressing(false);
+			setIsGlowing(false);
+
 			timeoutPick.stop();
 		}
 	};
