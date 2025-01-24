@@ -25,7 +25,7 @@ export const Chwazi = () => {
 	useEffect(() => {
 		if (event) {
 			const newCircles = getCircles(event, circles);
-			setCircles(() => newCircles);
+			setCircles(newCircles);
 
 			if (newCircles.length > 0) {
 				setStatus("started");
@@ -35,6 +35,7 @@ export const Chwazi = () => {
 				setIsProgressing(false);
 			}
 
+			setIsGlowing(false);
 			setEvent(null);
 		}
 	}, [event, circles]);
@@ -77,10 +78,10 @@ export const Chwazi = () => {
 
 	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
 		setEvent(e);
-		setIsProgressing(false);
-		setIsGlowing(false);
+		// setIsProgressing(false);
+		// setIsGlowing(false);
 
-		timeoutPick.stop();
+		// timeoutPick.stop();
 	};
 
 	const getCircles = (e: TouchEvent<HTMLDivElement>, circles: Circle[]) => {
