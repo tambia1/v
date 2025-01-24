@@ -25,7 +25,7 @@ export const Chwazi = () => {
 	useEffect(() => {
 		if (event) {
 			const newCircles = getCircles(event);
-			setCircles(newCircles);
+			setCircles(() => newCircles);
 
 			if (newCircles.length > 0) {
 				setStatus("started");
