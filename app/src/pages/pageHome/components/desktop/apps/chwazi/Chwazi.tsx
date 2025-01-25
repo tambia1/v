@@ -27,17 +27,17 @@ export const Chwazi = () => {
 			const newCircles = getCircles(event, circles);
 			setCircles(newCircles);
 
-			if (newCircles.length === 0) {
-				setStatus("idle");
-				setIsProgressing(false);
-			} else if (status !== "picked") {
+			if (newCircles.length > 0) {
 				setStatus("started");
 				setIsProgressing(true);
+			} else {
+				setStatus("idle");
+				setIsProgressing(false);
 			}
 
 			setEvent(null);
 		}
-	}, [event, circles, status]);
+	}, [event, circles]);
 
 	useEffect(() => {
 		if (status === "ended") {
