@@ -33,7 +33,10 @@ export const Chwazi = () => {
 			switch (touch.type) {
 				case "start": {
 					setStatus("started");
-					setIsProgressing(true);
+
+					if (status !== "picked") {
+						setIsProgressing(true);
+					}
 					break;
 				}
 
@@ -43,7 +46,9 @@ export const Chwazi = () => {
 
 				case "end": {
 					if (newCircles.length > 0) {
-						setIsProgressing(true);
+						if (status !== "picked") {
+							setIsProgressing(true);
+						}
 					} else {
 						setStatus("idle");
 						setIsProgressing(false);
@@ -55,7 +60,7 @@ export const Chwazi = () => {
 
 			setTouch({ ...touch, event: null });
 		}
-	}, [touch, circles]);
+	}, [touch, circles, status]);
 
 	useEffect(() => {
 		if (status === "ended") {
