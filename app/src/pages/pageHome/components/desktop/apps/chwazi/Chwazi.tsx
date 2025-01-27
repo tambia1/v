@@ -33,10 +33,7 @@ export const Chwazi = () => {
 			switch (touch.type) {
 				case "start": {
 					setStatus("started");
-
-					if (status !== "picked") {
-						setIsProgressing(true);
-					}
+					setIsProgressing(true);
 					break;
 				}
 
@@ -46,9 +43,7 @@ export const Chwazi = () => {
 
 				case "end": {
 					if (newCircles.length > 0) {
-						if (status !== "picked") {
-							setIsProgressing(true);
-						}
+						setIsProgressing(true);
 					} else {
 						setStatus("idle");
 						setIsProgressing(false);
@@ -60,7 +55,7 @@ export const Chwazi = () => {
 
 			setTouch({ ...touch, event: null });
 		}
-	}, [touch, circles, status]);
+	}, [touch, circles]);
 
 	useEffect(() => {
 		if (status === "ended") {
@@ -83,10 +78,13 @@ export const Chwazi = () => {
 
 	const handleOnTouchStart = (e: TouchEvent<HTMLDivElement>) => {
 		setTouch({ type: "start", event: e });
-		setIsProgressing(false);
-		setIsGlowing(false);
-		timeoutPick.stop();
-		timeoutPick.start();
+
+		if (status !== "picked") {
+			setIsProgressing(false);
+			setIsGlowing(false);
+			timeoutPick.stop();
+			timeoutPick.start();
+		}
 	};
 
 	const handleOnTouchMove = (e: TouchEvent<HTMLDivElement>) => {
@@ -95,9 +93,12 @@ export const Chwazi = () => {
 
 	const handleOnTouchEnd = (e: TouchEvent<HTMLDivElement>) => {
 		setTouch({ type: "end", event: e });
-		setIsProgressing(false);
-		timeoutPick.stop();
-		timeoutPick.start();
+
+		if (status !== "picked") {
+			setIsProgressing(false);
+			timeoutPick.stop();
+			timeoutPick.start();
+		}
 	};
 
 	const getCircles = (e: TouchEvent<HTMLDivElement>, circles: Circle[]) => {
