@@ -5,6 +5,7 @@ import { Icon } from "@src/components/icon/Icon";
 import { IconButton } from "@src/components/iconButton/IconButton";
 import { Input } from "@src/components/input/Input";
 import { List } from "@src/components/list/List";
+import { Modal } from "@src/components/modal/Modal";
 import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
 import { Progress } from "@src/components/progress/Progress";
 import { Select } from "@src/components/select/Select";
@@ -42,6 +43,8 @@ export const TestEdit = () => {
 	const selectMultiSelections = selectMultiItems.filter((item) => item.isSelected);
 
 	const [selectdTabIndex, setSelectedTabIndex] = useState(0);
+
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleOnClickSwitch = () => {
 		setSwitchChecked(!switchChecked);
@@ -398,6 +401,49 @@ export const TestEdit = () => {
 							<Tab.Item value="tab_2">Tab 2</Tab.Item>
 						</Tab>
 					</S.Row>
+				</S.Col>
+
+				<S.Line />
+
+				<S.Col>
+					<Text>Modal</Text>
+
+					<S.Row>
+						<S.Cell>
+							<Button
+								variant="styled"
+								onClick={() => {
+									setIsModalOpen(true);
+								}}
+							>
+								Show Modal
+							</Button>
+						</S.Cell>
+					</S.Row>
+
+					<Modal
+						isVisible={isModalOpen}
+						iconName="info"
+						title="Title Modal"
+						text="Modal description text"
+						onClickBackground={() => {
+							setIsModalOpen(false);
+						}}
+						buttons={[
+							{
+								content: "OK",
+								onClick: () => {
+									setIsModalOpen(false);
+								},
+							},
+							{
+								content: "Cancel",
+								onClick: () => {
+									setIsModalOpen(false);
+								},
+							},
+						]}
+					/>
 				</S.Col>
 			</S.Col>
 		</S.TestEdit>
