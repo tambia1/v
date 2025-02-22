@@ -5,7 +5,6 @@ import { IconsName } from "./components/box/components/content/components/icon/I
 import { Compose } from "./components/compose/Compose";
 
 type Props = {
-	className?: string;
 	children?: ReactNode;
 	isVisible?: boolean;
 	onClickBackground?: () => void;
@@ -18,7 +17,7 @@ type Props = {
 	}[];
 };
 
-export const Modal = ({ className, isVisible = true, title, text, iconName, buttons, onClickBackground }: Props) => {
+export const Modal = ({ isVisible = true, title, text, iconName, buttons, onClickBackground }: Props) => {
 	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
 			return;
@@ -28,26 +27,30 @@ export const Modal = ({ className, isVisible = true, title, text, iconName, butt
 	};
 
 	return (
-		<Modal.Compose className={className} isVisible={isVisible} onClick={handleOnClick}>
-			<Modal.Box.Compose>
-				<Modal.Box.Content.Compose>
-					{iconName && <Modal.Box.Content.Icon iconName={iconName} />}
+		<>
+			{isVisible && (
+				<Modal.Compose onClick={handleOnClick}>
+					<Modal.Box.Compose>
+						<Modal.Box.Content.Compose>
+							{iconName && <Modal.Box.Content.Icon iconName={iconName} />}
 
-					<Modal.Box.Content.Box>
-						{title && <Modal.Box.Content.Title>{title}</Modal.Box.Content.Title>}
-						{text && <Modal.Box.Content.Text>{text}</Modal.Box.Content.Text>}
-					</Modal.Box.Content.Box>
-				</Modal.Box.Content.Compose>
+							<Modal.Box.Content.Box>
+								{title && <Modal.Box.Content.Title>{title}</Modal.Box.Content.Title>}
+								{text && <Modal.Box.Content.Text>{text}</Modal.Box.Content.Text>}
+							</Modal.Box.Content.Box>
+						</Modal.Box.Content.Compose>
 
-				<Modal.Box.Buttons>
-					{buttons.map((button, index) => (
-						<Button key={index} onClick={button.onClick} variant="styled" size="s">
-							{button.content}
-						</Button>
-					))}
-				</Modal.Box.Buttons>
-			</Modal.Box.Compose>
-		</Modal.Compose>
+						<Modal.Box.Buttons>
+							{buttons.map((button, index) => (
+								<Button key={index} onClick={button.onClick} variant="styled" size="s">
+									{button.content}
+								</Button>
+							))}
+						</Modal.Box.Buttons>
+					</Modal.Box.Compose>
+				</Modal.Compose>
+			)}
+		</>
 	);
 };
 
