@@ -1,8 +1,7 @@
 import { ReactNode } from "react";
-import { Button } from "../button/Button";
 import { Box } from "./components/box/Box";
 import { IconsName } from "./components/box/components/content/components/icon/Icon.styles";
-import { Compose } from "./components/compose/Compose";
+import { Compose } from "./compose/Compose";
 
 type Props = {
 	children?: ReactNode;
@@ -27,30 +26,12 @@ export const Modal = ({ isVisible = true, title, text, iconName, buttons, onClic
 	};
 
 	return (
-		<>
-			{isVisible && (
-				<Modal.Compose onClick={handleOnClick}>
-					<Modal.Box.Compose>
-						<Modal.Box.Content.Compose>
-							{iconName && <Modal.Box.Content.Icon iconName={iconName} />}
-
-							<Modal.Box.Content.Box>
-								{title && <Modal.Box.Content.Title>{title}</Modal.Box.Content.Title>}
-								{text && <Modal.Box.Content.Text>{text}</Modal.Box.Content.Text>}
-							</Modal.Box.Content.Box>
-						</Modal.Box.Content.Compose>
-
-						<Modal.Box.Buttons>
-							{buttons.map((button, index) => (
-								<Button key={index} onClick={button.onClick} variant="styled" size="s">
-									{button.content}
-								</Button>
-							))}
-						</Modal.Box.Buttons>
-					</Modal.Box.Compose>
-				</Modal.Compose>
-			)}
-		</>
+		<Modal.Compose isVisible={isVisible} onClickBackground={handleOnClick}>
+			<Modal.Box>
+				<Modal.Box.Content iconName={iconName} title={title} text={text} />
+				<Modal.Box.Buttons buttons={buttons} />
+			</Modal.Box>
+		</Modal.Compose>
 	);
 };
 

@@ -5,6 +5,6 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	children?: ReactNode;
 }
 
-export const Compose = ({ children, ...rest }: Props) => {
-	return <S.Compose {...rest}>{children}</S.Compose>;
+export const Compose = ({ children }: Props) => {
+	return <S.Compose>{children}</S.Compose>;
 };

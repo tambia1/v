@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Box = styled.div`
+export const Compose = styled.div`
 	position: relative;
 	width: 25rem;
 	min-height: 10rem;

@@ -45,6 +45,7 @@ export const TestEdit = () => {
 	const [selectdTabIndex, setSelectedTabIndex] = useState(0);
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isModalOpen2, setIsModalOpen2] = useState(false);
 
 	const handleOnClickSwitch = () => {
 		setSwitchChecked(!switchChecked);
@@ -444,6 +445,52 @@ export const TestEdit = () => {
 							},
 						]}
 					/>
+				</S.Col>
+
+				<S.Col>
+					<Text>Modal Composition - no icon</Text>
+
+					<S.Row>
+						<S.Cell>
+							<Button
+								variant="styled"
+								onClick={() => {
+									setIsModalOpen2(true);
+								}}
+							>
+								Show Modal
+							</Button>
+						</S.Cell>
+					</S.Row>
+
+					<Modal.Compose
+						isVisible={isModalOpen2}
+						onClickBackground={() => {
+							setIsModalOpen2(false);
+						}}
+					>
+						<Modal.Box>
+							<Modal.Box.Content.Compose>
+								<Modal.Box.Content.Header title="Modal Title" text="Modal description" />
+							</Modal.Box.Content.Compose>
+							<Modal.Box.Buttons
+								buttons={[
+									{
+										content: "OK",
+										onClick: () => {
+											setIsModalOpen2(false);
+										},
+									},
+									{
+										content: "Cancel",
+										onClick: () => {
+											setIsModalOpen2(false);
+										},
+									},
+								]}
+							/>{" "}
+						</Modal.Box>
+					</Modal.Compose>
 				</S.Col>
 			</S.Col>
 		</S.TestEdit>

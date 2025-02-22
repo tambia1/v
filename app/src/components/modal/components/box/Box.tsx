@@ -1,16 +1,20 @@
 import { MouseEvent, ReactNode } from "react";
-import * as S from "./Box.styles";
 import { Buttons } from "./components/buttons/Buttons";
 import { Content } from "./components/content/Content";
+import { Compose } from "./compose/Compose";
 
 export interface Props {
 	children?: ReactNode;
 }
 
-export const Box = ({ children }: Props) => {
-	return <Box.Compose onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}>{children}</Box.Compose>;
+export const Box = ({ children, ...rest }: Props) => {
+	return (
+		<Box.Compose onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()} {...rest}>
+			{children}
+		</Box.Compose>
+	);
 };
 
-Box.Compose = S.Box;
+Box.Compose = Compose;
 Box.Content = Content;
 Box.Buttons = Buttons;

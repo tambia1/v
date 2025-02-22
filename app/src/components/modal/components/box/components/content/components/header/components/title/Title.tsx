@@ -6,7 +6,5 @@ type Props = {
 };
 
 export const Title = ({ children }: Props) => {
-	return <Title.Compose>{children}</Title.Compose>;
+	return children && <S.Title>{children}</S.Title>;
 };
-
-Title.Compose = S.Title;
