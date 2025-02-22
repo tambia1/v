@@ -7,12 +7,8 @@ export interface Props {
 	children?: ReactNode;
 }
 
-export const Box = ({ children, ...rest }: Props) => {
-	return (
-		<Box.Compose onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()} {...rest}>
-			{children}
-		</Box.Compose>
-	);
+export const Box = ({ children }: Props) => {
+	return <Box.Compose onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}>{children}</Box.Compose>;
 };
 
 Box.Compose = Compose;
