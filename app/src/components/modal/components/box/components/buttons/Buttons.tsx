@@ -3,13 +3,13 @@ import { ReactNode } from "react";
 import { Compose } from "./compose/Compose";
 
 export interface Props {
-	buttons: {
+	buttons?: {
 		content: ReactNode;
 		onClick: () => void;
 	}[];
 }
 
-export const Buttons = ({ buttons }: Props) => {
+export const Buttons = ({ buttons = [] }: Props) => {
 	return (
 		<Buttons.Compose>
 			{buttons.map((button, index) => (

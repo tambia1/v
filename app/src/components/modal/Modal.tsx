@@ -4,7 +4,6 @@ import { IconsName } from "./components/box/components/content/components/icon/I
 import { Compose } from "./compose/Compose";
 
 type Props = {
-	children?: ReactNode;
 	isVisible?: boolean;
 	onClickBackground?: () => void;
 	iconName?: IconsName;
@@ -16,7 +15,7 @@ type Props = {
 	}[];
 };
 
-export const Modal = ({ isVisible = true, title, text, iconName, buttons, onClickBackground }: Props) => {
+export const Modal = ({ isVisible = true, onClickBackground, title, text, iconName, buttons }: Props) => {
 	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
 			return;
@@ -27,10 +26,7 @@ export const Modal = ({ isVisible = true, title, text, iconName, buttons, onClic
 
 	return (
 		<Modal.Compose isVisible={isVisible} onClickBackground={handleOnClick}>
-			<Modal.Box>
-				<Modal.Box.Content iconName={iconName} title={title} text={text} />
-				<Modal.Box.Buttons buttons={buttons} />
-			</Modal.Box>
+			<Modal.Box iconName={iconName} title={title} text={text} buttons={buttons} />
 		</Modal.Compose>
 	);
 };

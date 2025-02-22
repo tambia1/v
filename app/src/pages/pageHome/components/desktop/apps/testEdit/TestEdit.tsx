@@ -469,7 +469,7 @@ export const TestEdit = () => {
 							setIsModalOpen2(false);
 						}}
 					>
-						<Modal.Box>
+						<Modal.Box.Compose>
 							<Modal.Box.Content.Compose>
 								<Modal.Box.Content.Header title="Modal Title" text="Modal description" />
 							</Modal.Box.Content.Compose>
@@ -488,8 +488,8 @@ export const TestEdit = () => {
 										},
 									},
 								]}
-							/>{" "}
-						</Modal.Box>
+							/>
+						</Modal.Box.Compose>
 					</Modal.Compose>
 				</S.Col>
 			</S.Col>
