@@ -210,7 +210,7 @@ export const Desktop = () => {
 			<Modal
 				isVisible={isErrorLoadingComponent}
 				iconName="info"
-				text={t(lang.all.error)}
+				description={t(lang.all.error)}
 				onClickBackground={handleLoadingError}
 				buttons={[
 					{

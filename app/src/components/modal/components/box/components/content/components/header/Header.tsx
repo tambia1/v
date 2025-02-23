@@ -1,22 +1,22 @@
 import { ReactNode } from "react";
-import { Text } from "./components/text/Text";
+import { Description } from "./components/description/Description";
 import { Title } from "./components/title/Title";
 import { Compose } from "./compose/Compose";
 
 export interface Props {
 	title?: ReactNode;
-	text?: ReactNode;
+	description?: ReactNode;
 }
 
-export const Header = ({ title, text }: Props) => {
+export const Header = ({ title, description }: Props) => {
 	return (
 		<Header.Compose>
 			<Header.Title>{title}</Header.Title>
-			<Header.Text>{text}</Header.Text>
+			<Header.Description>{description}</Header.Description>
 		</Header.Compose>
 	);
 };
 
 Header.Compose = Compose;
 Header.Title = Title;
-Header.Text = Text;
+Header.Description = Description;

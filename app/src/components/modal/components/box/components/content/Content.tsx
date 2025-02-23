@@ -7,14 +7,14 @@ import { Compose } from "./compose/Compose";
 export interface Props {
 	iconName?: IconsName;
 	title?: ReactNode;
-	text?: ReactNode;
+	description?: ReactNode;
 }
 
-export const Content = ({ iconName, title, text }: Props) => {
+export const Content = ({ iconName, title, description }: Props) => {
 	return (
 		<Content.Compose>
 			<Content.Icon iconName={iconName} />
-			<Content.Header title={title} text={text} />
+			<Content.Header title={title} description={description} />
 		</Content.Compose>
 	);
 };

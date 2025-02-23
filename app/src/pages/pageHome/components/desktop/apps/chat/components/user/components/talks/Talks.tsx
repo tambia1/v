@@ -115,7 +115,7 @@ export const Talks = ({ name, avatar }: Props) => {
 			<Modal
 				isVisible={isModalVisible}
 				iconName="question"
-				text={<T>{lang.all.error}</T>}
+				description={<T>{lang.all.error}</T>}
 				onClickBackground={handleOnClickModalOk}
 				buttons={[
 					{

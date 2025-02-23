@@ -89,7 +89,7 @@ export const NotesPage = () => {
 			<Modal
 				isVisible={noteIdToRemove !== ""}
 				iconName="question"
-				text={<T>{lang.all.areYouSure}</T>}
+				description={<T>{lang.all.areYouSure}</T>}
 				onClickBackground={cancelRemoveNote}
 				buttons={[
 					{

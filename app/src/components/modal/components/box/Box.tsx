@@ -7,17 +7,17 @@ import { Compose } from "./compose/Compose";
 export interface Props {
 	iconName?: IconsName;
 	title?: ReactNode;
-	text?: ReactNode;
+	description?: ReactNode;
 	buttons?: {
 		content: ReactNode;
 		onClick: () => void;
 	}[];
 }
 
-export const Box = ({ title, text, iconName, buttons }: Props) => {
+export const Box = ({ title, description, iconName, buttons }: Props) => {
 	return (
 		<Box.Compose>
-			<Box.Content iconName={iconName} title={title} text={text} />
+			<Box.Content iconName={iconName} title={title} description={description} />
 			<Box.Buttons buttons={buttons} />
 		</Box.Compose>
 	);

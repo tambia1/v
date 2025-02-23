@@ -62,7 +62,7 @@ export const Store = () => {
 			<Modal
 				isVisible={isModalSaveVisible}
 				iconName="question"
-				text={<T>{lang.store.saveApp}</T>}
+				description={<T>{lang.store.saveApp}</T>}
 				onClickBackground={handleSaveNo}
 				buttons={[
 					{
@@ -79,7 +79,7 @@ export const Store = () => {
 			<Modal
 				isVisible={isModalExistVisible}
 				iconName="info"
-				text={<T>{lang.store.alreadySaved}</T>}
+				description={<T>{lang.store.alreadySaved}</T>}
 				onClickBackground={handleSaveNo}
 				buttons={[
 					{

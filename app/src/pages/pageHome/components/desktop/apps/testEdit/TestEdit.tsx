@@ -426,8 +426,8 @@ export const TestEdit = () => {
 					<Modal
 						isVisible={isModalOpen}
 						iconName="info"
-						title="Title Modal"
-						text="Modal description text"
+						title="Modal Title"
+						description="Modal description text."
 						onClickBackground={() => {
 							setIsModalOpen(false);
 						}}
@@ -472,7 +472,7 @@ export const TestEdit = () => {
 					>
 						<Modal.Box.Compose>
 							<Modal.Box.Content.Compose>
-								<Modal.Box.Content.Header title="Modal Title" text="Modal description" />
+								<Modal.Box.Content.Header title="Modal Title" description="Modal description text." />
 							</Modal.Box.Content.Compose>
 							<Modal.Box.Buttons
 								buttons={[
@@ -520,7 +520,7 @@ export const TestEdit = () => {
 							<Modal.Box.Content.Compose>
 								<Modal.Box.Content.Icon iconName="info" />
 								<Modal.Box.Content.Header.Compose>
-									<Modal.Box.Content.Header.Text>Modal description</Modal.Box.Content.Header.Text>
+									<Modal.Box.Content.Header.Description>Modal description text.</Modal.Box.Content.Header.Description>
 								</Modal.Box.Content.Header.Compose>
 							</Modal.Box.Content.Compose>
 							<Modal.Box.Buttons
@@ -566,7 +566,7 @@ export const TestEdit = () => {
 						}}
 					>
 						<Modal.Box.Compose>
-							<Modal.Box.Content iconName="check" title="Modal title" text="Modal text" />
+							<Modal.Box.Content iconName="check" title="Modal Title" description="Modal description text." />
 							<div>
 								<hr />
 							</div>

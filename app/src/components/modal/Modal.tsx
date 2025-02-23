@@ -8,17 +8,17 @@ type Props = {
 	onClickBackground?: () => void;
 	iconName?: IconsName;
 	title?: ReactNode;
-	text?: ReactNode;
+	description?: ReactNode;
 	buttons: {
 		content: ReactNode;
 		onClick: () => void;
 	}[];
 };
 
-export const Modal = ({ isVisible = true, onClickBackground, title, text, iconName, buttons }: Props) => {
+export const Modal = ({ isVisible = true, onClickBackground, title, description, iconName, buttons }: Props) => {
 	return (
 		<Modal.Compose isVisible={isVisible} onClickBackground={onClickBackground}>
-			<Modal.Box iconName={iconName} title={title} text={text} buttons={buttons} />
+			<Modal.Box iconName={iconName} title={title} description={description} buttons={buttons} />
 		</Modal.Compose>
 	);
 };

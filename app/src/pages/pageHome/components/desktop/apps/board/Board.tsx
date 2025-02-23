@@ -207,7 +207,7 @@ export const Board = () => {
 
 			<Modal
 				isVisible={isModalVisible}
-				text={
+				description={
 					<S.ModalContent>
 						<Text>Please enter task name</Text>
 						<Input
