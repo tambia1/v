@@ -29,17 +29,19 @@ export const Button = styled.button<{ $variant: IVariant; $width: keyof ITheme["
 			height: 3rem;
 			white-space: nowrap;
 
-			&:hover {
-			}
-
-			&:active {
-				box-shadow: inset 0 0 3px 0px #bbbbbb, inset 0 0 10px #dddddd;
-				background-image: linear-gradient(to top, #fdfdfd 0%, #ffffff 20%, #d8d9db 100%);
+			&:not(:disabled) {
+				&:hover {
+				}
+				
+				&:active {
+					box-shadow: inset 0 0 3px 0px #bbbbbb, inset 0 0 10px #dddddd;
+					background-image: linear-gradient(to top, #fdfdfd 0%, #ffffff 20%, #d8d9db 100%);
+				}
 			}
 
 			&:disabled {
-				opacity: 0.6;
 				cursor: not-allowed;
+				opacity: 0.6;
 			}
 		`}
 
@@ -61,15 +63,18 @@ export const Button = styled.button<{ $variant: IVariant; $width: keyof ITheme["
 			min-width: 5em;
 			height: 3rem;
 
-			&:hover {
-				background-color: ${(props) => props.theme.color.primaryFgHover};
-			}
+			&:not(:disabled) {
+				&:hover {
+					background-color: ${(props) => props.theme.color.primaryFgHover};
+				}
 
-			&:active {
-				background-color: ${(props) => props.theme.color.primaryFgActive};
+				&:active {
+					background-color: ${(props) => props.theme.color.primaryFgActive};
+				}
 			}
 
 			&:disabled {
+				cursor: not-allowed;
 				color: ${(props) => props.theme.color.primaryBgDisabled};
 				background-color: ${(props) => props.theme.color.primaryFgDisabled};
 				border-color: ${(props) => props.theme.color.primaryFgDisabled};
@@ -95,15 +100,18 @@ export const Button = styled.button<{ $variant: IVariant; $width: keyof ITheme["
 			min-width: 5em;
 			height: 3rem;
 
-			&:hover {
-				background-color: ${(props) => props.theme.color.primaryBgHover}
-			}
+			&:not(:disabled) {
+				&:hover {
+					background-color: ${(props) => props.theme.color.primaryBgHover}
+				}
 
-			&:active {
-				background-color: ${(props) => props.theme.color.primaryBgActive}
+				&:active {
+					background-color: ${(props) => props.theme.color.primaryBgActive}
+				}
 			}
 
 			&:disabled {
+				cursor: not-allowed;
 				color: ${(props) => props.theme.color.primaryFgDisabled}
 				background-color: ${(props) => props.theme.color.primaryBgDisabled}
 				border-color: ${(props) => props.theme.color.primaryBgDisabled}
@@ -132,17 +140,20 @@ export const Button = styled.button<{ $variant: IVariant; $width: keyof ITheme["
 			min-width: 5em;
 			height: 3rem;
 
-			&:hover {
-				--label-color: hsl(230, 55%, 70%);
-				color: var(--label-color);
-			}
+			&:not(:disabled) {
+				&:hover {
+					--label-color: hsl(230, 55%, 70%);
+					color: var(--label-color);
+				}
 
-			&:active {
-				--label-color: hsl(230, 55%, 75%);
-				color: var(--label-color);
+				&:active {
+					--label-color: hsl(230, 55%, 75%);
+					color: var(--label-color);
+				}
 			}
 
 			&:disabled {
+				cursor: not-allowed;
 				--label-color: hsl(0, 0%, 63%);
 				color: var(--label-color);
 			}
@@ -167,17 +178,20 @@ export const Button = styled.button<{ $variant: IVariant; $width: keyof ITheme["
 			min-width: 5em;
 			height: 3rem;
 
-			&:hover {
-				color: ${(props) => props.theme.color.primaryFgHover};
-				color: var(--label-color);
-			}
+			&:not(:disabled) {
+				&:hover {
+					color: ${(props) => props.theme.color.primaryFgHover};
+					color: var(--label-color);
+				}
 
-			&:active {
-				color: ${(props) => props.theme.color.primaryFgActive};
-				color: var(--label-color);
+				&:active {
+					color: ${(props) => props.theme.color.primaryFgActive};
+					color: var(--label-color);
+				}
 			}
 
 			&:disabled {
+				cursor: not-allowed;
 				color: ${(props) => props.theme.color.primaryFgDisabled};
 				color: var(--label-color);
 			}
