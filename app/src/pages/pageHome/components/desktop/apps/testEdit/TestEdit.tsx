@@ -46,6 +46,7 @@ export const TestEdit = () => {
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isModalOpen2, setIsModalOpen2] = useState(false);
+	const [isModalOpen3, setIsModalOpen3] = useState(false);
 
 	const handleOnClickSwitch = () => {
 		setSwitchChecked(!switchChecked);
@@ -485,6 +486,102 @@ export const TestEdit = () => {
 										content: "Cancel",
 										onClick: () => {
 											setIsModalOpen2(false);
+										},
+									},
+								]}
+							/>
+						</Modal.Box.Compose>
+					</Modal.Compose>
+				</S.Col>
+
+				<S.Col>
+					<Text>Modal Composition - no title</Text>
+
+					<S.Row>
+						<S.Cell>
+							<Button
+								variant="styled"
+								onClick={() => {
+									setIsModalOpen3(true);
+								}}
+							>
+								Show Modal
+							</Button>
+						</S.Cell>
+					</S.Row>
+
+					<Modal.Compose
+						isVisible={isModalOpen3}
+						onClickBackground={() => {
+							setIsModalOpen3(false);
+						}}
+					>
+						<Modal.Box.Compose>
+							<Modal.Box.Content.Compose>
+								<Modal.Box.Content.Icon iconName="info" />
+								<Modal.Box.Content.Header.Compose>
+									<Modal.Box.Content.Header.Text>Modal description</Modal.Box.Content.Header.Text>
+								</Modal.Box.Content.Header.Compose>
+							</Modal.Box.Content.Compose>
+							<Modal.Box.Buttons
+								buttons={[
+									{
+										content: "OK",
+										onClick: () => {
+											setIsModalOpen3(false);
+										},
+									},
+									{
+										content: "Cancel",
+										onClick: () => {
+											setIsModalOpen3(false);
+										},
+									},
+								]}
+							/>
+						</Modal.Box.Compose>
+					</Modal.Compose>
+				</S.Col>
+
+				<S.Col>
+					<Text>Modal Composition - line before buttons</Text>
+
+					<S.Row>
+						<S.Cell>
+							<Button
+								variant="styled"
+								onClick={() => {
+									setIsModalOpen3(true);
+								}}
+							>
+								Show Modal
+							</Button>
+						</S.Cell>
+					</S.Row>
+
+					<Modal.Compose
+						isVisible={isModalOpen3}
+						onClickBackground={() => {
+							setIsModalOpen3(false);
+						}}
+					>
+						<Modal.Box.Compose>
+							<Modal.Box.Content iconName="check" title="Modal title" text="Modal text" />
+							<div>
+								<hr />
+							</div>
+							<Modal.Box.Buttons
+								buttons={[
+									{
+										content: "OK",
+										onClick: () => {
+											setIsModalOpen3(false);
+										},
+									},
+									{
+										content: "Cancel",
+										onClick: () => {
+											setIsModalOpen3(false);
 										},
 									},
 								]}

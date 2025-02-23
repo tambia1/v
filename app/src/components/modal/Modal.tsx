@@ -16,16 +16,8 @@ type Props = {
 };
 
 export const Modal = ({ isVisible = true, onClickBackground, title, text, iconName, buttons }: Props) => {
-	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
-		if (e.target !== e.currentTarget) {
-			return;
-		}
-
-		onClickBackground?.();
-	};
-
 	return (
-		<Modal.Compose isVisible={isVisible} onClickBackground={handleOnClick}>
+		<Modal.Compose isVisible={isVisible} onClickBackground={onClickBackground}>
 			<Modal.Box iconName={iconName} title={title} text={text} buttons={buttons} />
 		</Modal.Compose>
 	);

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import * as S from "./Text.styles";
 
 export interface Props {
-	children?: ReactNode;
+	children: ReactNode;
 }
 
 export const Text = ({ children }: Props) => {

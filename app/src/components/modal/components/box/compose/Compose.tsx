@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { MouseEvent, ReactNode } from "react";
 import * as S from "./Compose.styles";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -6,5 +6,5 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export const Compose = ({ children }: Props) => {
-	return <S.Compose>{children}</S.Compose>;
+	return <S.Compose onClick={(e: MouseEvent<HTMLDivElement>) => e.stopPropagation()}>{children}</S.Compose>;
 };
