@@ -29,6 +29,4 @@ export const ProgressValue = styled.div.attrs<{ $width: number }>((props) => ({
 	border-radius: 100rem;
 	background-color: ${({ theme }) => theme.color.primaryFg};
 	transition: all 0.05s linear;
-	background-image: linear-gradient(to top, #d8d9db 0%, #ffffff 80%, #fdfdfd 100%);
-    box-shadow: inset 0 0 10px #dddddd;
 `;
