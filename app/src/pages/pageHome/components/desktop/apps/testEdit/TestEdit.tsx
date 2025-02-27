@@ -47,6 +47,7 @@ export const TestEdit = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isModalOpen2, setIsModalOpen2] = useState(false);
 	const [isModalOpen3, setIsModalOpen3] = useState(false);
+	const [isModalOpen4, setIsModalOpen4] = useState(false);
 
 	const handleOnClickSwitch = () => {
 		setSwitchChecked(!switchChecked);
@@ -560,9 +561,9 @@ export const TestEdit = () => {
 					</S.Row>
 
 					<Modal.Compose
-						isVisible={isModalOpen3}
+						isVisible={isModalOpen4}
 						onClickBackground={() => {
-							setIsModalOpen3(false);
+							setIsModalOpen4(false);
 						}}
 					>
 						<Modal.Box.Compose>
@@ -575,13 +576,13 @@ export const TestEdit = () => {
 									{
 										content: "OK",
 										onClick: () => {
-											setIsModalOpen3(false);
+											setIsModalOpen4(false);
 										},
 									},
 									{
 										content: "Cancel",
 										onClick: () => {
-											setIsModalOpen3(false);
+											setIsModalOpen4(false);
 										},
 									},
 								]}
