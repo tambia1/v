@@ -113,20 +113,28 @@ export const TestEdit = () => {
 					<Text>Text</Text>
 
 					<S.Row>
-						<Text variant="title">Test</Text>
-						<Text>title</Text>
+						<S.Cell>title</S.Cell>
+						<S.Cell>
+							<Text variant="title">Test</Text>
+						</S.Cell>
 					</S.Row>
 					<S.Row>
-						<Text variant="header">Test</Text>
-						<Text>header</Text>
+						<S.Cell>header</S.Cell>
+						<S.Cell>
+							<Text variant="header">Test</Text>
+						</S.Cell>
 					</S.Row>
 					<S.Row>
-						<Text variant="body">Test</Text>
-						<Text>body</Text>
+						<S.Cell>body</S.Cell>
+						<S.Cell>
+							<Text variant="body">Test</Text>
+						</S.Cell>
 					</S.Row>
 					<S.Row>
-						<Text variant="note">Test</Text>
-						<Text>note</Text>
+						<S.Cell>note</S.Cell>
+						<S.Cell>
+							<Text variant="note">Test</Text>
+						</S.Cell>
 					</S.Row>
 				</S.Col>
 
@@ -206,7 +214,7 @@ export const TestEdit = () => {
 					</S.Row>
 
 					<S.Row>
-						<S.Cell> variant="stroke"</S.Cell>
+						<S.Cell>variant="stroke"</S.Cell>
 						<S.Cell>
 							<Button variant="stroke">Button Text</Button>
 						</S.Cell>
@@ -552,7 +560,7 @@ export const TestEdit = () => {
 							<Button
 								variant="styled"
 								onClick={() => {
-									setIsModalOpen3(true);
+									setIsModalOpen4(true);
 								}}
 							>
 								Show Modal
