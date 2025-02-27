@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@apollo/client": "3.13.1",
-        "@dotenvx/dotenvx": "1.37.0",
+        "@dotenvx/dotenvx": "^1.38.3",
         "@react-oauth/google": "0.12.1",
         "@tanstack/react-query": "5.66.9",
         "@tanstack/react-query-devtools": "5.66.9",
