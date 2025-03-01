@@ -46,6 +46,7 @@ export const IconDone = styled.div<{ $isVisible: boolean }>`
 
 	& svg {
 		stroke: ${(props) => props.theme.color.successFg};
+		fill: transparent;
 	}
 `;
 
@@ -55,5 +56,6 @@ export const IconCancel = styled.div<{ $isVisible: boolean }>`
 
 	& svg {
 		stroke: ${(props) => props.theme.color.errorFg};
+		fill: transparent;
 	}
 `;

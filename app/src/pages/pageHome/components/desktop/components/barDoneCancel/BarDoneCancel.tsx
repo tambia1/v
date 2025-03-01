@@ -12,11 +12,11 @@ export const BarDoneCancel = ({ showDone = false, onClickDone, showCancel = fals
 	return (
 		<S.Container>
 			<S.IconDone onClick={onClickDone} $isVisible={showDone}>
-				<Icon iconName="iconCheck" size="l" />
+				<Icon iconName="iconCheck" size="xs" />
 			</S.IconDone>
 
 			<S.IconCancel onClick={onClickCancel} $isVisible={showCancel}>
-				<Icon iconName="iconX" size="l" />
+				<Icon iconName="iconX" size="xs" />
 			</S.IconCancel>
 		</S.Container>
 	);
