@@ -13,6 +13,7 @@ import notes from "./assets/notes.png";
 import photos from "./assets/photos.png";
 import redis from "./assets/redis.png";
 import settings from "./assets/settings.png";
+import shush from "./assets/shush.png";
 import snake from "./assets/snake.png";
 import speed from "./assets/speed.png";
 import spin from "./assets/spin.png";
@@ -49,6 +50,7 @@ export const appIcons = {
 	redis,
 	chickenScream,
 	chwazi,
+	shush,
 } as const;
 
 export type IAppIcon = keyof typeof appIcons;

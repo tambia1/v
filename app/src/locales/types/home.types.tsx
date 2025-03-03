@@ -107,6 +107,10 @@ export type IHome = {
 		title: string;
 	};
 
+	shush: {
+		title: string;
+	};
+
 	mfe: {
 		title: string;
 	};

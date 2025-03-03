@@ -107,6 +107,10 @@ export const translation: IHome = {
 		title: "Chwazi",
 	},
 
+	shush: {
+		title: "Shush",
+	},
+
 	mfe: {
 		title: "Micro Frontend",
 	},

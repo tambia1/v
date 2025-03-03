@@ -20,6 +20,7 @@ import { ChickenScream } from "./apps/chickenScream/ChickenScream";
 import { Chwazi } from "./apps/chwazi/Chwazi";
 import { Debug } from "./apps/debug/Debug";
 import { Redis } from "./apps/redis/Redis";
+import { Shush } from "./apps/shush/Shush";
 import { Speed } from "./apps/speed/Speed";
 import { Spin } from "./apps/spin/Spin";
 import { Stocks } from "./apps/stocks/Stocks";
@@ -71,6 +72,7 @@ export const apps: IApp[][] = [
 		{ id: "clashRoyale", roles: ["admin", "user", "guest"], title: <T>{lang.clashRoyale.title}</T>, icon: "clashRoyale", component: <ClashRoyale /> },
 		{ id: "chickenScream", roles: ["admin", "user", "guest"], title: <T>{lang.chickenScream.title}</T>, icon: "chickenScream", component: <ChickenScream /> },
 		{ id: "chwazi", roles: ["admin", "user", "guest"], title: <T>{lang.chwazi.title}</T>, icon: "chwazi", component: <Chwazi /> },
+		{ id: "shush", roles: ["admin", "user", "guest"], title: <T>{lang.shush.title}</T>, icon: "shush", component: <Shush /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
