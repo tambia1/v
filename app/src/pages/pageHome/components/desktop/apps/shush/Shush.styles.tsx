@@ -1,3 +1,6 @@
+import { Progress } from "@src/components/progress/Progress";
+import { ProgressValue } from "@src/components/progress/Progress.styles";
+import { Slider } from "@src/components/slider/Slider";
 import styled from "styled-components";
 
 export const Shush = styled.div`
@@ -14,17 +17,15 @@ export const Shush = styled.div`
 	background-color: #000000;
 `;
 
-export const VolumeBars = styled.div`
-	display: flex;
-	align-items: flex-end;
-	justify-content: center;
-	height: 100px;
-	gap: 2px;
+export const ProgressStyled = styled(Progress)<{ percent: number }>`
+	border-color: #ffffff;
+	margin-top: ${(props) => props.theme.size.s};
+
+	& ${ProgressValue}{
+		background-color: #ffffff;
+	}
 `;
 
-export const Bar = styled.div<{ height: number; color: string }>`
-	width: 10px;
-	height: ${({ height }) => height}%;
-	background-color: ${({ color }) => color};
-	transition: height 0.2s ease-in-out, background-color 0.2s ease-in-out;
+export const SliderStyled = styled(Slider)`
+	margin-top: ${(props) => props.theme.size.s};
 `;
