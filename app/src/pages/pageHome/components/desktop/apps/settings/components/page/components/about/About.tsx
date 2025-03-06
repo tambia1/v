@@ -1,3 +1,4 @@
+import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { Device } from "@src/utils/Device";
@@ -51,6 +52,9 @@ export const About = () => {
 			<Text variant="body">{Device.getDeviceInfo().iosVersion}</Text>
 			<Text variant="body">{Device.getDeviceInfo().browserName}</Text>
 			<Text variant="body">{Device.getDeviceInfo().browserVersion}</Text>
+
+			<S.Spacer />
+			<Button onClick={() => window.location.reload()}>Reload App</Button>
 		</S.About>
 	);
 };
