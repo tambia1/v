@@ -29,3 +29,9 @@ export const ProgressStyled = styled(Progress)<{ percent: number }>`
 export const SliderStyled = styled(Slider)`
 	margin-top: ${(props) => props.theme.size.s};
 `;
+
+export const Row = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+`;

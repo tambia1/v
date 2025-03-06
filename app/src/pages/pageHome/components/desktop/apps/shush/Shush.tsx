@@ -9,7 +9,7 @@ export const Shush = () => {
 	const { isListening, volume } = useMicrophone();
 	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [maxVolume, setMaxVolume] = useState(0.3);
+	const [maxVolume, setMaxVolume] = useState(0.2);
 
 	useEffect(() => {
 		const playAudio = async () => {
@@ -29,8 +29,13 @@ export const Shush = () => {
 
 	return (
 		<S.Shush>
-			{!isListening && <Icon iconName="iconMicOff" stroke="red" />}
-			{isListening && <Icon iconName="iconMic" stroke="green" />}
+			<S.Row>
+				{!isListening && <Icon iconName="iconMicOff" stroke="red" />}
+				{isListening && <Icon iconName="iconMic" stroke="green" />}
+
+				{!isPlaying && <Icon iconName="iconVolumeX" stroke="gray" />}
+				{isPlaying && <Icon iconName="iconVolume2" stroke="yellow" />}
+			</S.Row>
 
 			<S.ProgressStyled size="available" percent={volume * 100} />
 			<S.SliderStyled size="available" value={maxVolume} onChange={(value) => setMaxVolume(value)} />
