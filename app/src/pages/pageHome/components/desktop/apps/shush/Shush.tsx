@@ -22,12 +22,14 @@ export const Shush = () => {
 			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
 			const randomAudio = audioRefs.current[randomIndex];
 
-			randomAudio.onended = () => {
-				setLog(`ended ${c++}`);
-				setIsPlaying(false);
-			};
-
 			setTimeout(() => {
+				randomAudio.onended = () => {
+					setLog(`ended ${c++}`);
+					setTimeout(() => {
+						setIsPlaying(false);
+					}, 500);
+				};
+
 				randomAudio.play().catch((err) => setLog(`Audio play failed: ${err}`));
 			}, 500);
 		}
