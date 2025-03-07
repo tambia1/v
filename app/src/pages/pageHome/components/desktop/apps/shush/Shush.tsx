@@ -8,13 +8,14 @@ import { useMicrophone } from "./hooks/useMicrophone";
 export const Shush = () => {
 	const { isListening, volume } = useMicrophone();
 	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
-
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
 
 	useEffect(() => {
-		audioRefs.current.forEach(() => {
-			setIsPlaying(false);
+		audioRefs.current.forEach((audio) => {
+			audio.onended = () => {
+				setIsPlaying(false);
+			};
 		});
 	}, []);
 
