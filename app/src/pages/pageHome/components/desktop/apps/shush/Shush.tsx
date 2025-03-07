@@ -12,6 +12,13 @@ export const Shush = () => {
 	const [maxVolume, setMaxVolume] = useState(0.2);
 
 	useEffect(() => {
+		const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
+		const randomAudio = audioRefs.current[randomIndex];
+
+		randomAudio.play();
+	}, []);
+
+	useEffect(() => {
 		if (volume >= maxVolume && !isPlaying) {
 			setIsPlaying(true);
 
