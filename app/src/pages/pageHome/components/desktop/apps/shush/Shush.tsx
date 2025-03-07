@@ -6,6 +6,8 @@ import shush0 from "./assets/shush_0.mp3";
 import shush1 from "./assets/shush_1.mp3";
 import { useMicrophone } from "./hooks/useMicrophone";
 
+let c = 0;
+
 export const Shush = () => {
 	const { isListening, volume } = useMicrophone();
 	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
@@ -23,6 +25,7 @@ export const Shush = () => {
 			setTimeout(() => {
 				randomAudio.play().catch((err) => setLog(`Audio play failed: ${err}`));
 				randomAudio.onended = () => {
+					setLog(`ended ${c++}`);
 					setTimeout(() => {
 						setIsPlaying(false);
 					}, 500);
@@ -44,7 +47,7 @@ export const Shush = () => {
 			<S.ProgressStyled size="available" percent={volume * 100} />
 			<S.SliderStyled size="available" value={maxVolume} onChange={(value) => setMaxVolume(value)} />
 
-			<Text>{log}</Text>
+			<Text>aaa{log}</Text>
 		</S.Shush>
 	);
 };
