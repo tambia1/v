@@ -9,7 +9,7 @@ export const Shush = () => {
 	const { isListening, volume } = useMicrophone();
 	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [maxVolume, setMaxVolume] = useState(1.2);
+	const [maxVolume, setMaxVolume] = useState(0.2);
 
 	useEffect(() => {
 		if (volume >= maxVolume && !isPlaying) {
