@@ -4,22 +4,18 @@ export const useMicrophone = () => {
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
 	const audioStreamRef = useRef<MediaStream | null>(null);
-	const [isListening, setIsListening] = useState(false);
+	const listeningRef = useRef(false);
 	const [volume, setVolume] = useState(0);
 	const [volumeArray, setVolumeArray] = useState<Uint8Array>();
 
 	useEffect(() => {
 		const startListening = async () => {
 			try {
+				listeningRef.current = true;
+
 				const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-				if (!stream) {
-					setIsListening(false);
-					return;
-				}
-
 				audioStreamRef.current = stream;
-				setIsListening(true);
 
 				const audioContext = new AudioContext();
 				audioContextRef.current = audioContext;
@@ -36,19 +32,21 @@ export const useMicrophone = () => {
 				gainNode.connect(analyser);
 
 				const checkVolume = () => {
-					const dataArray = new Uint8Array(analyser.frequencyBinCount);
-					analyser.getByteFrequencyData(dataArray);
+					if (listeningRef.current && analyserRef.current) {
+						const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
+						analyserRef.current.getByteFrequencyData(dataArray);
 
-					let sum = 0;
-					for (let i = 0; i < dataArray.length; i++) {
-						sum += dataArray[i];
+						let sum = 0;
+						for (let i = 0; i < dataArray.length; i++) {
+							sum += dataArray[i];
+						}
+
+						const averageVolume = sum / dataArray.length;
+						const normalizedVolume = averageVolume / 255;
+						setVolume(normalizedVolume);
+
+						setVolumeArray(dataArray);
 					}
-
-					const averageVolume = sum / dataArray.length;
-					const normalizedVolume = averageVolume / 255;
-					setVolume(normalizedVolume);
-
-					setVolumeArray(dataArray);
 
 					requestAnimationFrame(checkVolume);
 				};
@@ -56,7 +54,7 @@ export const useMicrophone = () => {
 				checkVolume();
 			} catch (error) {
 				console.error("Error accessing audio stream:", error);
-				setIsListening(false);
+				listeningRef.current = false;
 			}
 		};
 
@@ -73,5 +71,15 @@ export const useMicrophone = () => {
 		};
 	}, []);
 
-	return { isListening, volume, volumeArray };
+	const pause = () => {
+		listeningRef.current = false;
+		setVolume(0);
+		setVolumeArray(new Uint8Array(analyserRef.current?.frequencyBinCount || 0));
+	};
+
+	const resume = () => {
+		listeningRef.current = true;
+	};
+
+	return { isListening: listeningRef.current, volume, volumeArray, pause, resume };
 };
