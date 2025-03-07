@@ -47,7 +47,7 @@ export const Shush = () => {
 			<S.ProgressStyled size="available" percent={volume * 100} />
 			<S.SliderStyled size="available" value={maxVolume} onChange={(value) => setMaxVolume(value)} />
 
-			<Text>aaa{log}</Text>
+			<Text color="primaryBg">{log}</Text>
 		</S.Shush>
 	);
 };
