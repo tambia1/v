@@ -1,4 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
+import { Text } from "@src/components/text/Text";
 import { useEffect, useRef, useState } from "react";
 import * as S from "./Shush.styles";
 import shush0 from "./assets/shush_0.mp3";
@@ -10,23 +11,7 @@ export const Shush = () => {
 	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
-
-	useEffect(() => {
-		setTimeout(() => {
-			const randomAudio = audioRefs.current[0];
-			randomAudio.play();
-		}, 3000);
-
-		setTimeout(() => {
-			const randomAudio = audioRefs.current[0];
-			randomAudio.play();
-		}, 6000);
-
-		setTimeout(() => {
-			const randomAudio = audioRefs.current[0];
-			randomAudio.play();
-		}, 9000);
-	}, []);
+	const [log, setLog] = useState("");
 
 	useEffect(() => {
 		if (volume >= maxVolume && !isPlaying) {
@@ -36,11 +21,11 @@ export const Shush = () => {
 			const randomAudio = audioRefs.current[randomIndex];
 
 			setTimeout(() => {
-				randomAudio.play();
+				randomAudio.play().catch((err) => setLog(`Audio play failed: ${err}`));
 				randomAudio.onended = () => {
 					setTimeout(() => {
 						setIsPlaying(false);
-					}, 1000);
+					}, 500);
 				};
 			}, 500);
 		}
@@ -58,6 +43,8 @@ export const Shush = () => {
 
 			<S.ProgressStyled size="available" percent={volume * 100} />
 			<S.SliderStyled size="available" value={maxVolume} onChange={(value) => setMaxVolume(value)} />
+
+			<Text>{log}</Text>
 		</S.Shush>
 	);
 };
