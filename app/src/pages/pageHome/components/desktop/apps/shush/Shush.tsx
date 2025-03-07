@@ -14,7 +14,9 @@ export const Shush = () => {
 	useEffect(() => {
 		audioRefs.current.forEach((audio) => {
 			audio.onended = () => {
-				setIsPlaying(false);
+				setTimeout(() => {
+					setIsPlaying(false);
+				}, 1000);
 			};
 		});
 	}, []);
