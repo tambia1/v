@@ -14,11 +14,14 @@ export const useMicrophone = () => {
 				listeningRef.current = true;
 
 				const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-
 				audioStreamRef.current = stream;
 
 				const audioContext = new AudioContext();
 				audioContextRef.current = audioContext;
+
+				if (audioContext.state === "suspended") {
+					await audioContext.resume();
+				}
 
 				const analyser = audioContext.createAnalyser();
 				analyserRef.current = analyser;
