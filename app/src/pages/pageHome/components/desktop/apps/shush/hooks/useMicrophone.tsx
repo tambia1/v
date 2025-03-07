@@ -91,7 +91,7 @@ export const useMicrophone = () => {
 	const resume = () => {
 		listeningRef.current = true;
 
-		if (audioContextRef.current) {
+		if (audioContextRef.current?.state === "suspended") {
 			audioContextRef.current.resume();
 		}
 	};
