@@ -14,9 +14,18 @@ export const Shush = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			const randomAudio = audioRefs.current[0];
-
 			randomAudio.play();
 		}, 3000);
+
+		setTimeout(() => {
+			const randomAudio = audioRefs.current[0];
+			randomAudio.play();
+		}, 6000);
+
+		setTimeout(() => {
+			const randomAudio = audioRefs.current[0];
+			randomAudio.play();
+		}, 9000);
 	}, []);
 
 	useEffect(() => {
