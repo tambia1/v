@@ -75,10 +75,22 @@ export const useMicrophone = () => {
 		listeningRef.current = false;
 		setVolume(0);
 		setVolumeArray(new Uint8Array(analyserRef.current?.frequencyBinCount || 0));
+
+		if (audioStreamRef.current) {
+			audioStreamRef.current.getTracks().forEach((track) => track.stop());
+		}
+
+		if (audioContextRef.current) {
+			audioContextRef.current.close();
+		}
 	};
 
 	const resume = () => {
 		listeningRef.current = true;
+
+		if (audioContextRef.current) {
+			audioContextRef.current.resume();
+		}
 	};
 
 	return { isListening: listeningRef.current, volume, volumeArray, pause, resume };
