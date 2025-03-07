@@ -6,31 +6,26 @@ import shush1 from "./assets/shush_1.mp3";
 import { useMicrophone } from "./hooks/useMicrophone";
 
 export const Shush = () => {
-	const { isListening, volume, pause, resume } = useMicrophone();
+	const { isListening, volume } = useMicrophone();
 	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(1.2);
 
 	useEffect(() => {
-		const playAudio = async () => {
-			if (volume >= maxVolume && !isPlaying) {
-				const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
-				const randomAudio = audioRefs.current[randomIndex];
+		if (volume >= maxVolume && !isPlaying) {
+			setIsPlaying(true);
 
-				setIsPlaying(true);
-				pause();
+			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
+			const randomAudio = audioRefs.current[randomIndex];
 
-				randomAudio.currentTime = 0;
-				randomAudio.play();
-				randomAudio.onended = () => {
+			randomAudio.play();
+			randomAudio.onended = () => {
+				setTimeout(() => {
 					setIsPlaying(false);
-					resume();
-				};
-			}
-		};
-
-		playAudio();
-	}, [volume, isPlaying, maxVolume, pause, resume]);
+				}, 1000);
+			};
+		}
+	}, [volume, isPlaying, maxVolume]);
 
 	return (
 		<S.Shush>
