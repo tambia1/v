@@ -12,10 +12,11 @@ export const Shush = () => {
 	const [maxVolume, setMaxVolume] = useState(0.2);
 
 	useEffect(() => {
-		const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
-		const randomAudio = audioRefs.current[randomIndex];
+		setTimeout(() => {
+			const randomAudio = audioRefs.current[0];
 
-		randomAudio.play();
+			randomAudio.play();
+		}, 3000);
 	}, []);
 
 	useEffect(() => {
@@ -32,7 +33,7 @@ export const Shush = () => {
 						setIsPlaying(false);
 					}, 1000);
 				};
-			}, 1000);
+			}, 500);
 		}
 	}, [volume, isPlaying, maxVolume]);
 
