@@ -22,6 +22,7 @@ export const Shush = () => {
 				randomAudio.play();
 
 				setTimeout(() => {
+					randomAudio.currentTime = 0;
 					setIsPlaying(false);
 				}, 2000);
 			}, 500);
