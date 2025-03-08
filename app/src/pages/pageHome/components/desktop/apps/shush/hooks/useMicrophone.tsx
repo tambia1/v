@@ -61,6 +61,8 @@ export const useMicrophone = () => {
 	}, []);
 
 	const stopListening = useCallback(() => {
+		setVolume(0);
+		setVolumeArray(new Uint8Array(analyserRef.current?.frequencyBinCount || 0));
 		listeningRef.current = false;
 
 		if (audioStreamRef.current) {
