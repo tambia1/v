@@ -13,22 +13,20 @@ export const Shush = () => {
 	useEffect(() => {
 		if (volume >= maxVolume && !isPlaying) {
 			setIsPlaying(true);
-		}
-	}, [volume, isPlaying, maxVolume]);
-
-	useEffect(() => {
-		if (isPlaying) {
 			stopListening();
-			audioRefs.current.play();
-			audioRefs.current.onended = () => {
-				startListening();
 
-				setTimeout(() => {
-					setIsPlaying(false);
-				}, 500);
-			};
+			setTimeout(() => {
+				audioRefs.current.play();
+				audioRefs.current.onended = () => {
+					startListening();
+
+					setTimeout(() => {
+						setIsPlaying(false);
+					}, 500);
+				};
+			}, 100);
 		}
-	}, [isPlaying, startListening, stopListening]);
+	}, [volume, isPlaying, maxVolume, startListening, stopListening]);
 
 	return (
 		<S.Shush>
