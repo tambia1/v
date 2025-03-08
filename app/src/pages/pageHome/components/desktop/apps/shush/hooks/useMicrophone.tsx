@@ -19,10 +19,6 @@ export const useMicrophone = () => {
 				const audioContext = new AudioContext();
 				audioContextRef.current = audioContext;
 
-				if (audioContext.state === "suspended") {
-					await audioContext.resume();
-				}
-
 				const analyser = audioContext.createAnalyser();
 				analyserRef.current = analyser;
 				analyser.fftSize = 256;
@@ -34,7 +30,11 @@ export const useMicrophone = () => {
 				source.connect(gainNode);
 				gainNode.connect(analyser);
 
-				const checkVolume = () => {
+				const checkVolume = async () => {
+					if (audioContext.state === "suspended") {
+						await audioContext.resume();
+					}
+
 					if (listeningRef.current && analyserRef.current) {
 						const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
 						analyserRef.current.getByteFrequencyData(dataArray);
