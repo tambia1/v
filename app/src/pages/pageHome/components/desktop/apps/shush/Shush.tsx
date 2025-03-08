@@ -22,13 +22,12 @@ export const Shush = () => {
 
 				randomAudio.play();
 				randomAudio.onended = () => {
-					startListening();
-
 					setTimeout(() => {
+						startListening();
 						setIsPlaying(false);
-					}, 1000);
+					}, 2000);
 				};
-			}, 1000);
+			}, 2000);
 		}
 	}, [volume, isPlaying, maxVolume, startListening, stopListening]);
 
