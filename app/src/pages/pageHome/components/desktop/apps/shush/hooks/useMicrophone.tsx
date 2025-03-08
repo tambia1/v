@@ -45,7 +45,7 @@ export const useMicrophone = () => {
 
 					const averageVolume = sum / dataArray.length;
 					const normalizedVolume = averageVolume / 255;
-					setVolume(normalizedVolume);
+					setVolume(() => normalizedVolume);
 
 					setVolumeArray(dataArray);
 				}
