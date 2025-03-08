@@ -24,7 +24,10 @@ export const Shush = () => {
 
 				setTimeout(() => {
 					setIsPlaying(false);
-					resume();
+
+					setTimeout(() => {
+						resume();
+					}, 1000);
 				}, 2000);
 			}, 500);
 		}
