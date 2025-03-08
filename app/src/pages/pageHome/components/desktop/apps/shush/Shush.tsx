@@ -12,16 +12,6 @@ export const Shush = () => {
 	const [maxVolume, setMaxVolume] = useState(0.2);
 
 	useEffect(() => {
-		audioRefs.current.forEach((audio) => {
-			audio.onended = () => {
-				setTimeout(() => {
-					setIsPlaying(false);
-				}, 1000);
-			};
-		});
-	}, []);
-
-	useEffect(() => {
 		if (volume >= maxVolume && !isPlaying) {
 			setIsPlaying(true);
 
@@ -30,6 +20,10 @@ export const Shush = () => {
 
 			setTimeout(() => {
 				randomAudio.play();
+
+				setTimeout(() => {
+					setIsPlaying(false);
+				}, 2000);
 			}, 500);
 		}
 	}, [volume, isPlaying, maxVolume]);
