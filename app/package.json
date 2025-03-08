@@ -1,7 +1,7 @@
 {
     "name": "v",
     "private": true,
-    "version": "1.4.1",
+    "version": "1.4.2",
     "type": "module",
     "homepage": "https://tambia1.github.io",
     "scripts": {
@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@apollo/client": "3.13.1",
-        "@dotenvx/dotenvx": "^1.38.3",
+        "@dotenvx/dotenvx": "1.38.3",
         "@react-oauth/google": "0.12.1",
         "@tanstack/react-query": "5.67.1",
         "@tanstack/react-query-devtools": "5.67.1",
