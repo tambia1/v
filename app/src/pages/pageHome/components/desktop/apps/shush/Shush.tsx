@@ -18,15 +18,12 @@ export const Shush = () => {
 			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
 			const randomAudio = audioRefs.current[randomIndex];
 
-			setTimeout(async () => {
-				stopListening();
-				randomAudio.play();
-
-				setTimeout(() => {
-					startListening();
-					setIsPlaying(false);
-				}, 1000);
-			}, 500);
+			stopListening();
+			randomAudio.play();
+			randomAudio.onended = () => {
+				startListening();
+				setIsPlaying(false);
+			};
 		}
 	}, [volume, isPlaying, maxVolume, startListening, stopListening]);
 
