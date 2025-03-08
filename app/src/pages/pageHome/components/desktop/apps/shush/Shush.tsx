@@ -26,9 +26,9 @@ export const Shush = () => {
 
 					setTimeout(() => {
 						setIsPlaying(false);
-					}, 500);
+					}, 1000);
 				};
-			}, 100);
+			}, 1000);
 		}
 	}, [volume, isPlaying, maxVolume, startListening, stopListening]);
 
