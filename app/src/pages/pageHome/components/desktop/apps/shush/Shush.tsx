@@ -19,7 +19,9 @@ export const Shush = () => {
 			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
 			const randomAudio = audioRefs.current[randomIndex];
 
-			playAudioWithContext(randomAudio);
+			setTimeout(() => {
+				playAudioWithContext(randomAudio);
+			}, 1000);
 		}
 	}, [volume, isPlaying, maxVolume, stopListening]);
 
@@ -33,8 +35,10 @@ export const Shush = () => {
 		source.connect(audioContext.destination);
 		source.start();
 		source.onended = () => {
-			startListening();
-			setIsPlaying(false);
+			setTimeout(() => {
+				startListening();
+				setIsPlaying(false);
+			}, 1000);
 		};
 	};
 
