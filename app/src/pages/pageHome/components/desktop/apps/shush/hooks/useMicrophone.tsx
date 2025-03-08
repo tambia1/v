@@ -16,8 +16,11 @@ export const useMicrophone = () => {
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			audioStreamRef.current = stream;
 
-			const audioContext = new AudioContext();
-			audioContextRef.current = audioContext;
+			if (!audioContextRef.current) {
+				audioContextRef.current = new AudioContext();
+			}
+
+			const audioContext = audioContextRef.current;
 
 			if (audioContext.state === "suspended") {
 				await audioContext.resume();
@@ -79,12 +82,17 @@ export const useMicrophone = () => {
 			audioStreamRef.current = null;
 		}
 
-		if (audioContextRef.current) {
-			audioContextRef.current.close();
-			audioContextRef.current = null;
-		}
+		const closeAudioContext = async () => {
+			if (audioContextRef.current) {
+				await audioContextRef.current.close();
+				audioContextRef.current = null;
+			}
+		};
 
-		analyserRef.current = null;
+		setTimeout(() => {
+			closeAudioContext();
+			analyserRef.current = null;
+		}, 0);
 	}, []);
 
 	useEffect(() => {
