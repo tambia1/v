@@ -7,7 +7,7 @@ import { useMicrophone } from "./hooks/useMicrophone";
 
 export const Shush = () => {
 	const { isListening, volume, startListening, stopListening } = useMicrophone();
-	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
+	const audioRefs = useRef([shush0, shush1]);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
 
@@ -19,7 +19,7 @@ export const Shush = () => {
 			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
 			const randomAudio = audioRefs.current[randomIndex];
 
-			playAudioWithContext(randomAudio.src);
+			playAudioWithContext(randomAudio);
 		}
 	}, [volume, isPlaying, maxVolume, stopListening]);
 
