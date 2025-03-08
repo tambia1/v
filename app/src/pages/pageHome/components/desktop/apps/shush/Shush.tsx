@@ -23,10 +23,10 @@ export const Shush = () => {
 				randomAudio.play();
 
 				setTimeout(() => {
-					setIsPlaying(false);
+					resume();
 
 					setTimeout(() => {
-						resume();
+						setIsPlaying(false);
 					}, 1000);
 				}, 2000);
 			}, 500);
