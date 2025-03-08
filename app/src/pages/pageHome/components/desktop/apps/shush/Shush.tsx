@@ -16,20 +16,27 @@ export const Shush = () => {
 			setIsPlaying(true);
 			stopListening();
 
-			setTimeout(() => {
-				const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
-				const randomAudio = audioRefs.current[randomIndex];
+			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
+			const randomAudio = audioRefs.current[randomIndex];
 
-				randomAudio.play();
-				randomAudio.onended = () => {
-					setTimeout(() => {
-						startListening();
-						setIsPlaying(false);
-					}, 2000);
-				};
-			}, 2000);
+			playAudioWithContext(randomAudio.src);
 		}
-	}, [volume, isPlaying, maxVolume, startListening, stopListening]);
+	}, [volume, isPlaying, maxVolume, stopListening]);
+
+	const playAudioWithContext = async (audioUrl: string) => {
+		const audioContext = new AudioContext();
+		const response = await fetch(audioUrl);
+		const arrayBuffer = await response.arrayBuffer();
+		const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+		const source = audioContext.createBufferSource();
+		source.buffer = audioBuffer;
+		source.connect(audioContext.destination);
+		source.start();
+		source.onended = () => {
+			startListening();
+			setIsPlaying(false);
+		};
+	};
 
 	return (
 		<S.Shush>
