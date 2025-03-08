@@ -4,13 +4,14 @@ export const useMicrophone = () => {
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
 	const audioStreamRef = useRef<MediaStream | null>(null);
-	const listeningRef = useRef(false);
+	const requestAnimationFrameIdRef = useRef<number | null>(null);
+	const [isListening, setIsListening] = useState(false);
 	const [volume, setVolume] = useState(0);
 	const [volumeArray, setVolumeArray] = useState<Uint8Array>();
 
 	const startListening = useCallback(async () => {
 		try {
-			listeningRef.current = true;
+			setIsListening(true);
 
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			audioStreamRef.current = stream;
@@ -33,38 +34,45 @@ export const useMicrophone = () => {
 			source.connect(gainNode);
 			gainNode.connect(analyser);
 
+			let isMounted = true;
+
 			const checkVolume = () => {
-				if (analyserRef.current) {
+				if (analyserRef.current && isMounted) {
 					const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
 					analyserRef.current.getByteFrequencyData(dataArray);
 
-					let sum = 0;
-					for (let i = 0; i < dataArray.length; i++) {
-						sum += dataArray[i];
-					}
-
+					const sum = dataArray.reduce((acc, val) => acc + val, 0);
 					const averageVolume = sum / dataArray.length;
 					const normalizedVolume = averageVolume / 255;
 					setVolume(normalizedVolume);
-
 					setVolumeArray(dataArray);
 				}
 
-				requestAnimationFrame(checkVolume);
+				if (isMounted) {
+					requestAnimationFrameIdRef.current = requestAnimationFrame(checkVolume);
+				}
 			};
 
 			checkVolume();
+
+			return () => {
+				isMounted = false;
+			};
 		} catch (error) {
 			console.error("Error accessing audio stream:", error);
-			listeningRef.current = false;
+			setIsListening(false);
 		}
 	}, []);
 
 	const stopListening = useCallback(() => {
+		setIsListening(false);
 		setVolume(0);
 		setVolumeArray(new Uint8Array(analyserRef.current?.frequencyBinCount || 0));
 
-		listeningRef.current = false;
+		if (requestAnimationFrameIdRef.current !== null) {
+			cancelAnimationFrame(requestAnimationFrameIdRef.current);
+			requestAnimationFrameIdRef.current = null;
+		}
 
 		if (audioStreamRef.current) {
 			audioStreamRef.current.getTracks().forEach((track) => track.stop());
@@ -75,6 +83,8 @@ export const useMicrophone = () => {
 			audioContextRef.current.close();
 			audioContextRef.current = null;
 		}
+
+		analyserRef.current = null;
 	}, []);
 
 	useEffect(() => {
@@ -85,5 +95,5 @@ export const useMicrophone = () => {
 		};
 	}, [startListening, stopListening]);
 
-	return { isListening: listeningRef.current, volume, volumeArray, startListening, stopListening };
+	return { isListening, volume, volumeArray, startListening, stopListening };
 };
