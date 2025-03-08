@@ -17,8 +17,9 @@ export const Shush = () => {
 			stopListening();
 			audioRefs.current.play();
 			audioRefs.current.onended = () => {
+				startListening();
+
 				setTimeout(() => {
-					startListening();
 					setIsPlaying(false);
 				}, 500);
 			};
