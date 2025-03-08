@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useMicrophone = () => {
+	const audioStreamRef = useRef<MediaStream | null>(null);
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const analyserRef = useRef<AnalyserNode | null>(null);
-	const audioStreamRef = useRef<MediaStream | null>(null);
 	const requestAnimationFrameIdRef = useRef<number | null>(null);
 	const [isListening, setIsListening] = useState(false);
 	const [volume, setVolume] = useState(0);
@@ -13,34 +13,22 @@ export const useMicrophone = () => {
 		try {
 			setIsListening(true);
 
-			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-			audioStreamRef.current = stream;
+			audioStreamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
+			audioContextRef.current = new AudioContext();
 
-			if (!audioContextRef.current) {
-				audioContextRef.current = new AudioContext();
-			}
-
-			const audioContext = audioContextRef.current;
-
-			if (audioContext.state === "suspended") {
-				await audioContext.resume();
-			}
-
-			const analyser = audioContext.createAnalyser();
+			const analyser = audioContextRef.current.createAnalyser();
 			analyserRef.current = analyser;
 			analyser.fftSize = 256;
 
-			const gainNode = audioContext.createGain();
+			const gainNode = audioContextRef.current.createGain();
 			gainNode.gain.value = 10.0;
 
-			const source = audioContext.createMediaStreamSource(stream);
+			const source = audioContextRef.current.createMediaStreamSource(audioStreamRef.current);
 			source.connect(gainNode);
 			gainNode.connect(analyser);
 
-			let isMounted = true;
-
 			const checkVolume = () => {
-				if (analyserRef.current && isMounted) {
+				if (analyserRef.current) {
 					const dataArray = new Uint8Array(analyserRef.current.frequencyBinCount);
 					analyserRef.current.getByteFrequencyData(dataArray);
 
@@ -49,18 +37,12 @@ export const useMicrophone = () => {
 					const normalizedVolume = averageVolume / 255;
 					setVolume(normalizedVolume);
 					setVolumeArray(dataArray);
-				}
 
-				if (isMounted) {
 					requestAnimationFrameIdRef.current = requestAnimationFrame(checkVolume);
 				}
 			};
 
 			checkVolume();
-
-			return () => {
-				isMounted = false;
-			};
 		} catch (error) {
 			console.error("Error accessing audio stream:", error);
 			setIsListening(false);
@@ -82,17 +64,12 @@ export const useMicrophone = () => {
 			audioStreamRef.current = null;
 		}
 
-		const closeAudioContext = async () => {
-			if (audioContextRef.current) {
-				await audioContextRef.current.close();
-				audioContextRef.current = null;
-			}
-		};
+		if (audioContextRef.current) {
+			audioContextRef.current.close();
+			audioContextRef.current = null;
+		}
 
-		setTimeout(() => {
-			closeAudioContext();
-			analyserRef.current = null;
-		}, 0);
+		analyserRef.current = null;
 	}, []);
 
 	useEffect(() => {
