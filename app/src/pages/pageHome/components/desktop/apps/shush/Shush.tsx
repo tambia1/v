@@ -1,13 +1,14 @@
 import { Icon } from "@src/components/icon/Icon";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./Shush.styles";
 import shush0 from "./assets/shush_0.mp3";
 import shush1 from "./assets/shush_1.mp3";
 import { useAudio } from "./hooks/useAudio";
 
+const audioList = [shush0, shush1];
+
 export const Shush = () => {
 	const { mic, audio } = useAudio();
-	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
 	const [maxVolume, setMaxVolume] = useState(0.2);
 
 	useEffect(() => {
@@ -16,12 +17,12 @@ export const Shush = () => {
 
 	useEffect(() => {
 		if (mic.volume >= maxVolume && !audio.isPlaying) {
-			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
-			const randomAudio = audioRefs.current[randomIndex];
+			const randomIndex = Math.floor(Math.random() * audioList.length);
+			const randomAudio = audioList[randomIndex];
 
-			randomAudio.play();
+			audio.playAudio(randomAudio);
 		}
-	}, [mic.volume, audio.isPlaying, maxVolume]);
+	}, [mic.volume, audio.isPlaying, audio.playAudio, maxVolume]);
 
 	return (
 		<S.Shush>

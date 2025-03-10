@@ -28,6 +28,9 @@ export const useAudio = () => {
 		try {
 			setIsListening(true);
 			const audioContext = ensureAudioContext();
+			if (audioContext.state === "suspended") {
+				await audioContext.resume();
+			}
 
 			audioStreamRef.current = await navigator.mediaDevices.getUserMedia({ audio: true });
 
@@ -117,7 +120,7 @@ export const useAudio = () => {
 				audioSourceRef.current.connect(audioContext.destination);
 			}
 
-			if (analyserRef.current) {
+			if (analyserRef.current && audioSourceRef.current) {
 				audioSourceRef.current.connect(analyserRef.current);
 			}
 		},
@@ -129,6 +132,11 @@ export const useAudio = () => {
 			audioElementRef.current.pause();
 			audioElementRef.current.currentTime = 0;
 			setIsPlaying(false);
+		}
+
+		if (audioSourceRef.current) {
+			audioSourceRef.current.disconnect();
+			audioSourceRef.current = null;
 		}
 	}, []);
 
