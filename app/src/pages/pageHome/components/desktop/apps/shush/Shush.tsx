@@ -1,9 +1,9 @@
 import { Icon } from "@src/components/icon/Icon";
+import { useMicrophone } from "@src/hooks/useMicrophone";
 import { useEffect, useRef, useState } from "react";
 import * as S from "./Shush.styles";
 import shush0 from "./assets/shush_0.mp3";
 import shush1 from "./assets/shush_1.mp3";
-import { useMicrophone } from "./hooks/useMicrophone";
 
 export const Shush = () => {
 	const { isListening, volume } = useMicrophone();

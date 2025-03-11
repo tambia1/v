@@ -5,12 +5,12 @@ import { Icon } from "@src/components/icon/Icon";
 import { Progress } from "@src/components/progress/Progress";
 import { Text } from "@src/components/text/Text";
 import { useAnimationFrame } from "@src/hooks/UseAnimationFrame";
+import { useMicrophone } from "@src/hooks/useMicrophone";
 import { useEffect, useState } from "react";
 import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
 import type { State as ChickenState } from "./components/chicken/Chicken.types";
 import { Sun } from "./components/sun/Sun";
-import { useMicrophone } from "./hooks/useMicrophone";
 
 export const ChickenScream = () => {
 	const [chickenState, setChickenState] = useState<{ state: ChickenState; time: number }>({ state: "idle", time: 0 });
