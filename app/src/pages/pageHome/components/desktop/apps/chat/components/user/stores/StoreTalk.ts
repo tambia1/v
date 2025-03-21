@@ -1,16 +1,16 @@
 import { create } from "zustand";
-import { IClient, IMessage } from "../../../Chat.types";
+import { Client, Message } from "../../../Chat.types";
 
 interface State {
-	client: IClient;
-	messages: IMessage[];
-	setClient: (client: IClient) => void;
-	setMessages: (messages: IMessage[]) => void;
+	client: Client;
+	messages: Message[];
+	setClient: (client: Client) => void;
+	setMessages: (messages: Message[]) => void;
 }
 
 export const useStoreTalk = create<State>()((set) => ({
 	client: { clientId: "", clientName: "", clientAvatar: 0 },
 	messages: [],
-	setClient: (client: IClient) => set(() => ({ client })),
-	setMessages: (messages: IMessage[]) => set(() => ({ messages })),
+	setClient: (client: Client) => set(() => ({ client })),
+	setMessages: (messages: Message[]) => set(() => ({ messages })),
 }));

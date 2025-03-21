@@ -7,7 +7,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { logger } from "../../../../../debug/Debug";
-import type { IClient, IDataGet } from "../../../../Chat.types";
+import type { Client, DataGet } from "../../../../Chat.types";
 import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import { useStoreTalk } from "../../stores/StoreTalk";
 import { Avatar } from "../avatar/Avatar";
@@ -34,8 +34,8 @@ export const Talks = ({ name, avatar }: Props) => {
 		onClose: (event) => handleOnClose(event),
 	});
 
-	const [client, setClient] = useState<IClient>({ clientId: "", clientName: "", clientAvatar: 0 });
-	const [clients, setClients] = useState<IClient[]>([]);
+	const [client, setClient] = useState<Client>({ clientId: "", clientName: "", clientAvatar: 0 });
+	const [clients, setClients] = useState<Client[]>([]);
 
 	const storeTalk = useStoreTalk();
 
@@ -55,7 +55,7 @@ export const Talks = ({ name, avatar }: Props) => {
 	};
 
 	const handleOnMessage = (event: MessageEvent) => {
-		const data: IDataGet = JSON.parse(event.data as string);
+		const data: DataGet = JSON.parse(event.data as string);
 
 		logger(`handleOnMessage ${JSON.stringify(data)}`);
 
@@ -83,7 +83,7 @@ export const Talks = ({ name, avatar }: Props) => {
 		}
 	};
 
-	const handleOnClickCell = (_client: IClient) => {
+	const handleOnClickCell = (_client: Client) => {
 		navigator.pushPage(
 			<Navigator.Page id="talk" title={"Group"}>
 				<Talk sendMessage={sendMessage} />

@@ -1,7 +1,7 @@
-export type IClient = { clientId: string; clientName: string; clientAvatar: number };
-export type IMessage = { messageId: string; time: number; clientId: string; clientName: string; clientAvatar: number; message: string };
+export type Client = { clientId: string; clientName: string; clientAvatar: number };
+export type Message = { messageId: string; time: number; clientId: string; clientName: string; clientAvatar: number; message: string };
 
-export type IDataGet =
+export type DataGet =
 	| {
 			action: "connected";
 			clientId: string;
@@ -10,11 +10,11 @@ export type IDataGet =
 	  }
 	| {
 			action: "update";
-			clients: IClient[];
-			messages: IMessage[];
+			clients: Client[];
+			messages: Message[];
 	  };
 
-export type IDataSend =
+export type DataSend =
 	| {
 			action: "name";
 			clientName: string;
