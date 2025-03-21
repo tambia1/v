@@ -1,4 +1,4 @@
-import { type ITouch, useTouch } from "@src/hooks/UseTouch";
+import { type Touch, useTouch } from "@src/hooks/UseTouch";
 import { type ReactNode, useEffect, useRef, useState } from "react";
 import * as S from "./Pager.styles";
 
@@ -28,7 +28,7 @@ export const Pager = ({ className, children: pages, onMouseUp, onMouseMove, disa
 
 	useTouch({
 		ref: refPages,
-		onTouch: ({ xStart, xMove, xEnd, status }: ITouch) => {
+		onTouch: ({ xStart, xMove, xEnd, status }: Touch) => {
 			if (disabled) {
 				return;
 			}

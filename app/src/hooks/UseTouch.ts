@@ -1,7 +1,7 @@
 import { type Ref, type RefObject, useEffect } from "react";
 
-export type IStatus = "down" | "move" | "up" | "out" | "long";
-export type ITouch = {
+export type Status = "down" | "move" | "up" | "out" | "long";
+export type Touch = {
 	e: TouchEvent | MouseEvent;
 	xStart: number;
 	yStart: number;
@@ -10,12 +10,12 @@ export type ITouch = {
 	xEnd: number;
 	yEnd: number;
 	time: number;
-	status: IStatus;
+	status: Status;
 };
 
 type Props = {
 	ref?: Ref<HTMLElement>;
-	onTouch: (touch: ITouch) => void;
+	onTouch: (touch: Touch) => void;
 };
 
 export const useTouch = ({ ref, onTouch }: Props) => {
@@ -35,7 +35,7 @@ export const useTouch = ({ ref, onTouch }: Props) => {
 		const MOUSE_OUT = "mouseout";
 		const LONG_PRESS_MS = 700;
 
-		let status: IStatus;
+		let status: Status;
 		let boundingX = 0;
 		let boundingY = 0;
 		let xStart = 0;

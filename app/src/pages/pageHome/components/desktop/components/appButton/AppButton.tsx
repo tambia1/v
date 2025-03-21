@@ -1,5 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
-import { type ITouch, useTouch } from "@src/hooks/UseTouch";
+import { type Touch, useTouch } from "@src/hooks/UseTouch";
 import { type MutableRefObject, type ReactNode, useRef } from "react";
 import { StoreApps } from "../../stores/StoreApps";
 import * as S from "./AppButton.styles";
@@ -22,7 +22,7 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isPreventTouc
 
 	useTouch({
 		ref: refButton,
-		onTouch: ({ status, time }: ITouch) => {
+		onTouch: ({ status, time }: Touch) => {
 			if (isPreventTouch?.current) {
 				return;
 			}

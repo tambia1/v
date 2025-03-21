@@ -1,6 +1,6 @@
 import { Icon } from "@src/components/icon/Icon";
 import type { IIconName } from "@src/components/icon/Icon.types";
-import { type ITouch, useTouch } from "@src/hooks/UseTouch";
+import { type Touch, useTouch } from "@src/hooks/UseTouch";
 import { useRef } from "react";
 import * as S from "./Button.styles";
 
@@ -14,7 +14,7 @@ export const Button = ({ iconName, onClick }: Props) => {
 
 	useTouch({
 		ref: refButton,
-		onTouch: ({ status }: ITouch) => {
+		onTouch: ({ status }: Touch) => {
 			if (status === "down") {
 				onClick?.();
 			}
