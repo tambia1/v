@@ -4,8 +4,8 @@ import { type ReactNode, createContext, useContext } from "react";
 import * as S from "./Tree.styles";
 
 const TreeContext = createContext<{
-	originalNodes: NodeType[];
-	setOriginalNodes: (nodes: NodeType[]) => void;
+	originalNodes: Node[];
+	setOriginalNodes: (nodes: Node[]) => void;
 } | null>(null);
 
 const useTreeContext = () => {
@@ -18,25 +18,25 @@ const useTreeContext = () => {
 	return context;
 };
 
-export type ItemType = {
+export type Item = {
 	type: "item";
 	isSelected: boolean;
 	isHighlighted: boolean;
 	content: string;
 };
 
-export type FolderType = {
+export type Folder = {
 	type: "folder";
 	isExpanded: boolean;
 	isHighlighted: boolean;
 	content: string;
-	nodes: NodeType[];
+	nodes: Node[];
 };
 
-export type NodeType = ItemType | FolderType;
+export type Node = Item | Folder;
 
 type ItemProps = {
-	item: ItemType;
+	item: Item;
 };
 
 export const ItemDefault = ({ item }: ItemProps) => {
@@ -55,7 +55,7 @@ export const ItemDefault = ({ item }: ItemProps) => {
 };
 
 type FolderProps = {
-	folder: FolderType;
+	folder: Folder;
 	Item: ({ item }: ItemProps) => ReactNode;
 	Folder: ({ folder, Item, Folder }: FolderProps) => ReactNode;
 };
@@ -91,7 +91,7 @@ export const FolderDefault = ({ folder, Item, Folder }: FolderProps) => {
 	);
 };
 
-export const findNode = (text: string, nodes: NodeType[], result: NodeType[] = []): NodeType[] => {
+export const findNode = (text: string, nodes: Node[], result: Node[] = []): Node[] => {
 	nodes.forEach((node) => {
 		if (Search.fuzzySearch(text, node.content).length > 0) {
 			result.push(node);
@@ -105,17 +105,17 @@ export const findNode = (text: string, nodes: NodeType[], result: NodeType[] = [
 	return result;
 };
 
-const expandItem = (folder: FolderType, isExpanded: boolean, originalNodes: NodeType[], setOriginalNodes: (nodes: NodeType[]) => void) => {
+const expandItem = (folder: Folder, isExpanded: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
 	folder.isExpanded = isExpanded;
 	setOriginalNodes([...originalNodes]);
 };
 
-const selectItem = (item: ItemType, isSelected: boolean, originalNodes: NodeType[], setOriginalNodes: (nodes: NodeType[]) => void) => {
+const selectItem = (item: Item, isSelected: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
 	item.isSelected = isSelected;
 	setOriginalNodes([...originalNodes]);
 };
 
-const selectItems = (nodes: NodeType[], isSelected: boolean, originalNodes: NodeType[], setOriginalNodes: (nodes: NodeType[]) => void) => {
+const selectItems = (nodes: Node[], isSelected: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
 	nodes.forEach((node) => {
 		if (node.type === "item") {
 			node.isSelected = isSelected;
@@ -129,7 +129,7 @@ const selectItems = (nodes: NodeType[], isSelected: boolean, originalNodes: Node
 
 type ItemSelectionState = "none" | "partial" | "all";
 
-const getItemsSelectionState = (nodes: NodeType[]): ItemSelectionState => {
+const getItemsSelectionState = (nodes: Node[]): ItemSelectionState => {
 	let hasSelected = false;
 	let hasUnselected = false;
 
@@ -144,7 +144,9 @@ const getItemsSelectionState = (nodes: NodeType[]): ItemSelectionState => {
 			const folderState = getItemsSelectionState(node.nodes);
 			if (folderState === "partial") {
 				return "partial";
-			} else if (folderState === "all") {
+			}
+
+			if (folderState === "all") {
 				hasSelected = true;
 			} else {
 				hasUnselected = true;
@@ -158,12 +160,12 @@ const getItemsSelectionState = (nodes: NodeType[]): ItemSelectionState => {
 
 	if (hasSelected) {
 		return "all";
-	} else {
-		return "none";
 	}
+
+	return "none";
 };
 
-export const highlightItems = (nodes: NodeType[], isHighlighted: boolean, originalNodes: NodeType[], setOriginalNodes: (nodes: NodeType[]) => void) => {
+export const highlightItems = (nodes: Node[], isHighlighted: boolean, originalNodes: Node[], setOriginalNodes: (nodes: Node[]) => void) => {
 	nodes.forEach((node) => {
 		if (node.type === "item") {
 			node.isHighlighted = isHighlighted;
@@ -180,7 +182,7 @@ const Nodes = ({
 	nodes,
 	Item,
 	Folder,
-}: { nodes: NodeType[]; Item: ({ item }: ItemProps) => ReactNode; Folder: ({ folder, Item, Folder }: FolderProps) => ReactNode }) => {
+}: { nodes: Node[]; Item: ({ item }: ItemProps) => ReactNode; Folder: ({ folder, Item, Folder }: FolderProps) => ReactNode }) => {
 	return (
 		<S.Tree>
 			{nodes.map((node, index) => (
@@ -194,8 +196,8 @@ const Nodes = ({
 };
 
 interface Props {
-	nodes: NodeType[];
-	setNodes: (nodes: NodeType[]) => void;
+	nodes: Node[];
+	setNodes: (nodes: Node[]) => void;
 	Item?: ({ item }: ItemProps) => ReactNode;
 	Folder?: ({ folder, Item, Folder }: FolderProps) => ReactNode;
 }

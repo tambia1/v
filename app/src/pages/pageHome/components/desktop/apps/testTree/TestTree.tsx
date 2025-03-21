@@ -1,13 +1,13 @@
 import { Input } from "@src/components/input/Input";
 import { Text } from "@src/components/text/Text";
-import { type NodeType, Tree, findNode, highlightItems } from "@src/components/tree/Tree";
+import { type Node, Tree, findNode, highlightItems } from "@src/components/tree/Tree";
 import { useDebounce } from "@src/hooks/UseDebounce";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import * as S from "./TestTree.styles";
 
-const data: NodeType[] = [
+const data: Node[] = [
 	{
 		type: "folder",
 		content: "Folder 0",
@@ -101,7 +101,7 @@ const data: NodeType[] = [
 ];
 
 export const TestTree = () => {
-	const [nodes, setNodes] = useState<NodeType[]>(data);
+	const [nodes, setNodes] = useState<Node[]>(data);
 	const [title, setTitle] = useState("");
 	const debouncedTitle = useDebounce(title, 500);
 
