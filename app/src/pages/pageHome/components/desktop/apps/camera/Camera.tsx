@@ -3,7 +3,7 @@ import { Loader } from "@src/components/loader/Loader";
 import { useRef, useState } from "react";
 import * as S from "./Camera.styles";
 
-type ICameraFacingMode = "user" | "environment";
+type CameraFacingMode = "user" | "environment";
 
 export const Camera = () => {
 	const [capturedImage, setCapturedImage] = useState<string | null>(null);
@@ -11,9 +11,9 @@ export const Camera = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const refVideo = useRef<HTMLVideoElement>(null);
 	const refImg = useRef<HTMLImageElement>(null);
-	const [cameraFacingMode, setCameraFacingMode] = useState<ICameraFacingMode>("environment");
+	const [cameraFacingMode, setCameraFacingMode] = useState<CameraFacingMode>("environment");
 
-	const getCameraStream = async (cameraFacingMode: ICameraFacingMode) => {
+	const getCameraStream = async (cameraFacingMode: CameraFacingMode) => {
 		try {
 			const stream = await navigator.mediaDevices.getUserMedia({
 				audio: false,
