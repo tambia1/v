@@ -2,16 +2,16 @@ import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import type { IBarPosition } from "@src/pages/pageHome/components/desktop/Desktop.styles";
+import type { BarPosition } from "@src/pages/pageHome/components/desktop/Desktop.styles";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import * as S from "./Layout.styles";
 
 export const Layout = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
-	const [barPosition, setBarPosition] = useState<IBarPosition>((searchParams.get("bar") as IBarPosition) || "top");
+	const [barPosition, setBarPosition] = useState<BarPosition>((searchParams.get("bar") as BarPosition) || "top");
 
-	const handleOnClickChangeBarPosition = (barPosition: IBarPosition) => {
+	const handleOnClickChangeBarPosition = (barPosition: BarPosition) => {
 		setBarPosition(barPosition);
 
 		searchParams.set("bar", barPosition);

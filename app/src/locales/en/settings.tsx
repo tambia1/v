@@ -1,7 +1,7 @@
 import { version } from "@src/../package.json";
-import type { ISettings } from "../types/settings.types";
+import type { Settings } from "../types/settings.types";
 
-export const translation: ISettings = {
+export const translation: Settings = {
 	settings: {
 		title: "Settings",
 		apearance: "Appearance",

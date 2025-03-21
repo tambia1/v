@@ -6,7 +6,7 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { type IStockOk, QueryStocks } from "../queries/QueryStocks";
+import { QueryStocks, type StockOk } from "../queries/QueryStocks";
 import * as S from "./StocksPage.styles";
 import { Stock } from "./components/stock/Stock";
 
@@ -25,7 +25,7 @@ export const StocksPage = () => {
 
 	const query = QueryStocks.stocks({}, { enabled: true });
 
-	const handleOnSymbol = (stock: IStockOk) => {
+	const handleOnSymbol = (stock: StockOk) => {
 		navigator.pushPage(
 			<Navigator.Page id={stock.meta.symbol} title={stock.meta.symbol}>
 				<Stock stock={stock} />
@@ -45,7 +45,7 @@ export const StocksPage = () => {
 				{Object.values(query.data || {})
 					.filter((stock) => stock.status === "ok")
 					.map((stock) => (
-						<List.Cell key={stock.meta.symbol} onClick={() => handleOnSymbol(stock as IStockOk)}>
+						<List.Cell key={stock.meta.symbol} onClick={() => handleOnSymbol(stock as StockOk)}>
 							<List.Cell.Icon>
 								<Icon iconName={iconMap[stock.meta.symbol] ?? ""} />
 							</List.Cell.Icon>

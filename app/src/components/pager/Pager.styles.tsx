@@ -9,7 +9,7 @@ export const Pager = styled.div`
 	overflow: hidden;
 `;
 
-export type IPageState = "go" | "move";
+export type PageState = "go" | "move";
 
 export const Pages = styled.div`
 	width: 100%;

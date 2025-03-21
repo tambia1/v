@@ -1,7 +1,7 @@
 import { backgroundImages } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/themes/Themes.styles";
 import styled from "styled-components";
 
-export type IBarPosition = "top" | "bottom" | "left" | "right";
+export type BarPosition = "top" | "bottom" | "left" | "right";
 
 const PAGE_BAR_SIZE = "5rem";
 
@@ -53,7 +53,7 @@ export const Bar = styled.div`
 	opacity: 0;
 `;
 
-export const Container = styled.div<{ $barPosition: IBarPosition; $backgroundImageIndex: number }>`
+export const Container = styled.div<{ $barPosition: BarPosition; $backgroundImageIndex: number }>`
 	width: 100%;
 	height: 100%;
 

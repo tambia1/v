@@ -1,7 +1,7 @@
-import type { ILanguageName } from "../i18n.types";
+import type { LanguageName } from "../i18n.types";
 
 export type Home = {
-	languageName: ILanguageName;
+	languageName: LanguageName;
 
 	all: {
 		yes: string;

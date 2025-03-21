@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import type { IBarPosition } from "../../Desktop.styles";
+import type { BarPosition } from "../../Desktop.styles";
 
 export const BarMain = styled.div`
 	position: absolute;
@@ -43,12 +43,12 @@ const Icon = css<{ $isVisible: boolean }>`
 	}
 `;
 
-export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
+export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: BarPosition }>`
 	${Icon}
 	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "bottom: 0rem;" : "left: 0rem")};
 `;
 
-export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: IBarPosition }>`
+export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: BarPosition }>`
 	${Icon}
 	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "top: 0rem;" : "right: 0rem")};
 `;

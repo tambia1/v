@@ -1,23 +1,23 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { IBarPosition } from "../components/desktop/Desktop.styles";
+import { BarPosition } from "../components/desktop/Desktop.styles";
 
 interface Props {
-	onChange: (barPosition: IBarPosition) => void;
+	onChange: (barPosition: BarPosition) => void;
 }
 
 export const useBarSearchParams = ({ onChange }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();
 
 	useEffect(() => {
-		const barPositions: { [K in IBarPosition]: K } = {
+		const barPositions: { [K in BarPosition]: K } = {
 			top: "top",
 			bottom: "bottom",
 			left: "left",
 			right: "right",
 		};
 
-		const position = searchParams.get("bar") as IBarPosition;
+		const position = searchParams.get("bar") as BarPosition;
 
 		if (Object.keys(barPositions).includes(position)) {
 			onChange(barPositions[position]);

@@ -7,9 +7,9 @@ import { translation as enSettings } from "./en/settings";
 import { translation as fiChat } from "./fi/chat";
 import { translation as fiHome } from "./fi/home";
 import { translation as fiSettings } from "./fi/settings";
-import type { IResources } from "./i18n.types";
+import type { Resources } from "./i18n.types";
 
-const resources: IResources = {
+const resources: Resources = {
 	en: {
 		translation: {
 			...enHome,
@@ -39,11 +39,11 @@ i18n.use(initReactI18next).init({
 	},
 });
 
-export type ILang = GetTypeAsObjectPath<IResources["en"]["translation"], "">;
+export type ILang = GetTypeAsObjectPath<Resources["en"]["translation"], "">;
 
 type IValue = string | { [key: string]: IValue };
 
-export const lang: ILang = ((language: IResources["en"]["translation"]) => {
+export const lang: ILang = ((language: Resources["en"]["translation"]) => {
 	const get = (v: IValue, str: string): IValue => {
 		if (v instanceof Object) {
 			const obj: { [key: string]: IValue } = {};

@@ -5,7 +5,7 @@ import { Suspension } from "@src/components/suspension/Suspension";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import type { ILanguageName } from "@src/locales/i18n.types";
+import type { LanguageName } from "@src/locales/i18n.types";
 import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/themes/store/ThemeStore";
 import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stores/StoreUser";
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
@@ -31,7 +31,7 @@ export const Desktop = () => {
 	const { t } = useTranslation();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [currentApp, setCurrentApp] = useState<ReactNode>(null);
-	const [bar, setBar] = useState<{ isReady: boolean; position: S.IBarPosition }>({ isReady: false, position: "top" });
+	const [bar, setBar] = useState<{ isReady: boolean; position: S.BarPosition }>({ isReady: false, position: "top" });
 	const [isVisibleButtonClose, setIsVisibleButtonClose] = useState(false);
 	const { setTheme } = useThemeContext();
 	const { i18n } = useTranslation();
@@ -58,7 +58,7 @@ export const Desktop = () => {
 
 	useLocalesSearchParams({
 		onChange: useCallback(
-			(language: ILanguageName) => {
+			(language: LanguageName) => {
 				i18n.changeLanguage(language);
 			},
 			[i18n.changeLanguage],
@@ -75,7 +75,7 @@ export const Desktop = () => {
 	});
 
 	useBarSearchParams({
-		onChange: useCallback((barPosition: S.IBarPosition) => {
+		onChange: useCallback((barPosition: S.BarPosition) => {
 			setBar({ isReady: true, position: barPosition });
 		}, []),
 	});

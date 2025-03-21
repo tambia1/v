@@ -1,4 +1,4 @@
-export type ISettings = {
+export type Settings = {
 	settings: {
 		title: string;
 		apearance: string;

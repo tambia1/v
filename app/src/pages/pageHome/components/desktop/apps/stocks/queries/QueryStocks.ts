@@ -34,7 +34,7 @@ const symbols = (props: QuerySymbolsProps, options?: Partial<UseQueryOptions<Que
 	});
 };
 
-export type IStockOk = {
+export type StockOk = {
 	status: "ok";
 	meta: {
 		symbol: string;
@@ -62,7 +62,7 @@ export type IStockError = {
 	meta: { [K: string]: string };
 };
 
-export type QueryStocksResult = { status: "error" } | { [K: string]: IStockOk | IStockError };
+export type QueryStocksResult = { status: "error" } | { [K: string]: StockOk | IStockError };
 
 type QueryStocksProps = {};
 
