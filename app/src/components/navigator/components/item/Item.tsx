@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import * as S from "./Item.styles";
 
 interface Props {
-	animation: S.IAnimationState;
+	animation: S.AnimationState;
 	children?: ReactNode;
 	onAnimStart?: () => void;
 	onAnimEnd?: () => void;

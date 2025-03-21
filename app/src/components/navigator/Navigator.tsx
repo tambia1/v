@@ -1,36 +1,37 @@
 import { useState } from "react";
 import { Icon } from "../icon/Icon";
 import * as S from "./Navigator.styles";
+import { type PageType } from "./Navigator.types";
 import { Item } from "./components/item/Item";
-import type { IAnimationState } from "./components/item/Item.styles";
-import { type IPage, Page } from "./components/page/Page";
+import type { AnimationState } from "./components/item/Item.styles";
+import { Page } from "./components/page/Page";
 import { NavigatorContext } from "./hooks/UseNavigator";
 
 interface Props {
 	className?: string;
-	children?: IPage;
-	onPushStart?: ICallback;
-	onPushEnd?: ICallback;
-	onPopStart?: ICallback;
-	onPopEnd?: ICallback;
-	onBack?: ICallback;
-	onClose?: ICallback;
+	children?: PageType;
+	onPushStart?: Callback;
+	onPushEnd?: Callback;
+	onPopStart?: Callback;
+	onPopEnd?: Callback;
+	onBack?: Callback;
+	onClose?: Callback;
 }
 
-export interface INavigatorItem {
-	page: IPage;
-	pageAnimation: IAnimationState;
-	titleAnimation: IAnimationState;
+export interface NavigatorItem {
+	page: PageType;
+	pageAnimation: AnimationState;
+	titleAnimation: AnimationState;
 }
 
-export type IAction = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
-export type ICallback = (key: string) => boolean;
+export type Action = "pushStart" | "pushEnd" | "popStart" | "popEnd" | "back" | "close";
+export type Callback = (key: string) => boolean;
 
 export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopStart, onPopEnd, onBack, onClose }: Props) => {
-	const [navigatorItems, setNavigatorItems] = useState<INavigatorItem[]>(
+	const [navigatorItems, setNavigatorItems] = useState<NavigatorItem[]>(
 		children ? [{ pageAnimation: "goToCenter", titleAnimation: "goToCenter", page: children }] : [],
 	);
-	const [listeners, setListeners] = useState<{ [K in IAction]: { [K in string]: ICallback } }>({
+	const [listeners, setListeners] = useState<{ [K in Action]: { [K in string]: Callback } }>({
 		pushStart: onPushStart ? { pager: onPushStart } : {},
 		pushEnd: onPushEnd ? { pager: onPushEnd } : {},
 		popStart: onPopStart ? { pager: onPopStart } : {},
@@ -39,14 +40,14 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		close: onClose ? { pager: onClose } : {},
 	});
 
-	const pushPage = (page: IPage) => {
+	const pushPage = (page: PageType) => {
 		Object.keys(listeners.pushStart).forEach((k) => listeners.popStart[k](k));
 
 		setNavigatorItems((prevPages) => {
 			const newPages = prevPages.map((prevPage) => ({
 				...prevPage,
-				pageAnimation: "moveFromCenterToLeft" as IAnimationState,
-				titleAnimation: "hideFromCenter" as IAnimationState,
+				pageAnimation: "moveFromCenterToLeft" as AnimationState,
+				titleAnimation: "hideFromCenter" as AnimationState,
 			}));
 
 			return [
@@ -75,7 +76,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		});
 	};
 
-	const addPage = (index: number, page: IPage) => {
+	const addPage = (index: number, page: PageType) => {
 		setNavigatorItems((prevPages) => {
 			const newPages = [...prevPages];
 
@@ -99,7 +100,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		});
 	};
 
-	const onAnimationStart = (navigatorItem: INavigatorItem) => {
+	const onAnimationStart = (navigatorItem: NavigatorItem) => {
 		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
 			Object.keys(listeners.pushStart).forEach((k) => listeners.pushStart[k](k));
 		}
@@ -108,7 +109,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		}
 	};
 
-	const onAnimationEnd = (navigatorItem: INavigatorItem) => {
+	const onAnimationEnd = (navigatorItem: NavigatorItem) => {
 		if (navigatorItem.pageAnimation === "moveFromRightToCenter" || navigatorItem.pageAnimation === "goFromRightToCenter") {
 			Object.keys(listeners.pushEnd).forEach((k) => listeners.pushEnd[k](k));
 		}
@@ -155,11 +156,11 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		Object.keys(listeners.close).forEach((k) => listeners.close[k](k));
 	};
 
-	const addListener = (action: IAction, key: string, callback: ICallback) => {
+	const addListener = (action: Action, key: string, callback: Callback) => {
 		setListeners({ ...listeners, [action]: { ...listeners[action], [key]: callback } });
 	};
 
-	const removeListener = (action: IAction, key: string) => {
+	const removeListener = (action: Action, key: string) => {
 		if (listeners[action][key]) {
 			const newListeners = { ...listeners, [action]: { ...listeners[action] } };
 			delete newListeners[action][key];

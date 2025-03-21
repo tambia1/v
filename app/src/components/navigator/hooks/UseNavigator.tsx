@@ -1,18 +1,18 @@
 import { createContext, useContext } from "react";
-import { IPage } from "../components/page/Page";
-import { IAction, ICallback, INavigatorItem } from "../Navigator";
+import { Action, Callback, NavigatorItem } from "../Navigator";
+import { PageType } from "../Navigator.types";
 
 export const NavigatorContext = createContext<{
-	pages: INavigatorItem[];
-	pushPage: (page: IPage) => void;
+	pages: NavigatorItem[];
+	pushPage: (page: PageType) => void;
 	popPage: () => void;
 	goHome: () => void;
 
-	addPage: (index: number, page: IPage) => void;
+	addPage: (index: number, page: PageType) => void;
 	removePage: (index: number) => void;
 
-	addListener: (action: IAction, key: string, callback: ICallback) => void;
-	removeListener: (action: IAction, key: string) => void;
+	addListener: (action: Action, key: string, callback: Callback) => void;
+	removeListener: (action: Action, key: string) => void;
 } | null>(null);
 
 export const useNavigator = () => {

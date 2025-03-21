@@ -1,6 +1,4 @@
-import type { ReactElement, ReactNode } from "react";
-
-export type IPage = ReactElement<Props, typeof Page>;
+import type { ReactNode } from "react";
 
 export interface Props {
 	id: string;
