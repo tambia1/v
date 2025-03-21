@@ -1,11 +1,11 @@
 // version: 1.0.2
 
-export type ICallback = {
+export type Callback = {
 	position: number;
-	callback: (result: ICallbackResult) => void;
+	callback: (result: CallbackResult) => void;
 };
 
-export type ICallbackResult = {
+export type CallbackResult = {
 	animation: Animation;
 	results: number[];
 	time: number;
@@ -18,8 +18,8 @@ type Props = {
 	routes: number[][];
 	time: number;
 	timing: number[];
-	onCalculate: ((result: ICallbackResult) => void) | null;
-	callbacks: ICallback[];
+	onCalculate: ((result: CallbackResult) => void) | null;
+	callbacks: Callback[];
 };
 
 export class Animation {
@@ -38,9 +38,9 @@ export class Animation {
 
 	private isRunning: boolean;
 
-	private onCalculate: ((result: ICallbackResult) => void) | null;
+	private onCalculate: ((result: CallbackResult) => void) | null;
 
-	private callbacks: ICallback[];
+	private callbacks: Callback[];
 	private callbacksCounters: number[];
 
 	public results: number[];
@@ -191,7 +191,7 @@ export class Animation {
 		this.calculateResults();
 
 		// Save results to send to callbacks
-		const callbackResult: ICallbackResult = {
+		const callbackResult: CallbackResult = {
 			animation: this,
 			results: this.results,
 			time: this.time,

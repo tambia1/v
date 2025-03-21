@@ -1,5 +1,5 @@
 import type { IChat } from "./types/chat.types";
-import type { IHome } from "./types/home.types";
+import type { Home } from "./types/home.types";
 import type { ISettings } from "./types/settings.types";
 
 export const languages = ["en", "fi"] as const;
@@ -10,5 +10,5 @@ export type IResources = {
 };
 
 export type ITranslation = {
-	translation: IHome & ISettings & IChat;
+	translation: Home & ISettings & IChat;
 };

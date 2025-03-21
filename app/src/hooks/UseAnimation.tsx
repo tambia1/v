@@ -21,12 +21,12 @@ const Animations = {
 	`,
 } as const;
 
-export type IAnimation = keyof typeof Animations;
+export type Animation = keyof typeof Animations;
 
-type IResolve = (value: void | PromiseLike<void>) => void;
+type Resolve = (value: void | PromiseLike<void>) => void;
 
 export const useAnimation = (ref: RefObject<HTMLElement | null>) => {
-	const refResolve = useRef<IResolve>(null);
+	const refResolve = useRef<Resolve>(null);
 
 	useLayoutEffect(() => {
 		const div = ref?.current;
@@ -56,7 +56,7 @@ export const useAnimation = (ref: RefObject<HTMLElement | null>) => {
 	}, [ref?.current]);
 
 	const play = useCallback(
-		(animation: IAnimation) => {
+		(animation: Animation) => {
 			const div = ref?.current;
 
 			if (!div) {
@@ -65,7 +65,7 @@ export const useAnimation = (ref: RefObject<HTMLElement | null>) => {
 
 			div.style.cssText = Animations[animation];
 
-			return new Promise<void>((resolve: IResolve) => {
+			return new Promise<void>((resolve: Resolve) => {
 				refResolve.current = resolve;
 			});
 		},

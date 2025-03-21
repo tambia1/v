@@ -1,6 +1,6 @@
 import type { ILanguageName } from "../i18n.types";
 
-export type IHome = {
+export type Home = {
 	languageName: ILanguageName;
 
 	all: {
