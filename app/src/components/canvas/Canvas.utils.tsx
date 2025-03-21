@@ -1,11 +1,11 @@
-import type { IXY } from "./Canvas.types";
+import type { XY } from "./Canvas.types";
 
 export const reverseYAxis = (ctx: CanvasRenderingContext2D) => {
 	ctx.scale(1, -1);
 	ctx.translate(0.0, -ctx.canvas.height);
 };
 
-export const drawLines = (ctx: CanvasRenderingContext2D, points: IXY[], strokeStyle: string) => {
+export const drawLines = (ctx: CanvasRenderingContext2D, points: XY[], strokeStyle: string) => {
 	if (points.length < 2) {
 		return;
 	}
@@ -25,7 +25,7 @@ export const drawLines = (ctx: CanvasRenderingContext2D, points: IXY[], strokeSt
 	ctx.restore();
 };
 
-export const fillLines = (ctx: CanvasRenderingContext2D, points: IXY[], strokeStyle: string, fillStyle: string) => {
+export const fillLines = (ctx: CanvasRenderingContext2D, points: XY[], strokeStyle: string, fillStyle: string) => {
 	if (points.length < 2) {
 		return;
 	}
@@ -49,7 +49,7 @@ export const fillLines = (ctx: CanvasRenderingContext2D, points: IXY[], strokeSt
 	ctx.restore();
 };
 
-export const drawCircles = (ctx: CanvasRenderingContext2D, points: IXY[], radius: number, strokeStyle: string, fillStyle: string) => {
+export const drawCircles = (ctx: CanvasRenderingContext2D, points: XY[], radius: number, strokeStyle: string, fillStyle: string) => {
 	ctx.save();
 
 	ctx.strokeStyle = strokeStyle;
@@ -66,7 +66,7 @@ export const drawCircles = (ctx: CanvasRenderingContext2D, points: IXY[], radius
 	ctx.restore();
 };
 
-export const drawArc = (ctx: CanvasRenderingContext2D, start: IXY, end: IXY, strokeStyle: string) => {
+export const drawArc = (ctx: CanvasRenderingContext2D, start: XY, end: XY, strokeStyle: string) => {
 	ctx.save();
 
 	ctx.strokeStyle = strokeStyle;

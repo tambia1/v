@@ -1,14 +1,14 @@
 import { Select } from "@src/components/select/Select";
-import { type IType, Table } from "@src/components/table/Table";
+import { Table, type Type } from "@src/components/table/Table";
 import { useState } from "react";
 import { data } from "./Data";
 import * as S from "./TestTable.styles";
 
 export const TestTable = () => {
-	const [tableType, setTableType] = useState<IType>("horizontal");
+	const [tableType, setTableType] = useState<Type>("horizontal");
 
 	const onClickSelect = (index: number, _value: string) => {
-		const map: IType[] = ["horizontal", "vertical"];
+		const map: Type[] = ["horizontal", "vertical"];
 
 		setTableType(map[index]);
 	};

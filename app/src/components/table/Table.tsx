@@ -1,17 +1,17 @@
 import type { ReactNode } from "react";
 import * as S from "./Table.styles";
 
-export type IData = {
+export type Data = {
 	cols: ReactNode[];
 	rows: ReactNode[][];
 };
 
-export type IType = "horizontal" | "vertical";
+export type Type = "horizontal" | "vertical";
 
 interface Props {
 	className?: string;
-	type: IType;
-	data: IData;
+	type: Type;
+	data: Data;
 }
 
 export const Table = ({ className, data, type }: Props) => {

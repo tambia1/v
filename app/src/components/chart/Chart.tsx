@@ -1,17 +1,17 @@
 import { useTheme } from "styled-components";
 import { Canvas } from "../canvas/Canvas";
-import type { IXY } from "../canvas/Canvas.types";
+import type { XY } from "../canvas/Canvas.types";
 import * as C from "../canvas/Canvas.utils";
 import * as S from "./Chart.styles";
 
-export type ILine = {
+export type Line = {
 	color: string;
 	data: number[][];
 };
 
 interface Props {
 	className?: string;
-	lines: ILine[];
+	lines: Line[];
 }
 
 export const Chart = ({ className, lines }: Props) => {
@@ -21,7 +21,7 @@ export const Chart = ({ className, lines }: Props) => {
 		const w = ctx.canvas.width;
 		const h = ctx.canvas.height;
 
-		const axisX: IXY[] = [
+		const axisX: XY[] = [
 			{ x: 0, y: h },
 			{ x: w, y: h },
 		];
@@ -29,7 +29,7 @@ export const Chart = ({ className, lines }: Props) => {
 		C.drawLines(ctx, axisX, "#000000");
 
 		for (let i = 0; i < w; i += 100) {
-			const points: IXY[] = [
+			const points: XY[] = [
 				{ x: i, y: 0 },
 				{ x: i, y: h },
 			];
@@ -38,7 +38,7 @@ export const Chart = ({ className, lines }: Props) => {
 		}
 
 		for (let i = 1; i < w; i += 100) {
-			const points: IXY[] = [
+			const points: XY[] = [
 				{ x: 0, y: h - i },
 				{ x: w, y: h - i },
 			];
@@ -60,7 +60,7 @@ export const Chart = ({ className, lines }: Props) => {
 			const maxValue = Math.max(...lines[i].data.map((item) => item[1]));
 			const r = h / (maxValue - minValue);
 
-			const points: IXY[] = [];
+			const points: XY[] = [];
 
 			for (let j = 0; j < lines[i].data.length; j++) {
 				points.push({ x: j * (w / (lines[i].data.length - 1)), y: h - (lines[i].data[j][1] - minValue) * r });

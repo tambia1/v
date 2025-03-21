@@ -1,30 +1,30 @@
-export type IXY = {
+export type XY = {
 	x: number;
 	y: number;
 };
 
-export type IWH = {
+export type WH = {
 	w: number;
 	h: number;
 };
 
-export type ICircle = {
+export type Circle = {
 	x: number;
 	y: number;
 	r: number;
 };
 
-export type IXYWH = IXY & IWH;
+export type XYWH = XY & WH;
 
-export type IXXYYWH = IXY &
-	IWH & {
+export type XXYYWH = XY &
+	WH & {
 		x1: number;
 		x2: number;
 		y1: number;
 		y2: number;
 	};
 
-export type IRect = IXXYYWH & {
+export type Rect = XXYYWH & {
 	xc: number;
 	yc: number;
 };
