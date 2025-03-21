@@ -1,13 +1,13 @@
-import { Animation, AnimationLooper, type ICallbackResult } from "@src/utils/Animation";
+import { Animation, AnimationLooper, type CallbackResult } from "@src/utils/Animation";
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
 import * as S from "./Slot.styles";
 
-export type ISlotState = "spin" | "stop";
+export type SlotState = "spin" | "stop";
 
 interface Props {
 	items: string[];
-	slotState: ISlotState;
-	setSlotState: Dispatch<SetStateAction<ISlotState>>;
+	slotState: SlotState;
+	setSlotState: Dispatch<SetStateAction<SlotState>>;
 	startItem: number;
 	stopItem: number;
 }
@@ -40,13 +40,13 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 				[0, 5, 0],
 			],
 			timing: [0, -10, 50, 110, 100],
-			onCalculate: (result: ICallbackResult) => {
+			onCalculate: (result: CallbackResult) => {
 				setResult(() => [result.results[0], result.results[1]]);
 			},
 			callbacks: [
 				{
 					position: ITEM_SPIN_TIME * (newSlotItems.length + stopItem - startItem),
-					callback: (_result: ICallbackResult) => {
+					callback: (_result: CallbackResult) => {
 						animation.pause();
 						animationLooper.stopLoop();
 						setSlotState("stop");
@@ -62,7 +62,7 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 			animation.pause();
 			animationLooper.stopLoop();
 		};
-	}, [startItem, stopItem]);
+	}, [startItem, stopItem, animation, animationLooper, items, setSlotState]);
 
 	useEffect(() => {
 		if (slotState === "spin") {
@@ -70,7 +70,7 @@ export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Pr
 			animation.resume();
 			animationLooper.startLoop();
 		}
-	}, [slotState]);
+	}, [slotState, animation, animationLooper]);
 
 	return (
 		<S.Slot>

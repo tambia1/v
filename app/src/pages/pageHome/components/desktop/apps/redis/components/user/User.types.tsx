@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
-export type IMessageState = "idle" | "loading" | "success" | "error";
+export type MessageState = "idle" | "loading" | "success" | "error";
 
-export type IMessage = {
-	state: IMessageState;
+export type Message = {
+	state: MessageState;
 	message: ReactNode;
 };

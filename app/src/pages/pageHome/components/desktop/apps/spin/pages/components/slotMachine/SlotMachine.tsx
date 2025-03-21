@@ -1,14 +1,14 @@
 import { getRandomNumber } from "@src/utils/Random";
 import { useState } from "react";
 import * as S from "./SlotMachine.styles";
-import { type ISlotState, Slot } from "./components/slot/Slot";
+import { Slot, type SlotState } from "./components/slot/Slot";
 
 interface Props {
 	slotItems: string[];
 }
 
 export const SlotMachine = ({ slotItems }: Props) => {
-	const [slotState, setSlotState] = useState<ISlotState>("stop");
+	const [slotState, setSlotState] = useState<SlotState>("stop");
 	const [spinStart, setSpinStart] = useState(0);
 	const [spinEnd, setSpinEnd] = useState(0);
 

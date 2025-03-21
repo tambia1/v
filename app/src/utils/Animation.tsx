@@ -1,11 +1,11 @@
 // version: 1.0.2
 
-export type ICallback = {
+export type Callback = {
 	position: number;
-	callback: (result: ICallbackResult) => void;
+	callback: (result: CallbackResult) => void;
 };
 
-export type ICallbackResult = {
+export type CallbackResult = {
 	animation: Animation;
 	results: number[];
 	routes: number[][];
@@ -20,8 +20,8 @@ type Props = {
 	routes: number[][];
 	time: number;
 	timing: number[];
-	onCalculate: ((callbackResult: ICallbackResult) => void) | null;
-	callbacks: ICallback[];
+	onCalculate: ((callbackResult: CallbackResult) => void) | null;
+	callbacks: Callback[];
 };
 
 export class Animation {
@@ -40,9 +40,9 @@ export class Animation {
 
 	private isRunning: boolean;
 
-	private onCalculate: ((callbackResult: ICallbackResult) => void) | null;
+	private onCalculate: ((callbackResult: CallbackResult) => void) | null;
 
-	private callbacks: ICallback[];
+	private callbacks: Callback[];
 	private callbacksCounters: number[];
 
 	public results: number[];
@@ -98,17 +98,23 @@ export class Animation {
 	}
 
 	private static bezier_5(t: number, p0: number, p1: number, p2: number, p3: number, p4: number): number {
-		return p0 * (1 - t) * (1 - t) * (1 - t) * (1 - t) + 4 * p1 * t * (1 - t) * (1 - t) * (1 - t) + 6 * p2 * t * t * (1 - t) * (1 - t) + 4 * p3 * t * t * t * (1 - t) + p4 * t * t * t * t;
+		return (
+			p0 * (1 - t) * (1 - t) * (1 - t) * (1 - t) +
+			4 * p1 * t * (1 - t) * (1 - t) * (1 - t) +
+			6 * p2 * t * t * (1 - t) * (1 - t) +
+			4 * p3 * t * t * t * (1 - t) +
+			p4 * t * t * t * t
+		);
 	}
 
 	private static bezier_6(t: number, p0: number, p1: number, p2: number, p3: number, p4: number, p5: number): number {
 		return (
-			p0 * Math.pow(1 - t, 5) +
-			5 * p1 * t * Math.pow(1 - t, 4) +
-			10 * p2 * Math.pow(t, 2) * Math.pow(1 - t, 3) +
-			10 * p3 * Math.pow(t, 3) * Math.pow(1 - t, 2) +
-			5 * p4 * Math.pow(t, 4) * (1 - t) +
-			p5 * Math.pow(t, 5)
+			p0 * (1 - t) ** 5 +
+			5 * p1 * t * (1 - t) ** 4 +
+			10 * p2 * t ** 2 * (1 - t) ** 3 +
+			10 * p3 * t ** 3 * (1 - t) ** 2 +
+			5 * p4 * t ** 4 * (1 - t) +
+			p5 * t ** 5
 		);
 	}
 
@@ -192,7 +198,7 @@ export class Animation {
 		this.calculateResults();
 
 		// Save results to send to callbacks
-		const callbackResult: ICallbackResult = {
+		const callbackResult: CallbackResult = {
 			animation: this,
 			results: this.results,
 			routes: this.routes,
@@ -273,21 +279,21 @@ export class Animation {
 	}
 
 	public static rotate3dX(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
-		a = (a * Math.PI) / 180;
+		const ang = (a * Math.PI) / 180;
 
-		return { x: x, y: y * Math.cos(a) - z * Math.sin(a), z: y * Math.sin(a) + z * Math.cos(a) };
+		return { x: x, y: y * Math.cos(ang) - z * Math.sin(ang), z: y * Math.sin(ang) + z * Math.cos(a) };
 	}
 
 	public static rotate3dY(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
-		a = (a * Math.PI) / 180;
+		const ang = (a * Math.PI) / 180;
 
-		return { x: z * Math.sin(a) + x * Math.cos(a), y: y, z: z * Math.cos(a) - x * Math.sin(a) };
+		return { x: z * Math.sin(ang) + x * Math.cos(ang), y: y, z: z * Math.cos(ang) - x * Math.sin(ang) };
 	}
 
 	public static rotate3dZ(x: number, y: number, z: number, a: number): { x: number; y: number; z: number } {
-		a = (a * Math.PI) / 180;
+		const ang = (a * Math.PI) / 180;
 
-		return { x: x * Math.cos(a) - y * Math.sin(a), y: x * Math.sin(a) + y * Math.cos(a), z: z };
+		return { x: x * Math.cos(ang) - y * Math.sin(ang), y: x * Math.sin(ang) + y * Math.cos(ang), z: z };
 	}
 
 	public static rotate3D(x: number, y: number, z: number, a: number, b: number, c: number): { x: number; y: number; z: number } {
@@ -299,7 +305,10 @@ export class Animation {
 		return arr;
 	}
 
-	public static onElementVisible(element: HTMLElement, callback: (target: HTMLElement, isVisible: boolean, observer: IntersectionObserver) => void): IntersectionObserver | null {
+	public static onElementVisible(
+		element: HTMLElement,
+		callback: (target: HTMLElement, isVisible: boolean, observer: IntersectionObserver) => void,
+	): IntersectionObserver | null {
 		const options = {};
 		const observer = new IntersectionObserver((entries, observer) => {
 			entries.forEach((entry) => {
@@ -311,9 +320,9 @@ export class Animation {
 			observer.observe(element);
 
 			return observer;
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 }
 
@@ -336,7 +345,7 @@ export class AnimationLooper {
 		const requestAnimationFrameFunction = () => {
 			this.animations.forEach((animation) => animation.calculate());
 
-			if (this.isLooping == true) {
+			if (this.isLooping === true) {
 				this.requestAnimationFrameId = window.requestAnimationFrame(requestAnimationFrameFunction);
 			}
 		};

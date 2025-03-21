@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { Api } from "../../api/Api";
 import * as S from "./User.styles";
-import type { IMessage } from "./User.types";
+import type { Message } from "./User.types";
 import { StoreUser } from "./stores/StoreUser";
 
 export const User = () => {
@@ -28,7 +28,7 @@ export const User = () => {
 	const passwordSchema = z.string().min(1).max(100);
 
 	const [isLoading, setIsLoading] = useState(false);
-	const [message, setMessage] = useState<IMessage>({ state: "idle", message: "" });
+	const [message, setMessage] = useState<Message>({ state: "idle", message: "" });
 
 	const storeUser = StoreUser();
 	const mutateLogin = Api.login.mutateLogin();
