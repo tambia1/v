@@ -1,4 +1,4 @@
-import { backgroundImages } from "@apps/settings/components/page/components/theme/Theme.styles";
+import { backgroundImages } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/themes/Themes.styles";
 import styled from "styled-components";
 
 export type IBarPosition = "top" | "bottom" | "left" | "right";

@@ -5,10 +5,10 @@ import { lang } from "@src/locales/i18n";
 import { type ITheme, themes } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { useSearchParams } from "react-router-dom";
-import * as S from "./Theme.styles";
+import * as S from "./Themes.styles";
 import { ThemeStore } from "./store/ThemeStore";
 
-export const Theme = () => {
+export const Themes = () => {
 	const { theme, setTheme } = useThemeContext();
 	const [searchParams, setSearchParams] = useSearchParams();
 	const themeStore = ThemeStore();
@@ -25,9 +25,9 @@ export const Theme = () => {
 	};
 
 	return (
-		<S.Theme>
+		<S.Themes>
 			<List.Section>
-				<T>{lang.settings.theme.mode}</T>
+				<T>{lang.settings.themes.mode}</T>
 			</List.Section>
 
 			<List>
@@ -36,7 +36,7 @@ export const Theme = () => {
 						<Icon iconName="iconSun" />
 					</List.Cell.Icon>
 					<List.Cell.Text>
-						<T>{lang.settings.theme.light}</T>
+						<T>{lang.settings.themes.light}</T>
 					</List.Cell.Text>
 					<List.Cell.Image>
 						<Icon iconName={theme.themeName === "light" ? "iconCheck" : ""} />
@@ -48,7 +48,7 @@ export const Theme = () => {
 						<Icon iconName="iconMoon" />
 					</List.Cell.Icon>
 					<List.Cell.Text>
-						<T>{lang.settings.theme.dark}</T>
+						<T>{lang.settings.themes.dark}</T>
 					</List.Cell.Text>
 					<List.Cell.Image>
 						<Icon iconName={theme.themeName === "dark" ? "iconCheck" : ""} />
@@ -57,7 +57,7 @@ export const Theme = () => {
 			</List>
 
 			<List.Section>
-				<T>{lang.settings.theme.background}</T>
+				<T>{lang.settings.themes.background}</T>
 			</List.Section>
 
 			<List>
@@ -67,7 +67,7 @@ export const Theme = () => {
 							<S.BackgroundImage $backgroundImageIndex={index} />
 						</List.Cell.Icon>
 						<List.Cell.Text>
-							<T>{backgroundImage.light ? "" : lang.settings.theme.noBackground}</T>
+							<T>{backgroundImage.light ? "" : lang.settings.themes.noBackground}</T>
 						</List.Cell.Text>
 						<List.Cell.Image>
 							<Icon iconName={themeStore.backgroundImageIndex === index ? "iconCheck" : ""} />
@@ -75,6 +75,6 @@ export const Theme = () => {
 					</List.Cell>
 				))}
 			</List>
-		</S.Theme>
+		</S.Themes>
 	);
 };

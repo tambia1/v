@@ -28,7 +28,7 @@ export const backgroundImages = [
 	{ light: lightBackground8, dark: darkBackground8 },
 ];
 
-export const Theme = styled.div`
+export const Themes = styled.div`
 	width: auto;
 	height: auto;
 

@@ -3,14 +3,14 @@ import { themeLight } from "./themes/themeLight/ThemeLight";
 
 export const themes = { light: themeLight, dark: themeDark };
 
-type IColorGroup = "primary" | "secondary" | "ternary" | "quartery";
-type IColorState = "" | "Hover" | "Active" | "Selected" | "Disabled";
-type IColorType = `${IColorGroup}${"Fg" | "Bg"}${IColorState}`;
+type ColorGroup = "primary" | "secondary" | "ternary" | "quartery";
+type ColorState = "" | "Hover" | "Active" | "Selected" | "Disabled";
+type ColorType = `${ColorGroup}${"Fg" | "Bg"}${ColorState}`;
 
 export type ITheme = {
 	themeName: keyof typeof themes;
 
-	color: { [key in IColorType]: string } & {
+	color: { [key in ColorType]: string } & {
 		transparent: string;
 
 		accentFg: string;

@@ -8,7 +8,7 @@ import * as S from "./Page.styles";
 import { About } from "./components/about/About";
 import { Language } from "./components/language/Language";
 import { Layout } from "./components/layout/Layout";
-import { Theme } from "./components/theme/Theme";
+import { Themes } from "./components/themes/Themes";
 
 export const Page = () => {
 	const navigator = useNavigator();
@@ -23,8 +23,8 @@ export const Page = () => {
 
 	const handleOnClickTheme = () => {
 		navigator.pushPage(
-			<Navigator.Page id="theme" title={<T>{lang.settings.theme.title}</T>}>
-				<Theme />
+			<Navigator.Page id="theme" title={<T>{lang.settings.themes.title}</T>}>
+				<Themes />
 			</Navigator.Page>,
 		);
 	};
@@ -69,7 +69,7 @@ export const Page = () => {
 						<Icon iconName="iconAperture" />
 					</List.Cell.Icon>
 					<List.Cell.Text>
-						<T>{lang.settings.theme.title}</T>
+						<T>{lang.settings.themes.title}</T>
 					</List.Cell.Text>
 					<List.Cell.Image>
 						<Icon iconName="iconChevronRight" />

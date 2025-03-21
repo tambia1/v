@@ -11,7 +11,7 @@ export const translation: ISettings = {
 			english: "English",
 			finnish: "Finnish",
 		},
-		theme: {
+		themes: {
 			title: "Teema",
 			mode: "Tila",
 			light: "Valoa",

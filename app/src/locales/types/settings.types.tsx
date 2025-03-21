@@ -8,7 +8,7 @@ export type ISettings = {
 			english: string;
 			finnish: string;
 		};
-		theme: {
+		themes: {
 			title: string;
 			mode: string;
 			light: string;

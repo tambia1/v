@@ -15,8 +15,8 @@ import modalIconsQuestion from "@components/modal/components/box/components/cont
 import worldMapDark from "@components/worldMap/assets/world-map-dark.png";
 import worldMapLight from "@components/worldMap/assets/world-map-light.png";
 import { Icons } from "@src/components/icon/Icon.types";
+import { backgroundImages } from "../desktop/apps/settings/components/page/components/themes/Themes.styles";
 import { appIcons as DesktopButtonsIcons } from "../desktop/components/appButton/AppButton.styles";
-import { backgroundImages } from "./../desktop/apps/settings/components/page/components/theme/Theme.styles";
 
 const chunkArray = (arr: string[], chunkSize: number): string[][] => {
 	const chunks: string[][] = [];
