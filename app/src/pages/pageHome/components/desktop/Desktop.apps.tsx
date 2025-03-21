@@ -11,8 +11,8 @@ import { Tetris } from "@apps/tetris/Tetris";
 import { User } from "@apps/user/User";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { lazy } from "react";
-import type { IRole } from "./Desktop.types";
+import { ReactElement, ReactNode, lazy } from "react";
+import type { IRole as Role } from "./Desktop.types";
 import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";
@@ -34,22 +34,22 @@ import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
 // import { TestShared } from "./apps/testShared/TestShared";
 import { TestTree } from "./apps/testTree/TestTree";
-import type { IAppIcon } from "./components/appButton/AppButton.styles";
+import type { IAppIcon as AppIcon } from "./components/appButton/AppButton.styles";
 
 const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
 const Notes = lazy(() => import("@apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("@apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
 
-export type IApp = {
+export type App = {
 	id: string;
-	roles: IRole[];
-	title: React.ReactNode;
-	icon: IAppIcon;
-	component: React.ReactElement;
+	roles: Role[];
+	title: ReactNode;
+	icon: AppIcon;
+	component: ReactElement;
 };
 
-export const apps: IApp[][] = [
+export const apps: App[][] = [
 	[
 		{ id: "settings", roles: ["admin", "user", "guest"], title: <T>{lang.settings.title}</T>, icon: "settings", component: <Settings /> },
 		{ id: "user", roles: ["admin", "user"], title: <T>{lang.user.title}</T>, icon: "userLoggedIn", component: <User /> },

@@ -17,7 +17,7 @@ import { type ErrorInfo, type ReactNode, useCallback, useLayoutEffect, useRef, u
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
-import { type IApp, apps } from "./Desktop.apps";
+import { type App, apps } from "./Desktop.apps";
 import * as S from "./Desktop.styles";
 import { removeAppsNotFittingByRoles as getAppsByRoles, getExternalApps } from "./Desktop.utils";
 import { Api } from "./apps/user/api/Api";
@@ -49,7 +49,7 @@ export const Desktop = () => {
 	const storeApps = StoreApps();
 	const externalApps = getExternalApps(storeApps.apps);
 
-	const allApps: IApp[][] = [...apps, externalApps];
+	const allApps: App[][] = [...apps, externalApps];
 	const appsByRole = getAppsByRoles(allApps, storeUser.role);
 
 	useLayoutEffect(() => {
