@@ -1,17 +1,17 @@
-import { getRandomNumber } from "@src/utils/Random";
-import { IFruitType } from "./Game";
 import { Animation, AnimationLooper } from "@src/utils/Animation";
+import { getRandomNumber } from "@src/utils/Random";
+import { IFruitType as FruitType } from "./Game";
 
-type IProps = {
+type Props = {
 	canvas: HTMLCanvasElement;
-	fruitType: IFruitType;
+	fruitType: FruitType;
 	fruitImage: HTMLImageElement;
 	fruitSplashImage: HTMLImageElement;
 	callback: () => void;
 };
 
 export class Fruit {
-	public fruitType: IFruitType;
+	public fruitType: FruitType;
 	private fruitImage: HTMLImageElement;
 	private fruitSplashImage: HTMLImageElement;
 	private callback: () => void;
@@ -21,7 +21,7 @@ export class Fruit {
 	private splashX: number;
 	private splashY: number;
 
-	constructor({ canvas, fruitType, fruitImage, fruitSplashImage, callback }: IProps) {
+	constructor({ canvas, fruitType, fruitImage, fruitSplashImage, callback }: Props) {
 		this.fruitType = fruitType;
 		this.fruitImage = fruitImage;
 		this.fruitSplashImage = fruitSplashImage;
@@ -67,7 +67,7 @@ export class Fruit {
 
 		this.animation.calculate();
 
-		if (this.isSplashed == false) {
+		if (this.isSplashed === false) {
 			ctx.drawImage(this.fruitImage, this.animation.results[0], this.animation.results[1], 64, 64);
 		} else {
 			ctx.drawImage(this.fruitSplashImage, this.splashX, this.splashY, 64, 64);
@@ -77,7 +77,7 @@ export class Fruit {
 	}
 
 	public isTouched(touchX: number, touchY: number) {
-		if (this.isSplashed == false) {
+		if (this.isSplashed === false) {
 			this.animation.calculate();
 
 			const fruitX = this.animation.results[0];
