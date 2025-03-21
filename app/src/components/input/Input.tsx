@@ -1,4 +1,4 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import type { InputHTMLAttributes } from "react";
 import { useTheme } from "styled-components";
 import * as S from "./Input.styles";
@@ -10,7 +10,7 @@ export type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	value: string;
 	placeholder?: string;
 	disabled?: boolean;
-	size?: keyof ITheme["size"];
+	size?: keyof Theme["size"];
 	textAlign?: ITextAlign;
 	onTextChange?: (content: string) => void;
 	onPressEnter?: () => void;

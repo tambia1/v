@@ -2,7 +2,7 @@ import { Pages } from "@pages/Pages.types";
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GlobalStyle } from "@src/styles/globalStyles";
-import { Theme } from "@src/theme/Theme";
+import { ThemeProvider } from "@src/theme/Theme";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect } from "react";
@@ -31,12 +31,12 @@ export const App = () => {
 				<BrowserRouter basename="/v">
 					<QueryClientProvider client={queryClient}>
 						<GlobalStyle />
-						<Theme>
+						<ThemeProvider>
 							<Routes>
 								<Route path={Pages.notFound} element={<PageNotFound />} />
 								<Route path={Pages.home} element={<PageHome />} />
 							</Routes>
-						</Theme>
+						</ThemeProvider>
 
 						{ENV === "dev" && <ReactQueryDevtools initialIsOpen={false} />}
 					</QueryClientProvider>

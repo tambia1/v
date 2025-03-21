@@ -1,5 +1,5 @@
 import { Flag } from "@src/components/flag/Flag";
-import type { IFlagName } from "@src/components/flag/Flag.types";
+import type { FlagName } from "@src/components/flag/Flag.types";
 import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
@@ -114,7 +114,7 @@ export const Subscription = ({ subscriptionId }: Props) => {
 								lat={regionsLocations[region.id as keyof typeof regionsLocations]?.latitude || 0}
 							>
 								<S.Pin>
-									<Flag flagName={`${region.flag}` as IFlagName} />
+									<Flag flagName={`${region.flag}` as FlagName} />
 									{region.city_name}
 								</S.Pin>
 							</WorldMap.Pin>

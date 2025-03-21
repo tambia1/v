@@ -1,25 +1,25 @@
-import { type ITheme, themes } from "@src/theme/Theme.types";
+import { type Theme, themes } from "@src/theme/Theme.types";
 import { type ReactNode, useState } from "react";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider as ThemeProviderDtyledComponents } from "styled-components";
 import { ThemeContext } from "./UseThemeContext";
 
-const themeName: ITheme["themeName"] = import.meta.env.THEME || "light";
+const themeName: Theme["themeName"] = import.meta.env.THEME || "light";
 const defaultTheme = themes[themeName];
 
 type Props = {
 	children: ReactNode;
 };
 
-export const Theme = ({ children }: Props) => {
+export const ThemeProvider = ({ children }: Props) => {
 	const [theme, setCurrentTheme] = useState(defaultTheme);
 
-	const setTheme = (theme: ITheme) => {
+	const setTheme = (theme: Theme) => {
 		setCurrentTheme(theme);
 	};
 
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProviderDtyledComponents theme={theme}>
 			<ThemeContext value={{ theme, setTheme }}>{children}</ThemeContext>
-		</ThemeProvider>
+		</ThemeProviderDtyledComponents>
 	);
 };

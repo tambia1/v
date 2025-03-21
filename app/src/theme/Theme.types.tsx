@@ -7,7 +7,7 @@ type ColorGroup = "primary" | "secondary" | "ternary" | "quartery";
 type ColorState = "" | "Hover" | "Active" | "Selected" | "Disabled";
 type ColorType = `${ColorGroup}${"Fg" | "Bg"}${ColorState}`;
 
-export type ITheme = {
+export type Theme = {
 	themeName: keyof typeof themes;
 
 	color: { [key in ColorType]: string } & {

@@ -1,9 +1,9 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import styled from "styled-components";
 import ImageBgDark from "./components/talk/assets/bgDark.png";
 import ImageBgLight from "./components/talk/assets/bgLight.png";
 
-const BgImages: { [K in ITheme["themeName"]]: string } = {
+const BgImages: { [K in Theme["themeName"]]: string } = {
 	light: ImageBgLight,
 	dark: ImageBgDark,
 };

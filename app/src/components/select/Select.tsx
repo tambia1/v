@@ -1,4 +1,4 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import { type HTMLAttributes, type ReactElement, useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
 import * as S from "./Select.styles";
@@ -11,7 +11,7 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 	children: ReactElement<{ value: string }>[] | ReactElement<{ value: string }>;
 	onClickItem: (index: number, value: string) => void;
 	isCloseOnSelectItem?: boolean;
-	size?: keyof ITheme["size"];
+	size?: keyof Theme["size"];
 };
 
 export const Select = ({ className, children, isCloseOnSelectItem = true, onClickItem, size = "xl", ...rest }: Props) => {

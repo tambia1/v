@@ -11,7 +11,7 @@ import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stor
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
 import { useThemesSearchParams } from "@src/pages/pageHome/hooks/useThemesSearchParams";
 import { Promises } from "@src/services/Promises";
-import { type ITheme, themes } from "@src/theme/Theme.types";
+import { type Theme, themes } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { type ErrorInfo, type ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -67,7 +67,7 @@ export const Desktop = () => {
 
 	useThemesSearchParams({
 		onChange: useCallback(
-			(themeName: ITheme["themeName"]) => {
+			(themeName: Theme["themeName"]) => {
 				setTheme(themes[themeName]);
 			},
 			[setTheme],
@@ -133,7 +133,7 @@ export const Desktop = () => {
 		setCurrentApp(null);
 	};
 
-	const handleOnClickTheme = (themeName: ITheme["themeName"]) => {
+	const handleOnClickTheme = (themeName: Theme["themeName"]) => {
 		setTheme(themes[themeName]);
 
 		searchParams.set("theme", themeName);

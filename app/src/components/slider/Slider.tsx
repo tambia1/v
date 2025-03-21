@@ -1,4 +1,4 @@
-import { ITheme } from "@src/theme/Theme.types";
+import { Theme } from "@src/theme/Theme.types";
 import { useTheme } from "styled-components";
 import * as S from "./Slider.styles";
 
@@ -6,7 +6,7 @@ export interface Props {
 	className?: string;
 	value: number;
 	onChange: (value: number) => void;
-	size?: keyof ITheme["size"];
+	size?: keyof Theme["size"];
 }
 
 export const Slider = ({ className, value, onChange, size = "l" }: Props) => {

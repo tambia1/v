@@ -1,13 +1,13 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import { ReactSVG } from "react-svg";
 import { useTheme } from "styled-components";
 import * as S from "./Flag.styles";
-import { Flags, type IFlagName } from "./Flag.types";
+import { type FlagName, Flags } from "./Flag.types";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	className?: string;
-	flagName: IFlagName;
-	size?: keyof ITheme["size"];
+	flagName: FlagName;
+	size?: keyof Theme["size"];
 }
 
 export const Flag = ({ className, flagName, size = "xxs", ...rest }: Props) => {

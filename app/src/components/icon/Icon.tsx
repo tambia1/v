@@ -1,4 +1,4 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import { ReactSVG } from "react-svg";
 import { useTheme } from "styled-components";
 import * as S from "./Icon.styles";
@@ -7,7 +7,7 @@ import { type IIconName, Icons } from "./Icon.types";
 export type Props = React.HTMLAttributes<HTMLDivElement> & {
 	className?: string;
 	iconName: IIconName;
-	size?: keyof ITheme["size"];
+	size?: keyof Theme["size"];
 	fill?: string;
 	stroke?: string;
 };

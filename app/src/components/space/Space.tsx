@@ -1,10 +1,10 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import * as S from "./Space.styles";
 import type { IDirection } from "./Space.types";
 
 interface Props {
 	className?: string;
-	size?: keyof ITheme["size"];
+	size?: keyof Theme["size"];
 	direction?: IDirection;
 }
 

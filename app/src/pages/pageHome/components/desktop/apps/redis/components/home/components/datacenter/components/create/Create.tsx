@@ -1,7 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { Check } from "@src/components/check/Check";
 import { Flag } from "@src/components/flag/Flag";
-import type { IFlagName } from "@src/components/flag/Flag.types";
+import type { FlagName } from "@src/components/flag/Flag.types";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
@@ -177,8 +177,8 @@ export const Create = () => {
 			match.name,
 			match.cloud,
 			<Flag
-				key={regions.find((region) => region.name === match.region)?.name as IFlagName}
-				flagName={`${regions.find((region) => region.name === match.region)?.flag}` as IFlagName}
+				key={regions.find((region) => region.name === match.region)?.name as FlagName}
+				flagName={`${regions.find((region) => region.name === match.region)?.flag}` as FlagName}
 			/>,
 			<Check key={String(match.is_rof)} checked={match.is_rof} />,
 			<Check key={String(match.is_multi_az)} checked={match.is_multi_az} />,

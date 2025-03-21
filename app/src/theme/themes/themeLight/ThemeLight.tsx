@@ -1,7 +1,7 @@
-import type { ITheme } from "../../Theme.types";
+import type { Theme } from "../../Theme.types";
 import imageBg from "./assets/bg.jpg";
 
-export const themeLight: ITheme = {
+export const themeLight: Theme = {
 	themeName: "light",
 
 	color: {

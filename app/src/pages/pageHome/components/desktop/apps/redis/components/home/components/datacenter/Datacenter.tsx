@@ -1,6 +1,6 @@
 import { Collapsable } from "@src/components/collapsable/Collapsable";
 import { Flag } from "@src/components/flag/Flag";
-import type { IFlagName } from "@src/components/flag/Flag.types";
+import type { FlagName } from "@src/components/flag/Flag.types";
 import { Icon } from "@src/components/icon/Icon";
 import { IconButton } from "@src/components/iconButton/IconButton";
 import { Input } from "@src/components/input/Input";
@@ -176,7 +176,7 @@ export const Datacenter = () => {
 										<S.Row>
 											<S.SubscriptionsDetailText>Region</S.SubscriptionsDetailText>
 											{sub.regions.map((region) => (
-												<Flag key={region.city} flagName={`${region.flag}` as IFlagName} />
+												<Flag key={region.city} flagName={`${region.flag}` as FlagName} />
 											))}
 										</S.Row>
 									)}
@@ -199,7 +199,7 @@ export const Datacenter = () => {
 														<WorldMap.Pin key={region.city} lng={region.longitude} lat={region.latitude}>
 															<S.Pin>
 																<S.RegionValue>{region.cidr}</S.RegionValue>
-																<Flag flagName={`${region.flag}` as IFlagName} />
+																<Flag flagName={`${region.flag}` as FlagName} />
 															</S.Pin>
 														</WorldMap.Pin>
 													);

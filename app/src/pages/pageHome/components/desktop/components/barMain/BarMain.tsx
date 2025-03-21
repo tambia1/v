@@ -1,5 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import type { ReactNode } from "react";
 import type { IBarPosition } from "../../Desktop.styles";
@@ -7,7 +7,7 @@ import * as S from "./BarMain.styles";
 
 interface Props {
 	barPosition: IBarPosition;
-	onClickButtonTheme: (themeName: ITheme["themeName"]) => void;
+	onClickButtonTheme: (themeName: Theme["themeName"]) => void;
 	isVisibleButtonClose: boolean;
 	onClickButtonClose: () => void;
 	userName: ReactNode;

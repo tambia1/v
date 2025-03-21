@@ -1,8 +1,8 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import styled, { css } from "styled-components";
 import type { Variant } from "./Button";
 
-export const Button = styled.button<{ $variant: Variant; $width: keyof ITheme["size"] }>`
+export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["size"] }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;

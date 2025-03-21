@@ -1,5 +1,5 @@
 import { type Touch, useTouch } from "@src/hooks/UseTouch";
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import type { ComponentProps } from "react";
 import * as S from "./Button.styles";
 
@@ -9,7 +9,7 @@ export type Props = ComponentProps<"button"> & {
 	className?: string;
 	variant?: Variant;
 	onLongClick?: (e: TouchEvent | MouseEvent) => void;
-	size?: keyof ITheme["size"];
+	size?: keyof Theme["size"];
 };
 
 export const Button = ({ className, children, variant = "styled", size = "m", onLongClick, ref, ...rest }: Props) => {

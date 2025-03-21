@@ -1,11 +1,11 @@
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import { useTheme } from "styled-components";
 import * as S from "./Progress.styles";
 
 export type Props = {
 	className?: string;
 	ariaLabel?: string;
-	size?: keyof ITheme["size"];
+	size?: keyof Theme["size"];
 	percent: number;
 };
 

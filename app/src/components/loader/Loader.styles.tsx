@@ -1,8 +1,8 @@
 import { Icon } from "@src/components/icon/Icon";
-import type { ITheme } from "@src/theme/Theme.types";
+import type { Theme } from "@src/theme/Theme.types";
 import styled from "styled-components";
 
-export const Loader = styled(Icon)<{ size: keyof ITheme["size"]; color: keyof ITheme["color"] }>`
+export const Loader = styled(Icon)<{ size: keyof Theme["size"]; color: keyof Theme["color"] }>`
 	width: ${(props) => props.theme.size[props.size]};
 	height: ${(props) => props.theme.size[props.size]};
 	color: ${(props) => props.theme.color[props.color]};

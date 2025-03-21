@@ -1,12 +1,12 @@
-import { Theme } from "@src/theme/Theme";
+import { ThemeProvider } from "@src/theme/Theme";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { TestEdit } from "./TestEdit";
 
 const renderComponent = () => {
 	render(
-		<Theme>
+		<ThemeProvider>
 			<TestEdit />
-		</Theme>,
+		</ThemeProvider>,
 	);
 };
 

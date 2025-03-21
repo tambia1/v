@@ -544,4 +544,4 @@ export const Flags = {
 	zw,
 } as const;
 
-export type IFlagName = keyof typeof Flags;
+export type FlagName = keyof typeof Flags;
