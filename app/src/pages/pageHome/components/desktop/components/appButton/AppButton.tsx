@@ -7,7 +7,7 @@ import * as S from "./AppButton.styles";
 type Props = {
 	id: string;
 	title: ReactNode;
-	icon: S.IAppIcon | string;
+	icon: S.AppIcon | string;
 	onClick: (id: string) => void;
 	onLongPress: (id: string) => void;
 	isLoading: boolean;

@@ -53,14 +53,14 @@ export const appIcons = {
 	shush,
 } as const;
 
-export type IAppIcon = keyof typeof appIcons;
+export type AppIcon = keyof typeof appIcons;
 
-export const Image = styled.div<{ $appIcon: IAppIcon | string }>`
+export const Image = styled.div<{ $appIcon: AppIcon | string }>`
 	border-radius: 0.5rem;
 	width: 6rem;
 	height: 6rem;
 	flex-shrink: 0;
-	background-image: url(${({ $appIcon }) => appIcons[$appIcon as IAppIcon] || $appIcon});
+	background-image: url(${({ $appIcon }) => appIcons[$appIcon as AppIcon] || $appIcon});
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50%;

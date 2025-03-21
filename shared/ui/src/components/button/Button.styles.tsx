@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { IVariant } from "./Button";
+import { Variant } from "./Button";
 
-export const Button = styled.button<{ $variant: IVariant }>`
+export const Button = styled.button<{ $variant: Variant }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;

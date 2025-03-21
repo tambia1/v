@@ -1,14 +1,22 @@
 export type GetTypeKeys<T, U = ""> = T extends object ? { [K in keyof T]: GetTypeKeys<T[K], K> }[keyof T] : U;
-export type GetTypeKeysPath<T, P extends string = ""> = T extends object ? { [K in keyof T]: GetTypeKeysPath<T[K], `${P}${K & string}.`> }[keyof T] : P extends `${infer Prefix}.` ? Prefix : P;
+export type GetTypeKeysPath<T, P extends string = ""> = T extends object
+	? { [K in keyof T]: GetTypeKeysPath<T[K], `${P}${K & string}.`> }[keyof T]
+	: P extends `${infer Prefix}.`
+		? Prefix
+		: P;
 export type GetTypeKeysAsArray<T, P extends string[] = []> = T extends object ? { [K in keyof T]: GetTypeKeysAsArray<T[K], [...P, K & string]> }[keyof T] : P;
 export type GetObjectValues<T> = T extends object ? { [K in keyof T]: GetObjectValues<T[K]> }[keyof T] : T;
 export type GetTypeAsObject<T> = T extends object ? { [K in keyof T]: T[K] extends object ? GetTypeAsObject<T[K]> : K } : T;
-export type GetTypeAsObjectPath<T, P extends string = ""> = T extends object ? { [K in keyof T]: T[K] extends object ? GetTypeAsObjectPath<T[K], `${P}${K & string}.`> : `${P}${K & string}` } : never;
-export type GetTypeAsObjectArray<T, P extends string[] = []> = T extends object ? { [K in keyof T]: T[K] extends object ? GetTypeAsObjectArray<T[K], [...P, K & string]> : [...P, K & string] } : never;
+export type GetTypeAsObjectPath<T, P extends string = ""> = T extends object
+	? { [K in keyof T]: T[K] extends object ? GetTypeAsObjectPath<T[K], `${P}${K & string}.`> : `${P}${K & string}` }
+	: never;
+export type GetTypeAsObjectArray<T, P extends string[] = []> = T extends object
+	? { [K in keyof T]: T[K] extends object ? GetTypeAsObjectArray<T[K], [...P, K & string]> : [...P, K & string] }
+	: never;
 export type GetTypeByKey<U, T> = T extends keyof U ? U[T] : U extends string | number ? never : { [K in keyof U]: GetTypeByKey<U[K], T> }[keyof U];
 
 // // examples
-// type ILanguage = {
+// type Language = {
 // 	languageName: "en" | "fi";
 // 	pageMenu: {
 // 		logout: {
@@ -32,13 +40,13 @@ export type GetTypeByKey<U, T> = T extends keyof U ? U[T] : U extends string | n
 
 // const sizes = ["xs", "s", "m", "l", "xl"] as const;
 
-// type aaa = GetTypeKeys<ILanguage>;
+// type aaa = GetTypeKeys<Language>;
 // // type aaa = "languageName" | "alertText" | "alertButtonYes" | "alertButtonNo" | "title" | "apearance" | "language" | "theme" | "about"
 
-// type bbb = GetTypeKeysPath<ILanguage>;
+// type bbb = GetTypeKeysPath<Language>;
 // type bbb = "languageName" | "pageMenu.logout.alertText" | "pageMenu.logout.alertButtonYes" | "pageMenu.logout.alertButtonNo" | "settings.title" | "settings.apearance" | "settings.language" | "settings.theme" | "settings.about"
-// type bbb_1 = GetTypeAsObjectPath<ILanguage>;
-// type bbb_2 = GetTypeAsObjectArray<ILanguage>;
+// type bbb_1 = GetTypeAsObjectPath<Language>;
+// type bbb_2 = GetTypeAsObjectArray<Language>;
 // type bbb_2 = {
 //     languageName: ["languageName"];
 //     pageMenu: {
@@ -50,16 +58,16 @@ export type GetTypeByKey<U, T> = T extends keyof U ? U[T] : U extends string | n
 //     };
 // }
 
-// type bbb_1 = GetTypeKeysAsArray<ILanguage>;
+// type bbb_1 = GetTypeKeysAsArray<Language>;
 // // type bbb_1 = ["languageName"] | ["pageMenu", "logout", "alertText"] | ["pageMenu", "logout", "alertButtonYes"] | ["pageMenu", "logout", "alertButtonNo"]
 
-// type bbb_2 = GetTypeKeysAsArray<ILanguage>;
+// type bbb_2 = GetTypeKeysAsArray<Language>;
 // type bbb_1 = ["languageName"] | ["pageMenu", "logout", "alertText"] | ["pageMenu", "logout", "alertButtonYes"] | ["pageMenu", "logout", "alertButtonNo"]
 
 // type ccc = GetObjectValues<typeof language>;
 // // type ccc = "aaa" | "bbb" | "ccc" | "ddd"
 
-// type ddd = GetTypeAsObject<ILanguage>;
+// type ddd = GetTypeAsObject<Language>;
 // // type ddd = {
 // //     languageName: "languageName";
 // //     pageMenu: {
@@ -75,20 +83,20 @@ export type GetTypeByKey<U, T> = T extends keyof U ? U[T] : U extends string | n
 // const ddd_2 = ddd_1.pageMenu.logout.alertButtonYes;
 // // const ddd_2 = "alertButtonYes";
 
-// const ddd_3 = {} as ILanguage;
+// const ddd_3 = {} as Language;
 // const ddd_4 = ddd_3.pageMenu.logout.alertButtonYes;
 // // const ddd_4: string;
 
-// type eee = GetTypeByKey<ILanguage, "logout">;
+// type eee = GetTypeByKey<Language, "logout">;
 // // type eee = {
 // //     alertText: string;
 // //     alertButtonYes: string;
 // //     alertButtonNo: string;
 // // }
 
-// type ISize = (typeof sizes)[number];
-// // type ISize = "xs" | "s" | "m" | "l" | "xl"
-// const Sizes = {} as { readonly [K in ISize]: K };
+// type Size = (typeof sizes)[number];
+// // type Size = "xs" | "s" | "m" | "l" | "xl"
+// const Sizes = {} as { readonly [K in Size]: K };
 // // const Sizes: {
 // //     readonly xs: "xs";
 // //     readonly s: "s";
@@ -96,6 +104,6 @@ export type GetTypeByKey<U, T> = T extends keyof U ? U[T] : U extends string | n
 // //     readonly l: "l";
 // //     readonly xl: "xl";
 // // }
-// const fff_1: ISize = "s";
-// const fff_2: ISize = Sizes.s;
+// const fff_1: Size = "s";
+// const fff_2: Size = Sizes.s;
 // // const fff: "s"

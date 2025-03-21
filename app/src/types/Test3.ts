@@ -1,7 +1,7 @@
 // const Colors = ["#ff0000", "#00ff00", "#0000ff"] as const;
 
-// type IColorKey = keyof typeof Colors;
-// type IColorValue = (typeof Colors)[keyof typeof Colors];
+// type ColorKey = keyof typeof Colors;
+// type ColorValue = (typeof Colors)[keyof typeof Colors];
 
-// const color1: IColorKey = "0";
-// const color2: IColorValue = "#00ff00";
+// const color1: ColorKey = "0";
+// const color2: ColorValue = "#00ff00";

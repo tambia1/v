@@ -34,7 +34,7 @@ import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
 // import { TestShared } from "./apps/testShared/TestShared";
 import { TestTree } from "./apps/testTree/TestTree";
-import type { IAppIcon as AppIcon } from "./components/appButton/AppButton.styles";
+import type { AppIcon } from "./components/appButton/AppButton.styles";
 
 const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 

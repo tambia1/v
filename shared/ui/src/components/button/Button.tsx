@@ -1,10 +1,10 @@
 import type React from "react";
 import * as S from "./Button.styles";
 
-export type IVariant = "full" | "stroke" | "link";
+export type Variant = "full" | "stroke" | "link";
 
 type Props = React.ComponentPropsWithoutRef<"button"> & {
-	varian: IVariant;
+	varian: Variant;
 };
 
 export const Button = ({ children, varian = "full", ...rest }: Props) => {

@@ -4,8 +4,8 @@
 // 	BLUE: "#0000ff",
 // } as const;
 
-// type IColorKey = keyof typeof Colors;
-// type IColorValue = (typeof Colors)[keyof typeof Colors];
+// type ColorKey = keyof typeof Colors;
+// type ColorValue = (typeof Colors)[keyof typeof Colors];
 
-// const color1: IColorKey = "BLUE";
-// const color2: IColorValue = "#0000ff";
+// const color1: ColorKey = "BLUE";
+// const color2: ColorValue = "#0000ff";
