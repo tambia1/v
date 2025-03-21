@@ -59,7 +59,7 @@
 			}
 		},
 		{
-			"name": "app tsc",
+			"name": "app ts check",
 			"command": "npx tsc --noEmit",
 			"request": "launch",
 			"type": "node-terminal",
