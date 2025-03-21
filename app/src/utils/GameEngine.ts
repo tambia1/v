@@ -1,17 +1,17 @@
-type IEngineProps = {
+type EngineProps = {
 	onUpdate: (timeDif: number) => void;
 };
 
 export class GameEngine {
-	private requestAnimationFrameId: number = 0;
+	private requestAnimationFrameId = 0;
 
-	private timeOld: number = 0;
-	private timeNow: number = 0;
-	private timeDif: number = 0;
+	private timeOld = 0;
+	private timeNow = 0;
+	private timeDif = 0;
 
 	private onUpdate: (timeDif: number) => void;
 
-	constructor({ onUpdate }: IEngineProps) {
+	constructor({ onUpdate }: EngineProps) {
 		this.onUpdate = onUpdate;
 	}
 
