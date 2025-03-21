@@ -1,5 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
-import type { IIconName } from "@src/components/icon/Icon.types";
+import type { IconName } from "@src/components/icon/Icon.types";
 import { List } from "@src/components/list/List";
 import { Loader } from "@src/components/loader/Loader";
 import { Navigator } from "@src/components/navigator/Navigator";
@@ -10,7 +10,7 @@ import { type IStockOk, QueryStocks } from "../queries/QueryStocks";
 import * as S from "./StocksPage.styles";
 import { Stock } from "./components/stock/Stock";
 
-const iconMap: { [k: string]: IIconName } = {
+const iconMap: { [k: string]: IconName } = {
 	AAPL: "iconApple",
 	USD: "iconDollarSign",
 	GLD: "iconCircle",

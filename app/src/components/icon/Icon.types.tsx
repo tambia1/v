@@ -597,4 +597,4 @@ export const Icons = {
 	iconAmazon,
 } as const;
 
-export type IIconName = keyof typeof Icons;
+export type IconName = keyof typeof Icons;

@@ -2,11 +2,11 @@ import type { Theme } from "@src/theme/Theme.types";
 import { ReactSVG } from "react-svg";
 import { useTheme } from "styled-components";
 import * as S from "./Icon.styles";
-import { type IIconName, Icons } from "./Icon.types";
+import { type IconName, Icons } from "./Icon.types";
 
 export type Props = React.HTMLAttributes<HTMLDivElement> & {
 	className?: string;
-	iconName: IIconName;
+	iconName: IconName;
 	size?: keyof Theme["size"];
 	fill?: string;
 	stroke?: string;

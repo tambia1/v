@@ -3,7 +3,7 @@ import type { InputHTMLAttributes } from "react";
 import { useTheme } from "styled-components";
 import * as S from "./Input.styles";
 
-export type ITextAlign = "left" | "center" | "right";
+export type TextAlign = "left" | "center" | "right";
 
 export type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	className?: string;
@@ -11,7 +11,7 @@ export type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	placeholder?: string;
 	disabled?: boolean;
 	size?: keyof Theme["size"];
-	textAlign?: ITextAlign;
+	textAlign?: TextAlign;
 	onTextChange?: (content: string) => void;
 	onPressEnter?: () => void;
 };

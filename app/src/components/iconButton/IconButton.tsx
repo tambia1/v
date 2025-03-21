@@ -1,11 +1,11 @@
 import { type HTMLAttributes, forwardRef, useImperativeHandle, useRef } from "react";
 import { Icon } from "../icon/Icon";
-import type { IIconName } from "../icon/Icon.types";
+import type { IconName } from "../icon/Icon.types";
 import * as S from "./IconButton.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;
-	iconName: IIconName;
+	iconName: IconName;
 };
 
 export const IconButton = forwardRef<HTMLDivElement, Props>(({ className, iconName, ...rest }, ref) => {
