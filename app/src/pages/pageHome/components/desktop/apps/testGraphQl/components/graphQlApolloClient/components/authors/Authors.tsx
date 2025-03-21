@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
-import { GET_AUTHORS, type IAuthors } from "../../graphql/authors.query";
+import { type AuthorsData, GET_AUTHORS } from "../../graphql/authors.query";
 import * as S from "./Authors.styles";
 
 export const Authors = () => {
-	const { loading, error, data, refetch } = useQuery<IAuthors>(GET_AUTHORS);
+	const { loading, error, data, refetch } = useQuery<AuthorsData>(GET_AUTHORS);
 
 	const hanldeOnClickRefetch = () => {
 		refetch();

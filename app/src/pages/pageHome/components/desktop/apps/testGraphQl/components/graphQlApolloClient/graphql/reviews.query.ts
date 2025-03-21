@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export type IReviews = {
+export type ReviewsData = {
 	reviews: {
 		id: string;
 		rating: string;

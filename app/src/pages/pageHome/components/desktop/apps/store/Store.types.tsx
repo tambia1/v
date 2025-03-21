@@ -1,9 +1,9 @@
-export type IStore = {
+export type Store = {
 	name: string;
-	apps: IApp[];
+	apps: App[];
 };
 
-export type IApp = {
+export type App = {
 	name: string;
 	url: string;
 	icon: string;

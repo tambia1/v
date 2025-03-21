@@ -1,6 +1,6 @@
-import { IStore } from "./Store.types";
+import { Store } from "./Store.types";
 
-export const stores: IStore[] = [
+export const stores: Store[] = [
 	{
 		name: "Apps",
 		apps: [

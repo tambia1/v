@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export type IAuthors = {
+export type AuthorsData = {
 	authors: {
 		id: string;
 		name: string;

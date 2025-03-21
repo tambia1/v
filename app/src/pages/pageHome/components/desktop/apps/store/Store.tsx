@@ -4,16 +4,16 @@ import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { StoreApps } from "../../stores/StoreApps";
 import * as S from "./Store.styles";
-import type { IApp } from "./Store.types";
+import type { App } from "./Store.types";
 import { stores } from "./Stores.data";
 
 export const Store = () => {
 	const storeApps = StoreApps();
 	const [isModalSaveVisible, setIsModalSaveVisible] = useState(false);
 	const [isModalExistVisible, setIsModalExistVisible] = useState(false);
-	const [selectedApp, setSelectedApp] = useState<IApp | null>(null);
+	const [selectedApp, setSelectedApp] = useState<App | null>(null);
 
-	const handleOnClickAppIcon = (app: IApp) => {
+	const handleOnClickAppIcon = (app: App) => {
 		if (storeApps.apps.find((item) => item.name === app.name)) {
 			setIsModalExistVisible(true);
 		} else {

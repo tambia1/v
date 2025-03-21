@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
-import { GET_REVIEWS, type IReviews } from "../../graphql/reviews.query";
+import { GET_REVIEWS, type ReviewsData } from "../../graphql/reviews.query";
 import * as S from "./Reviews.styles";
 
 export const Reviews = () => {
-	const { loading, error, data, refetch } = useQuery<IReviews>(GET_REVIEWS);
+	const { loading, error, data, refetch } = useQuery<ReviewsData>(GET_REVIEWS);
 
 	const hanldeOnClickRefetch = () => {
 		refetch();
