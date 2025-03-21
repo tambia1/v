@@ -59,6 +59,13 @@
 			}
 		},
 		{
+			"name": "app tsc",
+			"command": "npx tsc --noEmit",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
 			"name": "app test units",
 			"command": "npm run test:units",
 			"request": "launch",
