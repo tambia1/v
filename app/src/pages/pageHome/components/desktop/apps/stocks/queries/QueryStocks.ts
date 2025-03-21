@@ -16,7 +16,7 @@ export interface QuerySymbolsResult {
 	}[];
 }
 
-type QuerySymbolsProps = {};
+type QuerySymbolsProps = Record<string, never>;
 
 const symbols = (props: QuerySymbolsProps, options?: Partial<UseQueryOptions<QuerySymbolsResult, Error>>) => {
 	return useQuery({
@@ -64,7 +64,7 @@ export type IStockError = {
 
 export type QueryStocksResult = { status: "error" } | { [K: string]: StockOk | IStockError };
 
-type QueryStocksProps = {};
+type QueryStocksProps = { [K: string]: never };
 
 const stocks = (props: QueryStocksProps, options?: Partial<UseQueryOptions<QueryStocksResult, Error>>) => {
 	return useQuery({
