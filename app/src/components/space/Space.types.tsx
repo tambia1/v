@@ -1,1 +1,1 @@
-export type IDirection = "vertical" | "horizontal";
+export type Direction = "vertical" | "horizontal";

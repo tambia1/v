@@ -1,11 +1,11 @@
 import type { Theme } from "@src/theme/Theme.types";
 import * as S from "./Space.styles";
-import type { IDirection } from "./Space.types";
+import type { Direction } from "./Space.types";
 
 interface Props {
 	className?: string;
 	size?: keyof Theme["size"];
-	direction?: IDirection;
+	direction?: Direction;
 }
 
 export const Space = ({ className, size = "s", direction = "vertical" }: Props) => {

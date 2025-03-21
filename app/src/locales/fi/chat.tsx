@@ -1,6 +1,6 @@
-import type { IChat } from "../types/chat.types";
+import type { Chat } from "../types/chat.types";
 
-export const translation: IChat = {
+export const translation: Chat = {
 	chat: {
 		title: "Puhua",
 		talks: "Puhuu",

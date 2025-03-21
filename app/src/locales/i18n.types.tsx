@@ -1,4 +1,4 @@
-import type { IChat } from "./types/chat.types";
+import type { Chat } from "./types/chat.types";
 import type { Home } from "./types/home.types";
 import type { Settings } from "./types/settings.types";
 
@@ -10,5 +10,5 @@ export type Resources = {
 };
 
 export type Translation = {
-	translation: Home & Settings & IChat;
+	translation: Home & Settings & Chat;
 };
