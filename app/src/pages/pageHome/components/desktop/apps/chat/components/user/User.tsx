@@ -4,7 +4,7 @@ import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
 import * as S from "./User.styles";
 import { Avatar } from "./components/avatar/Avatar";
-import { type IAvatar, avatars } from "./components/avatar/Avatar.styles";
+import { type AvatarType, avatars } from "./components/avatar/Avatar.styles";
 import { NameBar } from "./components/messageBar/NameBar";
 import { Talks } from "./components/talks/Talks";
 import { StoreChat } from "./stores/StoreChat";
@@ -42,7 +42,7 @@ export const User = () => {
 				>
 					{avatars.map((value, index) => (
 						<S.PagingItem key={value}>
-							<Avatar index={index as unknown as IAvatar} size="l" />
+							<Avatar index={index as unknown as AvatarType} size="l" />
 						</S.PagingItem>
 					))}
 				</Pager>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useStoreTalk } from "../../../../stores/StoreTalk";
-import type { IAvatar } from "../../../avatar/Avatar.styles";
+import type { AvatarType } from "../../../avatar/Avatar.styles";
 import * as S from "./Talk.styles";
 import { BubbleMe } from "./bubbleMe/BubbleMe";
 import { BubbleOther } from "./bubbleOther/BubbleOther";
@@ -32,10 +32,10 @@ export const Talk = ({ sendMessage }: Props) => {
 				{messages.map((message) => (
 					<S.Message key={message.messageId}>
 						{message.clientId === client.clientId && (
-							<BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />
+							<BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as AvatarType} />
 						)}
 						{message.clientId !== client.clientId && (
-							<BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as IAvatar} />
+							<BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as AvatarType} />
 						)}
 					</S.Message>
 				))}

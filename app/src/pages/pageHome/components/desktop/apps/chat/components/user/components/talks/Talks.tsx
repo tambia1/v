@@ -11,7 +11,7 @@ import type { Client, DataGet } from "../../../../Chat.types";
 import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import { useStoreTalk } from "../../stores/StoreTalk";
 import { Avatar } from "../avatar/Avatar";
-import type { IAvatar } from "../avatar/Avatar.styles";
+import type { AvatarType } from "../avatar/Avatar.styles";
 import * as S from "./Talks.styles";
 import { Talk } from "./components/talk/Talk";
 
@@ -105,7 +105,7 @@ export const Talks = ({ name, avatar }: Props) => {
 			<List>
 				{clients.map((client) => (
 					<List.Cell key={client.clientId} onClick={() => handleOnClickCell(client)}>
-						<Avatar index={client.clientAvatar as unknown as IAvatar} size="s" />
+						<Avatar index={client.clientAvatar as unknown as AvatarType} size="s" />
 						<S.ClientName>{client.clientName}</S.ClientName>
 						<S.ClientId>{client.clientId}</S.ClientId>
 					</List.Cell>

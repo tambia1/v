@@ -1,8 +1,8 @@
 import * as S from "./Avatar.styles";
 
 interface Props {
-	index: S.IAvatar;
-	size: S.ISize;
+	index: S.AvatarType;
+	size: S.SizeType;
 }
 
 export const Avatar = ({ index, size }: Props) => {
