@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { useBarMain } from "../../hooks/UseBarMain";
 import * as S from "./User.styles";
-import type { IMessage } from "./User.types";
+import type { Message } from "./User.types";
 import { Api } from "./api/Api";
 
 export const User = () => {
@@ -38,7 +38,7 @@ export const User = () => {
 	const mutateToken = Api.login.mutateToken();
 
 	const [isLoading, setIsLoading] = useState(false);
-	const [message, setMessage] = useState<IMessage>({ state: "idle", message: "" });
+	const [message, setMessage] = useState<Message>({ state: "idle", message: "" });
 	const [timeoutExit, setTimeoutExit] = useState<NodeJS.Timeout>();
 
 	useEffect(() => {
