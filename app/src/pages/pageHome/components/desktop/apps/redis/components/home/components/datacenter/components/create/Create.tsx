@@ -32,7 +32,7 @@ const listRegions = [{ id: -1, name: "All" }, ...regions];
 
 const listDataPersistence = { all: "All", ...dataPersistenceMap };
 
-type ISelections = {
+type Selections = {
 	dbName: string;
 	cloud: keyof typeof listCloudMap;
 	flash: string;
@@ -59,7 +59,7 @@ export const Create = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [message, setMessage] = useState("");
 
-	const [selections, setSelections] = useState<ISelections>({
+	const [selections, setSelections] = useState<Selections>({
 		dbName: `DB-${Date.now().toString(16).toUpperCase()}`,
 		cloud: "aws",
 		flash: "false",
@@ -99,7 +99,7 @@ export const Create = () => {
 	};
 
 	const handleOnClickCloud = (_index: number, value: string) => {
-		setSelections({ ...selections, cloud: value as ISelections["cloud"] });
+		setSelections({ ...selections, cloud: value as Selections["cloud"] });
 	};
 
 	const handleOnClickFlash = (_index: number, value: string) => {
@@ -115,7 +115,7 @@ export const Create = () => {
 	};
 
 	const handleOnClickDataPersistence = (_index: number, value: string) => {
-		setSelections({ ...selections, dataPersistence: value as ISelections["dataPersistence"] });
+		setSelections({ ...selections, dataPersistence: value as Selections["dataPersistence"] });
 	};
 
 	const handleOnClickModules = (_index: number, value: string) => {
@@ -154,7 +154,7 @@ export const Create = () => {
 		}
 	};
 
-	const getMatchingPlans = (selections: ISelections) => {
+	const getMatchingPlans = (selections: Selections) => {
 		const plans = plansAll.plans
 			.filter((plan) => plan.cloud.toLowerCase() === selections.cloud.toLowerCase() || selections.cloud === "all")
 			.filter((plan) => selections.regions.includes(plan.region) || selections.regions.includes("All"))
