@@ -12,7 +12,7 @@ import { User } from "@apps/user/User";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { ReactElement, ReactNode, lazy } from "react";
-import type { IRole as Role } from "./Desktop.types";
+import type { Role } from "./Desktop.types";
 import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";

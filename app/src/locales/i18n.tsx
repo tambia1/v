@@ -39,14 +39,14 @@ i18n.use(initReactI18next).init({
 	},
 });
 
-export type ILang = GetTypeAsObjectPath<Resources["en"]["translation"], "">;
+export type Lang = GetTypeAsObjectPath<Resources["en"]["translation"], "">;
 
-type IValue = string | { [key: string]: IValue };
+type Value = string | { [key: string]: Value };
 
-export const lang: ILang = ((language: Resources["en"]["translation"]) => {
-	const get = (v: IValue, str: string): IValue => {
+export const lang: Lang = ((language: Resources["en"]["translation"]) => {
+	const get = (v: Value, str: string): Value => {
 		if (v instanceof Object) {
-			const obj: { [key: string]: IValue } = {};
+			const obj: { [key: string]: Value } = {};
 
 			Object.keys(v).forEach((k) => {
 				obj[k] = get(v[k], str.length ? `${str}.${k}` : k);
@@ -58,7 +58,7 @@ export const lang: ILang = ((language: Resources["en"]["translation"]) => {
 		return str;
 	};
 
-	const res = get(language, "") as ILang;
+	const res = get(language, "") as Lang;
 
 	return res;
 })(resources.en.translation);

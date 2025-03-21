@@ -1,6 +1,6 @@
 import { Promises } from "@src/services/Promises";
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import type { IRole } from "../../../../Desktop.types";
+import type { Role } from "../../../../Desktop.types";
 import { dbTokens, dbUsers } from "../../db/db";
 import { FAKE_RESPONSE_DELAY, type QueryResult } from "../Api.types";
 
@@ -12,7 +12,7 @@ export type QueryUserResult = QueryResult & {
 	firstName: string;
 	lastName: string;
 	email: string;
-	role: IRole;
+	role: Role;
 };
 
 export const queryUser = (props: QueryUserProps, options?: Partial<UseQueryOptions<QueryUserResult, Error>>) => {

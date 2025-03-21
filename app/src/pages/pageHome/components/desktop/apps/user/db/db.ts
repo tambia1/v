@@ -1,6 +1,6 @@
-import { IUser } from "../../../Desktop.types";
+import { User } from "../../../Desktop.types";
 
-export const dbUsers: { [userId in string]: IUser } = {
+export const dbUsers: { [userId in string]: User } = {
 	user_1: {
 		email: "a",
 		password: "a",

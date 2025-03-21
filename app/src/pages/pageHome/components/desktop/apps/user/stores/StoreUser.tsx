@@ -1,16 +1,16 @@
-import type { IRole } from "@src/pages/pageHome/components/desktop/Desktop.types";
+import type { Role } from "@src/pages/pageHome/components/desktop/Desktop.types";
 import { create } from "zustand";
 
 interface State {
 	token: string;
-	role: IRole;
+	role: Role;
 	setToken: (token: string) => void;
-	setRole: (role: IRole) => void;
+	setRole: (role: Role) => void;
 }
 
 export const StoreUser = create<State>()((set) => ({
 	token: "",
 	role: "guest",
 	setToken: (token: string) => set(() => ({ token })),
-	setRole: (role: IRole) => set(() => ({ role })),
+	setRole: (role: Role) => set(() => ({ role })),
 }));

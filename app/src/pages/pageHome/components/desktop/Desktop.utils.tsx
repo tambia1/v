@@ -1,10 +1,10 @@
 import { useMemo } from "react";
 import type { App } from "./Desktop.apps";
-import type { IRole } from "./Desktop.types";
+import type { Role } from "./Desktop.types";
 import { Frame } from "./apps/frame/Frame";
 import type { IApp as IStoreApp } from "./stores/StoreApps";
 
-export const removeAppsNotFittingByRoles = (apps: App[][], role: IRole) => {
+export const removeAppsNotFittingByRoles = (apps: App[][], role: Role) => {
 	const appsGroups = useMemo(() => {
 		const groups: typeof apps = [];
 

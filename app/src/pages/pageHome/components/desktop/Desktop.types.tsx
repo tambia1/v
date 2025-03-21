@@ -1,9 +1,9 @@
-export type IRole = "guest" | "user" | "admin";
+export type Role = "guest" | "user" | "admin";
 
-export type IUser = {
+export type User = {
 	email: string;
 	password: string;
 	firstName: string;
 	lastName: string;
-	role: IRole;
+	role: Role;
 };
