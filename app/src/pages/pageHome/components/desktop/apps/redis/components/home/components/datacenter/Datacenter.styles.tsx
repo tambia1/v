@@ -288,7 +288,7 @@ export const SubscriptionRow = styled.div`
 	background-color: ${(props) => props.theme.color.primaryBgDisabled};
 
 	&:nth-child(odd){
-		background-color: ${(props) => props.theme.color.ternaryBg};
+		background-color: ${(props) => props.theme.color.primaryBg};
 	}
 `;
 

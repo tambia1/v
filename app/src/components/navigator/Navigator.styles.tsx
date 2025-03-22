@@ -16,8 +16,8 @@ export const Headers = styled.div`
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
-	color: ${(props) => props.theme.color.ternaryFg};
-	background-color: ${(props) => props.theme.color.ternaryBg};
+	color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBg};
 	z-index: 1;
 
 	& * {
