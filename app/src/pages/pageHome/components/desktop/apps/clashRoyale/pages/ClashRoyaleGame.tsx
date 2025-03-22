@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as S from "./ClashRoyaleGame.styles";
-import type { IType as IArenaType } from "./game/Arena";
+import type { ArenaType as IArenaType } from "./game/Arena";
 import { Game } from "./game/Game";
 
 interface Props {

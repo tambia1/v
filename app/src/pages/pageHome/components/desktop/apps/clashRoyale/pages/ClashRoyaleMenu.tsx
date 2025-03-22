@@ -4,7 +4,7 @@ import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
 import { ClashRoyaleGame } from "./ClashRoyaleGame";
 import * as S from "./ClashRoyaleMenu.styles";
-import type { IType as IArenaType } from "./game/Arena";
+import type { ArenaType as IArenaType } from "./game/Arena";
 
 export const ClashRoyaleMenu = () => {
 	const navigator = useNavigator();

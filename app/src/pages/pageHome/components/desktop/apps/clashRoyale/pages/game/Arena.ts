@@ -12,10 +12,10 @@ import imageArena9 from "./images/arenas/arena9.jpg";
 import imageArena10 from "./images/arenas/arena10.jpg";
 import imageArena11 from "./images/arenas/arena11.jpg";
 
-export type IType = "arena1" | "arena2" | "arena3" | "arena4" | "arena5" | "arena6" | "arena7" | "arena8" | "arena9" | "arena10" | "arena11";
-type IArena = { image: HTMLImageElement };
+export type ArenaType = "arena1" | "arena2" | "arena3" | "arena4" | "arena5" | "arena6" | "arena7" | "arena8" | "arena9" | "arena10" | "arena11";
+type ArenaData = { image: HTMLImageElement };
 
-const types: { [K in IType]: IArena } = {
+const types: { [K in ArenaType]: ArenaData } = {
 	arena1: { image: UtilsImage.getImage(imageArena1) },
 	arena2: { image: UtilsImage.getImage(imageArena2) },
 	arena3: { image: UtilsImage.getImage(imageArena3) },
@@ -30,14 +30,14 @@ const types: { [K in IType]: IArena } = {
 };
 
 export class Arena {
-	private type: IType = "arena1";
+	private type: ArenaType = "arena1";
 	private image: HTMLImageElement = types[this.type].image;
 
-	constructor(type: IType) {
+	constructor(type: ArenaType) {
 		this.setType(type);
 	}
 
-	public setType(type: IType): void {
+	public setType(type: ArenaType): void {
 		this.type = type;
 		this.image = types[this.type].image;
 	}

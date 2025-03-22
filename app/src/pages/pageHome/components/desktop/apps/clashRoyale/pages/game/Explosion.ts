@@ -10,8 +10,8 @@ import imageExplosion6 from "./images/explosions/explosion_6_35_128.webp";
 import imageExplosion7 from "./images/explosions/explosion_7_35_128.webp";
 import imageExplosion8 from "./images/explosions/explosion_8_35_128.webp";
 
-export type IType = "explosion1" | "explosion2" | "explosion3" | "explosion4" | "explosion5" | "explosion6" | "explosion7" | "explosion8";
-type IExplosion = {
+export type ExplosionType = "explosion1" | "explosion2" | "explosion3" | "explosion4" | "explosion5" | "explosion6" | "explosion7" | "explosion8";
+type ExplosionData = {
 	image: HTMLImageElement;
 	size: number;
 	frames: number;
@@ -19,7 +19,7 @@ type IExplosion = {
 	time: number;
 };
 
-const types: { [K in IType]: IExplosion } = {
+const types: { [K in ExplosionType]: ExplosionData } = {
 	explosion1: { image: UtilsImage.getImage(imageExplosion1), size: 128, frames: 38, cols: 8, time: 5000 },
 	explosion2: { image: UtilsImage.getImage(imageExplosion2), size: 128, frames: 38, cols: 8, time: 5000 },
 	explosion3: { image: UtilsImage.getImage(imageExplosion3), size: 128, frames: 5, cols: 5, time: 800 },
@@ -31,7 +31,7 @@ const types: { [K in IType]: IExplosion } = {
 };
 
 export class Explosion {
-	private type: IType = "explosion1";
+	private type: ExplosionType = "explosion1";
 	private image: HTMLImageElement = types[this.type].image;
 	private frames = 0;
 	private size = 0;
@@ -49,11 +49,11 @@ export class Explosion {
 	private cx = 0;
 	private cy = 0;
 
-	constructor(type: IType) {
+	constructor(type: ExplosionType) {
 		this.setType(type);
 	}
 
-	public setType(type: IType): void {
+	public setType(type: ExplosionType): void {
 		this.type = type;
 		this.image = types[this.type].image;
 

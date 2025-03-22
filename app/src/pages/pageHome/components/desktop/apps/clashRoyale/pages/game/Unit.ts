@@ -1,6 +1,6 @@
 import { Animation } from "./Animation";
+import { ShootType as IShootType, Shoot } from "./Shoot";
 import { UtilsImage } from "./UtilsImage";
-import { IType as IShootType, Shoot } from "./Shoot";
 
 import imageAmazon from "./images/units/amazon.png";
 import imageGiant from "./images/units/giant.png";
@@ -14,16 +14,31 @@ import imageOrc from "./images/units/orc.png";
 import imagePaladin from "./images/units/paladin.png";
 import imageSkull from "./images/units/skull.png";
 import imageSnake from "./images/units/snake.png";
-import imageWolf from "./images/units/wolf.png";
 import imageSorcerer from "./images/units/sorcerer.png";
 import imageTank from "./images/units/tank.png";
+import imageWolf from "./images/units/wolf.png";
 
-export type IType = "paladin" | "goblin" | "wolf" | "golem" | "orc" | "sorcerer" | "ninja" | "snake" | "skull" | "amazon" | "knight" | "giant" | "musketeer" | "hogRider" | "tank";
+export type UnitType =
+	| "paladin"
+	| "goblin"
+	| "wolf"
+	| "golem"
+	| "orc"
+	| "sorcerer"
+	| "ninja"
+	| "snake"
+	| "skull"
+	| "amazon"
+	| "knight"
+	| "giant"
+	| "musketeer"
+	| "hogRider"
+	| "tank";
 
-type IState = "idle" | "idleDown" | "idleUp" | "walkDown" | "walkUp" | "attackDown" | "attackUp";
-type IDirection = "up" | "down";
+type UnitState = "idle" | "idleDown" | "idleUp" | "walkDown" | "walkUp" | "attackDown" | "attackUp";
+type UnitDirection = "up" | "down";
 
-type IUnit = {
+type UnitData = {
 	image: HTMLImageElement;
 	elixirNeeded: number;
 	lifeMax: number;
@@ -36,11 +51,11 @@ type IUnit = {
 	spriteSize: number;
 	spriteCols: number;
 	spriteTime: number;
-	state: IState;
-	states: { [K in IState]: number[] };
+	state: UnitState;
+	states: { [K in UnitState]: number[] };
 };
 
-const types: { [K in IType]: IUnit } = {
+const types: { [K in UnitType]: UnitData } = {
 	paladin: {
 		image: UtilsImage.getImage(imagePaladin),
 		elixirNeeded: 2,
@@ -418,7 +433,7 @@ const types: { [K in IType]: IUnit } = {
 };
 
 export class Unit {
-	private type: IType = "paladin";
+	private type: UnitType = "paladin";
 	private image: HTMLImageElement = types[this.type].image;
 	private elixirNeeded: number = types[this.type].elixirNeeded;
 	private lifeMax: number = types[this.type].lifeMax;
@@ -431,33 +446,33 @@ export class Unit {
 	private spriteSize: number = types[this.type].spriteSize;
 	private spriteCols: number = types[this.type].spriteCols;
 	private spriteTime: number = types[this.type].spriteTime;
-	private state: IState = types[this.type].state;
+	private state: UnitState = types[this.type].state;
 
-	private lifeStrokeStyle: string = "#ffffff66";
-	private lifeFillStyle: string = "#99999966";
-	private loading: number = 0;
+	private lifeStrokeStyle = "#ffffff66";
+	private lifeFillStyle = "#99999966";
+	private loading = 0;
 	private shoot: Shoot | null = null;
-	private isAttacking: boolean = false;
+	private isAttacking = false;
 	private animationAlpha: Animation = new Animation({});
 	private animationScale: Animation = new Animation({});
-	private sprite: number = 0;
+	private sprite = 0;
 
 	private direction: "up" | "down" = "up";
 
-	private x: number = 0;
-	private y: number = 0;
-	private w: number = 0;
-	private h: number = 0;
-	private cx: number = 0;
-	private cy: number = 0;
-	private ww: number = 0;
-	private hh: number = 0;
+	private x = 0;
+	private y = 0;
+	private w = 0;
+	private h = 0;
+	private cx = 0;
+	private cy = 0;
+	private ww = 0;
+	private hh = 0;
 
-	constructor(type: IType) {
+	constructor(type: UnitType) {
 		this.setType(type);
 	}
 
-	public setType(type: IType) {
+	public setType(type: UnitType) {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.elixirNeeded = types[this.type].elixirNeeded;
@@ -492,7 +507,7 @@ export class Unit {
 		this.setState("idle");
 	}
 
-	public getType(): IType {
+	public getType(): UnitType {
 		return this.type;
 	}
 
@@ -526,7 +541,17 @@ export class Unit {
 		const col = Math.floor(sprite % this.spriteCols);
 		const row = Math.floor(sprite / this.spriteCols);
 
-		ctx.drawImage(this.image, col * this.spriteSize + 2, row * this.spriteSize + 2, this.spriteSize - 4, this.spriteSize - 4, this.cx - 5, this.cy - 5, this.ww + 10, this.hh + 10);
+		ctx.drawImage(
+			this.image,
+			col * this.spriteSize + 2,
+			row * this.spriteSize + 2,
+			this.spriteSize - 4,
+			this.spriteSize - 4,
+			this.cx - 5,
+			this.cy - 5,
+			this.ww + 10,
+			this.hh + 10,
+		);
 
 		// log sprite number
 		// ctx.font = "bold 15px Helvetica";
@@ -616,7 +641,7 @@ export class Unit {
 		return this.moveSpeed;
 	}
 
-	public setDirection(direction: IDirection) {
+	public setDirection(direction: UnitDirection) {
 		this.direction = direction;
 	}
 
@@ -700,7 +725,7 @@ export class Unit {
 		return this.isAttacking;
 	}
 
-	public setState(state: IState) {
+	public setState(state: UnitState) {
 		this.state = state;
 		this.sprite = 0;
 	}

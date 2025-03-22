@@ -55,14 +55,14 @@ export type StockOk = {
 	}[];
 };
 
-export type IStockError = {
+export type StockError = {
 	status: "error";
 	message: string;
 	code: number;
 	meta: { [K: string]: string };
 };
 
-export type QueryStocksResult = { status: "error" } | { [K: string]: StockOk | IStockError };
+export type QueryStocksResult = { status: "error" } | { [K: string]: StockOk | StockError };
 
 type QueryStocksProps = { [K: string]: never };
 

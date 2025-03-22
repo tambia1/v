@@ -1,6 +1,6 @@
 import { Animation } from "./Animation";
 import { Shoot } from "./Shoot";
-import type { IType as IShootType } from "./Shoot";
+import type { ShootType as IShootType } from "./Shoot";
 import { UtilsImage } from "./UtilsImage";
 
 import imageCastle1 from "./images/castles/castle1.webp";
@@ -15,10 +15,10 @@ import imageCastle9 from "./images/castles/castle8.webp";
 import imageCastle10 from "./images/castles/castle8.webp";
 import imageCastleRuin from "./images/castles/castleRuin.webp";
 
-export type IType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
-type ICastle = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
+export type CastleType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
+type CastleData = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
 
-const types: { [K in IType]: ICastle } = {
+const types: { [K in CastleType]: CastleData } = {
 	castleRuin: { image: UtilsImage.getImage(imageCastleRuin), lifeMax: 0, weaponRange: 0, weaponSpeed: 0, weaponDamage: 0, shootType: null },
 	castle1: { image: UtilsImage.getImage(imageCastle1), lifeMax: 150, weaponRange: 90, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
 	castle2: { image: UtilsImage.getImage(imageCastle2), lifeMax: 250, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
@@ -33,7 +33,7 @@ const types: { [K in IType]: ICastle } = {
 };
 
 export class Castle {
-	private type: IType = "castleRuin";
+	private type: CastleType = "castleRuin";
 	private image: HTMLImageElement = types[this.type].image;
 
 	private x = 0;
@@ -61,7 +61,7 @@ export class Castle {
 	private weaponRangeAlpha = 0;
 	private weaponRangeAlphaTiming = 0;
 
-	constructor(type: IType) {
+	constructor(type: CastleType) {
 		this.init();
 		this.setType(type);
 	}
@@ -74,7 +74,7 @@ export class Castle {
 		this.ch = this.h * 1.1;
 	}
 
-	public setType(type: IType) {
+	public setType(type: CastleType) {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.life = types[this.type].lifeMax;

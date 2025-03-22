@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export type IGame = {
+export type GameData = {
 	game: {
 		id: string;
 		title: string;

@@ -1,11 +1,11 @@
-import { Arena, type IType as IArenaType } from "./Arena";
-import { type IType as IPlayerType, Player } from "./Player";
+import { Arena, type ArenaType as IArenaType } from "./Arena";
+import { type PlayerType as IPlayerType, Player } from "./Player";
 import { UtilsCanvas } from "./UtilsCanvas";
 import { UtilsMath } from "./UtilsMath";
 import { UtilsPath } from "./UtilsPath";
 import { UtilsTouch } from "./UtilsTouch";
 
-type IGameProps = {
+type GameProps = {
 	board: HTMLElement;
 	goodPlayerName: string;
 	badPlayerName: string;
@@ -36,7 +36,7 @@ export class Game {
 	private timeNow = 0;
 	private timeDif = 0;
 
-	constructor({ board, goodPlayerName, badPlayerName, arenaType, onGameOver }: IGameProps) {
+	constructor({ board, goodPlayerName, badPlayerName, arenaType, onGameOver }: GameProps) {
 		this.board = board;
 		this.goodPlayerName = goodPlayerName;
 		this.badPlayerName = badPlayerName;

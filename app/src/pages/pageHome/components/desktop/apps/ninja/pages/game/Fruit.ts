@@ -1,6 +1,6 @@
 import { Animation, AnimationLooper } from "@src/utils/Animation";
 import { getRandomNumber } from "@src/utils/Random";
-import { IFruitType as FruitType } from "./Game";
+import { FruitType } from "./Game";
 
 type Props = {
 	canvas: HTMLCanvasElement;

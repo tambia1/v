@@ -1,14 +1,14 @@
-import { Castle, type IType as ICastleType } from "./Castle";
-import { type IType as IUnitType, Unit } from "./Unit";
+import { Castle, type CastleType as ICastleType } from "./Castle";
+import { type UnitType as IUnitType, Unit } from "./Unit";
 import { UtilsImage } from "./UtilsImage";
 import { UtilsMath } from "./UtilsMath";
 
 import imageElixir from "./images/misc/elixir.png";
 import imageelixirBg from "./images/misc/elixirBg.png";
 
-export type IType = "good" | "bad";
+export type PlayerType = "good" | "bad";
 
-type IStyle = {
+type PlayerData = {
 	castles: { x: number; y: number; type: ICastleType }[];
 	stacks: { x: number; y: number }[];
 	lifeFillStyle: string;
@@ -16,7 +16,7 @@ type IStyle = {
 	castleWeaponRangeFillStyle: string;
 };
 
-const styles: { [K in IType]: IStyle } = {
+const styles: { [K in PlayerType]: PlayerData } = {
 	bad: {
 		castles: [
 			{ x: 190, y: 244, type: "castle1" },
@@ -68,7 +68,7 @@ export class Player {
 	private static readonly imageElixir = UtilsImage.getImage(imageElixir);
 	private static readonly imageElixirBg = UtilsImage.getImage(imageelixirBg);
 
-	private type: IType;
+	private type: PlayerType;
 	private playerName: string;
 
 	private decks: IUnitType[] = [];
@@ -85,7 +85,7 @@ export class Player {
 	private elixirMax = 0;
 	private elixirTiming = 0;
 
-	constructor(playerName: string, type: IType, deck: IUnitType[]) {
+	constructor(playerName: string, type: PlayerType, deck: IUnitType[]) {
 		this.type = type;
 		this.playerName = playerName;
 

@@ -4,8 +4,8 @@ import { UtilsImage } from "./UtilsImage";
 import imageShoot1 from "./images/shoot/shoot_1_38_128.webp";
 import imageShoot2 from "./images/shoot/shoot_2_7_128.webp";
 
-export type IType = "shoot1" | "shoot2";
-type IShoot = {
+export type ShootType = "shoot1" | "shoot2";
+type ShootData = {
 	image: HTMLImageElement;
 	size: number;
 	cols: number;
@@ -20,7 +20,7 @@ type IShoot = {
 	explodeTime: number;
 };
 
-const types: { [K in IType]: IShoot } = {
+const types: { [K in ShootType]: ShootData } = {
 	shoot1: {
 		image: UtilsImage.getImage(imageShoot1),
 		size: 128,
@@ -52,7 +52,7 @@ const types: { [K in IType]: IShoot } = {
 };
 
 export class Shoot {
-	private type: IType = "shoot1";
+	private type: ShootType = "shoot1";
 	private image: HTMLImageElement = types[this.type].image;
 	private size: number = types[this.type].size;
 	private cols: number = types[this.type].cols;
@@ -72,28 +72,28 @@ export class Shoot {
 	private animationExplosionExplode: Animation = new Animation({});
 	private animationMove: Animation = new Animation({});
 
-	private isShooting: boolean = false;
-	private moveTime: number = 0;
-	private sprite: number = 0;
+	private isShooting = false;
+	private moveTime = 0;
+	private sprite = 0;
 
-	private x1: number = 0;
-	private y1: number = 0;
-	private x2: number = 0;
-	private y2: number = 0;
-	private w: number = 0;
-	private h: number = 0;
-	private cx: number = 0;
-	private cy: number = 0;
+	private x1 = 0;
+	private y1 = 0;
+	private x2 = 0;
+	private y2 = 0;
+	private w = 0;
+	private h = 0;
+	private cx = 0;
+	private cy = 0;
 
 	private onFireEnd: (() => void) | null = null;
 	private onFlyEnd: (() => void) | null = null;
 	private onExplodeEnd: (() => void) | null = null;
 
-	constructor(type: IType) {
+	constructor(type: ShootType) {
 		this.setType(type);
 	}
 
-	public setType(type: IType) {
+	public setType(type: ShootType) {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.size = types[this.type].size;
@@ -183,7 +183,7 @@ export class Shoot {
 		this.setXY(0, 0, 0, 0);
 	}
 
-	public getType(): IType {
+	public getType(): ShootType {
 		return this.type;
 	}
 
@@ -212,7 +212,15 @@ export class Shoot {
 		this.y2 = y2;
 	}
 
-	public start(x1: number, y1: number, x2: number, y2: number, onFireEnd: (() => void) | null, onFlyEnd: (() => void) | null, onExplodeEnd: (() => void) | null): void {
+	public start(
+		x1: number,
+		y1: number,
+		x2: number,
+		y2: number,
+		onFireEnd: (() => void) | null,
+		onFlyEnd: (() => void) | null,
+		onExplodeEnd: (() => void) | null,
+	): void {
 		this.setXY(x1, y1, x2, y2);
 
 		this.onFireEnd = onFireEnd;

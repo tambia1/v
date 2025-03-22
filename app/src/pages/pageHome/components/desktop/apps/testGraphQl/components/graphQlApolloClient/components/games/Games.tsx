@@ -1,11 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
-import { GET_GAMES, type IGames } from "../../graphql/games.query";
+import { GET_GAMES, type GamesData } from "../../graphql/games.query";
 import * as S from "./Games.styles";
 
 export const Games = () => {
-	const { loading, error, data, refetch } = useQuery<IGames>(GET_GAMES);
+	const { loading, error, data, refetch } = useQuery<GamesData>(GET_GAMES);
 
 	const hanldeOnClickRefetch = () => {
 		refetch();

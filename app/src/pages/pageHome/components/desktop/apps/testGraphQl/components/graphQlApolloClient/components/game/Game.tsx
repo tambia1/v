@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 import { Text } from "@src/components/text/Text";
-import { GET_GAME, type IGame } from "../../graphql/game.query";
+import { GET_GAME, type GameData } from "../../graphql/game.query";
 import * as S from "./Game.styles";
 
 export const Game = () => {
-	const { loading, error, data } = useQuery<IGame>(GET_GAME, {
+	const { loading, error, data } = useQuery<GameData>(GET_GAME, {
 		variables: { id: "1" },
 	});
 
