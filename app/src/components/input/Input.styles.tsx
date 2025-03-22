@@ -25,5 +25,7 @@ export const Input = styled.input<{ $width: string; $textALign: string }>`
 	&:disabled {
 		color: ${(props) => props.theme.color.primaryFgDisabled};
 		background-color: ${(props) => props.theme.color.primaryBgDisabled};
+		cursor: not-allowed;
+		opacity: 0.6;
 	}
 `;
