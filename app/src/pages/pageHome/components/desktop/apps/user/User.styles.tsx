@@ -34,8 +34,8 @@ export const Box = styled.div`
 	padding: 2rem;
 	overflow: hidden;
 	border-radius: 16px;
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 
 `;
 
@@ -62,7 +62,7 @@ export const EmailInput = styled(Input)`
 	width: 100%;
 	border: none;
 	border-radius: 0 5rem 5rem 0;
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 	background-color: ${(props) => props.theme.color.transparent};
 	font-size: inherit;
 	font-weight: inherit;
@@ -101,7 +101,7 @@ export const PasswordInput = styled(Input)`
 	width: 100%;
 	border: none;
 	border-radius: 0 5rem 5rem 0;
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 	background-color: ${(props) => props.theme.color.transparent};
 	font-size: inherit;
 	font-weight: inherit;
@@ -140,7 +140,7 @@ export const Loader = styled.div`
 `;
 
 export const MessageIdle = styled.div`
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 	white-space: nowrap;
 `;
 
@@ -181,7 +181,7 @@ export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
 export const SocialLoginImage = styled(Icon)`
 	width: 3rem;
 	height: 3rem;
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 	flex-shrink: 0;
 	cursor: pointer;
 `;

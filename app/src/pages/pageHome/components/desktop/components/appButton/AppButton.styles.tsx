@@ -64,8 +64,8 @@ export const Image = styled.div<{ $appIcon: AppIcon | string }>`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50%;
-	background-color: ${(props) => props.theme.color.primaryBg};
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
 	border-radius: 15px;
 `;
 
@@ -199,8 +199,8 @@ export const Title = styled.div`
 	text-align: center;
 	word-break: normal;
 	white-space: pre-wrap;
-	color: ${(props) => props.theme.color.primaryBg};
-	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryBgEnabled};
+	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFgEnabled};
 `;
 
 export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`

@@ -11,7 +11,9 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 
 export const Check = ({ className, onClickCheck, checked = false, disabled = false, ...rest }: Props) => {
 	const handleOnClick = () => {
-		onClickCheck?.(checked);
+		if (!disabled) {
+			onClickCheck?.(checked);
+		}
 	};
 
 	return (

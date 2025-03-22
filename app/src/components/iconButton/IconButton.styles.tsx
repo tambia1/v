@@ -10,14 +10,14 @@ export const IconButton = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 	transition: all 0.3s ease;
 
 	cursor: pointer;
 
 	& svg {
-		stroke: ${(props) => props.theme.color.primaryFg};
-		fill: ${(props) => props.theme.color.primaryBg};
+		stroke: ${(props) => props.theme.color.primaryFgEnabled};
+		fill: ${(props) => props.theme.color.primaryBgEnabled};
 	}
 
 	&:hover{

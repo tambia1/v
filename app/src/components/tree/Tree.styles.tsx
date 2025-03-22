@@ -5,8 +5,8 @@ export const Tree = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 `;
 
 export const TreeNode = styled.div`
@@ -27,8 +27,8 @@ export const TreeFolderHeader = styled.div`
 	align-items: center;
 	margin: 0.1rem;
 
-	color: ${(props) => props.theme.color.accentFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.secondaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 
 	&:hover {
 		color: ${(props) => props.theme.color.primaryFgHover};
@@ -61,8 +61,8 @@ export const TreeItem = styled.div`
 	align-items: center;
 	margin: 0.1rem;
 
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 
 	&:hover {
 		color: ${(props) => props.theme.color.primaryFgHover};

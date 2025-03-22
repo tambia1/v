@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Icon } from "../icon/Icon.styles";
 
 export const Check = styled.div<{ disabled: boolean }>`
@@ -17,14 +17,22 @@ export const Check = styled.div<{ disabled: boolean }>`
 	cursor: pointer;
 
 	& svg {
-		stroke: ${(props) => (props.disabled ? props.theme.color.primaryFgDisabled : props.theme.color.primaryFg)};
-		fill: ${(props) => (props.disabled ? props.theme.color.primaryBgDisabled : props.theme.color.primaryBg)};
+		stroke: ${(props) => (props.disabled ? props.theme.color.primaryFgDisabled : props.theme.color.primaryFgEnabled)};
+		fill: ${(props) => (props.disabled ? props.theme.color.primaryBgDisabled : props.theme.color.primaryBgEnabled)};
 	}
 
 	&:hover{
 		color: ${(props) => props.theme.color.primaryFgHover};
 		background-color: ${(props) => props.theme.color.primaryBgHover};
 	}
+
+	${(props) =>
+		props.disabled &&
+		css`
+		
+			cursor: not-allowed;
+			opacity: 0.6;
+		`}
 
 	& ${Icon}{
 		width: 120%;

@@ -7,7 +7,7 @@ export const CellIcon = styled.div`
 	display: flex;
 	align-items: center;
 	flex-shrink: 0;
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 
 	& ${Icon} {
 		width: 100%;

@@ -18,9 +18,9 @@ export const Console = styled.div`
 	width: 100%;
 	height: 100%;
 	white-space: pre-wrap;
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.accentBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.secondaryFgEnabled};
 	padding: 1rem;
 	box-sizing: border-box;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
 `;

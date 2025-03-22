@@ -48,9 +48,9 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 	${(props) =>
 		props.$variant === "full" &&
 		css`
-			color: ${(props) => props.theme.color.primaryBg};
-			background-color: ${(props) => props.theme.color.primaryFg};
-			border-color: ${(props) => props.theme.color.primaryFg};
+			color: ${(props) => props.theme.color.primaryBgEnabled};
+			background-color: ${(props) => props.theme.color.primaryFgEnabled};
+			border-color: ${(props) => props.theme.color.primaryFgEnabled};
 
 			border-width: 0.2rem;
 			border-style: solid;
@@ -84,9 +84,9 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 	${(props) =>
 		props.$variant === "stroke" &&
 		css`
-			color: ${(props) => props.theme.color.primaryFg};
-			background-color: ${(props) => props.theme.color.primaryBg};
-			border-color: ${(props) => props.theme.color.primaryFg};
+			color: ${(props) => props.theme.color.primaryFgEnabled};
+			background-color: ${(props) => props.theme.color.primaryBgEnabled};
+			border-color: ${(props) => props.theme.color.primaryFgEnabled};
 
 			border-width: 0.2rem;
 			border-style: solid;
@@ -162,7 +162,7 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 		${(props) =>
 			props.$variant === "text" &&
 			css`
-			color: ${(props) => props.theme.color.primaryFg};
+			color: ${(props) => props.theme.color.primaryFgEnabled};
 			background-color: transparent;
 			border-color: transparent;
 

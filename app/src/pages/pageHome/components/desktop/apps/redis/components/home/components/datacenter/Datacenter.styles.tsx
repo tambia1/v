@@ -67,10 +67,10 @@ export const SubscriptionsList = styled.div`
 
 	overflow: auto;
 
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
 	border-radius: 1rem;
 
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 
 	& > div:last-child > div:last-child {
 		display: none;
@@ -288,7 +288,7 @@ export const SubscriptionRow = styled.div`
 	background-color: ${(props) => props.theme.color.primaryBgDisabled};
 
 	&:nth-child(odd){
-		background-color: ${(props) => props.theme.color.primaryBg};
+		background-color: ${(props) => props.theme.color.primaryBgEnabled};
 	}
 `;
 
@@ -319,7 +319,7 @@ export const SubscriptionsDetailsRow = styled.div<{ $visible: boolean }>`
 	padding: 0rem 1rem;
 	align-items: center;
 	gap: 1rem;
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 
 	& > div {
 		width: auto;
@@ -336,7 +336,7 @@ export const SubscriptionsDetailsColMap = styled.div<{ $visible: boolean }>`
 	padding: 0rem 1rem;
 	align-items: center;
 	gap: 1rem;
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 `;
 
 export const DatabasesRow = styled.div`

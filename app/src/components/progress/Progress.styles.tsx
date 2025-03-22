@@ -7,7 +7,7 @@ export const Progress = styled.div<{ $width: string }>`
 	box-sizing: border-box;
 	border-radius: 100rem;
 	background-color: transparent;
-	border: 1px solid ${(props) => props.theme.color.primaryFg};
+	border: 1px solid ${(props) => props.theme.color.primaryFgEnabled};
 	overflow: hidden;
 	position: relative;
 `;
@@ -27,6 +27,6 @@ export const ProgressValue = styled.div.attrs<{ $width: number }>((props) => ({
 	height: 100%;
 	position: relative;
 	border-radius: 100rem;
-	background-color: ${(props) => props.theme.color.primaryFg};
+	background-color: ${(props) => props.theme.color.primaryFgEnabled};
 	transition: all 0.05s linear;
 `;

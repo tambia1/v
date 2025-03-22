@@ -10,8 +10,8 @@ export const Compose = styled.div`
 	flex-direction: column;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 
 	border-radius: 0.5rem;
 	overflow: hidden;

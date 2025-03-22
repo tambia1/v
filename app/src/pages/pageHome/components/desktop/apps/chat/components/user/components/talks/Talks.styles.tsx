@@ -24,7 +24,7 @@ export const Talks = styled.div`
 `;
 
 export const ClientName = styled.span`
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 `;
 
 export const ClientId = styled.span`

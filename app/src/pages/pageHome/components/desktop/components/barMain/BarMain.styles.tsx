@@ -8,7 +8,7 @@ export const BarMain = styled.div`
 	height: 100%;
 	display: flex;
 	flex-shrink: 0;
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 	display: flex;
 	align-items: center;
 `;
@@ -25,7 +25,7 @@ const Icon = css<{ $isVisible: boolean }>`
 	align-items: center;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 	transition: all 0.3s ease;
 
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
@@ -33,8 +33,8 @@ const Icon = css<{ $isVisible: boolean }>`
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
 
 	& svg {
-		stroke: ${(props) => props.theme.color.primaryFg};
-		fill: ${(props) => props.theme.color.primaryBg};
+		stroke: ${(props) => props.theme.color.primaryFgEnabled};
+		fill: ${(props) => props.theme.color.primaryBgEnabled};
 	}
 
 	&:hover{

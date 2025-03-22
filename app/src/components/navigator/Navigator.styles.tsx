@@ -16,8 +16,8 @@ export const Headers = styled.div`
 	display: flex;
 	flex-shrink: 0;
 	align-items: center;
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 	z-index: 1;
 
 	& * {
@@ -34,8 +34,8 @@ export const Pages = styled.div`
 	position: relative;
 	overflow: hidden;
 
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 `;
 
 export const Header = styled.div`
@@ -46,7 +46,7 @@ export const Header = styled.div`
 	display: flex;
 	align-items: center;
 	margin-left: 1rem;
-	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryBg};
+	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryBgEnabled};
 	font-size: ${(props) => props.theme.font.title.size};
 	font-weight: ${(props) => props.theme.font.title.weight};
 `;
@@ -75,7 +75,7 @@ export const BackButton = styled.div<{ $isVisible: boolean }>`
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "auto" : "none")};
 
-	color: ${(props) => props.theme.color.primaryFg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 
 	&:hover{
 		color: ${(props) => props.theme.color.primaryFgHover};

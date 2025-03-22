@@ -7,8 +7,8 @@ export const themeLight: Theme = {
 	color: {
 		transparent: "transparent",
 
-		primaryFg: "#161616",
-		primaryBg: "#ffffff",
+		primaryFgEnabled: "#161616",
+		primaryBgEnabled: "#ffffff",
 		primaryFgHover: "#1a1a1a",
 		primaryBgHover: "#c7c7c7",
 		primaryFgActive: "#000000",
@@ -18,19 +18,16 @@ export const themeLight: Theme = {
 		primaryFgDisabled: "#b3b3b3",
 		primaryBgDisabled: "#f2f2f2",
 
-		secondaryFg: "#888888",
-		secondaryBg: "#F2F2F2",
-		secondaryFgHover: "#1a1a1a",
+		secondaryFgEnabled: "#007AFF",
+		secondaryBgEnabled: "#ffffff",
+		secondaryFgHover: "#0066CC",
 		secondaryBgHover: "#c7c7c7",
-		secondaryFgActive: "#000000",
+		secondaryFgActive: "#004780",
 		secondaryBgActive: "#8E8E93",
-		secondaryFgSelected: "#333333",
+		secondaryFgSelected: "#007AFF",
 		secondaryBgSelected: "#C7C7CC",
-		secondaryFgDisabled: "#b3b3b3",
+		secondaryFgDisabled: "#80BFFF",
 		secondaryBgDisabled: "#f2f2f2",
-
-		accentFg: "#007AFF",
-		accentBg: "#ffffff",
 
 		successFg: "#34C759",
 		successBg: "#ffffff",

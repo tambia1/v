@@ -20,17 +20,17 @@ export const Authors = () => {
 				<S.Table>
 					{data.authors.map((author) => (
 						<S.Row key={author.id}>
-							<Text color="accentFg">id: </Text>
-							<Text color="primaryFg">{author.id}</Text>
+							<Text color="secondaryFgEnabled">id: </Text>
+							<Text color="primaryFgEnabled">{author.id}</Text>
 							<S.Space />
-							<Text color="accentFg">title: </Text>
-							<Text color="primaryFg">{author.name}</Text>
+							<Text color="secondaryFgEnabled">title: </Text>
+							<Text color="primaryFgEnabled">{author.name}</Text>
 							<S.Space />
-							<Text color="accentFg">reviews: </Text>
-							<Text color="primaryFg">[{author.reviews.map((review) => review.id).toString()}]</Text>
+							<Text color="secondaryFgEnabled">reviews: </Text>
+							<Text color="primaryFgEnabled">[{author.reviews.map((review) => review.id).toString()}]</Text>
 							<S.Space />
-							<Text color="accentFg">ratings: </Text>
-							<Text color="primaryFg">[{author.reviews.map((review) => review.rating).toString()}]</Text>
+							<Text color="secondaryFgEnabled">ratings: </Text>
+							<Text color="primaryFgEnabled">[{author.reviews.map((review) => review.rating).toString()}]</Text>
 						</S.Row>
 					))}
 				</S.Table>

@@ -92,7 +92,7 @@ export const Buttons = styled.div`
 	display: flex;
 	justify-content: left;
 	align-items: center;
-	background-color: ${(props) => props.theme.color.primaryBg};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 `;
 
 export const ButtonToday = styled(Button)`

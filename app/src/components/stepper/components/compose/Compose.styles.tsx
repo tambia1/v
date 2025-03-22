@@ -13,8 +13,8 @@ export const Compose = styled.div`
 	border: 1px solid ${(props) => props.theme.color.primaryBgActive};
 	overflow: hidden;
 
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 `;
 
 export const IconCounter = styled(Icon)`

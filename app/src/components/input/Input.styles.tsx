@@ -7,8 +7,8 @@ export const Input = styled.input<{ $width: string; $textALign: string }>`
 	display: flex;
 	overflow: auto;
 	outline: 0px solid transparent;
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 	resize: none;
 
 	border-radius: 100rem;

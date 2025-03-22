@@ -9,8 +9,8 @@ export const Button = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 	transition: all 0.3s ease;
 
 	cursor: pointer;

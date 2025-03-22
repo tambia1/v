@@ -22,7 +22,7 @@ export const Column = styled.div`
 	min-height: 25rem;
 	display: flex;
 	flex-direction: column;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
 	min-width: 0;
 	transition: all 0.3s ease;
 
@@ -38,8 +38,8 @@ export const ColumnHeader = styled.div`
 	flex-shrink: 0;
 	justify-content: center;
 	align-items: center;
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => props.theme.color.primaryBg};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
 	position: relative;
 `;
 
@@ -77,8 +77,8 @@ export const ColumnBody = styled.div<{ $isDragOn: boolean }>`
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	color: ${(props) => props.theme.color.primaryFg};
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.primaryBgActive : props.theme.color.primaryBg)};
+	color: ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.primaryBgActive : props.theme.color.primaryBgEnabled)};
 	padding: 1rem;
 	gap: 0.5rem;
 	overflow-x: hidden;
@@ -92,11 +92,11 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 	width: auto;
 	min-height: 5rem;
 	padding: 0.5rem;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFg};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
 	overflow: hidden;
 	transition: all 0.3s ease;
 
-	background-color: ${(props) => (props.$isDragOn ? props.theme.color.primaryBgActive : props.theme.color.primaryBg)};
+	background-color: ${(props) => (props.$isDragOn ? props.theme.color.primaryBgActive : props.theme.color.primaryBgEnabled)};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover};

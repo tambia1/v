@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const Flag = styled.div<{ $size: string; $fill?: string; $stroke?: string }>`
 	width: ${({ $size }) => $size};
 	height: ${({ $size }) => $size};
-	box-shadow: 0px 0px 5px 1px ${(props) => props.theme.color.primaryFg};
+	box-shadow: 0px 0px 5px 1px ${(props) => props.theme.color.primaryFgEnabled};
 	border-radius: 100px;
 	overflow: hidden;
 

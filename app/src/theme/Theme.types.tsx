@@ -4,7 +4,7 @@ import { themeLight } from "./themes/themeLight/ThemeLight";
 export const themes = { light: themeLight, dark: themeDark };
 
 type ColorGroup = "primary" | "secondary";
-type ColorState = "" | "Hover" | "Active" | "Selected" | "Disabled";
+type ColorState = "Enabled" | "Hover" | "Active" | "Selected" | "Disabled";
 type ColorType = `${ColorGroup}${"Fg" | "Bg"}${ColorState}`;
 
 export type Theme = {
@@ -12,9 +12,6 @@ export type Theme = {
 
 	color: { [key in ColorType]: string } & {
 		transparent: string;
-
-		accentFg: string;
-		accentBg: string;
 
 		successFg: string;
 		successBg: string;

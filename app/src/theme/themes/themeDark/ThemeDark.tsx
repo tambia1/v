@@ -7,8 +7,8 @@ export const themeDark: Theme = {
 	color: {
 		transparent: "transparent",
 
-		primaryFg: "#ffffff",
-		primaryBg: "#161616",
+		primaryFgEnabled: "#ffffff",
+		primaryBgEnabled: "#161616",
 		primaryFgHover: "#c7c7c7",
 		primaryBgHover: "#1a1a1a",
 		primaryFgActive: "#8E8E93",
@@ -18,19 +18,16 @@ export const themeDark: Theme = {
 		primaryFgDisabled: "#f2f2f2",
 		primaryBgDisabled: "#b3b3b3",
 
-		secondaryFg: "#f2f2f2",
-		secondaryBg: "#161616",
-		secondaryFgHover: "#c7c7c7",
+		secondaryFgEnabled: "#007AFF",
+		secondaryBgEnabled: "#161616",
+		secondaryFgHover: "#0066CC",
 		secondaryBgHover: "#1a1a1a",
-		secondaryFgActive: "#8E8E93",
+		secondaryFgActive: "#004780",
 		secondaryBgActive: "#000000",
-		secondaryFgSelected: "#C7C7CC",
+		secondaryFgSelected: "#007AFF",
 		secondaryBgSelected: "#333333",
-		secondaryFgDisabled: "#f2f2f2",
+		secondaryFgDisabled: "#80BFFF",
 		secondaryBgDisabled: "#b3b3b3",
-
-		accentFg: "#007AFF",
-		accentBg: "#161616",
 
 		successFg: "#34C759",
 		successBg: "#161616",
