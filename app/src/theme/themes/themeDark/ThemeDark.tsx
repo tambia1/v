@@ -40,17 +40,6 @@ export const themeDark: Theme = {
 		ternaryFgDisabled: "#f2f2f2",
 		ternaryBgDisabled: "#b3b3b3",
 
-		quarteryFg: "#888888",
-		quarteryBg: "#A9A9A9",
-		quarteryFgHover: "#c7c7c7",
-		quarteryBgHover: "#1a1a1a",
-		quarteryFgActive: "#8E8E93",
-		quarteryBgActive: "#000000",
-		quarteryFgSelected: "#C7C7CC",
-		quarteryBgSelected: "#333333",
-		quarteryFgDisabled: "#f2f2f2",
-		quarteryBgDisabled: "#b3b3b3",
-
 		accentFg: "#007AFF",
 		accentBg: "#161616",
 

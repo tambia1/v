@@ -7,7 +7,7 @@ export const CellInfo = styled.div`
 	display: flex;
 	align-items: center;
 	flex-shrink: 0;
-	color: ${(props) => props.theme.color.quarteryFg};
+	color: ${(props) => props.theme.color.primaryFgDisabled};
 
 	& ${Icon} {
 		width: 100%;

@@ -18,7 +18,7 @@ export const Line = styled.div<{ $lineState: LineState }>`
 	width: auto;
 	margin-left: ${(props) => (props.$lineState === "long" ? "0rem" : "4rem")};
 	margin-right: 0rem;
-	border-top: solid ${(props) => props.theme.color.quarteryFg} 1px;
+	border-top: solid ${(props) => props.theme.color.primaryBgActive} 1px;
 `;
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`

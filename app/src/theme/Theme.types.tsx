@@ -3,7 +3,7 @@ import { themeLight } from "./themes/themeLight/ThemeLight";
 
 export const themes = { light: themeLight, dark: themeDark };
 
-type ColorGroup = "primary" | "secondary" | "ternary" | "quartery";
+type ColorGroup = "primary" | "secondary" | "ternary";
 type ColorState = "" | "Hover" | "Active" | "Selected" | "Disabled";
 type ColorType = `${ColorGroup}${"Fg" | "Bg"}${ColorState}`;
 

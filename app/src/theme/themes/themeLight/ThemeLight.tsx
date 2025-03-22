@@ -40,17 +40,6 @@ export const themeLight: Theme = {
 		ternaryFgDisabled: "#b3b3b3",
 		ternaryBgDisabled: "#f2f2f2",
 
-		quarteryFg: "#aaaaaa",
-		quarteryBg: "#ffffff",
-		quarteryFgHover: "#1a1a1a",
-		quarteryBgHover: "#c7c7c7",
-		quarteryFgActive: "#000000",
-		quarteryBgActive: "#8E8E93",
-		quarteryFgSelected: "#333333",
-		quarteryBgSelected: "#C7C7CC",
-		quarteryFgDisabled: "#b3b3b3",
-		quarteryBgDisabled: "#f2f2f2",
-
 		accentFg: "#007AFF",
 		accentBg: "#ffffff",
 

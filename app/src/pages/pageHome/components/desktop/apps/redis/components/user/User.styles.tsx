@@ -75,7 +75,7 @@ export const EmailInput = styled(Input)`
 	padding-right: 0.5rem;
 	
 	&::placeholder {
-		color: ${(props) => props.theme.color.quarteryFg};
+		color: ${(props) => props.theme.color.primaryFgDisabled};
 	}
 
 	&:disabled {
@@ -114,7 +114,7 @@ export const PasswordInput = styled(Input)`
 	padding-right: 0.5rem;
 	
 	&::placeholder {
-		color: ${(props) => props.theme.color.quarteryFg};
+		color: ${(props) => props.theme.color.primaryFgDisabled};
 	}
 
 	&:disabled {
