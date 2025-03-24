@@ -35,7 +35,7 @@ export const Pages = styled.div`
 	overflow: hidden;
 
 	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primaryBgDisabled};
 `;
 
 export const Header = styled.div`

@@ -12,6 +12,7 @@ export type Theme = {
 
 	color: { [key in ColorType]: string } & {
 		transparent: string;
+		currentColor: string;
 
 		successFg: string;
 		successBg: string;

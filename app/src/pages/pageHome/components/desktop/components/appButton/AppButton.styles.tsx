@@ -83,8 +83,9 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
     box-sizing: border-box;
 	border-radius: 0.5rem;
 	position: relative;
-
 	transition: all 0.3s ease;
+
+	color: ${(props) => props.theme.color.primaryFgEnabled};
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primaryBgHover}aa;

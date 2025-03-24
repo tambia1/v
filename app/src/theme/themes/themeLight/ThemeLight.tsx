@@ -6,6 +6,7 @@ export const themeLight: Theme = {
 
 	color: {
 		transparent: "transparent",
+		currentColor: "currentColor",
 
 		primaryFgEnabled: "#161616",
 		primaryBgEnabled: "#ffffff",

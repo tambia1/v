@@ -10,8 +10,8 @@ export const EmojiFace = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	color: ${(props) => props.theme.color.secondaryFgEnabled};
-	background-color: ${(props) => props.theme.color.secondaryBgEnabled};
+	color: #ffffff;
+	background-color: #000000;
 `;
 
 export const Spacer = styled.div`

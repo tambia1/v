@@ -6,6 +6,7 @@ export const themeDark: Theme = {
 
 	color: {
 		transparent: "transparent",
+		currentColor: "currentColor",
 
 		primaryFgEnabled: "#ffffff",
 		primaryBgEnabled: "#161616",
