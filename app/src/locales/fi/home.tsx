@@ -111,6 +111,10 @@ export const translation: Home = {
 		title: "Shush",
 	},
 
+	emojiFace: {
+		title: "Emoji Face",
+	},
+
 	mfe: {
 		title: "Micro Frontend",
 	},

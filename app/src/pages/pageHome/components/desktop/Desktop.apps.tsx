@@ -13,6 +13,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { ReactElement, ReactNode, lazy } from "react";
 import type { Role } from "./Desktop.types";
+import { EmojiFace } from "./apps/EmojiFace/EmojiFace";
 import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";
@@ -73,6 +74,7 @@ export const apps: App[][] = [
 		{ id: "chickenScream", roles: ["admin", "user", "guest"], title: <T>{lang.chickenScream.title}</T>, icon: "chickenScream", component: <ChickenScream /> },
 		{ id: "chwazi", roles: ["admin", "user", "guest"], title: <T>{lang.chwazi.title}</T>, icon: "chwazi", component: <Chwazi /> },
 		{ id: "shush", roles: ["admin", "user", "guest"], title: <T>{lang.shush.title}</T>, icon: "shush", component: <Shush /> },
+		{ id: "emojiFace", roles: ["admin", "user", "guest"], title: <T>{lang.emojiFace.title}</T>, icon: "emojiFace", component: <EmojiFace /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },

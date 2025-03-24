@@ -8,6 +8,7 @@ import chickenScream from "./assets/chickenScream.png";
 import chwazi from "./assets/chwazi.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 import clock from "./assets/clock.png";
+import emojiFace from "./assets/emojiFace.png";
 import ninja from "./assets/ninja.png";
 import notes from "./assets/notes.png";
 import photos from "./assets/photos.png";
@@ -51,6 +52,7 @@ export const appIcons = {
 	chickenScream,
 	chwazi,
 	shush,
+	emojiFace,
 } as const;
 
 export type AppIcon = keyof typeof appIcons;

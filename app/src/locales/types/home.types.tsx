@@ -111,6 +111,10 @@ export type Home = {
 		title: string;
 	};
 
+	emojiFace: {
+		title: string;
+	};
+
 	mfe: {
 		title: string;
 	};
