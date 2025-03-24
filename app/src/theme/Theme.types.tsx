@@ -3,16 +3,34 @@ import { themeLight } from "./themes/themeLight/ThemeLight";
 
 export const themes = { light: themeLight, dark: themeDark };
 
-type ColorGroup = "primary" | "secondary";
-type ColorState = "Enabled" | "Hover" | "Active" | "Selected" | "Disabled";
-type ColorType = `${ColorGroup}${"Fg" | "Bg"}${ColorState}`;
-
 export type Theme = {
 	themeName: keyof typeof themes;
 
-	color: { [key in ColorType]: string } & {
+	color: {
 		transparent: string;
 		currentColor: string;
+
+		primaryFgEnabled: string;
+		primaryBgEnabled: string;
+		primaryFgHover: string;
+		primaryBgHover: string;
+		primaryFgActive: string;
+		primaryBgActive: string;
+		primaryFgSelected: string;
+		primaryBgSelected: string;
+		primaryFgDisabled: string;
+		primaryBgDisabled: string;
+
+		secondaryFgEnabled: string;
+		secondaryBgEnabled: string;
+		secondaryFgHover: string;
+		secondaryBgHover: string;
+		secondaryFgActive: string;
+		secondaryBgActive: string;
+		secondaryFgSelected: string;
+		secondaryBgSelected: string;
+		secondaryFgDisabled: string;
+		secondaryBgDisabled: string;
 
 		successFg: string;
 		successBg: string;
