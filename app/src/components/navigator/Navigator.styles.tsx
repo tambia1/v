@@ -17,7 +17,7 @@ export const Headers = styled.div`
 	flex-shrink: 0;
 	align-items: center;
 	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.tertiaryBgDisabled};
 	z-index: 1;
 
 	& * {

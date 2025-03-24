@@ -30,6 +30,17 @@ export const themeLight: Theme = {
 		secondaryFgDisabled: "#80BFFF",
 		secondaryBgDisabled: "#f2f2f2",
 
+		tertiaryFgEnabled: "#d9d9d9",
+		tertiaryBgEnabled: "#262626",
+		tertiaryFgHover: "#bfbfbf",
+		tertiaryBgHover: "#3a3a3a",
+		tertiaryFgActive: "#a6a6a6",
+		tertiaryBgActive: "#292929",
+		tertiaryFgSelected: "#e6e6e6",
+		tertiaryBgSelected: "#4d4d4d",
+		tertiaryFgDisabled: "#ffffff",
+		tertiaryBgDisabled: "#e0e0e0",
+
 		successFg: "#34C759",
 		successBg: "#ffffff",
 

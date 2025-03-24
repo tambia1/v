@@ -32,6 +32,17 @@ export type Theme = {
 		secondaryFgDisabled: string;
 		secondaryBgDisabled: string;
 
+		tertiaryFgEnabled: string;
+		tertiaryBgEnabled: string;
+		tertiaryFgHover: string;
+		tertiaryBgHover: string;
+		tertiaryFgActive: string;
+		tertiaryBgActive: string;
+		tertiaryFgSelected: string;
+		tertiaryBgSelected: string;
+		tertiaryFgDisabled: string;
+		tertiaryBgDisabled: string;
+
 		successFg: string;
 		successBg: string;
 

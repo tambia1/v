@@ -30,6 +30,17 @@ export const themeDark: Theme = {
 		secondaryFgDisabled: "#80BFFF",
 		secondaryBgDisabled: "#b3b3b3",
 
+		tertiaryFgEnabled: "#595959",
+		tertiaryBgEnabled: "#f5f5f5",
+		tertiaryFgHover: "#404040",
+		tertiaryBgHover: "#e0e0e0",
+		tertiaryFgActive: "#262626",
+		tertiaryBgActive: "#d1d1d1",
+		tertiaryFgSelected: "#1a1a1a",
+		tertiaryBgSelected: "#c0c0c0",
+		tertiaryFgDisabled: "#8c8c8c",
+		tertiaryBgDisabled: "#e6e6e6",
+
 		successFg: "#34C759",
 		successBg: "#161616",
 
