@@ -3,7 +3,7 @@ import * as faceapi from "face-api.js";
 import { useEffect, useRef, useState } from "react";
 import * as S from "./EmojiFace.styles";
 
-const statusIcons: Record<string, string> = {
+const statusIcons: { [K: string]: string } = {
 	default: "😎",
 	neutral: "🙂",
 	happy: "😀",
@@ -16,6 +16,9 @@ const statusIcons: Record<string, string> = {
 
 export const EmojiFace = () => {
 	const videoRef = useRef<HTMLVideoElement>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null);
+
+	const [emotion, setEmotion] = useState<string>("");
 	const [expression, setExpression] = useState<string>(statusIcons.default);
 
 	useEffect(() => {
@@ -46,17 +49,31 @@ export const EmojiFace = () => {
 		if (!videoRef.current) return;
 
 		const detectExpression = async () => {
-			if (!videoRef.current) return;
+			if (!videoRef.current || !canvasRef.current) return;
 
-			const detections = await faceapi.detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+			const canvas = canvasRef.current;
+			const video = videoRef.current;
+			const displaySize = { width: video.width, height: video.height };
+			faceapi.matchDimensions(canvas, displaySize);
 
-			if (detections.length > 0) {
-				const expressions = detections[0].expressions;
-				const bestMatch = Object.entries(expressions).reduce((a, b) => (b[1] > a[1] ? b : a));
-				setExpression(statusIcons[bestMatch[0]] || statusIcons.default);
-			} else {
-				setExpression(statusIcons.default);
-			}
+			setInterval(async () => {
+				const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+
+				if (detections.length > 0) {
+					const expressions = detections[0].expressions;
+					const maxEmotion = (Object.keys(expressions) as Array<keyof faceapi.FaceExpressions>).reduce((a, b) => (expressions[a] > expressions[b] ? a : b));
+
+					setEmotion(maxEmotion);
+					setExpression(statusIcons[maxEmotion] || statusIcons.default);
+				} else {
+					setExpression(statusIcons.default);
+				}
+
+				const resizedDetections = faceapi.resizeResults(detections, displaySize);
+				canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
+				faceapi.draw.drawDetections(canvas, resizedDetections);
+				faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+			}, 500);
 		};
 
 		const interval = setInterval(detectExpression, 500);
@@ -65,9 +82,12 @@ export const EmojiFace = () => {
 
 	return (
 		<S.EmojiFace>
-			<Text variant="header">Expression: {expression}</Text>
+			<Text variant="header">
+				Expression: {emotion} {expression}
+			</Text>
 
-			<video ref={videoRef} autoPlay muted playsInline style={{ width: "400px" }} />
+			<video ref={videoRef} autoPlay muted playsInline width="640" height="480" style={{ width: "640px", height: "480px" }} />
+			<canvas ref={canvasRef} width="640" height="480" />
 			<S.Spacer />
 		</S.EmojiFace>
 	);
