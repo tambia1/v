@@ -32,6 +32,22 @@ export const Col = styled.div`
 	gap: 0.5rem;
 `;
 
+export const Video = styled.video`
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+`;
+
+export const Canvas = styled.canvas`
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background-color: transparent;
+`;
+
 export const Buttons = styled.div`
 	position: absolute;
 	inset: auto 0 0 0;

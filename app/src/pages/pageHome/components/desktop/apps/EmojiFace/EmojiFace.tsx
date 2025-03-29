@@ -29,6 +29,7 @@ export const EmojiFace = () => {
 	const [expression, setExpression] = useState(statusIcons.default);
 
 	const [timeoutInterval, setTimeoutInterval] = useState<NodeJS.Timeout>();
+	const [isScaning, setIsScaning] = useState(false);
 
 	useEffect(() => {
 		const loadModels = async () => {
@@ -109,6 +110,8 @@ export const EmojiFace = () => {
 
 		const interval = setInterval(detectExpression, 500);
 		setTimeoutInterval(interval);
+
+		setIsScaning(true);
 	};
 
 	return (
@@ -119,12 +122,15 @@ export const EmojiFace = () => {
 				</S.Loader>
 			)}
 
+			{!isScaning && <Icon iconName="iconMicOff" stroke="red" />}
+			{isScaning && <Icon iconName="iconMic" stroke="green" />}
+
 			<Text variant="header">
 				Expression: {emotion} {expression}
 			</Text>
 
-			<video ref={videoRef} autoPlay playsInline width="640" height="480" style={{ width: "640px", height: "480px" }} />
-			<canvas ref={canvasRef} width="640" height="480" />
+			<S.Video ref={videoRef} autoPlay playsInline />
+			<S.Canvas ref={canvasRef} />
 
 			<S.Buttons>
 				<Icon iconName="iconCamera" size="s" onClick={handleCamera} />
