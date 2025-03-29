@@ -13,7 +13,6 @@ dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
 export default defineConfig({
 	base: "/v",
-	publicDir: "public",
 
 	plugins: [
 		react({
