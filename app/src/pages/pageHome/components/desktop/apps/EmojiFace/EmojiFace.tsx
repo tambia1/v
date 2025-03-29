@@ -32,8 +32,6 @@ export const EmojiFace = () => {
 	const [timeoutInterval, setTimeoutInterval] = useState<NodeJS.Timeout>();
 	const [isScaning, setIsScaning] = useState(false);
 
-	const [log, setLog] = useState("");
-
 	useEffect(() => {
 		const loadModels = async () => {
 			setIsLoading(true);
@@ -95,29 +93,22 @@ export const EmojiFace = () => {
 			const displaySize = { width: video.width, height: video.height };
 			faceapi.matchDimensions(canvas, displaySize);
 
-			setInterval(async () => {
-				setLog("detect...");
+			const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
 
-				const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+			if (detections.length > 0) {
+				const expressions = detections[0].expressions;
+				const maxEmotion = (Object.keys(expressions) as Array<keyof faceapi.FaceExpressions>).reduce((a, b) => (expressions[a] > expressions[b] ? a : b));
 
-				setLog(`detect.length ${detections.length}`);
+				setEmotion(maxEmotion);
+				setExpression(statusIcons[maxEmotion] || statusIcons.default);
+			} else {
+				setExpression(statusIcons.default);
+			}
 
-				if (detections.length > 0) {
-					setLog(`detect.length ${detections.length} ${detections[0].expressions}`);
-					const expressions = detections[0].expressions;
-					const maxEmotion = (Object.keys(expressions) as Array<keyof faceapi.FaceExpressions>).reduce((a, b) => (expressions[a] > expressions[b] ? a : b));
-
-					setEmotion(maxEmotion);
-					setExpression(statusIcons[maxEmotion] || statusIcons.default);
-				} else {
-					setExpression(statusIcons.default);
-				}
-
-				const resizedDetections = faceapi.resizeResults(detections, displaySize);
-				canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
-				faceapi.draw.drawDetections(canvas, resizedDetections);
-				faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
-			}, 500);
+			const resizedDetections = faceapi.resizeResults(detections, displaySize);
+			canvas.getContext("2d")?.clearRect(0, 0, canvas.width, canvas.height);
+			faceapi.draw.drawDetections(canvas, resizedDetections);
+			faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
 		};
 
 		const interval = setInterval(detectExpression, 500);
@@ -144,8 +135,6 @@ export const EmojiFace = () => {
 				<Text variant="header">
 					Expression: {emotion} {expression}
 				</Text>
-
-				<Text variant="header">Log: {log}</Text>
 
 				<S.Buttons>
 					<Button onClick={handleCamera}>Start Video</Button>
