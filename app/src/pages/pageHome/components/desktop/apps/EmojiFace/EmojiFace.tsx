@@ -1,3 +1,5 @@
+import { Icon } from "@src/components/icon/Icon";
+import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import * as faceapi from "face-api.js";
 import { useEffect, useRef, useState } from "react";
@@ -14,38 +16,67 @@ const statusIcons: { [K: string]: string } = {
 	surprised: "😳",
 };
 
+type CameraFacingMode = "user" | "environment";
+
 export const EmojiFace = () => {
+	const [_cameraState, setCameraState] = useState<"play" | "pause">("pause");
+	const [isLoading, setIsLoading] = useState(false);
+
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-	const [emotion, setEmotion] = useState<string>("");
-	const [expression, setExpression] = useState<string>(statusIcons.default);
+	const [emotion, setEmotion] = useState("");
+	const [expression, setExpression] = useState(statusIcons.default);
+
+	const [timeoutInterval, setTimeoutInterval] = useState<NodeJS.Timeout>();
 
 	useEffect(() => {
 		const loadModels = async () => {
+			setIsLoading(true);
+
 			await Promise.all([
 				faceapi.nets.tinyFaceDetector.loadFromUri("v/src/pages/pageHome/components/desktop/apps/EmojiFace/models/"),
 				faceapi.nets.faceExpressionNet.loadFromUri("v/src/pages/pageHome/components/desktop/apps/EmojiFace/models/"),
 			]);
 
-			startVideo();
-		};
-
-		const startVideo = async () => {
-			try {
-				const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-				if (videoRef.current) {
-					videoRef.current.srcObject = stream;
-				}
-			} catch (error) {
-				console.error("Error accessing webcam:", error);
-			}
+			setIsLoading(false);
 		};
 
 		loadModels();
 	}, []);
 
 	useEffect(() => {
+		return () => {
+			clearInterval(timeoutInterval);
+		};
+	}, [timeoutInterval]);
+
+	const getCameraStream = async (cameraFacingMode: CameraFacingMode) => {
+		try {
+			const stream = await navigator.mediaDevices.getUserMedia({
+				audio: false,
+				video: {
+					facingMode: cameraFacingMode,
+				},
+			});
+
+			if (videoRef.current) {
+				videoRef.current.srcObject = stream;
+
+				setCameraState("play");
+			}
+		} catch (error) {
+			console.error("Error accessing camera:", error);
+		}
+	};
+
+	const handleCamera = async () => {
+		setIsLoading(true);
+		await getCameraStream("user");
+		setIsLoading(false);
+	};
+
+	const handleCapture = () => {
 		if (!videoRef.current) return;
 
 		const detectExpression = async () => {
@@ -77,18 +108,28 @@ export const EmojiFace = () => {
 		};
 
 		const interval = setInterval(detectExpression, 500);
-		return () => clearInterval(interval);
-	}, []);
+		setTimeoutInterval(interval);
+	};
 
 	return (
 		<S.EmojiFace>
+			{isLoading && (
+				<S.Loader>
+					<Loader size="s" />
+				</S.Loader>
+			)}
+
 			<Text variant="header">
 				Expression: {emotion} {expression}
 			</Text>
 
 			<video ref={videoRef} autoPlay playsInline width="640" height="480" style={{ width: "640px", height: "480px" }} />
 			<canvas ref={canvasRef} width="640" height="480" />
-			<S.Spacer />
+
+			<S.Buttons>
+				<Icon iconName="iconCamera" size="s" onClick={handleCamera} />
+				<Icon iconName="iconSmile" size="s" onClick={handleCapture} />
+			</S.Buttons>
 		</S.EmojiFace>
 	);
 };
