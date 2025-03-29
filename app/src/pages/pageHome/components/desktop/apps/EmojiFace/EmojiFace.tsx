@@ -116,21 +116,23 @@ export const EmojiFace = () => {
 
 	return (
 		<S.EmojiFace>
-			{isLoading && (
-				<S.Loader>
-					<Loader size="s" />
-				</S.Loader>
-			)}
-
-			{!isScaning && <Icon iconName="iconMicOff" stroke="red" />}
-			{isScaning && <Icon iconName="iconMic" stroke="green" />}
-
-			<Text variant="header">
-				Expression: {emotion} {expression}
-			</Text>
-
 			<S.Video ref={videoRef} autoPlay playsInline />
 			<S.Canvas ref={canvasRef} />
+
+			<S.Container>
+				{isLoading && (
+					<S.Loader>
+						<Loader size="s" />
+					</S.Loader>
+				)}
+
+				{!isScaning && <Icon iconName="iconMicOff" stroke="red" />}
+				{isScaning && <Icon iconName="iconMic" stroke="green" />}
+
+				<Text variant="header">
+					Expression: {emotion} {expression}
+				</Text>
+			</S.Container>
 
 			<S.Buttons>
 				<Icon iconName="iconCamera" size="s" onClick={handleCamera} />

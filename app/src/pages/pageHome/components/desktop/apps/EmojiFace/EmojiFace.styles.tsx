@@ -1,4 +1,3 @@
-import { Icon } from "@src/components/icon/Icon.styles";
 import styled from "styled-components";
 
 export const EmojiFace = styled.div`
@@ -37,7 +36,7 @@ export const Video = styled.video`
 	display: flex;
 	width: 100%;
 	height: 100%;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primaryFgEnabled};
 `;
 
 export const Canvas = styled.canvas`
@@ -48,6 +47,13 @@ export const Canvas = styled.canvas`
 	background-color: transparent;
 `;
 
+export const Container = styled.div`
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+`;
+
 export const Buttons = styled.div`
 	position: absolute;
 	inset: auto 0 0 0;
@@ -55,24 +61,10 @@ export const Buttons = styled.div`
 	justify-content: center;
 	gap: 4rem;
 	margin-bottom: 3rem;
-
-	& ${Icon}[data-name='iconSave'] svg {
-		stroke: ${(props) => props.theme.color.primaryFgEnabled};
-		fill: ${(props) => props.theme.color.successBg};
-	}
-
-	& ${Icon}[data-name='iconCamera'] svg {
-		stroke: ${(props) => props.theme.color.primaryFgEnabled};
-		fill: ${(props) => props.theme.color.warningBg};
-	}
-
-	& ${Icon} svg {
-		stroke: ${(props) => props.theme.color.primaryFgEnabled};
-		fill: ${(props) => props.theme.color.errorBg};
-	}
 `;
 
 export const Loader = styled.div`
+	position: absolute;
 	width: 100%;
 	height: 100%;
 
