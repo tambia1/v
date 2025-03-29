@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import * as S from "./EmojiFace.styles";
 
 const statusIcons: { [K: string]: string } = {
-	default: "😎",
+	default: "😶",
 	neutral: "🙂",
 	happy: "😀",
 	sad: "😥",
@@ -84,7 +84,9 @@ export const EmojiFace = () => {
 		}
 
 		const detectExpression = async () => {
-			if (!videoRef.current || !canvasRef.current) return;
+			if (!videoRef.current || !canvasRef.current) {
+				return;
+			}
 
 			const canvas = canvasRef.current;
 			const video = videoRef.current;
