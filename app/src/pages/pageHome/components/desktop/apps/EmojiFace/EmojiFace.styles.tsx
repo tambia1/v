@@ -32,18 +32,18 @@ export const Col = styled.div`
 `;
 
 export const Video = styled.video`
-	position: absolute;
+	// position: absolute;
 	display: flex;
-	width: 50%;
-	height: 50%;
+	width: 30%;
+	height: 30%;
 	background-color: #ff0000;
 `;
 
 export const Canvas = styled.canvas`
-	position: absolute;
+	// position: absolute;
 	display: flex;
-	width: 50%;
-	height: 50%;
+	width: 30%;
+	height: 30%;
 	background-color: transparent;
 `;
 

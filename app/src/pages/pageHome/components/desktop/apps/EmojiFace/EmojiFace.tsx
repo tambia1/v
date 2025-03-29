@@ -19,6 +19,8 @@ const statusIcons: { [K: string]: string } = {
 
 type CameraFacingMode = "user" | "environment";
 
+let c = 0;
+
 export const EmojiFace = () => {
 	const [_cameraState, setCameraState] = useState<"play" | "pause">("pause");
 	const [isLoading, setIsLoading] = useState(false);
@@ -31,9 +33,14 @@ export const EmojiFace = () => {
 
 	const [timeoutInterval, setTimeoutInterval] = useState<NodeJS.Timeout>();
 	const [isScaning, setIsScaning] = useState(false);
+	const [log, setLog] = useState("ready");
 
 	useEffect(() => {
+		setLog("useEffect");
+
 		const loadModels = async () => {
+			setLog("useEffect - loading started");
+
 			setIsLoading(true);
 
 			await Promise.all([
@@ -42,6 +49,7 @@ export const EmojiFace = () => {
 			]);
 
 			setIsLoading(false);
+			setLog("useEffect - loading ended");
 		};
 
 		loadModels();
@@ -73,13 +81,19 @@ export const EmojiFace = () => {
 	};
 
 	const handleCamera = async () => {
+		setLog("useEffect - camera");
+
 		setIsLoading(true);
 		await getCameraStream("user");
 		setIsLoading(false);
 	};
 
 	const handleCapture = () => {
+		setLog("useEffect - capture 1");
+
 		if (!videoRef.current) return;
+
+		setLog("useEffect - capture 2");
 
 		const detectExpression = async () => {
 			if (!videoRef.current || !canvasRef.current) return;
@@ -90,6 +104,8 @@ export const EmojiFace = () => {
 			faceapi.matchDimensions(canvas, displaySize);
 
 			setInterval(async () => {
+				setLog(`useEffect - interval ${c++}`);
+
 				const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
 
 				if (detections.length > 0) {
@@ -120,25 +136,25 @@ export const EmojiFace = () => {
 			<S.Video ref={videoRef} autoPlay playsInline />
 			<S.Canvas ref={canvasRef} />
 
-			<S.Container>
-				{isLoading && (
-					<S.Loader>
-						<Loader size="s" color="primaryBgEnabled" />
-					</S.Loader>
-				)}
+			{isLoading && (
+				<S.Loader>
+					<Loader size="s" color="primaryBgEnabled" />
+				</S.Loader>
+			)}
 
-				{!isScaning && <Icon iconName="iconMicOff" stroke="red" />}
-				{isScaning && <Icon iconName="iconMic" stroke="green" />}
+			{!isScaning && <Icon iconName="iconMicOff" stroke="red" />}
+			{isScaning && <Icon iconName="iconMic" stroke="green" />}
 
-				<Text variant="header">
-					{emotion} {expression}
-				</Text>
+			<Text variant="header">log: {log}</Text>
 
-				<S.Buttons>
-					<Button onClick={handleCamera}>Start Video</Button>
-					<Button onClick={handleCapture}>Start Scanning</Button>
-				</S.Buttons>
-			</S.Container>
+			<Text variant="header">
+				{emotion} {expression}
+			</Text>
+
+			<S.Buttons>
+				<Button onClick={handleCamera}>Start Video</Button>
+				<Button onClick={handleCapture}>Start Scanning</Button>
+			</S.Buttons>
 		</S.EmojiFace>
 	);
 };
