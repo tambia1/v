@@ -36,10 +36,14 @@ export const EmojiFace = () => {
 		const loadModels = async () => {
 			setIsLoading(true);
 
-			// await Promise.all([
-			// 	faceapi.nets.tinyFaceDetector.loadFromUri("v/src/pages/pageHome/components/desktop/apps/EmojiFace/models/"),
-			// 	faceapi.nets.faceExpressionNet.loadFromUri("v/src/pages/pageHome/components/desktop/apps/EmojiFace/models/"),
-			// ]);
+			await Promise.all([
+				faceapi.nets.tinyFaceDetector.loadFromUri(
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/EmojiFace/models/",
+				),
+				faceapi.nets.faceExpressionNet.loadFromUri(
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/EmojiFace/models/",
+				),
+			]);
 
 			setIsLoading(false);
 		};
