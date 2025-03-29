@@ -1,3 +1,4 @@
+import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
@@ -134,8 +135,8 @@ export const EmojiFace = () => {
 				</Text>
 
 				<S.Buttons>
-					<Icon iconName="iconCamera" size="s" onClick={handleCamera} />
-					<Icon iconName="iconSmile" size="s" onClick={handleCapture} />
+					<Button onClick={handleCamera}>Start Video</Button>
+					<Button onClick={handleCapture}>Start Scanning</Button>
 				</S.Buttons>
 			</S.Container>
 		</S.EmojiFace>
