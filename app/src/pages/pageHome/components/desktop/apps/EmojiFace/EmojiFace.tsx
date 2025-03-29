@@ -1,5 +1,3 @@
-import { Button } from "@src/components/button/Button";
-import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import * as faceapi from "face-api.js";
@@ -30,7 +28,6 @@ export const EmojiFace = () => {
 	const [expression, setExpression] = useState(statusIcons.default);
 
 	const [timeoutInterval, setTimeoutInterval] = useState<NodeJS.Timeout>();
-	const [isScaning, setIsScaning] = useState(false);
 
 	useEffect(() => {
 		const loadModels = async () => {
@@ -46,8 +43,7 @@ export const EmojiFace = () => {
 			]);
 
 			setIsLoading(false);
-
-			handleCamera();
+			startScan();
 		};
 
 		loadModels();
@@ -78,14 +74,14 @@ export const EmojiFace = () => {
 		}
 	};
 
-	const handleCamera = async () => {
+	const startScan = async () => {
 		setIsLoading(true);
 		await getCameraStream("user");
 		setIsLoading(false);
-	};
 
-	const handleCapture = () => {
-		if (!videoRef.current) return;
+		if (!videoRef.current) {
+			return;
+		}
 
 		const detectExpression = async () => {
 			if (!videoRef.current || !canvasRef.current) return;
@@ -115,8 +111,6 @@ export const EmojiFace = () => {
 
 		const interval = setInterval(detectExpression, 500);
 		setTimeoutInterval(interval);
-
-		setIsScaning(true);
 	};
 
 	return (
@@ -131,17 +125,9 @@ export const EmojiFace = () => {
 					</S.Loader>
 				)}
 
-				{!isScaning && <Icon iconName="iconMicOff" stroke="red" />}
-				{isScaning && <Icon iconName="iconMic" stroke="green" />}
-
-				<Text variant="header">
-					Expression: {emotion} {expression}
+				<Text variant="title">
+					{emotion} {expression}
 				</Text>
-
-				<S.Buttons>
-					<Button onClick={handleCamera}>Start Video</Button>
-					<Button onClick={handleCapture}>Start Scanning</Button>
-				</S.Buttons>
 			</S.Container>
 		</S.EmojiFace>
 	);

@@ -36,7 +36,6 @@ export const Video = styled.video`
 	display: flex;
 	width: 100%;
 	height: 100%;
-	background-color: #ff0000;
 `;
 
 export const Canvas = styled.canvas`
@@ -53,15 +52,6 @@ export const Container = styled.div`
 	width: 100%;
 	height: 100%;
 	z-index: 1;
-`;
-
-export const Buttons = styled.div`
-	position: absolute;
-	inset: auto 0 0 0;
-	display: flex;
-	justify-content: center;
-	gap: 4rem;
-	margin-bottom: 3rem;
 `;
 
 export const Loader = styled.div`
