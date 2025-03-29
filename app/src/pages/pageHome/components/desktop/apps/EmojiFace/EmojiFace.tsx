@@ -44,8 +44,8 @@ export const EmojiFace = () => {
 			setIsLoading(true);
 
 			await Promise.all([
-				faceapi.nets.tinyFaceDetector.loadFromUri("v/src/pages/pageHome/components/desktop/apps/EmojiFace/models/"),
-				faceapi.nets.faceExpressionNet.loadFromUri("v/src/pages/pageHome/components/desktop/apps/EmojiFace/models/"),
+				faceapi.nets.tinyFaceDetector.loadFromUri("v/src/public/models/"),
+				faceapi.nets.faceExpressionNet.loadFromUri("v/src/public/models/"),
 			]);
 
 			setIsLoading(false);
