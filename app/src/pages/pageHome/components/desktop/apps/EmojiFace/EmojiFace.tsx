@@ -46,6 +46,8 @@ export const EmojiFace = () => {
 			]);
 
 			setIsLoading(false);
+
+			handleCamera();
 		};
 
 		loadModels();
