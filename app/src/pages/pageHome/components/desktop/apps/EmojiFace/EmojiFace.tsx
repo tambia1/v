@@ -132,12 +132,12 @@ export const EmojiFace = () => {
 				<Text variant="header">
 					Expression: {emotion} {expression}
 				</Text>
-			</S.Container>
 
-			<S.Buttons>
-				<Icon iconName="iconCamera" size="s" onClick={handleCamera} />
-				<Icon iconName="iconSmile" size="s" onClick={handleCapture} />
-			</S.Buttons>
+				<S.Buttons>
+					<Icon iconName="iconCamera" size="s" onClick={handleCamera} />
+					<Icon iconName="iconSmile" size="s" onClick={handleCapture} />
+				</S.Buttons>
+			</S.Container>
 		</S.EmojiFace>
 	);
 };
