@@ -86,7 +86,7 @@ export const EmojiFace = () => {
 				Expression: {emotion} {expression}
 			</Text>
 
-			<video ref={videoRef} autoPlay muted playsInline width="640" height="480" style={{ width: "640px", height: "480px" }} />
+			<video ref={videoRef} autoPlay playsInline width="640" height="480" style={{ width: "640px", height: "480px" }} />
 			<canvas ref={canvasRef} width="640" height="480" />
 			<S.Spacer />
 		</S.EmojiFace>

@@ -29,6 +29,9 @@
 			},
 			"style": {
 				"useImportType": "off"
+			},
+			"a11y": {
+				"useMediaCaption": "off"
 			}
 		}
 	},
