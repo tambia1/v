@@ -34,16 +34,16 @@ export const Col = styled.div`
 export const Video = styled.video`
 	position: absolute;
 	display: flex;
-	width: 100%;
-	height: 100%;
-	background-color: ${(props) => props.theme.color.primaryFgEnabled};
+	width: 50%;
+	height: 50%;
+	background-color: #ff0000;
 `;
 
 export const Canvas = styled.canvas`
 	position: absolute;
 	display: flex;
-	width: 100%;
-	height: 100%;
+	width: 50%;
+	height: 50%;
 	background-color: transparent;
 `;
 

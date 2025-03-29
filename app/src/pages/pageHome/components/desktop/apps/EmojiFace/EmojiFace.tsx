@@ -123,7 +123,7 @@ export const EmojiFace = () => {
 			<S.Container>
 				{isLoading && (
 					<S.Loader>
-						<Loader size="s" />
+						<Loader size="s" color="primaryBgEnabled" />
 					</S.Loader>
 				)}
 
@@ -131,7 +131,7 @@ export const EmojiFace = () => {
 				{isScaning && <Icon iconName="iconMic" stroke="green" />}
 
 				<Text variant="header">
-					Expression: {emotion} {expression}
+					{emotion} {expression}
 				</Text>
 
 				<S.Buttons>
