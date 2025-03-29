@@ -32,6 +32,8 @@ export const EmojiFace = () => {
 	const [timeoutInterval, setTimeoutInterval] = useState<NodeJS.Timeout>();
 	const [isScaning, setIsScaning] = useState(false);
 
+	const [log, setLog] = useState("");
+
 	useEffect(() => {
 		const loadModels = async () => {
 			setIsLoading(true);
@@ -94,9 +96,14 @@ export const EmojiFace = () => {
 			faceapi.matchDimensions(canvas, displaySize);
 
 			setInterval(async () => {
+				setLog("detect...");
+
 				const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
 
+				setLog(`detect.length ${detections.length}`);
+
 				if (detections.length > 0) {
+					setLog(`detect.length ${detections.length} ${detections[0].expressions}`);
 					const expressions = detections[0].expressions;
 					const maxEmotion = (Object.keys(expressions) as Array<keyof faceapi.FaceExpressions>).reduce((a, b) => (expressions[a] > expressions[b] ? a : b));
 
@@ -137,6 +144,8 @@ export const EmojiFace = () => {
 				<Text variant="header">
 					Expression: {emotion} {expression}
 				</Text>
+
+				<Text variant="header">Log: {log}</Text>
 
 				<S.Buttons>
 					<Button onClick={handleCamera}>Start Video</Button>
