@@ -7,6 +7,6 @@ export const Compose = styled.div`
 	flex-direction: row;
 	box-sizing: border-box;
 	overflow: hidden;
-	background-color: ${(props) => props.theme.color.primaryBgHover};
+	background-color: ${(props) => props.theme.color.primary300};
 	border-radius: 5rem;
 `;

@@ -40,12 +40,12 @@ export const MenuList = styled.div<{ $visible: boolean }>`
 	width: 20rem;
 	height: 100%;
 	padding: 0%.5rem;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 	transform: translateX(${(props) => (props.$visible ? "0%" : "-100%")});
 	opacity: ${(props) => (props.$visible ? 1 : 0)};
 	transition: all 0.3s ease;
 	z-index: 2;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primary800};
 	overflow: auto;
 
 	${List} {
@@ -58,8 +58,8 @@ export const MenuList = styled.div<{ $visible: boolean }>`
 	}
 
 	${Section} {
-		color: ${(props) => props.theme.color.primaryBgEnabled};
-		background-color: ${(props) => props.theme.color.primaryFgEnabled};
+		color: ${(props) => props.theme.color.primary100};
+		background-color: ${(props) => props.theme.color.primary800};
 		padding: 0.5rem;
 		width: auto;
 	}

@@ -63,6 +63,21 @@ export const ExampleList = () => {
 					</List.Cell.Image>
 				</List.Cell>
 
+				<List.Cell onClick={() => {}} $isEnabled={false}>
+					<List.Cell.Icon>
+						<Icon iconName="iconLayout" />
+					</List.Cell.Icon>
+					<List.Cell.Text>
+						<T>{lang.settings.layout.title}</T>
+					</List.Cell.Text>
+					<List.Cell.Info>
+						<T>Top</T>
+					</List.Cell.Info>
+					<List.Cell.Image>
+						<Icon iconName="iconChevronRight" />
+					</List.Cell.Image>
+				</List.Cell>
+
 				<List.Cell onClick={() => {}}>
 					<T>{lang.settings.about.title}</T>
 				</List.Cell>

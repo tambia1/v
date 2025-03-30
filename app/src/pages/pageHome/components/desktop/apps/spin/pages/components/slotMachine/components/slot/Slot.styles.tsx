@@ -8,7 +8,7 @@ export const Slot = styled.div`
 	display: flex;
 	align-items: stretch;
 
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 
 	overflow: hidden;
 `;
@@ -40,10 +40,10 @@ export const Item = styled.div<{ $numberOfItems: number }>`
 	font-size: 200%;
 
 	&:nth-child(even) {
-		background-color: ${(props) => props.theme.color.primaryBgEnabled};
+		background-color: ${(props) => props.theme.color.primary100};
 	}
 
 	&:nth-child(odd) {
-		background-color: ${(props) => props.theme.color.primaryBgSelected};
+		background-color: ${(props) => props.theme.color.primary200};
 	}
 `;

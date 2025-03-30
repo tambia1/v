@@ -8,7 +8,7 @@ export const BarMain = styled.div`
 	height: 100%;
 	display: flex;
 	flex-shrink: 0;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 	display: flex;
 	align-items: center;
 `;
@@ -25,7 +25,7 @@ const Icon = css<{ $isVisible: boolean }>`
 	align-items: center;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary800};
 	transition: all 0.3s ease;
 
 	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
@@ -33,13 +33,13 @@ const Icon = css<{ $isVisible: boolean }>`
 	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
 
 	& svg {
-		stroke: ${(props) => props.theme.color.primaryFgEnabled};
-		fill: ${(props) => props.theme.color.primaryBgEnabled};
+		stroke: ${(props) => props.theme.color.primary800};
+		fill: ${(props) => props.theme.color.primary100};
 	}
 
 	&:hover{
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		color: ${(props) => props.theme.color.primary400};
+		background-color: ${(props) => props.theme.color.primary600};
 	}
 `;
 
@@ -68,9 +68,9 @@ export const Username = styled.div`
 `;
 
 export const MessageSuccess = styled.div`
-	color: ${(props) => props.theme.color.successFg};
+	color: ${(props) => props.theme.color.success500};
 `;
 
 export const MessageError = styled.div`
-	color: ${(props) => props.theme.color.errorFg};
+	color: ${(props) => props.theme.color.danger500};
 `;

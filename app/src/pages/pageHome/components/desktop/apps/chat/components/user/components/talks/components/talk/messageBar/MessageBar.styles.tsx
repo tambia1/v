@@ -11,7 +11,7 @@ export const MessageBar = styled.div<{ $numberOfLineBreaks: number }>`
 	box-sizing: border-box;
 	gap: 1rem;
 	padding: 1rem;
-	background-color: ${(props) => props.theme.color.primaryBgActive};
+	background-color: ${(props) => props.theme.color.primary700};
 	transition: all 0.3s ease-out;
 `;
 
@@ -22,8 +22,8 @@ export const Message = styled.textarea`
 	overflow: auto;
 	box-shadow: 0 0 0.5rem 0 #00000066;
 	outline: 0px solid transparent;
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 	resize: none;
 	border: none;
 	box-sizing: border-box;

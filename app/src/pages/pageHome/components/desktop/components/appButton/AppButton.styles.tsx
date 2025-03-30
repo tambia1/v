@@ -66,8 +66,8 @@ export const Image = styled.div<{ $appIcon: AppIcon | string }>`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50%;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primary800};
 	border-radius: 15px;
 `;
 
@@ -85,14 +85,14 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	position: relative;
 	transition: all 0.3s ease;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary800};
 
 	&:hover {
-		background-color: ${(props) => props.theme.color.primaryBgHover}aa;
+		background-color: ${(props) => props.theme.color.primary600}aa;
 	}
 
 	&:active {
-		background-color: ${(props) => props.theme.color.primaryBgActive}88;
+		background-color: ${(props) => props.theme.color.primary700};
 	}
 
 	${(props) =>
@@ -202,8 +202,8 @@ export const Title = styled.div`
 	text-align: center;
 	word-break: normal;
 	white-space: pre-wrap;
-	color: ${(props) => props.theme.color.primaryBgEnabled};
-	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary100};
+	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primary800};
 `;
 
 export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`
@@ -214,7 +214,7 @@ export const ImageDeleteApp = styled.div<{ $isShakeMode: boolean }>`
 	left: 0rem;
 
 	& svg {
-		fill: ${(props) => props.theme.color.errorBg};
+		fill: ${(props) => props.theme.color.danger900};
 	}
 
 	display: ${(props) => (props.$isShakeMode ? "flex" : "none")};

@@ -7,7 +7,7 @@ export const CellInfo = styled.div`
 	display: flex;
 	align-items: center;
 	flex-shrink: 0;
-	color: ${(props) => props.theme.color.primaryFgDisabled};
+	color: ${(props) => props.theme.color.primary500};
 
 	& ${Icon} {
 		width: 100%;

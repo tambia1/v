@@ -10,7 +10,7 @@ export const ClashRoyale = styled.div`
 
 	& ${Headers} {
 		background-image: linear-gradient(45deg, #27649e, #1c437b);
-		color: ${(props) => props.theme.color.primaryBgEnabled};
+		color: ${(props) => props.theme.color.primary100};
 	}
 
 	@font-face {

@@ -11,7 +11,7 @@ export const TestMenu = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.primaryBgSelected};
+	background-color: ${(props) => props.theme.color.primary200};
 `;
 
 export const Spacer = styled.div`

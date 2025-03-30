@@ -20,11 +20,11 @@ export const Title = styled.textarea`
 	flex-direction: column;
 	flex-shrink: 0;
 	overflow: auto;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primary800};
 	border-radius: 1rem;
 	padding: 1rem;
 	outline: 0px solid transparent;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 	resize: none;
 	border: none;
 `;
@@ -38,11 +38,11 @@ export const Content = styled.textarea`
 	flex-shrink: 0;
 	flex-grow: 1;
 	overflow: auto;
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primary800};
 	border-radius: 1rem;
 	padding: 1rem;
 	outline: 0px solid transparent;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 	resize: none;
 	border: none;
 `;

@@ -14,7 +14,7 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	position: absolute;
 	width: 20rem;
 	z-index: 1;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 	border-radius: 2rem;
 	max-height: 25rem;
 

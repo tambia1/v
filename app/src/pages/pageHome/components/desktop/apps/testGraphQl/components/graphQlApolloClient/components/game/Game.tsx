@@ -15,14 +15,14 @@ export const Game = () => {
 			{error && <Text variant="header">Error: {error.message}</Text>}
 			{data?.game && (
 				<S.Row>
-					<Text color="secondaryFgEnabled">id: </Text>
-					<Text color="primaryFgEnabled">{data.game.id}</Text>
+					<Text color="secondary900">id: </Text>
+					<Text color="primary800">{data.game.id}</Text>
 					<S.Space />
-					<Text color="secondaryFgEnabled">title: </Text>
-					<Text color="primaryFgEnabled">{data.game.title}</Text>
+					<Text color="secondary900">title: </Text>
+					<Text color="primary800">{data.game.title}</Text>
 					<S.Space />
-					<Text color="secondaryFgEnabled">platforms: </Text>
-					<Text color="primaryFgEnabled">{data.game.platforms}</Text>
+					<Text color="secondary900">platforms: </Text>
+					<Text color="primary800">{data.game.platforms}</Text>
 				</S.Row>
 			)}
 		</S.Game>

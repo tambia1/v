@@ -10,8 +10,8 @@ export const TestEdit = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	color: ${(props) => props.theme.color.primaryFgDisabled};
-	background-color: ${(props) => props.theme.color.secondaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 
 	overflow: auto;
 `;
@@ -42,7 +42,7 @@ export const Line = styled.div`
 	margin-right: 0.5rem;
 	margin-top: 1.0rem;
 	margin-bottom: 1.0rem;
-	border-top: solid ${(props) => props.theme.color.primaryFgSelected} 1px;
+	border-top: solid ${(props) => props.theme.color.primary600} 1px;
 `;
 
 export const Cell = styled.div`

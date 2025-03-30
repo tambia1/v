@@ -20,17 +20,17 @@ export const Games = () => {
 				<S.Table>
 					{data.games.map((game) => (
 						<S.Row key={game.id}>
-							<Text color="secondaryFgEnabled">id: </Text>
-							<Text color="primaryFgEnabled">{game.id}</Text>
+							<Text color="secondary900">id: </Text>
+							<Text color="primary800">{game.id}</Text>
 							<S.Space />
-							<Text color="secondaryFgEnabled">title: </Text>
-							<Text color="primaryFgEnabled">{game.title}</Text>
+							<Text color="secondary900">title: </Text>
+							<Text color="primary800">{game.title}</Text>
 							<S.Space />
-							<Text color="secondaryFgEnabled">reviews: </Text>
-							<Text color="primaryFgEnabled">[{game.reviews.map((review) => review.id).toString()}]</Text>
+							<Text color="secondary900">reviews: </Text>
+							<Text color="primary800">[{game.reviews.map((review) => review.id).toString()}]</Text>
 							<S.Space />
-							<Text color="secondaryFgEnabled">ratings: </Text>
-							<Text color="primaryFgEnabled">[{game.reviews.map((review) => review.rating).toString()}]</Text>
+							<Text color="secondary900">ratings: </Text>
+							<Text color="primary800">[{game.reviews.map((review) => review.rating).toString()}]</Text>
 						</S.Row>
 					))}
 				</S.Table>

@@ -10,18 +10,18 @@ export const IconButton = styled.div`
 	align-items: center;
 	justify-content: center;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary800};
 	transition: all 0.3s ease;
 
 	cursor: pointer;
 
 	& svg {
-		stroke: ${(props) => props.theme.color.primaryFgEnabled};
-		fill: ${(props) => props.theme.color.primaryBgEnabled};
+		stroke: ${(props) => props.theme.color.primary800};
+		fill: ${(props) => props.theme.color.primary100};
 	}
 
 	&:hover{
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		color: ${(props) => props.theme.color.primary400};
+		background-color: ${(props) => props.theme.color.primary600};
 	}
 `;

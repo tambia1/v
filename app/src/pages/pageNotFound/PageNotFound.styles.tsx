@@ -14,8 +14,8 @@ export const Box = styled.div`
 	width: 300px;
 	height: 100px;
 	box-sizing: border-box;
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 	gap: 2rem;
 
 	display: flex;

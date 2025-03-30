@@ -67,10 +67,10 @@ export const SubscriptionsList = styled.div`
 
 	overflow: auto;
 
-	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primaryFgEnabled};
+	box-shadow: ${(props) => props.theme.shadow.box} ${(props) => props.theme.color.primary800};
 	border-radius: 1rem;
 
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 
 	& > div:last-child > div:last-child {
 		display: none;
@@ -164,7 +164,7 @@ export const SubscriptionsHeader = styled.div<{ $visible: boolean }>`
 	gap: 0.5rem;
 	white-space: nowrap;
 	padding: 0rem 1rem;
-	background-color: ${(props) => props.theme.color.primaryBgActive};
+	background-color: ${(props) => props.theme.color.primary700};
 
 	${SubscriptionsWidth}
 `;
@@ -285,10 +285,10 @@ export const SubscriptionRow = styled.div`
 	height: auto;
 	display: flex;
 	flex-direction: column;
-	background-color: ${(props) => props.theme.color.primaryBgDisabled};
+	background-color: ${(props) => props.theme.color.primary300};
 
 	&:nth-child(odd){
-		background-color: ${(props) => props.theme.color.primaryBgEnabled};
+		background-color: ${(props) => props.theme.color.primary100};
 	}
 `;
 
@@ -304,7 +304,7 @@ export const SubscriptionsDataRow = styled.div<{ $visible: boolean }>`
 	cursor: pointer;
 
 	&:hover {
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		background-color: ${(props) => props.theme.color.primary600};
 	}
 
 	${SubscriptionsWidth}
@@ -319,7 +319,7 @@ export const SubscriptionsDetailsRow = styled.div<{ $visible: boolean }>`
 	padding: 0rem 1rem;
 	align-items: center;
 	gap: 1rem;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 
 	& > div {
 		width: auto;
@@ -336,7 +336,7 @@ export const SubscriptionsDetailsColMap = styled.div<{ $visible: boolean }>`
 	padding: 0rem 1rem;
 	align-items: center;
 	gap: 1rem;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 `;
 
 export const DatabasesRow = styled.div`

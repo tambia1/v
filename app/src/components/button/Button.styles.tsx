@@ -31,6 +31,7 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 
 			&:not(:disabled) {
 				&:hover {
+					box-shadow: inset 0 0 3px 0px #bbbbbb, inset 0 0 10px #eeeeee;
 				}
 				
 				&:active {
@@ -48,9 +49,9 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 	${(props) =>
 		props.$variant === "full" &&
 		css`
-			color: ${(props) => props.theme.color.primaryBgEnabled};
-			background-color: ${(props) => props.theme.color.primaryFgEnabled};
-			border-color: ${(props) => props.theme.color.primaryFgEnabled};
+			color: ${(props) => props.theme.color.primary100};
+			background-color: ${(props) => props.theme.color.primary900};
+			border-color: ${(props) => props.theme.color.primary100};
 
 			border-width: 0.2rem;
 			border-style: solid;
@@ -65,28 +66,28 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 
 			&:not(:disabled) {
 				&:hover {
-					background-color: ${(props) => props.theme.color.primaryFgHover};
+					background-color: ${(props) => props.theme.color.primary600};
 				}
 
 				&:active {
-					background-color: ${(props) => props.theme.color.primaryFgActive};
+					background-color: ${(props) => props.theme.color.primary700};
 				}
 			}
 
 			&:disabled {
 				cursor: not-allowed;
-				color: ${(props) => props.theme.color.primaryBgDisabled};
-				background-color: ${(props) => props.theme.color.primaryFgDisabled};
-				border-color: ${(props) => props.theme.color.primaryFgDisabled};
+				color: ${(props) => props.theme.color.primary500};
+				background-color: ${(props) => props.theme.color.primary300};
+				border-color: ${(props) => props.theme.color.primary300};
 			}
 		`}
 
 	${(props) =>
 		props.$variant === "stroke" &&
 		css`
-			color: ${(props) => props.theme.color.primaryFgEnabled};
-			background-color: ${(props) => props.theme.color.primaryBgEnabled};
-			border-color: ${(props) => props.theme.color.primaryFgEnabled};
+			color: ${(props) => props.theme.color.primary800};
+			background-color: ${(props) => props.theme.color.primary100};
+			border-color: ${(props) => props.theme.color.primary800};
 
 			border-width: 0.2rem;
 			border-style: solid;
@@ -102,19 +103,19 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 
 			&:not(:disabled) {
 				&:hover {
-					background-color: ${(props) => props.theme.color.primaryBgHover}
+					background-color: ${(props) => props.theme.color.primary600}
 				}
 
 				&:active {
-					background-color: ${(props) => props.theme.color.primaryBgActive}
+					background-color: ${(props) => props.theme.color.primary700}
 				}
 			}
 
 			&:disabled {
 				cursor: not-allowed;
-				color: ${(props) => props.theme.color.primaryFgDisabled}
-				background-color: ${(props) => props.theme.color.primaryBgDisabled}
-				border-color: ${(props) => props.theme.color.primaryBgDisabled}
+				color: ${(props) => props.theme.color.primary500}
+				background-color: ${(props) => props.theme.color.primary300}
+				border-color: ${(props) => props.theme.color.primary300}
 			}
 		`} 
 
@@ -162,7 +163,7 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 		${(props) =>
 			props.$variant === "text" &&
 			css`
-			color: ${(props) => props.theme.color.primaryFgEnabled};
+			color: ${(props) => props.theme.color.primary800};
 			background-color: transparent;
 			border-color: transparent;
 
@@ -180,19 +181,19 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 
 			&:not(:disabled) {
 				&:hover {
-					color: ${(props) => props.theme.color.primaryFgHover};
+					color: ${(props) => props.theme.color.primary400};
 					color: var(--label-color);
 				}
 
 				&:active {
-					color: ${(props) => props.theme.color.primaryFgActive};
+					color: ${(props) => props.theme.color.primary700};
 					color: var(--label-color);
 				}
 			}
 
 			&:disabled {
 				cursor: not-allowed;
-				color: ${(props) => props.theme.color.primaryFgDisabled};
+				color: ${(props) => props.theme.color.primary500};
 				color: var(--label-color);
 			}
 		`}

@@ -18,15 +18,15 @@ export const Line = styled.div<{ $lineState: LineState }>`
 	width: auto;
 	margin-left: ${(props) => (props.$lineState === "long" ? "0rem" : "4rem")};
 	margin-right: 0rem;
-	border-top: solid ${(props) => props.theme.color.primaryBgActive} 1px;
+	border-top: solid ${(props) => props.theme.color.primary700} 1px;
 `;
 
 export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	width: 100%;
 	height: 4rem;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 
 	box-sizing: border-box;
 
@@ -42,25 +42,26 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 	}
 
 	&:hover ${Content} {
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		color: ${(props) => props.theme.color.primary700};
+		background-color: ${(props) => props.theme.color.primary300};
 		cursor: pointer;
 	}
 
 	&:active ${Content} {
-		color: ${(props) => props.theme.color.primaryFgActive};
-		background-color: ${(props) => props.theme.color.primaryBgActive};
+		color: ${(props) => props.theme.color.primary700};
+		background-color: ${(props) => props.theme.color.primary400};
 	}
 
 	${(props) =>
 		!props.$isEnabled &&
 		css`
 			& ${Content} {
-				color: ${(props) => props.theme.color.primaryFgDisabled};
-				background-color: ${(props) => props.theme.color.primaryBgDisabled};
+				cursor: not-allowed;
+				color: ${(props) => props.theme.color.primary400};
+				background-color: ${(props) => props.theme.color.primary200};
 
 				& ${Text} {
-					color: ${(props) => props.theme.color.primaryFgDisabled};
+					color: ${(props) => props.theme.color.primary400};
 				}
 			}
 		`}
@@ -69,8 +70,8 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 		props.$isSelected &&
 		css`
 			& ${Content} {
-				color: ${(props) => props.theme.color.primaryFgSelected};
-				background-color: ${(props) => props.theme.color.primaryBgSelected};
+				color: ${(props) => props.theme.color.primary600};
+				background-color: ${(props) => props.theme.color.primary200};
 			}
 		`}
 `;

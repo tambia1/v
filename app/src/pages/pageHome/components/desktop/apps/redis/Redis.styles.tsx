@@ -9,7 +9,7 @@ export const Redis = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.primaryBgSelected};
+	background-color: ${(props) => props.theme.color.primary200};
 `;
 
 export const Transition = styled.div<{ $visible: boolean }>`

@@ -12,6 +12,6 @@ export const List = styled.div`
 	overflow: auto;
 
 	border-radius: 2rem;
-	border: 1px solid ${(props) => props.theme.color.primaryBgActive};
+	border: 1px solid ${(props) => props.theme.color.primary700};
 	box-sizing: border-box;
 `;

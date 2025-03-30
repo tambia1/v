@@ -11,7 +11,8 @@ export const Compose = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	background-color: #00000088;
+	background-color: ${(props) => props.theme.color.primary900}66;
+
 
 	z-index: 100;
 `;

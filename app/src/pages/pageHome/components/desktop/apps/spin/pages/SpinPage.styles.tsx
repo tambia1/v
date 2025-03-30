@@ -23,12 +23,12 @@ export const CellGrid = styled.div`
 	gap: 1rem;
 
 	& ${Icon}:hover {
-		color: ${(props) => props.theme.color.primaryFgHover};
+		color: ${(props) => props.theme.color.primary400};
 		cursor: pointer;
 	}
 
 	& span:hover {
-		color: ${(props) => props.theme.color.primaryFgHover};
+		color: ${(props) => props.theme.color.primary400};
 		cursor: pointer;
 	}
 `;

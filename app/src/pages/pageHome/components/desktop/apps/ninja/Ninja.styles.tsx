@@ -10,7 +10,7 @@ export const NinjaGame = styled.div`
 	justify-content: center;
 	align-items: center;
 
-	background-color: ${(props) => props.theme.color.primaryBgSelected};
+	background-color: ${(props) => props.theme.color.primary200};
 `;
 
 export const Board = styled.div`

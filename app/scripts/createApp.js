@@ -29,7 +29,8 @@ function createAppFolder(appName, destinationPath) {
         padding: 1rem;
         box-sizing: border-box;
     
-        background-color: \${(props) => props.theme.color.primaryBgSelected};
+        color: \${(props) => props.theme.color.primary900};
+        background-color: \${(props) => props.theme.color.primary100};
     \`;
     `;
 

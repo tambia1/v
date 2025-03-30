@@ -10,8 +10,8 @@ export const Home = styled.div`
 
 	box-sizing: border-box;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 `;
 
 export const Spacer = styled.div`
@@ -29,7 +29,7 @@ export const Bar = styled.div`
 	align-items: center;
 	flex-shrink: 0;
 
-	background-color: ${(props) => props.theme.color.primaryBgSelected};
+	background-color: ${(props) => props.theme.color.primary200};
 `;
 
 const IconBar = css`
@@ -39,11 +39,11 @@ const IconBar = css`
 	padding: 1rem;
 
 	&:hover {
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		background-color: ${(props) => props.theme.color.primary600};
 	}
 
 	&:active {
-		background-color: ${(props) => props.theme.color.primaryBgActive};
+		background-color: ${(props) => props.theme.color.primary700};
 	}
 `;
 

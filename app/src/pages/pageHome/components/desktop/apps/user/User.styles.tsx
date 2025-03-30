@@ -34,8 +34,8 @@ export const Box = styled.div`
 	padding: 2rem;
 	overflow: hidden;
 	border-radius: 16px;
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 
 `;
 
@@ -62,18 +62,18 @@ export const EmailInput = styled(Input)`
 	width: 100%;
 	border: none;
 	border-radius: 0 5rem 5rem 0;
-	color: ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary800};
 	background-color: ${(props) => props.theme.color.transparent};
 	font-size: inherit;
 	font-weight: inherit;
 	padding-right: 0.5rem;
 	
 	&::placeholder {
-		color: ${(props) => props.theme.color.primaryFgDisabled};
+		color: ${(props) => props.theme.color.primary500};
 	}
 
 	&:disabled {
-		color: ${(props) => props.theme.color.primaryFgDisabled};
+		color: ${(props) => props.theme.color.primary500};
 		background-color: transparent;
 	}
 `;
@@ -101,18 +101,18 @@ export const PasswordInput = styled(Input)`
 	width: 100%;
 	border: none;
 	border-radius: 0 5rem 5rem 0;
-	color: ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary800};
 	background-color: ${(props) => props.theme.color.transparent};
 	font-size: inherit;
 	font-weight: inherit;
 	padding-right: 0.5rem;
 	
 	&::placeholder {
-		color: ${(props) => props.theme.color.primaryFgDisabled};
+		color: ${(props) => props.theme.color.primary500};
 	}
 
 	&:disabled {
-		color: ${(props) => props.theme.color.primaryFgDisabled};
+		color: ${(props) => props.theme.color.primary500};
 		background-color: transparent;
 	}
 `;
@@ -140,17 +140,17 @@ export const Loader = styled.div`
 `;
 
 export const MessageIdle = styled.div`
-	color: ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary800};
 	white-space: nowrap;
 `;
 
 export const MessageSuccess = styled.div`
-	color: ${(props) => props.theme.color.successFg};
+	color: ${(props) => props.theme.color.success500};
 	white-space: nowrap;
 `;
 
 export const MessageError = styled.div`
-	color: ${(props) => props.theme.color.errorFg};
+	color: ${(props) => props.theme.color.danger500};
 	white-space: nowrap;
 `;
 
@@ -181,7 +181,7 @@ export const SocialLoginleBox = styled.div<{ disabled: boolean }>`
 export const SocialLoginImage = styled(Icon)`
 	width: 3rem;
 	height: 3rem;
-	color: ${(props) => props.theme.color.primaryFgEnabled};
+	color: ${(props) => props.theme.color.primary800};
 	flex-shrink: 0;
 	cursor: pointer;
 `;

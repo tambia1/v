@@ -10,7 +10,7 @@ export const Calendar = styled.div`
 
 	box-sizing: border-box;
 
-	background-color: ${(props) => props.theme.color.primaryBgSelected};
+	background-color: ${(props) => props.theme.color.primary200};
 `;
 
 export const Line = styled.div`
@@ -92,7 +92,7 @@ export const Buttons = styled.div`
 	display: flex;
 	justify-content: left;
 	align-items: center;
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	background-color: ${(props) => props.theme.color.primary100};
 `;
 
 export const ButtonToday = styled(Button)`

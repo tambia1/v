@@ -10,11 +10,11 @@ export const Compose = styled.div`
 	align-items: center;
 	box-sizing: border-box;
 	border-radius: 10rem;
-	border: 1px solid ${(props) => props.theme.color.primaryBgActive};
+	border: 1px solid ${(props) => props.theme.color.primary700};
 	overflow: hidden;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 `;
 
 export const IconCounter = styled(Icon)`

@@ -16,7 +16,7 @@ export const Stock = ({ stock }: Props) => {
 
 	const lines: Line[] = [
 		{
-			color: theme.color.successBg,
+			color: theme.color.success900,
 			data: stock.values.map((item, i) => [i, Number(item.close)]),
 		},
 	];

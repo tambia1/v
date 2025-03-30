@@ -5,8 +5,8 @@ export const Tree = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 `;
 
 export const TreeNode = styled.div`
@@ -27,12 +27,12 @@ export const TreeFolderHeader = styled.div`
 	align-items: center;
 	margin: 0.1rem;
 
-	color: ${(props) => props.theme.color.secondaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.secondary900};
+	background-color: ${(props) => props.theme.color.primary100};
 
 	&:hover {
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		color: ${(props) => props.theme.color.primary400};
+		background-color: ${(props) => props.theme.color.primary600};
 	}
 `;
 
@@ -51,7 +51,7 @@ export const TreeFolderSelect = styled.div`
 `;
 
 export const TreeFolderContent = styled.div<{ $highlighted: boolean }>`
-	${(props) => props.$highlighted && `color: ${props.theme.color.errorFg};`}
+	${(props) => props.$highlighted && `color: ${props.theme.color.danger500};`}
 	padding: 0.5rem;
 `;
 
@@ -61,19 +61,19 @@ export const TreeItem = styled.div`
 	align-items: center;
 	margin: 0.1rem;
 
-	color: ${(props) => props.theme.color.primaryFgEnabled};
-	background-color: ${(props) => props.theme.color.primaryBgEnabled};
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 
 	&:hover {
-		color: ${(props) => props.theme.color.primaryFgHover};
-		background-color: ${(props) => props.theme.color.primaryBgHover};
+		color: ${(props) => props.theme.color.primary400};
+		background-color: ${(props) => props.theme.color.primary600};
 	}
 
 	cursor: pointer;
 `;
 
 export const TreeItemContent = styled.div<{ highlighted: boolean }>`
-	${(props) => props.highlighted && `color: ${props.theme.color.errorFg};`}
+	${(props) => props.highlighted && `color: ${props.theme.color.danger500};`}
 	padding: 0.5rem;
 `;
 
@@ -83,6 +83,6 @@ export const TreeItemSelect = styled.div`
 
 export const IconFolder = styled(Icon)`
 	& > div > div > svg {
-		stroke: ${(props) => props.theme.color.primaryFgActive};
+		stroke: ${(props) => props.theme.color.primary700};
 	}
 `;
