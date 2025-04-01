@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import imageBg from "./assets/bg.avif";
 
 export const SmileClock = styled.div`
 	width: 100%;
@@ -6,27 +7,25 @@ export const SmileClock = styled.div`
 
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 
 	padding: 1rem;
 	box-sizing: border-box;
 
 	color: #ffffff;
 	background-color: #000000;
+
+	background-image: url(${imageBg});
+	background-size: cover; 
 `;
 
 export const Video = styled.video`
 	position: absolute;
 	display: flex;
-	width: 100%;
-	height: 100%;
-`;
-
-export const Canvas = styled.canvas`
-	position: absolute;
-	display: flex;
-	width: 100%;
-	height: 100%;
-	background-color: transparent;
+	width: 100px;
+	height: 100px;
+	border-radius: 5rem;
 `;
 
 export const Container = styled.div`
