@@ -31,7 +31,6 @@ export const SmileClock = () => {
 	const [timeoutInterval, setTimeoutInterval] = useState<NodeJS.Timeout>();
 
 	const audioRefs = useRef(new Audio(alarm0));
-	const [isPlaying, setIsPlaying] = useState(false);
 
 	useEffect(() => {
 		const loadModels = async () => {
@@ -107,7 +106,7 @@ export const SmileClock = () => {
 				setEmotion(maxEmotion);
 				setExpression(statusIcons[maxEmotion] || statusIcons.default);
 
-				if (maxEmotion === "happy" && isPlaying) {
+				if (maxEmotion === "happy") {
 					stopAlarm();
 				}
 			} else {
@@ -125,26 +124,16 @@ export const SmileClock = () => {
 	};
 
 	const playAlarm = () => {
-		if (!isPlaying) {
-			setIsPlaying(true);
+		const audio = audioRefs.current;
 
-			const audio = audioRefs.current;
-
-			audio.loop = true;
-			audio.play();
-
-			audio.onended = () => {
-				setIsPlaying(false);
-			};
-		}
+		audio.loop = true;
+		audio.play();
 	};
 
 	const stopAlarm = () => {
 		const audio = audioRefs.current;
 		audio.pause();
 		audio.currentTime = 0;
-
-		setIsPlaying(false);
 	};
 
 	return (
