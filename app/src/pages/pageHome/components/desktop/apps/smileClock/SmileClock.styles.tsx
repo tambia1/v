@@ -25,7 +25,6 @@ export const Video = styled.video`
 	display: flex;
 	width: 100px;
 	height: 100px;
-	border-radius: 5rem;
 `;
 
 export const Container = styled.div`
