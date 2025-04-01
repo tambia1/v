@@ -140,13 +140,11 @@ export const SmileClock = () => {
 	};
 
 	const stopAlarm = () => {
-		if (isPlaying) {
-			const audio = audioRefs.current;
-			audio.pause();
-			audio.currentTime = 0;
+		const audio = audioRefs.current;
+		audio.pause();
+		audio.currentTime = 0;
 
-			setIsPlaying(false);
-		}
+		setIsPlaying(false);
 	};
 
 	return (
