@@ -130,6 +130,7 @@ export const SmileClock = () => {
 
 			const audio = audioRefs.current;
 
+			audio.loop = true;
 			audio.play();
 
 			audio.onended = () => {
