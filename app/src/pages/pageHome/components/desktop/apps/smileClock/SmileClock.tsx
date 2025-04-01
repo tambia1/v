@@ -39,10 +39,10 @@ export const SmileClock = () => {
 
 			await Promise.all([
 				faceapi.nets.tinyFaceDetector.loadFromUri(
-					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/SmileClock/models/",
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/smileClock/models/",
 				),
 				faceapi.nets.faceExpressionNet.loadFromUri(
-					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/SmileClock/models/",
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/smileClock/models/",
 				),
 			]);
 
@@ -149,7 +149,7 @@ export const SmileClock = () => {
 	};
 
 	return (
-		<S.EmojiFace>
+		<S.SmileClock>
 			<S.Video ref={videoRef} autoPlay playsInline />
 			<S.Canvas ref={canvasRef} />
 
@@ -164,6 +164,6 @@ export const SmileClock = () => {
 					{expression} {emotion}
 				</Text>
 			</S.Container>
-		</S.EmojiFace>
+		</S.SmileClock>
 	);
 };

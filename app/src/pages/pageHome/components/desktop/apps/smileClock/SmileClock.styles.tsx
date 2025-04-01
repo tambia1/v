@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import imageBg from "./assets/bg.avif";
 
-export const EmojiFace = styled.div`
+export const SmileClock = styled.div`
 	width: 100%;
 	height: 100%;
 
@@ -13,27 +12,6 @@ export const EmojiFace = styled.div`
 
 	color: #ffffff;
 	background-color: #000000;
-
-	background-image: url(${imageBg});
-	background-size: cover; 
-
-`;
-
-export const Spacer = styled.div`
-	width: 100%;
-	height: 1rem;
-`;
-
-export const Row = styled.div`
-	display: flex;
-	flex-direction: row;
-	gap: 0.5rem;
-`;
-
-export const Col = styled.div`
-	display: flex;
-	flex-direction: col;
-	gap: 0.5rem;
 `;
 
 export const Video = styled.video`
