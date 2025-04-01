@@ -115,6 +115,10 @@ export const translation: Home = {
 		title: "Emoji Face",
 	},
 
+	smileClock: {
+		title: "Smile Clock",
+	},
+
 	mfe: {
 		title: "Micro Frontend",
 	},

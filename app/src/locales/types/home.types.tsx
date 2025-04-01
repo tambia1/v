@@ -115,6 +115,10 @@ export type Home = {
 		title: string;
 	};
 
+	smileClock: {
+		title: string;
+	};
+
 	mfe: {
 		title: string;
 	};

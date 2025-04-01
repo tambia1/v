@@ -128,7 +128,7 @@ export const EmojiFace = () => {
 				)}
 
 				<Text variant="title">
-					{emotion} {expression}
+					{expression} {emotion}
 				</Text>
 			</S.Container>
 		</S.EmojiFace>

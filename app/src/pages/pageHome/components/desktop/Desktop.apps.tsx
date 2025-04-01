@@ -22,6 +22,7 @@ import { Chwazi } from "./apps/chwazi/Chwazi";
 import { Debug } from "./apps/debug/Debug";
 import { Redis } from "./apps/redis/Redis";
 import { Shush } from "./apps/shush/Shush";
+import { SmileClock } from "./apps/smileClock/SmileClock";
 import { Speed } from "./apps/speed/Speed";
 import { Spin } from "./apps/spin/Spin";
 import { Stocks } from "./apps/stocks/Stocks";
@@ -75,6 +76,7 @@ export const apps: App[][] = [
 		{ id: "chwazi", roles: ["admin", "user", "guest"], title: <T>{lang.chwazi.title}</T>, icon: "chwazi", component: <Chwazi /> },
 		{ id: "shush", roles: ["admin", "user", "guest"], title: <T>{lang.shush.title}</T>, icon: "shush", component: <Shush /> },
 		{ id: "emojiFace", roles: ["admin", "user", "guest"], title: <T>{lang.emojiFace.title}</T>, icon: "emojiFace", component: <EmojiFace /> },
+		{ id: "smileClock", roles: ["admin", "user", "guest"], title: <T>{lang.smileClock.title}</T>, icon: "smileClock", component: <SmileClock /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },

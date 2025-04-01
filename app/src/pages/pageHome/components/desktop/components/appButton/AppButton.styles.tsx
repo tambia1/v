@@ -15,6 +15,7 @@ import photos from "./assets/photos.png";
 import redis from "./assets/redis.png";
 import settings from "./assets/settings.png";
 import shush from "./assets/shush.png";
+import smileClock from "./assets/smileClock.png";
 import snake from "./assets/snake.png";
 import speed from "./assets/speed.png";
 import spin from "./assets/spin.png";
@@ -53,6 +54,7 @@ export const appIcons = {
 	chwazi,
 	shush,
 	emojiFace,
+	smileClock,
 } as const;
 
 export type AppIcon = keyof typeof appIcons;
