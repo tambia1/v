@@ -2,7 +2,7 @@ import { Pages } from "@pages/Pages.types";
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GlobalStyle } from "@src/styles/globalStyles";
-import { ThemeProvider } from "@src/theme/Theme";
+import { ThemeProvider } from "@src/theme/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect } from "react";

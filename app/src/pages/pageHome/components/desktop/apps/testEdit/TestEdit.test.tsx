@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@src/theme/Theme";
+import { ThemeProvider } from "@src/theme/ThemeProvider";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { TestEdit } from "./TestEdit";
 
