@@ -1,8 +1,10 @@
 import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
+import { useThemeContext } from "@src/theme/UseThemeContext";
 import * as stylex from "@stylexjs/stylex";
 import { useState } from "react";
 import * as S from "../TestEdit.styles";
+import { colors, darkTheme, lightTheme } from "./exampleStyleX.stylex";
 
 const styles = stylex.create({
 	base: {
@@ -32,10 +34,29 @@ const styles = stylex.create({
 	transition: {
 		transition: "all 0.3s ease 0.0s",
 	},
+	themeLight: {
+		color: "#000000",
+		backgroundColor: "#ffff00",
+	},
+	themeDark: {
+		color: "#ffff00",
+		backgroundColor: "#000000",
+	},
+});
+
+const stylesThemes = stylex.create({
+	themedBox: {
+		color: colors.primary,
+		backgroundColor: colors.secondary,
+	},
 });
 
 export const ExampleStyleX = () => {
+	const theme = useThemeContext();
 	const [toggle, setToggle] = useState(false);
+
+	const themeName = { light: "themeLight", dark: "themeDark" }[theme.theme.themeName] as "themeLight" | "themeDark";
+	const stylexSelectedTheme = { light: lightTheme, dark: darkTheme }[theme.theme.themeName];
 
 	return (
 		<S.Col>
@@ -49,6 +70,14 @@ export const ExampleStyleX = () => {
 			<S.Col>
 				<div {...stylex.props(toggle ? styles.toggle : styles.toggled, styles.transition)}>Toggle style</div>
 				<Button onClick={() => setToggle(!toggle)}>Toggle stytle</Button>
+			</S.Col>
+
+			<S.Col>
+				<div {...stylex.props(styles[themeName])}>Theme 1</div>
+			</S.Col>
+
+			<S.Col>
+				<div {...stylex.props(stylexSelectedTheme, stylesThemes.themedBox)}>Theme 2</div>
 			</S.Col>
 		</S.Col>
 	);
