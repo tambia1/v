@@ -12,6 +12,7 @@ import { ExampleProgress } from "./examples/ExampleProgress";
 import { ExampleSelectMulti } from "./examples/ExampleSelectMulti";
 import { ExampleSelectSignle } from "./examples/ExampleSelectSignle";
 import { ExampleStepper } from "./examples/ExampleStepper";
+import { ExampleStyleX } from "./examples/ExampleStyleX";
 import { ExampleSwitch } from "./examples/ExampleSwitch";
 import { ExampleTab } from "./examples/ExampleTab";
 import { ExampleText } from "./examples/ExampleText";
@@ -62,6 +63,9 @@ export const TestEdit = () => {
 
 				<S.Line />
 				<ExampleModal />
+
+				<S.Line />
+				<ExampleStyleX />
 			</S.Col>
 		</S.TestEdit>
 	);

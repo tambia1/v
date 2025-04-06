@@ -8,6 +8,8 @@ import react from "@vitejs/plugin-react";
 import { type Plugin, type PluginOption, defineConfig } from "vite";
 import checker from "vite-plugin-checker";
 
+import styleX from "vite-plugin-stylex";
+
 import * as dotenv from "dotenv";
 dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
@@ -38,6 +40,8 @@ export default defineConfig({
 				remoteFrontend: "http://localhost:5001/v/assets/remote.js",
 			},
 		}),
+
+		styleX(),
 	],
 
 	server: {
