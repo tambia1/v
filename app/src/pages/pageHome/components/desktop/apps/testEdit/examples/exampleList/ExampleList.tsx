@@ -4,7 +4,7 @@ import { List } from "@src/components/list/List";
 import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import i18n, { lang } from "@src/locales/i18n";
-import * as S from "../TestEdit.styles";
+import * as S from "../../TestEdit.styles";
 
 export const ExampleList = () => {
 	return (

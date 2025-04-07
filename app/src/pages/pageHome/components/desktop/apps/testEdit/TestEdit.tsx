@@ -2,20 +2,20 @@ import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import * as S from "./TestEdit.styles";
-import { ExampleButton } from "./examples/ExampleButton";
-import { ExampleCheck } from "./examples/ExampleCheck";
-import { ExampleInput } from "./examples/ExampleInput";
-import { ExampleList } from "./examples/ExampleList";
-import { ExampleModal } from "./examples/ExampleModal";
-import { ExamplePopupMenu } from "./examples/ExamplePopupMenu";
-import { ExampleProgress } from "./examples/ExampleProgress";
-import { ExampleSelectMulti } from "./examples/ExampleSelectMulti";
-import { ExampleSelectSignle } from "./examples/ExampleSelectSignle";
-import { ExampleStepper } from "./examples/ExampleStepper";
-import { ExampleStyleX } from "./examples/ExampleStyleX";
-import { ExampleSwitch } from "./examples/ExampleSwitch";
-import { ExampleTab } from "./examples/ExampleTab";
-import { ExampleText } from "./examples/ExampleText";
+import { ExampleButton } from "./examples/exampleButton/ExampleButton";
+import { ExampleCheck } from "./examples/exampleCheck/ExampleCheck";
+import { ExampleInput } from "./examples/exampleInput/ExampleInput";
+import { ExampleList } from "./examples/exampleList/ExampleList";
+import { ExampleModal } from "./examples/exampleModal/ExampleModal";
+import { ExamplePopupMenu } from "./examples/examplePopupMenu/ExamplePopupMenu";
+import { ExampleProgress } from "./examples/exampleProgress/ExampleProgress";
+import { ExampleSelectMulti } from "./examples/exampleSelectMulti/ExampleSelectMulti";
+import { ExampleSelectSingle } from "./examples/exampleSelectSingle/ExampleSelectSingle";
+import { ExampleStepper } from "./examples/exampleStepper/ExampleStepper";
+import { ExampleStyleX } from "./examples/exampleStyleX/ExampleStyleX";
+import { ExampleSwitch } from "./examples/exampleSwitch/ExampleSwitch";
+import { ExampleTab } from "./examples/exampleTab/ExampleTab";
+import { ExampleText } from "./examples/exampleText/ExampleText";
 
 export const TestEdit = () => {
 	return (
@@ -47,7 +47,7 @@ export const TestEdit = () => {
 				<ExampleStepper />
 
 				<S.Line />
-				<ExampleSelectSignle />
+				<ExampleSelectSingle />
 
 				<S.Line />
 				<ExampleSelectMulti />

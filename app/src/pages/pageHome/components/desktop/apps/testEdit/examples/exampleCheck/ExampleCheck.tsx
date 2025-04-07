@@ -1,7 +1,7 @@
 import { Check } from "@src/components/check/Check";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
-import * as S from "../TestEdit.styles";
+import * as S from "../../TestEdit.styles";
 
 export const ExampleCheck = () => {
 	const [checkState, setCheckState] = useState(true);

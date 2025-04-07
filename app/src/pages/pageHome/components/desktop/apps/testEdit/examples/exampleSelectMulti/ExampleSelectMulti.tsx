@@ -2,7 +2,7 @@ import { Icon } from "@src/components/icon/Icon";
 import { Select } from "@src/components/select/Select";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
-import * as S from "../TestEdit.styles";
+import * as S from "../../TestEdit.styles";
 
 export const ExampleSelectMulti = () => {
 	const [selectMultiItems, setSelectMultiItems] = useState([

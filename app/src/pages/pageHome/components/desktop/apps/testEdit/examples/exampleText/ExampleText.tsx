@@ -1,5 +1,5 @@
 import { Text } from "@src/components/text/Text";
-import * as S from "../TestEdit.styles";
+import * as S from "../../TestEdit.styles";
 
 export const ExampleText = () => {
 	return (

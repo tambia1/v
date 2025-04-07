@@ -1,7 +1,7 @@
 import { Tab } from "@src/components/tab/Tab";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
-import * as S from "../TestEdit.styles";
+import * as S from "../../TestEdit.styles";
 
 export const ExampleTab = () => {
 	const [selectdTabIndex, setSelectedTabIndex] = useState(0);

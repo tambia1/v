@@ -1,7 +1,7 @@
 import { Input } from "@src/components/input/Input";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
-import * as S from "../TestEdit.styles";
+import * as S from "../../TestEdit.styles";
 
 export const ExampleInput = () => {
 	const [inputValue, setInputValue] = useState("Test");

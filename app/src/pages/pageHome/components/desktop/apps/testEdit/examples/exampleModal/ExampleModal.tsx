@@ -2,7 +2,7 @@ import { Button } from "@src/components/button/Button";
 import { Modal } from "@src/components/modal/Modal";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
-import * as S from "../TestEdit.styles";
+import * as S from "../../TestEdit.styles";
 
 export const ExampleModal = () => {
 	const [isModalOpen1, setIsModalOpen1] = useState(false);
