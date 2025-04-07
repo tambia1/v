@@ -1,10 +1,9 @@
 import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
-import { useThemeContext } from "@src/theme/UseThemeContext";
 import * as stylex from "@stylexjs/stylex";
-import { ReactNode, useState } from "react";
+import { useState } from "react";
 import * as S from "../../TestEdit.styles";
-import { colors, darkTheme, lightTheme } from "./ExampleStyleX.stylex";
+import { Box } from "./ExampleStyleX.stylex";
 
 const styles = stylex.create({
 	base: {
@@ -36,24 +35,8 @@ const styles = stylex.create({
 	},
 });
 
-const stylesThemes = stylex.create({
-	themedBox: {
-		color: colors.primary,
-		backgroundColor: colors.secondary,
-	},
-});
-
-const Box = ({ children, ...props }: { children: ReactNode }) => (
-	<div {...stylex.props(styles.base)} {...props}>
-		{children}
-	</div>
-);
-
 export const ExampleStyleX = () => {
-	const theme = useThemeContext();
 	const [toggle, setToggle] = useState(false);
-
-	const selectedTheme = { light: lightTheme, dark: darkTheme }[theme.theme.themeName];
 
 	return (
 		<S.Col>
@@ -70,11 +53,7 @@ export const ExampleStyleX = () => {
 			</S.Col>
 
 			<S.Col>
-				<div {...stylex.props(selectedTheme, stylesThemes.themedBox)}>Themes using styleX</div>
-			</S.Col>
-
-			<S.Col>
-				<Box>Box based on stylex</Box>
+				<Box>Box based on stylex with theme</Box>
 			</S.Col>
 		</S.Col>
 	);
