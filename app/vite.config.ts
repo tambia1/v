@@ -10,6 +10,8 @@ import checker from "vite-plugin-checker";
 
 import styleX from "vite-plugin-stylex";
 
+import { visualizer } from "rollup-plugin-visualizer";
+
 import * as dotenv from "dotenv";
 dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
@@ -42,6 +44,11 @@ export default defineConfig({
 		}),
 
 		styleX(),
+
+		visualizer({
+			open: true, // Automatically opens the report in your browser
+			filename: "bundle-analysis.html", // Output file for the report
+		}),
 	],
 
 	server: {
