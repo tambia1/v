@@ -42,6 +42,13 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "app updates",
+			"command": "npx npm-check-updates -u",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/"
+		},
+		{
 			"name": "app install",
 			"command": "npm install --legacy-peer-deps",
 			"request": "launch",
