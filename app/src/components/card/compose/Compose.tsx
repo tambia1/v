@@ -1,20 +1,8 @@
-import { ReactNode } from "react";
+import { HTMLAttributes } from "react";
 import * as S from "./Compose.styles";
 
-export interface Props {
-	children?: ReactNode;
-	isVisible: boolean;
-	onClickBackground?: () => void;
-}
+export type Props = HTMLAttributes<HTMLDivElement> & {};
 
-export const Compose = ({ children, isVisible, onClickBackground }: Props) => {
-	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
-		if (e.target !== e.currentTarget) {
-			return;
-		}
-
-		onClickBackground?.();
-	};
-
-	return <>{isVisible && <S.Compose onClick={handleOnClick}>{children}</S.Compose>}</>;
+export const Compose = ({ children }: Props) => {
+	return <S.Compose>{children}</S.Compose>;
 };

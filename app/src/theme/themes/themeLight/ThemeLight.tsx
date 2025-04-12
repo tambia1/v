@@ -112,8 +112,8 @@ export const themeLight: Theme = {
 	},
 
 	shadow: {
-		text: "1px 1px 3px",
-		box: "3px 3px 20px -5px",
+		text: `1px 1px 3px red ${colors.gray800}`,
+		box: `2px 2px 10px -5px ${colors.gray800}`,
 	},
 
 	font: {

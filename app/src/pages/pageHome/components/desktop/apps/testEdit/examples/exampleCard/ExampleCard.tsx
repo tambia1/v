@@ -1,52 +1,70 @@
-import { Button } from "@src/components/button/Button";
-import { Modal } from "@src/components/modal/Modal";
+import { Card } from "@src/components/card/Card";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
 export const ExampleCard = () => {
-	const [isModalOpen1, setIsModalOpen1] = useState(false);
+	const [isCardOpen1, setIsCardOpen1] = useState(false);
+	const [isCardOpen2, setIsCardOpen2] = useState(false);
+	const [isCardOpen3, setIsCardOpen3] = useState(false);
 
 	return (
 		<>
 			<S.Col>
 				<Text>Card</Text>
 
-				<S.Row>
-					<S.Cell>
-						<Button
-							variant="styled"
-							onClick={() => {
-								setIsModalOpen1(true);
-							}}
-						>
-							Show Modal
-						</Button>
-					</S.Cell>
-				</S.Row>
+				<Card
+					collapsed={isCardOpen1}
+					onClickCollapse={() => setIsCardOpen1(!isCardOpen1)}
+					headerContent={
+						<div>
+							<Text>Header</Text>
+						</div>
+					}
+					bodyContent={
+						<div>
+							<Text>Body</Text>
+						</div>
+					}
+					footerContent={
+						<div>
+							<Text>Footer</Text>
+						</div>
+					}
+				/>
 
-				<Modal
-					isVisible={isModalOpen1}
-					iconName="info"
-					title="Modal Title"
-					description="Modal description text."
-					onClickBackground={() => {
-						setIsModalOpen1(false);
-					}}
-					buttons={[
-						{
-							content: "OK",
-							onClick: () => {
-								setIsModalOpen1(false);
-							},
-						},
-						{
-							content: "Cancel",
-							onClick: () => {
-								setIsModalOpen1(false);
-							},
-						},
-					]}
+				<Text>Card - no footer</Text>
+
+				<Card
+					collapsed={isCardOpen2}
+					onClickCollapse={() => setIsCardOpen2(!isCardOpen2)}
+					headerContent={
+						<div>
+							<Text>Header</Text>
+						</div>
+					}
+					bodyContent={
+						<div>
+							<Text>Body</Text>
+						</div>
+					}
+				/>
+
+				<Text>Card Composition - header and arrow switched</Text>
+
+				<Card
+					collapsed={isCardOpen3}
+					onClickCollapse={() => setIsCardOpen3(!isCardOpen3)}
+					headerContent={
+						<div>
+							<Text>Header</Text>
+						</div>
+					}
+					bodyContent={
+						<div>
+							<Text>Body</Text>
+						</div>
+					}
 				/>
 			</S.Col>
 		</>

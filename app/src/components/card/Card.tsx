@@ -1,27 +1,30 @@
 import { ReactNode } from "react";
-import { Box } from "./components/box/Box";
-import { IconsName } from "./components/box/components/content/components/icon/Icon.styles";
+import { IconName } from "../icon/Icon.types";
+import { Body } from "./components/body/Body";
+import { Footer } from "./components/footer/Footer";
+import { Header } from "./components/header/Header";
 import { Compose } from "./compose/Compose";
 
 type Props = {
-	isVisible?: boolean;
-	onClickBackground?: () => void;
-	iconName?: IconsName;
-	title?: ReactNode;
-	description?: ReactNode;
-	buttons: {
-		content: ReactNode;
-		onClick: () => void;
-	}[];
+	collapsed: boolean;
+	onClickCollapse?: () => void;
+	headerIconName?: IconName;
+	headerContent: ReactNode;
+	bodyContent: ReactNode;
+	footerContent?: ReactNode;
 };
 
-export const Card = ({ isVisible = true, onClickBackground, title, description, iconName, buttons }: Props) => {
+export const Card = ({ collapsed, onClickCollapse, headerIconName, headerContent, bodyContent, footerContent }: Props) => {
 	return (
-		<Card.Compose isVisible={isVisible} onClickBackground={onClickBackground}>
-			<Card.Box iconName={iconName} title={title} description={description} buttons={buttons} />
+		<Card.Compose>
+			<Card.Header collapsed={collapsed} iconName={headerIconName} content={headerContent} onClickCollapse={onClickCollapse} />
+			<Card.Body collapsed={collapsed}>{bodyContent}</Card.Body>
+			<Card.Footer>{footerContent}</Card.Footer>
 		</Card.Compose>
 	);
 };
 
 Card.Compose = Compose;
-Card.Box = Box;
+Card.Header = Header;
+Card.Body = Body;
+Card.Footer = Footer;

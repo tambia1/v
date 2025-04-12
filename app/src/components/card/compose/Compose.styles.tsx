@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
 export const Compose = styled.div`
-	position: absolute;
 	width: 100%;
-	height: 100%;
+	max-width: 50rem;
+	height: auto;
 	inset: 0;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
 
-	background-color: ${(props) => props.theme.color.primary900}66;
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
 
+	box-shadow: ${(props) => props.theme.shadow.box};
 
-	z-index: 100;
+	border: solid 1px ${(props) => props.theme.color.primary700};
+	border-radius: 1rem;
+	overflow: hidden;
 `;
