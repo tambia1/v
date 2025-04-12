@@ -14,6 +14,10 @@ export const ExampleCard = () => {
 			<S.Col>
 				<Text>Card</Text>
 
+				<Card bodyContent={"Body"} />
+
+				<Text>Card - with content</Text>
+
 				<Card
 					collapsed={isCardOpen1}
 					onClickCollapse={() => setIsCardOpen1(!isCardOpen1)}
@@ -39,7 +43,7 @@ export const ExampleCard = () => {
 				<Card.Compose>
 					<Card.Header.Compose onClick={() => setIsCardOpen4(!isCardOpen4)}>
 						<Card.Header.Icon iconName="iconChevronDown" collapsed={isCardOpen4} />
-						<Card.Header.Content>Header</Card.Header.Content>
+						<Card.Header.Content content="Header" />
 					</Card.Header.Compose>
 
 					<Card.Body collapsed={isCardOpen4} content="Body" />

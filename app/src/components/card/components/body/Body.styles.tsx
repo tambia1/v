@@ -8,11 +8,11 @@ export const Body = styled.div<{ $collapsed: boolean }>`
 	overflow: hidden;
 	width: 100%;
 	height: auto;
+	min-height: 5rem;
 	padding: 0.5rem;
 	padding-top: ${(props) => (props.$collapsed ? 0 : "0.5rem")};
 	padding-bottom: ${(props) => (props.$collapsed ? 0 : "0.5rem")};
 	box-sizing: border-box;
-	border-top: solid ${(props) => (props.$collapsed ? "0px" : "1px")} ${(props) => props.theme.color.primary700};
 `;
 
 export const Content = styled.div`

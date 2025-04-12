@@ -6,10 +6,10 @@ import { Header } from "./components/header/Header";
 import { Compose } from "./compose/Compose";
 
 type Props = {
-	collapsed: boolean;
+	collapsed?: boolean;
 	onClickCollapse?: () => void;
 	headerIconName?: IconName;
-	headerContent: ReactNode;
+	headerContent?: ReactNode;
 	bodyContent: ReactNode;
 	footerContent?: ReactNode;
 };

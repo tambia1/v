@@ -2,14 +2,18 @@ import { ReactNode } from "react";
 import * as S from "./Body.styles";
 
 export type Props = {
-	content: ReactNode;
-	collapsed: boolean;
+	content?: ReactNode;
+	collapsed?: boolean;
 };
 
-export const Body = ({ content: children, collapsed }: Props) => {
+export const Body = ({ content, collapsed = false }: Props) => {
+	if (!content) {
+		return null;
+	}
+
 	return (
 		<S.Body $collapsed={collapsed}>
-			<S.Content>{children}</S.Content>
+			<S.Content>{content}</S.Content>
 		</S.Body>
 	);
 };
