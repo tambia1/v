@@ -7,6 +7,7 @@ export const ExampleCard = () => {
 	const [isCardOpen1, setIsCardOpen1] = useState(false);
 	const [isCardOpen2, setIsCardOpen2] = useState(false);
 	const [isCardOpen3, setIsCardOpen3] = useState(false);
+	const [isCardOpen4, setIsCardOpen4] = useState(false);
 
 	return (
 		<>
@@ -36,8 +37,8 @@ export const ExampleCard = () => {
 				<Text>Card Composition - header content and arrow switched and no footer</Text>
 
 				<Card.Compose>
-					<Card.Header collapsed={isCardOpen3} iconName="iconChevronDown" content={"Header"} onClickCollapse={() => setIsCardOpen3(!isCardOpen3)} />
-					<Card.Body collapsed={isCardOpen3} content="Body" />
+					<Card.Header collapsed={isCardOpen4} iconName="iconChevronDown" content={"Header"} onClickCollapse={() => setIsCardOpen4(!isCardOpen4)} />
+					<Card.Body collapsed={isCardOpen4} content="Body" />
 				</Card.Compose>
 			</S.Col>
 		</>
