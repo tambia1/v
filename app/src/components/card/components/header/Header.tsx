@@ -1,6 +1,7 @@
 import { IconName } from "@src/components/icon/Icon.types";
 import type { ReactNode } from "react";
 import * as S from "./Header.styles";
+import { Compose } from "./compose/Compose";
 
 export type Props = {
 	collapsed: boolean;
@@ -17,9 +18,13 @@ export const Header = ({ content, iconName = "iconChevronDown", collapsed, onCli
 	};
 
 	return (
-		<S.Header onClick={handleOnClick}>
-			<S.HeaderContent>{content}</S.HeaderContent>
-			<S.HeaderIcon iconName={iconName} size="xxs" collapsed={collapsed} />
-		</S.Header>
+		<Header.Compose onClick={handleOnClick}>
+			<Header.Content>{content}</Header.Content>
+			<Header.Icon iconName={iconName} size="xxs" collapsed={collapsed} />
+		</Header.Compose>
 	);
 };
+
+Header.Compose = Compose;
+Header.Content = S.HeaderContent;
+Header.Icon = S.HeaderIcon;

@@ -37,7 +37,11 @@ export const ExampleCard = () => {
 				<Text>Card Composition - header content and arrow switched and no footer</Text>
 
 				<Card.Compose>
-					<Card.Header collapsed={isCardOpen4} iconName="iconChevronDown" content={"Header"} onClickCollapse={() => setIsCardOpen4(!isCardOpen4)} />
+					<Card.Header.Compose onClick={() => setIsCardOpen4(!isCardOpen4)}>
+						<Card.Header.Icon iconName="iconChevronDown" collapsed={isCardOpen4} />
+						<Card.Header.Content>Header</Card.Header.Content>
+					</Card.Header.Compose>
+
 					<Card.Body collapsed={isCardOpen4} content="Body" />
 				</Card.Compose>
 			</S.Col>
