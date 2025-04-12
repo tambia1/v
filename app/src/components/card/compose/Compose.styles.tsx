@@ -15,6 +15,7 @@ export const Compose = styled.div`
 	box-shadow: ${(props) => props.theme.shadow.box};
 
 	border: solid 1px ${(props) => props.theme.color.primary700};
-	border-radius: 1rem;
+	border-radius: 1.5rem;
 	overflow: hidden;
+	box-sizing: border-box;
 `;

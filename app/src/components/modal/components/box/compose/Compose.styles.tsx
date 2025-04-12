@@ -13,6 +13,6 @@ export const Compose = styled.div`
 	color: ${(props) => props.theme.color.primary800};
 	background-color: ${(props) => props.theme.color.primary100};
 
-	border-radius: 0.5rem;
+	border-radius: 2rem;
 	overflow: hidden;
 `;

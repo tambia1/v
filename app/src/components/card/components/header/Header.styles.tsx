@@ -15,7 +15,7 @@ export const Header = styled.div`
 
 export const HeaderIcon = styled(Icon)<{ collapsed: boolean }>`
 	transition: transform 0.3s ease;
-	transform: ${(props) => (props.collapsed ? "rotate(180deg)" : "rotate(0deg)")};
+	transform: ${(props) => (props.collapsed ? "rotateX(180deg)" : "rotateX(0deg)")};
 `;
 
 export const HeaderContent = styled.div`
