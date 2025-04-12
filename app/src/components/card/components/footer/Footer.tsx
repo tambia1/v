@@ -2,17 +2,17 @@ import type { ReactNode } from "react";
 import * as S from "./Footer.styles";
 
 export type Props = {
-	children: ReactNode;
+	content: ReactNode;
 };
 
-export const Footer = ({ children }: Props) => {
-	if (!children) {
+export const Footer = ({ content }: Props) => {
+	if (!content) {
 		return null;
 	}
 
 	return (
 		<S.Footer>
-			<S.FooterContent>{children}</S.FooterContent>
+			<S.FooterContent>{content}</S.FooterContent>
 		</S.Footer>
 	);
 };

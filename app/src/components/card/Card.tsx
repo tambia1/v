@@ -18,8 +18,8 @@ export const Card = ({ collapsed, onClickCollapse, headerIconName, headerContent
 	return (
 		<Card.Compose>
 			<Card.Header collapsed={collapsed} iconName={headerIconName} content={headerContent} onClickCollapse={onClickCollapse} />
-			<Card.Body collapsed={collapsed}>{bodyContent}</Card.Body>
-			<Card.Footer>{footerContent}</Card.Footer>
+			<Card.Body collapsed={collapsed} content={bodyContent} />
+			<Card.Footer content={footerContent} />
 		</Card.Compose>
 	);
 };

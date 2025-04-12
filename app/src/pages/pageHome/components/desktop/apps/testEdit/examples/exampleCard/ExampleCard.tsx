@@ -16,56 +16,29 @@ export const ExampleCard = () => {
 				<Card
 					collapsed={isCardOpen1}
 					onClickCollapse={() => setIsCardOpen1(!isCardOpen1)}
-					headerContent={
-						<div>
-							<Text>Header</Text>
-						</div>
-					}
-					bodyContent={
-						<div>
-							<Text>Body</Text>
-						</div>
-					}
-					footerContent={
-						<div>
-							<Text>Footer</Text>
-						</div>
-					}
+					headerContent={"Header"}
+					bodyContent={"Body"}
+					footerContent={"Footer"}
 				/>
 
 				<Text>Card - no footer</Text>
 
-				<Card
-					collapsed={isCardOpen2}
-					onClickCollapse={() => setIsCardOpen2(!isCardOpen2)}
-					headerContent={
-						<div>
-							<Text>Header</Text>
-						</div>
-					}
-					bodyContent={
-						<div>
-							<Text>Body</Text>
-						</div>
-					}
-				/>
+				<Card collapsed={isCardOpen2} onClickCollapse={() => setIsCardOpen2(!isCardOpen2)} headerContent={"Header"} bodyContent={"Body"} />
 
-				<Text>Card Composition - header and arrow switched</Text>
+				<Text>Card Composition - body and footer switched</Text>
 
-				<Card
-					collapsed={isCardOpen3}
-					onClickCollapse={() => setIsCardOpen3(!isCardOpen3)}
-					headerContent={
-						<div>
-							<Text>Header</Text>
-						</div>
-					}
-					bodyContent={
-						<div>
-							<Text>Body</Text>
-						</div>
-					}
-				/>
+				<Card.Compose>
+					<Card.Header collapsed={isCardOpen3} iconName="iconChevronDown" content={"Header"} onClickCollapse={() => setIsCardOpen3(!isCardOpen3)} />
+					<Card.Footer content="Footer" />
+					<Card.Body collapsed={isCardOpen3} content="Body" />
+				</Card.Compose>
+
+				<Text>Card Composition - header content and arrow switched and no footer</Text>
+
+				<Card.Compose>
+					<Card.Header collapsed={isCardOpen3} iconName="iconChevronDown" content={"Header"} onClickCollapse={() => setIsCardOpen3(!isCardOpen3)} />
+					<Card.Body collapsed={isCardOpen3} content="Body" />
+				</Card.Compose>
 			</S.Col>
 		</>
 	);

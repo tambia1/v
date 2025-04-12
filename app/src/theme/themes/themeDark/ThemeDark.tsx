@@ -117,8 +117,8 @@ export const themeDark: Theme = {
 	},
 
 	font: {
-		title: { size: "180%", weight: "bold" },
-		header: { size: "140%", weight: "normal" },
+		title: { size: "180%", weight: "bolder" },
+		header: { size: "140%", weight: "bold" },
 		body: { size: "100%", weight: "normal" },
 		note: { size: "80%", weight: "normal" },
 	},

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Header = styled.div`
 	width: 100%;
-	height: 5rem;
+	height: 3rem;
 	display: flex;
 	align-items: center;
 	color: ${(props) => props.theme.color.primary800};
@@ -22,7 +22,7 @@ export const HeaderContent = styled.div`
 	flex: 1;
 	display: flex;
 	justify-content: left;
-	font-size: ${(props) => props.theme.font.header.size};
-	font-weight: ${(props) => props.theme.font.header.weight};
+	font-size: ${(props) => props.theme.font.body.size};
+	font-weight: ${(props) => props.theme.font.body.weight};
 	color: ${(props) => props.theme.color.primary800};
 `;
