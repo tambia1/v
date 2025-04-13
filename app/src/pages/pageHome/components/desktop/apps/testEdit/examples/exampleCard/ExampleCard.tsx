@@ -52,7 +52,7 @@ export const ExampleCard = () => {
 				<Text>Card Composition - header with no arrow and no collapse</Text>
 
 				<Card.Compose>
-					<Card.Header content={"Header"} iconName="" />
+					<Card.Header content={"Header"} />
 					<Card.Body content="Body" />
 				</Card.Compose>
 			</S.Col>
