@@ -3,6 +3,7 @@ import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import * as S from "./TestEdit.styles";
 import { ExampleButton } from "./examples/exampleButton/ExampleButton";
+import { ExampleCard } from "./examples/exampleCard/ExampleCard";
 import { ExampleCheck } from "./examples/exampleCheck/ExampleCheck";
 import { ExampleInput } from "./examples/exampleInput/ExampleInput";
 import { ExampleList } from "./examples/exampleList/ExampleList";
@@ -63,6 +64,9 @@ export const TestEdit = () => {
 
 				<S.Line />
 				<ExampleModal />
+
+				<S.Line />
+				<ExampleCard />
 
 				<S.Line />
 				<ExampleStyleX />

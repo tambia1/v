@@ -14,4 +14,6 @@ export const List = styled.div`
 	border-radius: 2rem;
 	border: 1px solid ${(props) => props.theme.color.primary700};
 	box-sizing: border-box;
+
+	background-color: ${(props) => props.theme.color.primary100};
 `;
