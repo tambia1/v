@@ -1,15 +1,13 @@
 import { IconName } from "@src/components/icon/Icon.types";
-import type { ReactNode } from "react";
 import * as S from "./Icon.styles";
 
 export type Props = {
 	collapsed?: boolean;
-	iconName?: IconName;
-	content?: ReactNode;
+	iconName: IconName;
 };
 
-export const Icon = ({ content, iconName = "iconChevronDown", collapsed = false }: Props) => {
-	if (!content) {
+export const Icon = ({ iconName, collapsed = false }: Props) => {
+	if (!iconName) {
 		return null;
 	}
 

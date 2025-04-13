@@ -8,7 +8,6 @@ export const Body = styled.div<{ $collapsed: boolean }>`
 	overflow: hidden;
 	width: 100%;
 	height: auto;
-	min-height: 5rem;
 	padding: 0.5rem;
 	padding-top: ${(props) => (props.$collapsed ? 0 : "0.5rem")};
 	padding-bottom: ${(props) => (props.$collapsed ? 0 : "0.5rem")};
