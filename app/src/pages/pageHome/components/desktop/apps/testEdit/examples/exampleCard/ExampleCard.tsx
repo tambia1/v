@@ -16,6 +16,10 @@ export const ExampleCard = () => {
 
 				<Card bodyContent={"Body"} />
 
+				<Text>Card - with width and height</Text>
+
+				<Card width="xxl" height="s" bodyContent={"Body"} />
+
 				<Text>Card - with content</Text>
 
 				<Card
