@@ -13,7 +13,7 @@ export const Buttons = ({ buttons = [] }: Props) => {
 	return (
 		<Buttons.Compose>
 			{buttons.map((button, index) => (
-				<Button key={index} onClick={button.onClick} variant="styled" size="s">
+				<Button key={index} onClick={button.onClick} variant="styled" size="size500">
 					{button.content}
 				</Button>
 			))}

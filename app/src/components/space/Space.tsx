@@ -8,6 +8,6 @@ interface Props {
 	direction?: Direction;
 }
 
-export const Space = ({ className, size = "s", direction = "vertical" }: Props) => {
+export const Space = ({ className, size = "size500", direction = "vertical" }: Props) => {
 	return <S.Space className={className} $size={size} $direction={direction} />;
 };

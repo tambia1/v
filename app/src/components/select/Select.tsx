@@ -14,7 +14,7 @@ export type Props = HTMLAttributes<HTMLDivElement> & {
 	size?: keyof Theme["size"];
 };
 
-export const Select = ({ className, children, isCloseOnSelectItem = true, onClickItem, size = "xl", ...rest }: Props) => {
+export const Select = ({ className, children, isCloseOnSelectItem = true, onClickItem, size = "size800", ...rest }: Props) => {
 	const theme = useTheme();
 	const refSelect = useRef<HTMLDivElement>(null);
 	const [isOpen, setIsOpen] = useState(false);

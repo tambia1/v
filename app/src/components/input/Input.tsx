@@ -16,7 +16,7 @@ export type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
 	onPressEnter?: () => void;
 };
 
-export const Input = ({ className, value, placeholder, disabled, size = "l", textAlign = "left", onTextChange, onPressEnter, ...rest }: Props) => {
+export const Input = ({ className, value, placeholder, disabled, size = "size800", textAlign = "left", onTextChange, onPressEnter, ...rest }: Props) => {
 	const theme = useTheme();
 
 	const handleTextChange = (e: React.FormEvent<HTMLInputElement>) => {

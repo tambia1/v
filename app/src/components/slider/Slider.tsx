@@ -9,7 +9,7 @@ export interface Props {
 	size?: keyof Theme["size"];
 }
 
-export const Slider = ({ className, value, onChange, size = "l" }: Props) => {
+export const Slider = ({ className, value, onChange, size = "size800" }: Props) => {
 	const theme = useTheme();
 
 	return (

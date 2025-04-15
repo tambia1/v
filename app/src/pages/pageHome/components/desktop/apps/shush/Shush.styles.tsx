@@ -18,8 +18,9 @@ export const Shush = styled.div`
 `;
 
 export const ProgressStyled = styled(Progress)<{ percent: number }>`
+	width: 100%;
 	border-color: #ffffff;
-	margin-top: ${(props) => props.theme.size.s};
+	margin-top: ${(props) => props.theme.size.size200};
 
 	& ${ProgressValue}{
 		background-color: #ffffff;
@@ -27,7 +28,8 @@ export const ProgressStyled = styled(Progress)<{ percent: number }>`
 `;
 
 export const SliderStyled = styled(Slider)`
-	margin-top: ${(props) => props.theme.size.s};
+	width: 100%;
+	margin-top: ${(props) => props.theme.size.size200};
 `;
 
 export const Row = styled.div`

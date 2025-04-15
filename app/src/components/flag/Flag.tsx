@@ -10,7 +10,7 @@ export interface Props extends React.HTMLAttributes<HTMLDivElement> {
 	size?: keyof Theme["size"];
 }
 
-export const Flag = ({ className, flagName, size = "xxs", ...rest }: Props) => {
+export const Flag = ({ className, flagName, size = "size200", ...rest }: Props) => {
 	const theme = useTheme();
 
 	return (

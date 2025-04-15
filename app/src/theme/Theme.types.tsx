@@ -74,15 +74,18 @@ export type Theme = {
 	};
 
 	size: {
-		content: string;
-		available: string;
-		xxs: string;
-		xs: string;
-		s: string;
-		m: string;
-		l: string;
-		xl: string;
-		xxl: string;
+		size50: string;
+		size100: string;
+		size150: string;
+		size200: string;
+		size250: string;
+		size300: string;
+		size400: string;
+		size500: string;
+		size600: string;
+		size700: string;
+		size800: string;
+		size900: string;
 	};
 
 	image: {

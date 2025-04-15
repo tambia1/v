@@ -11,5 +11,5 @@ export const Icon = ({ iconName, collapsed = false }: Props) => {
 		return null;
 	}
 
-	return <S.HeaderIcon iconName={iconName} size="xxs" collapsed={collapsed} />;
+	return <S.HeaderIcon iconName={iconName} size="size200" collapsed={collapsed} />;
 };

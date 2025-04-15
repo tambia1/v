@@ -18,7 +18,7 @@ export const ExampleCard = () => {
 
 				<Text>Card - with width and height</Text>
 
-				<Card width="xxl" height="s" bodyContent={"Body"} />
+				<Card width="size900" height="size500" bodyContent={"Body"} />
 
 				<Text>Card - with content</Text>
 

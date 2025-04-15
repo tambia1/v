@@ -196,7 +196,7 @@ export const Create = () => {
 
 			<S.Col>
 				<S.Col>
-					<Button variant="styled" onClick={handleCreateBdb} size="content">
+					<Button variant="styled" onClick={handleCreateBdb} size="size300">
 						Create
 					</Button>
 					{isLoading && <Loader />}
@@ -212,20 +212,20 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Database name</S.Row>
-					<Input value={selections.dbName} onTextChange={handleOnTextChange} size="xl" />
+					<Input value={selections.dbName} onTextChange={handleOnTextChange} size="size800" />
 				</S.Col>
 
 				<S.Col>
 					<S.Row>Size</S.Row>
 					<S.Row>
-						<Input value={convertBytes(selections.dbSize, "biggest")} textAlign="center" size="xl" />
+						<Input value={convertBytes(selections.dbSize, "biggest")} textAlign="center" size="size800" />
 						<Stepper onClickMinus={hanldeOnClickMinus} onClickPlus={hanldeOnClickPlus} />
 					</S.Row>
 				</S.Col>
 
 				<S.Col>
 					<S.Row>Cloud</S.Row>
-					<Select onClickItem={handleOnClickCloud} size="xl">
+					<Select onClickItem={handleOnClickCloud} size="size800">
 						<Select.Display>{listCloudMap[selections.cloud as keyof typeof listCloudMap]}</Select.Display>
 						<Select.Items>
 							{Object.keys(listCloudMap).map((key) => (
@@ -239,7 +239,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Regions</S.Row>
-					<Select onClickItem={handleOnClickRegion} isCloseOnSelectItem={false} size="xl">
+					<Select onClickItem={handleOnClickRegion} isCloseOnSelectItem={false} size="size800">
 						<Select.Display>{String(selections.regions.length === 1 ? selections.regions[0] : `+ ${selections.regions.length} regions`)}</Select.Display>
 						<Select.Items>
 							{listRegions
@@ -260,7 +260,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Flash</S.Row>
-					<Select onClickItem={handleOnClickFlash} size="xl">
+					<Select onClickItem={handleOnClickFlash} size="size800">
 						<Select.Display>{String(selections.flash).toUpperCase()}</Select.Display>
 						<Select.Items>
 							{["all", "true", "false"].map((flash) => (
@@ -274,7 +274,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Replication zone</S.Row>
-					<Select onClickItem={handleOnClickReplicationZone} size="xl">
+					<Select onClickItem={handleOnClickReplicationZone} size="size800">
 						<Select.Display>{String(selections.replicaZone).toUpperCase()}</Select.Display>
 						<Select.Items>
 							{["all", "true", "false"].map((replicationZone) => (
@@ -288,7 +288,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Replica</S.Row>
-					<Select onClickItem={handleOnClickReplica} size="xl">
+					<Select onClickItem={handleOnClickReplica} size="size800">
 						<Select.Display>{String(selections.replica).toUpperCase()}</Select.Display>
 						<Select.Items>
 							{["all", "true", "false"].map((replica) => (
@@ -302,7 +302,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Data persistence</S.Row>
-					<Select onClickItem={handleOnClickDataPersistence} size="xl">
+					<Select onClickItem={handleOnClickDataPersistence} size="size800">
 						<Select.Display>{listDataPersistence[selections.dataPersistence as keyof typeof listDataPersistence]}</Select.Display>
 						<Select.Items>
 							{Object.keys(listDataPersistence).map((key) => (
@@ -316,7 +316,7 @@ export const Create = () => {
 
 				<S.Col>
 					<S.Row>Modules</S.Row>
-					<Select onClickItem={handleOnClickModules} size="xl">
+					<Select onClickItem={handleOnClickModules} size="size800">
 						<Select.Display>{String(selections.modules.length === 1 ? selections.modules[0] : `${selections.modules.length}`)}</Select.Display>
 						<Select.Items>
 							{Object.keys(modulesMap).map((module) => (

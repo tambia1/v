@@ -12,7 +12,7 @@ export type Props = React.HTMLAttributes<HTMLDivElement> & {
 	stroke?: string;
 };
 
-export const Icon = ({ className, iconName, size = "xxs", fill, stroke, ...rest }: Props) => {
+export const Icon = ({ className, iconName, size = "size200", fill, stroke, ...rest }: Props) => {
 	const theme = useTheme();
 
 	return (

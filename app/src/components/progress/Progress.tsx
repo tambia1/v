@@ -9,7 +9,7 @@ export type Props = {
 	percent: number;
 };
 
-export const Progress = ({ className, ariaLabel, percent = 0, size = "l" }: Props) => {
+export const Progress = ({ className, ariaLabel, percent = 0, size = "size800" }: Props) => {
 	const theme = useTheme();
 	const width = Math.round(Math.min(100, Math.max(0, percent)));
 

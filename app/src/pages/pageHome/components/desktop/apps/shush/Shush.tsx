@@ -35,8 +35,8 @@ export const Shush = () => {
 				{isPlaying && <Icon iconName="iconVolume2" stroke="yellow" />}
 			</S.Row>
 
-			<S.ProgressStyled size="available" percent={volume * 100} />
-			<S.SliderStyled size="available" value={maxVolume} onChange={(value) => setMaxVolume(value)} />
+			<S.ProgressStyled percent={volume * 100} />
+			<S.SliderStyled value={maxVolume} onChange={(value) => setMaxVolume(value)} />
 		</S.Shush>
 	);
 };

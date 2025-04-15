@@ -16,7 +16,7 @@ export const TestCouner = () => {
 
 			<S.Row>
 				<Stepper onClickMinus={() => {}} onClickPlus={() => {}} />
-				<Input value={"0"} size="s" textAlign="center" />
+				<Input value={"0"} size="size500" textAlign="center" />
 			</S.Row>
 
 			<S.Spacer />

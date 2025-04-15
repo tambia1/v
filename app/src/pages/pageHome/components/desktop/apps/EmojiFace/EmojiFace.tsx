@@ -123,7 +123,7 @@ export const EmojiFace = () => {
 			<S.Container>
 				{isLoading && (
 					<S.Loader>
-						<Loader size="s" color="primary100" />
+						<Loader size="size500" color="primary100" />
 					</S.Loader>
 				)}
 

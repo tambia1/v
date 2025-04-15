@@ -53,6 +53,21 @@ const colors = {
 	purple900: "#581c87",
 };
 
+const sizes = {
+	size50: "0.5rem",
+	size100: "1rem",
+	size150: "1.5rem",
+	size200: "2rem",
+	size250: "2.5rem",
+	size300: "3rem",
+	size400: "4rem",
+	size500: "5rem",
+	size600: "8rem",
+	size700: "10rem",
+	size800: "20rem",
+	size900: "30rem",
+};
+
 export const themeLight: Theme = {
 	themeName: "light",
 
@@ -124,15 +139,18 @@ export const themeLight: Theme = {
 	},
 
 	size: {
-		content: "fit-content",
-		available: "100%",
-		xxs: "2.0rem",
-		xs: "2.5rem",
-		s: "5rem",
-		m: "10rem",
-		l: "15rem",
-		xl: "20rem",
-		xxl: "28rem",
+		size50: sizes.size50,
+		size100: sizes.size100,
+		size150: sizes.size150,
+		size200: sizes.size200,
+		size250: sizes.size250,
+		size300: sizes.size300,
+		size400: sizes.size400,
+		size500: sizes.size500,
+		size600: sizes.size600,
+		size700: sizes.size700,
+		size800: sizes.size800,
+		size900: sizes.size900,
 	},
 
 	image: {

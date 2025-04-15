@@ -12,7 +12,7 @@ export type Props = ComponentProps<"button"> & {
 	size?: keyof Theme["size"];
 };
 
-export const Button = ({ className, children, variant = "styled", size = "m", onLongClick, ref, ...rest }: Props) => {
+export const Button = ({ className, children, variant = "styled", size = "size700", onLongClick, ref, ...rest }: Props) => {
 	useTouch({
 		ref: ref,
 		onTouch: ({ status, e }: Touch) => {
