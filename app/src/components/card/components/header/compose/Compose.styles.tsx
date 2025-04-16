@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Compose = styled.div`
+export const Compose = styled.div<{ clickable: boolean }>`
 	width: 100%;
 	height: 3rem;
 	display: flex;
@@ -9,5 +9,6 @@ export const Compose = styled.div`
 	background-color: ${(props) => props.theme.color.primary300};
 	padding: 0.5rem;
 	box-sizing: border-box;
-	cursor: pointer;
+	
+	${(props) => props.clickable && css`cursor: pointer`}
 `;

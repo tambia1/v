@@ -23,7 +23,7 @@ export const Header = ({ content, iconName = "iconChevronDown", collapsed = fals
 	};
 
 	return (
-		<Header.Compose onClick={handleOnClick}>
+		<Header.Compose onClick={handleOnClick} clickable={!!onClickCollapse}>
 			<Header.Content content={content} />
 			<Header.Icon iconName={onClickCollapse ? iconName : ""} collapsed={collapsed} />
 		</Header.Compose>
