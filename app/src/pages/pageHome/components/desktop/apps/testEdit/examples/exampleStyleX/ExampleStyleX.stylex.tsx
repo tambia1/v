@@ -14,9 +14,13 @@ const style = stylex.create({
 	},
 });
 
-export const Box = ({ children, ...props }: { children: ReactNode }) => {
+export const Box1 = ({ children }: { children: ReactNode }) => {
+	return <Elm style={[style.default]}>{children}</Elm>;
+};
+
+export const Box2 = ({ children }: { children: ReactNode }) => {
 	return (
-		<Elm style={[style.default]} {...props}>
+		<Elm as="span" style={[style.default]}>
 			{children}
 		</Elm>
 	);

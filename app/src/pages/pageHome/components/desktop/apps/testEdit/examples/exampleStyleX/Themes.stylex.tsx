@@ -1,7 +1,7 @@
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import * as stylex from "@stylexjs/stylex";
 import { CompiledStyles } from "@stylexjs/stylex/lib/StyleXTypes";
-import { ReactNode } from "react";
+import { ElementType, ReactNode } from "react";
 
 export const colors = stylex.defineVars({
 	primary: "color",
@@ -18,13 +18,20 @@ export const darkTheme = stylex.createTheme(colors, {
 	secondary: "#000000",
 });
 
-export const Elm = ({ children, style, ...props }: { children: ReactNode; style?: CompiledStyles | CompiledStyles[] }) => {
+export const Elm = <T extends ElementType = "div">({
+	as,
+	children,
+	style,
+	...props
+}: { as?: T; children: ReactNode; style?: CompiledStyles | CompiledStyles[] }) => {
 	const themeContext = useThemeContext();
 	const selectedTheme = { light: lightTheme, dark: darkTheme }[themeContext.theme.themeName];
 
+	const Component = as || "div";
+
 	return (
-		<div {...stylex.props(selectedTheme, style)} {...props}>
+		<Component {...stylex.props(selectedTheme, style)} {...props}>
 			{children}
-		</div>
+		</Component>
 	);
 };
