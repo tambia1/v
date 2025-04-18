@@ -1,6 +1,6 @@
 import { type Theme, themes } from "@src/theme/Theme.types";
 import { type ReactNode, useState } from "react";
-import { ThemeProvider as ThemeProviderDtyledComponents } from "styled-components";
+import { ThemeProvider as ThemeProviderStyledComponents } from "styled-components";
 import { ThemeContext } from "./UseThemeContext";
 
 const themeName: Theme["themeName"] = import.meta.env.THEME || "light";
@@ -18,8 +18,8 @@ export const ThemeProvider = ({ children }: Props) => {
 	};
 
 	return (
-		<ThemeProviderDtyledComponents theme={theme}>
+		<ThemeProviderStyledComponents theme={theme}>
 			<ThemeContext value={{ theme, setTheme }}>{children}</ThemeContext>
-		</ThemeProviderDtyledComponents>
+		</ThemeProviderStyledComponents>
 	);
 };
