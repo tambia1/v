@@ -1,6 +1,6 @@
 import * as stylex from "@stylexjs/stylex";
 import { ReactNode } from "react";
-import { Base, colors } from "./Themes.stylex";
+import { Elm, colors } from "./Themes.stylex";
 
 const style = stylex.create({
 	default: {
@@ -16,8 +16,8 @@ const style = stylex.create({
 
 export const Box = ({ children, ...props }: { children: ReactNode }) => {
 	return (
-		<Base style={[style.default]} {...props}>
+		<Elm style={[style.default]} {...props}>
 			{children}
-		</Base>
+		</Elm>
 	);
 };
