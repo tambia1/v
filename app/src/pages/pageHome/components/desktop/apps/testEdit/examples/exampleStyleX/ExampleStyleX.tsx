@@ -4,6 +4,7 @@ import * as stylex from "@stylexjs/stylex";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 import { Box } from "./ExampleStyleX.stylex";
+import { Base } from "./Themes.stylex";
 
 const styles = stylex.create({
 	base: {
@@ -35,6 +36,12 @@ const styles = stylex.create({
 	},
 });
 
+const stylesTextShadow = stylex.create({
+	base: {
+		boxShadow: "1px 1px 5px 0px #ff0000",
+	},
+});
+
 export const ExampleStyleX = () => {
 	const [toggle, setToggle] = useState(false);
 
@@ -54,6 +61,10 @@ export const ExampleStyleX = () => {
 
 			<S.Col>
 				<Box>Box based on stylex with theme</Box>
+			</S.Col>
+
+			<S.Col>
+				<Base style={stylesTextShadow.base}>Box based on stylex with theme and custom styles</Base>
 			</S.Col>
 		</S.Col>
 	);
