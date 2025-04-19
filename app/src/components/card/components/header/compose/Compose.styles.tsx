@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Compose = styled.div<{ clickable: boolean }>`
+export const Compose = styled.div<{ $clickable: boolean }>`
 	width: 100%;
 	height: 3rem;
 	display: flex;
@@ -10,5 +10,5 @@ export const Compose = styled.div<{ clickable: boolean }>`
 	padding: 0.5rem;
 	box-sizing: border-box;
 	
-	${(props) => props.clickable && css`cursor: pointer`}
+	${(props) => props.$clickable && css`cursor: pointer`}
 `;
