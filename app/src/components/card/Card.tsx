@@ -9,7 +9,7 @@ import { Compose } from "./compose/Compose";
 type Props = {
 	width?: keyof Theme["size"];
 	height?: keyof Theme["size"];
-	collapsed?: boolean;
+	$collapsed?: boolean;
 	onClickCollapse?: () => void;
 	headerIconName?: IconName;
 	headerContent?: ReactNode;
@@ -17,11 +17,11 @@ type Props = {
 	footerContent?: ReactNode;
 };
 
-export const Card = ({ collapsed, onClickCollapse, headerIconName, headerContent, bodyContent, footerContent, width, height }: Props) => {
+export const Card = ({ $collapsed, onClickCollapse, headerIconName, headerContent, bodyContent, footerContent, width, height }: Props) => {
 	return (
 		<Card.Compose width={width} height={height}>
-			<Card.Header collapsed={collapsed} iconName={headerIconName} content={headerContent} onClickCollapse={onClickCollapse} />
-			<Card.Body collapsed={collapsed} content={bodyContent} />
+			<Card.Header $collapsed={$collapsed} iconName={headerIconName} content={headerContent} onClickCollapse={onClickCollapse} />
+			<Card.Body $collapsed={$collapsed} content={bodyContent} />
 			<Card.Footer content={footerContent} />
 		</Card.Compose>
 	);

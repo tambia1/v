@@ -5,13 +5,13 @@ import { Icon } from "./components/icon/Icon";
 import { Compose } from "./compose/Compose";
 
 export type Props = {
-	collapsed?: boolean;
+	$collapsed?: boolean;
 	onClickCollapse?: () => void;
 	iconName?: IconName;
 	content?: ReactNode;
 };
 
-export const Header = ({ content, iconName = "iconChevronDown", collapsed = false, onClickCollapse }: Props) => {
+export const Header = ({ content, iconName = "iconChevronDown", $collapsed = false, onClickCollapse }: Props) => {
 	if (!content) {
 		return null;
 	}
@@ -25,7 +25,7 @@ export const Header = ({ content, iconName = "iconChevronDown", collapsed = fals
 	return (
 		<Header.Compose onClick={handleOnClick} $clickable={!!onClickCollapse}>
 			<Header.Content content={content} />
-			<Header.Icon iconName={onClickCollapse ? iconName : ""} collapsed={collapsed} />
+			<Header.Icon iconName={onClickCollapse ? iconName : ""} $collapsed={$collapsed} />
 		</Header.Compose>
 	);
 };
