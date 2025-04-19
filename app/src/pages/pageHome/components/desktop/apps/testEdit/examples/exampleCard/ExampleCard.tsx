@@ -14,7 +14,7 @@ export const ExampleCard = () => {
 			<S.Col>
 				<Text>Card</Text>
 
-				<Card bodyContent={"Body"} />
+				<Card width="size900" bodyContent={"Body"} />
 
 				<Text>Card - with width and height</Text>
 
