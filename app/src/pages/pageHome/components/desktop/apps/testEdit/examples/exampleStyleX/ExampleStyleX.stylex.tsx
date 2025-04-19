@@ -1,5 +1,5 @@
 import * as stylex from "@stylexjs/stylex";
-import { ReactNode } from "react";
+import { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 import { Elm, colors } from "./Themes.stylex";
 
 const style = stylex.create({
@@ -18,9 +18,25 @@ export const Box1 = ({ children }: { children: ReactNode }) => {
 	return <Elm style={[style.default]}>{children}</Elm>;
 };
 
-export const Box2 = ({ children }: { children: ReactNode }) => {
+export const Box2 = ({ children }: HTMLAttributes<HTMLSpanElement>) => {
 	return (
 		<Elm as="span" style={[style.default]}>
+			{children}
+		</Elm>
+	);
+};
+
+export const Box3 = ({ children, ...rest }: HTMLAttributes<HTMLDivElement>) => {
+	return (
+		<Elm as="div" {...rest} style={[style.default]}>
+			{children}
+		</Elm>
+	);
+};
+
+export const Box4 = ({ children, ...rest }: AnchorHTMLAttributes<HTMLAnchorElement>) => {
+	return (
+		<Elm as="a" {...rest} style={[style.default]}>
 			{children}
 		</Elm>
 	);
