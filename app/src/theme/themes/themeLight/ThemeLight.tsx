@@ -51,7 +51,7 @@ const colors = {
 	purple700: "#7e22ce",
 	purple800: "#6b21a8",
 	purple900: "#581c87",
-};
+} as const;
 
 const sizes = {
 	size50: "0.5rem",
@@ -66,7 +66,7 @@ const sizes = {
 	size700: "10rem",
 	size800: "20rem",
 	size900: "30rem",
-};
+} as const;
 
 export const themeLight: Theme = {
 	themeName: "light",

@@ -16,17 +16,16 @@ export const Button = styled.div`
 	cursor: pointer;
 
 	&:hover{
-		color: ${(props) => props.theme.color.primary400};
-		background-color: ${(props) => props.theme.color.primary600};
+		background-color: ${(props) => props.theme.color.primary200};
 	}
 
 	&:active{
 		color: ${(props) => props.theme.color.primary700};
-		background-color: ${(props) => props.theme.color.primary700};
+		background-color: ${(props) => props.theme.color.primary300};
 	}
 
 	&:disabled{
-		color: ${(props) => props.theme.color.primary500};
-		background-color: ${(props) => props.theme.color.primary300};
+		color: ${(props) => props.theme.color.primary400};
+		background-color: ${(props) => props.theme.color.primary100};
 	}
 `;

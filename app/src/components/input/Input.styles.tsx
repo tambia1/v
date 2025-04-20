@@ -12,7 +12,7 @@ export const Input = styled.input<{ $width: string; $textALign: string }>`
 	resize: none;
 
 	border-radius: 100rem;
-	border: 1px solid ${(props) => props.theme.color.primary700};
+	border: 1px solid ${(props) => props.theme.color.primary400};
 	padding: 0rem calc(1rem - 1px) 0rem calc(1rem - 1px);
 	box-sizing: border-box;
 	white-space: nowrap;

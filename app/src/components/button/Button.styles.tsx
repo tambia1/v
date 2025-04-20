@@ -51,9 +51,9 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 		css`
 			color: ${(props) => props.theme.color.primary100};
 			background-color: ${(props) => props.theme.color.primary900};
-			border-color: ${(props) => props.theme.color.primary100};
+			border-color: ${(props) => props.theme.color.primary300};
 
-			border-width: 0.2rem;
+			border-width: 1px;
 			border-style: solid;
 			box-sizing: border-box;
 
@@ -87,9 +87,9 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 		css`
 			color: ${(props) => props.theme.color.primary800};
 			background-color: ${(props) => props.theme.color.primary100};
-			border-color: ${(props) => props.theme.color.primary800};
+			border-color: ${(props) => props.theme.color.primary400};
 
-			border-width: 0.2rem;
+			border-width: 1px;
 			border-style: solid;
 			box-sizing: border-box;
 
@@ -103,19 +103,19 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 
 			&:not(:disabled) {
 				&:hover {
-					background-color: ${(props) => props.theme.color.primary600}
+					background-color: ${(props) => props.theme.color.primary200}
 				}
 
 				&:active {
-					background-color: ${(props) => props.theme.color.primary700}
+					background-color: ${(props) => props.theme.color.primary300}
 				}
 			}
 
 			&:disabled {
 				cursor: not-allowed;
-				color: ${(props) => props.theme.color.primary500}
-				background-color: ${(props) => props.theme.color.primary300}
-				border-color: ${(props) => props.theme.color.primary300}
+				color: ${(props) => props.theme.color.primary400};
+				background-color: ${(props) => props.theme.color.primary100};
+				border-color: ${(props) => props.theme.color.primary300};
 			}
 		`} 
 

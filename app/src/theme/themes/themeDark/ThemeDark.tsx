@@ -51,7 +51,7 @@ const colors = {
 	cyan700: "#67e8f9",
 	cyan800: "#a5f3fc",
 	cyan900: "#cffafe",
-};
+} as const;
 
 const sizes = {
 	size50: "0.5rem",
@@ -66,7 +66,7 @@ const sizes = {
 	size700: "10rem",
 	size800: "20rem",
 	size900: "30rem",
-};
+} as const;
 
 export const themeDark: Theme = {
 	themeName: "dark",

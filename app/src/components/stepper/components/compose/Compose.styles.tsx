@@ -10,7 +10,7 @@ export const Compose = styled.div`
 	align-items: center;
 	box-sizing: border-box;
 	border-radius: 10rem;
-	border: 1px solid ${(props) => props.theme.color.primary700};
+	border: 1px solid ${(props) => props.theme.color.primary400};
 	overflow: hidden;
 
 	color: ${(props) => props.theme.color.primary800};
