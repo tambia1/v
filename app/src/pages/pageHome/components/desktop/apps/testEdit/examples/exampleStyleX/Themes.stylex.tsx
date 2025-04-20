@@ -18,12 +18,13 @@ export const darkTheme = stylex.createTheme(colors, {
 	secondary: "#000000",
 });
 
-export const Elm = <T extends ElementType = "div">({
-	as,
-	children,
-	style,
-	...props
-}: { as?: T; children: ReactNode; style?: CompiledStyles | CompiledStyles[] }) => {
+type Props<T extends ElementType> = {
+	as?: T;
+	children: ReactNode;
+	style?: CompiledStyles | CompiledStyles[];
+};
+
+export const Elm = <T extends ElementType = "div">({ as, children, style, ...props }: Props<T>) => {
 	const themeContext = useThemeContext();
 	const selectedTheme = { light: lightTheme, dark: darkTheme }[themeContext.theme.themeName];
 
