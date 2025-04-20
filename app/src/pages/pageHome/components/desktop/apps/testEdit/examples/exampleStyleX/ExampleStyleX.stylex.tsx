@@ -18,9 +18,9 @@ export const Box1 = ({ children }: { children: ReactNode }) => {
 	return <Elm style={[style.default]}>{children}</Elm>;
 };
 
-export const Box2 = ({ children }: HTMLAttributes<HTMLSpanElement>) => {
+export const Box2 = ({ children, ...rest }: HTMLAttributes<HTMLSpanElement>) => {
 	return (
-		<Elm as="span" style={[style.default]}>
+		<Elm as="span" {...rest} style={[style.default]}>
 			{children}
 		</Elm>
 	);
