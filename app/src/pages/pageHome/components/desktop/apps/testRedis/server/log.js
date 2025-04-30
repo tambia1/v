@@ -9,5 +9,5 @@ export const colors = {
 };
 
 export const log = (color, message) => {
-	console.log("\u001b[" + color + "m" + message + "\u001b[0m");
+	console.log(`\u001b[${color}m${message}\u001b[0m`);
 };

@@ -1,11 +1,11 @@
-import http from "http";
-import { routes } from "./routes.js";
-import { log, colors } from "./log.js";
-import url from "url";
-import { createClient } from "redis";
-import { exit } from "process";
+import http from "node:http";
+import { exit } from "node:process";
+import url from "node:url";
 import dotenv from "dotenv";
-import config from "./../../../../../../../config.json" with { "type": "json" };
+import { createClient } from "redis";
+import config from "./../../../../../../../config.json" with { type: "json" };
+import { colors, log } from "./log.js";
+import { routes } from "./routes.js";
 
 dotenv.config({ path: "./../../../../../../../../.env" });
 
@@ -27,7 +27,7 @@ redis.on("connect", () => {
 });
 
 redis.on("error", (err) => {
-	console.error("Redis Error: " + err);
+	console.error(`Redis Error: ${err}`);
 });
 
 await redis.connect();

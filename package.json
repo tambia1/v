@@ -1,8 +1,8 @@
 {
 	"name": "v",
 	"private": true,
-	"workspaces": ["shared", "app"],
+	"workspaces": ["app", "shared/ui"],
 	"devDependencies": {
-		"typescript": "5.5.2"
+		"typescript": "5.8.3"
 	}
 }
