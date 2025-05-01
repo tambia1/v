@@ -1,6 +1,5 @@
 import { Input } from "@src/components/input/Input";
 import { Stepper } from "@src/components/stepper/Stepper";
-import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -17,7 +16,7 @@ export const ExampleStepper = () => {
 
 	return (
 		<S.Col>
-			<Text>Stepper</Text>
+			<S.Title>Stepper</S.Title>
 			<S.Row>
 				<Input value={String(stepperValue)} textAlign="center" />
 				<Stepper onClickMinus={handleOnClickMinusStepper} onClickPlus={handleOnClickPlusStepper} />

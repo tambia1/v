@@ -1,11 +1,10 @@
 import { Button } from "@src/components/button/Button";
-import { Text } from "@src/components/text/Text";
 import * as S from "../../TestEdit.styles";
 
 export const ExampleButton = () => {
 	return (
 		<S.Col>
-			<Text>Button</Text>
+			<S.Title>Button</S.Title>
 
 			<S.Row>
 				<S.Cell />

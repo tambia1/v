@@ -1,5 +1,4 @@
 import { Input } from "@src/components/input/Input";
-import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -12,7 +11,7 @@ export const ExampleInput = () => {
 
 	return (
 		<S.Col>
-			<Text>Input</Text>
+			<S.Title>Input</S.Title>
 
 			<S.Row>
 				<S.Cell>Enables</S.Cell>

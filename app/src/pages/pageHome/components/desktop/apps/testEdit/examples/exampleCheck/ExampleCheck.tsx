@@ -1,5 +1,4 @@
 import { Check } from "@src/components/check/Check";
-import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -12,7 +11,7 @@ export const ExampleCheck = () => {
 
 	return (
 		<S.Col>
-			<Text>Check</Text>
+			<S.Title>Check</S.Title>
 
 			<S.Row>
 				<S.Cell>Enables</S.Cell>

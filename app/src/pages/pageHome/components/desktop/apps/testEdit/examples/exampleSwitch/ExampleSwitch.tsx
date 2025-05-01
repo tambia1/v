@@ -1,5 +1,4 @@
 import { Switch } from "@src/components/switch/Switch";
-import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -12,7 +11,7 @@ export const ExampleSwitch = () => {
 
 	return (
 		<S.Col>
-			<Text>Switch</Text>
+			<S.Title>Switch</S.Title>
 
 			<S.Row>
 				<S.Cell>Enables</S.Cell>

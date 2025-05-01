@@ -12,7 +12,7 @@ export const ExampleCard = () => {
 	return (
 		<>
 			<S.Col>
-				<Text>Card</Text>
+				<S.Title>Card</S.Title>
 
 				<Card width="size900" bodyContent={"Body"} />
 

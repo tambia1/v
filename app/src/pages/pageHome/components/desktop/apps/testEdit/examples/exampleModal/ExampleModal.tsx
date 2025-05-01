@@ -13,7 +13,7 @@ export const ExampleModal = () => {
 	return (
 		<>
 			<S.Col>
-				<Text>Modal</Text>
+				<S.Title>Modal</S.Title>
 
 				<S.Row>
 					<S.Cell>
