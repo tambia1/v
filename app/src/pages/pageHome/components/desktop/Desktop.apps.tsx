@@ -31,7 +31,6 @@ import { TestAnimation } from "./apps/testAnimation/TestAnimation";
 import { TestCouner } from "./apps/testCounter/TestCouner";
 import { TestCube } from "./apps/testCube/TestCube";
 import { TestEdit } from "./apps/testEdit/TestEdit";
-import { TestGraphQl } from "./apps/testGraphQl/GraphQl";
 import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
 // import { TestShared } from "./apps/testShared/TestShared";
@@ -87,7 +86,6 @@ export const apps: App[][] = [
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "test", component: <TestTransition /> },
 		{ id: "testAnimation", roles: ["admin"], title: <T>{lang.testAnimation.title}</T>, icon: "test", component: <TestAnimation /> },
-		{ id: "testGraphQl", roles: ["admin"], title: <T>{lang.testGraphQl.title}</T>, icon: "test", component: <TestGraphQl /> },
 		{ id: "testCube", roles: ["admin"], title: <T>{lang.testCube.title}</T>, icon: "test", component: <TestCube /> },
 		{ id: "testRedis", roles: ["admin"], title: <T>{lang.testRedis.title}</T>, icon: "test", component: <TestRedis /> },
 		{ id: "testTree", roles: ["admin"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestTree /> },
