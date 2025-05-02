@@ -12,6 +12,7 @@ import { ExamplePopupMenu } from "./examples/examplePopupMenu/ExamplePopupMenu";
 import { ExampleProgress } from "./examples/exampleProgress/ExampleProgress";
 import { ExampleSelectMulti } from "./examples/exampleSelectMulti/ExampleSelectMulti";
 import { ExampleSelectSingle } from "./examples/exampleSelectSingle/ExampleSelectSingle";
+import { ExampleShared } from "./examples/exampleShared/ExampleShared";
 import { ExampleStepper } from "./examples/exampleStepper/ExampleStepper";
 import { ExampleStyleX } from "./examples/exampleStyleX/ExampleStyleX";
 import { ExampleSwitch } from "./examples/exampleSwitch/ExampleSwitch";
@@ -70,6 +71,9 @@ export const TestEdit = () => {
 
 				<S.Line />
 				<ExampleStyleX />
+
+				<S.Line />
+				<ExampleShared />
 			</S.Col>
 		</S.TestEdit>
 	);
