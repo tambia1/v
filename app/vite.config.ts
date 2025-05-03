@@ -3,7 +3,6 @@
 
 import * as fs from "node:fs";
 import * as path from "node:path";
-import federation from "@originjs/vite-plugin-federation";
 import react from "@vitejs/plugin-react";
 import { type Plugin, type PluginOption, defineConfig } from "vite";
 import checker from "vite-plugin-checker";
@@ -34,12 +33,6 @@ export default defineConfig({
 		checker({
 			typescript: true,
 		}) as unknown as Plugin,
-
-		federation({
-			remotes: {
-				remoteFrontend: "http://localhost:5001/v/assets/remote.js",
-			},
-		}),
 
 		styleX(),
 	],

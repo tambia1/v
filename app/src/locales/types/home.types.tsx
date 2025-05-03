@@ -119,10 +119,6 @@ export type Home = {
 		title: string;
 	};
 
-	mfe: {
-		title: string;
-	};
-
 	board: {
 		title: string;
 	};
@@ -188,10 +184,6 @@ export type Home = {
 	};
 
 	testAnimation: {
-		title: string;
-	};
-
-	testGraphQl: {
 		title: string;
 	};
 

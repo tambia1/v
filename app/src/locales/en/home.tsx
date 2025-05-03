@@ -119,10 +119,6 @@ export const translation: Home = {
 		title: "Smile Clock",
 	},
 
-	mfe: {
-		title: "Micro Frontend",
-	},
-
 	board: {
 		title: "Board",
 	},
@@ -189,10 +185,6 @@ export const translation: Home = {
 
 	testAnimation: {
 		title: "Test\nAnimation",
-	},
-
-	testGraphQl: {
-		title: "Test\nGraphQL",
 	},
 
 	testCube: {

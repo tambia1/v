@@ -1,4 +1,4 @@
-import { dependencies, version } from "@src/../package.json";
+import { version } from "@src/../package.json";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { useLayoutEffect, useRef, useState } from "react";
 import * as S from "./PageHome.styles";
@@ -30,7 +30,7 @@ export const PageHome = () => {
 	};
 
 	return (
-		<S.PageHome data-app-version={`${version}`} data-ui-version={`${dependencies["@v/shared-ui"]}`}>
+		<S.PageHome data-app-version={`${version}`}>
 			<S.Desktop ref={refDesktop}>
 				<Desktop />
 			</S.Desktop>
