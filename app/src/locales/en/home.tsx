@@ -166,15 +166,6 @@ export const translation: Home = {
 		title: "Test Shared",
 	},
 
-	testSelect: {
-		title: "Test\nSelect",
-		item0: "Item 0",
-		item1: "Item 1",
-		item2: "Item 2",
-		item3: "Item 3",
-		item4: "Item 4",
-	},
-
 	testTable: {
 		title: "Test\nTable",
 	},

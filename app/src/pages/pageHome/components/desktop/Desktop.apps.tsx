@@ -4,7 +4,6 @@ import { Clock } from "@apps/clock/Clock";
 import { Ninja } from "@apps/ninja/Ninja";
 import { Settings } from "@apps/settings/Settings";
 import { Test } from "@apps/test/Test";
-import { TestSelect } from "@apps/testSelect/TestSelect";
 import { TestTable } from "@apps/testTable/TestTable";
 import { TestTransition } from "@apps/testTransition/TestTransition";
 import { Tetris } from "@apps/tetris/Tetris";
@@ -77,7 +76,6 @@ export const apps: App[][] = [
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
 		{ id: "testEdit", roles: ["admin", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
-		{ id: "testSelect", roles: ["admin"], title: <T>{lang.testSelect.title}</T>, icon: "test", component: <TestSelect /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "test", component: <TestTransition /> },
 		{ id: "testAnimation", roles: ["admin"], title: <T>{lang.testAnimation.title}</T>, icon: "test", component: <TestAnimation /> },

@@ -166,15 +166,6 @@ export type Home = {
 		title: string;
 	};
 
-	testSelect: {
-		title: string;
-		item0: string;
-		item1: string;
-		item2: string;
-		item3: string;
-		item4: string;
-	};
-
 	testTable: {
 		title: string;
 	};
