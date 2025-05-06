@@ -231,33 +231,6 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "ui install",
-			"command": "npm i",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/shared/ui/"
-		},
-		{
-			"name": "ui start",
-			"command": "npm run start",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/shared/ui/"
-		},
-		{
-			"name": "ui build",
-			"command": "npm run build",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/shared/ui/"
-		},
-		{
-			"name": "---------------------------------",
-			"command": "",
-			"request": "launch",
-			"type": "node-terminal"
-		},
-		{
 			"name": "Show versions",
 			"command": "npm -v && node -v && tsc -v ",
 			"request": "launch",
