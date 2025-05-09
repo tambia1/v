@@ -1,5 +1,11 @@
 type EngineProps = {
-	onUpdate: (timeDif: number) => void;
+	div: HTMLDivElement;
+	onUpdate: ({ ctx, timeDif }: OnUpdateProps) => void;
+};
+
+type OnUpdateProps = {
+	ctx: CanvasRenderingContext2D;
+	timeDif: number;
 };
 
 export class GameEngine {
@@ -9,10 +15,23 @@ export class GameEngine {
 	private timeNow = 0;
 	private timeDif = 0;
 
-	private onUpdate: (timeDif: number) => void;
+	private div: HTMLDivElement;
+	private ctx: CanvasRenderingContext2D;
+	private onUpdate: ({ ctx, timeDif }: OnUpdateProps) => void;
 
-	constructor({ onUpdate }: EngineProps) {
+	constructor({ div, onUpdate }: EngineProps) {
+		this.div = div;
 		this.onUpdate = onUpdate;
+
+		const canvas = document.createElement("canvas");
+		this.div.innerHTML = "";
+		this.div.appendChild(canvas);
+
+		const dpr = window.devicePixelRatio || 1;
+		canvas.width = div.offsetWidth * dpr;
+		canvas.height = div.offsetHeight * dpr;
+
+		this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 	}
 
 	public start() {
@@ -30,7 +49,7 @@ export class GameEngine {
 
 		this.timeOld = this.timeNow;
 
-		this.onUpdate(this.timeDif);
+		this.onUpdate({ ctx: this.ctx, timeDif: this.timeDif });
 	}
 
 	public stop() {

@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import * as S from "./Snake.styles";
 
 export const Snake = () => {
-	const refCanvas = useRef<HTMLDivElement>(null);
+	const refBoard = useRef<HTMLDivElement>(null);
 	const refCtx = useRef<CanvasRenderingContext2D>(null);
 
 	const board: number[][] = Array(10)
@@ -14,24 +14,15 @@ export const Snake = () => {
 		.map(() => Array(10).fill(0));
 
 	useEffect(() => {
-		if (refCanvas.current === null) {
+		if (refBoard.current === null) {
 			return;
 		}
 
-		const canvas = document.createElement("canvas");
-		refCanvas.current.appendChild(canvas);
-
-		const dpr = window.devicePixelRatio || 1;
-		canvas.width = refCanvas.current.offsetWidth * dpr;
-		canvas.height = refCanvas.current.offsetHeight * dpr;
-
-		const ctx = canvas.getContext("2d");
-		refCtx.current = ctx;
-
 		const gameEngine = new GameEngine({
-			onUpdate() {
-				if (!ctx) {
-					return;
+			div: refBoard.current,
+			onUpdate({ ctx }) {
+				if (refCtx.current === null) {
+					refCtx.current = ctx;
 				}
 
 				draw(ctx);
@@ -105,7 +96,7 @@ export const Snake = () => {
 			</Text>
 
 			<S.Container>
-				<S.Board ref={refCanvas} onClick={handleOnClick} />
+				<S.Board ref={refBoard} onClick={handleOnClick} />
 			</S.Container>
 		</S.Snake>
 	);
