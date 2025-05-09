@@ -30,9 +30,11 @@ export const Snake = () => {
 
 		const gameEngine = new GameEngine({
 			onUpdate() {
-				if (ctx) {
-					draw(ctx);
+				if (!ctx) {
+					return;
 				}
+
+				draw(ctx);
 			},
 		});
 
