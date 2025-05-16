@@ -138,13 +138,7 @@ export class Game {
 	}
 
 	private update(timeDif: number) {
-		this.timeAcc += timeDif;
-
-		while (this.timeAcc >= 1000) {
-			this.moveSnake();
-			this.timeAcc -= 1000;
-		}
-
+		this.updateSnake(timeDif);
 		this.updateGameOver();
 	}
 
@@ -246,12 +240,19 @@ export class Game {
 		this.onGameOver?.();
 	}
 
+	private updateSnake(timeDif: number) {
+		this.timeAcc += timeDif;
+
+		while (this.timeAcc >= 1000) {
+			this.moveSnake();
+			this.timeAcc -= 1000;
+		}
+	}
+
 	private moveSnake() {
 		if (this.gameState !== "playing") {
 			return;
 		}
-
-		console.log("moveSnake", this.snakePosition, this.snakeDirection);
 
 		this.grid[this.snakePosition.y][this.snakePosition.x] = 0;
 
