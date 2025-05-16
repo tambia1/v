@@ -6,6 +6,11 @@ type GameProps = {
 	onGameOver: () => void;
 };
 
+const GRID_EMPTY = 0;
+const GRID_SNAKE = 1;
+const GRID_FOOD = 2;
+const GRID_WALL = 3;
+
 export class Game {
 	private board: HTMLElement;
 	private onGameOver: () => void;
@@ -95,7 +100,7 @@ export class Game {
 		this.draw(this.ctx);
 	}
 
-	private reset() {
+	public reset() {
 		this.grid = Array(20)
 			.fill(0)
 			.map(() => Array(20).fill(0));
@@ -107,6 +112,8 @@ export class Game {
 
 		this.timeAcc = 0;
 		this.gameState = "ready";
+
+		this.createFood();
 	}
 
 	public start() {
@@ -164,14 +171,18 @@ export class Game {
 				const x = j * w;
 				const y = i * h;
 
-				if (this.grid[i][j] === 0) {
+				if (this.grid[i][j] === GRID_EMPTY) {
 					if (c % 2 === 0) {
 						ctx.fillStyle = "#ddddff";
 					} else {
 						ctx.fillStyle = "#aaaaff";
 					}
-				} else {
+				} else if (this.grid[i][j] === GRID_SNAKE) {
 					ctx.fillStyle = "#ff0000";
+				} else if (this.grid[i][j] === GRID_FOOD) {
+					ctx.fillStyle = "#00ff00";
+				} else if (this.grid[i][j] === GRID_WALL) {
+					ctx.fillStyle = "#dddddd";
 				}
 
 				ctx.fillRect(x, y, w, h);
@@ -282,5 +293,17 @@ export class Game {
 		}
 
 		this.grid[this.snakePosition.y][this.snakePosition.x] = 1;
+	}
+
+	private createFood() {
+		let x = Math.floor(Math.random() * this.grid[0].length);
+		let y = Math.floor(Math.random() * this.grid.length);
+
+		while (this.grid[y][x] !== 0) {
+			x = Math.floor(Math.random() * this.grid[0].length);
+			y = Math.floor(Math.random() * this.grid.length);
+		}
+
+		this.grid[y][x] = 2;
 	}
 }
