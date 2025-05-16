@@ -47,10 +47,8 @@ export class Game {
 		this.canvas = document.createElement("canvas");
 		this.board.appendChild(this.canvas);
 
-		const dpr = window.devicePixelRatio || 1;
-
-		this.canvas.width = this.board.offsetWidth * dpr;
-		this.canvas.height = this.board.offsetHeight * dpr;
+		this.canvas.width = this.board.offsetWidth;
+		this.canvas.height = this.board.offsetHeight;
 
 		this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
 	}
@@ -143,7 +141,7 @@ export class Game {
 		this.drawGrid(ctx);
 		this.drawFood(ctx);
 		this.drawSnake(ctx);
-		this.drawTime(ctx);
+		this.drawScore(ctx);
 		this.drawGameOver(ctx);
 
 		ctx.restore();
@@ -155,10 +153,8 @@ export class Game {
 	}
 
 	private drawInit(ctx: CanvasRenderingContext2D) {
-		const dpr = window.devicePixelRatio || 1;
-
 		ctx.setTransform(1, 0, 0, 1, 0, 0);
-		ctx.scale(dpr, dpr);
+		ctx.scale(1, 1);
 		ctx.clearRect(0, 0, ctx.canvas.offsetWidth, ctx.canvas.offsetHeight);
 
 		ctx.beginPath();
@@ -222,7 +218,7 @@ export class Game {
 		ctx.restore();
 	}
 
-	private drawTime(ctx: CanvasRenderingContext2D) {
+	private drawScore(ctx: CanvasRenderingContext2D) {
 		const w = 80;
 		const h = 30;
 		const x = ctx.canvas.width / 2 - w / 2;
@@ -248,9 +244,9 @@ export class Game {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 
-		const timeText = `Time: ${Math.floor(this.timeNow / 1000)}`;
+		const score = `Score: ${this.snake.length}`;
 
-		ctx.fillText(timeText, x + w / 2, y + h / 2);
+		ctx.fillText(score, x + w / 2, y + h / 2);
 
 		ctx.restore();
 	}
