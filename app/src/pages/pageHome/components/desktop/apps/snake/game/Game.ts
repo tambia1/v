@@ -6,10 +6,10 @@ type GameProps = {
 	onGameOver: () => void;
 };
 
-const GRID_EMPTY = 0;
-const GRID_SNAKE = 1;
-const GRID_FOOD = 2;
-const GRID_WALL = 3;
+type XY = {
+	x: number;
+	y: number;
+};
 
 export class Game {
 	private board: HTMLElement;
@@ -24,11 +24,13 @@ export class Game {
 	private timeDif!: number;
 
 	private grid!: number[][];
-	private timeAcc!: number;
+	private snake!: XY[];
+	private food!: XY;
 
+	private timeAcc!: number;
+	private timeSpeed!: number;
 	private gameState!: "ready" | "playing" | "paused" | "stopped" | "gameOver";
 	private snakeDirection!: "up" | "down" | "left" | "right";
-	private snakePosition!: { x: number; y: number };
 
 	constructor({ board, onGameOver }: GameProps) {
 		this.board = board;
@@ -65,15 +67,15 @@ export class Game {
 				const yy = Math.floor(y / (this.canvas.height / this.grid.length));
 
 				if (this.snakeDirection === "right" || this.snakeDirection === "left") {
-					if (yy > this.snakePosition.y) {
+					if (yy > this.snake[0].y) {
 						this.snakeDirection = "down";
-					} else if (yy < this.snakePosition.y) {
+					} else if (yy < this.snake[0].y) {
 						this.snakeDirection = "up";
 					}
 				} else if (this.snakeDirection === "up" || this.snakeDirection === "down") {
-					if (xx > this.snakePosition.x) {
+					if (xx > this.snake[0].x) {
 						this.snakeDirection = "right";
-					} else if (xx < this.snakePosition.x) {
+					} else if (xx < this.snake[0].x) {
 						this.snakeDirection = "left";
 					}
 				}
@@ -106,14 +108,15 @@ export class Game {
 			.map(() => Array(20).fill(0));
 
 		this.snakeDirection = "right";
-		this.snakePosition = { x: 10, y: 10 };
+		this.snake = [];
+		this.snake.push({ x: 10, y: 10 });
 
-		this.grid[this.snakePosition.y][this.snakePosition.y] = 1;
+		this.food = { x: 0, y: 0 };
+		this.createFood();
 
 		this.timeAcc = 0;
+		this.timeSpeed = 700;
 		this.gameState = "ready";
-
-		this.createFood();
 	}
 
 	public start() {
@@ -138,6 +141,8 @@ export class Game {
 
 		this.drawInit(ctx);
 		this.drawGrid(ctx);
+		this.drawFood(ctx);
+		this.drawSnake(ctx);
 		this.drawTime(ctx);
 		this.drawGameOver(ctx);
 
@@ -151,11 +156,10 @@ export class Game {
 
 	private drawInit(ctx: CanvasRenderingContext2D) {
 		const dpr = window.devicePixelRatio || 1;
-		ctx.scale(dpr, dpr);
 
+		ctx.setTransform(1, 0, 0, 1, 0, 0);
+		ctx.scale(dpr, dpr);
 		ctx.clearRect(0, 0, ctx.canvas.offsetWidth, ctx.canvas.offsetHeight);
-		ctx.scale(1, 1);
-		ctx.translate(0.5, 0.5);
 
 		ctx.beginPath();
 		ctx.rect(0, 0, ctx.canvas.offsetWidth, ctx.canvas.offsetHeight);
@@ -163,6 +167,8 @@ export class Game {
 	}
 
 	private drawGrid(ctx: CanvasRenderingContext2D) {
+		ctx.save();
+
 		const w = ctx.canvas.width / this.grid[0].length;
 		const h = ctx.canvas.height / this.grid.length;
 
@@ -171,23 +177,49 @@ export class Game {
 				const x = j * w;
 				const y = i * h;
 
-				if (this.grid[i][j] === GRID_EMPTY) {
-					if (c % 2 === 0) {
-						ctx.fillStyle = "#ddddff";
-					} else {
-						ctx.fillStyle = "#aaaaff";
-					}
-				} else if (this.grid[i][j] === GRID_SNAKE) {
-					ctx.fillStyle = "#ff0000";
-				} else if (this.grid[i][j] === GRID_FOOD) {
-					ctx.fillStyle = "#00ff00";
-				} else if (this.grid[i][j] === GRID_WALL) {
-					ctx.fillStyle = "#dddddd";
+				if (c % 2 === 0) {
+					ctx.fillStyle = "#ddddff";
+				} else {
+					ctx.fillStyle = "#aaaaff";
 				}
 
 				ctx.fillRect(x, y, w, h);
 			}
 		}
+
+		ctx.restore();
+	}
+
+	private drawFood(ctx: CanvasRenderingContext2D) {
+		ctx.save();
+
+		const w = ctx.canvas.width / this.grid[0].length;
+		const h = ctx.canvas.height / this.grid.length;
+
+		const x = this.food.x * w;
+		const y = this.food.y * h;
+
+		ctx.fillStyle = "#00ff00";
+		ctx.fillRect(x, y, w, h);
+
+		ctx.restore();
+	}
+
+	private drawSnake(ctx: CanvasRenderingContext2D) {
+		ctx.save();
+
+		const w = ctx.canvas.width / this.grid[0].length;
+		const h = ctx.canvas.height / this.grid.length;
+
+		for (let i = 0; i < this.snake.length; i++) {
+			const x = this.snake[i].x * w;
+			const y = this.snake[i].y * h;
+
+			ctx.fillStyle = "#ff0000";
+			ctx.fillRect(x, y, w, h);
+		}
+
+		ctx.restore();
 	}
 
 	private drawTime(ctx: CanvasRenderingContext2D) {
@@ -254,9 +286,9 @@ export class Game {
 	private updateSnake(timeDif: number) {
 		this.timeAcc += timeDif;
 
-		while (this.timeAcc >= 1000) {
+		while (this.timeAcc >= this.timeSpeed) {
 			this.moveSnake();
-			this.timeAcc -= 1000;
+			this.timeAcc -= this.timeSpeed;
 		}
 	}
 
@@ -265,45 +297,64 @@ export class Game {
 			return;
 		}
 
-		this.grid[this.snakePosition.y][this.snakePosition.x] = 0;
+		const head = { ...this.snake[0] };
 
 		switch (this.snakeDirection) {
 			case "up":
-				this.snakePosition.y -= 1;
+				head.y -= 1;
 				break;
 			case "down":
-				this.snakePosition.y += 1;
+				head.y += 1;
 				break;
 			case "left":
-				this.snakePosition.x -= 1;
+				head.x -= 1;
 				break;
 			case "right":
-				this.snakePosition.x += 1;
+				head.x += 1;
 				break;
 		}
 
-		if (this.snakePosition.x < 0 || this.snakePosition.x >= this.grid[0].length || this.snakePosition.y < 0 || this.snakePosition.y >= this.grid.length) {
+		if (head.x < 0 || head.y < 0 || head.x >= this.grid[0].length || head.y >= this.grid.length) {
 			this.gameState = "gameOver";
-
-			this.snakePosition.x = Math.min(this.snakePosition.x, this.grid[0].length - 1);
-			this.snakePosition.y = Math.min(this.snakePosition.y, this.grid.length - 1);
-			this.snakePosition.x = Math.max(this.snakePosition.x, 0);
-			this.snakePosition.y = Math.max(this.snakePosition.y, 0);
 			return;
 		}
 
-		this.grid[this.snakePosition.y][this.snakePosition.x] = 1;
+		for (const segment of this.snake) {
+			if (segment.x === head.x && segment.y === head.y) {
+				this.gameState = "gameOver";
+				return;
+			}
+		}
+
+		this.snake.unshift(head);
+
+		if (head.x === this.food.x && head.y === this.food.y) {
+			this.createFood();
+		} else {
+			this.snake.pop();
+		}
 	}
 
 	private createFood() {
-		let x = Math.floor(Math.random() * this.grid[0].length);
-		let y = Math.floor(Math.random() * this.grid.length);
+		let x = -1;
+		let y = -1;
+		let isFoodPositionAvailable = false;
 
-		while (this.grid[y][x] !== 0) {
+		do {
 			x = Math.floor(Math.random() * this.grid[0].length);
 			y = Math.floor(Math.random() * this.grid.length);
-		}
 
-		this.grid[y][x] = 2;
+			isFoodPositionAvailable = true;
+
+			for (let i = 0; i < this.snake.length; i++) {
+				if (this.snake[i].x === x && this.snake[i].y === y) {
+					isFoodPositionAvailable = false;
+					break;
+				}
+			}
+		} while (!isFoodPositionAvailable);
+
+		this.food.x = x;
+		this.food.y = y;
 	}
 }
