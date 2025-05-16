@@ -26,8 +26,13 @@ export const Container = styled.div`
 
 export const Board = styled.div`
 	background-color: #999999;
-	width: 100%;	
-	height: 50%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: min(100%, 50vh);
+	height: min(100%, 50vh);
 `;
 
 export const Buttons = styled.div`
