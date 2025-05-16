@@ -1,47 +1,43 @@
 import { Button } from "@src/components/button/Button";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import * as S from "./Snake.styles";
 import { Game } from "./game/Game";
 
 export const Snake = () => {
-	const refBoard = useRef<HTMLDivElement>(null);
-	const refGame = useRef<Game | null>(null);
+	const refBoards = useMemo(() => [useRef<HTMLDivElement | null>(null), useRef<HTMLDivElement | null>(null)], []);
+	const refGames = useRef<Game[]>([]);
 
 	useEffect(() => {
-		if (refBoard.current === null) {
+		if (refGames.current.length > 0) {
 			return;
 		}
 
-		const game = new Game({
-			board: refBoard.current,
-			onGameOver: () => {
-				//on game over
-			},
+		refBoards.forEach((boardRef, index) => {
+			if (boardRef.current) {
+				refGames.current[index] = new Game({
+					board: boardRef.current,
+					onGameOver: () => {
+						// on game over
+					},
+				});
+			}
 		});
 
-		refGame.current = game;
-
 		return () => {
-			game.destroy();
+			refGames.current.forEach((game) => game.destroy());
 		};
-	}, []);
+	}, [refBoards]);
 
 	const handleOnClickStart = () => {
-		if (refGame.current) {
-			refGame.current.start();
-		}
+		refGames.current.forEach((game) => game.start());
 	};
 
 	const handleOnClickStop = () => {
-		if (refGame.current) {
-			refGame.current.stop();
-		}
+		refGames.current.forEach((game) => game.stop());
 	};
 
 	const handleOnClickReset = () => {
-		if (refGame.current) {
-			refGame.current.reset();
-		}
+		refGames.current.forEach((game) => game.reset());
 	};
 
 	return (
@@ -53,7 +49,8 @@ export const Snake = () => {
 			</S.Buttons>
 
 			<S.Container>
-				<S.Board ref={refBoard} />
+				<S.Board ref={refBoards[0]} />
+				<S.Board ref={refBoards[1]} />
 			</S.Container>
 		</S.Snake>
 	);

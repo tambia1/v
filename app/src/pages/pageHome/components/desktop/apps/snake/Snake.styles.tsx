@@ -20,12 +20,14 @@ export const Container = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
+	gap: 1rem;
 `;
 
 export const Board = styled.div`
 	background-color: #999999;
-	width: 50rem;	
-	height: 50rem;
+	width: 100%;	
+	height: 50%;
 `;
 
 export const Buttons = styled.div`
