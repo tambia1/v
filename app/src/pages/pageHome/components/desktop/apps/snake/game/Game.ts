@@ -19,19 +19,21 @@ export class Game {
 	private timeDif!: number;
 
 	private grid!: number[][];
+	private timeAcc!: number;
 
-	private gameState: "ready" | "playing" | "paused" | "stopped" | "gameOver";
+	private gameState!: "ready" | "playing" | "paused" | "stopped" | "gameOver";
+	private snakeDirection!: "up" | "down" | "left" | "right";
+	private snakePosition!: { x: number; y: number };
 
 	constructor({ board, onGameOver }: GameProps) {
 		this.board = board;
 		this.onGameOver = onGameOver;
 
-		this.gameState = "ready";
-
 		this.initCanvas();
 		this.initTouches();
+		this.initEngine();
 
-		this.resetGame();
+		this.reset();
 	}
 
 	private initCanvas() {
@@ -50,28 +52,32 @@ export class Game {
 		UtilsTouch.listenToTouches({
 			div: this.canvas,
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
-				if (this.gameState === "ready") {
-					const xx = Math.floor(x / (this.canvas.width / this.grid[0].length));
-					const yy = Math.floor(y / (this.canvas.height / this.grid.length));
+				if (this.gameState !== "playing") {
+					return;
+				}
 
-					this.grid[yy][xx] = 1;
+				const xx = Math.floor(x / (this.canvas.width / this.grid[0].length));
+				const yy = Math.floor(y / (this.canvas.height / this.grid.length));
+
+				if (this.snakeDirection === "right" || this.snakeDirection === "left") {
+					if (yy > this.snakePosition.y) {
+						this.snakeDirection = "down";
+					} else if (yy < this.snakePosition.y) {
+						this.snakeDirection = "up";
+					}
+				} else if (this.snakeDirection === "up" || this.snakeDirection === "down") {
+					if (xx > this.snakePosition.x) {
+						this.snakeDirection = "right";
+					} else if (xx < this.snakePosition.x) {
+						this.snakeDirection = "left";
+					}
 				}
 			},
 		});
 	}
 
-	private resetGame() {
-		this.gameState = "ready";
-
-		this.grid = Array(20)
-			.fill(0)
-			.map(() => Array(20).fill(0));
-
-		this.grid[10][10] = 1;
-	}
-
-	public start() {
-		this.requestAnimationFrameId = window.requestAnimationFrame(this.start.bind(this));
+	private initEngine() {
+		this.requestAnimationFrameId = window.requestAnimationFrame(this.initEngine.bind(this));
 
 		this.timeOld = this.timeOld || performance.now();
 		this.timeNow = performance.now();
@@ -89,17 +95,35 @@ export class Game {
 		this.draw(this.ctx);
 	}
 
+	private reset() {
+		this.grid = Array(20)
+			.fill(0)
+			.map(() => Array(20).fill(0));
+
+		this.snakeDirection = "right";
+		this.snakePosition = { x: 10, y: 10 };
+
+		this.grid[this.snakePosition.y][this.snakePosition.y] = 1;
+
+		this.timeAcc = 0;
+		this.gameState = "ready";
+	}
+
+	public start() {
+		this.gameState = "playing";
+	}
+
 	public stop() {
+		this.gameState = "stopped";
+	}
+
+	public destroy() {
+		this.stop();
+
+		this.board.removeChild(this.canvas);
+
 		window.cancelAnimationFrame(this.requestAnimationFrameId);
 		this.requestAnimationFrameId = 0;
-	}
-
-	private update(_timeDif: number) {
-		this.updateGameOver();
-	}
-
-	private updateGameOver() {
-		this.onGameOver?.();
 	}
 
 	private draw(ctx: CanvasRenderingContext2D) {
@@ -113,9 +137,15 @@ export class Game {
 		ctx.restore();
 	}
 
-	public destroy() {
-		this.stop();
-		this.board.removeChild(this.canvas);
+	private update(timeDif: number) {
+		this.timeAcc += timeDif;
+
+		while (this.timeAcc >= 1000) {
+			this.moveSnake();
+			this.timeAcc -= 1000;
+		}
+
+		this.updateGameOver();
 	}
 
 	private drawInit(ctx: CanvasRenderingContext2D) {
@@ -193,19 +223,63 @@ export class Game {
 			return;
 		}
 
+		const x = ctx.canvas.width / 2;
+		const y = ctx.canvas.height / 2;
+
 		ctx.save();
 
-		ctx.font = "bold 16px clashRoyaleFont";
+		ctx.font = "bold 16px Helvetica";
 		ctx.fillStyle = "#ffffff";
 		ctx.shadowColor = "#000000";
-		ctx.shadowOffsetX = 3;
-		ctx.shadowOffsetY = 3;
-		ctx.shadowBlur = 3;
+		ctx.shadowOffsetX = 2;
+		ctx.shadowOffsetY = 2;
+		ctx.shadowBlur = 2;
 		ctx.textAlign = "center";
 		ctx.textBaseline = "middle";
 
-		ctx.fillText("Game Over", 270, 250);
+		ctx.fillText("Game Over", x, y);
 
 		ctx.restore();
+	}
+
+	private updateGameOver() {
+		this.onGameOver?.();
+	}
+
+	private moveSnake() {
+		if (this.gameState !== "playing") {
+			return;
+		}
+
+		console.log("moveSnake", this.snakePosition, this.snakeDirection);
+
+		this.grid[this.snakePosition.y][this.snakePosition.x] = 0;
+
+		switch (this.snakeDirection) {
+			case "up":
+				this.snakePosition.y -= 1;
+				break;
+			case "down":
+				this.snakePosition.y += 1;
+				break;
+			case "left":
+				this.snakePosition.x -= 1;
+				break;
+			case "right":
+				this.snakePosition.x += 1;
+				break;
+		}
+
+		if (this.snakePosition.x < 0 || this.snakePosition.x >= this.grid[0].length || this.snakePosition.y < 0 || this.snakePosition.y >= this.grid.length) {
+			this.gameState = "gameOver";
+
+			this.snakePosition.x = Math.min(this.snakePosition.x, this.grid[0].length - 1);
+			this.snakePosition.y = Math.min(this.snakePosition.y, this.grid.length - 1);
+			this.snakePosition.x = Math.max(this.snakePosition.x, 0);
+			this.snakePosition.y = Math.max(this.snakePosition.y, 0);
+			return;
+		}
+
+		this.grid[this.snakePosition.y][this.snakePosition.x] = 1;
 	}
 }

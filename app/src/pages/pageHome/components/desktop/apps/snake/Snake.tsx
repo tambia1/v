@@ -20,7 +20,6 @@ export const Snake = () => {
 		game.start();
 
 		return () => {
-			game.stop();
 			game.destroy();
 		};
 	}, []);
