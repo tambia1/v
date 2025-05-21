@@ -29,7 +29,7 @@ export class Game {
 
 	private timeAcc!: number;
 	private timeSpeed!: number;
-	private gameState!: "ready" | "playing" | "paused" | "stopped" | "gameOver";
+	private gameState!: "ready" | "playing" | "paused" | "lost" | "gameOver";
 	private snakeDirection!: "up" | "down" | "left" | "right";
 
 	constructor({ board, onGameOver }: GameProps) {
@@ -122,7 +122,7 @@ export class Game {
 	}
 
 	public stop() {
-		this.gameState = "stopped";
+		this.gameState = "paused";
 	}
 
 	public destroy() {
@@ -276,7 +276,14 @@ export class Game {
 	}
 
 	private updateGameOver() {
-		this.onGameOver?.();
+		if (this.gameState === "gameOver") {
+			return;
+		}
+
+		if (this.gameState === "lost") {
+			this.gameState = "gameOver";
+			this.onGameOver?.();
+		}
 	}
 
 	private updateSnake(timeDif: number) {
@@ -311,13 +318,13 @@ export class Game {
 		}
 
 		if (head.x < 0 || head.y < 0 || head.x >= this.grid[0].length || head.y >= this.grid.length) {
-			this.gameState = "gameOver";
+			this.gameState = "lost";
 			return;
 		}
 
 		for (const segment of this.snake) {
 			if (segment.x === head.x && segment.y === head.y) {
-				this.gameState = "gameOver";
+				this.gameState = "lost";
 				return;
 			}
 		}
