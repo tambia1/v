@@ -1,14 +1,17 @@
 import { Button } from "@src/components/button/Button";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "./Snake.styles";
 import { Game } from "./game/Game";
 
 export const Snake = () => {
-	const refBoards = useMemo(
-		() => [useRef<HTMLDivElement | null>(null), useRef<HTMLDivElement | null>(null), useRef<HTMLDivElement | null>(null), useRef<HTMLDivElement | null>(null)],
-		[],
-	);
+	const refBoards = [
+		useRef<HTMLDivElement | null>(null),
+		useRef<HTMLDivElement | null>(null),
+		useRef<HTMLDivElement | null>(null),
+		useRef<HTMLDivElement | null>(null),
+	];
 	const refGames = useRef<Game[]>([]);
+	const [gameState, setGameState] = useState<"start" | "reset">("start");
 
 	useEffect(() => {
 		if (refGames.current.length > 0) {
@@ -33,21 +36,23 @@ export const Snake = () => {
 		return () => {
 			refGames.current.forEach((game) => game.destroy());
 		};
-	}, [refBoards]);
+	}, [refBoards[0], refBoards[1], refBoards[2], refBoards[3]]);
 
 	const handleOnClickStart = () => {
+		setGameState("reset");
 		refGames.current.forEach((game) => game.start());
 	};
 
 	const handleOnClickReset = () => {
+		setGameState("start");
 		refGames.current.forEach((game) => game.reset());
 	};
 
 	return (
 		<S.Snake>
 			<S.Buttons>
-				<Button onClick={handleOnClickStart}>Start</Button>
-				<Button onClick={handleOnClickReset}>Reset</Button>
+				{gameState === "start" && <Button onClick={handleOnClickStart}>Start</Button>}
+				{gameState === "reset" && <Button onClick={handleOnClickReset}>Reset</Button>}
 			</S.Buttons>
 
 			<S.Container>

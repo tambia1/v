@@ -113,7 +113,7 @@ export class Game {
 		this.createFood();
 
 		this.timeAcc = 0;
-		this.timeSpeed = 700;
+		this.timeSpeed = 500;
 		this.gameState = "ready";
 	}
 
@@ -333,6 +333,7 @@ export class Game {
 
 		if (head.x === this.food.x && head.y === this.food.y) {
 			this.createFood();
+			this.timeSpeed *= 0.9;
 		} else {
 			this.snake.pop();
 		}
