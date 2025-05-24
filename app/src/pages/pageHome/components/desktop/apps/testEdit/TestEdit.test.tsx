@@ -1,51 +1,58 @@
 import { ThemeProvider } from "@src/theme/ThemeProvider";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { TestEdit } from "./TestEdit";
 
-const renderComponent = () => {
-	render(
+// Get screen from userEvent setup
+const setup = () => {
+	const utils = render(
 		<ThemeProvider>
 			<TestEdit />
 		</ThemeProvider>,
 	);
+	return {
+		user: userEvent.setup(),
+		...utils,
+	};
 };
 
 describe("TestEdit", () => {
 	it("Should test text variants", () => {
-		renderComponent();
+		const { getAllByText } = setup();
 
-		const textTest = screen.getAllByText("Test");
+		const textTest = getAllByText("Test");
 		expect(textTest.length).toBe(4);
 	});
 
-	it("Should test switch", () => {
-		renderComponent();
+	it("Should test switch", async () => {
+		const { getByTestId, user } = setup();
 
-		const switchElement = screen.getByTestId("switch-test");
+		const switchElement = getByTestId("switch-test");
 		expect(switchElement).toBeDefined();
 
-		expect(switchElement).toHaveAttribute("aria-checked", "false");
-		fireEvent.click(switchElement);
-		expect(switchElement).toHaveAttribute("aria-checked", "true");
-		fireEvent.click(switchElement);
-		expect(switchElement).toHaveAttribute("aria-checked", "false");
+		expect(switchElement.getAttribute("aria-checked")).toBe("false");
+		await user.click(switchElement);
+		expect(switchElement.getAttribute("aria-checked")).toBe("true");
+		await user.click(switchElement);
+		expect(switchElement.getAttribute("aria-checked")).toBe("false");
 	});
 
-	it("Should test check", () => {
-		renderComponent();
+	it("Should test check", async () => {
+		const { getByTestId, user } = setup();
 
-		const checkElement = screen.getByTestId("check-test");
+		const checkElement = getByTestId("check-test");
 		expect(checkElement).toBeDefined();
 
-		expect(checkElement).toHaveAttribute("aria-checked", "true");
-		fireEvent.click(checkElement);
-		expect(checkElement).toHaveAttribute("aria-checked", "false");
-		fireEvent.click(checkElement);
-		expect(checkElement).toHaveAttribute("aria-checked", "true");
+		expect(checkElement.getAttribute("aria-checked")).toBe("true");
+		await user.click(checkElement);
+		expect(checkElement.getAttribute("aria-checked")).toBe("false");
+		await user.click(checkElement);
+		expect(checkElement.getAttribute("aria-checked")).toBe("true");
 	});
 
 	it("Should test stepper", () => {
-		renderComponent();
+		// Test is currently commented out
+		setup();
 
 		// const inputElement = screen.getByDisplayValue("0");
 		// const minusButton = screen.getBySelector('[data-name="iconMinus"]');

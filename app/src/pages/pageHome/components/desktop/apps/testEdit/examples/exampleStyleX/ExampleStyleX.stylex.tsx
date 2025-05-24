@@ -1,6 +1,6 @@
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import * as stylex from "@stylexjs/stylex";
-import { CompiledStyles } from "@stylexjs/stylex/lib/StyleXTypes";
+import type { StyleXStyles } from "@stylexjs/stylex";
 import { AnchorHTMLAttributes, ElementType, HTMLAttributes, ReactNode } from "react";
 
 export const themeVars = stylex.defineVars({
@@ -262,7 +262,7 @@ export const darkTheme = stylex.createTheme(themeVars, {
 type Props<T extends ElementType> = {
 	as?: T;
 	children: ReactNode;
-	style?: CompiledStyles | CompiledStyles[];
+	style?: StyleXStyles | StyleXStyles[];
 };
 
 export const Elm = <T extends ElementType = "div">({ as, children, style, ...props }: Props<T>) => {
