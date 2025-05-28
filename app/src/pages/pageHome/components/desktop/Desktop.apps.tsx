@@ -8,6 +8,7 @@ import { TestTable } from "@apps/testTable/TestTable";
 import { TestTransition } from "@apps/testTransition/TestTransition";
 import { Tetris } from "@apps/tetris/Tetris";
 import { User } from "@apps/user/User";
+import { Weather } from "@apps/weather/Weather";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { ReactElement, ReactNode, lazy } from "react";
@@ -57,6 +58,7 @@ export const apps: App[][] = [
 		{ id: "calculator", roles: ["admin", "user", "guest"], title: <T>{lang.calculator.title}</T>, icon: "calculator", component: <Calculator /> },
 		{ id: "camera", roles: ["admin", "user", "guest"], title: <T>{lang.camera.title}</T>, icon: "camera", component: <Camera /> },
 		{ id: "clock", roles: ["admin", "user", "guest"], title: <T>{lang.clock.title}</T>, icon: "clock", component: <Clock /> },
+		{ id: "weather", roles: ["admin", "user", "guest"], title: <T>{lang.weather.title}</T>, icon: "weather", component: <Weather /> },
 		{ id: "calendar", roles: ["admin", "user", "guest"], title: <T>{lang.calendar.title}</T>, icon: "calendar", component: <Calendar /> },
 		{ id: "stocks", roles: ["admin", "user", "guest"], title: <T>{lang.stocks.title}</T>, icon: "stocks", component: <Stocks /> },
 		{ id: "chat", roles: ["admin", "user", "guest"], title: <T>{lang.chat.title}</T>, icon: "chat", component: <Chat /> },

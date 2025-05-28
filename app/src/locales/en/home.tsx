@@ -44,6 +44,24 @@ export const translation: Home = {
 		title: "Clock",
 	},
 
+	weather: {
+		title: "Weather",
+		loading: "Loading weather data...",
+		error: "Failed to load weather data",
+		location: "Location",
+		temperature: "Temperature",
+		feelsLike: "Feels like",
+		humidity: "Humidity",
+		windSpeed: "Wind Speed",
+		pressure: "Pressure",
+		visibility: "Visibility",
+		uvIndex: "UV Index",
+		currentConditions: "Current Conditions",
+		hourlyForecast: "Hourly Forecast",
+		locationError: "Unable to get your location",
+		locationPermissionDenied: "Location permission denied",
+	},
+
 	notes: {
 		title: "Notes",
 		notes: "Notes",

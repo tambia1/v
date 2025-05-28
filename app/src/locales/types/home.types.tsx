@@ -44,6 +44,24 @@ export type Home = {
 		title: string;
 	};
 
+	weather: {
+		title: string;
+		loading: string;
+		error: string;
+		location: string;
+		temperature: string;
+		feelsLike: string;
+		humidity: string;
+		windSpeed: string;
+		pressure: string;
+		visibility: string;
+		uvIndex: string;
+		currentConditions: string;
+		hourlyForecast: string;
+		locationError: string;
+		locationPermissionDenied: string;
+	};
+
 	notes: {
 		title: string;
 		notes: string;

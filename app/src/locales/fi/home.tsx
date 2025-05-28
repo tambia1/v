@@ -44,6 +44,24 @@ export const translation: Home = {
 		title: "Kello",
 	},
 
+	weather: {
+		title: "Sää",
+		loading: "Ladataan säätietoja...",
+		error: "Säätietojen lataus epäonnistui",
+		location: "Sijainti",
+		temperature: "Lämpötila",
+		feelsLike: "Tuntuu kuin",
+		humidity: "Kosteus",
+		windSpeed: "Tuulen nopeus",
+		pressure: "Ilmanpaine",
+		visibility: "Näkyvyys",
+		uvIndex: "UV-indeksi",
+		currentConditions: "Nykyiset olosuhteet",
+		hourlyForecast: "Tuntikohtainen ennuste",
+		locationError: "Sijaintia ei voida määrittää",
+		locationPermissionDenied: "Sijaintilupa evätty",
+	},
+
 	notes: {
 		title: "Huomautuksia",
 		notes: "Huomautuksia",
