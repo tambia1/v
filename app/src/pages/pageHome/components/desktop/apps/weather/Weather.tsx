@@ -92,7 +92,9 @@ export const Weather = () => {
 	return (
 		<S.Weather>
 			<S.LocationInfo>
-				📍 {data.latitude.toFixed(2)}°, {data.longitude.toFixed(2)}°
+				<Text variant="note" color="secondary700">
+					📍 {data.latitude.toFixed(2)}°, {data.longitude.toFixed(2)}°
+				</Text>
 				<S.RefreshButton onClick={handleRefresh} disabled={isLoading}>
 					{isLoading ? "..." : "↻"}
 				</S.RefreshButton>
@@ -106,85 +108,117 @@ export const Weather = () => {
 				<S.CurrentWeatherHeader>
 					<S.TemperatureSection>
 						<S.MainTemperature>
-							{Math.round(current.temperature_2m)}°{currentUnits.temperature_2m}
+							<Text variant="title" color="secondary600">
+								{Math.round(current.temperature_2m)}°{currentUnits.temperature_2m}
+							</Text>
 						</S.MainTemperature>
-						<S.WeatherDescription>{getWeatherDescription(current.weather_code)}</S.WeatherDescription>
-						<S.FeelsLike>
+						<Text variant="header" color="secondary700">
+							{getWeatherDescription(current.weather_code)}
+						</Text>
+						<Text variant="body" color="secondary600">
 							<T>{lang.weather.feelsLike}</T>: {Math.round(current.apparent_temperature)}°{currentUnits.apparent_temperature}
-						</S.FeelsLike>
+						</Text>
 					</S.TemperatureSection>
 				</S.CurrentWeatherHeader>
 
 				<S.WeatherDetails>
 					<S.WeatherDetailItem>
 						<S.DetailLabel>
-							<T>{lang.weather.humidity}</T>
+							<Text variant="note" color="secondary600">
+								<T>{lang.weather.humidity}</T>
+							</Text>
 						</S.DetailLabel>
-						<S.DetailValue>
+						<Text variant="body" color="secondary800">
 							{current.relative_humidity_2m}
 							{currentUnits.relative_humidity_2m}
-						</S.DetailValue>
+						</Text>
 					</S.WeatherDetailItem>
 
 					<S.WeatherDetailItem>
 						<S.DetailLabel>
-							<T>{lang.weather.windSpeed}</T>
+							<Text variant="note" color="secondary600">
+								<T>{lang.weather.windSpeed}</T>
+							</Text>
 						</S.DetailLabel>
-						<S.DetailValue>
+						<Text variant="body" color="secondary800">
 							{current.wind_speed_10m} {currentUnits.wind_speed_10m} {formatWindDirection(current.wind_direction_10m)}
-						</S.DetailValue>
+						</Text>
 					</S.WeatherDetailItem>
 
 					<S.WeatherDetailItem>
 						<S.DetailLabel>
-							<T>{lang.weather.pressure}</T>
+							<Text variant="note" color="secondary600">
+								<T>{lang.weather.pressure}</T>
+							</Text>
 						</S.DetailLabel>
-						<S.DetailValue>
+						<Text variant="body" color="secondary800">
 							{Math.round(current.pressure_msl)} {currentUnits.pressure_msl}
-						</S.DetailValue>
+						</Text>
 					</S.WeatherDetailItem>
 
 					<S.WeatherDetailItem>
 						<S.DetailLabel>
-							<T>{lang.weather.visibility}</T>
+							<Text variant="note" color="secondary600">
+								<T>{lang.weather.visibility}</T>
+							</Text>
 						</S.DetailLabel>
-						<S.DetailValue>{(current.visibility / 1000).toFixed(1)} km</S.DetailValue>
+						<Text variant="body" color="secondary800">
+							{(current.visibility / 1000).toFixed(1)} km
+						</Text>
 					</S.WeatherDetailItem>
 
 					<S.WeatherDetailItem>
 						<S.DetailLabel>
-							<T>{lang.weather.uvIndex}</T>
+							<Text variant="note" color="secondary600">
+								<T>{lang.weather.uvIndex}</T>
+							</Text>
 						</S.DetailLabel>
-						<S.DetailValue>{current.uv_index}</S.DetailValue>
+						<Text variant="body" color="secondary800">
+							{current.uv_index}
+						</Text>
 					</S.WeatherDetailItem>
 
 					<S.WeatherDetailItem>
-						<S.DetailLabel>Cloud Cover</S.DetailLabel>
-						<S.DetailValue>
+						<S.DetailLabel>
+							<Text variant="note" color="secondary600">
+								Cloud Cover
+							</Text>
+						</S.DetailLabel>
+						<Text variant="body" color="secondary800">
 							{current.cloud_cover}
 							{currentUnits.cloud_cover}
-						</S.DetailValue>
+						</Text>
 					</S.WeatherDetailItem>
 				</S.WeatherDetails>
 			</S.CurrentWeatherCard>
 
 			<S.HourlyForecastSection>
-				<S.SectionTitle>
+				<Text variant="header" color="secondary800">
 					<T>{lang.weather.hourlyForecast}</T>
-				</S.SectionTitle>
+				</Text>
 
 				<S.HourlyForecastContainer>
 					{next12Hours.map((hour, index) => (
 						<S.HourlyForecastCard key={index}>
-							<S.HourlyTime>{formatTime(hour.time)}</S.HourlyTime>
-							<S.HourlyTemperature>{Math.round(hour.temperature)}°</S.HourlyTemperature>
-							<S.HourlyDescription>{getWeatherDescription(hour.weatherCode)}</S.HourlyDescription>
+							<Text variant="note" color="secondary600">
+								{formatTime(hour.time)}
+							</Text>
+							<Text variant="header" color="secondary800">
+								{Math.round(hour.temperature)}°
+							</Text>
+							<Text variant="note" color="secondary600">
+								{getWeatherDescription(hour.weatherCode)}
+							</Text>
 							<S.HourlyDetails>
-								<div>💧 {hour.precipitationProbability}%</div>
-								<div>
+								<Text variant="note" color="secondary600">
+									💧 {hour.precipitationProbability}%
+								</Text>
+								<Text variant="note" color="secondary600">
 									💨 {hour.windSpeed} {hourlyUnits.wind_speed_10m}
-								</div>
-								<div>💧 {hour.humidity}%</div>
+								</Text>
+								<Text variant="note" color="secondary600">
+									💧 {hour.humidity}%
+								</Text>
 							</S.HourlyDetails>
 						</S.HourlyForecastCard>
 					))}

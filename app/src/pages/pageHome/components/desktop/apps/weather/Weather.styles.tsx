@@ -55,21 +55,12 @@ export const TemperatureSection = styled.div`
 `;
 
 export const MainTemperature = styled.div`
-	font-size: 3rem;
-	font-weight: bold;
-	color: ${(props) => props.theme.color.secondary600};
 	line-height: 1;
-`;
 
-export const WeatherDescription = styled.div`
-	font-size: 1.2rem;
-	color: ${(props) => props.theme.color.secondary700};
-	text-transform: capitalize;
-`;
-
-export const FeelsLike = styled.div`
-	font-size: 1rem;
-	color: ${(props) => props.theme.color.secondary600};
+	/* Scale up the title variant for main temperature */
+	& > div {
+		font-size: 3rem !important;
+	}
 `;
 
 export const WeatherDetails = styled.div`
@@ -86,28 +77,14 @@ export const WeatherDetailItem = styled.div`
 `;
 
 export const DetailLabel = styled.div`
-	font-size: 0.9rem;
-	color: ${(props) => props.theme.color.secondary600};
 	text-transform: uppercase;
 	letter-spacing: 0.5px;
-`;
-
-export const DetailValue = styled.div`
-	font-size: 1.1rem;
-	font-weight: 500;
-	color: ${(props) => props.theme.color.secondary800};
 `;
 
 export const HourlyForecastSection = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-`;
-
-export const SectionTitle = styled.div`
-	font-size: 1.3rem;
-	font-weight: 600;
-	color: ${(props) => props.theme.color.secondary800};
 `;
 
 export const HourlyForecastContainer = styled.div`
@@ -148,31 +125,10 @@ export const HourlyForecastCard = styled.div`
 	flex-shrink: 0;
 `;
 
-export const HourlyTime = styled.div`
-	font-size: 0.9rem;
-	color: ${(props) => props.theme.color.secondary600};
-	font-weight: 500;
-`;
-
-export const HourlyTemperature = styled.div`
-	font-size: 1.2rem;
-	font-weight: 600;
-	color: ${(props) => props.theme.color.secondary800};
-`;
-
-export const HourlyDescription = styled.div`
-	font-size: 0.8rem;
-	color: ${(props) => props.theme.color.secondary600};
-	text-align: center;
-	line-height: 1.2;
-`;
-
 export const HourlyDetails = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 0.25rem;
-	font-size: 0.8rem;
-	color: ${(props) => props.theme.color.secondary600};
 	text-align: center;
 `;
 
@@ -180,8 +136,6 @@ export const LocationInfo = styled.div`
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-	color: ${(props) => props.theme.color.secondary700};
-	font-size: 0.9rem;
 	margin-bottom: 0.5rem;
 `;
 
