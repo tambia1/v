@@ -108,12 +108,15 @@ export const Weather = () => {
 					</Text>
 				}
 				bodyContent={
-					<>
+					<S.CurrentWeatherCard>
 						<S.CurrentWeatherHeader>
 							<S.TemperatureSection>
 								<S.MainTemperature>
 									<Text variant="title" color="secondary600">
-										{Math.round(current.temperature_2m)}°{currentUnits.temperature_2m}
+										{Math.round(current.temperature_2m)}
+									</Text>
+									<Text variant="title" color="secondary600">
+										{currentUnits.temperature_2m}
 									</Text>
 								</S.MainTemperature>
 								<Text variant="header" color="secondary700">
@@ -194,7 +197,7 @@ export const Weather = () => {
 								</Text>
 							</S.WeatherDetailItem>
 						</S.WeatherDetails>
-					</>
+					</S.CurrentWeatherCard>
 				}
 			/>
 
@@ -208,7 +211,7 @@ export const Weather = () => {
 						<S.HourlyForecastCardWrapper key={index}>
 							<Card
 								bodyContent={
-									<S.HourlyCardContent>
+									<S.HourlyForecastCard>
 										<Text variant="note" color="secondary600">
 											{formatTime(hour.time)}
 										</Text>
@@ -220,7 +223,7 @@ export const Weather = () => {
 										</Text>
 										<S.HourlyDetails>
 											<Text variant="note" color="secondary600">
-												💧 {hour.precipitationProbability}%
+												🌧️ {hour.precipitationProbability}%
 											</Text>
 											<Text variant="note" color="secondary600">
 												💨 {hour.windSpeed} {hourlyUnits.wind_speed_10m}
@@ -229,7 +232,7 @@ export const Weather = () => {
 												💧 {hour.humidity}%
 											</Text>
 										</S.HourlyDetails>
-									</S.HourlyCardContent>
+									</S.HourlyForecastCard>
 								}
 							/>
 						</S.HourlyForecastCardWrapper>

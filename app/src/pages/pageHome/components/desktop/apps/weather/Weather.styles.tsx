@@ -45,6 +45,9 @@ export const TemperatureSection = styled.div`
 `;
 
 export const MainTemperature = styled.div`
+	display: flex;
+	align-items: baseline;
+	gap: 0.5rem;
 	line-height: 1;
 
 	/* Scale up the title variant for main temperature */
@@ -54,10 +57,11 @@ export const MainTemperature = styled.div`
 `;
 
 export const WeatherDetails = styled.div`
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-	gap: 1rem;
+	display: grid !important;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+	gap: 1rem !important;
 	margin-top: 1rem;
+	width: 100%;
 `;
 
 export const WeatherDetailItem = styled.div`
@@ -102,16 +106,45 @@ export const HourlyForecastContainer = styled.div`
 	}
 `;
 
+export const CurrentWeatherCard = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	width: 100%;
+
+	/* Ensure grid layout works properly inside Card component */
+	& > * {
+		width: 100%;
+	}
+`;
+
 export const HourlyForecastCardWrapper = styled.div`
 	min-width: 120px;
 	flex-shrink: 0;
+
+	/* Override Card component body styling to ensure centering */
+	& > div > div {
+		display: flex !important;
+		justify-content: center !important;
+		align-items: center !important;
+	}
 `;
 
-export const HourlyCardContent = styled.div`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+export const HourlyForecastCard = styled.div`
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
 	gap: 0.5rem;
+	text-align: center !important;
+	width: 100%;
+	height: 100%;
+
+	/* Ensure all child elements are centered */
+	& > * {
+		text-align: center !important;
+		align-self: center !important;
+	}
 `;
 
 export const HourlyDetails = styled.div`
