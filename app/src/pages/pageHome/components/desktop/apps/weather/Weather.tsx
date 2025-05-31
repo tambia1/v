@@ -32,9 +32,6 @@ export const Weather = () => {
 				<S.LoaderContainer>
 					<Loader />
 				</S.LoaderContainer>
-				<Text>
-					<T>{lang.weather.loading}</T>
-				</Text>
 			</S.Weather>
 		);
 	}
