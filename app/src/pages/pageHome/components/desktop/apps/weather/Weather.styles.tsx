@@ -31,16 +31,6 @@ export const ErrorContainer = styled.div`
 	color: ${(props) => props.theme.color.danger600};
 `;
 
-export const CurrentWeatherCard = styled.div`
-	background-color: ${(props) => props.theme.color.secondary200};
-	border-radius: 1rem;
-	padding: 1.5rem;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	border: 1px solid ${(props) => props.theme.color.secondary300};
-`;
-
 export const CurrentWeatherHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -112,17 +102,16 @@ export const HourlyForecastContainer = styled.div`
 	}
 `;
 
-export const HourlyForecastCard = styled.div`
-	background-color: ${(props) => props.theme.color.secondary100};
-	border-radius: 0.75rem;
-	padding: 1rem;
+export const HourlyForecastCardWrapper = styled.div`
 	min-width: 120px;
+	flex-shrink: 0;
+`;
+
+export const HourlyCardContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5rem;
-	border: 1px solid ${(props) => props.theme.color.secondary300};
-	flex-shrink: 0;
 `;
 
 export const HourlyDetails = styled.div`
