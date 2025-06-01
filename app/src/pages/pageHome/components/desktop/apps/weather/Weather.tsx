@@ -4,10 +4,11 @@ import { Text } from "@src/components/text/Text";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import * as S from "./Weather.styles";
-import { QueryWeather, getWeatherDescription } from "./queries/QueryWeather";
+import { useCurrentLocationWeather } from "./hooks/UseCurrentLocationWeather";
+import { getWeatherDescription } from "./utils/WeatherUtils";
 
 export const Weather = () => {
-	const { locationQuery, weatherQuery, isLoading, error, data } = QueryWeather.useCurrentLocationWeather();
+	const { locationQuery, weatherQuery, isLoading, error, data } = useCurrentLocationWeather();
 
 	const formatTime = (timeString: string) => {
 		const date = new Date(timeString);
@@ -80,7 +81,7 @@ export const Weather = () => {
 	const hourlyUnits = data.hourly_units;
 
 	// Get next 12 hours of forecast
-	const next12Hours = hourly.time.slice(0, 12).map((time, index) => ({
+	const next12Hours = hourly.time.slice(0, 12).map((time: string, index: number) => ({
 		time,
 		temperature: hourly.temperature_2m[index],
 		weatherCode: hourly.weather_code[index],
@@ -207,7 +208,7 @@ export const Weather = () => {
 				</Text>
 
 				<S.HourlyForecastContainer>
-					{next12Hours.map((hour, index) => (
+					{next12Hours.map((hour: any, index: number) => (
 						<S.HourlyForecastCardWrapper key={index}>
 							<Card
 								bodyContent={

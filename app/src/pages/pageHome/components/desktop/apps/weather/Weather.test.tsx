@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { QueryWeather, getWeatherDescription } from './queries/QueryWeather';
+import { getWeatherDescription, getCurrentLocation } from './utils/WeatherUtils';
 
 // Mock the fetch function
 global.fetch = vi.fn();
@@ -37,7 +37,7 @@ describe('Weather App', () => {
 				writable: true,
 			});
 
-			const coordinates = await QueryWeather.getCurrentLocation();
+			const coordinates = await getCurrentLocation();
 			expect(coordinates).toEqual({
 				latitude: 52.52,
 				longitude: 13.41,
@@ -51,7 +51,7 @@ describe('Weather App', () => {
 				writable: true,
 			});
 
-			await expect(QueryWeather.getCurrentLocation()).rejects.toThrow(
+			await expect(getCurrentLocation()).rejects.toThrow(
 				'Geolocation is not supported by this browser'
 			);
 		});
