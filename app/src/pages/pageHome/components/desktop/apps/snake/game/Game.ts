@@ -52,15 +52,11 @@ export class Game {
 
 		this.board.appendChild(this.canvas);
 
-		const dpr = window.devicePixelRatio || 1;
 		const rect = this.board.getBoundingClientRect();
-
-		this.canvas.width = rect.width * dpr;
-		this.canvas.height = rect.height * dpr;
+		this.canvas.width = rect.width;
+		this.canvas.height = rect.height;
 
 		this.ctx = this.canvas.getContext("2d") as CanvasRenderingContext2D;
-
-		this.ctx.scale(dpr, dpr);
 	}
 
 	private initTouches() {
@@ -71,12 +67,8 @@ export class Game {
 					return;
 				}
 
-				const dpr = window.devicePixelRatio || 1;
-				const canvasWidth = this.canvas.width / dpr;
-				const canvasHeight = this.canvas.height / dpr;
-
-				const xx = Math.floor(x / (canvasWidth / this.grid[0].length));
-				const yy = Math.floor(y / (canvasHeight / this.grid.length));
+				const xx = Math.floor(x / (this.canvas.width / this.grid[0].length));
+				const yy = Math.floor(y / (this.canvas.height / this.grid.length));
 
 				if (this.snakeDirection === "right" || this.snakeDirection === "left") {
 					if (yy > this.snake[0].y) {
@@ -167,30 +159,19 @@ export class Game {
 	}
 
 	private drawInit(ctx: CanvasRenderingContext2D) {
-		const dpr = window.devicePixelRatio || 1;
-
 		ctx.setTransform(1, 0, 0, 1, 0, 0);
-		ctx.scale(dpr, dpr);
-
-		const width = ctx.canvas.width / dpr;
-		const height = ctx.canvas.height / dpr;
-
-		ctx.clearRect(0, 0, width, height);
+		ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
 		ctx.beginPath();
-		ctx.rect(0, 0, width, height);
+		ctx.rect(0, 0, ctx.canvas.width, ctx.canvas.height);
 		ctx.clip();
 	}
 
 	private drawGrid(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		const dpr = window.devicePixelRatio || 1;
-		const canvasWidth = ctx.canvas.width / dpr;
-		const canvasHeight = ctx.canvas.height / dpr;
-
-		const w = canvasWidth / this.grid[0].length;
-		const h = canvasHeight / this.grid.length;
+		const w = ctx.canvas.width / this.grid[0].length;
+		const h = ctx.canvas.height / this.grid.length;
 
 		for (let i = 0; i < this.grid.length; i++) {
 			for (let j = 0, c = i; j < this.grid[i].length; j++, c++) {
@@ -213,12 +194,8 @@ export class Game {
 	private drawFood(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		const dpr = window.devicePixelRatio || 1;
-		const canvasWidth = ctx.canvas.width / dpr;
-		const canvasHeight = ctx.canvas.height / dpr;
-
-		const w = canvasWidth / this.grid[0].length;
-		const h = canvasHeight / this.grid.length;
+		const w = ctx.canvas.width / this.grid[0].length;
+		const h = ctx.canvas.height / this.grid.length;
 
 		const x = this.food.x * w;
 		const y = this.food.y * h;
@@ -232,12 +209,8 @@ export class Game {
 	private drawSnake(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		const dpr = window.devicePixelRatio || 1;
-		const canvasWidth = ctx.canvas.width / dpr;
-		const canvasHeight = ctx.canvas.height / dpr;
-
-		const w = canvasWidth / this.grid[0].length;
-		const h = canvasHeight / this.grid.length;
+		const w = ctx.canvas.width / this.grid[0].length;
+		const h = ctx.canvas.height / this.grid.length;
 
 		for (let i = 0; i < this.snake.length; i++) {
 			const x = this.snake[i].x * w;
@@ -251,14 +224,10 @@ export class Game {
 	}
 
 	private drawScore(ctx: CanvasRenderingContext2D) {
-		const dpr = window.devicePixelRatio || 1;
-		const canvasWidth = ctx.canvas.width / dpr;
-		const canvasHeight = ctx.canvas.height / dpr;
-
 		const w = 80;
 		const h = 30;
-		const x = canvasWidth / 2 - w / 2;
-		const y = canvasHeight - h - 10;
+		const x = ctx.canvas.width / 2 - w / 2;
+		const y = ctx.canvas.height - h - 10;
 
 		ctx.save();
 
@@ -292,12 +261,8 @@ export class Game {
 			return;
 		}
 
-		const dpr = window.devicePixelRatio || 1;
-		const canvasWidth = ctx.canvas.width / dpr;
-		const canvasHeight = ctx.canvas.height / dpr;
-
-		const x = canvasWidth / 2;
-		const y = canvasHeight / 2;
+		const x = ctx.canvas.width / 2;
+		const y = ctx.canvas.height / 2;
 
 		ctx.save();
 
