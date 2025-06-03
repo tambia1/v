@@ -1,5 +1,5 @@
 import { Button } from "@src/components/button/Button";
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import * as S from "./Snake.styles";
 import { Game } from "./game/Game";
 
@@ -13,7 +13,7 @@ export const Snake = () => {
 	const refGames = useRef<Game[]>([]);
 	const [gameState, setGameState] = useState<"start" | "reset">("start");
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (refGames.current.length > 0) {
 			return;
 		}
