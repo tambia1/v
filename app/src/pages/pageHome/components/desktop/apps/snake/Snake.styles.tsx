@@ -29,9 +29,6 @@ export const Board = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
-	width: min(100%, 50vh);
-	height: min(100%, 50vh);
 `;
 
 export const Buttons = styled.div`
