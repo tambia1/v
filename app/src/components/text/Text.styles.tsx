@@ -10,4 +10,6 @@ export const Text = styled.div<{
 	background-color: ${(props) => props.theme.color[props.$bgcolor]};
 	font-size: ${(props) => props.theme.font[props.$variant].size};
 	font-weight: ${(props) => props.theme.font[props.$variant].weight};
+
+	display: inline-flex;
 `;

@@ -1,7 +1,6 @@
 import { Text } from "@src/components/text/Text";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import * as S from "./TestEdit.styles";
+import { T } from "@src/locales/T";
 import { ExampleButton } from "./examples/exampleButton/ExampleButton";
 import { ExampleCard } from "./examples/exampleCard/ExampleCard";
 import { ExampleCheck } from "./examples/exampleCheck/ExampleCheck";
@@ -13,11 +12,13 @@ import { ExampleProgress } from "./examples/exampleProgress/ExampleProgress";
 import { ExampleSelectMulti } from "./examples/exampleSelectMulti/ExampleSelectMulti";
 import { ExampleSelectSingle } from "./examples/exampleSelectSingle/ExampleSelectSingle";
 import { ExampleShared } from "./examples/exampleShared/ExampleShared";
+import { ExampleSideMenu } from "./examples/exampleSideMenu/ExampleSideMenu";
 import { ExampleStepper } from "./examples/exampleStepper/ExampleStepper";
 import { ExampleStyleX } from "./examples/exampleStyleX/ExampleStyleX";
 import { ExampleSwitch } from "./examples/exampleSwitch/ExampleSwitch";
 import { ExampleTab } from "./examples/exampleTab/ExampleTab";
 import { ExampleText } from "./examples/exampleText/ExampleText";
+import * as S from "./TestEdit.styles";
 
 export const TestEdit = () => {
 	return (
@@ -56,6 +57,9 @@ export const TestEdit = () => {
 
 				<S.Line />
 				<ExamplePopupMenu />
+
+				<S.Line />
+				<ExampleSideMenu />
 
 				<S.Line />
 				<ExampleList />
