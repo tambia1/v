@@ -1,7 +1,7 @@
 {
 	"name": "v",
 	"private": true,
-	"version": "1.4.60",
+	"version": "1.4.61",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -33,7 +33,7 @@
 		"@tanstack/react-query": "5.76.2",
 		"@tanstack/react-query-devtools": "5.76.2",
 		"date-fns": "4.1.0",
-		"face-api.js": "^0.20.0",
+		"face-api.js": "^0.22.2",
 		"https": "1.0.0",
 		"i18next": "25.2.1",
 		"i18next-browser-languagedetector": "8.2.0",
