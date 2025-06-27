@@ -4,12 +4,11 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import react from "@vitejs/plugin-react";
-import { type Plugin, type PluginOption, defineConfig } from "vite";
+import * as dotenv from "dotenv";
+import { defineConfig, type Plugin, type PluginOption } from "vite";
 import checker from "vite-plugin-checker";
-
 import styleX from "vite-plugin-stylex";
 
-import * as dotenv from "dotenv";
 dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
 export default defineConfig({
@@ -50,7 +49,14 @@ export default defineConfig({
 			"@assets": path.resolve(__dirname, "./src/assets"),
 			"@pages": path.resolve(__dirname, "./src/pages"),
 			"@components": path.resolve(__dirname, "./src/components"),
-			"@apps": path.resolve(__dirname, "./src/pages/pageHome/components/desktop/apps"),
+			"@apps": path.resolve(
+				__dirname,
+				"./src/pages/pageHome/components/desktop/apps",
+			),
+			"@tanstack/react-query": path.resolve(
+				__dirname,
+				"./node_modules/@tanstack/react-query",
+			),
 		},
 	},
 
