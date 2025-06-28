@@ -9,6 +9,7 @@ coverage
 
 app/env/*
 !app/env/.env
+/.env
 
 app/tsconfig.tsbuildinfo
 app/visuals-temp
