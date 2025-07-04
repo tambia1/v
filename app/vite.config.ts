@@ -55,7 +55,7 @@ export default defineConfig({
 			),
 			"@tanstack/react-query": path.resolve(
 				__dirname,
-				"./node_modules/@tanstack/react-query",
+				"../node_modules/@tanstack/react-query",
 			),
 		},
 	},
