@@ -1,11 +1,11 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
+import path from "node:path";
+import federation from "@originjs/vite-plugin-federation";
 import react from "@vitejs/plugin-react";
-import path from "path";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
-import federation from "@originjs/vite-plugin-federation";
 
 export default defineConfig({
 	base: "/v",
@@ -35,7 +35,7 @@ export default defineConfig({
 			exposes: {
 				"./Mfe": "./src/mfe/Mfe.tsx",
 			},
-			shared: ["react"],
+			shared: [],
 		}),
 	],
 

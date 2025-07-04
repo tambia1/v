@@ -141,6 +141,10 @@ export const translation: Home = {
 		title: "Lauta",
 	},
 
+	mfe: {
+		title: "Micro Frontend",
+	},
+
 	redis: {
 		title: "Redis",
 		menu: {

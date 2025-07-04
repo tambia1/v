@@ -1,5 +1,4 @@
-import { j as jsxRuntimeExports, Mfe } from "./__federation_expose_Mfe-D2QRLAui.js";
-import { r as reactExports } from "./__federation_shared_react-DZMtjlAa.js";
+import { r as reactExports, j as jsxRuntimeExports, Mfe } from "./__federation_expose_Mfe-CX2qTqn9.js";
 (function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
@@ -7271,4 +7270,4 @@ const App = () => {
   ] });
 };
 client.createRoot(document.getElementById("root")).render(/* @__PURE__ */ jsxRuntimeExports.jsx(App, {}));
-//# sourceMappingURL=index-DgDLfsPL.js.map
+//# sourceMappingURL=index-Dy7dsNdu.js.map

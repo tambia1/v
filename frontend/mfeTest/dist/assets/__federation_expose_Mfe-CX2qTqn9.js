@@ -1,6 +1,5 @@
-function getDefaultExportFromCjs(x2) {
-  return x2 && x2.__esModule && Object.prototype.hasOwnProperty.call(x2, "default") ? x2["default"] : x2;
-}
+var jsxRuntime = { exports: {} };
+var reactJsxRuntime_production_min = {};
 var react = { exports: {} };
 var react_production_min = {};
 /**
@@ -12,7 +11,7 @@ var react_production_min = {};
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-var l = Symbol.for("react.element"), n = Symbol.for("react.portal"), p = Symbol.for("react.fragment"), q = Symbol.for("react.strict_mode"), r = Symbol.for("react.profiler"), t = Symbol.for("react.provider"), u = Symbol.for("react.context"), v = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), x = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), z = Symbol.iterator;
+var l$1 = Symbol.for("react.element"), n$1 = Symbol.for("react.portal"), p$1 = Symbol.for("react.fragment"), q$1 = Symbol.for("react.strict_mode"), r = Symbol.for("react.profiler"), t = Symbol.for("react.provider"), u = Symbol.for("react.context"), v = Symbol.for("react.forward_ref"), w = Symbol.for("react.suspense"), x = Symbol.for("react.memo"), y = Symbol.for("react.lazy"), z = Symbol.iterator;
 function A(a) {
   if (null === a || "object" !== typeof a)
     return null;
@@ -55,28 +54,28 @@ C(H, E.prototype);
 H.isPureReactComponent = true;
 var I = Array.isArray, J = Object.prototype.hasOwnProperty, K = { current: null }, L = { key: true, ref: true, __self: true, __source: true };
 function M(a, b, e) {
-  var d, c = {}, k = null, h = null;
+  var d, c = {}, k2 = null, h = null;
   if (null != b)
-    for (d in void 0 !== b.ref && (h = b.ref), void 0 !== b.key && (k = "" + b.key), b)
+    for (d in void 0 !== b.ref && (h = b.ref), void 0 !== b.key && (k2 = "" + b.key), b)
       J.call(b, d) && !L.hasOwnProperty(d) && (c[d] = b[d]);
   var g = arguments.length - 2;
   if (1 === g)
     c.children = e;
   else if (1 < g) {
-    for (var f = Array(g), m = 0; m < g; m++)
-      f[m] = arguments[m + 2];
-    c.children = f;
+    for (var f2 = Array(g), m2 = 0; m2 < g; m2++)
+      f2[m2] = arguments[m2 + 2];
+    c.children = f2;
   }
   if (a && a.defaultProps)
     for (d in g = a.defaultProps, g)
       void 0 === c[d] && (c[d] = g[d]);
-  return { $$typeof: l, type: a, key: k, ref: h, props: c, _owner: K.current };
+  return { $$typeof: l$1, type: a, key: k2, ref: h, props: c, _owner: K.current };
 }
 function N(a, b) {
-  return { $$typeof: l, type: a.type, key: b, ref: a.ref, props: a.props, _owner: a._owner };
+  return { $$typeof: l$1, type: a.type, key: b, ref: a.ref, props: a.props, _owner: a._owner };
 }
 function O(a) {
-  return "object" === typeof a && null !== a && a.$$typeof === l;
+  return "object" === typeof a && null !== a && a.$$typeof === l$1;
 }
 function escape(a) {
   var b = { "=": "=0", ":": "=2" };
@@ -89,22 +88,22 @@ function Q(a, b) {
   return "object" === typeof a && null !== a && null != a.key ? escape("" + a.key) : b.toString(36);
 }
 function R(a, b, e, d, c) {
-  var k = typeof a;
-  if ("undefined" === k || "boolean" === k)
+  var k2 = typeof a;
+  if ("undefined" === k2 || "boolean" === k2)
     a = null;
   var h = false;
   if (null === a)
     h = true;
   else
-    switch (k) {
+    switch (k2) {
       case "string":
       case "number":
         h = true;
         break;
       case "object":
         switch (a.$$typeof) {
-          case l:
-          case n:
+          case l$1:
+          case n$1:
             h = true;
         }
     }
@@ -116,14 +115,14 @@ function R(a, b, e, d, c) {
   d = "" === d ? "." : d + ":";
   if (I(a))
     for (var g = 0; g < a.length; g++) {
-      k = a[g];
-      var f = d + Q(k, g);
-      h += R(k, b, e, f, c);
+      k2 = a[g];
+      var f2 = d + Q(k2, g);
+      h += R(k2, b, e, f2, c);
     }
-  else if (f = A(a), "function" === typeof f)
-    for (a = f.call(a), g = 0; !(k = a.next()).done; )
-      k = k.value, f = d + Q(k, g++), h += R(k, b, e, f, c);
-  else if ("object" === k)
+  else if (f2 = A(a), "function" === typeof f2)
+    for (a = f2.call(a), g = 0; !(k2 = a.next()).done; )
+      k2 = k2.value, f2 = d + Q(k2, g++), h += R(k2, b, e, f2, c);
+  else if ("object" === k2)
     throw b = String(a), Error("Objects are not valid as a React child (found: " + ("[object Object]" === b ? "object with keys {" + Object.keys(a).join(", ") + "}" : b) + "). If you meant to render a collection of children, use an array instead.");
   return h;
 }
@@ -174,34 +173,34 @@ react_production_min.Children = { map: S, forEach: function(a, b, e) {
   return a;
 } };
 react_production_min.Component = E;
-react_production_min.Fragment = p;
+react_production_min.Fragment = p$1;
 react_production_min.Profiler = r;
 react_production_min.PureComponent = G;
-react_production_min.StrictMode = q;
+react_production_min.StrictMode = q$1;
 react_production_min.Suspense = w;
 react_production_min.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = W;
 react_production_min.cloneElement = function(a, b, e) {
   if (null === a || void 0 === a)
     throw Error("React.cloneElement(...): The argument must be a React element, but you passed " + a + ".");
-  var d = C({}, a.props), c = a.key, k = a.ref, h = a._owner;
+  var d = C({}, a.props), c = a.key, k2 = a.ref, h = a._owner;
   if (null != b) {
-    void 0 !== b.ref && (k = b.ref, h = K.current);
+    void 0 !== b.ref && (k2 = b.ref, h = K.current);
     void 0 !== b.key && (c = "" + b.key);
     if (a.type && a.type.defaultProps)
       var g = a.type.defaultProps;
-    for (f in b)
-      J.call(b, f) && !L.hasOwnProperty(f) && (d[f] = void 0 === b[f] && void 0 !== g ? g[f] : b[f]);
+    for (f2 in b)
+      J.call(b, f2) && !L.hasOwnProperty(f2) && (d[f2] = void 0 === b[f2] && void 0 !== g ? g[f2] : b[f2]);
   }
-  var f = arguments.length - 2;
-  if (1 === f)
+  var f2 = arguments.length - 2;
+  if (1 === f2)
     d.children = e;
-  else if (1 < f) {
-    g = Array(f);
-    for (var m = 0; m < f; m++)
-      g[m] = arguments[m + 2];
+  else if (1 < f2) {
+    g = Array(f2);
+    for (var m2 = 0; m2 < f2; m2++)
+      g[m2] = arguments[m2 + 2];
     d.children = g;
   }
-  return { $$typeof: l, type: a.type, key: c, ref: k, props: d, _owner: h };
+  return { $$typeof: l$1, type: a.type, key: c, ref: k2, props: d, _owner: h };
 };
 react_production_min.createContext = function(a) {
   a = { $$typeof: u, _currentValue: a, _currentValue2: a, _threadCount: 0, Provider: null, Consumer: null, _defaultValue: null, _globalName: null };
@@ -288,9 +287,43 @@ react_production_min.version = "18.2.0";
   react.exports = react_production_min;
 }
 var reactExports = react.exports;
-const index = /* @__PURE__ */ getDefaultExportFromCjs(reactExports);
+/**
+ * @license React
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+var f = reactExports, k = Symbol.for("react.element"), l = Symbol.for("react.fragment"), m = Object.prototype.hasOwnProperty, n = f.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p = { key: true, ref: true, __self: true, __source: true };
+function q(c, a, g) {
+  var b, d = {}, e = null, h = null;
+  void 0 !== g && (e = "" + g);
+  void 0 !== a.key && (e = "" + a.key);
+  void 0 !== a.ref && (h = a.ref);
+  for (b in a)
+    m.call(a, b) && !p.hasOwnProperty(b) && (d[b] = a[b]);
+  if (c && c.defaultProps)
+    for (b in a = c.defaultProps, a)
+      void 0 === d[b] && (d[b] = a[b]);
+  return { $$typeof: k, type: c, key: e, ref: h, props: d, _owner: n.current };
+}
+reactJsxRuntime_production_min.Fragment = l;
+reactJsxRuntime_production_min.jsx = q;
+reactJsxRuntime_production_min.jsxs = q;
+{
+  jsxRuntime.exports = reactJsxRuntime_production_min;
+}
+var jsxRuntimeExports = jsxRuntime.exports;
+const version = "1.0.0";
+const Mfe = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-mfe-version": `${version}}`, className: "mfe", children: "Hello Micro Frontend Test" });
+};
 export {
-  index as default,
+  Mfe,
+  Mfe as default,
+  jsxRuntimeExports as j,
   reactExports as r
 };
-//# sourceMappingURL=__federation_shared_react-DZMtjlAa.js.map
+//# sourceMappingURL=__federation_expose_Mfe-CX2qTqn9.js.map

@@ -40,6 +40,8 @@ import type { AppIcon } from "./components/appButton/AppButton.styles";
 const Notes = lazy(() => import("@apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("@apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
 
+const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
+
 export type App = {
 	id: string;
 	roles: Role[];
@@ -80,6 +82,7 @@ export const apps: App[][] = [
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
 		{ id: "testEdit", roles: ["admin", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
+		{ id: "testMfe", roles: ["admin"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },		
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "test", component: <TestTransition /> },
 		{ id: "testAnimation", roles: ["admin"], title: <T>{lang.testAnimation.title}</T>, icon: "test", component: <TestAnimation /> },

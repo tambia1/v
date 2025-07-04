@@ -141,6 +141,10 @@ export type Home = {
 		title: string;
 	};
 
+	mfe: {
+		title: string;
+	};
+
 	redis: {
 		title: string;
 		menu: {
