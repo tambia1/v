@@ -40,7 +40,6 @@ export default defineConfig({
 			remotes: {
 				remoteFrontend: "http://localhost:5001/v/assets/remote.js",
 			},
-			shared: ["react", "react-dom"],
 		}),
 	],
 

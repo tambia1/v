@@ -35,7 +35,6 @@ export default defineConfig({
 			exposes: {
 				"./Mfe": "./src/mfe/Mfe.tsx",
 			},
-			shared: ["react", "react-dom"],
 		}),
 	],
 
