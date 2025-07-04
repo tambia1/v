@@ -1,0 +1,62 @@
+.mfe {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	padding: 1rem;
+	box-sizing: border-box;
+
+	background-color: #cbcbcb;
+}
+html {
+	width: 100%;
+	height: 100%;
+
+	margin: 0px;
+	padding: 0px;
+
+	font-family: monospace;
+	font-weight: bold;
+	font-size: 12px;
+
+	overflow: hidden;
+
+	-webkit-user-select: none;
+	user-select: none;
+
+	overscroll-behavior-x: none;
+}
+
+body {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	cursor: default;
+
+	margin: 0px;
+	padding: 0px;
+
+	color: #ffffff;
+	background-color: #000000;
+
+	font-size: 12px;
+	font-family: sans-serif, Helvetica;
+	line-height: 1;
+
+	overflow: hidden;
+
+	display: table;
+	border-spacing: 0;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
+}
