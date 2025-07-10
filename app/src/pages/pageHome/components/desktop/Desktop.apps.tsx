@@ -27,6 +27,7 @@ import { Speed } from "./apps/speed/Speed";
 import { Spin } from "./apps/spin/Spin";
 import { Stocks } from "./apps/stocks/Stocks";
 import { Store } from "./apps/store/Store";
+import { TestAi } from "./apps/testAi/TestAi";
 import { TestAnimation } from "./apps/testAnimation/TestAnimation";
 import { TestCouner } from "./apps/testCounter/TestCouner";
 import { TestCube } from "./apps/testCube/TestCube";
@@ -81,6 +82,7 @@ export const apps: App[][] = [
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
+		{ id: "testAi", roles: ["admin", "guest"], title: <T>{lang.testAi.title}</T>, icon: "test", component: <TestAi /> },
 		{ id: "testEdit", roles: ["admin", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
 		{ id: "testMfe", roles: ["admin", "guest"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
