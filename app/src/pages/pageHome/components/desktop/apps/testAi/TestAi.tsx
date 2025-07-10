@@ -20,13 +20,34 @@ export const TestAi = () => {
 		setTextAreaValue(e.currentTarget.value);
 	};
 
-	const handleSendClick = () => {
+	const handleSendClick = async () => {
+		if (!inputValue.trim()) {
+			return;
+		}
+
 		setIsLoading(true);
 
-		setTimeout(() => {
-			setIsLoading(false);
+		try {
+			const response = await fetch("http://localhost:5004/message", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ message: inputValue }),
+			});
+
+			if (!response.ok) {
+				throw new Error(`HTTP error! status: ${response.status}`);
+			}
+
+			const data = await response.json();
+			setTextAreaValue(() => `${data.response}\n\n`);
 			setInputValue("");
-		}, 2000);
+		} catch (error) {
+			setTextAreaValue((prev) => `${prev}Error: ${error}\n\n`);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -39,7 +60,7 @@ export const TestAi = () => {
 				<Text variant="body">Message</Text>
 
 				<S.Row>
-					<Input value={inputValue} onTextChange={handleInputChange} placeholder="" />
+					<Input value={inputValue} onTextChange={handleInputChange} onPressEnter={handleSendClick} placeholder="Type your message..." disabled={isLoading} />
 
 					<Button variant="styled" onClick={handleSendClick} disabled={isLoading}>
 						Send
@@ -50,7 +71,7 @@ export const TestAi = () => {
 					</S.LoaderContainer>
 				</S.Row>
 
-				<S.TextArea value={textAreaValue} onChange={handleTextAreaChange} placeholder="" rows={4} />
+				<S.TextArea value={textAreaValue} onChange={handleTextAreaChange} placeholder="Conversation will appear here..." rows={8} readOnly />
 			</S.Col>
 		</S.TestAi>
 	);

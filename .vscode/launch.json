@@ -3,7 +3,7 @@
 	"compounds": [
 		{
 			"name": "Run project",
-			"configurations": ["launch brave 5000", "app start", "frontend preview", "server websocket", "server redis"],
+			"configurations": ["launch brave 5000", "app start", "frontend preview", "server websocket", "server redis", "server ai"],
 			"stopAll": true,
 			"presentation": {
 				"group": "1",
@@ -257,6 +257,13 @@
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testRedis/server/"
+		},
+		{
+			"name": "server ai",
+			"command": "node server.js",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testAi/server/"
 		},
 		{
 			"name": "---------------------------------",
