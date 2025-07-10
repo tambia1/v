@@ -55,3 +55,41 @@ export const Title = styled(Text)`
 	font-weight: ${(props) => props.theme.font.title.weight};
 	font-size: ${(props) => props.theme.font.title.size};
 `;
+
+export const TextArea = styled.textarea`
+	width: 100%;
+	min-height: 6rem;
+	padding: 1rem;
+	box-sizing: border-box;
+
+	color: ${(props) => props.theme.color.primary800};
+	background-color: ${(props) => props.theme.color.primary100};
+	border: 1px solid ${(props) => props.theme.color.primary400};
+	border-radius: 0.5rem;
+
+	font-family: inherit;
+	font-size: inherit;
+	resize: vertical;
+	outline: none;
+
+	&:focus {
+		border-color: ${(props) => props.theme.color.primary600};
+	}
+
+	&:disabled {
+		color: ${(props) => props.theme.color.primary500};
+		background-color: ${(props) => props.theme.color.primary300};
+		cursor: not-allowed;
+		opacity: 0.6;
+	}
+`;
+
+export const LoaderContainer = styled.div<{ $isVisible: boolean }>`
+	display: flex;
+	justify-content: left;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem;
+	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+	transition: opacity 0.3s ease;
+`;
