@@ -1,7 +1,7 @@
 {
 	"name": "v",
 	"private": true,
-	"version": "1.4.62",
+	"version": "1.4.63",
 	"type": "module",
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
@@ -12,6 +12,8 @@
 		"deploy": "gh-pages -d ./dist",
 		"release": "node ./src/scripts/release.js",
 		"biome": "biome check .",
+		"biome:format": "biome format --write .",
+		"biome:fix": "biome check --write .",
 		"env:dev": "cross-env ENV=dev",
 		"env:qa": "cross-env ENV=qa",
 		"env:prod": "cross-env ENV=prod",

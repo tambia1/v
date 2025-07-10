@@ -1,9 +1,9 @@
 import { version } from "@src/../package.json";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { useLayoutEffect, useRef, useState } from "react";
-import * as S from "./PageHome.styles";
 import { Desktop } from "./components/desktop/Desktop";
 import { Splash } from "./components/splash/Splash";
+import * as S from "./PageHome.styles";
 
 export const PageHome = () => {
 	const refSplash = useRef(null);

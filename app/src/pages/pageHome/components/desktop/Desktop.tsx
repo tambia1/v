@@ -3,9 +3,9 @@ import { Modal } from "@src/components/modal/Modal";
 import { Pager } from "@src/components/pager/Pager";
 import { Suspension } from "@src/components/suspension/Suspension";
 import { useAnimation } from "@src/hooks/UseAnimation";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import type { LanguageName } from "@src/locales/i18n.types";
+import { T } from "@src/locales/T";
 import { ThemeStore } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/themes/store/ThemeStore";
 import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stores/StoreUser";
 import { useLocalesSearchParams } from "@src/pages/pageHome/hooks/useLocalesSearchParams";
@@ -17,13 +17,13 @@ import { type ErrorInfo, type ReactNode, useCallback, useLayoutEffect, useRef, u
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
-import { type App, apps } from "./Desktop.apps";
-import * as S from "./Desktop.styles";
-import { removeAppsNotFittingByRoles as getAppsByRoles, getExternalApps } from "./Desktop.utils";
 import { Api } from "./apps/user/api/Api";
 import { AppButton } from "./components/appButton/AppButton";
 import { BarDoneCancel } from "./components/barDoneCancel/BarDoneCancel";
 import { BarMain } from "./components/barMain/BarMain";
+import { type App, apps } from "./Desktop.apps";
+import * as S from "./Desktop.styles";
+import { removeAppsNotFittingByRoles as getAppsByRoles, getExternalApps } from "./Desktop.utils";
 import { BarMainContext } from "./hooks/UseBarMain";
 import { StoreApps } from "./stores/StoreApps";
 
@@ -168,9 +168,11 @@ export const Desktop = () => {
 								isPagerMoving.current = false;
 							}}
 						>
-							{appsByRole.map((appsGroup, i) => {
+							{appsByRole.map((appsGroup) => {
+								const grouId = appsGroup.map((app) => app.id).join("-");
+
 								return (
-									<S.AppGroup key={i}>
+									<S.AppGroup key={grouId}>
 										{appsGroup.map((app) => {
 											return (
 												<AppButton

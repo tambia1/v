@@ -1,7 +1,7 @@
 import { useMemo } from "react";
+import { Frame } from "./apps/frame/Frame";
 import type { App } from "./Desktop.apps";
 import type { Role } from "./Desktop.types";
-import { Frame } from "./apps/frame/Frame";
 import type { IApp as IStoreApp } from "./stores/StoreApps";
 
 export const removeAppsNotFittingByRoles = (apps: App[][], role: Role) => {

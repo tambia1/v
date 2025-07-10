@@ -3,6 +3,7 @@
 
 import * as fs from "node:fs";
 import * as path from "node:path";
+import federation from "@originjs/vite-plugin-federation";
 import react from "@vitejs/plugin-react";
 import * as dotenv from "dotenv";
 import { defineConfig, type Plugin, type PluginOption } from "vite";
@@ -34,6 +35,12 @@ export default defineConfig({
 		}) as unknown as Plugin,
 
 		styleX(),
+
+		federation({
+			remotes: {
+				remoteFrontend: "http://localhost:5001/v/assets/remote.js",
+			},
+		}),
 	],
 
 	server: {

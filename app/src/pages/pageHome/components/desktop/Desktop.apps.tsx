@@ -9,17 +9,16 @@ import { TestTransition } from "@apps/testTransition/TestTransition";
 import { Tetris } from "@apps/tetris/Tetris";
 import { User } from "@apps/user/User";
 import { Weather } from "@apps/weather/Weather";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import { ReactElement, ReactNode, lazy } from "react";
-import type { Role } from "./Desktop.types";
-import { EmojiFace } from "./apps/EmojiFace/EmojiFace";
+import { T } from "@src/locales/T";
+import { lazy, type ReactElement, type ReactNode } from "react";
 import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";
 import { ChickenScream } from "./apps/chickenScream/ChickenScream";
 import { Chwazi } from "./apps/chwazi/Chwazi";
 import { Debug } from "./apps/debug/Debug";
+import { EmojiFace } from "./apps/EmojiFace/EmojiFace";
 import { Redis } from "./apps/redis/Redis";
 import { Shush } from "./apps/shush/Shush";
 import { SmileClock } from "./apps/smileClock/SmileClock";
@@ -36,9 +35,12 @@ import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
 import { TestTree } from "./apps/testTree/TestTree";
 import type { AppIcon } from "./components/appButton/AppButton.styles";
+import type { Role } from "./Desktop.types";
 
 const Notes = lazy(() => import("@apps/notes/Notes").then((module) => ({ default: module.Notes })));
 const Calculator = lazy(() => import("@apps/calculator/Calculator").then((module) => ({ default: module.Calculator })));
+
+const TestMfe = lazy(() => import("remoteFrontend/Mfe").then((module) => ({ default: module.Mfe })));
 
 export type App = {
 	id: string;
@@ -80,6 +82,7 @@ export const apps: App[][] = [
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
 		{ id: "testEdit", roles: ["admin", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
+		{ id: "testMfe", roles: ["admin", "guest"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
 		{ id: "testTransition", roles: ["admin"], title: <T>{lang.testTransition.title}</T>, icon: "test", component: <TestTransition /> },
 		{ id: "testAnimation", roles: ["admin"], title: <T>{lang.testAnimation.title}</T>, icon: "test", component: <TestAnimation /> },
