@@ -260,7 +260,7 @@
 		},
 		{
 			"name": "server ai",
-			"command": "node server.js",
+			"command": "node serverAi.js",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testAi/server/"
