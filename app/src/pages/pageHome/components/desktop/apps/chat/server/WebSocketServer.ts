@@ -1,8 +1,8 @@
+import fs from "node:fs";
+import { log } from "@src/utils/Terminal";
 import https from "https";
-import fs from "fs";
 import WebSocket, { WebSocketServer } from "ws";
 import config from "./../../../../../../../config.json";
-import { log } from "@src/utils/Terminal";
 
 const HOST: string = config.host;
 const PORT: number = config.chat.port;
@@ -112,7 +112,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 
 		try {
 			data = JSON.parse(message);
-		} catch (error) {
+		} catch (_error) {
 			log("red", `Client sent invalid message: ${message}`);
 			return;
 		}
@@ -130,7 +130,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 				updateAllClients();
 				break;
 
-			case "message":
+			case "message": {
 				const message: Message = {
 					messageId: getUniqueId(),
 					time: Date.now(),
@@ -148,6 +148,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 
 				updateAllClients();
 				break;
+			}
 		}
 	});
 });
