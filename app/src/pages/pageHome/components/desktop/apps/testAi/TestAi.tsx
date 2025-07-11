@@ -4,13 +4,23 @@ import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useMcpClient } from "./hooks/useMcpClient";
 import * as S from "./TestAi.styles";
 
 export const TestAi = () => {
 	const [inputValue, setInputValue] = useState("");
 	const [textAreaValue, setTextAreaValue] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
+	const [mcpMode, setMcpMode] = useState<"tool" | "resource" | "prompt">("tool");
+
+	// Initialize MCP client
+	const mcpClient = useMcpClient("http://localhost:5004/mcp");
+
+	// Connect to MCP server on component mount
+	useEffect(() => {
+		mcpClient.connect();
+	}, [mcpClient.connect]);
 
 	const handleInputChange = (value: string) => {
 		setInputValue(value);
@@ -25,26 +35,44 @@ export const TestAi = () => {
 			return;
 		}
 
+		if (!mcpClient.isConnected) {
+			setTextAreaValue((prev) => `${prev}MCP Client not connected. Trying to connect...\n\n`);
+			try {
+				await mcpClient.connect();
+			} catch (error) {
+				setTextAreaValue((prev) => `${prev}Failed to connect to MCP server: ${error}\n\n`);
+				return;
+			}
+		}
+
 		setIsLoading(true);
 
 		try {
-			const response = await fetch("http://localhost:5004/message", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ message: inputValue }),
-			});
+			let result = "";
 
-			if (!response.ok) {
-				throw new Error(`HTTP error! status: ${response.status}`);
+			switch (mcpMode) {
+				case "tool":
+					// Call the echo tool
+					result = await mcpClient.callTool("echo", { message: inputValue });
+					break;
+				case "resource":
+					// Get a greeting resource
+					result = await mcpClient.getResource(`greeting://${encodeURIComponent(inputValue)}`);
+					break;
+				case "prompt": {
+					// Get a chat prompt
+					const promptResult = await mcpClient.getPrompt("chat", { message: inputValue });
+					result = `Prompt created with ${promptResult.messages?.length || 0} messages`;
+					break;
+				}
+				default:
+					result = "Unknown MCP mode";
 			}
 
-			const data = await response.json();
-			setTextAreaValue(() => `${data.response}\n\n`);
+			setTextAreaValue((prev) => `${prev}[${mcpMode.toUpperCase()}] ${result}\n\n`);
 			setInputValue("");
 		} catch (error) {
-			setTextAreaValue((prev) => `${prev}Error: ${error}\n\n`);
+			setTextAreaValue((prev) => `${prev}MCP Error: ${error}\n\n`);
 		} finally {
 			setIsLoading(false);
 		}
@@ -57,6 +85,24 @@ export const TestAi = () => {
 			</Text>
 
 			<S.Col>
+				<Text variant="body">MCP Mode</Text>
+				<S.Row>
+					<Button variant={mcpMode === "tool" ? "styled" : "stroke"} onClick={() => setMcpMode("tool")} disabled={isLoading}>
+						Tool
+					</Button>
+					<Button variant={mcpMode === "resource" ? "styled" : "stroke"} onClick={() => setMcpMode("resource")} disabled={isLoading}>
+						Resource
+					</Button>
+					<Button variant={mcpMode === "prompt" ? "styled" : "stroke"} onClick={() => setMcpMode("prompt")} disabled={isLoading}>
+						Prompt
+					</Button>
+				</S.Row>
+
+				<Text variant="body">
+					Connection: {mcpClient.isConnected ? "✅ Connected" : mcpClient.isConnecting ? "🔄 Connecting..." : "❌ Disconnected"}
+					{mcpClient.error && ` (${mcpClient.error})`}
+				</Text>
+
 				<Text variant="body">Message</Text>
 
 				<S.Row>
@@ -71,7 +117,7 @@ export const TestAi = () => {
 					</S.LoaderContainer>
 				</S.Row>
 
-				<S.TextArea value={textAreaValue} onChange={handleTextAreaChange} placeholder="Conversation will appear here..." rows={8} readOnly />
+				<S.TextArea value={textAreaValue} onChange={handleTextAreaChange} placeholder="MCP responses will appear here..." rows={8} readOnly />
 			</S.Col>
 		</S.TestAi>
 	);
