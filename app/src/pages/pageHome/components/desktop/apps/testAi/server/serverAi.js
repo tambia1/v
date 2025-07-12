@@ -1,12 +1,15 @@
 import { randomUUID } from "node:crypto";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import { McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
 import cors from "cors";
+// Removed zod import - using JSON Schema instead
+import dotenv from "dotenv";
 import express from "express";
-import { z } from "zod";
-
 import config from "./../../../../../../../config.json" with { type: "json" };
+
+// Load environment variables from .env file
+dotenv.config();
 
 // ANSI color codes
 const _colors = {
@@ -16,6 +19,20 @@ const _colors = {
 };
 
 const PORT = config.serverAi.port;
+
+// Initialize Gemini AI client
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "demo-key");
+
+// Check if we have a real API key
+const hasValidApiKey = process.env.GEMINI_API_KEY && process.env.GEMINI_API_KEY !== "demo-key";
+
+// Debug: Show API key status
+console.log(`${_colors.green}🔑 API Key Status:${_colors.reset}`);
+if (hasValidApiKey) {
+	console.log(`${_colors.green}✅ Gemini API key is set (${process.env.GEMINI_API_KEY.substring(0, 10)}...)${_colors.reset}`);
+} else {
+	console.log(`${_colors.red}❌ No Gemini API key found. Set GEMINI_API_KEY environment variable.${_colors.reset}`);
+}
 
 // Create Express app
 const app = express();
@@ -33,6 +50,95 @@ app.use(
 // Map to store transports by session ID
 const transports = {};
 
+// Global variable to store current tool call arguments
+let currentToolArgs = {};
+
+// AI Chat handler function
+async function _handleAiChat(args) {
+	const message = args?.message || "Hello";
+	const model = args?.model || "gemini-1.5-flash";
+
+	console.log(`${_colors.green}AI Chat called with message: ${message}${_colors.reset}`);
+
+	// Check if we have a valid API key
+	if (!hasValidApiKey) {
+		const demoResponse = `🤖 Demo AI Response: I received your message "${message}". To get real AI responses, please set your GEMINI_API_KEY environment variable. You can get one from https://aistudio.google.com/app/apikey`;
+		console.log(`${_colors.red}Demo response (no API key)${_colors.reset}`);
+		return {
+			content: [{ type: "text", text: demoResponse }],
+		};
+	}
+
+	try {
+		const model_instance = genAI.getGenerativeModel({ model: model });
+		const prompt = `You are a helpful AI assistant integrated into an MCP server. Be concise and helpful.
+
+User message: ${message}`;
+
+		const result = await model_instance.generateContent(prompt);
+		const response = result.response.text() || "Sorry, I couldn't generate a response.";
+		console.log(`${_colors.red}AI responding with: ${response.substring(0, 100)}...${_colors.reset}`);
+
+		return {
+			content: [{ type: "text", text: response }],
+		};
+	} catch (error) {
+		console.error("Gemini API error:", error);
+		const fallbackResponse = `AI Chat Error: ${error.message}. Please check your GEMINI_API_KEY and try again.`;
+		return {
+			content: [{ type: "text", text: fallbackResponse }],
+		};
+	}
+}
+
+// Code Generation handler function
+async function _handleCodeGeneration(args) {
+	const description = args?.description || "Create a simple function";
+	const language = args?.language || "javascript";
+
+	console.log(`${_colors.green}Code generation requested: ${description} (${language})${_colors.reset}`);
+
+	// Check if we have a valid API key
+	if (!hasValidApiKey) {
+		const demoCode = `// 🤖 Demo Code Generator
+// Description: ${description}
+// Language: ${language}
+//
+// This is a demo response. To get real AI-generated code,
+// please set your GEMINI_API_KEY environment variable.
+// Get one from: https://aistudio.google.com/app/apikey
+
+function demoFunction() {
+    console.log("This is demo ${language} code for: ${description}");
+    return "Set up your Gemini API key for real code generation!";
+}`;
+		console.log(`${_colors.red}Demo code response (no API key)${_colors.reset}`);
+		return {
+			content: [{ type: "text", text: demoCode }],
+		};
+	}
+
+	try {
+		const model_instance = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+		const prompt = `You are a code generation assistant. Generate clean, well-commented ${language} code based on the user's description. Only return the code, no explanations.
+
+Generate ${language} code for: ${description}`;
+
+		const result = await model_instance.generateContent(prompt);
+		const code = result.response.text() || "// Sorry, couldn't generate code";
+		console.log(`${_colors.red}Generated code (${code.length} chars)${_colors.reset}`);
+
+		return {
+			content: [{ type: "text", text: code }],
+		};
+	} catch (error) {
+		console.error("Code generation error:", error);
+		return {
+			content: [{ type: "text", text: `// Code generation failed: ${error.message}` }],
+		};
+	}
+}
+
 // Create MCP server instance
 function createMcpServer() {
 	const mcpServer = new McpServer({
@@ -40,21 +146,33 @@ function createMcpServer() {
 		version: "1.0.0",
 	});
 
-	// Register a simple echo tool
+	// Note: Manual tool handling removed due to API limitations
+
+	// Register AI chat tool
 	mcpServer.registerTool(
-		"echo",
+		"ai_chat",
 		{
-			title: "Echo Tool",
-			description: "Echoes back the provided message",
-			inputSchema: { message: z.string() },
+			title: "AI Chat",
+			description: "Chat with AI using Google Gemini",
 		},
-		async ({ message }) => {
-			console.log(`${_colors.green}Tool called with message: ${message}${_colors.reset}`);
-			const response = `Echo: ${message}`;
-			console.log(`${_colors.red}Tool responding with: ${response}${_colors.reset}`);
-			return {
-				content: [{ type: "text", text: response }],
-			};
+		async () => {
+			// Use captured arguments from middleware
+			const args = currentToolArgs.arguments || {};
+			return await _handleAiChat(args);
+		},
+	);
+
+	// Register code generation tool
+	mcpServer.registerTool(
+		"generate_code",
+		{
+			title: "Code Generator",
+			description: "Generate code based on description",
+		},
+		async () => {
+			// Use captured arguments from middleware
+			const args = currentToolArgs.arguments || {};
+			return await _handleCodeGeneration(args);
 		},
 	);
 
@@ -87,7 +205,7 @@ function createMcpServer() {
 		{
 			title: "Chat Prompt",
 			description: "Creates a chat prompt with the provided message",
-			argsSchema: { message: z.string() },
+			// Temporarily removing argsSchema to fix validation issue
 		},
 		({ message }) => {
 			console.log(`${_colors.green}Prompt requested with message: ${message}${_colors.reset}`);
@@ -108,60 +226,76 @@ function createMcpServer() {
 	return mcpServer;
 }
 
-// Add debug middleware
+// Add debug middleware and capture tool arguments
 app.use((req, _res, next) => {
 	console.log(`${_colors.green}${req.method} ${req.path}${_colors.reset}`);
+	if (req.method === "POST" && req.body) {
+		console.log(`${_colors.green}Request body:${_colors.reset}`, JSON.stringify(req.body, null, 2));
+
+		// Capture tool call arguments
+		if (req.body.method === "tools/call" && req.body.params) {
+			currentToolArgs = {
+				toolName: req.body.params.name,
+				arguments: req.body.params.arguments || {},
+			};
+			console.log(`${_colors.green}Captured tool args:${_colors.reset}`, JSON.stringify(currentToolArgs, null, 2));
+		}
+	}
 	next();
 });
 
 // Handle POST requests for client-to-server communication
 app.post("/mcp", async (req, res) => {
 	console.log(`${_colors.green}POST /mcp received${_colors.reset}`);
-	// Check for existing session ID
-	const sessionId = req.headers["mcp-session-id"];
-	let transport;
 
-	if (sessionId && transports[sessionId]) {
-		// Reuse existing transport
-		transport = transports[sessionId];
-	} else if (!sessionId && isInitializeRequest(req.body)) {
-		// New initialization request
-		transport = new StreamableHTTPServerTransport({
-			sessionIdGenerator: () => randomUUID(),
-			onsessioninitialized: (sessionId) => {
-				// Store the transport by session ID
-				transports[sessionId] = transport;
-			},
-			// DNS rebinding protection is disabled by default for backwards compatibility
-			enableDnsRebindingProtection: false,
-		});
+	try {
+		// Check for existing session ID
+		const sessionId = req.headers["mcp-session-id"];
+		let transport;
 
-		// Clean up transport when closed
-		transport.onclose = () => {
-			if (transport.sessionId) {
-				delete transports[transport.sessionId];
-			}
-		};
+		if (sessionId && transports[sessionId]) {
+			// Reuse existing transport
+			transport = transports[sessionId];
+			console.log(`${_colors.green}Using existing session: ${sessionId}${_colors.reset}`);
+		} else {
+			// Create new transport for any request (more permissive)
+			const newSessionId = randomUUID();
+			console.log(`${_colors.green}Creating new session: ${newSessionId}${_colors.reset}`);
 
-		const mcpServer = createMcpServer();
+			transport = new StreamableHTTPServerTransport({
+				sessionIdGenerator: () => newSessionId,
+				onsessioninitialized: (sessionId) => {
+					console.log(`${_colors.green}Session initialized: ${sessionId}${_colors.reset}`);
+					transports[sessionId] = transport;
+				},
+				enableDnsRebindingProtection: false,
+			});
 
-		// Connect to the MCP server
-		await mcpServer.connect(transport);
-	} else {
-		// Invalid request
-		res.status(400).json({
+			// Clean up transport when closed
+			transport.onclose = () => {
+				if (transport.sessionId) {
+					console.log(`${_colors.red}Session closed: ${transport.sessionId}${_colors.reset}`);
+					delete transports[transport.sessionId];
+				}
+			};
+
+			const mcpServer = createMcpServer();
+			await mcpServer.connect(transport);
+		}
+
+		// Handle the request
+		await transport.handleRequest(req, res, req.body);
+	} catch (error) {
+		console.error(`${_colors.red}Error handling MCP request:${_colors.reset}`, error);
+		res.status(500).json({
 			jsonrpc: "2.0",
 			error: {
-				code: -32000,
-				message: "Bad Request: No valid session ID provided",
+				code: -32603,
+				message: `Internal error: ${error.message}`,
 			},
-			id: null,
+			id: req.body?.id || null,
 		});
-		return;
 	}
-
-	// Handle the request
-	await transport.handleRequest(req, res, req.body);
 });
 
 // Reusable handler for GET and DELETE requests
@@ -189,10 +323,14 @@ app.use((req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
 	console.log(`MCP Server running on port ${PORT}`);
 	console.log(`MCP endpoint available at http://localhost:${PORT}/mcp`);
 });
+
+// Keep the server alive
+server.keepAliveTimeout = 60000;
+server.headersTimeout = 65000;
 
 // Handle graceful shutdown
 process.on("SIGINT", () => {

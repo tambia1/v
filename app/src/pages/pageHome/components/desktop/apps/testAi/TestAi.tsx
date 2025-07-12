@@ -13,6 +13,7 @@ export const TestAi = () => {
 	const [textAreaValue, setTextAreaValue] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	const [mcpMode, setMcpMode] = useState<"tool" | "resource" | "prompt">("tool");
+	const [selectedTool, setSelectedTool] = useState<"ai_chat" | "generate_code">("ai_chat");
 
 	// Initialize MCP client
 	const mcpClient = useMcpClient("http://localhost:5004/mcp");
@@ -52,8 +53,12 @@ export const TestAi = () => {
 
 			switch (mcpMode) {
 				case "tool":
-					// Call the echo tool
-					result = await mcpClient.callTool("echo", { message: inputValue });
+					// Call the selected AI tool
+					if (selectedTool === "ai_chat") {
+						result = await mcpClient.callTool("ai_chat", { message: inputValue });
+					} else if (selectedTool === "generate_code") {
+						result = await mcpClient.callTool("generate_code", { description: inputValue });
+					}
 					break;
 				case "resource":
 					// Get a greeting resource
@@ -98,6 +103,28 @@ export const TestAi = () => {
 					</Button>
 				</S.Row>
 
+				{mcpMode === "tool" && (
+					<>
+						<Text variant="body">AI Tool</Text>
+						<S.Row>
+							<Button
+								variant={selectedTool === "ai_chat" ? "styled" : "stroke"}
+								onClick={() => setSelectedTool("ai_chat")}
+								disabled={isLoading}
+							>
+								💬 AI Chat
+							</Button>
+							<Button
+								variant={selectedTool === "generate_code" ? "styled" : "stroke"}
+								onClick={() => setSelectedTool("generate_code")}
+								disabled={isLoading}
+							>
+								💻 Code Gen
+							</Button>
+						</S.Row>
+					</>
+				)}
+
 				<Text variant="body">
 					Connection: {mcpClient.isConnected ? "✅ Connected" : mcpClient.isConnecting ? "🔄 Connecting..." : "❌ Disconnected"}
 					{mcpClient.error && ` (${mcpClient.error})`}
@@ -106,7 +133,21 @@ export const TestAi = () => {
 				<Text variant="body">Message</Text>
 
 				<S.Row>
-					<Input value={inputValue} onTextChange={handleInputChange} onPressEnter={handleSendClick} placeholder="Type your message..." disabled={isLoading} />
+					<Input
+						value={inputValue}
+						onTextChange={handleInputChange}
+						onPressEnter={handleSendClick}
+						placeholder={
+							mcpMode === "tool"
+								? selectedTool === "ai_chat"
+									? "Ask the AI anything..."
+									: "Describe the code you want to generate..."
+								: mcpMode === "resource"
+									? "Enter a name for greeting..."
+									: "Enter a message for prompt..."
+						}
+						disabled={isLoading}
+					/>
 
 					<Button variant="styled" onClick={handleSendClick} disabled={isLoading}>
 						Send

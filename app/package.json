@@ -30,6 +30,7 @@
 	"dependencies": {
 		"@apollo/client": "3.13.8",
 		"@dotenvx/dotenvx": "1.47.3",
+		"@google/generative-ai": "^0.24.1",
 		"@modelcontextprotocol/sdk": "^1.15.1",
 		"@react-oauth/google": "0.12.2",
 		"@stylexjs/stylex": "0.14.1",

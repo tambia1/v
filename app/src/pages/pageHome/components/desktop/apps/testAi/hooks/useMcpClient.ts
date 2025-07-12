@@ -38,7 +38,7 @@ export const useMcpClient = (serverUrl: string): McpClientState & McpClientActio
 		setState((prev) => ({ ...prev, isConnecting: true, error: null }));
 
 		try {
-			// Create client
+			// Create client with unique session ID
 			const client = new Client({
 				name: "testAi-mcp-client",
 				version: "1.0.0",
@@ -47,8 +47,18 @@ export const useMcpClient = (serverUrl: string): McpClientState & McpClientActio
 			// Create transport
 			const transport = new StreamableHTTPClientTransport(new URL(serverUrl));
 
-			// Connect
-			await client.connect(transport);
+			// Connect with retry logic
+			let retries = 3;
+			while (retries > 0) {
+				try {
+					await client.connect(transport);
+					break;
+				} catch (error) {
+					retries--;
+					if (retries === 0) throw error;
+					await new Promise((resolve) => setTimeout(resolve, 1000));
+				}
+			}
 
 			clientRef.current = client;
 			transportRef.current = transport;
