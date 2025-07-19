@@ -263,7 +263,10 @@
 			"command": "node serverAi.js",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testAi/server/"
+			"cwd": "${workspaceFolder}/app/src/pages/pageHome/components/desktop/apps/testAi/server/",
+			"env": {
+				"GEMINI_API_KEY": "123123"
+			}
 		},
 		{
 			"name": "---------------------------------",
