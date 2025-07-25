@@ -11,8 +11,6 @@ export const TestAi = () => {
 	const [inputValue, setInputValue] = useState("");
 	const [textAreaValue, setTextAreaValue] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
-	const [mcpMode, _setMcpMode] = useState<"tool" | "resource" | "prompt">("tool");
-	const [selectedTool, _setSelectedTool] = useState<"ai_chat" | "generate_code">("ai_chat");
 
 	const handleInputChange = (value: string) => {
 		setInputValue(value);
@@ -41,21 +39,7 @@ export const TestAi = () => {
 
 			<S.Col>
 				<S.Row>
-					<Input
-						value={inputValue}
-						onTextChange={handleInputChange}
-						onPressEnter={handleSendClick}
-						placeholder={
-							mcpMode === "tool"
-								? selectedTool === "ai_chat"
-									? "Ask the AI anything..."
-									: "Describe the code you want to generate..."
-								: mcpMode === "resource"
-									? "Enter a name for greeting..."
-									: "Enter a message for prompt..."
-						}
-						disabled={isLoading}
-					/>
+					<Input value={inputValue} onTextChange={handleInputChange} onPressEnter={handleSendClick} placeholder={"Question"} disabled={isLoading} />
 
 					<Button variant="styled" onClick={handleSendClick} disabled={isLoading}>
 						Send
