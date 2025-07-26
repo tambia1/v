@@ -93,3 +93,67 @@ export const LoaderContainer = styled.div<{ $isVisible: boolean }>`
 	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
 	transition: opacity 0.3s ease;
 `;
+
+export const ConversationContainer = styled.div`
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding: 1rem;
+	background-color: ${(props) => props.theme.color.primary100};
+	border: 1px solid ${(props) => props.theme.color.primary400};
+	border-radius: 0.5rem;
+	overflow-y: auto;
+	max-height: 400px;
+	min-height: 200px;
+`;
+
+export const MessageBubble = styled.div<{ $isUser: boolean }>`
+	max-width: 80%;
+	padding: 0.75rem 1rem;
+	border-radius: 1rem;
+	margin-bottom: 0.5rem;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+
+	${(props) =>
+		props.$isUser
+			? `
+		align-self: flex-end;
+		background-color: ${props.theme.color.primary600};
+		color: ${props.theme.color.primary100};
+		border-bottom-right-radius: 0.25rem;
+	`
+			: `
+		align-self: flex-start;
+		background-color: ${props.theme.color.primary200};
+		color: ${props.theme.color.primary800};
+		border-bottom-left-radius: 0.25rem;
+	`}
+`;
+
+export const MessageTime = styled.div`
+	font-size: 0.75rem;
+	color: ${(props) => props.theme.color.primary500};
+	margin-top: 0.25rem;
+	text-align: right;
+`;
+
+export const EmptyState = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	color: ${(props) => props.theme.color.primary500};
+	text-align: center;
+	gap: 0.5rem;
+`;
+
+export const ControlsRow = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	align-items: center;
+	justify-content: space-between;
+`;
