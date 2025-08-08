@@ -11,7 +11,7 @@ export const Test = styled.div`
 	box-sizing: border-box;
 
 	color: ${(props) => props.theme.color.secondary900};
-	background-color: ${(props) => props.theme.color.secondary100};
+	background-color: ${(props) => props.theme.color.secondary300};
 `;
 
 export const Spacer = styled.div`

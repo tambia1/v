@@ -220,6 +220,10 @@ export type Home = {
 		title: string;
 	};
 
+	testAi: {
+		title: string;
+	};
+
 	testEdit: {
 		title: string;
 	};

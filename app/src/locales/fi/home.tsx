@@ -220,6 +220,10 @@ export const translation: Home = {
 		title: "Test\nCounter",
 	},
 
+	testAi: {
+		title: "Test\nAI",
+	},
+
 	testEdit: {
 		title: "Test\nEdit",
 	},
