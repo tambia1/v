@@ -303,13 +303,6 @@
 			"cwd": "${workspaceFolder}/app/"
 		},
 		{
-			"name": "Update vscode",
-			"command": "sudo apt update && sudo apt install code",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
 			"name": "---------------------------------",
 			"command": "",
 			"request": "launch",
