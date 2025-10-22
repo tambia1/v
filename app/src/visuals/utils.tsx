@@ -4,12 +4,11 @@ export const ANIMATION_TIME = 500;
 
 export const performLogin = async (page: Page) => {
 	await page.context().clearCookies();
-	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "commit" });
+	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "domcontentloaded" });
 
 	const splash = page.getByLabel("logo");
 	await expect(splash).toBeVisible();
-	const progress = page.getByLabel("progress");
-	await expect(progress).not.toBeVisible();
+	await expect(splash).not.toBeVisible();
 
 	const home = page.getByText("Guest");
 	await expect(home).toBeVisible();

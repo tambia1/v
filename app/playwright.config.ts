@@ -36,10 +36,18 @@ export default defineConfig({
 		},
 
 		ignoreHTTPSErrors: true,
+
+		// Ensure consistent font rendering
+		locale: 'en-US',
+		timezoneId: 'America/New_York',
 	},
 
 	expect: {
-		toHaveScreenshot: { maxDiffPixels: 200 },
+		toHaveScreenshot: {
+			maxDiffPixels: 200,
+			threshold: 0.2,
+			animations: 'disabled'
+		},
 	},
 
 	/* Configure projects for major browsers */
