@@ -5,7 +5,10 @@ import { defineConfig, devices } from "@playwright/test";
  * https://github.com/motdotla/dotenv
  */
 import dotenv from "dotenv";
-dotenv.config({ path: `./env/.env.${process.env.ENV}` });
+
+// Load environment variables with fallback
+const envFile = `./env/.env.${process.env.ENV || 'prod'}`;
+dotenv.config({ path: envFile });
 
 /**
  * See https://playwright.dev/docs/test-configuration.
