@@ -30,45 +30,17 @@ export default defineConfig({
 	use: {
 		/* Base URL to use in actions like `await page.goto('/')`. */
 		// baseURL: 'http://127.0.0.1:3000',
-
 		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
 		trace: "on-first-retry",
 		video: "on",
 		launchOptions: {
 			slowMo: 1000,
-			args: process.env.CI ? [
-				'--no-sandbox',
-				'--disable-setuid-sandbox',
-				'--disable-dev-shm-usage',
-				'--disable-gpu',
-				'--no-first-run',
-				'--disable-background-timer-throttling',
-				'--disable-backgrounding-occluded-windows',
-				'--disable-renderer-backgrounding'
-			] : [],
 		},
-
 		ignoreHTTPSErrors: true,
-
-		// Ensure consistent font rendering
-		locale: 'en-US',
-		timezoneId: 'America/New_York',
-
-		// Force consistent font rendering in CI
-		...(process.env.CI && {
-			colorScheme: 'light',
-			forcedColors: 'none',
-		}),
 	},
-
 	expect: {
-		toHaveScreenshot: {
-			maxDiffPixels: process.env.CI ? 1500 : 200,
-			threshold: 0.2,
-			animations: 'disabled'
-		},
+		toHaveScreenshot: { maxDiffPixels: 200 },
 	},
-
 	/* Configure projects for major browsers */
 	projects: [
 		{
