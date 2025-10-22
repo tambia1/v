@@ -32,12 +32,7 @@ test("Desktop", async ({ page }) => {
 	// Ensure fonts are loaded (critical for consistent screenshots)
 	await page.evaluate(() => document.fonts.ready);
 
-	// Debug: Check page content before screenshot (only in CI)
-	if (process.env.CI) {
-		const contentLength = (await page.content()).length;
-		const viewportSize = page.viewportSize();
-		console.log(`CI Debug - Content: ${contentLength} chars, Viewport: ${JSON.stringify(viewportSize)}`);
-	}
+
 
 	await expect(page).toHaveScreenshot("desktop-guest.png");
 

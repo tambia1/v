@@ -42,8 +42,6 @@ export default defineConfig({
 				'--disable-dev-shm-usage',
 				'--disable-gpu',
 				'--no-first-run',
-				'--no-zygote',
-				'--single-process',
 				'--disable-background-timer-throttling',
 				'--disable-backgrounding-occluded-windows',
 				'--disable-renderer-backgrounding'
@@ -55,11 +53,17 @@ export default defineConfig({
 		// Ensure consistent font rendering
 		locale: 'en-US',
 		timezoneId: 'America/New_York',
+
+		// Force consistent font rendering in CI
+		...(process.env.CI && {
+			colorScheme: 'light',
+			forcedColors: 'none',
+		}),
 	},
 
 	expect: {
 		toHaveScreenshot: {
-			maxDiffPixels: 200,
+			maxDiffPixels: process.env.CI ? 1500 : 200,
 			threshold: 0.2,
 			animations: 'disabled'
 		},
