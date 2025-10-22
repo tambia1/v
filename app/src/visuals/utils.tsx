@@ -3,15 +3,8 @@ import { type Page, expect } from "@playwright/test";
 export const ANIMATION_TIME = 500;
 
 export const performLogin = async (page: Page) => {
-	await page.context().clearCookies();
-
-	// Ensure VITE_BASE_URL is available
-	if (!process.env.VITE_BASE_URL) {
-		throw new Error("VITE_BASE_URL environment variable is not set");
-	}
-
-	// Ensure viewport is set correctly (especially important in CI)
 	await page.setViewportSize({ width: 390, height: 844 });
+	await page.context().clearCookies();
 
 	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "domcontentloaded" });
 
