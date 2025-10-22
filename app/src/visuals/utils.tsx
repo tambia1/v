@@ -4,6 +4,10 @@ export const ANIMATION_TIME = 500;
 
 export const performLogin = async (page: Page) => {
 	await page.context().clearCookies();
+
+	// Ensure viewport is set correctly (especially important in CI)
+	await page.setViewportSize({ width: 390, height: 844 });
+
 	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "domcontentloaded" });
 
 	const splash = page.getByLabel("logo");

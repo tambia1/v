@@ -3,6 +3,10 @@ import { ANIMATION_TIME } from "./utils";
 
 test("Desktop", async ({ page }) => {
 	await page.context().clearCookies();
+
+	// Ensure viewport is set correctly (especially important in CI)
+	await page.setViewportSize({ width: 390, height: 844 });
+
 	await page.goto(`${process.env.VITE_BASE_URL}`, { waitUntil: "domcontentloaded" });
 
 	// Wait for the splash screen to appear and then disappear
@@ -19,6 +23,16 @@ test("Desktop", async ({ page }) => {
 	// Wait for fonts and animations to complete
 	await page.waitForTimeout(ANIMATION_TIME);
 	await page.waitForLoadState('networkidle');
+
+	// Ensure fonts are loaded (critical for consistent screenshots)
+	await page.evaluate(() => document.fonts.ready);
+
+	// Debug: Check page content before screenshot (only in CI)
+	if (process.env.CI) {
+		const contentLength = (await page.content()).length;
+		const viewportSize = page.viewportSize();
+		console.log(`CI Debug - Content: ${contentLength} chars, Viewport: ${JSON.stringify(viewportSize)}`);
+	}
 
 	await expect(page).toHaveScreenshot("desktop-guest.png");
 

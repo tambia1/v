@@ -33,6 +33,18 @@ export default defineConfig({
 		video: "on",
 		launchOptions: {
 			slowMo: 1000,
+			args: process.env.CI ? [
+				'--no-sandbox',
+				'--disable-setuid-sandbox',
+				'--disable-dev-shm-usage',
+				'--disable-gpu',
+				'--no-first-run',
+				'--no-zygote',
+				'--single-process',
+				'--disable-background-timer-throttling',
+				'--disable-backgrounding-occluded-windows',
+				'--disable-renderer-backgrounding'
+			] : [],
 		},
 
 		ignoreHTTPSErrors: true,
