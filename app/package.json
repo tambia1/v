@@ -19,6 +19,7 @@
         "env:prod": "cross-env ENV=prod",
         "test:units": "vitest",
         "test:coverage": "vitest watch --coverage",
+        "test:visuals:install": "playwright install chromium",
         "test:visuals": "playwright test",
         "test:visuals:show": "playwright test --headed",
         "test:visuals:debug": "playwright test --debug",
