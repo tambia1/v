@@ -1,5 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
-import { logger } from "@src/pages/pageHome/components/desktop/apps/debug/Debug";
+import { useLoggerStore } from "@src/pages/pageHome/components/desktop/apps/debug/Debug";
 import { useMicrophone } from "@src/hooks/useMicrophone";
 import { useEffect, useRef, useState } from "react";
 import * as S from "./Shush.styles";
@@ -8,6 +8,7 @@ import shush1 from "./assets/shush_1.mp3";
 
 export const Shush = () => {
 	const { isListening, volume, audioContextRef } = useMicrophone();
+	const addLog = useLoggerStore((state) => state.addLog);
 	const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map());
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
@@ -17,9 +18,9 @@ export const Shush = () => {
 	// Pre-load audio files as AudioBuffers
 	useEffect(() => {
 		const loadAudioBuffers = async () => {
-			logger("Starting audio buffer loading...");
+			addLog("Starting audio buffer loading...");
 			if (!audioContextRef.current) {
-				logger("AudioContext not available yet, retrying...");
+				addLog("AudioContext not available yet, retrying...");
 				// Retry after a short delay
 				setTimeout(() => {
 					loadAudioBuffers();
@@ -28,25 +29,25 @@ export const Shush = () => {
 			}
 
 			const audioUrls = [shush0, shush1];
-			logger(`Audio URLs: ${audioUrls.join(", ")}`);
+			addLog(`Audio URLs: ${audioUrls.join(", ")}`);
 
 			for (const audioUrl of audioUrls) {
 				if (audioBuffersRef.current.has(audioUrl)) {
-					logger(`Audio buffer already loaded: ${audioUrl}`);
+					addLog(`Audio buffer already loaded: ${audioUrl}`);
 					continue;
 				}
 
 				try {
-					logger(`Fetching audio: ${audioUrl}`);
+					addLog(`Fetching audio: ${audioUrl}`);
 					const response = await fetch(audioUrl);
-					logger(`Fetch response status: ${response.status}`);
+					addLog(`Fetch response status: ${response.status}`);
 					const arrayBuffer = await response.arrayBuffer();
-					logger(`Array buffer size: ${arrayBuffer.byteLength}`);
+					addLog(`Array buffer size: ${arrayBuffer.byteLength}`);
 					const audioBuffer = await audioContextRef.current.decodeAudioData(arrayBuffer);
 					audioBuffersRef.current.set(audioUrl, audioBuffer);
-					logger(`Audio buffer loaded successfully: ${audioUrl}, duration: ${audioBuffer.duration}`);
+					addLog(`Audio buffer loaded successfully: ${audioUrl}, duration: ${audioBuffer.duration}`);
 				} catch (error) {
-					logger(`Error loading audio buffer: ${error}`);
+					addLog(`Error loading audio buffer: ${error}`);
 				}
 			}
 		};
@@ -57,13 +58,13 @@ export const Shush = () => {
 	const playAudio = () => {
 		try {
 			if (!audioContextRef.current) {
-				logger("AudioContext not available");
+				addLog("AudioContext not available");
 				setIsPlaying(false);
 				return;
 			}
 
 			if (audioContextRef.current.state === "suspended") {
-				audioContextRef.current.resume().catch((e) => logger(`Resume error: ${e}`));
+				audioContextRef.current.resume().catch((e) => addLog(`Resume error: ${e}`));
 			}
 
 			const audioUrls = [shush0, shush1];
@@ -72,12 +73,12 @@ export const Shush = () => {
 			const audioBuffer = audioBuffersRef.current.get(audioUrl);
 
 			if (!audioBuffer) {
-				logger(`Audio buffer not found for: ${audioUrl}`);
+				addLog(`Audio buffer not found for: ${audioUrl}`);
 				setIsPlaying(false);
 				return;
 			}
 
-			logger(`Playing audio: ${audioUrl}`);
+			addLog(`Playing audio: ${audioUrl}`);
 
 			const source = audioContextRef.current.createBufferSource();
 			source.buffer = audioBuffer;
@@ -86,7 +87,7 @@ export const Shush = () => {
 			let hasEnded = false;
 
 			const cleanup = () => {
-				logger("Cleanup called");
+				addLog("Cleanup called");
 				source.stop();
 				source.disconnect();
 				hasEnded = true;
@@ -94,32 +95,32 @@ export const Shush = () => {
 			};
 
 			source.onended = () => {
-				logger("Audio ended event fired");
+				addLog("Audio ended event fired");
 				if (!hasEnded) {
 					cleanup();
 				}
 			};
 
 			try {
-				logger("Calling source.start()");
+				addLog("Calling source.start()");
 				source.start(0);
-				logger("Audio play() succeeded");
+				addLog("Audio play() succeeded");
 
 				// Set a timeout as fallback in case ended event doesn't fire
 				setTimeout(() => {
-					logger("Audio timeout fallback triggered");
+					addLog("Audio timeout fallback triggered");
 					if (!hasEnded) {
 						cleanup();
 					}
 				}, (audioBuffer.duration + 0.5) * 1000);
 			} catch (error) {
-				logger(`Error calling start(): ${error}`);
+				addLog(`Error calling start(): ${error}`);
 				if (!hasEnded) {
 					cleanup();
 				}
 			}
 		} catch (error) {
-			logger(`Error playing audio: ${error}`);
+			addLog(`Error playing audio: ${error}`);
 			setIsPlaying(false);
 		}
 	};
@@ -130,7 +131,7 @@ export const Shush = () => {
 			const timeSinceLastPlay = now - lastPlayTimeRef.current;
 
 			if (timeSinceLastPlay >= MIN_PLAY_INTERVAL) {
-				logger(`Volume threshold reached: ${volume} >= ${maxVolume}`);
+				addLog(`Volume threshold reached: ${volume} >= ${maxVolume}`);
 				lastPlayTimeRef.current = now;
 				setIsPlaying(true);
 				playAudio();

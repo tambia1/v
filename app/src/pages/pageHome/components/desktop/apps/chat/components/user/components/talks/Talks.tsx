@@ -6,7 +6,7 @@ import config from "@src/config.json";
 import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
-import { logger } from "../../../../../debug/Debug";
+import { useLoggerStore } from "../../../../../debug/Debug";
 import type { Client, DataGet } from "../../../../Chat.types";
 import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import { useStoreTalk } from "../../stores/StoreTalk";
@@ -25,6 +25,7 @@ interface Props {
 
 export const Talks = ({ name, avatar }: Props) => {
 	const navigator = useNavigator();
+	const addLog = useLoggerStore((state) => state.addLog);
 
 	const { sendMessage } = useWebSocket({
 		url: `wss://[${HOST}]:${PORT}/`,
@@ -42,22 +43,22 @@ export const Talks = ({ name, avatar }: Props) => {
 	const [isModalVisible, setIsModalVisible] = useState(false);
 
 	const handleOnOpen = (event: Event) => {
-		logger(`handleOnOpen ${event.type}`);
+		addLog(`handleOnOpen ${event.type}`);
 	};
 
 	const handleOnClose = (event: CloseEvent) => {
-		logger(`handleOnClose ${event.type}, ${event.code}, ${event.reason}`);
+		addLog(`handleOnClose ${event.type}, ${event.code}, ${event.reason}`);
 	};
 
 	const handleOnError = (event: Event) => {
-		logger(`handleOnError: ${event.type}`);
+		addLog(`handleOnError: ${event.type}`);
 		setIsModalVisible(true);
 	};
 
 	const handleOnMessage = (event: MessageEvent) => {
 		const data: DataGet = JSON.parse(event.data as string);
 
-		logger(`handleOnMessage ${JSON.stringify(data)}`);
+		addLog(`handleOnMessage ${JSON.stringify(data)}`);
 
 		if (data.action === "connected") {
 			setClient({ clientId: data.clientId, clientName: name, clientAvatar: avatar });
