@@ -11,6 +11,8 @@ export const Shush = () => {
 	const audioContextRef = useRef<AudioContext | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
+	const lastPlayTimeRef = useRef<number>(0);
+	const MIN_PLAY_INTERVAL = 500; // Minimum 500ms between plays
 
 	// Initialize AudioContext on first user interaction
 	useEffect(() => {
@@ -58,86 +60,90 @@ export const Shush = () => {
 
 			console.log("Playing audio:", audioUrl);
 
-			let timeoutId: NodeJS.Timeout | null = null;
+			return new Promise<void>((resolve) => {
+				let timeoutId: NodeJS.Timeout | null = null;
 
-			// Handle audio end
-			const handleEnded = () => {
-				console.log("Audio ended");
-
-				if (timeoutId) {
-					clearTimeout(timeoutId);
-				}
-
-				audio.removeEventListener("ended", handleEnded);
-				audio.removeEventListener("error", handleError);
-				audio.removeEventListener("canplay", handleCanPlay);
-				setIsPlaying(false);
-			};
-
-			const handleError = (error: Event) => {
-				console.error("Audio playback error:", error);
-
-				if (timeoutId) {
-					clearTimeout(timeoutId);
-				}
-
-				audio.removeEventListener("ended", handleEnded);
-				audio.removeEventListener("error", handleError);
-				audio.removeEventListener("canplay", handleCanPlay);
-				setIsPlaying(false);
-			};
-
-			const handleCanPlay = () => {
-				console.log("Audio can play, attempting to play");
-				audio.removeEventListener("canplay", handleCanPlay);
-			};
-
-			audio.addEventListener("ended", handleEnded);
-			audio.addEventListener("error", handleError);
-			audio.addEventListener("canplay", handleCanPlay);
-
-			try {
-				console.log("Calling audio.play()");
-				await audio.play();
-				console.log("Audio play() succeeded, duration:", audio.duration);
-
-				// Fallback timeout in case ended event doesn't fire (iOS issue)
-				timeoutId = setTimeout(() => {
-					console.log("Audio timeout fallback triggered");
-
+				const cleanup = () => {
 					if (timeoutId) {
 						clearTimeout(timeoutId);
 					}
-
 					audio.removeEventListener("ended", handleEnded);
 					audio.removeEventListener("error", handleError);
-					audio.removeEventListener("canplay", handleCanPlay);
+					audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+				};
+
+				const handleEnded = () => {
+					console.log("Audio ended");
+					cleanup();
 					setIsPlaying(false);
-				}, (audio.duration + 0.5) * 1000);
-			} catch (error) {
-				console.error("Play promise rejected:", error);
+					resolve();
+				};
 
-				if (timeoutId) {
-					clearTimeout(timeoutId);
+				const handleError = (error: Event) => {
+					console.error("Audio playback error:", error);
+					cleanup();
+					setIsPlaying(false);
+					resolve();
+				};
+
+				const handleLoadedMetadata = () => {
+					console.log("Audio metadata loaded, duration:", audio.duration);
+				};
+
+				audio.addEventListener("ended", handleEnded);
+				audio.addEventListener("error", handleError);
+				audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+
+				try {
+					console.log("Calling audio.play()");
+					const playPromise = audio.play();
+
+					if (playPromise !== undefined) {
+						playPromise
+							.then(() => {
+								console.log("Audio play() succeeded");
+								// Set a timeout as fallback in case ended event doesn't fire
+								timeoutId = setTimeout(() => {
+									console.log("Audio timeout fallback triggered");
+									cleanup();
+									setIsPlaying(false);
+									resolve();
+								}, (audio.duration + 1) * 1000);
+							})
+							.catch((error) => {
+								console.error("Play promise rejected:", error);
+								cleanup();
+								setIsPlaying(false);
+								resolve();
+							});
+					}
+				} catch (error) {
+					console.error("Error calling play():", error);
+					cleanup();
+					setIsPlaying(false);
+					resolve();
 				}
-
-				setIsPlaying(false);
-			}
+			});
 		} catch (error) {
 			console.error("Error playing audio:", error);
-			
 			setIsPlaying(false);
 		}
 	};
 
 	useEffect(() => {
 		if (volume >= maxVolume && !isPlaying) {
-			console.log("Volume threshold reached:", volume, ">=", maxVolume);
-			setIsPlaying(true);
-			playAudio().catch((error) => {
-				console.error("playAudio failed:", error);
-				setIsPlaying(false);
-			});
+			const now = Date.now();
+			const timeSinceLastPlay = now - lastPlayTimeRef.current;
+
+			if (timeSinceLastPlay >= MIN_PLAY_INTERVAL) {
+				console.log("Volume threshold reached:", volume, ">=", maxVolume);
+				lastPlayTimeRef.current = now;
+				setIsPlaying(true);
+				playAudio().catch((error) => {
+					console.error("playAudio failed:", error);
+					setIsPlaying(false);
+				});
+			}
 		}
 	}, [volume, isPlaying, maxVolume]);
 
