@@ -9,95 +9,97 @@ import shush1 from "./assets/shush_1.mp3";
 export const Shush = () => {
 	const { isListening, volume, audioContextRef } = useMicrophone();
 	const audioUrlsRef = useRef([shush0, shush1]);
+	const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map());
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
 	const lastPlayTimeRef = useRef<number>(0);
 	const MIN_PLAY_INTERVAL = 500; // Minimum 500ms between plays
 
+	// Pre-load audio files as AudioBuffers
+	useEffect(() => {
+		const loadAudioBuffers = async () => {
+			if (!audioContextRef.current) return;
+
+			for (const audioUrl of audioUrlsRef.current) {
+				if (audioBuffersRef.current.has(audioUrl)) continue;
+
+				try {
+					logger(`Loading audio buffer: ${audioUrl}`);
+					const response = await fetch(audioUrl);
+					const arrayBuffer = await response.arrayBuffer();
+					const audioBuffer = await audioContextRef.current.decodeAudioData(arrayBuffer);
+					audioBuffersRef.current.set(audioUrl, audioBuffer);
+					logger(`Audio buffer loaded: ${audioUrl}`);
+				} catch (error) {
+					logger(`Error loading audio buffer: ${error}`);
+				}
+			}
+		};
+
+		loadAudioBuffers();
+	}, [audioContextRef]);
+
 	const playAudio = () => {
 		try {
-			if (audioContextRef.current && audioContextRef.current.state === "suspended") {
+			if (!audioContextRef.current) {
+				logger("AudioContext not available");
+				setIsPlaying(false);
+				return;
+			}
+
+			if (audioContextRef.current.state === "suspended") {
 				audioContextRef.current.resume().catch((e) => logger(`Resume error: ${e}`));
 			}
 
 			const randomIndex = Math.floor(Math.random() * audioUrlsRef.current.length);
 			const audioUrl = audioUrlsRef.current[randomIndex];
+			const audioBuffer = audioBuffersRef.current.get(audioUrl);
 
-			// Create a fresh audio element for each play to avoid state issues
-			const audio = new Audio(audioUrl);
-			audio.volume = 1.0;
+			if (!audioBuffer) {
+				logger(`Audio buffer not found for: ${audioUrl}`);
+				setIsPlaying(false);
+				return;
+			}
 
 			logger(`Playing audio: ${audioUrl}`);
 
-			let timeoutId: NodeJS.Timeout | null = null;
+			const source = audioContextRef.current.createBufferSource();
+			source.buffer = audioBuffer;
+			source.connect(audioContextRef.current.destination);
+
 			let hasEnded = false;
 
 			const cleanup = () => {
 				logger("Cleanup called");
-				if (timeoutId) {
-					clearTimeout(timeoutId);
-					timeoutId = null;
-				}
-				audio.pause();
-				audio.src = "";
-				audio.removeEventListener("ended", handleEnded);
-				audio.removeEventListener("error", handleError);
+				source.stop();
+				source.disconnect();
+				hasEnded = true;
+				setIsPlaying(false);
 			};
 
-			const handleEnded = () => {
+			source.onended = () => {
 				logger("Audio ended event fired");
 				if (!hasEnded) {
-					hasEnded = true;
 					cleanup();
-					setIsPlaying(false);
 				}
 			};
-
-			const handleError = (error: Event) => {
-				logger(`Audio playback error: ${error}`);
-				if (!hasEnded) {
-					hasEnded = true;
-					cleanup();
-					setIsPlaying(false);
-				}
-			};
-
-			audio.addEventListener("ended", handleEnded);
-			audio.addEventListener("error", handleError);
 
 			try {
-				logger("Calling audio.play()");
-				const playPromise = audio.play();
+				logger("Calling source.start()");
+				source.start(0);
+				logger("Audio play() succeeded");
 
-				if (playPromise !== undefined) {
-					playPromise
-						.then(() => {
-							logger("Audio play() succeeded");
-							// Set a timeout as fallback in case ended event doesn't fire
-							timeoutId = setTimeout(() => {
-								logger("Audio timeout fallback triggered");
-								if (!hasEnded) {
-									hasEnded = true;
-									cleanup();
-									setIsPlaying(false);
-								}
-							}, 3000); // 3 second timeout
-						})
-						.catch((error) => {
-							logger(`Play promise rejected: ${error}`);
-							if (!hasEnded) {
-								hasEnded = true;
-								cleanup();
-								setIsPlaying(false);
-							}
-						});
-				}
+				// Set a timeout as fallback in case ended event doesn't fire
+				setTimeout(() => {
+					logger("Audio timeout fallback triggered");
+					if (!hasEnded) {
+						cleanup();
+					}
+				}, (audioBuffer.duration + 0.5) * 1000);
 			} catch (error) {
-				logger(`Error calling play(): ${error}`);
+				logger(`Error calling start(): ${error}`);
 				if (!hasEnded) {
-					hasEnded = true;
 					cleanup();
-					setIsPlaying(false);
 				}
 			}
 		} catch (error) {
