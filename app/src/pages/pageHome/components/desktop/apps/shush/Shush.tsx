@@ -1,4 +1,5 @@
 import { Icon } from "@src/components/icon/Icon";
+import { logger } from "@src/pages/pageHome/components/desktop/apps/debug/Debug";
 import { useMicrophone } from "@src/hooks/useMicrophone";
 import { useEffect, useRef, useState } from "react";
 import * as S from "./Shush.styles";
@@ -13,20 +14,11 @@ export const Shush = () => {
 	const lastPlayTimeRef = useRef<number>(0);
 	const MIN_PLAY_INTERVAL = 500; // Minimum 500ms between plays
 
-	// Resume AudioContext if suspended (iOS requirement)
-	const resumeAudioContext = async () => {
-		if (audioContextRef.current && audioContextRef.current.state === "suspended") {
-			try {
-				await audioContextRef.current.resume();
-			} catch (error) {
-				console.error("Failed to resume AudioContext:", error);
-			}
-		}
-	};
-
-	const playAudio = async () => {
+	const playAudio = () => {
 		try {
-			await resumeAudioContext();
+			if (audioContextRef.current && audioContextRef.current.state === "suspended") {
+				audioContextRef.current.resume().catch((e) => logger(`Resume error: ${e}`));
+			}
 
 			const randomIndex = Math.floor(Math.random() * audioUrlsRef.current.length);
 			const audioUrl = audioUrlsRef.current[randomIndex];
@@ -35,95 +27,81 @@ export const Shush = () => {
 			const audio = new Audio(audioUrl);
 			audio.volume = 1.0;
 
-			console.log("Playing audio:", audioUrl);
+			logger(`Playing audio: ${audioUrl}`);
 
-			return new Promise<void>((resolve) => {
-				let timeoutId: NodeJS.Timeout | null = null;
-				let isResolved = false;
+			let timeoutId: NodeJS.Timeout | null = null;
+			let hasEnded = false;
 
-				const cleanup = () => {
-					console.log("Cleanup called");
-					if (timeoutId) {
-						clearTimeout(timeoutId);
-						timeoutId = null;
-					}
-					audio.removeEventListener("ended", handleEnded);
-					audio.removeEventListener("error", handleError);
-					audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
-					audio.pause();
-					audio.src = "";
-				};
+			const cleanup = () => {
+				logger("Cleanup called");
+				if (timeoutId) {
+					clearTimeout(timeoutId);
+					timeoutId = null;
+				}
+				audio.pause();
+				audio.src = "";
+				audio.removeEventListener("ended", handleEnded);
+				audio.removeEventListener("error", handleError);
+			};
 
-				const handleEnded = () => {
-					console.log("Audio ended event fired");
-					if (!isResolved) {
-						isResolved = true;
-						cleanup();
-						setIsPlaying(false);
-						resolve();
-					}
-				};
+			const handleEnded = () => {
+				logger("Audio ended event fired");
+				if (!hasEnded) {
+					hasEnded = true;
+					cleanup();
+					setIsPlaying(false);
+				}
+			};
 
-				const handleError = (error: Event) => {
-					console.error("Audio playback error:", error);
-					if (!isResolved) {
-						isResolved = true;
-						cleanup();
-						setIsPlaying(false);
-						resolve();
-					}
-				};
+			const handleError = (error: Event) => {
+				logger(`Audio playback error: ${error}`);
+				if (!hasEnded) {
+					hasEnded = true;
+					cleanup();
+					setIsPlaying(false);
+				}
+			};
 
-				const handleLoadedMetadata = () => {
-					console.log("Audio metadata loaded, duration:", audio.duration);
-				};
+			audio.addEventListener("ended", handleEnded);
+			audio.addEventListener("error", handleError);
 
-				audio.addEventListener("ended", handleEnded);
-				audio.addEventListener("error", handleError);
-				audio.addEventListener("loadedmetadata", handleLoadedMetadata);
+			try {
+				logger("Calling audio.play()");
+				const playPromise = audio.play();
 
-				try {
-					console.log("Calling audio.play()");
-					const playPromise = audio.play();
-
-					if (playPromise !== undefined) {
-						playPromise
-							.then(() => {
-								console.log("Audio play() succeeded, duration:", audio.duration);
-								// Set a timeout as fallback in case ended event doesn't fire
-								const duration = audio.duration || 2; // Default 2 seconds if duration is unknown
-								timeoutId = setTimeout(() => {
-									console.log("Audio timeout fallback triggered after", duration, "seconds");
-									if (!isResolved) {
-										isResolved = true;
-										cleanup();
-										setIsPlaying(false);
-										resolve();
-									}
-								}, (duration + 0.5) * 1000);
-							})
-							.catch((error) => {
-								console.error("Play promise rejected:", error);
-								if (!isResolved) {
-									isResolved = true;
+				if (playPromise !== undefined) {
+					playPromise
+						.then(() => {
+							logger("Audio play() succeeded");
+							// Set a timeout as fallback in case ended event doesn't fire
+							timeoutId = setTimeout(() => {
+								logger("Audio timeout fallback triggered");
+								if (!hasEnded) {
+									hasEnded = true;
 									cleanup();
 									setIsPlaying(false);
-									resolve();
 								}
-							});
-					}
-				} catch (error) {
-					console.error("Error calling play():", error);
-					if (!isResolved) {
-						isResolved = true;
-						cleanup();
-						setIsPlaying(false);
-						resolve();
-					}
+							}, 3000); // 3 second timeout
+						})
+						.catch((error) => {
+							logger(`Play promise rejected: ${error}`);
+							if (!hasEnded) {
+								hasEnded = true;
+								cleanup();
+								setIsPlaying(false);
+							}
+						});
 				}
-			});
+			} catch (error) {
+				logger(`Error calling play(): ${error}`);
+				if (!hasEnded) {
+					hasEnded = true;
+					cleanup();
+					setIsPlaying(false);
+				}
+			}
 		} catch (error) {
-			console.error("Error playing audio:", error);
+			logger(`Error playing audio: ${error}`);
 			setIsPlaying(false);
 		}
 	};
@@ -134,13 +112,10 @@ export const Shush = () => {
 			const timeSinceLastPlay = now - lastPlayTimeRef.current;
 
 			if (timeSinceLastPlay >= MIN_PLAY_INTERVAL) {
-				console.log("Volume threshold reached:", volume, ">=", maxVolume);
+				logger(`Volume threshold reached: ${volume} >= ${maxVolume}`);
 				lastPlayTimeRef.current = now;
 				setIsPlaying(true);
-				playAudio().catch((error) => {
-					console.error("playAudio failed:", error);
-					setIsPlaying(false);
-				});
+				playAudio();
 			}
 		}
 	}, [volume, isPlaying, maxVolume]);
