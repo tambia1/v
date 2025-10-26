@@ -21,8 +21,15 @@ export const useMicrophone = () => {
 				audioStreamRef.current = stream;
 				setIsListening(true);
 
-				const audioContext = new AudioContext();
+				// Use webkit prefix for iOS compatibility
+				const AudioContextClass = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
+				const audioContext = new AudioContextClass();
 				audioContextRef.current = audioContext;
+
+				// Resume AudioContext if suspended (iOS requirement)
+				if (audioContext.state === "suspended") {
+					await audioContext.resume();
+				}
 
 				const analyser = audioContext.createAnalyser();
 				analyserRef.current = analyser;
@@ -36,19 +43,22 @@ export const useMicrophone = () => {
 				gainNode.connect(analyser);
 
 				const checkVolume = () => {
-					const dataArray = new Uint8Array(analyser.frequencyBinCount);
-					analyser.getByteFrequencyData(dataArray);
+					// Only check volume if AudioContext is running
+					if (audioContext.state === "running") {
+						const dataArray = new Uint8Array(analyser.frequencyBinCount);
+						analyser.getByteFrequencyData(dataArray);
 
-					let sum = 0;
-					for (let i = 0; i < dataArray.length; i++) {
-						sum += dataArray[i];
+						let sum = 0;
+						for (let i = 0; i < dataArray.length; i++) {
+							sum += dataArray[i];
+						}
+
+						const averageVolume = sum / dataArray.length;
+						const normalizedVolume = averageVolume / 255;
+						setVolume(normalizedVolume);
+
+						setVolumeArray(dataArray);
 					}
-
-					const averageVolume = sum / dataArray.length;
-					const normalizedVolume = averageVolume / 255;
-					setVolume(normalizedVolume);
-
-					setVolumeArray(dataArray);
 
 					requestAnimationFrame(checkVolume);
 				};

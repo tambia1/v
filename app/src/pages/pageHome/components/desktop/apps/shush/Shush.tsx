@@ -7,22 +7,89 @@ import shush1 from "./assets/shush_1.mp3";
 
 export const Shush = () => {
 	const { isListening, volume } = useMicrophone();
-	const audioRefs = useRef([new Audio(shush0), new Audio(shush1)]);
+	const audioUrlsRef = useRef([shush0, shush1]);
+	const audioContextRef = useRef<AudioContext | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
+
+	// Initialize AudioContext on first user interaction
+	useEffect(() => {
+		const initAudioContext = () => {
+			if (!audioContextRef.current) {
+				try {
+					audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+				} catch (error) {
+					console.error("Failed to create AudioContext:", error);
+				}
+			}
+		};
+
+		// Initialize on first interaction
+		window.addEventListener("click", initAudioContext, { once: true });
+		window.addEventListener("touchstart", initAudioContext, { once: true });
+
+		return () => {
+			window.removeEventListener("click", initAudioContext);
+			window.removeEventListener("touchstart", initAudioContext);
+		};
+	}, []);
+
+	// Resume AudioContext if suspended (iOS requirement)
+	const resumeAudioContext = async () => {
+		if (audioContextRef.current && audioContextRef.current.state === "suspended") {
+			try {
+				await audioContextRef.current.resume();
+			} catch (error) {
+				console.error("Failed to resume AudioContext:", error);
+			}
+		}
+	};
+
+	const playAudio = async () => {
+		try {
+			await resumeAudioContext();
+
+			const randomIndex = Math.floor(Math.random() * audioUrlsRef.current.length);
+			const audioUrl = audioUrlsRef.current[randomIndex];
+
+			// Create a fresh audio element for each play to avoid state issues
+			const audio = new Audio(audioUrl);
+			audio.volume = 1.0;
+
+			// Handle audio end
+			const handleEnded = () => {
+				audio.removeEventListener("ended", handleEnded);
+				audio.removeEventListener("error", handleError);
+				setIsPlaying(false);
+			};
+
+			const handleError = (error: Event) => {
+				console.error("Audio playback error:", error);
+				audio.removeEventListener("ended", handleEnded);
+				audio.removeEventListener("error", handleError);
+				setIsPlaying(false);
+			};
+
+			audio.addEventListener("ended", handleEnded);
+			audio.addEventListener("error", handleError);
+
+			const playPromise = audio.play();
+			if (playPromise !== undefined) {
+				playPromise.catch((error) => {
+					console.error("Play promise rejected:", error);
+					setIsPlaying(false);
+				});
+			}
+		} catch (error) {
+			console.error("Error playing audio:", error);
+			setIsPlaying(false);
+		}
+	};
 
 	useEffect(() => {
 		if (volume >= maxVolume && !isPlaying) {
 			setIsPlaying(true);
-
-			const randomIndex = Math.floor(Math.random() * audioRefs.current.length);
-			const randomAudio = audioRefs.current[randomIndex];
-
-			randomAudio.play();
-
-			randomAudio.onended = () => {
-				setIsPlaying(false);
-			};
+			playAudio();
 		}
 	}, [volume, isPlaying, maxVolume]);
 
