@@ -8,7 +8,6 @@ import shush1 from "./assets/shush_1.mp3";
 
 export const Shush = () => {
 	const { isListening, volume, audioContextRef } = useMicrophone();
-	const audioUrlsRef = useRef([shush0, shush1]);
 	const audioBuffersRef = useRef<Map<string, AudioBuffer>>(new Map());
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
@@ -18,18 +17,34 @@ export const Shush = () => {
 	// Pre-load audio files as AudioBuffers
 	useEffect(() => {
 		const loadAudioBuffers = async () => {
-			if (!audioContextRef.current) return;
+			logger("Starting audio buffer loading...");
+			if (!audioContextRef.current) {
+				logger("AudioContext not available yet, retrying...");
+				// Retry after a short delay
+				setTimeout(() => {
+					loadAudioBuffers();
+				}, 100);
+				return;
+			}
 
-			for (const audioUrl of audioUrlsRef.current) {
-				if (audioBuffersRef.current.has(audioUrl)) continue;
+			const audioUrls = [shush0, shush1];
+			logger(`Audio URLs: ${audioUrls.join(", ")}`);
+
+			for (const audioUrl of audioUrls) {
+				if (audioBuffersRef.current.has(audioUrl)) {
+					logger(`Audio buffer already loaded: ${audioUrl}`);
+					continue;
+				}
 
 				try {
-					logger(`Loading audio buffer: ${audioUrl}`);
+					logger(`Fetching audio: ${audioUrl}`);
 					const response = await fetch(audioUrl);
+					logger(`Fetch response status: ${response.status}`);
 					const arrayBuffer = await response.arrayBuffer();
+					logger(`Array buffer size: ${arrayBuffer.byteLength}`);
 					const audioBuffer = await audioContextRef.current.decodeAudioData(arrayBuffer);
 					audioBuffersRef.current.set(audioUrl, audioBuffer);
-					logger(`Audio buffer loaded: ${audioUrl}`);
+					logger(`Audio buffer loaded successfully: ${audioUrl}, duration: ${audioBuffer.duration}`);
 				} catch (error) {
 					logger(`Error loading audio buffer: ${error}`);
 				}
@@ -51,8 +66,9 @@ export const Shush = () => {
 				audioContextRef.current.resume().catch((e) => logger(`Resume error: ${e}`));
 			}
 
-			const randomIndex = Math.floor(Math.random() * audioUrlsRef.current.length);
-			const audioUrl = audioUrlsRef.current[randomIndex];
+			const audioUrls = [shush0, shush1];
+			const randomIndex = Math.floor(Math.random() * audioUrls.length);
+			const audioUrl = audioUrls[randomIndex];
 			const audioBuffer = audioBuffersRef.current.get(audioUrl);
 
 			if (!audioBuffer) {
