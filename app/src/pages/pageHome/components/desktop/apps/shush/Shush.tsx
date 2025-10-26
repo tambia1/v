@@ -39,28 +39,39 @@ export const Shush = () => {
 
 			return new Promise<void>((resolve) => {
 				let timeoutId: NodeJS.Timeout | null = null;
+				let isResolved = false;
 
 				const cleanup = () => {
+					console.log("Cleanup called");
 					if (timeoutId) {
 						clearTimeout(timeoutId);
+						timeoutId = null;
 					}
 					audio.removeEventListener("ended", handleEnded);
 					audio.removeEventListener("error", handleError);
 					audio.removeEventListener("loadedmetadata", handleLoadedMetadata);
+					audio.pause();
+					audio.src = "";
 				};
 
 				const handleEnded = () => {
-					console.log("Audio ended");
-					cleanup();
-					setIsPlaying(false);
-					resolve();
+					console.log("Audio ended event fired");
+					if (!isResolved) {
+						isResolved = true;
+						cleanup();
+						setIsPlaying(false);
+						resolve();
+					}
 				};
 
 				const handleError = (error: Event) => {
 					console.error("Audio playback error:", error);
-					cleanup();
-					setIsPlaying(false);
-					resolve();
+					if (!isResolved) {
+						isResolved = true;
+						cleanup();
+						setIsPlaying(false);
+						resolve();
+					}
 				};
 
 				const handleLoadedMetadata = () => {
@@ -78,27 +89,37 @@ export const Shush = () => {
 					if (playPromise !== undefined) {
 						playPromise
 							.then(() => {
-								console.log("Audio play() succeeded");
+								console.log("Audio play() succeeded, duration:", audio.duration);
 								// Set a timeout as fallback in case ended event doesn't fire
+								const duration = audio.duration || 2; // Default 2 seconds if duration is unknown
 								timeoutId = setTimeout(() => {
-									console.log("Audio timeout fallback triggered");
-									cleanup();
-									setIsPlaying(false);
-									resolve();
-								}, (audio.duration + 1) * 1000);
+									console.log("Audio timeout fallback triggered after", duration, "seconds");
+									if (!isResolved) {
+										isResolved = true;
+										cleanup();
+										setIsPlaying(false);
+										resolve();
+									}
+								}, (duration + 0.5) * 1000);
 							})
 							.catch((error) => {
 								console.error("Play promise rejected:", error);
-								cleanup();
-								setIsPlaying(false);
-								resolve();
+								if (!isResolved) {
+									isResolved = true;
+									cleanup();
+									setIsPlaying(false);
+									resolve();
+								}
 							});
 					}
 				} catch (error) {
 					console.error("Error calling play():", error);
-					cleanup();
-					setIsPlaying(false);
-					resolve();
+					if (!isResolved) {
+						isResolved = true;
+						cleanup();
+						setIsPlaying(false);
+						resolve();
+					}
 				}
 			});
 		} catch (error) {
