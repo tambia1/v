@@ -65,7 +65,6 @@ export const useMicrophone = () => {
 
 				checkVolume();
 			} catch (error) {
-				console.error("Error accessing audio stream:", error);
 				setIsListening(false);
 			}
 		};
