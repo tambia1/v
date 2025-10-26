@@ -82,5 +82,5 @@ export const useMicrophone = () => {
 		};
 	}, []);
 
-	return { isListening, volume, volumeArray };
+	return { isListening, volume, volumeArray, audioContextRef };
 };

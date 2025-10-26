@@ -6,35 +6,12 @@ import shush0 from "./assets/shush_0.mp3";
 import shush1 from "./assets/shush_1.mp3";
 
 export const Shush = () => {
-	const { isListening, volume } = useMicrophone();
+	const { isListening, volume, audioContextRef } = useMicrophone();
 	const audioUrlsRef = useRef([shush0, shush1]);
-	const audioContextRef = useRef<AudioContext | null>(null);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [maxVolume, setMaxVolume] = useState(0.2);
 	const lastPlayTimeRef = useRef<number>(0);
 	const MIN_PLAY_INTERVAL = 500; // Minimum 500ms between plays
-
-	// Initialize AudioContext on first user interaction
-	useEffect(() => {
-		const initAudioContext = () => {
-			if (!audioContextRef.current) {
-				try {
-					audioContextRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
-				} catch (error) {
-					console.error("Failed to create AudioContext:", error);
-				}
-			}
-		};
-
-		// Initialize on first interaction
-		window.addEventListener("click", initAudioContext, { once: true });
-		window.addEventListener("touchstart", initAudioContext, { once: true });
-
-		return () => {
-			window.removeEventListener("click", initAudioContext);
-			window.removeEventListener("touchstart", initAudioContext);
-		};
-	}, []);
 
 	// Resume AudioContext if suspended (iOS requirement)
 	const resumeAudioContext = async () => {
