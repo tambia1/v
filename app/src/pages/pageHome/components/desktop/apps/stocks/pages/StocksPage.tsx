@@ -2,13 +2,13 @@ import { Icon } from "@src/components/icon/Icon";
 import type { IconName } from "@src/components/icon/Icon.types";
 import { List } from "@src/components/list/List";
 import { Loader } from "@src/components/loader/Loader";
-import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { T } from "@src/locales/T";
+import { Navigator } from "@src/components/navigator/Navigator";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { QueryStocks, type StockOk } from "../queries/QueryStocks";
-import * as S from "./StocksPage.styles";
 import { Stock } from "./components/stock/Stock";
+import * as S from "./StocksPage.styles";
 
 const iconMap: { [k: string]: IconName } = {
 	AAPL: "iconApple",

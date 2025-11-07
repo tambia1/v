@@ -26,6 +26,6 @@ export const useNotesStore = create<Props>()(
 			version: 1,
 			name: "notes",
 			storage: createJSONStorage(() => localStorage),
-		}
-	)
+		},
+	),
 );

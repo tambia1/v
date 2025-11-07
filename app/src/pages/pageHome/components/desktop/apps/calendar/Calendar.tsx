@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
-import * as S from "./Calendar.styles";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+import { useEffect, useRef } from "react";
+import * as S from "./Calendar.styles";
 
 export const Calendar = () => {
 	const currentDate = new Date();
@@ -53,7 +53,7 @@ export const Calendar = () => {
 
 										<S.MonthBox>
 											{Array.from({ length: startingDay }, (_, index) => (
-												<S.DayText key={`empty-${index}`} $selected={false}></S.DayText>
+												<S.DayText key={`empty-${index}`} $selected={false} />
 											))}
 
 											{Array.from({ length: daysInMonth }, (_, index) => (

@@ -24,6 +24,6 @@ export const StoreChat = create<Props>()(
 			version: 1.1,
 			name: "chat",
 			storage: createJSONStorage(() => localStorage),
-		}
-	)
+		},
+	),
 );

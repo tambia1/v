@@ -1,9 +1,9 @@
 import { Input } from "@src/components/input/Input";
 import { Text } from "@src/components/text/Text";
-import { type Node, Tree, findNode, highlightItems } from "@src/components/tree/Tree";
+import { findNode, highlightItems, type Node, Tree } from "@src/components/tree/Tree";
 import { useDebounce } from "@src/hooks/UseDebounce";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { useEffect, useState } from "react";
 import * as S from "./TestTree.styles";
 

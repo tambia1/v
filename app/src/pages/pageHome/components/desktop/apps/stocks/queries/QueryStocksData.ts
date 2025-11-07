@@ -72,7 +72,15 @@ export const stocksData = {
 		status: "ok",
 	},
 	AAPL: {
-		meta: { symbol: "AAPL", interval: "1min", currency: "USD", exchange_timezone: "America/New_York", exchange: "NASDAQ", mic_code: "XNGS", type: "Common Stock" },
+		meta: {
+			symbol: "AAPL",
+			interval: "1min",
+			currency: "USD",
+			exchange_timezone: "America/New_York",
+			exchange: "NASDAQ",
+			mic_code: "XNGS",
+			type: "Common Stock",
+		},
 		values: [
 			{ datetime: "2024-03-13 15:59:00", open: "171.16499", high: "171.19000", low: "171.10001", close: "171.17000", volume: "786513" },
 			{ datetime: "2024-03-13 15:58:00", open: "171.22501", high: "171.22501", low: "171.14000", close: "171.17000", volume: "427740" },
@@ -108,7 +116,15 @@ export const stocksData = {
 		status: "ok",
 	},
 	GOOG: {
-		meta: { symbol: "GOOG", interval: "1min", currency: "USD", exchange_timezone: "America/New_York", exchange: "NASDAQ", mic_code: "XNGS", type: "Common Stock" },
+		meta: {
+			symbol: "GOOG",
+			interval: "1min",
+			currency: "USD",
+			exchange_timezone: "America/New_York",
+			exchange: "NASDAQ",
+			mic_code: "XNGS",
+			type: "Common Stock",
+		},
 		values: [
 			{ datetime: "2024-03-13 15:59:00", open: "140.67999", high: "140.78999", low: "140.63000", close: "140.78101", volume: "304891" },
 			{ datetime: "2024-03-13 15:58:00", open: "140.75999", high: "140.75999", low: "140.67000", close: "140.67999", volume: "127037" },
@@ -144,7 +160,15 @@ export const stocksData = {
 		status: "ok",
 	},
 	MSFT: {
-		meta: { symbol: "MSFT", interval: "1min", currency: "USD", exchange_timezone: "America/New_York", exchange: "NASDAQ", mic_code: "XNGS", type: "Common Stock" },
+		meta: {
+			symbol: "MSFT",
+			interval: "1min",
+			currency: "USD",
+			exchange_timezone: "America/New_York",
+			exchange: "NASDAQ",
+			mic_code: "XNGS",
+			type: "Common Stock",
+		},
 		values: [
 			{ datetime: "2024-03-13 15:59:00", open: "415.04999", high: "415.29999", low: "414.85001", close: "415.20999", volume: "421894" },
 			{ datetime: "2024-03-13 15:58:00", open: "415.35999", high: "415.35999", low: "414.98999", close: "415.04999", volume: "180864" },
@@ -180,7 +204,15 @@ export const stocksData = {
 		status: "ok",
 	},
 	META: {
-		meta: { symbol: "META", interval: "1min", currency: "USD", exchange_timezone: "America/New_York", exchange: "NASDAQ", mic_code: "XNGS", type: "Common Stock" },
+		meta: {
+			symbol: "META",
+			interval: "1min",
+			currency: "USD",
+			exchange_timezone: "America/New_York",
+			exchange: "NASDAQ",
+			mic_code: "XNGS",
+			type: "Common Stock",
+		},
 		values: [
 			{ datetime: "2024-03-13 15:59:00", open: "495.64999", high: "495.76001", low: "495.26501", close: "495.67999", volume: "166571" },
 			{ datetime: "2024-03-13 15:58:00", open: "495.79001", high: "495.82001", low: "495.59000", close: "495.64001", volume: "64866" },

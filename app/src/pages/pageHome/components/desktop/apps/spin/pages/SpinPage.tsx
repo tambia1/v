@@ -1,14 +1,14 @@
 import { Button } from "@src/components/button/Button";
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
-import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { T } from "@src/locales/T";
+import { Navigator } from "@src/components/navigator/Navigator";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { useTranslation } from "react-i18next";
 import { useSpinStore } from "../store/UseSpinStore";
-import * as S from "./SpinPage.styles";
 import { SlotMachine } from "./components/slotMachine/SlotMachine";
+import * as S from "./SpinPage.styles";
 
 export const SpinPage = () => {
 	const navigator = useNavigator();

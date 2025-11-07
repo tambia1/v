@@ -39,11 +39,7 @@ export const SideMenu = <MenuItemId extends string>({
 	};
 
 	return (
-		<S.SideMenu
-			className={className}
-			{...rest}
-			onClick={handleOnClickBackground}
-		>
+		<S.SideMenu className={className} {...rest} onClick={handleOnClickBackground}>
 			<S.Container>
 				<S.Content>{children}</S.Content>
 
@@ -56,12 +52,7 @@ export const SideMenu = <MenuItemId extends string>({
 
 							<List>
 								{menuGroup.menuItems.map((menuItem) => (
-									<List.Cell
-										key={menuItem.id}
-										$isSelected={selectedMenuId === menuItem.id}
-										onClick={() => onClickItem(menuItem.id)}
-										$lineState="long"
-									>
+									<List.Cell key={menuItem.id} $isSelected={selectedMenuId === menuItem.id} onClick={() => onClickItem(menuItem.id)} $lineState="long">
 										{menuItem.content}
 									</List.Cell>
 								))}

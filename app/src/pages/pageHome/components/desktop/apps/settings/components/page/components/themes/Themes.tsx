@@ -1,12 +1,12 @@
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { type Theme, themes } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { useSearchParams } from "react-router-dom";
-import * as S from "./Themes.styles";
 import { ThemeStore } from "./store/ThemeStore";
+import * as S from "./Themes.styles";
 
 export const Themes = () => {
 	const { theme, setTheme } = useThemeContext();

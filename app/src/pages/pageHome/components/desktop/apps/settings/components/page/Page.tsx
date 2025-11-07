@@ -1,14 +1,14 @@
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
-import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { T } from "@src/locales/T";
+import { Navigator } from "@src/components/navigator/Navigator";
 import { lang } from "@src/locales/i18n";
-import * as S from "./Page.styles";
+import { T } from "@src/locales/T";
 import { About } from "./components/about/About";
 import { Language } from "./components/language/Language";
 import { Layout } from "./components/layout/Layout";
 import { Themes } from "./components/themes/Themes";
+import * as S from "./Page.styles";
 
 export const Page = () => {
 	const navigator = useNavigator();

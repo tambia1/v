@@ -2,8 +2,8 @@ import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import * as faceapi from "face-api.js";
 import { useEffect, useRef, useState } from "react";
-import * as S from "./SmileClock.styles";
 import alarm0 from "./assets/alarm_0.mp3";
+import * as S from "./SmileClock.styles";
 
 const statusIcons: { [K: string]: string } = {
 	default: "😶",

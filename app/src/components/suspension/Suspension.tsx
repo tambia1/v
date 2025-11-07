@@ -1,6 +1,6 @@
-import { useEffect, Suspense, ReactNode, useRef, ErrorInfo } from "react";
-import { SuspensionFallback } from "./SuspensionFallback";
+import { ErrorInfo, ReactNode, Suspense, useEffect, useRef } from "react";
 import ErrorBoundary from "./ErrorBoundary";
+import { SuspensionFallback } from "./SuspensionFallback";
 
 interface Props {
 	children?: ReactNode;

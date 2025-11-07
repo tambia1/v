@@ -1,15 +1,15 @@
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
 import { Modal } from "@src/components/modal/Modal";
-import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Navigator } from "@src/components/navigator/Navigator";
 import { Text } from "@src/components/text/Text";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { useState } from "react";
 import { useNotesStore } from "../store/UseNotesStore";
-import * as S from "./NotesPage.styles";
 import { NotesContent } from "./components/NotesContent/NotesContent";
+import * as S from "./NotesPage.styles";
 
 export const NotesPage = () => {
 	const navigator = useNavigator();

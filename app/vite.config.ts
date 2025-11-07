@@ -56,14 +56,8 @@ export default defineConfig({
 			"@assets": path.resolve(__dirname, "./src/assets"),
 			"@pages": path.resolve(__dirname, "./src/pages"),
 			"@components": path.resolve(__dirname, "./src/components"),
-			"@apps": path.resolve(
-				__dirname,
-				"./src/pages/pageHome/components/desktop/apps",
-			),
-			"@tanstack/react-query": path.resolve(
-				__dirname,
-				"../node_modules/@tanstack/react-query",
-			),
+			"@apps": path.resolve(__dirname, "./src/pages/pageHome/components/desktop/apps"),
+			"@tanstack/react-query": path.resolve(__dirname, "../node_modules/@tanstack/react-query"),
 		},
 	},
 

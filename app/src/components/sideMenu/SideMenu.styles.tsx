@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { List } from "../list/List.styles";
 import { Cell } from "../list/components/cell/Cell.styles";
 import { Section } from "../list/components/section/Section.styles";
+import { List } from "../list/List.styles";
 
 export const SideMenu = styled.div`
 	width: 100%;

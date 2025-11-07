@@ -6,8 +6,8 @@ const downloadImages = (urls: string[]) => {
 					const image = new Image();
 					image.onload = image.onerror = () => resolve();
 					image.src = url;
-				})
-		)
+				}),
+		),
 	);
 };
 

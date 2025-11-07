@@ -1,7 +1,7 @@
-import { T } from "@src/locales/T";
-import * as S from "./MessageBar.styles";
-import { useRef, useState } from "react";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
+import { useRef, useState } from "react";
+import * as S from "./MessageBar.styles";
 
 interface Props {
 	onClickSend: (content: string) => void;

@@ -1,4 +1,4 @@
-import { type HTMLAttributes, forwardRef, useImperativeHandle, useRef } from "react";
+import { forwardRef, type HTMLAttributes, useImperativeHandle, useRef } from "react";
 import { Icon } from "../icon/Icon";
 import type { IconName } from "../icon/Icon.types";
 import * as S from "./IconButton.styles";

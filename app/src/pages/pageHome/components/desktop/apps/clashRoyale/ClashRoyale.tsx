@@ -1,8 +1,8 @@
 import { Navigator } from "@src/components/navigator/Navigator";
+import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import * as S from "./ClashRoyale.styles";
 import { ClashRoyaleMenu } from "./pages/ClashRoyaleMenu";
-import { T } from "@src/locales/T";
-import { lang } from "@src/locales/i18n";
 
 export const ClashRoyale = () => {
 	return (

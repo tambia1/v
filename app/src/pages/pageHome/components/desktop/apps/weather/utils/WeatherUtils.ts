@@ -1,4 +1,4 @@
-import type { LocationCoordinates } from '../types/Weather.types';
+import type { LocationCoordinates } from "../types/Weather.types";
 
 export const getWeatherDescription = (code: number): string => {
 	const weatherCodes: { [key: number]: string } = {

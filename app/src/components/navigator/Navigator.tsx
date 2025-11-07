@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Icon } from "../icon/Icon";
-import * as S from "./Navigator.styles";
-import { type PageType } from "./Navigator.types";
 import { Item } from "./components/item/Item";
 import type { AnimationState } from "./components/item/Item.styles";
 import { Page } from "./components/page/Page";
 import { NavigatorContext } from "./hooks/UseNavigator";
+import * as S from "./Navigator.styles";
+import { type PageType } from "./Navigator.types";
 
 interface Props {
 	className?: string;

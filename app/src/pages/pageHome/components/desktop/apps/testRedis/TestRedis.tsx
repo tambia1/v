@@ -1,7 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { useState } from "react";
 import * as S from "./TestRedis.styles";
 

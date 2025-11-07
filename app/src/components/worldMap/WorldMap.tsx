@@ -1,6 +1,6 @@
 import React, { type ReactElement, type ReactNode, useEffect, useRef, useState } from "react";
-import * as S from "./WorldMap.styles";
 import { Pin } from "./components/pin/Pin";
+import * as S from "./WorldMap.styles";
 
 const MAP_FIX_W = -0.05;
 const MAP_FIX_H = 0.833;

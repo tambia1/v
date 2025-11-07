@@ -1,8 +1,8 @@
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
-import { T } from "@src/locales/T";
 import i18n, { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import * as S from "../../TestEdit.styles";
 
 export const ExampleList = () => {

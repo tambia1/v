@@ -60,8 +60,8 @@ export const themeLight: Theme = {
 	},
 
 	shadow: {
-		text: `1px 1px 3px`,
-		box: `2px 2px 10px -5px`,
+		text: "1px 1px 3px",
+		box: "2px 2px 10px -5px",
 	},
 
 	font: {

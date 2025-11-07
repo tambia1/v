@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
-import * as process from "process";
 import * as fs from "fs";
+import * as process from "process";
 
 function runBuild() {
 	try {
@@ -27,7 +27,7 @@ function commitAndPush(version) {
 }
 
 function readPackage() {
-	let fileContent = fs.readFileSync("./package.json", "utf8");
+	const fileContent = fs.readFileSync("./package.json", "utf8");
 	const json = JSON.parse(fileContent);
 
 	return json;
@@ -40,7 +40,7 @@ function savePackage(json) {
 function incrementVersion(version) {
 	let [_, major, minor, patch] = (version + "").match(/(\d+)\.?(\d+)\.?(\d+)/);
 
-	patch = parseInt(patch) + 1;
+	patch = Number.parseInt(patch) + 1;
 
 	return `${major}.${minor}.${patch}`;
 }
@@ -54,7 +54,7 @@ function release() {
 	runBuild();
 	commitAndPush(newVerion);
 
-	console.log("\u001b[34m" + `realse version: ` + "\u001b[0m" + "\u001b[32m" + `${newVerion}` + "\u001b[0m");
+	console.log("\u001b[34m" + "realse version: " + "\u001b[0m" + "\u001b[32m" + `${newVerion}` + "\u001b[0m");
 }
 
 release();

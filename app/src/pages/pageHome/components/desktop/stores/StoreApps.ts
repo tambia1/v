@@ -26,6 +26,6 @@ export const StoreApps = create<Props>()(
 			version: 1,
 			name: "apps",
 			storage: createJSONStorage(() => localStorage),
-		}
-	)
+		},
+	),
 );

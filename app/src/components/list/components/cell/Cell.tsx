@@ -14,19 +14,9 @@ export interface Props extends HTMLProps<HTMLDivElement> {
 	$lineState?: LineState;
 }
 
-export const Cell = ({
-	children,
-	$isEnabled,
-	$isSelected,
-	$lineState = "short",
-	...rest
-}: Props) => {
+export const Cell = ({ children, $isEnabled, $isSelected, $lineState = "short", ...rest }: Props) => {
 	return (
-		<S.Cell
-			$isEnabled={$isEnabled ?? true}
-			$isSelected={$isSelected ?? false}
-			{...rest}
-		>
+		<S.Cell $isEnabled={$isEnabled ?? true} $isSelected={$isSelected ?? false} {...rest}>
 			<S.Content>{children}</S.Content>
 			<S.Line $lineState={$lineState} />
 		</S.Cell>

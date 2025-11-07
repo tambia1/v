@@ -1,8 +1,8 @@
 import { type HTMLAttributes, type ReactElement, useEffect } from "react";
 import { Icon } from "../icon/Icon";
 import { List } from "../list/List";
-import * as S from "./PopupMenu.styles";
 import { Item } from "./components/item/Item";
+import * as S from "./PopupMenu.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;

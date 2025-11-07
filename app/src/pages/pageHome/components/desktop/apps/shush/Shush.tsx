@@ -1,10 +1,10 @@
 import { Icon } from "@src/components/icon/Icon";
-import { useLoggerStore } from "@src/pages/pageHome/components/desktop/apps/debug/Debug";
 import { useMicrophone } from "@src/hooks/useMicrophone";
+import { useLoggerStore } from "@src/pages/pageHome/components/desktop/apps/debug/Debug";
 import { useEffect, useRef, useState } from "react";
-import * as S from "./Shush.styles";
 import shush0 from "./assets/shush_0.mp3";
 import shush1 from "./assets/shush_1.mp3";
+import * as S from "./Shush.styles";
 
 export const Shush = () => {
 	const { isListening, volume, audioContextRef } = useMicrophone();
@@ -107,12 +107,15 @@ export const Shush = () => {
 				addLog("Audio play() succeeded");
 
 				// Set a timeout as fallback in case ended event doesn't fire
-				setTimeout(() => {
-					addLog("Audio timeout fallback triggered");
-					if (!hasEnded) {
-						cleanup();
-					}
-				}, (audioBuffer.duration + 0.5) * 1000);
+				setTimeout(
+					() => {
+						addLog("Audio timeout fallback triggered");
+						if (!hasEnded) {
+							cleanup();
+						}
+					},
+					(audioBuffer.duration + 0.5) * 1000,
+				);
 			} catch (error) {
 				addLog(`Error calling start(): ${error}`);
 				if (!hasEnded) {

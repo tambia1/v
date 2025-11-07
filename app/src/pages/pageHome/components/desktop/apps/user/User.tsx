@@ -1,16 +1,16 @@
 import { Button } from "@components/button/Button";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Loader } from "@src/components/loader/Loader";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stores/StoreUser";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { useBarMain } from "../../hooks/UseBarMain";
+import { Api } from "./api/Api";
 import * as S from "./User.styles";
 import type { Message } from "./User.types";
-import { Api } from "./api/Api";
 
 export const User = () => {
 	const { t } = useTranslation();

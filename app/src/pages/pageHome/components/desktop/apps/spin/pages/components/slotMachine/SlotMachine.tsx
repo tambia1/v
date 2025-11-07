@@ -1,7 +1,7 @@
 import { getRandomNumber } from "@src/utils/Random";
 import { useState } from "react";
-import * as S from "./SlotMachine.styles";
 import { Slot, type SlotState } from "./components/slot/Slot";
+import * as S from "./SlotMachine.styles";
 
 interface Props {
 	slotItems: string[];

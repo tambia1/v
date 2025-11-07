@@ -7,7 +7,7 @@ import { defineConfig, devices } from "@playwright/test";
 import dotenv from "dotenv";
 
 // Load environment variables with fallback
-const envFile = `./env/.env.${process.env.ENV || 'prod'}`;
+const envFile = `./env/.env.${process.env.ENV || "prod"}`;
 dotenv.config({ path: envFile });
 
 /**

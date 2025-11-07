@@ -1,4 +1,4 @@
-import styled, { type RuleSet, css } from "styled-components";
+import styled, { css, type RuleSet } from "styled-components";
 import caliper from "./images/caliper.png";
 import compass from "./images/compass.png";
 import speedometer from "./images/speedometer.png";

@@ -1,8 +1,8 @@
-import * as S from "./Stocks.styles";
 import { Navigator } from "@src/components/navigator/Navigator";
-import { StocksPage } from "./pages/StocksPage";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+import { StocksPage } from "./pages/StocksPage";
+import * as S from "./Stocks.styles";
 
 export const Stocks = () => {
 	return (

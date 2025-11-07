@@ -1,6 +1,6 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
-import type { WeatherResponse, WeatherQueryProps } from '../types/Weather.types';
-import { fetchWeatherData } from '../queries/WeatherApi';
+import { fetchWeatherData } from "../queries/WeatherApi";
+import type { WeatherQueryProps, WeatherResponse } from "../types/Weather.types";
 
 export const useWeatherQuery = (props: WeatherQueryProps = {}, options?: Partial<UseQueryOptions<WeatherResponse, Error>>) => {
 	const { coordinates, enabled = true } = props;

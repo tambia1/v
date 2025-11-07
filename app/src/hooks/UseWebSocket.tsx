@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-export interface TypeWebSocketSend {
-	(message: {}): void;
-}
+export type TypeWebSocketSend = (message: {}) => void;
 
 export interface TypeWebSocketMessage {
 	[key: string]: {};

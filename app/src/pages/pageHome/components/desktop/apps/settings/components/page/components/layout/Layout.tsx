@@ -1,7 +1,7 @@
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import type { BarPosition } from "@src/pages/pageHome/components/desktop/Desktop.styles";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";

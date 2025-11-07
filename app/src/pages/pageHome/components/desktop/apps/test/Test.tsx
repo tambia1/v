@@ -1,6 +1,6 @@
 import { Text } from "@src/components/text/Text";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import * as S from "./Test.styles";
 
 export const Test = () => {

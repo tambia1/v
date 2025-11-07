@@ -1,6 +1,6 @@
 import { useThemeContext } from "@src/theme/UseThemeContext";
-import * as stylex from "@stylexjs/stylex";
 import type { StyleXStyles } from "@stylexjs/stylex";
+import * as stylex from "@stylexjs/stylex";
 import { AnchorHTMLAttributes, ElementType, HTMLAttributes, ReactNode } from "react";
 
 export const themeVars = stylex.defineVars({

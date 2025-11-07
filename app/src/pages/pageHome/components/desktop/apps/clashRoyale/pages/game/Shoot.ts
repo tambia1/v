@@ -1,8 +1,7 @@
 import { Animation } from "./Animation";
-import { UtilsImage } from "./UtilsImage";
-
 import imageShoot1 from "./images/shoot/shoot_1_38_128.webp";
 import imageShoot2 from "./images/shoot/shoot_2_7_128.webp";
+import { UtilsImage } from "./UtilsImage";
 
 export type ShootType = "shoot1" | "shoot2";
 type ShootData = {

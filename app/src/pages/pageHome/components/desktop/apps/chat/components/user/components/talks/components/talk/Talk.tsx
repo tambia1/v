@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useStoreTalk } from "../../../../stores/StoreTalk";
 import type { AvatarType } from "../../../avatar/Avatar.styles";
-import * as S from "./Talk.styles";
 import { BubbleMe } from "./bubbleMe/BubbleMe";
 import { BubbleOther } from "./bubbleOther/BubbleOther";
 import { MessageBar } from "./messageBar/MessageBar";
+import * as S from "./Talk.styles";
 
 interface Props {
 	sendMessage: (message: string) => void;

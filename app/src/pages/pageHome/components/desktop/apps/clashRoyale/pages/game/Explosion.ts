@@ -1,6 +1,4 @@
 import { Animation } from "./Animation";
-import { UtilsImage } from "./UtilsImage";
-
 import imageExplosion1 from "./images/explosions/explosion_1_38_128.webp";
 import imageExplosion2 from "./images/explosions/explosion_2_38_128.webp";
 import imageExplosion3 from "./images/explosions/explosion_3_5_128.webp";
@@ -9,6 +7,7 @@ import imageExplosion5 from "./images/explosions/explosion_5_5_128.webp";
 import imageExplosion6 from "./images/explosions/explosion_6_35_128.webp";
 import imageExplosion7 from "./images/explosions/explosion_7_35_128.webp";
 import imageExplosion8 from "./images/explosions/explosion_8_35_128.webp";
+import { UtilsImage } from "./UtilsImage";
 
 export type ExplosionType = "explosion1" | "explosion2" | "explosion3" | "explosion4" | "explosion5" | "explosion6" | "explosion7" | "explosion8";
 type ExplosionData = {

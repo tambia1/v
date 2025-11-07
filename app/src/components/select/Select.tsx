@@ -1,10 +1,10 @@
 import type { Theme } from "@src/theme/Theme.types";
 import { type HTMLAttributes, type ReactElement, useEffect, useRef, useState } from "react";
 import { useTheme } from "styled-components";
-import * as S from "./Select.styles";
 import { Display } from "./components/display/Display";
 import { Items } from "./components/items/Items";
 import { ContextSelect } from "./context/UseContextSelect";
+import * as S from "./Select.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	className?: string;

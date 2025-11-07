@@ -54,10 +54,7 @@ export const ExampleSideMenu = () => {
 			>
 				<S.Col style={{ padding: "0rem", height: "15rem" }}>
 					<Text variant="body">Side Menu Content</Text>
-					<Text variant="body">
-						This is the main content area. The side menu slides in from the left
-						when you click the menu button.
-					</Text>
+					<Text variant="body">This is the main content area. The side menu slides in from the left when you click the menu button.</Text>
 					<Text variant="body">
 						Selected menu item: &nbsp;
 						<Text variant="body" color="info600">

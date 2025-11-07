@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import imageWorldMapLight from "./assets/world-map-light.png";
 import imageWorldMapDark from "./assets/world-map-dark.png";
+import imageWorldMapLight from "./assets/world-map-light.png";
 
 export const WorldMap = styled.div`
 	width: 100%;

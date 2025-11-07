@@ -1,5 +1,5 @@
 const showElmDetailsOnHoover = () => {
-	document.onmousemove = function (e) {
+	document.onmousemove = (e) => {
 		const target: HTMLDivElement = e.target as HTMLDivElement;
 		const computerStyle = window.getComputedStyle(target);
 		const rect = target.getBoundingClientRect();
@@ -22,7 +22,7 @@ const showElmDetailsOnHoover = () => {
 				"  border:" +
 				computerStyle.borderWidth +
 				"  pading:" +
-				computerStyle.padding
+				computerStyle.padding,
 		);
 	};
 };

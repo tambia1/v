@@ -1,7 +1,7 @@
-import * as S from "./Redis.styles";
 import { Home } from "./components/home/Home";
-import { User } from "./components/user/User";
 import { StoreUser } from "./components/user/stores/StoreUser";
+import { User } from "./components/user/User";
+import * as S from "./Redis.styles";
 
 export const Redis = () => {
 	const storeUser = StoreUser();

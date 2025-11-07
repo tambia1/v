@@ -1,8 +1,8 @@
 import { List } from "@src/components/list/List";
 import type { HTMLAttributes, ReactElement } from "react";
 import { useContextSelect } from "../../context/UseContextSelect";
-import * as S from "./Items.styles";
 import { Item } from "./components/item/Item";
+import * as S from "./Items.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {
 	children: ReactElement<{ value: string }>[];

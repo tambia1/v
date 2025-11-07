@@ -1,13 +1,13 @@
-import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Navigator } from "@src/components/navigator/Navigator";
 import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
-import * as S from "./User.styles";
 import { Avatar } from "./components/avatar/Avatar";
 import { type AvatarType, avatars } from "./components/avatar/Avatar.styles";
 import { NameBar } from "./components/messageBar/NameBar";
 import { Talks } from "./components/talks/Talks";
 import { StoreChat } from "./stores/StoreChat";
+import * as S from "./User.styles";
 
 export const User = () => {
 	const navigator = useNavigator();

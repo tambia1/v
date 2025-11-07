@@ -1,14 +1,14 @@
-import * as S from "./Tetris.styles";
 import { useEffect, useState } from "react";
+import * as S from "./Tetris.styles";
+import { Button } from "./tetrisGame/components/button/Button";
 import { TetrisState, useTetris } from "./tetrisGame/hooks/UseTetris";
 import { TetrisGame } from "./tetrisGame/TetrisGame";
-import { Button } from "./tetrisGame/components/button/Button";
 
 enum WarState {
-	Wait,
-	Start,
-	Play,
-	End,
+	Wait = 0,
+	Start = 1,
+	Play = 2,
+	End = 3,
 }
 
 export const Tetris = () => {
@@ -43,7 +43,7 @@ export const Tetris = () => {
 	}, [warState]);
 
 	useEffect(() => {
-		if (tetris1.isGameOver == true) {
+		if (tetris1.isGameOver === true) {
 			stopWar();
 		}
 	}, [tetris1.isGameOver]);

@@ -17,6 +17,7 @@ import imageSplashRed from "./images/splashRed.png";
 import imageSplashYellow from "./images/splashYellow.png";
 import imageStrawberry from "./images/strawberry.png";
 import imageWatermelon from "./images/watermelon.png";
+
 // import sounds from "./sounds/sounds.mp3";
 
 type Props = {

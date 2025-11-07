@@ -11,7 +11,17 @@ export const Scene = styled.div<{ $width: number; $height: number }>`
 	perspective: 800px;
 `;
 
-export const Container = styled.div<{ $width: number; $height: number; $depth: number; $x: number; $y: number; $z: number; $rotateX: number; $rotateY: number; $rotateZ: number }>`
+export const Container = styled.div<{
+	$width: number;
+	$height: number;
+	$depth: number;
+	$x: number;
+	$y: number;
+	$z: number;
+	$rotateX: number;
+	$rotateY: number;
+	$rotateZ: number;
+}>`
 	width: ${(props) => props.$width}px;
 	height: ${(props) => props.$height}px;
 	position: relative;

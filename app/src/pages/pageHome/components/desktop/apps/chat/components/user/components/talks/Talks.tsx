@@ -1,10 +1,10 @@
 import { List } from "@src/components/list/List";
 import { Modal } from "@src/components/modal/Modal";
-import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Navigator } from "@src/components/navigator/Navigator";
 import config from "@src/config.json";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { useState } from "react";
 import { useLoggerStore } from "../../../../../debug/Debug";
 import type { Client, DataGet } from "../../../../Chat.types";
@@ -12,8 +12,8 @@ import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import { useStoreTalk } from "../../stores/StoreTalk";
 import { Avatar } from "../avatar/Avatar";
 import type { AvatarType } from "../avatar/Avatar.styles";
-import * as S from "./Talks.styles";
 import { Talk } from "./components/talk/Talk";
+import * as S from "./Talks.styles";
 
 const HOST = config.host;
 const PORT = config.chat.port;

@@ -1,6 +1,6 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Search } from "@src/utils/Search";
-import { type ReactNode, createContext, useContext } from "react";
+import { createContext, type ReactNode, useContext } from "react";
 import * as S from "./Tree.styles";
 
 const TreeContext = createContext<{
@@ -182,7 +182,11 @@ const Nodes = ({
 	nodes,
 	Item,
 	Folder,
-}: { nodes: Node[]; Item: ({ item }: ItemProps) => ReactNode; Folder: ({ folder, Item, Folder }: FolderProps) => ReactNode }) => {
+}: {
+	nodes: Node[];
+	Item: ({ item }: ItemProps) => ReactNode;
+	Folder: ({ folder, Item, Folder }: FolderProps) => ReactNode;
+}) => {
 	return (
 		<S.Tree>
 			{nodes.map((node, index) => (

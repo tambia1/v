@@ -10,22 +10,9 @@ export interface Props {
 	variant?: keyof Theme["font"];
 }
 
-export const Text = ({
-	className,
-	children,
-	color = "currentColor",
-	bgcolor = "transparent",
-	variant = "body",
-	...rest
-}: Props) => {
+export const Text = ({ className, children, color = "currentColor", bgcolor = "transparent", variant = "body", ...rest }: Props) => {
 	return (
-		<S.Text
-			className={className}
-			$color={color}
-			$bgcolor={bgcolor}
-			$variant={variant}
-			{...rest}
-		>
+		<S.Text className={className} $color={color} $bgcolor={bgcolor} $variant={variant} {...rest}>
 			{children}
 		</S.Text>
 	);

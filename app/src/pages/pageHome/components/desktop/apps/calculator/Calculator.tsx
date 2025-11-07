@@ -15,7 +15,7 @@ export const Calculator = () => {
 		const newNumber = String(number) + String(arg);
 
 		setNumber(newNumber);
-		setDisplay(String(parseFloat(newNumber)));
+		setDisplay(String(Number.parseFloat(newNumber)));
 	};
 
 	const onClickOperand = (arg: string) => {
@@ -23,19 +23,19 @@ export const Calculator = () => {
 
 		switch (action) {
 			case "+":
-				newResult = newResult + parseFloat(number);
+				newResult = newResult + Number.parseFloat(number);
 				break;
 
 			case "-":
-				newResult = newResult - parseFloat(number);
+				newResult = newResult - Number.parseFloat(number);
 				break;
 
 			case "x":
-				newResult = newResult * parseFloat(number);
+				newResult = newResult * Number.parseFloat(number);
 				break;
 
 			case "÷":
-				newResult = newResult / parseFloat(number);
+				newResult = newResult / Number.parseFloat(number);
 				break;
 		}
 
@@ -59,15 +59,15 @@ export const Calculator = () => {
 				break;
 
 			case "±":
-				newNumber = String(parseFloat(number) * -1);
+				newNumber = String(Number.parseFloat(number) * -1);
 				break;
 
 			case "%":
-				newNumber = String(parseFloat(number) / 100);
+				newNumber = String(Number.parseFloat(number) / 100);
 				break;
 
 			case "":
-				newResult = parseFloat(number);
+				newResult = Number.parseFloat(number);
 				break;
 		}
 
@@ -75,7 +75,7 @@ export const Calculator = () => {
 		setNumber(newNumber);
 		setAction(newAction);
 
-		setDisplay(String(parseFloat(newNumber)));
+		setDisplay(String(Number.parseFloat(newNumber)));
 	};
 
 	return (

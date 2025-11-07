@@ -73,17 +73,17 @@ export const themeDark: Theme = {
 
 	size: {
 		size50: "0.5rem",
-		size100:  "1rem",
-		size150:  "1.5rem",
-		size200:  "2rem",
-		size250:  "2.5rem",
-		size300:  "3rem",
-		size400:  "4rem",
-		size500:  "5rem",
-		size600:  "8rem",
-		size700:  "10rem",
-		size800:  "20rem",
-		size900:  "30rem",
+		size100: "1rem",
+		size150: "1.5rem",
+		size200: "2rem",
+		size250: "2.5rem",
+		size300: "3rem",
+		size400: "4rem",
+		size500: "5rem",
+		size600: "8rem",
+		size700: "10rem",
+		size800: "20rem",
+		size900: "30rem",
 	},
 
 	image: {

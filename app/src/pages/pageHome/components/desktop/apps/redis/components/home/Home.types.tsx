@@ -1,7 +1,7 @@
 import { Icon } from "@src/components/icon/Icon";
 import type { MenuGroup } from "@src/components/sideMenu/SideMenu";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 
 export type MenuItemId = "dataCenter" | "dataAccess" | "settings" | "reports" | "payments" | "support" | "about";
 

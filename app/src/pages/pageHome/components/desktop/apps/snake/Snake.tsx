@@ -1,7 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { useLayoutEffect, useRef, useState } from "react";
-import * as S from "./Snake.styles";
 import { Game } from "./game/Game";
+import * as S from "./Snake.styles";
 
 export const Snake = () => {
 	const refBoards = [

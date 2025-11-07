@@ -1,8 +1,8 @@
 import { Button } from "@src/components/button/Button";
 import { Modal } from "@src/components/modal/Modal";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNotesStore } from "../../../store/UseNotesStore";

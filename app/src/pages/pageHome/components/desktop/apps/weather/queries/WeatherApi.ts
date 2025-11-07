@@ -1,4 +1,4 @@
-import type { LocationCoordinates, WeatherResponse } from '../types/Weather.types';
+import type { LocationCoordinates, WeatherResponse } from "../types/Weather.types";
 
 export const fetchWeatherData = async (coordinates: LocationCoordinates): Promise<WeatherResponse> => {
 	const { latitude, longitude } = coordinates;

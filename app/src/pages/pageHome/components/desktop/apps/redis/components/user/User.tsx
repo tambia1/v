@@ -1,14 +1,14 @@
 import { Button } from "@src/components/button/Button";
 import { Loader } from "@src/components/loader/Loader";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
 import { Api } from "../../api/Api";
+import { StoreUser } from "./stores/StoreUser";
 import * as S from "./User.styles";
 import type { Message } from "./User.types";
-import { StoreUser } from "./stores/StoreUser";
 
 export const User = () => {
 	const { t } = useTranslation();

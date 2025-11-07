@@ -1,4 +1,4 @@
-import { type Dispatch, type ReactElement, type SetStateAction, createContext, useContext } from "react";
+import { createContext, type Dispatch, type ReactElement, type SetStateAction, useContext } from "react";
 
 export const ContextSelect = createContext<{
 	isOpen: boolean;

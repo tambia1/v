@@ -1,6 +1,6 @@
-import * as S from "./Stepper.styles";
 import { Button } from "./components/button/Button";
 import { Compose } from "./components/compose/Compose";
+import * as S from "./Stepper.styles";
 
 export type Props = {
 	className?: string;

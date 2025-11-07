@@ -1,11 +1,11 @@
 import { Card } from "@src/components/card/Card";
 import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
-import { T } from "@src/locales/T";
 import { lang } from "@src/locales/i18n";
-import * as S from "./Weather.styles";
+import { T } from "@src/locales/T";
 import { useCurrentLocationWeather } from "./hooks/UseCurrentLocationWeather";
 import { getWeatherDescription } from "./utils/WeatherUtils";
+import * as S from "./Weather.styles";
 
 export const Weather = () => {
 	const { locationQuery, weatherQuery, isLoading, error, data } = useCurrentLocationWeather();

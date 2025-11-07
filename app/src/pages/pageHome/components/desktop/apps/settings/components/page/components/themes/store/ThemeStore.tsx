@@ -20,6 +20,6 @@ export const ThemeStore = create<Props>()(
 			version: 1,
 			name: "backgroundImageIndex",
 			storage: createJSONStorage(() => localStorage),
-		}
-	)
+		},
+	),
 );
