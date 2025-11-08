@@ -79,13 +79,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 			message: "Disconnected",
 		};
 
-		messages.push(message);
-
-		if (messages.length > 100) {
-			messages.shift();
-		}
-
-		ws.send(JSON.stringify({ action: "message", clientId: ws.clientId, messages: messages }));
+		sendMessage(message);
 	});
 
 	ws.on("message", (messageReceived: string) => {
@@ -109,24 +103,28 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 				message: data.message,
 			};
 
-			messages.push(message);
-
-			if (messages.length > 100) {
-				messages.shift();
-			}
-
-			wss.clients.forEach((client) => {
-				if (client.readyState === WebSocket.OPEN) {
-					const extendedClient = client as ExtendedWebSocket;
-
-					extendedClient.send(JSON.stringify({ action: "message", clientId: extendedClient.clientId, messages: messages }));
-				}
-			});
+			sendMessage(message);
 		} catch (_error) {
 			log("red", `Client sent invalid message: ${messageReceived}`);
 		}
 	});
 });
+
+function sendMessage(message: Message) {
+	messages.push(message);
+
+	if (messages.length > 100) {
+		messages.shift();
+	}
+
+	wss.clients.forEach((client) => {
+		if (client.readyState === WebSocket.OPEN) {
+			const extendedClient = client as ExtendedWebSocket;
+
+			extendedClient.send(JSON.stringify({ action: "message", clientId: extendedClient.clientId, messages: messages }));
+		}
+	});
+}
 
 function getUniqueId(): string {
 	const getRandomNumber = (): string => {

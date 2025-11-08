@@ -81,7 +81,12 @@ export const Talk = ({ name, avatar }: Props) => {
 								<BubbleMe key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as AvatarType} />
 							)}
 							{message.clientId !== client.clientId && (
-								<BubbleOther key={message.messageId} content={message.message} avatar={message.clientAvatar as unknown as AvatarType} />
+								<BubbleOther
+									key={message.messageId}
+									content={message.message}
+									name={message.clientName}
+									avatar={message.clientAvatar as unknown as AvatarType}
+								/>
 							)}
 						</S.Message>
 					))}

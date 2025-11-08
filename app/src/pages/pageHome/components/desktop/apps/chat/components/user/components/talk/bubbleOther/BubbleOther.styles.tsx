@@ -16,3 +16,15 @@ export const BubbleOtherMessage = styled.div`
 	white-space: pre-line;
 	max-width: 10rem;
 `;
+
+export const BubbleOtherName = styled.div`
+	margin: 0.5rem 1rem;
+	white-space: pre-line;
+	max-width: 10rem;
+	font-weight: bold;
+`;
+
+export const MessageContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+`;
