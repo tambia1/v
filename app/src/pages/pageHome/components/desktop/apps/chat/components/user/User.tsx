@@ -8,6 +8,7 @@ import { NameBar } from "./components/messageBar/NameBar";
 import { Talks } from "./components/talks/Talks";
 import { StoreChat } from "./stores/StoreChat";
 import * as S from "./User.styles";
+import { getUniqueId } from "@src/utils/UniqueId";
 
 export const User = () => {
 	const navigator = useNavigator();
@@ -31,7 +32,7 @@ export const User = () => {
 
 	return (
 		<S.Name>
-			<NameBar name={storeChat.name} onClickSet={handleOnClickSet} />
+			<NameBar name={storeChat.name || `user-${getUniqueId()}`} onClickSet={handleOnClickSet} />
 
 			<S.PagingContainer>
 				<Pager
