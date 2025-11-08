@@ -8,7 +8,7 @@ export const ClashRoyale = () => {
 	return (
 		<S.ClashRoyale>
 			<Navigator>
-				<Navigator.Page id="app" title={<T>{lang.clashRoyale.title}</T>}>
+				<Navigator.Page name="app" title={<T>{lang.clashRoyale.title}</T>}>
 					<ClashRoyaleMenu />
 				</Navigator.Page>
 			</Navigator>

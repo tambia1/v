@@ -19,7 +19,7 @@ export const User = () => {
 		storeChat.setAvatar(pageIndex);
 
 		navigator.pushPage(
-			<Navigator.Page id="talks" title={userName}>
+			<Navigator.Page name="talks" title={userName}>
 				<Talks name={userName} avatar={pageIndex} />
 			</Navigator.Page>,
 		);

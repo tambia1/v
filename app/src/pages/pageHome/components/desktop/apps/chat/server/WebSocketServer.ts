@@ -4,7 +4,7 @@ import https from "https";
 import WebSocket, { WebSocketServer } from "ws";
 import config from "./../../../../../../../config.json";
 
-const HOST: string = config.host;
+const HOST: string = "0.0.0.0";
 const PORT: number = config.chat.port;
 
 type Message = {
@@ -56,10 +56,21 @@ type MessageGet =
 
 const messages: Message[] = [];
 
-const server = https.createServer({
-	key: fs.readFileSync("key.pem"),
-	cert: fs.readFileSync("cert.pem"),
-});
+const server = https.createServer(
+	{
+		key: fs.readFileSync("key.pem"),
+		cert: fs.readFileSync("cert.pem"),
+	},
+	(req, res) => {
+		if (req.url === "/" && req.method === "GET") {
+			res.writeHead(200, { "Content-Type": "text/plain" });
+			res.end("chat server live");
+		} else {
+			res.writeHead(404, { "Content-Type": "text/plain" });
+			res.end("Not Found");
+		}
+	},
+);
 
 server.listen(PORT, HOST, () => {
 	log("green", `WebSockets server running at wss://[${HOST}]:${PORT}`);

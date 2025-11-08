@@ -36,7 +36,7 @@ export const Datacenter = () => {
 
 	const handleOnClickSubscription = (subscriptionId: number) => {
 		navigator.pushPage(
-			<Navigator.Page id="subscription" title={<T>{lang.redis.subscription.title}</T>}>
+			<Navigator.Page name="subscription" title={<T>{lang.redis.subscription.title}</T>}>
 				<Subscription subscriptionId={subscriptionId} />
 			</Navigator.Page>,
 		);
@@ -44,7 +44,7 @@ export const Datacenter = () => {
 
 	const handleOnClickDatabase = (databaseId: number) => {
 		navigator.pushPage(
-			<Navigator.Page id="database" title={<T>{lang.redis.database.title}</T>}>
+			<Navigator.Page name="database" title={<T>{lang.redis.database.title}</T>}>
 				<Database databaseId={databaseId} />
 			</Navigator.Page>,
 		);
@@ -68,7 +68,7 @@ export const Datacenter = () => {
 
 	const handleOnClickCreate = () => {
 		navigator.pushPage(
-			<Navigator.Page id="create" title={<T>{lang.redis.create.title}</T>}>
+			<Navigator.Page name="create" title={<T>{lang.redis.create.title}</T>}>
 				<Create />
 			</Navigator.Page>,
 		);

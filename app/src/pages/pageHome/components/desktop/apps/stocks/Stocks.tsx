@@ -8,7 +8,7 @@ export const Stocks = () => {
 	return (
 		<S.Stocks>
 			<Navigator>
-				<Navigator.Page id="app" title={<T>{lang.stocks.title}</T>}>
+				<Navigator.Page name="app" title={<T>{lang.stocks.title}</T>}>
 					<StocksPage />
 				</Navigator.Page>
 			</Navigator>

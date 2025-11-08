@@ -8,7 +8,7 @@ export const Settings = () => {
 	return (
 		<S.Settings>
 			<Navigator>
-				<Navigator.Page id="app" title={<T>{lang.settings.title}</T>}>
+				<Navigator.Page name="app" title={<T>{lang.settings.title}</T>}>
 					<Page />
 				</Navigator.Page>
 			</Navigator>

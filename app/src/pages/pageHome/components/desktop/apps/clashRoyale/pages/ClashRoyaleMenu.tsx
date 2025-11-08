@@ -14,7 +14,7 @@ export const ClashRoyaleMenu = () => {
 
 	const handleOnClickStart = () => {
 		navigator.pushPage(
-			<Navigator.Page id={"game"} title={"Game"}>
+			<Navigator.Page name={"game"} title={"Game"}>
 				<ClashRoyaleGame arenaType={Arenas[pageIndex]} />
 			</Navigator.Page>,
 		);

@@ -182,7 +182,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 					</S.Back>
 					<S.Header>
 						{navigatorItems.map((navigatorItem) => (
-							<Item key={navigatorItem.page.props.id} animation={navigatorItem.titleAnimation}>
+							<Item key={navigatorItem.page.props.name} animation={navigatorItem.titleAnimation}>
 								{navigatorItem.page.props.title}
 							</Item>
 						))}
@@ -191,7 +191,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 				<S.Pages>
 					{navigatorItems.map((navigatorItem) => (
 						<Item
-							key={navigatorItem.page.props.id}
+							key={navigatorItem.page.props.name}
 							animation={navigatorItem.pageAnimation}
 							onAnimStart={() => onAnimationStart(navigatorItem)}
 							onAnimEnd={() => onAnimationEnd(navigatorItem)}

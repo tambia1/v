@@ -15,7 +15,7 @@ import type { AvatarType } from "../avatar/Avatar.styles";
 import { Talk } from "./components/talk/Talk";
 import * as S from "./Talks.styles";
 
-const HOST = config.host;
+const HOST = config.chat.host;
 const PORT = config.chat.port;
 
 interface Props {
@@ -86,7 +86,7 @@ export const Talks = ({ name, avatar }: Props) => {
 
 	const handleOnClickCell = (_client: Client) => {
 		navigator.pushPage(
-			<Navigator.Page id="talk" title={"Group"}>
+			<Navigator.Page name="talk" title={"Group"}>
 				<Talk sendMessage={sendMessage} />
 			</Navigator.Page>,
 		);

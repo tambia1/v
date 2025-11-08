@@ -27,7 +27,7 @@ export const StocksPage = () => {
 
 	const handleOnSymbol = (stock: StockOk) => {
 		navigator.pushPage(
-			<Navigator.Page id={stock.meta.symbol} title={stock.meta.symbol}>
+			<Navigator.Page name={stock.meta.symbol} title={stock.meta.symbol}>
 				<Stock stock={stock} />
 			</Navigator.Page>,
 		);

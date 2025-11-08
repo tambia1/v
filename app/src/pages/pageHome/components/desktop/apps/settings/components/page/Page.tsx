@@ -15,7 +15,7 @@ export const Page = () => {
 
 	const handleOnClickLanguage = () => {
 		navigator.pushPage(
-			<Navigator.Page id="language" title={<T>{lang.settings.language.title}</T>}>
+			<Navigator.Page name="language" title={<T>{lang.settings.language.title}</T>}>
 				<Language />
 			</Navigator.Page>,
 		);
@@ -23,7 +23,7 @@ export const Page = () => {
 
 	const handleOnClickTheme = () => {
 		navigator.pushPage(
-			<Navigator.Page id="theme" title={<T>{lang.settings.themes.title}</T>}>
+			<Navigator.Page name="theme" title={<T>{lang.settings.themes.title}</T>}>
 				<Themes />
 			</Navigator.Page>,
 		);
@@ -31,7 +31,7 @@ export const Page = () => {
 
 	const handleOnClickLayout = () => {
 		navigator.pushPage(
-			<Navigator.Page id="bar" title={<T>{lang.settings.layout.title}</T>}>
+			<Navigator.Page name="bar" title={<T>{lang.settings.layout.title}</T>}>
 				<Layout />
 			</Navigator.Page>,
 		);
@@ -39,7 +39,7 @@ export const Page = () => {
 
 	const handleOnClickAbout = () => {
 		navigator.pushPage(
-			<Navigator.Page id="about" title={<T>{lang.settings.about.title}</T>}>
+			<Navigator.Page name="about" title={<T>{lang.settings.about.title}</T>}>
 				<About />
 			</Navigator.Page>,
 		);

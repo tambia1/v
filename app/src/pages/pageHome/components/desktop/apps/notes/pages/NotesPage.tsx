@@ -20,7 +20,7 @@ export const NotesPage = () => {
 		const note = notesStore.data[noteId];
 
 		navigator.pushPage(
-			<Navigator.Page id={String(note.id)} title={note.title}>
+			<Navigator.Page name={String(note.id)} title={note.title}>
 				<NotesContent id={note.id} title={note.title} text={note.text} />
 			</Navigator.Page>,
 		);

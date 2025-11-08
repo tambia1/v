@@ -53,7 +53,7 @@ export const Home = () => {
 				>
 					<S.Transition $visible={selectedMenuId === "dataCenter"}>
 						<Navigator>
-							<Navigator.Page id={selectedMenuId} title={<T>{lang.redis.menu.data.dataCenter}</T>}>
+							<Navigator.Page name={selectedMenuId} title={<T>{lang.redis.menu.data.dataCenter}</T>}>
 								<Datacenter />
 							</Navigator.Page>
 						</Navigator>
@@ -61,7 +61,7 @@ export const Home = () => {
 
 					<S.Transition $visible={selectedMenuId === "dataAccess"}>
 						<Navigator>
-							<Navigator.Page id={selectedMenuId} title={<T>{lang.redis.menu.data.dataAccess}</T>}>
+							<Navigator.Page name={selectedMenuId} title={<T>{lang.redis.menu.data.dataAccess}</T>}>
 								<Test />
 							</Navigator.Page>
 						</Navigator>

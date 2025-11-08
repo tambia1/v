@@ -8,7 +8,7 @@ export const Chat = () => {
 	return (
 		<S.Chat>
 			<Navigator>
-				<Navigator.Page id="app" title={<T>{lang.chat.title}</T>}>
+				<Navigator.Page name="app" title={<T>{lang.chat.title}</T>}>
 					<User />
 				</Navigator.Page>
 			</Navigator>

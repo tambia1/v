@@ -17,7 +17,7 @@ export const SpinPage = () => {
 
 	const handleOnClickSpin = () => {
 		navigator.pushPage(
-			<Navigator.Page id="slotMachine" title={t(lang.spin.title)}>
+			<Navigator.Page name="slotMachine" title={t(lang.spin.title)}>
 				<SlotMachine slotItems={spinStore.data} />
 			</Navigator.Page>,
 		);
