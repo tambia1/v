@@ -16,7 +16,6 @@ import { Talk } from "./components/talk/Talk";
 import * as S from "./Talks.styles";
 
 const HOST = config.chat.host;
-const PORT = config.chat.port;
 
 interface Props {
 	name: string;
@@ -28,7 +27,7 @@ export const Talks = ({ name, avatar }: Props) => {
 	const addLog = useLoggerStore((state) => state.addLog);
 
 	const { sendMessage } = useWebSocket({
-		url: `wss://[${HOST}]:${PORT}/`,
+		url: `wss://${HOST}/`,
 		onMessage: (message) => handleOnMessage(message),
 		onError: (event) => handleOnError(event),
 		onOpen: (event) => handleOnOpen(event),

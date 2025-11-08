@@ -1,7 +1,7 @@
 {
 	"chat": {
 		"port": 5002,
-		"host": "https://smj8f2b1-5002.euw.devtunnels.ms/"
+		"host": "smj8f2b1-5002.euw.devtunnels.ms"
 	},
 
 	"redis": {
