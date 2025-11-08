@@ -32,7 +32,7 @@ export const User = () => {
 
 	return (
 		<S.Name>
-			<NameBar name={storeChat.name || `user-${getUniqueId()}`} onClickSet={handleOnClickSet} />
+			<NameBar name={storeChat.name || "user-0"} onClickSet={handleOnClickSet} />
 
 			<S.PagingContainer>
 				<Pager
