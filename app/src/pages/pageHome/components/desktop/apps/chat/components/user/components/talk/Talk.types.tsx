@@ -12,3 +12,9 @@ export type Message = {
 	messageId: string;
 	message: string;
 };
+
+export type Data = {
+	action: "connected" | "message";
+	clientId: string;
+	messages: Message[];
+};

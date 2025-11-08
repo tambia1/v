@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Pager } from "@src/components/pager/Pager";
-import { getUniqueId } from "@src/utils/UniqueId";
 import { Avatar } from "./components/avatar/Avatar";
 import { type AvatarType, avatars } from "./components/avatar/Avatar.styles";
 import { NameBar } from "./components/messageBar/NameBar";

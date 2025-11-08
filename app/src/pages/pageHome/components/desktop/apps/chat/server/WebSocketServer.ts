@@ -61,19 +61,44 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 
 	log("blue", `connection, id: ${ws.clientId}, ip: ${ip} [${wss.clients.size}]`);
 
+	ws.send(JSON.stringify({ action: "connected", clientId: ws.clientId, messages: messages }));
+
 	ws.on("error", (err: Error) => {
 		log("red", `error: ${err.message}`);
 	});
 
 	ws.on("close", () => {
 		log("cyan", `disconnect [${wss.clients.size}]`);
+
+		const message: Message = {
+			messageId: getUniqueId(),
+			time: Date.now(),
+			clientId: ws.clientId,
+			clientName: ws.clientName,
+			clientAvatar: ws.clientAvatar,
+			message: "Disconnected",
+		};
+
+		messages.push(message);
+
+		if (messages.length > 100) {
+			messages.shift();
+		}
+
+		ws.send(JSON.stringify({ action: "message", clientId: ws.clientId, messages: messages }));
 	});
 
 	ws.on("message", (messageReceived: string) => {
 		try {
 			const data = JSON.parse(messageReceived);
 
-			log("yellow", `Client sent message: ${ws.clientId} ${JSON.stringify(data)}`);
+			log("yellow", `Client sent message: ${ws.clientId} "${ws.clientName}" ${JSON.stringify(data)}`);
+
+			if (data.action === "clientDetails") {
+				ws.clientName = data.clientName;
+				ws.clientAvatar = data.clientAvatar;
+				data.message = "Connected";
+			}
 
 			const message: Message = {
 				messageId: getUniqueId(),
@@ -94,7 +119,7 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 				if (client.readyState === WebSocket.OPEN) {
 					const extendedClient = client as ExtendedWebSocket;
 
-					extendedClient.send(JSON.stringify(messages));
+					extendedClient.send(JSON.stringify({ action: "message", clientId: extendedClient.clientId, messages: messages }));
 				}
 			});
 		} catch (_error) {
@@ -110,5 +135,5 @@ function getUniqueId(): string {
 			.padStart(4, "0");
 	};
 
-	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
+	return `${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}-${getRandomNumber()}`;
 }

@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Modal } from "@src/components/modal/Modal";
+import config from "@src/config.json";
+import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
+import { useEffect, useRef, useState } from "react";
+import { useLoggerStore } from "../../../../../debug/Debug";
+import { useWebSocket } from "../../../../hooks/UseWebSocket";
 import type { AvatarType } from "../avatar/Avatar.styles";
-import * as S from "./Talk.styles";
 import { BubbleMe } from "./bubbleMe/BubbleMe";
 import { BubbleOther } from "./bubbleOther/BubbleOther";
 import { MessageBar } from "./messageBar/MessageBar";
-import { useLoggerStore } from "../../../../../debug/Debug";
-import { Client, Message } from "./Talk.types";
-import config from "@src/config.json";
-import { useWebSocket } from "../../../../hooks/UseWebSocket";
-import { Modal } from "@src/components/modal/Modal";
-import { lang } from "@src/locales/i18n";
-import { T } from "@src/locales/T";
+import * as S from "./Talk.styles";
+import { Client, Data, Message } from "./Talk.types";
 
 const HOST = config.chat.host;
 
@@ -41,11 +41,17 @@ export const Talk = ({ name, avatar }: Props) => {
 			setIsModalVisible(true);
 		},
 		onMessage: (event: MessageEvent) => {
-			const messagesFromServer: Message[] = JSON.parse(event.data as string);
+			const data: Data = JSON.parse(event.data as string);
 
-			addLog(`handleOnMessage ${JSON.stringify(messagesFromServer)}`);
+			addLog(`handleOnMessage ${JSON.stringify(data)}`);
 
-			setMessages(messagesFromServer);
+			if (data.action === "connected") {
+				setClient({ ...client, clientId: data.clientId });
+
+				sendMessage(JSON.stringify({ action: "clientDetails", clientName: name, clientAvatar: avatar }));
+			} else if (data.action === "message") {
+				setMessages(data.messages);
+			}
 		},
 	});
 
