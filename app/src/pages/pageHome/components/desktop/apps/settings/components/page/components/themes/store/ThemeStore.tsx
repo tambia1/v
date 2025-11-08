@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-interface Props {
+type Props = {
 	backgroundImageIndex: number;
 	setBackgroundImageIndex: (backgroundImageIndex: number) => void;
-}
+};
 
 const initialState = {
 	backgroundImageIndex: 1,

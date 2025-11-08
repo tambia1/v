@@ -1,6 +1,6 @@
-interface Props {
+type Props = {
 	lines: number;
-}
+};
 
 export const Lines = (props: Props) => {
 	const { lines } = props;

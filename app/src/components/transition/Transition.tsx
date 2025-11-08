@@ -2,10 +2,10 @@ import { useAnimation } from "@src/hooks/UseAnimation";
 import { type ReactNode, useLayoutEffect, useRef, useState } from "react";
 import * as S from "./Transition.styles";
 
-interface Props {
+type Props = {
 	className?: string;
 	children?: ReactNode;
-}
+};
 
 export const Transition = ({ className, children }: Props) => {
 	const [childA, setChildA] = useState<ReactNode>(children);

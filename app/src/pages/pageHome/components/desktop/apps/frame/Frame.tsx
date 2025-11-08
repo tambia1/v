@@ -1,9 +1,9 @@
 import * as S from "./Frame.styles";
 
-interface Props {
+type Props = {
 	title: string;
 	url: string;
-}
+};
 
 export const Frame = ({ title, url }: Props) => {
 	return (

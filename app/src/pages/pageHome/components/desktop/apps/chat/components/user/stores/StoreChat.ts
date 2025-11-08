@@ -1,12 +1,12 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-interface Props {
+type Props = {
 	name: string;
 	avatar: number;
 	setName: (name: string) => void;
 	setAvatar: (avatar: number) => void;
-}
+};
 
 const initialState = {
 	name: "",

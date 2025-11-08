@@ -7,10 +7,10 @@ export interface IApp {
 	icon: string;
 }
 
-interface Props {
+type Props = {
 	apps: IApp[];
 	setData: (apps: IApp[]) => void;
-}
+};
 
 const initialState = {
 	apps: [],

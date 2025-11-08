@@ -9,10 +9,10 @@ export type Line = {
 	data: number[][];
 };
 
-interface Props {
+type Props = {
 	className?: string;
 	lines: Line[];
-}
+};
 
 export const Chart = ({ className, lines }: Props) => {
 	const theme = useTheme();

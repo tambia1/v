@@ -6,9 +6,9 @@ import { useTheme } from "styled-components";
 import type { StockOk } from "../../../queries/QueryStocks";
 import * as S from "./Stock.styles";
 
-interface Props {
+type Props = {
 	stock: StockOk;
-}
+};
 
 export const Stock = ({ stock }: Props) => {
 	const theme = useTheme();

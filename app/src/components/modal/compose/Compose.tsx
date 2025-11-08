@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import * as S from "./Compose.styles";
 
-export interface Props {
+export type Props = {
 	children?: ReactNode;
 	isVisible: boolean;
 	onClickBackground?: () => void;
-}
+};
 
 export const Compose = ({ children, isVisible, onClickBackground }: Props) => {
 	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {

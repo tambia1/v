@@ -4,13 +4,13 @@ import * as S from "./Slot.styles";
 
 export type SlotState = "spin" | "stop";
 
-interface Props {
+type Props = {
 	items: string[];
 	slotState: SlotState;
 	setSlotState: Dispatch<SetStateAction<SlotState>>;
 	startItem: number;
 	stopItem: number;
-}
+};
 
 export const Slot = ({ items, startItem, stopItem, slotState, setSlotState }: Props) => {
 	const [animation] = useState<Animation>(new Animation());

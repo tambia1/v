@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react";
 
-interface Props {
+type Props = {
 	url: string;
 	onOpen?: (event: Event) => void;
 	onClose?: (event: CloseEvent) => void;
 	onError?: (event: Event) => void;
 	onMessage?: (event: MessageEvent) => void;
-}
+};
 
 export const useWebSocket = ({ url, onMessage, onOpen, onClose, onError }: Props) => {
 	const refWs = useRef<WebSocket>(null);

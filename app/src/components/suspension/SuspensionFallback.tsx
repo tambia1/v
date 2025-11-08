@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
-interface Props {
+type Props = {
 	onFallbackStart: () => void;
 	onFallbackEnd: () => void;
-}
+};
 
 export const SuspensionFallback = ({ onFallbackStart, onFallbackEnd }: Props) => {
 	useEffect(() => {

@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 
-interface Props {
+type Props = {
 	children: string;
-}
+};
 
 export const T = ({ children }: Props) => {
 	const { t } = useTranslation();

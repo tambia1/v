@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Theme, themes } from "../../../theme/Theme.types";
 
-interface Props {
+type Props = {
 	onChange: (themeName: Theme["themeName"]) => void;
-}
+};
 
 export const useThemesSearchParams = ({ onChange }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();

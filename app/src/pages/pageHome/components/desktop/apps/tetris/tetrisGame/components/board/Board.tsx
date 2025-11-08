@@ -1,8 +1,8 @@
 import { Box } from "../box/Box";
 
-interface Props {
+type Props = {
 	board: number[][];
-}
+};
 
 export const Board = (props: Props) => {
 	const { board } = props;

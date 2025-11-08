@@ -1,11 +1,11 @@
 import type React from "react";
 import type { ReactNode } from "react";
 
-interface Props {
+type Props = {
 	text: string;
 	regexp: RegExp;
 	matchCallback: (matches: RegExpMatchArray) => React.ReactNode;
-}
+};
 
 export const replaceStringReact = ({ text, regexp, matchCallback }: Props) => {
 	const result: React.ReactNode[] = [];

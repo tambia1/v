@@ -199,12 +199,12 @@ const Nodes = ({
 	);
 };
 
-interface Props {
+type Props = {
 	nodes: Node[];
 	setNodes: (nodes: Node[]) => void;
 	Item?: ({ item }: ItemProps) => ReactNode;
 	Folder?: ({ folder, Item, Folder }: FolderProps) => ReactNode;
-}
+};
 
 export const Tree = ({ nodes, setNodes, Item = ItemDefault, Folder = FolderDefault }: Props) => {
 	return (

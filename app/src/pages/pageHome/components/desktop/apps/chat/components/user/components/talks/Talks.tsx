@@ -17,10 +17,10 @@ import * as S from "./Talks.styles";
 
 const HOST = config.chat.host;
 
-interface Props {
+type Props = {
 	name: string;
 	avatar: number;
-}
+};
 
 export const Talks = ({ name, avatar }: Props) => {
 	const navigator = useNavigator();
@@ -101,7 +101,6 @@ export const Talks = ({ name, avatar }: Props) => {
 			<List.Section>
 				<T>{lang.chat.talks}</T>
 			</List.Section>
-
 			<List>
 				{clients.map((client) => (
 					<List.Cell key={client.clientId} onClick={() => handleOnClickCell(client)}>
@@ -111,7 +110,6 @@ export const Talks = ({ name, avatar }: Props) => {
 					</List.Cell>
 				))}
 			</List>
-
 			<Modal
 				isVisible={isModalVisible}
 				iconName="question"

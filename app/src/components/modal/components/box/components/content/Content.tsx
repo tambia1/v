@@ -4,11 +4,11 @@ import { Icon } from "./components/icon/Icon";
 import { IconsName } from "./components/icon/Icon.styles";
 import { Compose } from "./compose/Compose";
 
-export interface Props {
+export type Props = {
 	iconName?: IconsName;
 	title?: ReactNode;
 	description?: ReactNode;
-}
+};
 
 export const Content = ({ iconName, title, description }: Props) => {
 	return (

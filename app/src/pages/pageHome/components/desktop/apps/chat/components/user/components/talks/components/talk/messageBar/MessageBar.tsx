@@ -3,9 +3,9 @@ import { T } from "@src/locales/T";
 import { useRef, useState } from "react";
 import * as S from "./MessageBar.styles";
 
-interface Props {
+type Props = {
 	onClickSend: (content: string) => void;
-}
+};
 
 export const MessageBar = ({ onClickSend }: Props) => {
 	const [content, setContent] = useState("");

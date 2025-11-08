@@ -2,12 +2,12 @@ import { Button } from "@src/components/button/Button";
 import { ReactNode } from "react";
 import { Compose } from "./compose/Compose";
 
-export interface Props {
+export type Props = {
 	buttons?: {
 		content: ReactNode;
 		onClick: () => void;
 	}[];
-}
+};
 
 export const Buttons = ({ buttons = [] }: Props) => {
 	return (

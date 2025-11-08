@@ -1,12 +1,12 @@
 import { Box } from "../box/Box";
 
-interface Props {
+type Props = {
 	onClickUpLeft: () => void;
 	onClickUpRight: () => void;
 	onClickLeft: () => void;
 	onClickDown: () => void;
 	onClickRight: () => void;
-}
+};
 
 export const Controls = ({ onClickUpLeft, onClickUpRight, onClickLeft, onClickDown, onClickRight }: Props) => {
 	const isTouchDevice = "ontouchstart" in window ? true : false;

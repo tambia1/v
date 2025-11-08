@@ -8,11 +8,11 @@ export type Data = {
 
 export type Type = "horizontal" | "vertical";
 
-interface Props {
+type Props = {
 	className?: string;
 	type: Type;
 	data: Data;
-}
+};
 
 export const Table = ({ className, data, type }: Props) => {
 	return (

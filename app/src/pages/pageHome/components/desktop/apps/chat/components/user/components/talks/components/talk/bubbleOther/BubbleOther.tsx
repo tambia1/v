@@ -2,10 +2,10 @@ import { Avatar } from "../../../../avatar/Avatar";
 import { AvatarType } from "../../../../avatar/Avatar.styles";
 import * as S from "./BubbleOther.styles";
 
-interface Props {
+type Props = {
 	content: string;
 	avatar: AvatarType;
-}
+};
 
 export const BubbleOther = ({ content, avatar }: Props) => {
 	return (

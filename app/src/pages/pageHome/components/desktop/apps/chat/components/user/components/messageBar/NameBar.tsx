@@ -3,10 +3,10 @@ import { T } from "@src/locales/T";
 import { useState } from "react";
 import * as S from "./NameBar.styles";
 
-interface Props {
+type Props = {
 	name: string;
 	onClickSet: (content: string) => void;
-}
+};
 
 export const NameBar = ({ name, onClickSet }: Props) => {
 	const [content, setContent] = useState<string>(name);

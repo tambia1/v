@@ -7,7 +7,7 @@ import { NavigatorContext } from "./hooks/UseNavigator";
 import * as S from "./Navigator.styles";
 import { type PageType } from "./Navigator.types";
 
-interface Props {
+type Props = {
 	className?: string;
 	children?: PageType;
 	onPushStart?: Callback;
@@ -16,7 +16,7 @@ interface Props {
 	onPopEnd?: Callback;
 	onBack?: Callback;
 	onClose?: Callback;
-}
+};
 
 export interface NavigatorItem {
 	page: PageType;

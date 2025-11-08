@@ -3,10 +3,10 @@ import { Description } from "./components/description/Description";
 import { Title } from "./components/title/Title";
 import { Compose } from "./compose/Compose";
 
-export interface Props {
+export type Props = {
 	title?: ReactNode;
 	description?: ReactNode;
-}
+};
 
 export const Header = ({ title, description }: Props) => {
 	return (

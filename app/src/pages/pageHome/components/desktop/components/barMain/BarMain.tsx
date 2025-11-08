@@ -5,14 +5,14 @@ import type { ReactNode } from "react";
 import type { BarPosition } from "../../Desktop.styles";
 import * as S from "./BarMain.styles";
 
-interface Props {
+type Props = {
 	barPosition: BarPosition;
 	onClickButtonTheme: (themeName: Theme["themeName"]) => void;
 	isVisibleButtonClose: boolean;
 	onClickButtonClose: () => void;
 	userName: ReactNode;
 	userNameType: "success" | "error";
-}
+};
 
 export const BarMain = ({ barPosition, onClickButtonTheme, onClickButtonClose, isVisibleButtonClose, userName, userNameType }: Props) => {
 	const { theme } = useThemeContext();

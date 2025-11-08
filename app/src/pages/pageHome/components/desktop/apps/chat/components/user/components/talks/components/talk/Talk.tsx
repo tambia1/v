@@ -6,9 +6,9 @@ import { BubbleOther } from "./bubbleOther/BubbleOther";
 import { MessageBar } from "./messageBar/MessageBar";
 import * as S from "./Talk.styles";
 
-interface Props {
+type Props = {
 	sendMessage: (message: string) => void;
-}
+};
 
 export const Talk = ({ sendMessage }: Props) => {
 	const { client, messages } = useStoreTalk();

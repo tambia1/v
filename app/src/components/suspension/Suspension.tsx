@@ -2,14 +2,14 @@ import { ErrorInfo, ReactNode, Suspense, useEffect, useRef } from "react";
 import ErrorBoundary from "./ErrorBoundary";
 import { SuspensionFallback } from "./SuspensionFallback";
 
-interface Props {
+type Props = {
 	children?: ReactNode;
 	onStart?: () => void;
 	onEnd?: () => void;
 	onFallbackStart?: () => void;
 	onFallbackEnd?: () => void;
 	onError?: (error: Error, errorInfo: ErrorInfo) => void;
-}
+};
 
 export const Suspension = ({ children, onStart, onEnd, onFallbackStart, onFallbackEnd, onError }: Props) => {
 	const ref = useRef(0);

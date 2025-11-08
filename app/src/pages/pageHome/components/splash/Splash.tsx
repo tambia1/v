@@ -6,9 +6,9 @@ import { useLayoutEffect, useRef, useState } from "react";
 import * as S from "./Splash.styles";
 import { getImagesToCache } from "./Splash.utils";
 
-interface Props {
+type Props = {
 	onFinish: () => void;
-}
+};
 
 export const Splash = ({ onFinish }: Props) => {
 	const refLogo = useRef(null);

@@ -4,7 +4,7 @@ import { Content } from "./components/content/Content";
 import { IconsName } from "./components/content/components/icon/Icon.styles";
 import { Compose } from "./compose/Compose";
 
-export interface Props {
+export type Props = {
 	iconName?: IconsName;
 	title?: ReactNode;
 	description?: ReactNode;
@@ -12,7 +12,7 @@ export interface Props {
 		content: ReactNode;
 		onClick: () => void;
 	}[];
-}
+};
 
 export const Box = ({ title, description, iconName, buttons }: Props) => {
 	return (

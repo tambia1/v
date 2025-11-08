@@ -2,13 +2,13 @@ import type { Theme } from "@src/theme/Theme.types";
 import type { ReactNode } from "react";
 import * as S from "./Text.styles";
 
-export interface Props {
+export type Props = {
 	className?: string;
 	children?: ReactNode;
 	color?: keyof Theme["color"];
 	bgcolor?: keyof Theme["color"];
 	variant?: keyof Theme["font"];
-}
+};
 
 export const Text = ({ className, children, color = "currentColor", bgcolor = "transparent", variant = "body", ...rest }: Props) => {
 	return (

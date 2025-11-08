@@ -3,9 +3,9 @@ import * as S from "./ClashRoyaleGame.styles";
 import type { ArenaType as IArenaType } from "./game/Arena";
 import { Game } from "./game/Game";
 
-interface Props {
+type Props = {
 	arenaType: IArenaType;
-}
+};
 
 export const ClashRoyaleGame = ({ arenaType }: Props) => {
 	const refBoard = useRef<HTMLDivElement>(null);

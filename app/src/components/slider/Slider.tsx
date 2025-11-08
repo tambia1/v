@@ -2,12 +2,12 @@ import { Theme } from "@src/theme/Theme.types";
 import { useTheme } from "styled-components";
 import * as S from "./Slider.styles";
 
-export interface Props {
+export type Props = {
 	className?: string;
 	value: number;
 	onChange: (value: number) => void;
 	size?: keyof Theme["size"];
-}
+};
 
 export const Slider = ({ className, value, onChange, size = "size800" }: Props) => {
 	const theme = useTheme();

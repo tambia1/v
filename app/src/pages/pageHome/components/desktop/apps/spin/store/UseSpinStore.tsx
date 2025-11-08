@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-interface Props {
+type Props = {
 	data: string[];
 	setData: (data: string[]) => void;
-}
+};
 
 const initialState = {
 	data: [],

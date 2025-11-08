@@ -16,11 +16,11 @@ interface IContent {
 	isChanged: boolean;
 }
 
-interface Props {
+type Props = {
 	id: string;
 	title: string;
 	text: string;
-}
+};
 
 export const NotesContent = ({ id, title, text }: Props) => {
 	const { t } = useTranslation();

@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BarPosition } from "../components/desktop/Desktop.styles";
 
-interface Props {
+type Props = {
 	onChange: (barPosition: BarPosition) => void;
-}
+};
 
 export const useBarSearchParams = ({ onChange }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();

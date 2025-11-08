@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { LanguageName, languages } from "../../../locales/i18n.types";
 
-interface Props {
+type Props = {
 	onChange: (language: LanguageName) => void;
-}
+};
 
 export const useLocalesSearchParams = ({ onChange }: Props) => {
 	const [searchParams, setSearchParams] = useSearchParams();

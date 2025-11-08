@@ -4,7 +4,7 @@ import { Lines } from "./components/lines/Lines";
 import { Next } from "./components/next/Next";
 import "./TetrisGame.css";
 
-interface Props {
+type Props = {
 	board: number[][];
 	next: number[][];
 
@@ -15,7 +15,7 @@ interface Props {
 	onClickDown: () => void;
 	onClickLeft: () => void;
 	onClickRight: () => void;
-}
+};
 
 export const TetrisGame = (props: Props) => {
 	const { board, next, lines, onClickUpLeft, onClickUpRight, onClickDown, onClickLeft, onClickRight } = props;

@@ -2,11 +2,11 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { INote } from "../Notes.types";
 
-interface Props {
+type Props = {
 	data: { [K in string]: INote };
 	setNote: (id: string, title: string, text: string) => void;
 	setNotes: (data: { [K in string]: INote }) => void;
-}
+};
 
 const initialState = {
 	data: {},

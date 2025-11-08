@@ -3,9 +3,9 @@ import { useState } from "react";
 import { Slot, type SlotState } from "./components/slot/Slot";
 import * as S from "./SlotMachine.styles";
 
-interface Props {
+type Props = {
 	slotItems: string[];
-}
+};
 
 export const SlotMachine = ({ slotItems }: Props) => {
 	const [slotState, setSlotState] = useState<SlotState>("stop");
