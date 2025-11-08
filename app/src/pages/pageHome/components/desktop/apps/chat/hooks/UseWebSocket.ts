@@ -10,28 +10,40 @@ type Props = {
 
 export const useWebSocket = ({ url, onMessage, onOpen, onClose, onError }: Props) => {
 	const refWs = useRef<WebSocket>(null);
+	const onMessageRef = useRef(onMessage);
+	const onOpenRef = useRef(onOpen);
+	const onCloseRef = useRef(onClose);
+	const onErrorRef = useRef(onError);
+
+	// Update refs when callbacks change, but don't trigger reconnection
+	useEffect(() => {
+		onMessageRef.current = onMessage;
+		onOpenRef.current = onOpen;
+		onCloseRef.current = onClose;
+		onErrorRef.current = onError;
+	}, [onMessage, onOpen, onClose, onError]);
 
 	useEffect(() => {
 		const ws = new WebSocket(url);
 
 		ws.onopen = (event: Event) => {
 			console.log("WebSocket open", event);
-			onOpen?.(event);
+			onOpenRef.current?.(event);
 		};
 
 		ws.onclose = (event: CloseEvent) => {
 			console.log("WebSocket close", event);
-			onClose?.(event);
+			onCloseRef.current?.(event);
 		};
 
 		ws.onerror = (event: Event) => {
 			console.log("WebSocket error: ", event);
-			onError?.(event);
+			onErrorRef.current?.(event);
 		};
 
 		ws.onmessage = (event: MessageEvent) => {
 			console.log("WebSocket message: ", event);
-			onMessage?.(event);
+			onMessageRef.current?.(event);
 		};
 
 		refWs.current = ws;
@@ -39,7 +51,7 @@ export const useWebSocket = ({ url, onMessage, onOpen, onClose, onError }: Props
 		return () => {
 			ws?.close();
 		};
-	}, [url, onOpen, onClose, onError, onMessage]);
+	}, [url]);
 
 	const sendMessage = (message: string) => {
 		if (refWs.current) {

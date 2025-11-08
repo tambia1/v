@@ -1,14 +1,14 @@
-import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
-import { Navigator } from "@src/components/navigator/Navigator";
-import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
+import { Navigator } from "@src/components/navigator/Navigator";
+import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
+import { Pager } from "@src/components/pager/Pager";
+import { getUniqueId } from "@src/utils/UniqueId";
 import { Avatar } from "./components/avatar/Avatar";
 import { type AvatarType, avatars } from "./components/avatar/Avatar.styles";
 import { NameBar } from "./components/messageBar/NameBar";
-import { Talks } from "./components/talks/Talks";
+import { Talk } from "./components/talk/Talk";
 import { StoreChat } from "./stores/StoreChat";
 import * as S from "./User.styles";
-import { getUniqueId } from "@src/utils/UniqueId";
 
 export const User = () => {
 	const navigator = useNavigator();
@@ -21,7 +21,7 @@ export const User = () => {
 
 		navigator.pushPage(
 			<Navigator.Page name="talks" title={userName}>
-				<Talks name={userName} avatar={pageIndex} />
+				<Talk name={userName} avatar={pageIndex} />
 			</Navigator.Page>,
 		);
 	};

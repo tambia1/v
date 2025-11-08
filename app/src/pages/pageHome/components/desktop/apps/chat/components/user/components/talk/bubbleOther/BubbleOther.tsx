@@ -1,5 +1,5 @@
-import { Avatar } from "../../../../avatar/Avatar";
-import { AvatarType } from "../../../../avatar/Avatar.styles";
+import { Avatar } from "../../avatar/Avatar";
+import { AvatarType } from "../../avatar/Avatar.styles";
 import * as S from "./BubbleOther.styles";
 
 type Props = {

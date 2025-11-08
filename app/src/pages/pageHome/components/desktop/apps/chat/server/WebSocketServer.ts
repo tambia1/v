@@ -8,51 +8,13 @@ const HOST: string = "0.0.0.0";
 const PORT: number = config.chat.port;
 
 type Message = {
-	messageId: string;
-	time: number;
 	clientId: string;
 	clientName: string;
 	clientAvatar: number;
+	time: number;
+	messageId: string;
 	message: string;
 };
-
-type MessageSend =
-	| {
-			action: "connected";
-			clientId: string;
-			clientName: string;
-			clientAvatar: number;
-	  }
-	| {
-			action: "update";
-			clients: {
-				clientId: string;
-				clientName: string;
-				clientAvatar: number;
-			}[];
-			messages: Message[];
-	  };
-
-type MessageGet =
-	| {
-			action: "ping";
-			clientId: string;
-	  }
-	| {
-			action: "name";
-			clientId: string;
-			clientName: string;
-			clientAvatar: number;
-	  }
-	| {
-			action: "message";
-			clients: {
-				clientId: string;
-				clientName: string;
-				clientAvatar: number;
-			}[];
-			message: string;
-	  };
 
 const messages: Message[] = [];
 
@@ -99,17 +61,6 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 
 	log("blue", `connection, id: ${ws.clientId}, ip: ${ip} [${wss.clients.size}]`);
 
-	const message: MessageSend = {
-		action: "connected",
-		clientId: ws.clientId,
-		clientName: ws.clientName,
-		clientAvatar: ws.clientAvatar,
-	};
-
-	ws.send(JSON.stringify(message));
-
-	updateAllClients();
-
 	ws.on("error", (err: Error) => {
 		log("red", `error: ${err.message}`);
 	});
@@ -118,71 +69,39 @@ wss.on("connection", (ws: ExtendedWebSocket, req) => {
 		log("cyan", `disconnect [${wss.clients.size}]`);
 	});
 
-	ws.on("message", (message: string) => {
-		let data: MessageGet;
-
+	ws.on("message", (messageReceived: string) => {
 		try {
-			data = JSON.parse(message);
-		} catch (_error) {
-			log("red", `Client sent invalid message: ${message}`);
-			return;
-		}
+			const data = JSON.parse(messageReceived);
 
-		log("yellow", `Client sent message: ${ws.clientId} ${JSON.stringify(data)}`);
+			log("yellow", `Client sent message: ${ws.clientId} ${JSON.stringify(data)}`);
 
-		switch (data.action) {
-			case "ping":
-				ws.send("pong");
-				break;
+			const message: Message = {
+				messageId: getUniqueId(),
+				time: Date.now(),
+				clientId: ws.clientId,
+				clientName: ws.clientName,
+				clientAvatar: ws.clientAvatar,
+				message: data.message,
+			};
 
-			case "name":
-				ws.clientName = data.clientName;
-				ws.clientAvatar = data.clientAvatar;
-				updateAllClients();
-				break;
+			messages.push(message);
 
-			case "message": {
-				const message: Message = {
-					messageId: getUniqueId(),
-					time: Date.now(),
-					clientId: ws.clientId,
-					clientName: ws.clientName,
-					clientAvatar: ws.clientAvatar,
-					message: data.message,
-				};
-
-				messages.push(message);
-
-				if (messages.length > 100) {
-					messages.shift();
-				}
-
-				updateAllClients();
-				break;
+			if (messages.length > 100) {
+				messages.shift();
 			}
+
+			wss.clients.forEach((client) => {
+				if (client.readyState === WebSocket.OPEN) {
+					const extendedClient = client as ExtendedWebSocket;
+
+					extendedClient.send(JSON.stringify(messages));
+				}
+			});
+		} catch (_error) {
+			log("red", `Client sent invalid message: ${messageReceived}`);
 		}
 	});
 });
-
-function updateAllClients() {
-	const clients = [...wss.clients].map((client) => {
-		const extendedClient = client as ExtendedWebSocket;
-		return { clientId: extendedClient.clientId, clientName: extendedClient.clientName, clientAvatar: extendedClient.clientAvatar };
-	});
-
-	wss.clients.forEach((client) => {
-		if (client.readyState === WebSocket.OPEN) {
-			const extendedClient = client as ExtendedWebSocket;
-			const messageToSend: MessageSend = {
-				action: "update",
-				clients,
-				messages,
-			};
-
-			extendedClient.send(JSON.stringify(messageToSend));
-		}
-	});
-}
 
 function getUniqueId(): string {
 	const getRandomNumber = (): string => {
