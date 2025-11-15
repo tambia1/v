@@ -19,6 +19,6 @@ export const Content = styled.div`
 	display: flex;
 	align-items: start;
 	justify-content: left;
-	font-size: ${(props) => props.theme.font.body.size};
-	font-weight: ${(props) => props.theme.font.body.weight};
+	font-size: ${(props) => props.theme.font.font300.size};
+	font-weight: ${(props) => props.theme.font.font300.weight};
 `;

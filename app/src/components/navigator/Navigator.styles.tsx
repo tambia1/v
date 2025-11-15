@@ -47,8 +47,6 @@ export const Header = styled.div`
 	align-items: center;
 	margin-left: 1rem;
 	text-shadow: ${(props) => props.theme.shadow.text} ${(props) => props.theme.color.primary100};
-	font-size: ${(props) => props.theme.font.title.size};
-	font-weight: ${(props) => props.theme.font.title.weight};
 `;
 
 export const Back = styled.div`

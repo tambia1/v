@@ -3,6 +3,7 @@ import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
+import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useTranslation } from "react-i18next";
@@ -47,7 +48,9 @@ export const SpinPage = () => {
 			<List.Section>
 				<S.CellGrid onClick={handleOnClickAddChoice}>
 					<Icon iconName="iconPlusCircle" />
-					<T>{lang.spin.add}</T>
+					<Text variant="title">
+						<T>{lang.spin.add}</T>
+					</Text>
 				</S.CellGrid>
 			</List.Section>
 

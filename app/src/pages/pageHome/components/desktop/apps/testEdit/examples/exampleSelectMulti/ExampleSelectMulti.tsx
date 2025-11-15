@@ -1,5 +1,6 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Select } from "@src/components/select/Select";
+import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -28,7 +29,9 @@ export const ExampleSelectMulti = () => {
 
 	return (
 		<S.Col>
-			<S.Title>Select - Multi</S.Title>
+			<S.Title>
+				<Text variant="title">Select - Multi</Text>
+			</S.Title>
 			<Select onClickItem={handleOnClickSelectMulti} isCloseOnSelectItem={false}>
 				<Select.Display>{selectMultiSelections.length === 0 ? "Nothing selected" : `${selectMultiSelections.length} items selected`}</Select.Display>
 				<Select.Items>

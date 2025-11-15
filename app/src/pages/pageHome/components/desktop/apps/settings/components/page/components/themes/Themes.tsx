@@ -1,5 +1,6 @@
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
+import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { type Theme, themes } from "@src/theme/Theme.types";
@@ -27,7 +28,9 @@ export const Themes = () => {
 	return (
 		<S.Themes>
 			<List.Section>
-				<T>{lang.settings.themes.mode}</T>
+				<Text variant="title">
+					<T>{lang.settings.themes.mode}</T>
+				</Text>
 			</List.Section>
 
 			<List>
@@ -57,7 +60,9 @@ export const Themes = () => {
 			</List>
 
 			<List.Section>
-				<T>{lang.settings.themes.background}</T>
+				<Text variant="title">
+					<T>{lang.settings.themes.background}</T>
+				</Text>
 			</List.Section>
 
 			<List>

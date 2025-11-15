@@ -82,7 +82,6 @@ export const apps: App[][] = [
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
-		{ id: "testAi", roles: ["admin", "guest"], title: <T>{lang.testAi.title}</T>, icon: "test", component: <TestAi /> },
 		{ id: "testEdit", roles: ["admin", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
 		{ id: "testMfe", roles: ["admin", "guest"], title: <T>{lang.mfe.title}</T>, icon: "test", component: <TestMfe /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },
@@ -93,5 +92,6 @@ export const apps: App[][] = [
 		{ id: "testTree", roles: ["admin"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestTree /> },
 		{ id: "testCounter", roles: ["admin"], title: <T>{lang.testCounter.title}</T>, icon: "test", component: <TestCouner /> },
 		{ id: "testMenu", roles: ["admin"], title: <T>{lang.testMenu.title}</T>, icon: "test", component: <TestMenu /> },
+		{ id: "testAi", roles: ["admin"], title: <T>{lang.testAi.title}</T>, icon: "test", component: <TestAi /> },
 	],
 ];

@@ -17,8 +17,8 @@ export const Input = styled.input<{ $width: string; $textALign: string }>`
 	box-sizing: border-box;
 	white-space: nowrap;
 
-	font-weight: inherit;
-	font-size: inherit;
+	font-size: ${(props) => props.theme.font.font400.size};
+	font-weight: ${(props) => props.theme.font.font400.weight};
 
 	text-align: ${(props) => props.$textALign};
 

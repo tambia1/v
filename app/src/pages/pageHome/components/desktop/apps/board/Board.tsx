@@ -209,7 +209,7 @@ export const Board = () => {
 				isVisible={isModalVisible}
 				description={
 					<S.ModalContent>
-						<Text>Please enter task name</Text>
+						<Text variant="body">Please enter task name</Text>
 						<Input
 							value={modalText}
 							onTextChange={(value) => {

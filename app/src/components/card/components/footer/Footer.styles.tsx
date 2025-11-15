@@ -13,6 +13,6 @@ export const FooterContent = styled.div`
 	padding: 0.5rem;
 	color: ${(props) => props.theme.color.primary500};
 	background-color: ${(props) => props.theme.color.primary200};
-	font-size: ${(props) => props.theme.font.note.size};
-	font-weight: ${(props) => props.theme.font.note.weight};
+	font-size: ${(props) => props.theme.font.font400.size};
+	font-weight: ${(props) => props.theme.font.font400.weight};
 `;

@@ -64,8 +64,6 @@ export const EmailInput = styled(Input)`
 	border-radius: 0 5rem 5rem 0;
 	color: ${(props) => props.theme.color.primary800};
 	background-color: ${(props) => props.theme.color.transparent};
-	font-size: inherit;
-	font-weight: inherit;
 	padding-right: 0.5rem;
 	
 	&::placeholder {
@@ -103,7 +101,6 @@ export const PasswordInput = styled(Input)`
 	border-radius: 0 5rem 5rem 0;
 	color: ${(props) => props.theme.color.primary800};
 	background-color: ${(props) => props.theme.color.transparent};
-	font-size: inherit;
 	font-weight: inherit;
 	padding-right: 0.5rem;
 	

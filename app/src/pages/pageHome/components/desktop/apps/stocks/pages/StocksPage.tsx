@@ -4,6 +4,7 @@ import { List } from "@src/components/list/List";
 import { Loader } from "@src/components/loader/Loader";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
+import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { QueryStocks, type StockOk } from "../queries/QueryStocks";
@@ -36,7 +37,9 @@ export const StocksPage = () => {
 	return (
 		<S.StocksPage>
 			<List.Section>
-				<T>{lang.stocks.title}</T>
+				<Text variant="title">
+					<T>{lang.stocks.title}</T>
+				</Text>
 			</List.Section>
 
 			<S.Loader>{query.isLoading && <Loader />}</S.Loader>

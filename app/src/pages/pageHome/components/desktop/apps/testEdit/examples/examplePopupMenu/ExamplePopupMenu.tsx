@@ -1,5 +1,6 @@
 import { IconButton } from "@src/components/iconButton/IconButton";
 import { PopupMenu } from "@src/components/popupMenu/PopupMenu";
+import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -18,7 +19,9 @@ export const ExamplePopupMenu = () => {
 
 	return (
 		<S.Col>
-			<S.Title>Popup Menu</S.Title>
+			<S.Title>
+				<Text variant="title">Popup Menu</Text>
+			</S.Title>
 
 			<IconButton iconName="iconMoreVertical" onClick={handleOnClickPopupMenu} />
 

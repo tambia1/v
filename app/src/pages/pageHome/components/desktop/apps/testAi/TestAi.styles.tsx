@@ -1,4 +1,3 @@
-import { Text } from "@src/components/text/Text";
 import styled from "styled-components";
 
 export const TestAi = styled.div`
@@ -48,12 +47,6 @@ export const Line = styled.div`
 
 export const Cell = styled.div`
 	width: 15rem;
-`;
-
-export const Title = styled(Text)`
-	margin-bottom: 1rem;
-	font-weight: ${(props) => props.theme.font.title.weight};
-	font-size: ${(props) => props.theme.font.title.size};
 `;
 
 export const TextArea = styled.textarea`

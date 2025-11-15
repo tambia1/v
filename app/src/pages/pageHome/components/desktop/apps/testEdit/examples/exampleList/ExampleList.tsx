@@ -1,6 +1,7 @@
 import { Flag } from "@src/components/flag/Flag";
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
+import { Text } from "@src/components/text/Text";
 import i18n, { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import * as S from "../../TestEdit.styles";
@@ -8,7 +9,9 @@ import * as S from "../../TestEdit.styles";
 export const ExampleList = () => {
 	return (
 		<S.Col>
-			<S.Title>List</S.Title>
+			<S.Title>
+				<Text variant="title">List</Text>
+			</S.Title>
 
 			<List>
 				<List.Cell onClick={() => {}}>

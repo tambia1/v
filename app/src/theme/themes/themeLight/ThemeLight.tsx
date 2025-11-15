@@ -65,10 +65,15 @@ export const themeLight: Theme = {
 	},
 
 	font: {
-		title: { size: "180%", weight: "bolder" },
-		header: { size: "140%", weight: "bold" },
-		body: { size: "100%", weight: "normal" },
-		note: { size: "80%", weight: "normal" },
+		font100: { size: "60%", weight: "normal" },
+		font200: { size: "70%", weight: "normal" },
+		font300: { size: "80%", weight: "normal" },
+		font400: { size: "100%", weight: "normal" },
+		font500: { size: "120%", weight: "normal" },
+		font600: { size: "140%", weight: "bold" },
+		font700: { size: "160%", weight: "bold" },
+		font800: { size: "180%", weight: "bolder" },
+		font900: { size: "200%", weight: "bolder" },
 	},
 
 	size: {

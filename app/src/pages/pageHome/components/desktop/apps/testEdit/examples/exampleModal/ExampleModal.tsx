@@ -13,7 +13,9 @@ export const ExampleModal = () => {
 	return (
 		<>
 			<S.Col>
-				<S.Title>Modal</S.Title>
+				<S.Title>
+					<Text variant="title">Modal</Text>
+				</S.Title>
 
 				<S.Row>
 					<S.Cell>

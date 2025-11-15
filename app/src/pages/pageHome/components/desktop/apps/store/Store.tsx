@@ -1,4 +1,5 @@
 import { Modal } from "@src/components/modal/Modal";
+import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useState } from "react";
@@ -46,7 +47,7 @@ export const Store = () => {
 			<S.Store>
 				{stores.map((group) => (
 					<S.Group key={group.name}>
-						<S.Title>{group.name}</S.Title>
+						<Text variant="header">{group.name}</Text>
 
 						{group.apps.map((app) => (
 							<S.App key={app.name}>

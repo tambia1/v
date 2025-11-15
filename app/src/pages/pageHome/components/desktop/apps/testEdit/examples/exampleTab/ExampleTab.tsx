@@ -1,4 +1,5 @@
 import { Tab } from "@src/components/tab/Tab";
+import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -11,7 +12,9 @@ export const ExampleTab = () => {
 
 	return (
 		<S.Col>
-			<S.Title>Tab</S.Title>
+			<S.Title>
+				<Text variant="title">Tab</Text>
+			</S.Title>
 
 			<S.Row>
 				<Tab onClickItem={handleOnClickTab} selectedTabIndex={selectdTabIndex}>

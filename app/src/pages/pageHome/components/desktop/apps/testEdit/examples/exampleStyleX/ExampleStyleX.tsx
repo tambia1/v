@@ -1,10 +1,13 @@
+import { Text } from "@src/components/text/Text";
 import * as S from "../../TestEdit.styles";
 import { Box1, Box2, Box3, Box4 } from "./ExampleStyleX.stylex";
 
 export const ExampleStyleX = () => {
 	return (
 		<S.Col>
-			<S.Title>StyleX</S.Title>
+			<S.Title>
+				<Text variant="title">StyleX</Text>
+			</S.Title>
 
 			<S.Col>
 				<Box1>Box div based on stylex with theme</Box1>

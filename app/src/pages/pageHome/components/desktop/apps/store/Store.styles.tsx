@@ -1,5 +1,4 @@
 import { Icon } from "@src/components/icon/Icon";
-import { Text } from "@src/components/text/Text";
 import styled from "styled-components";
 import imageBg from "./assets/bg.jpg";
 
@@ -20,8 +19,6 @@ export const Store = styled.div`
 
 	overflow: auto;
 `;
-
-export const Title = styled(Text).attrs({ variant: "header" })``;
 
 export const Group = styled.div`
 	display: flex;

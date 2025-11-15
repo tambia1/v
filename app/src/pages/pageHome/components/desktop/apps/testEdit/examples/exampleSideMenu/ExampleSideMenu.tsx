@@ -39,7 +39,9 @@ export const ExampleSideMenu = () => {
 
 	return (
 		<S.Col>
-			<S.Title>Side Menu</S.Title>
+			<S.Title>
+				<Text variant="title">Side Menu</Text>
+			</S.Title>
 
 			<S.Row>
 				<IconButton iconName="iconMenu" onClick={handleOnClickMenuBackground} />

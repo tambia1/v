@@ -1,5 +1,6 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Select } from "@src/components/select/Select";
+import { Text } from "@src/components/text/Text";
 import { useState } from "react";
 import * as S from "../../TestEdit.styles";
 
@@ -12,7 +13,9 @@ export const ExampleSelectSingle = () => {
 
 	return (
 		<S.Col>
-			<S.Title>Select - Single</S.Title>
+			<S.Title>
+				<Text variant="title">Select - Single</Text>
+			</S.Title>
 			<Select onClickItem={handleOnClickSelectSingle}>
 				<Select.Display>{`Item ${selectSingleSelection}`}</Select.Display>
 				<Select.Items>

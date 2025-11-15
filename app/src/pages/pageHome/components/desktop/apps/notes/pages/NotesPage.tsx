@@ -61,7 +61,9 @@ export const NotesPage = () => {
 			<List.Section>
 				<S.CellGrid>
 					<Icon iconName="iconPlusCircle" onClick={handleOnClickAddNote} />
-					<T>{lang.notes.notes}</T>
+					<Text variant="title">
+						<T>{lang.notes.notes}</T>
+					</Text>
 				</S.CellGrid>
 			</List.Section>
 

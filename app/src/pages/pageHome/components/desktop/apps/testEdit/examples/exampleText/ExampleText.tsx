@@ -4,7 +4,9 @@ import * as S from "../../TestEdit.styles";
 export const ExampleText = () => {
 	return (
 		<S.Col>
-			<S.Title>Text</S.Title>
+			<S.Title>
+				<Text variant="title">Text</Text>
+			</S.Title>
 
 			<S.Row>
 				<S.Cell>title</S.Cell>

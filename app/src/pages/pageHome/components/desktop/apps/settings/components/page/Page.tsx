@@ -2,6 +2,7 @@ import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
 import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
+import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { About } from "./components/about/About";
@@ -48,7 +49,9 @@ export const Page = () => {
 	return (
 		<S.Page>
 			<List.Section>
-				<T>{lang.settings.apearance}</T>
+				<Text variant="title">
+					<T>{lang.settings.apearance}</T>
+				</Text>
 			</List.Section>
 
 			<List>

@@ -29,10 +29,6 @@ export const Logo = styled.div`
 	height: 8rem;
 `;
 
-export const Text = styled.div`
-	font-size: 200%;
-`;
-
 export const Version = styled.div`
 	position: absolute;
 	bottom: 2rem;

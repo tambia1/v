@@ -94,7 +94,7 @@ export const Weather = () => {
 	return (
 		<S.Weather>
 			<S.LocationInfo>
-				<Text variant="note" color="secondary700">
+				<Text variant="note">
 					📍 {data.latitude.toFixed(2)}°, {data.longitude.toFixed(2)}°
 				</Text>
 				<S.RefreshButton onClick={handleRefresh} disabled={isLoading}>

@@ -67,10 +67,15 @@ export type Theme = {
 	};
 
 	font: {
-		title: { size: string; weight: string };
-		header: { size: string; weight: string };
-		body: { size: string; weight: string };
-		note: { size: string; weight: string };
+		font100: { size: string; weight: string };
+		font200: { size: string; weight: string };
+		font300: { size: string; weight: string };
+		font400: { size: string; weight: string };
+		font500: { size: string; weight: string };
+		font600: { size: string; weight: string };
+		font700: { size: string; weight: string };
+		font800: { size: string; weight: string };
+		font900: { size: string; weight: string };
 	};
 
 	size: {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Icon } from "../icon/Icon";
+import { Text } from "../text/Text";
 import { Item } from "./components/item/Item";
 import type { AnimationState } from "./components/item/Item.styles";
 import { Page } from "./components/page/Page";
@@ -183,7 +184,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 					<S.Header>
 						{navigatorItems.map((navigatorItem) => (
 							<Item key={navigatorItem.page.props.name} animation={navigatorItem.titleAnimation}>
-								{navigatorItem.page.props.title}
+								<Text variant="title">{navigatorItem.page.props.title}</Text>
 							</Item>
 						))}
 					</S.Header>

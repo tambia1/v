@@ -1,4 +1,3 @@
-import { Text } from "@src/components/text/Text";
 import styled from "styled-components";
 
 export const TestEdit = styled.div`
@@ -50,8 +49,8 @@ export const Cell = styled.div`
 	width: 15rem;
 `;
 
-export const Title = styled(Text)`
+export const Title = styled.div`
 	margin-bottom: 1rem;
-	font-weight: ${(props) => props.theme.font.title.weight};
-	font-size: ${(props) => props.theme.font.title.size};
+	font-weight: ${(props) => props.theme.font.font100.weight};
+	font-size: ${(props) => props.theme.font.font100.size};
 `;
