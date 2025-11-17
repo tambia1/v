@@ -1,3 +1,4 @@
+import { Text } from "@src/components/text/Text";
 import styled from "styled-components";
 
 export const TestEdit = styled.div`
@@ -53,4 +54,9 @@ export const Title = styled.div`
 	margin-bottom: 1rem;
 	font-weight: ${(props) => props.theme.font.font100.weight};
 	font-size: ${(props) => props.theme.font.font100.size};
+`;
+
+export const TextWithCustomColor = styled(Text).attrs({ variant: "title" })`
+	color: ${(props) => props.theme.color.info600};
+	font-size: ${(props) => props.theme.font.font500.size};
 `;

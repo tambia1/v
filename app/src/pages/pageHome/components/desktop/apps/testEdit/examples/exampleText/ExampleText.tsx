@@ -32,6 +32,16 @@ export const ExampleText = () => {
 					<Text variant="note">Test</Text>
 				</S.Cell>
 			</S.Row>
+
+			<S.Spacer />
+			<Text variant="body">Composition - title with color</Text>
+
+			<S.Row>
+				<S.Cell>title</S.Cell>
+				<S.Cell>
+					<S.TextWithCustomColor variant="title">Test</S.TextWithCustomColor>
+				</S.Cell>
+			</S.Row>
 		</S.Col>
 	);
 };
