@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Activity, ReactNode } from "react";
 import * as S from "./Compose.styles";
 
 export type Props = {
@@ -16,5 +16,9 @@ export const Compose = ({ children, isVisible, onClickBackground }: Props) => {
 		onClickBackground?.();
 	};
 
-	return <>{isVisible && <S.Compose onClick={handleOnClick}>{children}</S.Compose>}</>;
+	return (
+		<Activity mode={isVisible ? "visible" : "hidden"}>
+			<S.Compose onClick={handleOnClick}>{children}</S.Compose>
+		</Activity>
+	);
 };
