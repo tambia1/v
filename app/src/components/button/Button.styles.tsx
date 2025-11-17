@@ -12,6 +12,7 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 
 	font-size: inherit;
 	font-weight: inherit;
+	font-family: inherit;
 
 	${(props) =>
 		props.$variant === "styled" &&
