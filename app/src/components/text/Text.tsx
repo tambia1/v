@@ -4,8 +4,6 @@ import * as S from "./Text.styles";
 
 export type Variant = "title" | "header" | "body" | "note";
 
-//a
-
 export type Props = {
 	className?: string;
 	children?: ReactNode;
