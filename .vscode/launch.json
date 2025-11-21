@@ -81,7 +81,7 @@
 		},
 		{
 			"name": "app test visuals",
-			"command": "npm run test:visuals",
+			"command": "npm run test:visuals:update",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/app/",
