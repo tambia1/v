@@ -12,5 +12,6 @@ app/env/*
 /.env
 
 app/tsconfig.tsbuildinfo
-app/visuals-temp
+app/playwright-report
+app/test-results
 
