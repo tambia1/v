@@ -22,6 +22,7 @@ test("Desktop", async ({ page }) => {
 	await performSwipe(page, "rightToLeft");
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_guest.png`);
 
+	await performSwipe(page, "leftToRight");
 	await page.getByText("User").click();
 	await page.getByPlaceholder("Email (a, b)").click();
 	await page.getByPlaceholder("Email (a, b)").fill("a");
