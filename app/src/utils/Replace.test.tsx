@@ -71,17 +71,11 @@ describe("Replace", () => {
 			).toMatchInlineSnapshot(`
 				[
 				  "This is a ",
-				  {
-				    "$$typeof": Symbol(react.transitional.element),
-				    "_owner": null,
-				    "_store": {},
-				    "key": null,
-				    "props": {
-				      "children": "Link",
-				      "href": "google.com",
-				    },
-				    "type": "a",
-				  },
+				  <a
+				    href="google.com"
+				  >
+				    Link
+				  </a>,
 				  " for ",
 				  "testing.",
 				  "",
