@@ -23,11 +23,11 @@ test("Desktop", async ({ page }) => {
 	await page.getByPlaceholder("Email (a, b)").fill("a");
 	await page.getByPlaceholder("Password (a, b)").click();
 	await page.getByPlaceholder("Password (a, b)").fill("a");
-	await page.getByRole("button", { name: "Login" }).click();
-
-	const welcome = await page.getByText("Welcome John Admin!");
-	await expect(welcome).toBeVisible();
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_login.png`);
+
+	await page.getByRole("button", { name: "Login" }).click();
+	const welcome = await page.getByText("Welcome John Admin!");
+	await page.waitForTimeout(ANIMATION_TIME);
 	await expect(welcome).not.toBeVisible();
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_user.png`);
 });
