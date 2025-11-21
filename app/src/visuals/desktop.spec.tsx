@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { performSwipe } from "./utils";
 
 const ANIMATION_TIME = 1000;
 
@@ -16,6 +17,9 @@ test("Desktop", async ({ page }) => {
 	const home = await page.getByText("Guest");
 	await expect(home).toBeVisible();
 	await page.waitForTimeout(ANIMATION_TIME);
+	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_guest.png`);
+
+	await performSwipe(page, "rightToLeft");
 	await expect(page).toHaveScreenshot(`${screenshotCounter++}_desktop_guest.png`);
 
 	await page.getByText("User").click();

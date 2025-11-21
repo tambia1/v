@@ -27,3 +27,20 @@ export const performLogin = async (page: Page) => {
 	await expect(welcome).toBeVisible();
 	await expect(welcome).not.toBeVisible();
 };
+
+export const performSwipe = async (page: Page, direction: "rightToLeft" | "leftToRight") => {
+	const viewportSize = page.viewportSize();
+
+	if (viewportSize) {
+		const startX = direction === "rightToLeft" ? viewportSize.width * 0.8 : viewportSize.width * 0.2;
+		const endX = direction === "rightToLeft" ? viewportSize.width * 0.2 : viewportSize.width * 0.8;
+		const y = viewportSize.height - 50;
+
+		await page.mouse.move(startX, y);
+		await page.mouse.down();
+		await page.mouse.move(endX, y, { steps: 10 });
+		await page.mouse.up();
+	}
+
+	await page.waitForTimeout(ANIMATION_TIME);
+};
