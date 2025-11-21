@@ -1,4 +1,4 @@
-name: 🧪 Tests Units
+name: Tests Units
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 24.8.0
 
       - name: Install dependencies
         run: npm install --legacy-peer-deps
