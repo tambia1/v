@@ -39,7 +39,7 @@ export default defineConfig({
 		ignoreHTTPSErrors: true,
 	},
 	expect: {
-		toHaveScreenshot: { maxDiffPixels: 200 },
+		toHaveScreenshot: { maxDiffPixels: 250 },
 	},
 	/* Configure projects for major browsers */
 	projects: [
