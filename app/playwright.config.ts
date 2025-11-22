@@ -34,11 +34,23 @@ export default defineConfig({
 		// video: "on",
 		launchOptions: {
 			// slowMo: 1000,
+			args: [
+				"--font-render-hinting=none", // Disable font hinting for consistent rendering
+				"--disable-skia-runtime-opts", // Disable Skia optimizations
+				"--disable-font-subpixel-positioning", // Disable subpixel positioning
+				"--disable-lcd-text", // Disable LCD text rendering
+			],
 		},
 		ignoreHTTPSErrors: true,
 	},
 	expect: {
-		toHaveScreenshot: { maxDiffPixels: 5 },
+		toHaveScreenshot: {
+			maxDiffPixels: 5,
+			// Alternative: use percentage-based threshold instead
+			// maxDiffPixelRatio: 0.01, // 1% of pixels can differ
+			animations: "disabled", // Disable animations for consistent screenshots
+			scale: "css", // Use CSS pixels instead of device pixels
+		},
 	},
 	/* Configure projects for major browsers */
 	projects: [
