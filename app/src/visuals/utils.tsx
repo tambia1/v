@@ -23,9 +23,8 @@ export const performLogin = async (page: Page) => {
 	await page.getByPlaceholder("Password (a, b)").fill("a");
 	await page.getByRole("button", { name: "Login" }).click();
 
-	const welcome = page.getByText("Welcome John Admin!");
-	await expect(welcome).toBeVisible();
-	await expect(welcome).not.toBeVisible();
+	await expect(page.getByRole("button", { name: "Logout" })).toBeVisible();
+	await expect(page.getByRole("button", { name: "Logout" })).not.toBeVisible();
 };
 
 export const performSwipe = async (page: Page, direction: "rightToLeft" | "leftToRight") => {
