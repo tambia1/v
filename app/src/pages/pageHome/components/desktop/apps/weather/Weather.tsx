@@ -208,7 +208,7 @@ export const Weather = () => {
 				</Text>
 
 				<S.HourlyForecastContainer>
-					{next12Hours.map((hour: any, index: number) => (
+					{next12Hours.map((hour, index) => (
 						<S.HourlyForecastCardWrapper key={index}>
 							<Card
 								bodyContent={
