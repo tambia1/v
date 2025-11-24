@@ -45,7 +45,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
 const exportSet = /* @__PURE__ */ new Set(["Module", "__esModule", "default", "_export_sfc"]);
 let moduleMap = {
   "./Mfe": () => {
-    dynamicLoadingCss(["style-CHmI8080.css"], false, "./Mfe");
+    dynamicLoadingCss(["style-ChyN9u7G.css"], false, "./Mfe");
     return __federation_import("./__federation_expose_Mfe-C1m4av87.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
   }
 };
