@@ -6,8 +6,9 @@
 	"homepage": "https://tambia1.github.io",
 	"scripts": {
 		"start": "vite --host --port 5002 --strictPort",
-		"build": "tsc && vite build",
-		"preview": "tsc && vite build && vite preview --port 5002 --strictPort",
+		"build": "vite build",
+		"preview": "vite preview --port 5002 --strictPort",
+		"serve": "concurrently 'vite build --watch' 'vite preview --port 5002 --strictPort'",
 		"test": "vitest",
 		"coverage": "vitest watch --coverage",
 		"deploy": "gh-pages -d ./dist",

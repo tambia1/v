@@ -18,7 +18,8 @@ function jsxProd(type, config, maybeKey) {
     maybeKey = {};
     for (var propName in config)
       "key" !== propName && (maybeKey[propName] = config[propName]);
-  } else maybeKey = config;
+  } else
+    maybeKey = config;
   config = maybeKey.ref;
   return {
     $$typeof: REACT_ELEMENT_TYPE,
@@ -44,4 +45,4 @@ export {
   Mfe as default,
   jsxRuntimeExports as j
 };
-//# sourceMappingURL=__federation_expose_Mfe-DSefNhID.js.map
+//# sourceMappingURL=__federation_expose_Mfe-BJAMPA3C.js.map
