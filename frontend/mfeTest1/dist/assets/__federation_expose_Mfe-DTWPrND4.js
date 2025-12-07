@@ -18,8 +18,7 @@ function jsxProd(type, config, maybeKey) {
     maybeKey = {};
     for (var propName in config)
       "key" !== propName && (maybeKey[propName] = config[propName]);
-  } else
-    maybeKey = config;
+  } else maybeKey = config;
   config = maybeKey.ref;
   return {
     $$typeof: REACT_ELEMENT_TYPE,
@@ -38,11 +37,11 @@ reactJsxRuntime_production.jsxs = jsxProd;
 var jsxRuntimeExports = jsxRuntime.exports;
 const version = "1.0.0";
 const Mfe = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-mfe-version": `${version}}`, className: "mfe", children: "Hello Micro Frontend Test" });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "data-mfe-version": `${version}}`, className: "mfe", children: "Hello Micro Frontend 1 Test" });
 };
 export {
   Mfe,
   Mfe as default,
   jsxRuntimeExports as j
 };
-//# sourceMappingURL=__federation_expose_Mfe-C1m4av87.js.map
+//# sourceMappingURL=__federation_expose_Mfe-DTWPrND4.js.map

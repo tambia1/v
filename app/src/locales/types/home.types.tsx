@@ -141,7 +141,11 @@ export type Home = {
 		title: string;
 	};
 
-	mfe: {
+	mfe1: {
+		title: string;
+	};
+
+	mfe2: {
 		title: string;
 	};
 

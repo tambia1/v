@@ -141,8 +141,12 @@ export const translation: Home = {
 		title: "Board",
 	},
 
-	mfe: {
-		title: "Micro Frontend",
+	mfe1: {
+		title: "Micro Frontend 1",
+	},
+
+	mfe2: {
+		title: "Micro Frontend 2",
 	},
 
 	redis: {
