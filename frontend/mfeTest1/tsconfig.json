@@ -27,7 +27,7 @@
 		"types": ["vitest/globals"],
 		"noUnusedParameters": true,
 		"noUnusedLocals": true,
-		"composite": true
+		"composite": false
 	},
 	"include": ["src", "**/*.ts", "**/*.d.ts", "**/*.tsx"],
 	"exclude": ["node_modules", "vite.config.ts", "tsconfig.json"]

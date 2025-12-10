@@ -27,7 +27,7 @@
 		"types": ["vitest/globals"],
 		"noUnusedParameters": true,
 		"noUnusedLocals": true,
-		"composite": true
+		"composite": false
 	},
 	"ts-node": {
 		"esm": true
