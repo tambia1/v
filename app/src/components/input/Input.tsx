@@ -1,6 +1,6 @@
+import { useTheme } from "@emotion/react";
 import type { Theme } from "@src/theme/Theme.types";
 import type { InputHTMLAttributes } from "react";
-import { useTheme } from "styled-components";
 import * as S from "./Input.styles";
 
 export type TextAlign = "left" | "center" | "right";

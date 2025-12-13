@@ -17,7 +17,7 @@ function createAppFolder(appName, destinationPath) {
 	const fileName2 = `${appName.charAt(0).toUpperCase()}${appName.slice(1)}.tsx`;
 
 	//content
-	const fileContent1 = `import styled from "styled-components";
+	const fileContent1 = `import styled from "@emotion/styled";
 
     export const Test = styled.div\`
         width: 100%;

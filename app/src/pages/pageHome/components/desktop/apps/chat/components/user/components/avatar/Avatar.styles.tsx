@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import imageAvatar0 from "./assets/avatar0.png";
 import imageAvatar1 from "./assets/avatar1.png";
 import imageAvatar2 from "./assets/avatar2.png";

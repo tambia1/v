@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import type { Theme } from "@src/theme/Theme.types";
-import styled from "styled-components";
 
 export const Text = styled.div<{
 	$color: keyof Theme["color"];

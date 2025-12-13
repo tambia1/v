@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon";
-import styled from "styled-components";
 
 const MOBILE_WIDTH = "700px";
 
@@ -105,10 +105,7 @@ export const Task = styled.div<{ $isDragOn: boolean }>`
 
 export const HeaderText = styled.div``;
 
-export const HeaderIcon = styled(Icon).attrs({
-	fill: "#00ff00",
-	stroke: "#000000",
-})`
+export const HeaderIconBase = styled(Icon)`
 	position: absolute;
 	right: 1rem;
 
@@ -118,11 +115,13 @@ export const HeaderIcon = styled(Icon).attrs({
 	cursor: pointer;
 	transition: all 0.3s ease;
 
-	&:hover{
+	&:hover {
 		color: ${(props) => props.theme.color.primary400};
 		background-color: ${(props) => props.theme.color.primary600};
 	}
 `;
+
+export const HeaderIcon = (props: React.ComponentProps<typeof Icon>) => <HeaderIconBase fill="#00ff00" stroke="#000000" {...props} />;
 
 export const ModalContent = styled.div`
 	display: flex;

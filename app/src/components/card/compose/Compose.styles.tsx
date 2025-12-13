@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Theme } from "@src/theme/Theme.types";
-import styled from "styled-components";
 
 export const Compose = styled.div<{ width?: keyof Theme["size"]; height?: keyof Theme["size"] }>`
 	width: ${(props) => (props.width ? props.theme.size[props.width] : "100%")};

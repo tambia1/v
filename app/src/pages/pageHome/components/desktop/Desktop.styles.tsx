@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { backgroundImages } from "@src/pages/pageHome/components/desktop/apps/settings/components/page/components/themes/Themes.styles";
-import styled from "styled-components";
 
 export type BarPosition = "top" | "bottom" | "left" | "right";
 

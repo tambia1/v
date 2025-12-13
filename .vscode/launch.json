@@ -131,8 +131,28 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "shared/ui install",
+			"command": "npm install --legacy-peer-deps",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/shared/ui/"
+		},
+		{
+			"name": "shared/ui build",
+			"command": "rm -rf dist && npm run build",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/shared/ui/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
 			"name": "frontend 1 install",
-			"command": "npm i",
+			"command": "npm i --legacy-peer-deps",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/frontend/mfeTest1/"
@@ -173,7 +193,7 @@
 		},
 		{
 			"name": "frontend 2 install",
-			"command": "npm i",
+			"command": "npm i --legacy-peer-deps",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/frontend/mfeTest2/"

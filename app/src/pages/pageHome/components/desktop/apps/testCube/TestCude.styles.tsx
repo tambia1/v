@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Slider } from "@src/components/slider/Slider";
-import styled from "styled-components";
 
 export const TestCube = styled.div`
 	width: 100%;

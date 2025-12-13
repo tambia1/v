@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "@emotion/styled";
 
 export const Container = styled.div`
 	position: absolute;
@@ -10,7 +10,7 @@ export const Container = styled.div`
 	background-color: ${(props) => props.theme.color.primary100};
 `;
 
-const Icon = css<{ $isVisible: boolean }>`
+const IconBase = styled.div<{ $isVisible: boolean }>`
 	position: absolute;
 	width: 4rem;
 	height: 4rem;
@@ -25,23 +25,22 @@ const Icon = css<{ $isVisible: boolean }>`
 	color: ${(props) => props.theme.color.primary800};
 	transition: all 0.3s ease;
 
-	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-	cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "none")};
-	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
+	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+	cursor: ${(props) => (props.$isVisible ? "pointer" : "none")};
+	pointer-events: ${(props) => (props.$isVisible ? "auto" : "none")};
 
 	& svg {
 		stroke: ${(props) => props.theme.color.primary800};
 		fill: ${(props) => props.theme.color.primary100};
 	}
 
-	&:hover{
+	&:hover {
 		color: ${(props) => props.theme.color.primary400};
 		background-color: ${(props) => props.theme.color.primary600};
 	}
 `;
 
-export const IconDone = styled.div<{ $isVisible: boolean }>`
-	${Icon}
+export const IconDone = styled(IconBase)`
 	left: 0rem;
 
 	& svg {
@@ -50,8 +49,7 @@ export const IconDone = styled.div<{ $isVisible: boolean }>`
 	}
 `;
 
-export const IconCancel = styled.div<{ $isVisible: boolean }>`
-	${Icon}
+export const IconCancel = styled(IconBase)`
 	right: 0rem;
 
 	& svg {

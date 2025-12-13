@@ -1,6 +1,6 @@
+import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
-import styled from "styled-components";
 import imageBg from "./assets/login_bg.svg";
 import imageUserLoggedIn from "./assets/userLoggedIn.png";
 import imageUserLoggedOut from "./assets/userLoggedOut.png";

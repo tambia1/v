@@ -5,32 +5,20 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
-import dts from "vite-plugin-dts";
 
 export default defineConfig({
 	base: "/v",
 
 	plugins: [
 		react({
+			jsxImportSource: "@emotion/react",
 			babel: {
-				plugins: [
-					[
-						"babel-plugin-styled-components",
-						{
-							displayName: true,
-							fileName: false,
-						},
-					],
-				],
+				plugins: ["@emotion/babel-plugin"],
 			},
 		}),
 
 		checker({
 			typescript: true,
-		}),
-
-		dts({
-			insertTypesEntry: true,
 		}),
 	],
 
@@ -70,12 +58,13 @@ export default defineConfig({
 			fileName: (format) => `lib.${format}.js`,
 		},
 		rollupOptions: {
-			external: ["react", "react-dom", "styled-components"],
+			external: ["react", "react-dom", "@emotion/react", "@emotion/styled"],
 			output: {
 				globals: {
 					react: "React",
 					"react-dom": "ReactDOM",
-					"styled-components": "styled",
+					"@emotion/react": "emotionReact",
+					"@emotion/styled": "emotionStyled",
 				},
 			},
 		},

@@ -1,6 +1,6 @@
+import { useTheme } from "@emotion/react";
 import type { Theme } from "@src/theme/Theme.types";
 import { type HTMLAttributes, type ReactElement, useEffect, useRef, useState } from "react";
-import { useTheme } from "styled-components";
 import { Display } from "./components/display/Display";
 import { Items } from "./components/items/Items";
 import { ContextSelect } from "./context/UseContextSelect";

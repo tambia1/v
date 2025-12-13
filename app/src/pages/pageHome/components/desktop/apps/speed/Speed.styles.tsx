@@ -1,4 +1,5 @@
-import styled, { css, type RuleSet } from "styled-components";
+import { css, type SerializedStyles } from "@emotion/react";
+import styled from "@emotion/styled";
 import caliper from "./images/caliper.png";
 import compass from "./images/compass.png";
 import speedometer from "./images/speedometer.png";
@@ -35,7 +36,7 @@ export const SpeedometerImage = styled.div`
 	z-index: 1;
 `;
 
-export const CaliperValueMap: { [key: string]: RuleSet<object> } = {
+export const CaliperValueMap: { [key: string]: SerializedStyles } = {
 	0: css`
 		top: 177px;
 		left: 147px;

@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Button } from "@src/components/button/Button";
-import styled from "styled-components";
 
 export const MessageBar = styled.div<{ $numberOfLineBreaks: number }>`
 	display: flex;

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import imageCheck from "./assets/Check.png";
 import imageClose from "./assets/Close.png";
 import imageError from "./assets/Error.png";

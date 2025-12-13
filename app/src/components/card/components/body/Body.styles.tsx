@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const Body = styled.div<{ $collapsed: boolean }>`
 	transition: all 0.3s ease;

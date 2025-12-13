@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Text } from "@src/components/text/Text";
-import styled from "styled-components";
 
 export const TestEdit = styled.div`
 	width: 100%;
@@ -56,7 +56,9 @@ export const Title = styled.div`
 	font-size: ${(props) => props.theme.font.font100.size};
 `;
 
-export const TextWithCustomColor = styled(Text).attrs({ variant: "title" })`
+const TextWithCustomColorBase = styled(Text)`
 	color: ${(props) => props.theme.color.info600};
 	font-size: ${(props) => props.theme.font.font500.size};
 `;
+
+export const TextWithCustomColor = (props: React.ComponentProps<typeof Text>) => <TextWithCustomColorBase variant="title" {...props} />;

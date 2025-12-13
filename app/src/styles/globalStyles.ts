@@ -1,6 +1,7 @@
-import styled, { createGlobalStyle, css, keyframes } from "styled-components";
+import { css, keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 
-export const GlobalStyle = createGlobalStyle`
+export const globalStyles = css`
 	body {
 		--scrollbarColor: #cfd8dc;
 		--thumbColor: #90a4ae;

@@ -1,7 +1,8 @@
+import { Global } from "@emotion/react";
 import { Pages } from "@pages/Pages.types";
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { GlobalStyle } from "@src/styles/globalStyles";
+import { globalStyles } from "@src/styles/globalStyles";
 import { ThemeProvider } from "@src/theme/ThemeProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
@@ -29,7 +30,7 @@ export const App = () => {
 			<I18nextProvider i18n={i18n}>
 				<BrowserRouter basename="/v">
 					<QueryClientProvider client={queryClient}>
-						<GlobalStyle />
+						<Global styles={globalStyles} />
 						<ThemeProvider>
 							<Routes>
 								<Route path={Pages.notFound} element={<PageNotFound />} />

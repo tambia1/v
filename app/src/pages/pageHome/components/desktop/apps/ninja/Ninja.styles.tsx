@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import board from "./pages/game/images/board.jpg";
 import grass from "./pages/game/images/grass.png";
 

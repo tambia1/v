@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { Variant } from "./Button";
 
 export const Button = styled.button<{ $variant: Variant }>`

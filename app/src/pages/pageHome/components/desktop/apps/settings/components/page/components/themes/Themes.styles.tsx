@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import lightBackground1 from "./background/theme1/bg_0.jpg";
 import darkBackground1 from "./background/theme1/bg_0_dark.jpg";
 import lightBackground2 from "./background/theme2/bg_0.jpg";

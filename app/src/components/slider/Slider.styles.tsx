@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const Slider = styled.div<{ $width: string }>`
 	width: ${(props) => props.$width};

@@ -1,6 +1,6 @@
+import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon";
 import type { Theme } from "@src/theme/Theme.types";
-import styled from "styled-components";
 
 export const Loader = styled(Icon)<{ size: keyof Theme["size"]; color: keyof Theme["color"] }>`
 	width: ${(props) => props.theme.size[props.size]};

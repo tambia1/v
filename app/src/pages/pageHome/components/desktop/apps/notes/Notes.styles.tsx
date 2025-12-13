@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { BackButton, Headers } from "@src/components/navigator/Navigator.styles";
-import styled from "styled-components";
 
 export const Notes = styled.div`
 	width: 100%;

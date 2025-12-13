@@ -34,6 +34,7 @@ import { TestCube } from "./apps/testCube/TestCube";
 import { TestEdit } from "./apps/testEdit/TestEdit";
 import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
+import { TestShared } from "./apps/testShared/TestShared";
 import { TestTree } from "./apps/testTree/TestTree";
 import type { AppIcon } from "./components/appButton/AppButton.styles";
 import type { Role } from "./Desktop.types";
@@ -84,6 +85,7 @@ export const apps: App[][] = [
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
 		{ id: "testEdit", roles: ["admin", "guest"], title: <T>{lang.testEdit.title}</T>, icon: "test", component: <TestEdit /> },
+		{ id: "testShared", roles: ["admin", "guest"], title: <T>{lang.testShared.title}</T>, icon: "test", component: <TestShared /> },
 		{ id: "testMfe1", roles: ["admin", "guest"], title: <T>{lang.mfe1.title}</T>, icon: "test", component: <TestMfe1 /> },
 		{ id: "testMfe2", roles: ["admin", "guest"], title: <T>{lang.mfe2.title}</T>, icon: "test", component: <TestMfe2 /> },
 		{ id: "testTable", roles: ["admin"], title: <T>{lang.testTable.title}</T>, icon: "test", component: <TestTable /> },

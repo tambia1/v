@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import arena1 from "./game/images/arenas/arena1.jpg";
 
 export const ClashRoyaleGame = styled.div`

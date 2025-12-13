@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 
 export const Switch = styled.div<{ disabled: boolean }>`
 	width: 6rem;

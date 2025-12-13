@@ -1,7 +1,7 @@
+import styled from "@emotion/styled";
 import { Progress } from "@src/components/progress/Progress";
 import { ProgressValue } from "@src/components/progress/Progress.styles";
 import { Slider } from "@src/components/slider/Slider";
-import styled from "styled-components";
 
 export const Shush = styled.div`
 	width: 100%;

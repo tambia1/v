@@ -1,7 +1,7 @@
-import type { HTMLProps, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import * as S from "./Section.styles";
 
-export interface Props extends HTMLProps<HTMLDivElement> {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
 	children?: ReactNode;
 }
 

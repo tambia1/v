@@ -1,4 +1,5 @@
-import styled, { keyframes } from "styled-components";
+import { keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 
 const shadow = keyframes`
     0% { box-shadow: 0px 0px 40px 15px rgb(255, 235, 145); }

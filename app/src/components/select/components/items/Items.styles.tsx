@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { List } from "@src/components/list/List.styles";
-import styled from "styled-components";
 
 export const Items = styled.div<{ $isOpen: boolean; $width: string }>`
 	margin-top: 0.5rem;

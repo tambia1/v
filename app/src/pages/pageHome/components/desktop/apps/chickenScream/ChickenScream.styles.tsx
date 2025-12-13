@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import ground from "./assets/ground.png";
 import stone from "./assets/stone.png";
 
@@ -44,19 +44,16 @@ export const Chicken = styled.div<{ $isJumping: boolean }>`
 	transition: all 0.3s ease;
 `;
 
-export const Ground = styled.div.attrs<{ $x: number }>((props) => ({
-	style: {
-		backgroundPosition: `${-props.$x}px 0px`,
-	},
-}))`
+export const Ground = styled.div<{ $x: number }>`
 	position: absolute;
 	height: 5.6rem;
 	left: 0rem;
 	right: 0rem;
 	bottom: 0rem;
 	background-image: url(${ground});
-	background-size: contain; 
-	background-repeat: repeat-x; 
+	background-size: contain;
+	background-repeat: repeat-x;
+	background-position: ${(props) => -props.$x}px 0px;
 `;
 
 export const Sun = styled.div`
@@ -65,16 +62,13 @@ export const Sun = styled.div`
 	bottom: 22rem;
 `;
 
-export const Stone = styled.div.attrs<{ $x: number }>((props) => ({
-	style: {
-		left: `${props.$x}px`,
-	},
-}))`
+export const Stone = styled.div<{ $x: number }>`
 	position: absolute;
 	height: 3rem;
 	width: 5rem;
 	bottom: 3.5rem;
 	background-image: url(${stone});
-	background-size: contain; 
-	background-repeat: repeat-x; 
+	background-size: contain;
+	background-repeat: repeat-x;
+	left: ${(props) => props.$x}px;
 `;

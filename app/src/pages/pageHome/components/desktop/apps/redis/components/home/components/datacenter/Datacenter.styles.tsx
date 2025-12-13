@@ -1,9 +1,10 @@
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { Collapsable } from "@src/components/collapsable/Collapsable.styles";
 import { Flag } from "@src/components/flag/Flag.styles";
 import { Icon } from "@src/components/icon/Icon";
 import { Progress as ProgressComponent } from "@src/components/progress/Progress";
 import { ProgressValue } from "@src/components/progress/Progress.styles";
-import styled, { css } from "styled-components";
 
 export const Page = styled.div`
 	width: 100%;

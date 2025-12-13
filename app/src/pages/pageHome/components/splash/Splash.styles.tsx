@@ -1,6 +1,6 @@
 import { Progress as ProgressComponent } from "@components/progress/Progress";
 import { ProgressValue } from "@components/progress/Progress.styles";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import logo from "./assets/logo.png";
 
 export const Splash = styled.div`

@@ -1,5 +1,6 @@
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { Text } from "@src/components/text/Text.styles";
-import styled, { css } from "styled-components";
 import type { LineState } from "./Cell";
 
 export const Content = styled.div`
@@ -57,11 +58,11 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 		css`
 			& ${Content} {
 				cursor: not-allowed;
-				color: ${(props) => props.theme.color.primary400};
-				background-color: ${(props) => props.theme.color.primary200};
+				color: ${props.theme.color.primary400};
+				background-color: ${props.theme.color.primary200};
 
 				& ${Text} {
-					color: ${(props) => props.theme.color.primary400};
+					color: ${props.theme.color.primary400};
 				}
 			}
 		`}
@@ -70,8 +71,8 @@ export const Cell = styled.div<{ $isEnabled: boolean; $isSelected: boolean }>`
 		props.$isSelected &&
 		css`
 			& ${Content} {
-				color: ${(props) => props.theme.color.primary600};
-				background-color: ${(props) => props.theme.color.primary200};
+				color: ${props.theme.color.primary600};
+				background-color: ${props.theme.color.primary200};
 			}
 		`}
 `;

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "@emotion/styled";
 import type { BarPosition } from "../../Desktop.styles";
 
 export const BarMain = styled.div`
@@ -13,7 +13,7 @@ export const BarMain = styled.div`
 	align-items: center;
 `;
 
-const Icon = css<{ $isVisible: boolean }>`
+const IconBase = styled.div<{ $isVisible: boolean }>`
 	position: absolute;
 	width: 4rem;
 	height: 4rem;
@@ -28,29 +28,27 @@ const Icon = css<{ $isVisible: boolean }>`
 	color: ${(props) => props.theme.color.primary800};
 	transition: all 0.3s ease;
 
-	opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
-	cursor: ${({ $isVisible }) => ($isVisible ? "pointer" : "none")};
-	pointer-events: ${({ $isVisible }) => ($isVisible ? "" : "none")};
+	opacity: ${(props) => (props.$isVisible ? 1 : 0)};
+	cursor: ${(props) => (props.$isVisible ? "pointer" : "none")};
+	pointer-events: ${(props) => (props.$isVisible ? "auto" : "none")};
 
 	& svg {
 		stroke: ${(props) => props.theme.color.primary800};
 		fill: ${(props) => props.theme.color.primary100};
 	}
 
-	&:hover{
+	&:hover {
 		color: ${(props) => props.theme.color.primary400};
 		background-color: ${(props) => props.theme.color.primary600};
 	}
 `;
 
-export const IconClose = styled.div<{ $isVisible: boolean; $barPosition: BarPosition }>`
-	${Icon}
-	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "bottom: 0rem;" : "left: 0rem")};
+export const IconClose = styled(IconBase)<{ $barPosition: BarPosition }>`
+	${(props) => (props.$barPosition === "left" || props.$barPosition === "right" ? "bottom: 0rem;" : "left: 0rem")};
 `;
 
-export const IconTheme = styled.div<{ $isVisible: boolean; $barPosition: BarPosition }>`
-	${Icon}
-	${({ $barPosition }) => ($barPosition === "left" || $barPosition === "right" ? "top: 0rem;" : "right: 0rem")};
+export const IconTheme = styled(IconBase)<{ $barPosition: BarPosition }>`
+	${(props) => (props.$barPosition === "left" || props.$barPosition === "right" ? "top: 0rem;" : "right: 0rem")};
 `;
 
 export const Username = styled.div`

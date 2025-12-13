@@ -1,6 +1,6 @@
+import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon.styles";
 import { Input } from "@src/components/input/Input";
-import styled from "styled-components";
 
 export const SpinPage = styled.div`
 	width: auto;

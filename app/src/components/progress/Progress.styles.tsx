@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const Progress = styled.div<{ $width: string }>`
 	width: ${(props) => props.$width};
@@ -19,14 +19,11 @@ export const ProgressContent = styled.div`
 	overflow: hidden;
 `;
 
-export const ProgressValue = styled.div.attrs<{ $width: number }>((props) => ({
-	style: {
-		width: `${props.$width}%`,
-	},
-}))`
+export const ProgressValue = styled.div<{ $width: number }>`
 	height: 100%;
 	position: relative;
 	border-radius: 100rem;
 	background-color: ${(props) => props.theme.color.primary800};
 	transition: all 0.05s linear;
+	width: ${(props) => props.$width}%;
 `;

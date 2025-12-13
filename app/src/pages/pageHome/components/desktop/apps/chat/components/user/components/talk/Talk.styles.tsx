@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import type { Theme } from "@src/theme/Theme.types";
-import styled from "styled-components";
 import ImageBgDark from "./assets/bgDark.png";
 import ImageBgLight from "./assets/bgLight.png";
 

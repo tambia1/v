@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon.styles";
-import styled from "styled-components";
 
 export const CellIcon = styled.div`
 	width: 2rem;

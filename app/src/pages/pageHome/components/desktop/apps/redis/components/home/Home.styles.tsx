@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon";
-import styled, { css } from "styled-components";
 
 export const Home = styled.div`
 	width: 100%;
@@ -32,11 +32,15 @@ export const Bar = styled.div`
 	background-color: ${(props) => props.theme.color.primary200};
 `;
 
-const IconBar = css`
+const iconBarStyles = `
 	width: 2rem;
 	height: 2rem;
 	cursor: pointer;
 	padding: 1rem;
+`;
+
+export const IconMenu = styled(Icon)`
+	${iconBarStyles}
 
 	&:hover {
 		background-color: ${(props) => props.theme.color.primary600};
@@ -47,12 +51,16 @@ const IconBar = css`
 	}
 `;
 
-export const IconMenu = styled(Icon)`
-	${IconBar}
-`;
-
 export const IconLogout = styled(Icon)`
-	${IconBar}
+	${iconBarStyles}
+
+	&:hover {
+		background-color: ${(props) => props.theme.color.primary600};
+	}
+
+	&:active {
+		background-color: ${(props) => props.theme.color.primary700};
+	}
 `;
 
 export const Container = styled.div`

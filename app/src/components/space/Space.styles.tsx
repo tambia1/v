@@ -1,5 +1,5 @@
+import styled from "@emotion/styled";
 import type { Theme } from "@src/theme/Theme.types";
-import styled from "styled-components";
 import type { Direction } from "./Space.types";
 
 export const Space = styled.div<{ $size: keyof Theme["size"]; $direction: Direction }>`

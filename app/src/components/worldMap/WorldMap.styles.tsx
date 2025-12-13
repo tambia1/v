@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import imageWorldMapDark from "./assets/world-map-dark.png";
 import imageWorldMapLight from "./assets/world-map-light.png";
 

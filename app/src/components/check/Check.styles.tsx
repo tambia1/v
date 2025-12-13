@@ -1,4 +1,5 @@
-import styled, { css } from "styled-components";
+import { css } from "@emotion/react";
+import styled from "@emotion/styled";
 import { Icon } from "../icon/Icon.styles";
 
 export const Check = styled.div<{ disabled: boolean }>`

@@ -1,4 +1,5 @@
-import styled, { css, keyframes } from "styled-components";
+import { css, keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
 
 const goToCenter = keyframes`
 	0% {transform: translateX(0%);}

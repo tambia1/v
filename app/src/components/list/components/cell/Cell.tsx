@@ -1,4 +1,4 @@
-import type { HTMLProps, ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 import * as S from "./Cell.styles";
 import { CellInfo } from "./components/cellEnd/CellInfo";
 import { CellIcon } from "./components/cellIcon/CellIcon";
@@ -7,7 +7,7 @@ import { CellText } from "./components/cellText/CellText";
 
 export type LineState = "long" | "short";
 
-export interface Props extends HTMLProps<HTMLDivElement> {
+export interface Props extends HTMLAttributes<HTMLDivElement> {
 	$isEnabled?: boolean;
 	$isSelected?: boolean;
 	children?: ReactNode;

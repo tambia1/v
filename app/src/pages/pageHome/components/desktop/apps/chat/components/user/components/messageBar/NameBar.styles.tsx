@@ -1,6 +1,6 @@
+import styled from "@emotion/styled";
 import { Button } from "@src/components/button/Button";
 import { Input } from "@src/components/input/Input";
-import styled from "styled-components";
 
 export const NameBar = styled.div`
 	display: flex;
