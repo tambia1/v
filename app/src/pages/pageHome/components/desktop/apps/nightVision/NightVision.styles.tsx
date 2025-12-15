@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon.styles";
+import { Slider } from "@src/components/slider/Slider";
+import { Text } from "@src/components/text/Text";
 
 export const NightVision = styled.div`
 	width: 100%;
@@ -71,3 +73,32 @@ export const Loader = styled.div`
 	z-index: 1;
 `;
 
+export const Sliders = styled.div<{ $visible: boolean }>`
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 1.5rem;
+	background-color: #000000;
+	border-radius: 1rem;
+	border: 1px solid #00ff00;
+	opacity: ${(props) => (props.$visible ? 1 : 0)};
+	transition: opacity 0.3s ease;
+`;
+
+export const SliderRow = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+`;
+
+export const SliderLabel = styled(Text)`
+	color: #00ff00;
+`;
+
+export const SliderStyled = styled(Slider)`
+	width: 10rem;
+	margin: 0;
+`;

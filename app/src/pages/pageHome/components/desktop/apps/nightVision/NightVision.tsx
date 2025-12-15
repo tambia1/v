@@ -15,6 +15,20 @@ export const NightVision = () => {
 	const [cameraFacingMode, setCameraFacingMode] = useState<CameraFacingMode>("environment");
 	const animationFrameRef = useRef<number | null>(null);
 
+	// Slider states
+	const [brightness, setBrightness] = useState(0.5);
+	const [amplified, setAmplified] = useState(0.6);
+	const [redChannel, setRedChannel] = useState(0.2);
+	const [greenChannel, setGreenChannel] = useState(1.0);
+	const [blueChannel, setBlueChannel] = useState(0.2);
+	const [showSliders, setShowSliders] = useState(false);
+
+	// Use refs to access current slider values in the animation callback
+	const slidersRef = useRef({ brightness, amplified, redChannel, greenChannel, blueChannel });
+	useEffect(() => {
+		slidersRef.current = { brightness, amplified, redChannel, greenChannel, blueChannel };
+	}, [brightness, amplified, redChannel, greenChannel, blueChannel]);
+
 	const applyNightVisionEffect = useCallback(() => {
 		const video = refVideo.current;
 		const canvas = refCanvas.current;
@@ -31,21 +45,24 @@ export const NightVision = () => {
 		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 		const data = imageData.data;
 
+		const { brightness: br, amplified: amp, redChannel: r, greenChannel: g, blueChannel: b } = slidersRef.current;
+		const brightnessMultiplier = br * 2; // 0 to 2 range
+
 		for (let i = 0; i < data.length; i += 4) {
-			const r = data[i];
-			const g = data[i + 1];
-			const b = data[i + 2];
+			const red = data[i];
+			const green = data[i + 1];
+			const blue = data[i + 2];
 
 			// Calculate brightness with enhanced sensitivity for low light
-			const brightness = r * 0.299 + g * 0.587 + b * 0.114;
+			const pixelBrightness = (red * 0.299 + green * 0.587 + blue * 0.114) * brightnessMultiplier;
 
 			// Amplify brightness for low-light enhancement (gamma correction)
-			const amplified = (brightness / 255) ** 0.6 * 255;
+			const amplifiedValue = (pixelBrightness / 255) ** amp * 255;
 
-			// Apply green night vision tint
-			data[i] = Math.min(255, amplified * 0.2); // Red - minimal
-			data[i + 1] = Math.min(255, amplified * 1.2); // Green - enhanced
-			data[i + 2] = Math.min(255, amplified * 0.2); // Blue - minimal
+			// Apply night vision tint with adjustable channels
+			data[i + 0] = Math.min(255, amplifiedValue * r);
+			data[i + 1] = Math.min(255, amplifiedValue * g);
+			data[i + 2] = Math.min(255, amplifiedValue * b);
 		}
 
 		ctx.putImageData(imageData, 0, 0);
@@ -110,6 +127,10 @@ export const NightVision = () => {
 		};
 	}, []);
 
+	const handleToggleSliders = () => {
+		setShowSliders(!showSliders);
+	};
+
 	return (
 		<S.NightVision>
 			{isLoading && (
@@ -122,9 +143,33 @@ export const NightVision = () => {
 			<S.Canvas ref={refCanvas} />
 			<S.Image ref={refImg} $image={capturedImage ? capturedImage : ""} />
 
+			<S.Sliders $visible={showSliders}>
+				<S.SliderRow>
+					<S.SliderLabel variant="note">Brightness</S.SliderLabel>
+					<S.SliderStyled value={brightness} onChange={setBrightness} />
+				</S.SliderRow>
+				<S.SliderRow>
+					<S.SliderLabel variant="note">Amplified</S.SliderLabel>
+					<S.SliderStyled value={amplified} onChange={setAmplified} />
+				</S.SliderRow>
+				<S.SliderRow>
+					<S.SliderLabel variant="note">Red</S.SliderLabel>
+					<S.SliderStyled value={redChannel} onChange={setRedChannel} />
+				</S.SliderRow>
+				<S.SliderRow>
+					<S.SliderLabel variant="note">Green</S.SliderLabel>
+					<S.SliderStyled value={greenChannel} onChange={setGreenChannel} />
+				</S.SliderRow>
+				<S.SliderRow>
+					<S.SliderLabel variant="note">Blue</S.SliderLabel>
+					<S.SliderStyled value={blueChannel} onChange={setBlueChannel} />
+				</S.SliderRow>
+			</S.Sliders>
+
 			<S.Buttons>
 				{cameraState === "play" && <Icon iconName="iconPauseCircle" size="size500" onClick={handleCapture} />}
 				{cameraState === "play" && <Icon iconName="iconRefreshCw" size="size500" onClick={handleCameraFace} />}
+				{cameraState === "play" && <Icon iconName="iconSliders" size="size500" onClick={handleToggleSliders} />}
 				{cameraState === "pause" && <Icon iconName="iconPlayCircle" size="size500" onClick={handleCamera} />}
 				{cameraState === "pause" && capturedImage && <Icon iconName="iconSave" size="size500" onClick={handleCamera} />}
 			</S.Buttons>
