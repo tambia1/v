@@ -13,6 +13,7 @@ import { ExampleSelectMulti } from "./examples/exampleSelectMulti/ExampleSelectM
 import { ExampleSelectSingle } from "./examples/exampleSelectSingle/ExampleSelectSingle";
 import { ExampleShared } from "./examples/exampleShared/ExampleShared";
 import { ExampleSideMenu } from "./examples/exampleSideMenu/ExampleSideMenu";
+import { ExampleSlider } from "./examples/exampleSlider/ExampleSlider";
 import { ExampleStepper } from "./examples/exampleStepper/ExampleStepper";
 import { ExampleStyleX } from "./examples/exampleStyleX/ExampleStyleX";
 import { ExampleSwitch } from "./examples/exampleSwitch/ExampleSwitch";
@@ -72,6 +73,9 @@ export const TestEdit = () => {
 
 				<S.Line />
 				<ExampleCard />
+
+				<S.Line />
+				<ExampleSlider />
 
 				<S.Line />
 				<ExampleStyleX />
