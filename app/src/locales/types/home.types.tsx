@@ -40,6 +40,10 @@ export type Home = {
 		title: string;
 	};
 
+	nightVision: {
+		title: string;
+	};
+
 	clock: {
 		title: string;
 	};

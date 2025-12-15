@@ -40,6 +40,10 @@ export const translation: Home = {
 		title: "Camera",
 	},
 
+	nightVision: {
+		title: "Night Vision",
+	},
+
 	clock: {
 		title: "Clock",
 	},
