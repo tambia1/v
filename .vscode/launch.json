@@ -218,40 +218,6 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "env dev",
-			"command": "export ENV='dev'",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "env qa",
-			"command": "export ENV='qa'",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "env prod",
-			"command": "export ENV='prod'",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "env list",
-			"command": "printenv",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
-			"name": "---------------------------------",
-			"command": "",
-			"request": "launch",
-			"type": "node-terminal"
-		},
-		{
 			"name": "playwright install",
 			"command": "npx playwright install chromium",
 			"request": "launch",
