@@ -42,6 +42,19 @@
 			"type": "node-terminal"
 		},
 		{
+			"name": "workspace install",
+			"command": "npm install",
+			"request": "launch",
+			"type": "node-terminal",
+			"cwd": "${workspaceFolder}/"
+		},
+		{
+			"name": "---------------------------------",
+			"command": "",
+			"request": "launch",
+			"type": "node-terminal"
+		},
+		{
 			"name": "app updates",
 			"command": "npx npm-check-updates -u",
 			"request": "launch",
@@ -49,18 +62,11 @@
 			"cwd": "${workspaceFolder}/app/"
 		},
 		{
-			"name": "app install",
-			"command": "npm install --legacy-peer-deps",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
-		},
-		{
 			"name": "app start",
-			"command": "npm run start",
+			"command": "npm -w app run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/",
+			"cwd": "${workspaceFolder}/",
 			"env": {
 				"ENV": "dev"
 			}
@@ -98,17 +104,17 @@
 		},
 		{
 			"name": "app build",
-			"command": "npm run build",
+			"command": "npm -w app run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "app preview",
-			"command": "npm run preview",
+			"command": "npm -w app run preview",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/app/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "app deploy",
@@ -131,59 +137,45 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "shared/ui install",
-			"command": "npm install --legacy-peer-deps",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/shared/ui/"
-		},
-		{
 			"name": "shared/ui build",
-			"command": "rm -rf dist && npm run build",
+			"command": "npm -w shared/ui run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/shared/ui/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "---------------------------------",
 			"command": "",
 			"request": "launch",
 			"type": "node-terminal"
-		},
-		{
-			"name": "frontend 1 install",
-			"command": "npm i --legacy-peer-deps",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest1/"
 		},
 		{
 			"name": "frontend 1 start",
-			"command": "npm run start",
+			"command": "npm -w frontend/mfeTest1 run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest1/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "frontend 1 build",
-			"command": "npm run build",
+			"command": "npm -w frontend/mfeTest1 run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest1/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "frontend 1 preview",
-			"command": "npm run preview",
+			"command": "npm -w frontend/mfeTest1 run preview",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest1/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "frontend 1 serve",
-			"command": "npm run serve",
+			"command": "npm -w frontend/mfeTest1 run serve",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest1/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "---------------------------------",
@@ -192,39 +184,32 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "frontend 2 install",
-			"command": "npm i --legacy-peer-deps",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest2/"
-		},
-		{
 			"name": "frontend 2 start",
-			"command": "npm run start",
+			"command": "npm -w frontend/mfeTest2 run start",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest2/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "frontend 2 build",
-			"command": "npm run build",
+			"command": "npm -w frontend/mfeTest2 run build",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest2/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "frontend 2 preview",
-			"command": "npm run preview",
+			"command": "npm -w frontend/mfeTest2 run preview",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest2/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "frontend 2 serve",
-			"command": "npm run serve",
+			"command": "npm -w frontend/mfeTest2 run serve",
 			"request": "launch",
 			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/frontend/mfeTest2/"
+			"cwd": "${workspaceFolder}/"
 		},
 		{
 			"name": "---------------------------------",

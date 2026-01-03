@@ -27,6 +27,7 @@
 		"noUnusedParameters": true,
 		"noUnusedLocals": true
 	},
-	"include": ["src", "**/*.ts", "**/*.d.ts", "**/*.tsx"],
+	"include": ["src", "**/*.d.ts", "**/*.tsx"],
+	"exclude": ["vite.config.ts", "vite.config.d.ts", "**/*.config.ts", "**/*.config.d.ts"],
 	"references": [{ "path": "./tsconfig.node.json" }]
 }
