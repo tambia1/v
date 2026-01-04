@@ -1,6 +1,6 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "./NightVision.styles";
 
 type CameraFacingMode = "user" | "environment";
@@ -22,6 +22,8 @@ export const NightVision = () => {
 	const [greenChannel, setGreenChannel] = useState(1.0);
 	const [blueChannel, setBlueChannel] = useState(0.2);
 	const [showSliders, setShowSliders] = useState(false);
+	const [zoomSlider, setZoomSlider] = useState(0);
+	const [zoomValue, setZoomValue] = useState(1);
 
 	// Use refs to access current slider values in the animation callback
 	const slidersRef = useRef({ brightness, amplified, redChannel, greenChannel, blueChannel });
@@ -29,18 +31,34 @@ export const NightVision = () => {
 		slidersRef.current = { brightness, amplified, redChannel, greenChannel, blueChannel };
 	}, [brightness, amplified, redChannel, greenChannel, blueChannel]);
 
-	const applyNightVisionEffect = useCallback(() => {
+	// Keep a ref for zoom so the running animation loop can read the latest zoom value
+	const zoomRef = useRef<number>(zoomValue);
+	useEffect(() => {
+		zoomRef.current = zoomValue;
+	}, [zoomValue]);
+
+	const applyNightVisionEffect = () => {
 		const video = refVideo.current;
 		const canvas = refCanvas.current;
 		if (!video || !canvas || video.paused || video.ended) return;
 
 		const ctx = canvas.getContext("2d", { willReadFrequently: true });
-		if (!ctx) return;
+
+		if (!ctx) {
+			return;
+		}
 
 		canvas.width = video.videoWidth || 640;
 		canvas.height = video.videoHeight || 480;
 
-		ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+		const srcW = video.videoWidth || canvas.width;
+		const srcH = video.videoHeight || canvas.height;
+		const currentZoom = Math.max(1, zoomRef.current || 1);
+		const sw = Math.max(1, Math.floor(srcW / currentZoom));
+		const sh = Math.max(1, Math.floor(srcH / currentZoom));
+		const sx = Math.max(0, Math.floor((srcW - sw) / 2));
+		const sy = Math.max(0, Math.floor((srcH - sh) / 2));
+		ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
 
 		const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 		const data = imageData.data;
@@ -67,7 +85,7 @@ export const NightVision = () => {
 
 		ctx.putImageData(imageData, 0, 0);
 		animationFrameRef.current = requestAnimationFrame(applyNightVisionEffect);
-	}, []);
+	};
 
 	const getCameraStream = async (cameraFacingMode: CameraFacingMode) => {
 		try {
@@ -131,6 +149,15 @@ export const NightVision = () => {
 		setShowSliders(!showSliders);
 	};
 
+	const handleZoomChange = (value: number) => {
+		const minValue = 1;
+		const maxValue = 10;
+		const newZoomValue = minValue + (maxValue - minValue) * value;
+
+		setZoomSlider(value);
+		setZoomValue(newZoomValue);
+	};
+
 	return (
 		<S.NightVision>
 			{isLoading && (
@@ -165,6 +192,11 @@ export const NightVision = () => {
 					<S.SliderStyled value={blueChannel} onChange={setBlueChannel} />
 				</S.SliderRow>
 			</S.Sliders>
+
+			<S.ZoomContainer $visible={showSliders}>
+				<S.SliderLabel variant="note">Zoom {zoomValue.toFixed(2)}</S.SliderLabel>
+				<S.ZoomSlider value={zoomSlider} onChange={handleZoomChange} />
+			</S.ZoomContainer>
 
 			<S.Buttons>
 				{cameraState === "play" && <Icon iconName="iconPauseCircle" size="size500" onClick={handleCapture} />}

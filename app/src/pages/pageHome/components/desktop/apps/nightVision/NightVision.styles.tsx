@@ -102,3 +102,23 @@ export const SliderStyled = styled(Slider)`
 	width: 10rem;
 	margin: 0;
 `;
+
+export const ZoomContainer = styled.div<{ $visible: boolean }>`
+	position: absolute;
+	left: 1rem;
+	right: 1rem;
+	bottom: 11rem; 
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	justify-content: center;
+	padding: 0 1rem;
+	opacity: ${(props) => (props.$visible ? 1 : 0)};
+	transition: opacity 0.3s ease;
+	z-index: 1;
+`;
+
+export const ZoomSlider = styled(Slider)`
+	width: 100%;
+	margin: 0;
+`;
