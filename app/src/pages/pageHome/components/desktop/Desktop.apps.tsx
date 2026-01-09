@@ -37,6 +37,7 @@ import { TestMenu } from "./apps/testMenu/TestMenu";
 import { TestRedis } from "./apps/testRedis/TestRedis";
 import { TestShared } from "./apps/testShared/TestShared";
 import { TestTree } from "./apps/testTree/TestTree";
+import { Warlords } from "./apps/warlords/Warlords";
 import type { AppIcon } from "./components/appButton/AppButton.styles";
 import type { Role } from "./Desktop.types";
 
@@ -83,6 +84,7 @@ export const apps: App[][] = [
 		{ id: "smileClock", roles: ["admin", "user", "guest"], title: <T>{lang.smileClock.title}</T>, icon: "smileClock", component: <SmileClock /> },
 		{ id: "snake", roles: ["admin", "user", "guest"], title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
 		{ id: "nightVision", roles: ["admin", "user", "guest"], title: <T>{lang.nightVision.title}</T>, icon: "nightVision", component: <NightVision /> },
+		{ id: "warlords", roles: ["admin", "user", "guest"], title: <T>{lang.warlords.title}</T>, icon: "warlords", component: <Warlords /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },

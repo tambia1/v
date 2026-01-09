@@ -27,6 +27,7 @@ import test from "./assets/test.png";
 import tetris from "./assets/tetris.png";
 import userLoggedIn from "./assets/userLoggedIn.png";
 import userLoggedOut from "./assets/userLoggedOut.png";
+import warlords from "./assets/warlords.png";
 import weather from "./assets/weather.png";
 
 export const appIcons = {
@@ -58,6 +59,7 @@ export const appIcons = {
 	emojiFace,
 	smileClock,
 	nightVision,
+	warlords,
 } as const;
 
 export type AppIcon = keyof typeof appIcons;

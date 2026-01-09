@@ -117,6 +117,13 @@ export const translation: Home = {
 		loading: "LADATAAN...",
 	},
 
+	warlords: {
+		title: "Warlords",
+		start: "START",
+		back: "BACK",
+		loading: "LOADING...",
+	},
+
 	speed: {
 		title: "Nopeus",
 	},
