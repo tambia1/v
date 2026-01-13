@@ -46,7 +46,7 @@ const exportSet = /* @__PURE__ */ new Set(["Module", "__esModule", "default", "_
 let moduleMap = {
   "./Mfe": () => {
     dynamicLoadingCss(["style-ChyN9u7G.css"], false, "./Mfe");
-    return __federation_import("./__federation_expose_Mfe-16DMEWRz.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
+    return __federation_import("./__federation_expose_Mfe-CN6pjy4A.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
   }
 };
 const seen = {};
