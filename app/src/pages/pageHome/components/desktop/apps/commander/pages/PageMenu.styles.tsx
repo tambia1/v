@@ -3,11 +3,8 @@ import styled from "@emotion/styled";
 import arenaIcon1 from "./game/images/arenas/arenaIcon1.png";
 import arenaIcon2 from "./game/images/arenas/arenaIcon2.png";
 import arenaIcon3 from "./game/images/arenas/arenaIcon3.png";
-import bg from "./game/images/misc/bg.webp";
-import buttonYellow from "./game/images/misc/button_yellow.png";
-import splash0 from "./game/images/misc/splash_0.png";
-import splash1 from "./game/images/misc/splash_1.png";
-import splash2 from "./game/images/misc/splash_2.png";
+import buttonYellow from "./images/misc/button_yellow.png";
+import bg from "./images/misc/commanderMenuBg.png";
 
 export const PageMenu = styled.div`
 	width: 100%;
@@ -40,17 +37,13 @@ export const Bg = styled.div`
 	top: 0px;
 	bottom: 0px;
 	background-image: url(${bg});
-	background-size: 340px;
+	background-size: cover;
 `;
 
 export const Splash = styled.div`
 	position: absolute;
 	width: 375px;
 	height: 595px;
-	background-image: url(${splash0}), url(${splash1}), url(${splash2});
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: 50% 0%;
 	display: flex;
 	justify-content: center;
 `;
