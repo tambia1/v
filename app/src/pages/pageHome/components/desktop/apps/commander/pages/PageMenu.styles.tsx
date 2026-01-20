@@ -84,7 +84,7 @@ export const PagingContainer = styled.div`
 	top: 0;
 	bottom: 0;
 
-	height: 250px;
+	height: 350px;
 	bottom: 180px;
 	border-radius: 1rem;
 	top: auto;
