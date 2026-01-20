@@ -24,7 +24,7 @@ export const PageMenu = () => {
 		<S.PageMenu>
 			<S.Page>
 				<S.Bg />
-				<S.Splash>
+				<S.PageContainer>
 					<S.PagingContainer>
 						<Pager onMouseUp={(pageIndex) => setPageIndex(pageIndex)}>
 							<S.PagingItem1 />
@@ -32,10 +32,11 @@ export const PageMenu = () => {
 							<S.PagingItem3 />
 						</Pager>
 					</S.PagingContainer>
+
 					<S.ButtonStart $isVisible={true} onClick={handleOnClickStart}>
 						START
 					</S.ButtonStart>
-				</S.Splash>
+				</S.PageContainer>
 			</S.Page>
 		</S.PageMenu>
 	);

@@ -40,7 +40,7 @@ export const Bg = styled.div`
 	background-size: cover;
 `;
 
-export const Splash = styled.div`
+export const PageContainer = styled.div`
 	position: absolute;
 	width: 375px;
 	height: 595px;
