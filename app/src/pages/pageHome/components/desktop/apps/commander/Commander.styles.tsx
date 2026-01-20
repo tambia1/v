@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Headers } from "@src/components/navigator/Navigator.styles";
 
-export const Warlords = styled.div`
+export const Commander = styled.div`
 	font-family: monospace;
 
 	width: 100%;

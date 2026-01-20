@@ -117,8 +117,8 @@ export const translation: Home = {
 		loading: "LOADING...",
 	},
 
-	warlords: {
-		title: "Warlords",
+	commander: {
+		title: "Commander",
 		start: "START",
 		back: "BACK",
 		loading: "LOADING...",

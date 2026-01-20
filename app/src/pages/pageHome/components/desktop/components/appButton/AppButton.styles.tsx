@@ -9,6 +9,7 @@ import chickenScream from "./assets/chickenScream.png";
 import chwazi from "./assets/chwazi.png";
 import clashRoyale from "./assets/clashRoyale.webp";
 import clock from "./assets/clock.png";
+import commander from "./assets/commander.png";
 import emojiFace from "./assets/emojiFace.png";
 import nightVision from "./assets/nightVision.png";
 import ninja from "./assets/ninja.png";
@@ -27,7 +28,6 @@ import test from "./assets/test.png";
 import tetris from "./assets/tetris.png";
 import userLoggedIn from "./assets/userLoggedIn.png";
 import userLoggedOut from "./assets/userLoggedOut.png";
-import warlords from "./assets/warlords.png";
 import weather from "./assets/weather.png";
 
 export const appIcons = {
@@ -59,7 +59,7 @@ export const appIcons = {
 	emojiFace,
 	smileClock,
 	nightVision,
-	warlords,
+	commander,
 } as const;
 
 export type AppIcon = keyof typeof appIcons;

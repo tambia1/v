@@ -1,17 +1,17 @@
 import { Navigator } from "@src/components/navigator/Navigator";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+import * as S from "./Commander.styles";
 import { PageMenu } from "./pages/PageMenu";
-import * as S from "./Warlords.styles";
 
-export const Warlords = () => {
+export const Commander = () => {
 	return (
-		<S.Warlords>
+		<S.Commander>
 			<Navigator>
-				<Navigator.Page name="app" title={<T>{lang.warlords.title}</T>}>
+				<Navigator.Page name="app" title={<T>{lang.commander.title}</T>}>
 					<PageMenu />
 				</Navigator.Page>
 			</Navigator>
-		</S.Warlords>
+		</S.Commander>
 	);
 };

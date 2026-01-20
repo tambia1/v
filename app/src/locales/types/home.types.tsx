@@ -117,7 +117,7 @@ export type Home = {
 		loading: string;
 	};
 
-	warlords: {
+	commander: {
 		title: string;
 		start: string;
 		back: string;
