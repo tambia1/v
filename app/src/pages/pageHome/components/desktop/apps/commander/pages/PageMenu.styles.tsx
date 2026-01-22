@@ -6,6 +6,53 @@ import arenaIcon3 from "./game/images/arenas/arenaIcon3.png";
 import buttonActive from "./images/misc/buttonActive.png";
 import bg from "./images/misc/commanderMenuBg.png";
 
+export const theme = {
+	button: {
+		active: {
+			bg: "#2B1A14",
+			surface: "#3A241C",
+			frame: "#5A3A24",
+			edge: "#8C5A32",
+			glow: "#FF8A1F",
+			glowSoft: "rgba(255, 138, 31, 0.25)",
+			text: "#FFD58A",
+
+			hover: {
+				bg: "#331F18",
+				glow: "#FFB14A",
+			},
+
+			pressed: {
+				bg: "#1F130E",
+				surface: "#2A1A14",
+				frame: "#4A2F1D",
+				glow: "#CC6E1A",
+				text: "#E6B86A",
+			},
+		},
+
+		disabled: {
+			bg: "#1C1F22",
+			surface: "#262A2E",
+			frame: "#2F3337",
+			edge: "#4A4F55",
+			text: "#9CA1A6",
+
+			pressed: {
+				bg: "#15181B",
+				surface: "#1F2327",
+				frame: "#262A2E",
+				text: "#7E8388",
+			},
+		},
+	},
+
+	ui: {
+		bgMain: "#0F1215",
+		bgPanel: "#161A1F",
+	},
+};
+
 export const PageMenu = styled.div`
 	width: 100%;
 	height: 100%;
@@ -63,15 +110,15 @@ export const ButtonStart = styled.button<{ $isVisible: boolean }>`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
-	color: #CC6E1A;
-	text-shadow: 0px 0px 5px #000000;
+	color: ${theme.button.active.text};
 	transition: all 0.1s ease;
 	border: none;
 	background-color: transparent;
 	font-family: inherit;
 
 	&:active {
-		transform: scale(1.025);
+		transform: scale(0.97);
+		color: ${theme.button.active.pressed.text};
 	}
 `;
 
