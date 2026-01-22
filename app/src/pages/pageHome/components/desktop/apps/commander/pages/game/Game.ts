@@ -15,7 +15,6 @@ type GameProps = {
 };
 
 export class Game {
-	private canvas!: HTMLCanvasElement;
 	private grid!: { x1: number; y1: number; x2: number; y2: number };
 
 	private board: HTMLDivElement;
@@ -48,20 +47,19 @@ export class Game {
 		this.gameEngine = new GameEngine({
 			div: this.board,
 			onStart: ({ ctx, timeDif }) => {
-				this.canvas = ctx.canvas;
+				this.initTouches();
+				this.initGrid();
+				this.initPlayers();
+				this.initAdapter();
+
 				this.update(timeDif);
-				this.draw();
+				this.draw(ctx);
 			},
-			onUpdate: ({ timeDif }) => {
+			onUpdate: ({ ctx, timeDif }) => {
 				this.update(timeDif);
-				this.draw();
+				this.draw(ctx);
 			},
 		});
-
-		this.initTouches();
-		this.initGrid();
-		this.initPlayers();
-		this.initAdapter();
 	}
 
 	public start() {
@@ -79,7 +77,6 @@ export class Game {
 		}
 
 		this.updatePlayerBadAi(timeDif);
-
 		this.updateTimeLeft(timeDif);
 		this.updatePlayers(timeDif);
 		this.updateUnitsMove(timeDif);
@@ -87,9 +84,25 @@ export class Game {
 		this.updateGameOver(timeDif);
 	}
 
+	private draw(ctx: CanvasRenderingContext2D) {
+		ctx.save();
+
+		this.drawInit(ctx);
+		this.drawArena(ctx);
+		this.drawTimeLeft(ctx);
+		this.drawPlayersNames(ctx);
+		this.drawPlayers(ctx);
+		this.drawGameOver(ctx);
+
+		//log
+		// this.drawGrid(ctx);
+
+		ctx.restore();
+	}
+
 	private initTouches() {
 		UtilsTouch.listenToTouches({
-			div: this.canvas,
+			div: this.board,
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				//up
 				if (this.isXYInsideGrid(x, y) === false) {
@@ -459,26 +472,6 @@ export class Game {
 					this.players[i].putSelectedStackOnGrid(x, y);
 				}
 			}
-		}
-	}
-
-	private draw() {
-		const ctx = this.canvas.getContext("2d");
-
-		if (ctx != null) {
-			ctx.save();
-
-			this.drawInit(ctx);
-			this.drawArena(ctx);
-			this.drawTimeLeft(ctx);
-			this.drawPlayersNames(ctx);
-			this.drawPlayers(ctx);
-			this.drawGameOver(ctx);
-
-			//log
-			// this.drawGrid(ctx);
-
-			ctx.restore();
 		}
 	}
 
