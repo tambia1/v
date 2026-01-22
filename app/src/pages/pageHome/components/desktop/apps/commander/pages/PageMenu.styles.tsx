@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import arenaIcon1 from "./game/images/arenas/arenaIcon1.png";
 import arenaIcon2 from "./game/images/arenas/arenaIcon2.png";
 import arenaIcon3 from "./game/images/arenas/arenaIcon3.png";
-import buttonYellow from "./images/misc/button_yellow.png";
+import buttonActive from "./images/misc/buttonActive.png";
 import bg from "./images/misc/commanderMenuBg.png";
 
 export const PageMenu = styled.div`
@@ -58,12 +58,12 @@ export const ButtonStart = styled.button<{ $isVisible: boolean }>`
 	bottom: 80px;
 	width: 150px;
 	height: 76px;
-	background-image: url(${buttonYellow});
+	background-image: url(${buttonActive});
 	z-index: 1;
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: 50% 50%;
-	color: #ffffff;
+	color: #CC6E1A;
 	text-shadow: 0px 0px 5px #000000;
 	transition: all 0.1s ease;
 	border: none;
@@ -71,7 +71,7 @@ export const ButtonStart = styled.button<{ $isVisible: boolean }>`
 	font-family: inherit;
 
 	&:active {
-		transform: scale(1.1);
+		transform: scale(1.025);
 	}
 `;
 
