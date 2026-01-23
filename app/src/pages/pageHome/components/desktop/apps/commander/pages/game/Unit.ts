@@ -13,6 +13,7 @@ import imageSkull from "./images/units/skull.png";
 import imageSnake from "./images/units/snake.png";
 import imageSorcerer from "./images/units/sorcerer.png";
 import imageTank from "./images/units/tank.png";
+import imageTankLight from "./images/units/tankLight.png";
 import imageWolf from "./images/units/wolf.png";
 import { ShootType as IShootType, Shoot } from "./Shoot";
 import { UtilsImage } from "./UtilsImage";
@@ -432,7 +433,7 @@ const types: { [K in UnitType]: UnitData } = {
 	},
 
 	tankLight: {
-		image: UtilsImage.getImage(imageTank),
+		image: UtilsImage.getImage(imageTankLight),
 		elixirNeeded: 3,
 		lifeMax: 100,
 		life: 0,
@@ -440,7 +441,7 @@ const types: { [K in UnitType]: UnitData } = {
 		weaponSpeed: 1000,
 		weaponDamage: 10,
 		weaponRange: 50,
-		shootType: "shoot2",
+		shootType: "shoot1",
 		spriteSize: 128,
 		spriteCols: 16,
 		spriteTime: 100,
