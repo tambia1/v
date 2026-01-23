@@ -32,7 +32,8 @@ export type UnitType =
 	| "giant"
 	| "musketeer"
 	| "hogRider"
-	| "tank";
+	| "tank"
+	| "tankLight";
 
 type UnitState = "idle" | "idleDown" | "idleUp" | "walkDown" | "walkUp" | "attackDown" | "attackUp";
 type UnitDirection = "up" | "down";
@@ -427,6 +428,31 @@ const types: { [K in UnitType]: UnitData } = {
 			walkUp: [48, 48],
 			attackDown: [32, 32],
 			attackUp: [48, 48],
+		},
+	},
+
+	tankLight: {
+		image: UtilsImage.getImage(imageTank),
+		elixirNeeded: 3,
+		lifeMax: 100,
+		life: 0,
+		moveSpeed: 2000,
+		weaponSpeed: 1000,
+		weaponDamage: 10,
+		weaponRange: 50,
+		shootType: "shoot2",
+		spriteSize: 128,
+		spriteCols: 16,
+		spriteTime: 100,
+		state: "idle",
+		states: {
+			idle: [96, 96],
+			idleDown: [16, 16],
+			idleUp: [0, 0],
+			walkDown: [16, 16],
+			walkUp: [0, 0],
+			attackDown: [16, 16],
+			attackUp: [0, 0],
 		},
 	},
 };
