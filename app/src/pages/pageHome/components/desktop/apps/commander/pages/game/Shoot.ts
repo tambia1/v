@@ -187,7 +187,7 @@ export class Shoot {
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
-		if (this.isShooting == true && this.type != null) {
+		if (this.isShooting === true && this.type != null) {
 			ctx.save();
 
 			const col = Math.floor(this.sprite % this.cols);
