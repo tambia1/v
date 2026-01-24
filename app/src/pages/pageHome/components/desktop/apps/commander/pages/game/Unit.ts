@@ -440,7 +440,7 @@ const types: { [K in UnitType]: UnitData } = {
 		moveSpeed: 2000,
 		weaponSpeed: 1000,
 		weaponDamage: 10,
-		weaponRange: 50,
+		weaponRange: 100,
 		shootType: "shoot1",
 		spriteSize: 128,
 		spriteCols: 16,

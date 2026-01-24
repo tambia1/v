@@ -214,7 +214,7 @@ export class Player {
 
 	public drawUnits(ctx: CanvasRenderingContext2D) {
 		for (let i = 0; i < this.units.length; i++) {
-			// this.units[i].drawWeaponRange(ctx);
+			this.units[i].drawWeaponRange(ctx);
 		}
 
 		for (let i = 0; i < this.units.length; i++) {
