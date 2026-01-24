@@ -101,6 +101,7 @@ export class Game {
 				"musketeer",
 				"hogRider",
 				"amazon",
+				"tankLight",
 			]),
 		);
 		this.players.push(
@@ -118,6 +119,7 @@ export class Game {
 				"musketeer",
 				"hogRider",
 				"amazon",
+				"tankLight",
 			]),
 		);
 	}

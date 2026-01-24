@@ -13,6 +13,7 @@ import imageSkull from "./images/units/skull.png";
 import imageSnake from "./images/units/snake.png";
 import imageSorcerer from "./images/units/sorcerer.png";
 import imageTank from "./images/units/tank.png";
+import imageTankLight from "./images/units/tankLight.png";
 import imageWolf from "./images/units/wolf.png";
 import { ShootType as IShootType, Shoot } from "./Shoot";
 import { UtilsImage } from "./UtilsImage";
@@ -32,7 +33,8 @@ export type UnitType =
 	| "giant"
 	| "musketeer"
 	| "hogRider"
-	| "tank";
+	| "tank"
+	| "tankLight";
 
 type UnitState = "idle" | "idleDown" | "idleUp" | "walkDown" | "walkUp" | "attackDown" | "attackUp";
 type UnitDirection = "up" | "down";
@@ -427,6 +429,31 @@ const types: { [K in UnitType]: UnitData } = {
 			walkUp: [48, 1],
 			attackDown: [32, 1],
 			attackUp: [48, 1],
+		},
+	},
+
+	tankLight: {
+		image: UtilsImage.getImage(imageTankLight),
+		elixirNeeded: 3,
+		lifeMax: 100,
+		life: 0,
+		moveSpeed: 2000,
+		weaponSpeed: 1000,
+		weaponDamage: 10,
+		weaponRange: 90,
+		shootType: "shoot1",
+		spriteSize: 128,
+		spriteCols: 16,
+		spriteTime: 100,
+		state: "idle",
+		states: {
+			idle: [127, 1],
+			idleDown: [16, 1],
+			idleUp: [0, 1],
+			walkDown: [16, 1],
+			walkUp: [0, 1],
+			attackDown: [16, 1],
+			attackUp: [0, 1],
 		},
 	},
 };
