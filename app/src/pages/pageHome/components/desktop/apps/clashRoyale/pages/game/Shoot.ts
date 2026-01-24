@@ -1,9 +1,10 @@
 import { Animation } from "./Animation";
 import imageShoot1 from "./images/shoot/shoot_1_38_128.webp";
 import imageShoot2 from "./images/shoot/shoot_2_7_128.webp";
+import imageShoot3 from "./images/shoot/shoot_3.webp";
 import { UtilsImage } from "./UtilsImage";
 
-export type ShootType = "shoot1" | "shoot2";
+export type ShootType = "shoot1" | "shoot2" | "shoot3";
 type ShootData = {
 	image: HTMLImageElement;
 	size: number;
@@ -46,6 +47,20 @@ const types: { [K in ShootType]: ShootData } = {
 		flyTime: 500,
 		explodeFramesStart: 2,
 		explodeFramesEnd: 6,
+		explodeTime: 500,
+	},
+	shoot3: {
+		image: UtilsImage.getImage(imageShoot3),
+		size: 256,
+		cols: 4,
+		fireFrameStart: 0,
+		fireFrameEnd: 1,
+		fireTime: 100,
+		flyFramesStart: 2,
+		flyFramesEnd: 3,
+		flyTime: 500,
+		explodeFramesStart: 4,
+		explodeFramesEnd: 5,
 		explodeTime: 500,
 	},
 };
@@ -187,7 +202,7 @@ export class Shoot {
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
-		if (this.isShooting == true && this.type != null) {
+		if (this.isShooting === true && this.type != null) {
 			ctx.save();
 
 			const col = Math.floor(this.sprite % this.cols);

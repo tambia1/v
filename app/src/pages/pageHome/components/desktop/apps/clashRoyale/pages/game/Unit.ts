@@ -441,7 +441,7 @@ const types: { [K in UnitType]: UnitData } = {
 		weaponSpeed: 1000,
 		weaponDamage: 10,
 		weaponRange: 90,
-		shootType: "shoot1",
+		shootType: "shoot3",
 		spriteSize: 128,
 		spriteCols: 16,
 		spriteTime: 100,
