@@ -1,9 +1,9 @@
 import { Castle, type CastleType as ICastleType } from "./Castle";
+import { UtilsImage } from "./core/UtilsImage";
+import { UtilsMath } from "./core/UtilsMath";
 import imageElixir from "./images/misc/elixir.png";
 import imageelixirBg from "./images/misc/elixirBg.png";
 import { type UnitType as IUnitType, Unit } from "./Unit";
-import { UtilsImage } from "./UtilsImage";
-import { UtilsMath } from "./UtilsMath";
 
 export type PlayerType = "good" | "bad";
 

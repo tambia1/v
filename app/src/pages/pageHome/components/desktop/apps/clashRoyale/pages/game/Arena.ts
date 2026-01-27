@@ -1,3 +1,4 @@
+import { UtilsImage } from "./core/UtilsImage";
 import imageArena1 from "./images/arenas/arena1.jpg";
 import imageArena2 from "./images/arenas/arena2.jpg";
 import imageArena3 from "./images/arenas/arena3.jpg";
@@ -9,7 +10,6 @@ import imageArena8 from "./images/arenas/arena8.jpg";
 import imageArena9 from "./images/arenas/arena9.jpg";
 import imageArena10 from "./images/arenas/arena10.jpg";
 import imageArena11 from "./images/arenas/arena11.jpg";
-import { UtilsImage } from "./UtilsImage";
 
 export type ArenaType = "arena1" | "arena2" | "arena3" | "arena4" | "arena5" | "arena6" | "arena7" | "arena8" | "arena9" | "arena10" | "arena11";
 type ArenaData = { image: HTMLImageElement };

@@ -1,6 +1,6 @@
 import { getRandomNumber } from "../../../../../../../../utils/Random";
-import { UtilsImage } from "../../../clashRoyale/pages/game/UtilsImage";
-import { UtilsTouch } from "../../../clashRoyale/pages/game/UtilsTouch";
+import { UtilsImage } from "../../../clashRoyale/pages/game/core/UtilsImage";
+import { UtilsTouch } from "../../../clashRoyale/pages/game/core/UtilsTouch";
 import { Fruit } from "./Fruit";
 import imageApple from "./images/apple.png";
 import imageBanana from "./images/banana.png";

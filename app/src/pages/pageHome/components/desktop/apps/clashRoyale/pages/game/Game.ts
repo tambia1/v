@@ -1,10 +1,10 @@
 import { Arena, type ArenaType as IArenaType } from "./Arena";
-import { GameEngine } from "./GameEngine";
+import { GameEngine } from "./core/GameEngine";
+import { UtilsCanvas } from "./core/UtilsCanvas";
+import { UtilsMath } from "./core/UtilsMath";
+import { UtilsPath } from "./core/UtilsPath";
+import { UtilsTouch } from "./core/UtilsTouch";
 import { type PlayerType as IPlayerType, Player } from "./Player";
-import { UtilsCanvas } from "./UtilsCanvas";
-import { UtilsMath } from "./UtilsMath";
-import { UtilsPath } from "./UtilsPath";
-import { UtilsTouch } from "./UtilsTouch";
 
 type GameProps = {
 	board: HTMLDivElement;

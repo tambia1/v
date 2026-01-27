@@ -1,4 +1,5 @@
-import { Animation } from "./Animation";
+import { Animation } from "./core/Animation";
+import { UtilsImage } from "./core/UtilsImage";
 import imageAmazon from "./images/units/amazon.png";
 import imageGiant from "./images/units/giant.png";
 import imageGoblin from "./images/units/goblin.png";
@@ -16,7 +17,6 @@ import imageTank from "./images/units/tank.png";
 import imageTankLight from "./images/units/tankLight.png";
 import imageWolf from "./images/units/wolf.png";
 import { ShootType as IShootType, Shoot } from "./Shoot";
-import { UtilsImage } from "./UtilsImage";
 
 export type UnitType =
 	| "paladin"
