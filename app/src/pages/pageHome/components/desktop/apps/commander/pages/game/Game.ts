@@ -15,9 +15,9 @@ type GameProps = {
 };
 
 export class Game {
-	private grid!: { x1: number; y1: number; x2: number; y2: number };
-
 	private board: HTMLDivElement;
+
+	private grid!: { x1: number; y1: number; x2: number; y2: number };
 	private goodPlayerName: string;
 	private badPlayerName: string;
 	private arenaType: IArenaType;
