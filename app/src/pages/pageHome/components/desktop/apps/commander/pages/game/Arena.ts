@@ -1,7 +1,7 @@
+import { UtilsImage } from "./core/UtilsImage";
 import imageArena1 from "./images/arenas/arena1.jpg";
 import imageArena2 from "./images/arenas/arena2.jpg";
 import imageArena3 from "./images/arenas/arena3.jpg";
-import { UtilsImage } from "./UtilsImage";
 
 export type ArenaType = "arena1" | "arena2" | "arena3";
 type ArenaData = { image: HTMLImageElement };

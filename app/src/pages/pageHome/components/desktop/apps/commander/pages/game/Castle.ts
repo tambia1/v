@@ -1,4 +1,5 @@
-import { Animation } from "./Animation";
+import { Animation } from "./core/Animation";
+import { UtilsImage } from "./core/UtilsImage";
 import imageCastle1 from "./images/castles/castle1.webp";
 import imageCastle2 from "./images/castles/castle2.webp";
 import imageCastle3 from "./images/castles/castle3.webp";
@@ -12,7 +13,6 @@ import imageCastle10 from "./images/castles/castle8.webp";
 import imageCastleRuin from "./images/castles/castleRuin.webp";
 import type { ShootType as IShootType } from "./Shoot";
 import { Shoot } from "./Shoot";
-import { UtilsImage } from "./UtilsImage";
 
 export type CastleType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
 type CastleData = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };

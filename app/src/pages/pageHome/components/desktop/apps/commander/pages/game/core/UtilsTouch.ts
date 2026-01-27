@@ -69,7 +69,7 @@ export const UtilsTouch = {
 			sx = x;
 			sy = y;
 
-			timeStart = new Date().getTime();
+			timeStart = Date.now();
 
 			onTouchStart?.(e, sx, sy, x, y, 0);
 
@@ -84,7 +84,7 @@ export const UtilsTouch = {
 					const x = Math.floor(getX(e) - boundingX);
 					const y = Math.floor(getY(e) - boundingY);
 
-					timeEnd = new Date().getTime();
+					timeEnd = Date.now();
 
 					const time = timeEnd - timeStart;
 
@@ -101,7 +101,7 @@ export const UtilsTouch = {
 				const x = Math.floor(getX(e) - boundingX);
 				const y = Math.floor(getY(e) - boundingY);
 
-				timeEnd = new Date().getTime();
+				timeEnd = Date.now();
 
 				const time = timeEnd - timeStart;
 
