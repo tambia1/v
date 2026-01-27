@@ -4,8 +4,8 @@ import { themeGame } from "../Commander.styles";
 import arenaIcon1 from "./game/images/arenas/arenaIcon1.png";
 import arenaIcon2 from "./game/images/arenas/arenaIcon2.png";
 import arenaIcon3 from "./game/images/arenas/arenaIcon3.png";
-import buttonActive from "./images/misc/buttonActive.png";
-import bg from "./images/misc/commanderMenuBg.png";
+import buttonActive from "./images/buttonActive.png";
+import bg from "./images/menuBg.png";
 
 export const PageMenu = styled.div`
 	width: 100%;
