@@ -1,8 +1,8 @@
 import { Castle, type CastleType as ICastleType } from "./Castle";
 import { UtilsImage } from "./core/UtilsImage";
 import { UtilsMath } from "./core/UtilsMath";
-import imageElixir from "./images/misc/elixir.png";
 import imageelixirBg from "./images/misc/elixirBg.png";
+import imageElixirFg from "./images/misc/elixirFg.png";
 import { type UnitType as IUnitType, Unit } from "./Unit";
 
 export type PlayerType = "good" | "bad";
@@ -64,7 +64,7 @@ export class Player {
 	public static readonly STACK_SCALE_UNSELECTED = 1.0;
 	public static readonly STACK_SCALE_NEXT = 0.4;
 
-	private static readonly imageElixir = UtilsImage.getImage(imageElixir);
+	private static readonly imageElixir = UtilsImage.getImage(imageElixirFg);
 	private static readonly imageElixirBg = UtilsImage.getImage(imageelixirBg);
 
 	private type: PlayerType;
