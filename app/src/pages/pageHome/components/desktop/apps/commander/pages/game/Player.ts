@@ -17,11 +17,7 @@ type PlayerData = {
 
 const styles: { [K in PlayerType]: PlayerData } = {
 	bad: {
-		castles: [
-			{ x: 190, y: 244, type: "castle1" },
-			{ x: 275, y: 210, type: "castle2" },
-			{ x: 360, y: 244, type: "castle1" },
-		],
+		castles: [{ x: 275, y: 210, type: "castle2" }],
 
 		stacks: [
 			{ x: 120, y: 145 },

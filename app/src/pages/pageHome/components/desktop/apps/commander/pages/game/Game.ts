@@ -1,7 +1,6 @@
 import { Arena, type ArenaName as IArenaType } from "./Arena";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
-import { UtilsMath } from "./core/UtilsMath";
 import { UtilsPath } from "./core/UtilsPath";
 import { UtilsTouch } from "./core/UtilsTouch";
 import { type PlayerType as IPlayerType, Player } from "./Player";
@@ -76,7 +75,6 @@ export class Game {
 			return;
 		}
 
-		this.updatePlayerBadAi(timeDif);
 		this.updateTimeLeft(timeDif);
 		this.updatePlayers(timeDif);
 		this.updateUnitsMove(timeDif);
@@ -454,26 +452,6 @@ export class Game {
 			this.winner = playersStillAlive[0];
 
 			this.onGameOver?.();
-		}
-	}
-
-	private updatePlayerBadAi(_timeDif: number) {
-		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() === "bad") {
-				if (this.players[i].getStackSelected() === -1) {
-					const j = UtilsMath.getRandomNumber(1, this.players[i].getStacks().length - 1);
-
-					if (this.players[i].getStacks()[j] != null) {
-						this.players[i].setStackSelected(j);
-						this.players[i].getStacks()[j]?.setScale(this.players[i].getStacks()[j]?.getScale() || 0, Player.STACK_SCALE_SELECTED, 300);
-					}
-				} else {
-					const x = UtilsMath.getRandomNumber(this.grid.x1, this.grid.x2);
-					const y = UtilsMath.getRandomNumber(this.grid.y1, this.grid.y2 / 2.2);
-
-					this.players[i].putSelectedStackOnGrid(x, y);
-				}
-			}
 		}
 	}
 
