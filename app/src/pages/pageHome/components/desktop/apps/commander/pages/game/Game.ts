@@ -1,4 +1,4 @@
-import { Arena, type ArenaType as IArenaType } from "./Arena";
+import { Arena, type ArenaName as IArenaType } from "./Arena";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
 import { UtilsMath } from "./core/UtilsMath";

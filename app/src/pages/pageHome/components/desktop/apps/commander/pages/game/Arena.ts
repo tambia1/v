@@ -3,26 +3,26 @@ import imageArena1 from "./images/arenas/arena1.jpg";
 import imageArena2 from "./images/arenas/arena2.jpg";
 import imageArena3 from "./images/arenas/arena3.jpg";
 
-export type ArenaType = "arena1" | "arena2" | "arena3";
+export type ArenaName = "worldWar1" | "worldWar2" | "worldWar3";
 type ArenaData = { image: HTMLImageElement };
 
-const types: { [K in ArenaType]: ArenaData } = {
-	arena1: { image: UtilsImage.getImage(imageArena1) },
-	arena2: { image: UtilsImage.getImage(imageArena2) },
-	arena3: { image: UtilsImage.getImage(imageArena3) },
+const types: { [K in ArenaName]: ArenaData } = {
+	worldWar1: { image: UtilsImage.getImage(imageArena1) },
+	worldWar2: { image: UtilsImage.getImage(imageArena2) },
+	worldWar3: { image: UtilsImage.getImage(imageArena3) },
 };
 
 export class Arena {
-	private type: ArenaType = "arena1";
-	private image: HTMLImageElement = types[this.type].image;
+	private name: ArenaName = "worldWar1";
+	private image: HTMLImageElement = types[this.name].image;
 
-	constructor(type: ArenaType) {
+	constructor(type: ArenaName) {
 		this.setType(type);
 	}
 
-	public setType(type: ArenaType): void {
-		this.type = type;
-		this.image = types[this.type].image;
+	public setType(type: ArenaName): void {
+		this.name = type;
+		this.image = types[this.name].image;
 	}
 
 	public drawImage(ctx: CanvasRenderingContext2D): void {

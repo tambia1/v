@@ -2,7 +2,7 @@ import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
-import type { ArenaType as IArenaType } from "./game/Arena";
+import type { ArenaName as IArenaType } from "./game/Arena";
 import { PageGame } from "./PageGame";
 import * as S from "./PageMenu.styles";
 
@@ -10,7 +10,7 @@ export const PageMenu = () => {
 	const navigator = useNavigator();
 	const [pageIndex, setPageIndex] = useState(0);
 
-	const Arenas: IArenaType[] = ["arena1", "arena2", "arena3"];
+	const Arenas: IArenaType[] = ["worldWar1", "worldWar2", "worldWar3"];
 
 	const handleOnClickStart = () => {
 		navigator.pushPage(
