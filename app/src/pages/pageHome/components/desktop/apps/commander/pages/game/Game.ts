@@ -95,7 +95,7 @@ export class Game {
 		this.drawGameOver(ctx);
 
 		//log
-		// this.drawGrid(ctx);
+		this.drawGrid(ctx);
 
 		ctx.restore();
 	}
@@ -494,55 +494,55 @@ export class Game {
 		this.arena.drawImage(ctx);
 	}
 
-	// private drawGrid(ctx: CanvasRenderingContext2D) {
-	// 	ctx.save();
+	private drawGrid(ctx: CanvasRenderingContext2D) {
+		ctx.save();
 
-	// 	let gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
-	// 	let gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
+		const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
+		const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
 
-	// 	ctx.lineWidth = 1.0;
+		ctx.lineWidth = 1.0;
 
-	// 	for (let y = 0; y < this.adapter.length; y++) {
-	// 		for (let x = 0; x < this.adapter[y].length; x++) {
-	// 			ctx.beginPath();
-	// 			ctx.rect(this.grid.x1 + x * gw, this.grid.y1 + y * gh, gw, gh);
+		for (let y = 0; y < this.adapter.length; y++) {
+			for (let x = 0; x < this.adapter[y].length; x++) {
+				ctx.beginPath();
+				ctx.rect(this.grid.x1 + x * gw, this.grid.y1 + y * gh, gw, gh);
 
-	// 			switch (this.adapter[y][x]) {
-	// 				case 0: {
-	// 					ctx.strokeStyle = "#0000ff88";
-	// 					ctx.stroke();
-	// 					break;
-	// 				}
+				switch (this.adapter[y][x]) {
+					case 0: {
+						ctx.strokeStyle = "#0000ff88";
+						ctx.stroke();
+						break;
+					}
 
-	// 				case 1: {
-	// 					ctx.fillStyle = "#00ff0088";
-	// 					ctx.fill();
-	// 					break;
-	// 				}
+					case 1: {
+						ctx.fillStyle = "#00ff0088";
+						ctx.fill();
+						break;
+					}
 
-	// 				case 2: {
-	// 					ctx.fillStyle = "#ff000088";
-	// 					ctx.fill();
-	// 					break;
-	// 				}
+					case 2: {
+						ctx.fillStyle = "#ff000088";
+						ctx.fill();
+						break;
+					}
 
-	// 				case 3: {
-	// 					ctx.fillStyle = "#0000ff88";
-	// 					ctx.fill();
-	// 					break;
-	// 				}
+					case 3: {
+						ctx.fillStyle = "#0000ff88";
+						ctx.fill();
+						break;
+					}
 
-	// 				case 4: {
-	// 					ctx.fillStyle = "#00ffff88";
-	// 					ctx.fill();
-	// 					break;
-	// 				}
-	// 			}
-	// 		}
-	// 	}
+					case 4: {
+						ctx.fillStyle = "#00ffff88";
+						ctx.fill();
+						break;
+					}
+				}
+			}
+		}
 
-	// 	ctx.restore();
-	// }
+		ctx.restore();
+	}
 
 	private drawTimeLeft(ctx: CanvasRenderingContext2D) {
 		ctx.save();
