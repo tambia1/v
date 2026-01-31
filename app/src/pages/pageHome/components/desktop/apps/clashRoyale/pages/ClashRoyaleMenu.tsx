@@ -4,13 +4,13 @@ import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
 import { ClashRoyaleGame } from "./ClashRoyaleGame";
 import * as S from "./ClashRoyaleMenu.styles";
-import type { ArenaType as IArenaType } from "./game/Arena";
+import type { ArenaType } from "./game/Arena";
 
 export const ClashRoyaleMenu = () => {
 	const navigator = useNavigator();
 	const [pageIndex, setPageIndex] = useState(0);
 
-	const Arenas: IArenaType[] = ["arena1", "arena2", "arena3", "arena4", "arena5", "arena6", "arena7", "arena8", "arena9", "arena10", "arena11"];
+	const Arenas: ArenaType[] = ["arena1", "arena2", "arena3", "arena4", "arena5", "arena6", "arena7", "arena8", "arena9", "arena10", "arena11"];
 
 	const handleOnClickStart = () => {
 		navigator.pushPage(

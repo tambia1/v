@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import * as S from "./ClashRoyaleGame.styles";
-import type { ArenaType as IArenaType } from "./game/Arena";
+import type { ArenaType } from "./game/Arena";
 import { Game } from "./game/Game";
 
 type Props = {
-	arenaType: IArenaType;
+	arenaType: ArenaType;
 };
 
 export const ClashRoyaleGame = ({ arenaType }: Props) => {

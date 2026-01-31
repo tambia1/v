@@ -14,7 +14,7 @@ import imageBuildingRuin from "./images/buildings/buildingRuin.webp";
 import type { ShootType as IShootType } from "./Shoot";
 import { Shoot } from "./Shoot";
 
-export type BuildingType =
+export type BuildingName =
 	| "buildingRuin"
 	| "building1"
 	| "building2"
@@ -28,7 +28,7 @@ export type BuildingType =
 	| "building10";
 type BuildingData = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
 
-const types: { [K in BuildingType]: BuildingData } = {
+const names: { [K in BuildingName]: BuildingData } = {
 	buildingRuin: { image: UtilsImage.getImage(imageBuildingRuin), lifeMax: 0, weaponRange: 0, weaponSpeed: 0, weaponDamage: 0, shootType: null },
 	building1: { image: UtilsImage.getImage(imageBuilding1), lifeMax: 150, weaponRange: 90, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
 	building2: { image: UtilsImage.getImage(imageBuilding2), lifeMax: 250, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
@@ -43,8 +43,8 @@ const types: { [K in BuildingType]: BuildingData } = {
 };
 
 export class Building {
-	private type: BuildingType = "buildingRuin";
-	private image: HTMLImageElement = types[this.type].image;
+	private name: BuildingName = "buildingRuin";
+	private image: HTMLImageElement = names[this.name].image;
 
 	private x = 0;
 	private y = 0;
@@ -60,10 +60,10 @@ export class Building {
 	private lifeStrokeStyle = "#ffffff66";
 	private lifeFillStyle = "#99999966";
 
-	private weaponSpeed: number = types[this.type].weaponSpeed;
-	private weaponDamage: number = types[this.type].weaponDamage;
-	private weaponRange: number = types[this.type].weaponRange;
-	private shootType: IShootType | null = types[this.type].shootType;
+	private weaponSpeed: number = names[this.name].weaponSpeed;
+	private weaponDamage: number = names[this.name].weaponDamage;
+	private weaponRange: number = names[this.name].weaponRange;
+	private shootType: IShootType | null = names[this.name].shootType;
 	private shoot: Shoot | null = null;
 	private isAttacking = false;
 	private weaponRangeFillStyle = "#ffffff33";
@@ -71,7 +71,7 @@ export class Building {
 	private weaponRangeAlpha = 0;
 	private weaponRangeAlphaTiming = 0;
 
-	constructor(type: BuildingType) {
+	constructor(type: BuildingName) {
 		this.init();
 		this.setType(type);
 	}
@@ -84,20 +84,20 @@ export class Building {
 		this.ch = this.h * 1.1;
 	}
 
-	public setType(type: BuildingType) {
-		this.type = type;
-		this.image = types[this.type].image;
-		this.life = types[this.type].lifeMax;
-		this.lifeMax = types[this.type].lifeMax;
+	public setType(type: BuildingName) {
+		this.name = type;
+		this.image = names[this.name].image;
+		this.life = names[this.name].lifeMax;
+		this.lifeMax = names[this.name].lifeMax;
 		this.animationWeaponRangeAlpha.reset();
-		this.weaponSpeed = types[this.type].weaponSpeed;
-		this.weaponDamage = types[this.type].weaponDamage;
-		this.weaponRange = types[this.type].weaponRange;
-		this.shootType = types[this.type].shootType;
+		this.weaponSpeed = names[this.name].weaponSpeed;
+		this.weaponDamage = names[this.name].weaponDamage;
+		this.weaponRange = names[this.name].weaponRange;
+		this.shootType = names[this.name].shootType;
 	}
 
 	public getType() {
-		return this.type;
+		return this.name;
 	}
 
 	public getLife() {

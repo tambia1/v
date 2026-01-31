@@ -1,4 +1,4 @@
-import { Arena, type ArenaType as IArenaType } from "./Arena";
+import { Arena, type ArenaType } from "./Arena";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
 import { UtilsMath } from "./core/UtilsMath";
@@ -10,7 +10,7 @@ type GameProps = {
 	board: HTMLDivElement;
 	goodPlayerName: string;
 	badPlayerName: string;
-	arenaType: IArenaType;
+	arenaType: ArenaType;
 	onGameOver: () => void;
 };
 
@@ -20,7 +20,7 @@ export class Game {
 	private board: HTMLDivElement;
 	private goodPlayerName: string;
 	private badPlayerName: string;
-	private arenaType: IArenaType;
+	private arenaType: ArenaType;
 	private onGameOver: () => void;
 
 	private arena: Arena;

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
-import type { ArenaName as IArenaType } from "./game/Arena";
+import type { ArenaType } from "./game/Arena";
 import { Game } from "./game/Game";
 import * as S from "./PageGame.styles";
 
 type Props = {
-	arenaType: IArenaType;
+	arenaType: ArenaType;
 };
 
 export const PageGame = ({ arenaType }: Props) => {
@@ -16,7 +16,7 @@ export const PageGame = ({ arenaType }: Props) => {
 				board: refBoard.current,
 				goodPlayerName: "Player Green",
 				badPlayerName: "Player Red",
-				arenaName: arenaType,
+				arenaType: arenaType,
 				onGameOver: () => {
 					//on game over
 				},

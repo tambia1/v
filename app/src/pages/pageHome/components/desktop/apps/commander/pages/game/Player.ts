@@ -1,4 +1,4 @@
-import { Building, type BuildingType } from "./Building";
+import { Building, type BuildingName } from "./Building";
 import { UtilsImage } from "./core/UtilsImage";
 import { UtilsMath } from "./core/UtilsMath";
 import imageelixirBg from "./images/misc/elixirBg.png";
@@ -8,7 +8,7 @@ import { type UnitType as IUnitType, Unit } from "./Unit";
 export type PlayerType = "good" | "bad";
 
 type PlayerData = {
-	castles: { x: number; y: number; type: BuildingType }[];
+	castles: { x: number; y: number; type: BuildingName }[];
 	stacks: { x: number; y: number }[];
 	lifeFillStyle: string;
 	lifeStrokeStyle: string;
