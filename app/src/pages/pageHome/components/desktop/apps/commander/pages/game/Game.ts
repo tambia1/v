@@ -523,6 +523,8 @@ export class Game {
 	}
 
 	private drawTimeLeft(ctx: CanvasRenderingContext2D) {
+		const layoutWidth = this.board.parentElement?.offsetWidth || 0;
+
 		ctx.save();
 
 		ctx.fillStyle = "#00000088";
@@ -534,23 +536,22 @@ export class Game {
 
 		ctx.save();
 
-		ctx.font = "bold 12px Helvetica";
+		ctx.font = "oswald 12px";
 		ctx.fillStyle = "#ffffff";
 		ctx.shadowColor = "#000000";
 		ctx.shadowOffsetX = 2;
 		ctx.shadowOffsetY = 2;
 		ctx.shadowBlur = 2;
-		ctx.textAlign = "center";
+		ctx.textAlign = "right";
 		ctx.textBaseline = "middle";
 
 		const minutes = Math.floor(this.timeLeft / 60);
 		const seconds = Math.floor(this.timeLeft % 60);
 
-		ctx.fillText(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, 420, 170);
+		ctx.fillText(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, layoutWidth - 20, 20);
 
-		ctx.font = "bold 8px clashRoyaleFont";
-		ctx.fillStyle = "#FFFDBC";
-		ctx.fillText("Time Left:", 420, 155);
+		ctx.fillStyle = "#ffff66";
+		ctx.fillText("Time:", layoutWidth - 80, 20);
 
 		ctx.restore();
 	}
@@ -558,24 +559,25 @@ export class Game {
 	private drawPlayersNames(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		ctx.font = "bold 10px Helvetica";
+		ctx.font = "oswald 10px";
 		ctx.fillStyle = "#ffffff";
-		ctx.shadowColor = "#000000";
-		ctx.shadowOffsetX = 2;
-		ctx.shadowOffsetY = 2;
-		ctx.shadowBlur = 2;
-		ctx.textAlign = "center";
+		ctx.textAlign = "left";
+		ctx.textBaseline = "bottom";
+
+		const textWidth = ctx.measureText("Players").width;
+		ctx.fillStyle = "#ffff66";
+		ctx.strokeStyle = "#ffff66";
+		ctx.lineWidth = 1;
+		ctx.beginPath();
+		ctx.moveTo(20, 20 + 2);
+		ctx.lineTo(20 + textWidth, 20 + 2);
+		ctx.stroke();
+		ctx.fillText("Players", 20, 20);
+
+		ctx.fillStyle = "#ffffff";
 
 		for (let i = 0; i < this.players.length; i++) {
-			switch (this.players[i].getType()) {
-				case "bad":
-					ctx.fillText(this.players[i].getPlayerName(), 420, 130);
-					break;
-
-				case "good":
-					ctx.fillText(this.players[i].getPlayerName(), 420, 620);
-					break;
-			}
+			ctx.fillText(this.players[i].getPlayerName(), 20, 40 + 20 * i);
 		}
 
 		ctx.restore();
@@ -617,7 +619,7 @@ export class Game {
 		if (this.winner !== -1) {
 			ctx.save();
 
-			ctx.font = "bold 16px clashRoyaleFont";
+			ctx.font = "oswald 16px";
 			ctx.fillStyle = "#ffffff";
 			ctx.shadowColor = "#000000";
 			ctx.shadowOffsetX = 3;
