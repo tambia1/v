@@ -34,11 +34,7 @@ const styles: { [K in PlayerType]: PlayerData } = {
 	},
 
 	good: {
-		castles: [
-			{ x: 190, y: 475, type: "building1" },
-			{ x: 275, y: 520, type: "building2" },
-			{ x: 360, y: 475, type: "building1" },
-		],
+		castles: [{ x: 275, y: 520, type: "building2" }],
 
 		stacks: [
 			{ x: 120, y: 610 },
