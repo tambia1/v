@@ -1,4 +1,4 @@
-import { Arena, type ArenaName as IArenaType } from "./Arena";
+import { Arena, type ArenaName } from "./Arena";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
 import { UtilsPath } from "./core/UtilsPath";
@@ -9,7 +9,7 @@ type GameProps = {
 	board: HTMLDivElement;
 	goodPlayerName: string;
 	badPlayerName: string;
-	arenaType: IArenaType;
+	arenaName: ArenaName;
 	onGameOver: () => void;
 };
 
@@ -19,7 +19,7 @@ export class Game {
 	private grid!: { x1: number; y1: number; x2: number; y2: number };
 	private goodPlayerName: string;
 	private badPlayerName: string;
-	private arenaType: IArenaType;
+	private arenaName: ArenaName;
 	private onGameOver: () => void;
 
 	private arena: Arena;
@@ -31,14 +31,14 @@ export class Game {
 
 	private gameEngine: GameEngine;
 
-	constructor({ board, goodPlayerName, badPlayerName, arenaType, onGameOver }: GameProps) {
+	constructor({ board, goodPlayerName, badPlayerName, arenaName, onGameOver }: GameProps) {
 		this.board = board;
 		this.goodPlayerName = goodPlayerName;
 		this.badPlayerName = badPlayerName;
-		this.arenaType = arenaType;
+		this.arenaName = arenaName;
 		this.onGameOver = onGameOver;
 
-		this.arena = new Arena(this.arenaType);
+		this.arena = new Arena(this.arenaName);
 		this.timeLeft = 2.5 * 60;
 
 		this.winner = -1;

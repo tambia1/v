@@ -16,7 +16,7 @@ export const PageGame = ({ arenaType }: Props) => {
 				board: refBoard.current,
 				goodPlayerName: "Player Green",
 				badPlayerName: "Player Red",
-				arenaType: arenaType,
+				arenaName: arenaType,
 				onGameOver: () => {
 					//on game over
 				},
