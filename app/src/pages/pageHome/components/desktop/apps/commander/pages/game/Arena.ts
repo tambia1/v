@@ -1,7 +1,7 @@
 import { UtilsImage } from "./core/UtilsImage";
-import imageArena1 from "./images/arenas/arena1.jpg";
-import imageArena2 from "./images/arenas/arena2.jpg";
-import imageArena3 from "./images/arenas/arena3.jpg";
+import imageArena1 from "./images/arenas/arena1.webp";
+import imageArena2 from "./images/arenas/arena2.webp";
+import imageArena3 from "./images/arenas/arena3.webp";
 
 export type ArenaName = "worldWar1" | "worldWar2" | "worldWar3";
 type ArenaData = { image: HTMLImageElement };

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import arena1 from "./game/images/arenas/arena1.jpg";
+import arena1 from "./game/images/arenas/arena1.webp";
 
 export const PageGame = styled.div`
 	width: 100%;
