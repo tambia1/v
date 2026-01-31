@@ -28,7 +28,6 @@ export const PageGame = ({ arenaType }: Props) => {
 
 	return (
 		<S.PageGame>
-			<S.BoardBg />
 			<S.Board ref={refBoard} />
 		</S.PageGame>
 	);
