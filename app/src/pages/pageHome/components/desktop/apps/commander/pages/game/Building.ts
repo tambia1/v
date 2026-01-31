@@ -1,38 +1,49 @@
 import { Animation } from "./core/Animation";
 import { UtilsImage } from "./core/UtilsImage";
-import imageCastle1 from "./images/castles/castle1.webp";
-import imageCastle2 from "./images/castles/castle2.webp";
-import imageCastle3 from "./images/castles/castle3.webp";
-import imageCastle4 from "./images/castles/castle4.webp";
-import imageCastle5 from "./images/castles/castle5.webp";
-import imageCastle6 from "./images/castles/castle6.webp";
-import imageCastle7 from "./images/castles/castle7.webp";
-import imageCastle8 from "./images/castles/castle8.webp";
-import imageCastle9 from "./images/castles/castle8.webp";
-import imageCastle10 from "./images/castles/castle8.webp";
-import imageCastleRuin from "./images/castles/castleRuin.webp";
+import imageBuilding1 from "./images/buildings/building1.webp";
+import imageBuilding2 from "./images/buildings/building2.webp";
+import imageBuilding3 from "./images/buildings/building3.webp";
+import imageBuilding4 from "./images/buildings/building4.webp";
+import imageBuilding5 from "./images/buildings/building5.webp";
+import imageBuilding6 from "./images/buildings/building6.webp";
+import imageBuilding7 from "./images/buildings/building7.webp";
+import imageBuilding8 from "./images/buildings/building8.webp";
+import imageBuilding9 from "./images/buildings/building8.webp";
+import imageBuilding10 from "./images/buildings/building8.webp";
+import imageBuildingRuin from "./images/buildings/buildingRuin.webp";
 import type { ShootType as IShootType } from "./Shoot";
 import { Shoot } from "./Shoot";
 
-export type CastleType = "castleRuin" | "castle1" | "castle2" | "castle3" | "castle4" | "castle5" | "castle6" | "castle7" | "castle8" | "castle9" | "castle10";
-type CastleData = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
+export type BuildingType =
+	| "buildingRuin"
+	| "building1"
+	| "building2"
+	| "building3"
+	| "building4"
+	| "building5"
+	| "building6"
+	| "building7"
+	| "building8"
+	| "building9"
+	| "building10";
+type BuildingData = { image: HTMLImageElement; lifeMax: number; weaponRange: number; weaponSpeed: number; weaponDamage: number; shootType: IShootType | null };
 
-const types: { [K in CastleType]: CastleData } = {
-	castleRuin: { image: UtilsImage.getImage(imageCastleRuin), lifeMax: 0, weaponRange: 0, weaponSpeed: 0, weaponDamage: 0, shootType: null },
-	castle1: { image: UtilsImage.getImage(imageCastle1), lifeMax: 150, weaponRange: 90, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle2: { image: UtilsImage.getImage(imageCastle2), lifeMax: 250, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle3: { image: UtilsImage.getImage(imageCastle3), lifeMax: 350, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle4: { image: UtilsImage.getImage(imageCastle4), lifeMax: 450, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle5: { image: UtilsImage.getImage(imageCastle5), lifeMax: 550, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle6: { image: UtilsImage.getImage(imageCastle6), lifeMax: 650, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle7: { image: UtilsImage.getImage(imageCastle7), lifeMax: 750, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle8: { image: UtilsImage.getImage(imageCastle8), lifeMax: 850, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle9: { image: UtilsImage.getImage(imageCastle9), lifeMax: 950, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
-	castle10: { image: UtilsImage.getImage(imageCastle10), lifeMax: 1050, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+const types: { [K in BuildingType]: BuildingData } = {
+	buildingRuin: { image: UtilsImage.getImage(imageBuildingRuin), lifeMax: 0, weaponRange: 0, weaponSpeed: 0, weaponDamage: 0, shootType: null },
+	building1: { image: UtilsImage.getImage(imageBuilding1), lifeMax: 150, weaponRange: 90, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building2: { image: UtilsImage.getImage(imageBuilding2), lifeMax: 250, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building3: { image: UtilsImage.getImage(imageBuilding3), lifeMax: 350, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building4: { image: UtilsImage.getImage(imageBuilding4), lifeMax: 450, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building5: { image: UtilsImage.getImage(imageBuilding5), lifeMax: 550, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building6: { image: UtilsImage.getImage(imageBuilding6), lifeMax: 650, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building7: { image: UtilsImage.getImage(imageBuilding7), lifeMax: 750, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building8: { image: UtilsImage.getImage(imageBuilding8), lifeMax: 850, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building9: { image: UtilsImage.getImage(imageBuilding9), lifeMax: 950, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
+	building10: { image: UtilsImage.getImage(imageBuilding10), lifeMax: 1050, weaponRange: 70, weaponSpeed: 1000, weaponDamage: 10, shootType: "shoot2" },
 };
 
-export class Castle {
-	private type: CastleType = "castleRuin";
+export class Building {
+	private type: BuildingType = "buildingRuin";
 	private image: HTMLImageElement = types[this.type].image;
 
 	private x = 0;
@@ -60,7 +71,7 @@ export class Castle {
 	private weaponRangeAlpha = 0;
 	private weaponRangeAlphaTiming = 0;
 
-	constructor(type: CastleType) {
+	constructor(type: BuildingType) {
 		this.init();
 		this.setType(type);
 	}
@@ -73,7 +84,7 @@ export class Castle {
 		this.ch = this.h * 1.1;
 	}
 
-	public setType(type: CastleType) {
+	public setType(type: BuildingType) {
 		this.type = type;
 		this.image = types[this.type].image;
 		this.life = types[this.type].lifeMax;

@@ -421,7 +421,7 @@ export class Game {
 					}
 
 					this.players[i].getCastles()[j].stopAttacking();
-					this.players[i].getCastles()[j].setType("castleRuin");
+					this.players[i].getCastles()[j].setType("buildingRuin");
 
 					this.initAdapter();
 				}

@@ -1,4 +1,4 @@
-import { Castle, type CastleType as ICastleType } from "./Castle";
+import { Building, type BuildingType } from "./Building";
 import { UtilsImage } from "./core/UtilsImage";
 import { UtilsMath } from "./core/UtilsMath";
 import imageelixirBg from "./images/misc/elixirBg.png";
@@ -8,7 +8,7 @@ import { type UnitType as IUnitType, Unit } from "./Unit";
 export type PlayerType = "good" | "bad";
 
 type PlayerData = {
-	castles: { x: number; y: number; type: ICastleType }[];
+	castles: { x: number; y: number; type: BuildingType }[];
 	stacks: { x: number; y: number }[];
 	lifeFillStyle: string;
 	lifeStrokeStyle: string;
@@ -17,7 +17,7 @@ type PlayerData = {
 
 const styles: { [K in PlayerType]: PlayerData } = {
 	bad: {
-		castles: [{ x: 275, y: 210, type: "castle2" }],
+		castles: [{ x: 275, y: 210, type: "building2" }],
 
 		stacks: [
 			{ x: 120, y: 145 },
@@ -35,9 +35,9 @@ const styles: { [K in PlayerType]: PlayerData } = {
 
 	good: {
 		castles: [
-			{ x: 190, y: 475, type: "castle1" },
-			{ x: 275, y: 520, type: "castle2" },
-			{ x: 360, y: 475, type: "castle1" },
+			{ x: 190, y: 475, type: "building1" },
+			{ x: 275, y: 520, type: "building2" },
+			{ x: 360, y: 475, type: "building1" },
 		],
 
 		stacks: [
@@ -67,7 +67,7 @@ export class Player {
 	private playerName: string;
 
 	private decks: IUnitType[] = [];
-	private castles: Castle[] = [];
+	private castles: Building[] = [];
 	private units: Unit[] = [];
 
 	private stacks: (Unit | null)[] = [null, null, null, null, null];
@@ -103,10 +103,10 @@ export class Player {
 	}
 
 	private initCastles() {
-		this.castles = new Array<Castle>(styles[this.type].castles.length);
+		this.castles = new Array<Building>(styles[this.type].castles.length);
 
 		for (let i = 0; i < this.castles.length; i++) {
-			this.castles[i] = new Castle(styles[this.type].castles[i].type);
+			this.castles[i] = new Building(styles[this.type].castles[i].type);
 			this.castles[i].setXY(styles[this.type].castles[i].x, styles[this.type].castles[i].y);
 			this.castles[i].setLifeColor(styles[this.type].lifeStrokeStyle, styles[this.type].lifeFillStyle);
 			this.castles[i].setWeaponRangeColor(styles[this.type].castleWeaponRangeFillStyle);
