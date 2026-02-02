@@ -11,6 +11,8 @@ type GameProps = {
 	onGameOver: () => void;
 };
 
+type Map = "sea" | "land";
+
 export class Game {
 	private board: HTMLDivElement;
 
@@ -22,7 +24,7 @@ export class Game {
 	private timeLeft: number;
 	private winnerIndex: number;
 
-	private map: number[][] = [];
+	private map: Map[][] = [];
 
 	private gameEngine: GameEngine;
 
@@ -113,23 +115,12 @@ export class Game {
 			this.map[y] = [];
 
 			for (let x = 0; x < ctx.canvas.width / 20; x++) {
-				this.map[y][x] = 0;
+				this.map[y][x] = "land";
 			}
 		}
 
-		//add terain
-		for (let i = 0; i < this.map[9].length; i++) {
-			for (let j = 0; j < 2; j++) {
-				this.map[9 + j][i] = 3;
-			}
-		}
-
-		for (let i = 0; i < 2; i++) {
-			for (let j = 0; j < 1; j++) {
-				this.map[9 + i][4 + j] = 0;
-				this.map[9 + i][15 + j] = 0;
-			}
-		}
+		//add sea
+		// this.map[10][10] = "sea";
 
 		// log
 		// const x = 19;
@@ -199,32 +190,14 @@ export class Game {
 				ctx.rect(x * squareWidth, y * suqareHeight, squareWidth, suqareHeight);
 
 				switch (this.map[y][x]) {
-					case 0: {
-						ctx.strokeStyle = "#0000ff33";
+					case "land": {
+						ctx.strokeStyle = "#00ff0033";
 						ctx.stroke();
 						break;
 					}
 
-					case 1: {
-						ctx.fillStyle = "#00ff0088";
-						ctx.fill();
-						break;
-					}
-
-					case 2: {
-						ctx.fillStyle = "#ff000088";
-						ctx.fill();
-						break;
-					}
-
-					case 3: {
+					case "sea": {
 						ctx.fillStyle = "#0000ff88";
-						ctx.fill();
-						break;
-					}
-
-					case 4: {
-						ctx.fillStyle = "#00ffff88";
 						ctx.fill();
 						break;
 					}
