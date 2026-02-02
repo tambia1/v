@@ -336,10 +336,10 @@ export class Game {
 		this.players.forEach((player, index) => {
 			ctx.fillText(player.getPlayerName(), 20, 40 + 20 * index);
 			ctx.fillText(`${player.getGold()}`, 100, 40 + 20 * index);
-			ctx.fillText(`${player.getIron()}`, 130, 40 + 20 * index);
-			ctx.fillText(`${player.getOil()}`, 160, 40 + 20 * index);
-			ctx.fillText(`${player.getResourceBuildings().length + player.getProductionBuildings().length}`, 200, 40 + 20 * index);
-			ctx.fillText(`${player.getUnits().length}`, 250, 40 + 20 * index);
+			ctx.fillText(`${player.getIron()}`, 230, 40 + 20 * index);
+			ctx.fillText(`${player.getOil()}`, 360, 40 + 20 * index);
+			ctx.fillText(`${player.getResourceBuildings().length + player.getProductionBuildings().length}`, 500, 40 + 20 * index);
+			ctx.fillText(`${player.getUnits().length}`, 650, 40 + 20 * index);
 		});
 
 		ctx.restore();

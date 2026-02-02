@@ -90,13 +90,27 @@ export class Player {
 	}
 
 	public getUnits() {
-		let units: Unit[] = [];
+		const units: Unit[] = [];
 
 		this.productionBuildings.forEach((productionBuilding) => {
-			units = units.concat(productionBuilding.getProducedUnits());
+			units.push(...productionBuilding.getProducedUnits());
 		});
 
 		return units;
+	}
+
+	public getBuildings() {
+		const buildings: (ResourceBuilding | ProductionBuilding)[] = [];
+
+		this.resourceBuildings.forEach((resourceBuilding) => {
+			buildings.push(resourceBuilding);
+		});
+
+		this.productionBuildings.forEach((productionBuilding) => {
+			buildings.push(productionBuilding);
+		});
+
+		return;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
