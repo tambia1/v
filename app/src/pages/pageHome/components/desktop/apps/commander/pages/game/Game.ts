@@ -338,7 +338,7 @@ export class Game {
 			ctx.fillText(`${player.getGold()}`, 100, 40 + 20 * index);
 			ctx.fillText(`${player.getIron()}`, 230, 40 + 20 * index);
 			ctx.fillText(`${player.getOil()}`, 360, 40 + 20 * index);
-			ctx.fillText(`${player.getResourceBuildings().length + player.getProductionBuildings().length}`, 500, 40 + 20 * index);
+			ctx.fillText(`${player.getBuildings().length}`, 500, 40 + 20 * index);
 			ctx.fillText(`${player.getUnits().length}`, 650, 40 + 20 * index);
 		});
 

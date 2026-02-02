@@ -110,7 +110,7 @@ export class Player {
 			buildings.push(productionBuilding);
 		});
 
-		return;
+		return buildings;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
