@@ -14,8 +14,7 @@ export const PageGame = ({ arenaType }: Props) => {
 		if (refBoard.current) {
 			const game = new Game({
 				board: refBoard.current,
-				goodPlayerName: "Player Green",
-				badPlayerName: "Player Red",
+				playersNames: ["Player Green", "Player Red"],
 				arenaType: arenaType,
 				onGameOver: () => {
 					//on game over

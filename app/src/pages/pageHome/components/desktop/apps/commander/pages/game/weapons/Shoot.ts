@@ -1,5 +1,5 @@
-import { Animation } from "./core/Animation";
-import { UtilsImage } from "./core/UtilsImage";
+import { Animation } from "../core/Animation";
+import { UtilsImage } from "../core/UtilsImage";
 import imageShoot1 from "./images/shoot/shoot_1_38_128.webp";
 import imageShoot2 from "./images/shoot/shoot_2_7_128.webp";
 import imageShoot3 from "./images/shoot/shoot_3.webp";

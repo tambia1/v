@@ -1,0 +1,75 @@
+type WeaponParams = {
+	costGold: number;
+	costIron: number;
+	damage: number;
+	range: number;
+	rateOfFire: number;
+	accuracy: number;
+};
+
+export abstract class Weapon {
+	protected costGold: number;
+	protected costIron: number;
+	protected damage: number;
+	protected range: number;
+	protected rateOfFire: number;
+	protected accuracy: number;
+	protected x: number;
+	protected y: number;
+	protected w: number;
+	protected h: number;
+
+	constructor(params: WeaponParams) {
+		this.costGold = params.costGold;
+		this.costIron = params.costIron;
+		this.damage = params.damage;
+		this.range = params.range;
+		this.rateOfFire = params.rateOfFire;
+		this.accuracy = params.accuracy;
+
+		this.x = 0;
+		this.y = 0;
+		this.w = 0;
+		this.h = 0;
+	}
+
+	public getCostGold() {
+		return this.costGold;
+	}
+
+	public getCostIron() {
+		return this.costIron;
+	}
+
+	public getDamage() {
+		return this.damage;
+	}
+
+	public getRange() {
+		return this.range;
+	}
+
+	public getRateOfFire() {
+		return this.rateOfFire;
+	}
+
+	public getAccuracy() {
+		return this.accuracy;
+	}
+
+	public setXY(x: number, y: number) {
+		this.x = x;
+		this.y = y;
+	}
+
+	public setWH(w: number, h: number) {
+		this.w = w;
+		this.h = h;
+	}
+
+	public abstract getName(): string;
+
+	public abstract draw(ctx: CanvasRenderingContext2D): void;
+}
+
+export type { WeaponParams };

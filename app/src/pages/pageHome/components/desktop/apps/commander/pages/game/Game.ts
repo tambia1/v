@@ -1,14 +1,12 @@
 import { Arena, type ArenaType } from "./Arena";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
-import { UtilsPath } from "./core/UtilsPath";
 import { UtilsTouch } from "./core/UtilsTouch";
-import { type PlayerType as IPlayerType, Player } from "./Player";
+import { Player } from "./Player";
 
 type GameProps = {
 	board: HTMLDivElement;
-	goodPlayerName: string;
-	badPlayerName: string;
+	playersNames: string[];
 	arenaType: ArenaType;
 	onGameOver: () => void;
 };
@@ -17,38 +15,34 @@ export class Game {
 	private board: HTMLDivElement;
 
 	private grid!: { x1: number; y1: number; x2: number; y2: number };
-	private goodPlayerName: string;
-	private badPlayerName: string;
 	private arenaType: ArenaType;
 	private onGameOver: () => void;
 
 	private arena: Arena;
 	private players: Player[] = [];
 	private timeLeft: number;
-	private winner: number;
+	private winnerIndex: number;
 
 	private adapter: number[][] = [];
 
 	private gameEngine: GameEngine;
 
-	constructor({ board, goodPlayerName, badPlayerName, arenaType, onGameOver }: GameProps) {
+	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
-		this.goodPlayerName = goodPlayerName;
-		this.badPlayerName = badPlayerName;
 		this.arenaType = arenaType;
 		this.onGameOver = onGameOver;
 
 		this.arena = new Arena(this.arenaType);
 		this.timeLeft = 2.5 * 60;
 
-		this.winner = -1;
+		this.winnerIndex = -1;
 
 		this.gameEngine = new GameEngine({
 			div: this.board,
 			onStart: ({ ctx, timeDif }) => {
 				this.initTouches();
 				this.initGrid();
-				this.initPlayers();
+				this.initPlayers(playersNames);
 				this.initAdapter();
 
 				this.update(timeDif);
@@ -71,25 +65,23 @@ export class Game {
 
 	private update(timeDif: number) {
 		//if gameOver then do not update anything
-		if (this.winner !== -1) {
+		if (this.winnerIndex !== -1) {
 			return;
 		}
 
 		this.updateTimeLeft(timeDif);
 		this.updatePlayers(timeDif);
-		this.updateUnitsMove(timeDif);
-		this.updateAttacks(timeDif);
 		this.updateGameOver(timeDif);
 	}
 
 	private draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		this.drawInit(ctx);
+		this.drawReset(ctx);
 		this.drawArena(ctx);
 		this.drawTimeLeft(ctx);
-		this.drawPlayersNames(ctx);
-		this.drawPlayers(ctx);
+		this.drawPlayersDetails(ctx);
+		this.drawPlayersAssets(ctx);
 		this.drawGameOver(ctx);
 
 		//log
@@ -102,12 +94,7 @@ export class Game {
 		UtilsTouch.listenToTouches({
 			div: this.board,
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
-				//up
-				if (this.isXYInsideGrid(x, y) === false) {
-					this.selectStack(x, y);
-				} else if (this.isXYInsideSafeArea(x, y) === true) {
-					this.putSelectedStackOnGrid(x, y);
-				}
+				console.log(x, y);
 			},
 		});
 	}
@@ -116,45 +103,12 @@ export class Game {
 		this.grid = { x1: 125, y1: 170, x2: 430, y2: 585 };
 	}
 
-	private initPlayers() {
+	private initPlayers(playersNames: string[]) {
 		this.players = [];
-		this.players.push(
-			new Player(this.goodPlayerName, "good", [
-				"tank",
-				"knight",
-				"paladin",
-				"goblin",
-				"wolf",
-				"golem",
-				"orc",
-				"sorcerer",
-				"ninja",
-				"snake",
-				"giant",
-				"musketeer",
-				"hogRider",
-				"amazon",
-				"tankLight",
-			]),
-		);
-		this.players.push(
-			new Player(this.badPlayerName, "bad", [
-				"tank",
-				"knight",
-				"paladin",
-				"goblin",
-				"wolf",
-				"golem",
-				"orc",
-				"sorcerer",
-				"ninja",
-				"snake",
-				"musketeer",
-				"hogRider",
-				"amazon",
-				"tankLight",
-			]),
-		);
+
+		playersNames.forEach((playerName) => {
+			this.players.push(new Player(playerName));
+		});
 	}
 
 	private initAdapter() {
@@ -168,26 +122,20 @@ export class Game {
 			}
 		}
 
-		const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
-		const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
+		// const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
+		// const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
 
-		//add castles
-		const castlesType: { [K in IPlayerType]: number } = {
-			good: 1,
-			bad: 2,
-		};
+		// //add buildings
+		// for (let i = 0; i < this.players.length; i++) {
+		// 	for (let j = 0; j < this.players[i].getProductionBuildings().length; j++) {
 
-		for (let i = 0; i < this.players.length; i++) {
-			for (let j = 0; j < this.players[i].getCastles().length; j++) {
-				if (this.players[i].getCastles()[j].getLife() > 0) {
-					const castleX = Math.floor((this.players[i].getCastles()[j].getX() - this.grid.x1) / gw);
-					const castleY = Math.floor((this.players[i].getCastles()[j].getY() - this.grid.y1) / gh);
-					const castleType = castlesType[this.players[i].getType()];
+		// 			const castleX = Math.floor((this.players[i].getProductionBuildings()[j].getX() - this.grid.x1) / gw);
+		// 			const castleY = Math.floor((this.players[i].getProductionBuildings()[j].getY() - this.grid.y1) / gh);
+		// 			const castleType = this.players[i].getProductionBuildings()[this.players[i].getType()];
 
-					this.adapter[castleY][castleX] = castleType;
-				}
-			}
-		}
+		// 			this.adapter[castleY][castleX] = castleType;
+		// 	}
+		// }
 
 		//add obstacles
 		for (let i = 0; i < this.adapter[9].length; i++) {
@@ -214,248 +162,33 @@ export class Game {
 		// }
 	}
 
-	private isXYInsideGrid(x: number, y: number) {
-		return x >= this.grid.x1 && y >= this.grid.y1 && x <= this.grid.x2 && y <= this.grid.y2;
-	}
-
-	private selectStack(x: number, y: number) {
-		let isStackSelected = false;
-
-		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() === "good") {
-				this.players[i].setStackSelected(-1);
-
-				for (let j = 1; j < this.players[i].getStacks().length; j++) {
-					if (this.players[i].getStacks()[j] === null) {
-						continue;
-					}
-
-					const isStackPressed = this.players[i].getStacks()[j]?.isXYInsideUnit(x, y);
-
-					if (isStackPressed === true) {
-						isStackSelected = true;
-
-						this.players[i].setStackSelected(j);
-						this.players[i].getStacks()[j]?.setScale(this.players[i].getStacks()[j]?.getScale() || 0, Player.STACK_SCALE_SELECTED, 300);
-					} else {
-						this.players[i].getStacks()[j]?.setScale(this.players[i].getStacks()[j]?.getScale() || 0, Player.STACK_SCALE_UNSELECTED, 300);
-					}
-				}
-			}
-		}
-
-		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() === "bad") {
-				for (let j = 0; j < this.players[i].getCastles().length; j++) {
-					if (isStackSelected === true) {
-						this.players[i].getCastles()[j].setWeaponRangeOpacity(this.players[i].getCastles()[j].getWeaponRangeOpacity(), 1, 300);
-					} else {
-						this.players[i].getCastles()[j].setWeaponRangeOpacity(this.players[i].getCastles()[j].getWeaponRangeOpacity(), 0, 300);
-					}
-				}
-			}
-		}
-	}
-
-	private putSelectedStackOnGrid(x: number, y: number) {
-		for (let i = 0; i < this.players.length; i++) {
-			if (this.players[i].getType() === "good") {
-				this.players[i].putSelectedStackOnGrid(x, y);
-			}
-		}
-	}
-
-	private isXYInsideSafeArea(x: number, y: number) {
-		let isSafe = true;
-
-		a: for (let i = 0; i < this.players.length; i++) {
-			for (let j = 0; j < this.players[i].getCastles().length; j++) {
-				if (
-					this.players[i].getType() === "bad" &&
-					this.players[i].getCastles()[j].isXYInsideWeaponRange(x, y) === true &&
-					this.players[i].getCastles()[j].getLife() > 0
-				) {
-					isSafe = false;
-					break a;
-				}
-			}
-		}
-
-		return isSafe;
-	}
-
 	private updateTimeLeft(timeDif: number) {
 		this.timeLeft = Math.max(0, this.timeLeft - timeDif / 1000);
 	}
 
 	private updatePlayers(timeDif: number) {
-		for (let i = 0; i < this.players.length; i++) {
-			this.players[i].update(timeDif);
-		}
-	}
-
-	private updateUnitsMove(timeDif: number) {
-		const castlesToAttack: { [K in IPlayerType]: number } = {
-			good: 2,
-			bad: 1,
-		};
-
-		const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
-		const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
-
-		for (let i = 0; i < this.players.length; i++) {
-			for (let j = 0; j < this.players[i].getUnits().length; j++) {
-				if (this.players[i].getUnits()[j].getIsAttacking() === false) {
-					const m = timeDif / this.players[i].getUnits()[j].getMoveSpeed();
-
-					// let oldX = this.players[i].getUnits()[j].getX();
-					const oldY = this.players[i].getUnits()[j].getY();
-
-					let x = Math.round((this.players[i].getUnits()[j].getX() - this.grid.x1) / gw);
-					let y = Math.round((this.players[i].getUnits()[j].getY() - this.grid.y1) / gh);
-
-					const castleToAttack = castlesToAttack[this.players[i].getType()];
-					const castle = UtilsPath.findClosestXYOfValue(x, y, castleToAttack, this.adapter);
-					const path = UtilsPath.findPath(x, y, castle.x, castle.y, this.adapter);
-
-					x = (path[2]?.x || path[1].x) * gw + this.grid.x1;
-					y = (path[2]?.y || path[1].x) * gh + this.grid.y1;
-
-					this.players[i].getUnits()[j].setX(this.players[i].getUnits()[j].getX() + (x - this.players[i].getUnits()[j].getX()) * m);
-					this.players[i].getUnits()[j].setY(this.players[i].getUnits()[j].getY() + (y - this.players[i].getUnits()[j].getY()) * m);
-
-					if (oldY >= this.players[i].getUnits()[j].getY()) {
-						this.players[i].getUnits()[j].setDirection("up");
-					} else {
-						this.players[i].getUnits()[j].setDirection("down");
-					}
-				}
-
-				if (this.players[i].getUnits()[j].getDirection() === "up") {
-					if (this.players[i].getUnits()[j].getIsAttacking() === false && this.players[i].getUnits()[j].getState() !== "walkUp") {
-						this.players[i].getUnits()[j].setState("walkUp");
-					}
-
-					if (this.players[i].getUnits()[j].getIsAttacking() === true && this.players[i].getUnits()[j].getState() !== "attackUp") {
-						this.players[i].getUnits()[j].setState("attackUp");
-					}
-				} else {
-					if (this.players[i].getUnits()[j].getIsAttacking() === false && this.players[i].getUnits()[j].getState() !== "walkDown") {
-						this.players[i].getUnits()[j].setState("walkDown");
-					}
-
-					if (this.players[i].getUnits()[j].getIsAttacking() === true && this.players[i].getUnits()[j].getState() !== "attackDown") {
-						this.players[i].getUnits()[j].setState("attackDown");
-					}
-				}
-			}
-		}
-	}
-
-	private updateAttacks(timeDif: number) {
-		//update attacks
-		for (let a = 0; a < this.players.length; a++) {
-			for (let b = 0; b < this.players.length; b++) {
-				if (this.players[a].getType() === this.players[b].getType()) {
-					continue;
-				}
-
-				const playerAUnitsAndCastles = [...this.players[a].getUnits(), ...this.players[a].getCastles()];
-				const playerBUnitsAndCastles = [...this.players[b].getUnits(), ...this.players[b].getCastles()];
-
-				for (let i = 0; i < playerAUnitsAndCastles.length; i++) {
-					for (let j = 0; j < playerBUnitsAndCastles.length; j++) {
-						if (
-							playerAUnitsAndCastles[i].getLife() > 0 &&
-							playerAUnitsAndCastles[i].isXYInsideWeaponRange(playerBUnitsAndCastles[j].getX(), playerBUnitsAndCastles[j].getY()) === true
-						) {
-							playerAUnitsAndCastles[i].startAttacking(playerBUnitsAndCastles[j].getX(), playerBUnitsAndCastles[j].getY());
-
-							const weaponSpeed = timeDif / playerAUnitsAndCastles[i].getWeaponSpeed();
-							const weaponDamage = weaponSpeed * playerAUnitsAndCastles[i].getWeaponDamage();
-
-							playerBUnitsAndCastles[j].setLife(Math.max(playerBUnitsAndCastles[j].getLife() - weaponDamage, 0));
-
-							break;
-						}
-					}
-				}
-			}
-		}
-
-		//remove dead units and castles from players
-		for (let i = 0; i < this.players.length; i++) {
-			//dead units
-			for (let j = 0; j < this.players[i].getUnits().length; j++) {
-				if (this.players[i].getUnits()[j].getLife() === 0) {
-					for (let a = 0; a < this.players.length; a++) {
-						for (let b = 0; b < this.players[a].getUnits().length; b++) {
-							if (this.players[a].getUnits()[b].isXYInsideWeaponRange(this.players[i].getUnits()[j].getX(), this.players[i].getUnits()[j].getY()) === true) {
-								this.players[a].getUnits()[b].stopAttacking();
-							}
-						}
-
-						for (let b = 0; b < this.players[a].getCastles().length; b++) {
-							if (this.players[a].getCastles()[b].isXYInsideWeaponRange(this.players[i].getUnits()[j].getX(), this.players[i].getUnits()[j].getY()) === true) {
-								this.players[a].getCastles()[b].stopAttacking();
-							}
-						}
-					}
-
-					this.players[i].getUnits()[j].stopAttacking();
-					this.players[i].getUnits().splice(j, 1);
-				}
-			}
-
-			//dead castles
-			for (let j = 0; j < this.players[i].getCastles().length; j++) {
-				if (this.players[i].getCastles()[j].getLife() === 0) {
-					for (let a = 0; a < this.players.length; a++) {
-						for (let b = 0; b < this.players[a].getUnits().length; b++) {
-							if (
-								this.players[a].getUnits()[b].isXYInsideWeaponRange(this.players[i].getCastles()[j].getX(), this.players[i].getCastles()[j].getY()) === true
-							) {
-								this.players[a].getUnits()[b].stopAttacking();
-							}
-						}
-					}
-
-					this.players[i].getCastles()[j].stopAttacking();
-					this.players[i].getCastles()[j].setType("buildingRuin");
-
-					this.initAdapter();
-				}
-			}
-		}
+		this.players.forEach((player) => {
+			player.update(timeDif);
+		});
 	}
 
 	private updateGameOver(_timeDif: number) {
-		//get winner
-		const playersStillAlive = [];
+		const playersStillAlive: number[] = [];
 
-		for (let i = 0; i < this.players.length; i++) {
-			let isAllCastlesRuined = true;
-
-			for (let j = 0; j < this.players[i].getCastles().length; j++) {
-				if (this.players[i].getCastles()[j].getLife() > 0) {
-					isAllCastlesRuined = false;
-					break;
-				}
+		this.players.forEach((player, index) => {
+			if (player.isAlive()) {
+				playersStillAlive.push(index);
 			}
-
-			if (isAllCastlesRuined === false) {
-				playersStillAlive.push(i);
-			}
-		}
+		});
 
 		if (playersStillAlive.length === 1) {
-			this.winner = playersStillAlive[0];
+			this.winnerIndex = playersStillAlive[0];
 
 			this.onGameOver?.();
 		}
 	}
 
-	private drawInit(ctx: CanvasRenderingContext2D) {
+	private drawReset(ctx: CanvasRenderingContext2D) {
 		const dpr = window.devicePixelRatio || 1;
 		ctx.scale(dpr, dpr);
 
@@ -556,67 +289,8 @@ export class Game {
 		ctx.restore();
 	}
 
-	private drawPlayersNames(ctx: CanvasRenderingContext2D) {
-		ctx.save();
-
-		ctx.font = "oswald 10px";
-		ctx.fillStyle = "#ffffff";
-		ctx.textAlign = "left";
-		ctx.textBaseline = "bottom";
-
-		const textWidth = ctx.measureText("Players").width;
-		ctx.fillStyle = "#ffff66";
-		ctx.strokeStyle = "#ffff66";
-		ctx.lineWidth = 1;
-		ctx.beginPath();
-		ctx.moveTo(20, 20 + 2);
-		ctx.lineTo(20 + textWidth, 20 + 2);
-		ctx.stroke();
-		ctx.fillText("Players", 20, 20);
-
-		ctx.fillStyle = "#ffffff";
-
-		for (let i = 0; i < this.players.length; i++) {
-			ctx.fillText(this.players[i].getPlayerName(), 20, 40 + 20 * i);
-		}
-
-		ctx.restore();
-	}
-
-	private drawPlayers(ctx: CanvasRenderingContext2D) {
-		//draw elixir and stack
-		for (let i = 0; i < this.players.length; i++) {
-			this.players[i].drawElixir(ctx);
-			this.players[i].drawStack(ctx);
-		}
-
-		//clip grid area
-		ctx.save();
-
-		ctx.beginPath();
-		ctx.rect(this.grid.x1, this.grid.y1, this.grid.x2 - this.grid.x1, this.grid.y2 - this.grid.y1);
-		ctx.clip();
-
-		//draw castles in higher zIndex
-		for (let i = 0; i < this.players.length; i++) {
-			this.players[i].drawCastles(ctx);
-		}
-
-		//draw units in higher zIndex
-		for (let i = 0; i < this.players.length; i++) {
-			this.players[i].drawUnits(ctx);
-		}
-
-		//draw attacks in higher zIndex
-		for (let i = 0; i < this.players.length; i++) {
-			this.players[i].drawAttacks(ctx);
-		}
-
-		ctx.restore();
-	}
-
 	private drawGameOver(ctx: CanvasRenderingContext2D) {
-		if (this.winner !== -1) {
+		if (this.winnerIndex !== -1) {
 			ctx.save();
 
 			ctx.font = "oswald 16px";
@@ -629,9 +303,61 @@ export class Game {
 			ctx.textBaseline = "middle";
 
 			ctx.fillText("Game Over", 270, 250);
-			ctx.fillText(`${this.players[this.winner].getPlayerName()} Wins !`, 270, 280);
+			ctx.fillText(`${this.players[this.winnerIndex].getPlayerName()} Wins !`, 270, 280);
 
 			ctx.restore();
 		}
+	}
+
+	private drawPlayersDetails(ctx: CanvasRenderingContext2D) {
+		ctx.save();
+
+		ctx.font = "oswald 10px";
+		ctx.fillStyle = "#ffffff";
+		ctx.textAlign = "left";
+		ctx.textBaseline = "bottom";
+
+		ctx.fillStyle = "#ffff66";
+		ctx.strokeStyle = "#ffff66";
+		ctx.lineWidth = 1;
+		ctx.beginPath();
+		ctx.moveTo(20, 20 + 2);
+		ctx.lineTo(300, 20 + 2);
+		ctx.stroke();
+		ctx.fillText("Players", 20, 20);
+		ctx.fillText("Gold", 100, 20);
+		ctx.fillText("Iron", 130, 20);
+		ctx.fillText("Oil", 160, 20);
+		ctx.fillText("Buildings", 200, 20);
+		ctx.fillText("Units", 250, 20);
+
+		ctx.fillStyle = "#ffffff";
+
+		this.players.forEach((player, index) => {
+			ctx.fillText(player.getPlayerName(), 20, 40 + 20 * index);
+			ctx.fillText(`${player.getGold()}`, 100, 40 + 20 * index);
+			ctx.fillText(`${player.getIron()}`, 130, 40 + 20 * index);
+			ctx.fillText(`${player.getOil()}`, 160, 40 + 20 * index);
+			ctx.fillText(`${player.getResourceBuildings().length + player.getProductionBuildings().length}`, 200, 40 + 20 * index);
+			ctx.fillText(`${player.getUnits().length}`, 250, 40 + 20 * index);
+		});
+
+		ctx.restore();
+	}
+
+	private drawPlayersAssets(ctx: CanvasRenderingContext2D) {
+		//clip grid area
+		ctx.save();
+
+		ctx.beginPath();
+		ctx.rect(this.grid.x1, this.grid.y1, this.grid.x2 - this.grid.x1, this.grid.y2 - this.grid.y1);
+		ctx.clip();
+
+		//draw buildings
+		this.players.forEach((player) => {
+			player.draw(ctx);
+		});
+
+		ctx.restore();
 	}
 }
