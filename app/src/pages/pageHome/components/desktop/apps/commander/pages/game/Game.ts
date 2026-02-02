@@ -81,7 +81,7 @@ export class Game {
 		this.drawArena(ctx);
 		this.drawTimeLeft(ctx);
 		this.drawPlayersDetails(ctx);
-		this.drawPlayersAssets(ctx);
+		this.drawPlayersArmy(ctx);
 		this.drawGameOver(ctx);
 
 		//log
@@ -345,7 +345,7 @@ export class Game {
 		ctx.restore();
 	}
 
-	private drawPlayersAssets(ctx: CanvasRenderingContext2D) {
+	private drawPlayersArmy(ctx: CanvasRenderingContext2D) {
 		//clip grid area
 		ctx.save();
 
