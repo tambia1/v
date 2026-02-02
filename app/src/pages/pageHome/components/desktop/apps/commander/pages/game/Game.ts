@@ -14,7 +14,6 @@ type GameProps = {
 export class Game {
 	private board: HTMLDivElement;
 
-	private grid!: { x1: number; y1: number; x2: number; y2: number };
 	private arenaType: ArenaType;
 	private onGameOver: () => void;
 
@@ -23,7 +22,7 @@ export class Game {
 	private timeLeft: number;
 	private winnerIndex: number;
 
-	private adapter: number[][] = [];
+	private map: number[][] = [];
 
 	private gameEngine: GameEngine;
 
@@ -41,9 +40,8 @@ export class Game {
 			div: this.board,
 			onStart: ({ ctx, timeDif }) => {
 				this.initTouches();
-				this.initGrid();
 				this.initPlayers(playersNames);
-				this.initAdapter();
+				this.initMap(ctx);
 
 				this.update(timeDif);
 				this.draw(ctx);
@@ -85,7 +83,7 @@ export class Game {
 		this.drawGameOver(ctx);
 
 		//log
-		this.drawGrid(ctx);
+		this.drawMap(ctx);
 
 		ctx.restore();
 	}
@@ -99,10 +97,6 @@ export class Game {
 		});
 	}
 
-	private initGrid() {
-		this.grid = { x1: 125, y1: 170, x2: 430, y2: 585 };
-	}
-
 	private initPlayers(playersNames: string[]) {
 		this.players = [];
 
@@ -111,43 +105,29 @@ export class Game {
 		});
 	}
 
-	private initAdapter() {
-		this.adapter = [];
+	private initMap(ctx: CanvasRenderingContext2D) {
+		this.map = [];
 
-		for (let y = 0; y < 20; y++) {
-			this.adapter[y] = [];
+		//create map
+		for (let y = 0; y < ctx.canvas.height / 20; y++) {
+			this.map[y] = [];
 
-			for (let x = 0; x < 20; x++) {
-				this.adapter[y][x] = 0;
+			for (let x = 0; x < ctx.canvas.width / 20; x++) {
+				this.map[y][x] = 0;
 			}
 		}
 
-		// const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
-		// const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
-
-		// //add buildings
-		// for (let i = 0; i < this.players.length; i++) {
-		// 	for (let j = 0; j < this.players[i].getProductionBuildings().length; j++) {
-
-		// 			const castleX = Math.floor((this.players[i].getProductionBuildings()[j].getX() - this.grid.x1) / gw);
-		// 			const castleY = Math.floor((this.players[i].getProductionBuildings()[j].getY() - this.grid.y1) / gh);
-		// 			const castleType = this.players[i].getProductionBuildings()[this.players[i].getType()];
-
-		// 			this.adapter[castleY][castleX] = castleType;
-		// 	}
-		// }
-
-		//add obstacles
-		for (let i = 0; i < this.adapter[9].length; i++) {
+		//add terain
+		for (let i = 0; i < this.map[9].length; i++) {
 			for (let j = 0; j < 2; j++) {
-				this.adapter[9 + j][i] = 3;
+				this.map[9 + j][i] = 3;
 			}
 		}
 
 		for (let i = 0; i < 2; i++) {
 			for (let j = 0; j < 1; j++) {
-				this.adapter[9 + i][4 + j] = 0;
-				this.adapter[9 + i][15 + j] = 0;
+				this.map[9 + i][4 + j] = 0;
+				this.map[9 + i][15 + j] = 0;
 			}
 		}
 
@@ -205,22 +185,22 @@ export class Game {
 		this.arena.drawImage(ctx);
 	}
 
-	private drawGrid(ctx: CanvasRenderingContext2D) {
+	private drawMap(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		const gh = (this.grid.y2 - this.grid.y1) / this.adapter[0].length;
-		const gw = (this.grid.x2 - this.grid.x1) / this.adapter.length;
+		const suqareHeight = ctx.canvas.height / this.map.length;
+		const squareWidth = ctx.canvas.width / this.map[0].length;
 
 		ctx.lineWidth = 1.0;
 
-		for (let y = 0; y < this.adapter.length; y++) {
-			for (let x = 0; x < this.adapter[y].length; x++) {
+		for (let y = 0; y < this.map.length; y++) {
+			for (let x = 0; x < this.map[y].length; x++) {
 				ctx.beginPath();
-				ctx.rect(this.grid.x1 + x * gw, this.grid.y1 + y * gh, gw, gh);
+				ctx.rect(x * squareWidth, y * suqareHeight, squareWidth, suqareHeight);
 
-				switch (this.adapter[y][x]) {
+				switch (this.map[y][x]) {
 					case 0: {
-						ctx.strokeStyle = "#0000ff88";
+						ctx.strokeStyle = "#0000ff33";
 						ctx.stroke();
 						break;
 					}
@@ -346,12 +326,7 @@ export class Game {
 	}
 
 	private drawPlayersArmy(ctx: CanvasRenderingContext2D) {
-		//clip grid area
 		ctx.save();
-
-		ctx.beginPath();
-		ctx.rect(this.grid.x1, this.grid.y1, this.grid.x2 - this.grid.x1, this.grid.y2 - this.grid.y1);
-		ctx.clip();
 
 		//draw buildings
 		this.players.forEach((player) => {
