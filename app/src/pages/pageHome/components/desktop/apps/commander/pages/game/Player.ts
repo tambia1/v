@@ -15,8 +15,8 @@ export class Player {
 	constructor(playerName: string) {
 		this.playerName = playerName;
 
-		this.resourceBuildings = [new GoldMine(), new IronMine(), new OilField()];
-		this.productionBuildings = [new University()];
+		this.resourceBuildings = [new GoldMine({ x: 15, y: 15 }), new IronMine({ x: 16, y: 15 }), new OilField({ x: 17, y: 15 })];
+		this.productionBuildings = [new University({ x: 15, y: 16 })];
 	}
 
 	public getPlayerName() {

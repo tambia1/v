@@ -1,3 +1,4 @@
+import { Position } from "../map/Position";
 import { Unit } from "../units/Unit";
 
 type ProductionBuildingParams = {
@@ -5,6 +6,8 @@ type ProductionBuildingParams = {
 	costIron: number;
 	costOil: number;
 	unitsCanBeProduced: Unit[];
+	x: number;
+	y: number;
 };
 
 export abstract class ProductionBuilding {
@@ -14,10 +17,7 @@ export abstract class ProductionBuilding {
 	protected unitsCanBeProduced: Unit[];
 	protected productionQueue: Unit[];
 	protected producedUnits: Unit[];
-	protected x: number;
-	protected y: number;
-	protected w: number;
-	protected h: number;
+	protected position: Position;
 
 	constructor(params: ProductionBuildingParams) {
 		this.costGold = params.costGold;
@@ -26,11 +26,7 @@ export abstract class ProductionBuilding {
 		this.unitsCanBeProduced = params.unitsCanBeProduced;
 		this.productionQueue = [];
 		this.producedUnits = [];
-
-		this.x = 0;
-		this.y = 0;
-		this.w = 0;
-		this.h = 0;
+		this.position = new Position({ x: params.x, y: params.y });
 	}
 
 	public getCostGold() {
@@ -94,14 +90,8 @@ export abstract class ProductionBuilding {
 		}
 	}
 
-	public setXY(x: number, y: number) {
-		this.x = x;
-		this.y = y;
-	}
-
-	public setWH(w: number, h: number) {
-		this.w = w;
-		this.h = h;
+	public getPosition(): Position {
+		return this.position;
 	}
 
 	public abstract draw(ctx: CanvasRenderingContext2D): void;

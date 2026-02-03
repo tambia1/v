@@ -1,24 +1,21 @@
+import { Position } from "../map/Position";
+
 type ResourceBuildingParams = {
 	amount: number;
 	producedPerDay: number;
+	x: number;
+	y: number;
 };
 
 export abstract class ResourceBuilding {
 	protected amount: number;
 	protected producedPerDay: number;
-	protected x: number;
-	protected y: number;
-	protected w: number;
-	protected h: number;
+	protected position: Position;
 
 	constructor(params: ResourceBuildingParams) {
 		this.amount = params.amount;
 		this.producedPerDay = params.producedPerDay;
-
-		this.x = 0;
-		this.y = 0;
-		this.w = 0;
-		this.h = 0;
+		this.position = new Position({ x: params.x, y: params.y });
 	}
 
 	public getAmount() {
@@ -49,14 +46,8 @@ export abstract class ResourceBuilding {
 		this.amount += (timeDif / 1000) * (this.producedPerDay / 24 / 60 / 60);
 	}
 
-	public setXY(x: number, y: number) {
-		this.x = x;
-		this.y = y;
-	}
-
-	public setWH(w: number, h: number) {
-		this.w = w;
-		this.h = h;
+	public getPosition(): Position {
+		return this.position;
 	}
 
 	public abstract draw(ctx: CanvasRenderingContext2D): void;

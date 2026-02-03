@@ -4,19 +4,26 @@ import { Fighter } from "../../units/Fighter";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/airField.png";
 
+type AirFieldParams = {
+	x: number;
+	y: number;
+};
+
 export class AirField extends ProductionBuilding {
-	constructor() {
+	constructor(params: AirFieldParams) {
 		super({
 			costGold: 250,
 			costIron: 150,
 			costOil: 50,
 			unitsCanBeProduced: [new Fighter(), new Bomber()],
+			x: params.x,
+			y: params.y,
 		});
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(UtilsImage.getImage(image), this.x, this.y, this.w, this.h);
+		ctx.drawImage(UtilsImage.getImage(image), this.getPosition().x, this.getPosition().y, this.getPosition().w, this.getPosition().h);
 		ctx.restore();
 	}
 }

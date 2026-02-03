@@ -1,3 +1,4 @@
+import { Position } from "../map/Position";
 import { Weapon } from "../weapons/Weapon";
 
 type UnitParams = {
@@ -19,11 +20,7 @@ export abstract class Unit {
 	protected weapons: Weapon[];
 	protected timeToBuild: number;
 	protected buildProgress: number;
-
-	protected x: number;
-	protected y: number;
-	protected w: number;
-	protected h: number;
+	protected position: Position;
 
 	constructor(params: UnitParams) {
 		this.costGoldToBuild = params.costGoldToBuild;
@@ -34,11 +31,7 @@ export abstract class Unit {
 		this.weapons = params.weapons;
 		this.timeToBuild = params.timeToBuild;
 		this.buildProgress = 0;
-
-		this.x = 0;
-		this.y = 0;
-		this.w = 0;
-		this.h = 0;
+		this.position = new Position();
 	}
 
 	public getCostGoldToBuild() {
@@ -113,13 +106,32 @@ export abstract class Unit {
 	}
 
 	public setXY(x: number, y: number) {
-		this.x = x;
-		this.y = y;
+		this.position.setXY(x, y);
 	}
 
 	public setWH(w: number, h: number) {
-		this.w = w;
-		this.h = h;
+		this.position.setWH(w, h);
+	}
+
+	public getPosition(): Position {
+		return this.position;
+	}
+
+	// Convenience getters for backward compatibility
+	protected get x(): number {
+		return this.position.x;
+	}
+
+	protected get y(): number {
+		return this.position.y;
+	}
+
+	protected get w(): number {
+		return this.position.w;
+	}
+
+	protected get h(): number {
+		return this.position.h;
 	}
 
 	public abstract draw(ctx: CanvasRenderingContext2D): void;

@@ -1,18 +1,27 @@
 import { UtilsImage } from "../../core/UtilsImage";
+import { Position } from "../../map/Position";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/university.png";
 import { Research } from "./Research";
 
+type UniversityParams = {
+	x: number;
+	y: number;
+};
+
 export class University extends ProductionBuilding {
 	private researches: Research[];
 
-	constructor() {
+	constructor(params: UniversityParams) {
 		super({
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
 			unitsCanBeProduced: [],
+			x: params.x,
+			y: params.y,
 		});
+
 		this.researches = [];
 	}
 
@@ -31,9 +40,15 @@ export class University extends ProductionBuilding {
 		}
 	}
 
+	public getPosition(): Position {
+		return this.position;
+	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(UtilsImage.getImage(image), this.x, this.y, this.w, this.h);
+		ctx.translate(this.getPosition().x + this.getPosition().w, this.getPosition().y + this.getPosition().h);
+
+		ctx.drawImage(UtilsImage.getImage(image), this.getPosition().x, this.getPosition().y, this.getPosition().w, this.getPosition().h);
 		ctx.restore();
 	}
 }
