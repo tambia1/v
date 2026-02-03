@@ -24,6 +24,9 @@ export class Game {
 	private timeLeft: number;
 	private winnerIndex: number;
 
+	private static MAP_WIDTH = 100;
+	private static MAP_HEIGHT = 50;
+
 	private map: Map[][] = [];
 
 	private gameEngine: GameEngine;
@@ -43,7 +46,7 @@ export class Game {
 			onStart: ({ ctx, timeDif }) => {
 				this.initTouches();
 				this.initPlayers(playersNames);
-				this.initMap(ctx);
+				this.initMap();
 
 				this.update(timeDif);
 				this.draw(ctx);
@@ -107,14 +110,14 @@ export class Game {
 		});
 	}
 
-	private initMap(ctx: CanvasRenderingContext2D) {
+	private initMap() {
 		this.map = [];
 
 		//create map
-		for (let y = 0; y < ctx.canvas.height / 20; y++) {
+		for (let y = 0; y < Game.MAP_HEIGHT; y++) {
 			this.map[y] = [];
 
-			for (let x = 0; x < ctx.canvas.width / 20; x++) {
+			for (let x = 0; x < Game.MAP_WIDTH; x++) {
 				this.map[y][x] = "land";
 			}
 		}
