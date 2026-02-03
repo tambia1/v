@@ -26,7 +26,7 @@ export abstract class ProductionBuilding {
 		this.unitsCanBeProduced = params.unitsCanBeProduced;
 		this.productionQueue = [];
 		this.producedUnits = [];
-		this.position = new Position({ x: params.x, y: params.y });
+		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
 	}
 
 	public getCostGold() {

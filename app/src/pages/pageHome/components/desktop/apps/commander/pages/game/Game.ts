@@ -301,10 +301,21 @@ export class Game {
 		ctx.restore();
 	}
 
+	private getScaleX(ctx: CanvasRenderingContext2D): number {
+		return ctx.canvas.width / Game.MAP_WIDTH;
+	}
+
+	private getScaleY(ctx: CanvasRenderingContext2D): number {
+		return ctx.canvas.height / Game.MAP_HEIGHT;
+	}
+
 	private drawPlayersArmy(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		//draw buildings
+		const scaleX = this.getScaleX(ctx);
+		const scaleY = this.getScaleY(ctx);
+		ctx.scale(scaleX, scaleY);
+
 		this.players.forEach((player) => {
 			player.draw(ctx);
 		});

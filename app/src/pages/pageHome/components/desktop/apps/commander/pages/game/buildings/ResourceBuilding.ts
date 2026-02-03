@@ -15,7 +15,7 @@ export abstract class ResourceBuilding {
 	constructor(params: ResourceBuildingParams) {
 		this.amount = params.amount;
 		this.producedPerDay = params.producedPerDay;
-		this.position = new Position({ x: params.x, y: params.y });
+		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
 	}
 
 	public getAmount() {
