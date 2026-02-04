@@ -45,7 +45,12 @@ export class OilField extends ResourceBuilding {
 		ctx.save();
 
 		if (this.position.getIsSelected()) {
-			ctx.scale(1.2, 1.2);
+			const centerX = this.position.getCenterX();
+			const centerY = this.position.getCenterY();
+
+			ctx.translate(centerX, centerY);
+			ctx.scale(1.3, 1.3);
+			ctx.translate(-centerX, -centerY);
 		}
 
 		ctx.drawImage(UtilsImage.getImage(image), this.position.x, this.position.y, this.position.w, this.position.h);
