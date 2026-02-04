@@ -365,7 +365,7 @@ export class Game {
 					ctx.fillStyle = "#000000";
 					ctx.strokeStyle = "#ffffff";
 					ctx.beginPath();
-					ctx.rect(x, y, w, h);
+					ctx.roundRect(x, y, w, h, [5, 5, 5, 5]);
 					ctx.fill();
 					ctx.stroke();
 					ctx.closePath();
