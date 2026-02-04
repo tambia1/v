@@ -17,6 +17,14 @@ export class GoldMine extends ResourceBuilding {
 		});
 	}
 
+	public override getName() {
+		return "Gold Mine";
+	}
+
+	public override getImage() {
+		return UtilsImage.getImage(image);
+	}
+
 	public getAmountOfGold() {
 		return this.getAmount();
 	}

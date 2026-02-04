@@ -17,6 +17,14 @@ export class IronMine extends ResourceBuilding {
 		});
 	}
 
+	public override getName() {
+		return "Iron Mine";
+	}
+
+	public override getImage() {
+		return UtilsImage.getImage(image);
+	}
+
 	public getAmountOfIron() {
 		return this.getAmount();
 	}

@@ -25,6 +25,14 @@ export class University extends ProductionBuilding {
 		this.researches = [];
 	}
 
+	public override getName() {
+		return "University";
+	}
+
+	public override getImage() {
+		return UtilsImage.getImage(image);
+	}
+
 	public getResearches() {
 		return this.researches;
 	}

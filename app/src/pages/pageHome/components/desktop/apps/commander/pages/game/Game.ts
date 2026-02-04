@@ -1,4 +1,6 @@
 import { Arena, type ArenaType } from "./Arena";
+import { ProductionBuilding } from "./buildings/ProductionBuilding";
+import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
 import { UtilsTouch } from "./core/UtilsTouch";
@@ -17,6 +19,7 @@ export class Game {
 	private static readonly TIME_LEFT = 5 * 60;
 
 	private board: HTMLDivElement;
+	private layout: { w: number; h: number };
 
 	private arenaType: ArenaType;
 	private onGameOver: () => void;
@@ -35,6 +38,12 @@ export class Game {
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
+
+		this.layout = {
+			w: this.board.parentElement?.offsetWidth || 0,
+			h: this.board.parentElement?.offsetHeight || 0,
+		};
+
 		this.arenaType = arenaType;
 		this.onGameOver = onGameOver;
 
@@ -84,13 +93,13 @@ export class Game {
 
 		this.drawReset(ctx);
 		this.drawArena(ctx);
+		this.drawMap(ctx);
 		this.drawTimeLeft(ctx);
 		this.drawPlayersDetails(ctx);
 		this.drawPlayersArmy(ctx);
-		this.drawGameOver(ctx);
+		this.drawPlayersSelectedBuildingDetails(ctx);
 
-		//log
-		this.drawMap(ctx);
+		this.drawGameOver(ctx);
 
 		ctx.restore();
 	}
@@ -336,6 +345,47 @@ export class Game {
 
 		this.players.forEach((player) => {
 			player.draw(ctx);
+		});
+
+		ctx.restore();
+	}
+
+	private drawPlayersSelectedBuildingDetails(ctx: CanvasRenderingContext2D) {
+		ctx.save();
+
+		this.players.forEach((player) => {
+			player.getBuildings().forEach((building) => {
+				if (building.getPosition().getIsSelected()) {
+					const x = this.layout.w - 200 - 20;
+					const y = 20;
+					const w = 200;
+					const h = 140;
+
+					ctx.font = "oswald 12px";
+					ctx.fillStyle = "#000000";
+					ctx.strokeStyle = "#ffffff";
+					ctx.beginPath();
+					ctx.rect(x, y, w, h);
+					ctx.fill();
+					ctx.stroke();
+					ctx.closePath();
+					ctx.drawImage(building.getImage(), x + 130, y, 50, 50);
+
+					ctx.fillStyle = "#ffff66";
+					ctx.fillText(building.getName(), x + 10, y + 20);
+					ctx.fillStyle = "#ffffff";
+
+					if (building instanceof ResourceBuilding) {
+						ctx.fillText(`Amount: ${building.getAmount().toFixed(1)}`, x + 10, y + 80);
+					}
+
+					if (building instanceof ProductionBuilding) {
+						ctx.fillText(`Gold Cost: ${building.getCostGold()}`, x + 10, y + 60);
+						ctx.fillText(`Iron Cost: ${building.getCostIron()}`, x + 10, y + 80);
+						ctx.fillText(`Oil Cost: ${building.getCostOil()}`, x + 10, y + 100);
+					}
+				}
+			});
 		});
 
 		ctx.restore();

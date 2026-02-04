@@ -17,6 +17,14 @@ export class OilField extends ResourceBuilding {
 		});
 	}
 
+	public override getName() {
+		return "Oil Field";
+	}
+
+	public override getImage() {
+		return UtilsImage.getImage(image);
+	}
+
 	public getAmountOfOil() {
 		return this.getAmount();
 	}

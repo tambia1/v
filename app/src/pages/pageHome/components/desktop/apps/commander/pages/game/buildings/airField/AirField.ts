@@ -21,6 +21,14 @@ export class AirField extends ProductionBuilding {
 		});
 	}
 
+	public override getName() {
+		return "Air Field";
+	}
+
+	public override getImage() {
+		return UtilsImage.getImage(image);
+	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.drawImage(UtilsImage.getImage(image), this.position.x, this.position.y, this.position.w, this.position.h);

@@ -94,5 +94,7 @@ export abstract class ProductionBuilding {
 		return this.position;
 	}
 
+	public abstract getName(): string;
+	public abstract getImage(): HTMLImageElement;
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
