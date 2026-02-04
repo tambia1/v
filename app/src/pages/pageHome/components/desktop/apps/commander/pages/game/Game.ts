@@ -46,7 +46,7 @@ export class Game {
 		this.gameEngine = new GameEngine({
 			div: this.board,
 			onStart: ({ ctx, timeDif }) => {
-				this.initTouches();
+				this.initTouches(ctx);
 				this.initPlayers(playersNames);
 				this.initMap();
 
@@ -95,11 +95,25 @@ export class Game {
 		ctx.restore();
 	}
 
-	private initTouches() {
+	private initTouches(ctx: CanvasRenderingContext2D) {
 		UtilsTouch.listenToTouches({
 			div: this.board,
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
-				console.log(x, y);
+				const scaleX = this.getScaleX(ctx);
+				const scaleY = this.getScaleY(ctx);
+
+				const xx = x / scaleX;
+				const yy = y / scaleY;
+
+				this.players.forEach((player) => {
+					player.getBuildings().forEach((building) => {
+						if (building.getPosition().isContains(xx, yy)) {
+							building.getPosition().setIsSelected(true);
+						} else {
+							building.getPosition().setIsSelected(false);
+						}
+					});
+				});
 			},
 		});
 	}

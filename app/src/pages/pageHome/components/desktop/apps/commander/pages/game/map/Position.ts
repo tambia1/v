@@ -79,11 +79,11 @@ export class Position {
 		return Math.sqrt(dx * dx + dy * dy);
 	}
 
-	public contains(x: number, y: number) {
+	public isContains(x: number, y: number) {
 		return x >= this.x && x <= this.x + this.w && y >= this.y && y <= this.y + this.h;
 	}
 
-	public overlaps(other: { x: number; y: number; w: number; h: number }) {
+	public isOverlaps(other: { x: number; y: number; w: number; h: number }) {
 		return !(this.x + this.w < other.x || other.x + other.w < this.x || this.y + this.h < other.y || other.y + other.h < this.y);
 	}
 }

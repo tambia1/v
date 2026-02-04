@@ -43,7 +43,13 @@ export class GoldMine extends ResourceBuilding {
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
+
+		if (this.position.getIsSelected()) {
+			ctx.scale(1.2, 1.2);
+		}
+
 		ctx.drawImage(UtilsImage.getImage(image), this.position.x, this.position.y, this.position.w, this.position.h);
+
 		ctx.restore();
 	}
 }
