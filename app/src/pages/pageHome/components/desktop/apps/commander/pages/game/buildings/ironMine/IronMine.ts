@@ -11,7 +11,7 @@ export class IronMine extends ResourceBuilding {
 	constructor(params: IronMineParams) {
 		super({
 			amount: 0,
-			producedPerDay: 100,
+			producedPerSecond: 1,
 			x: params.x,
 			y: params.y,
 		});
@@ -26,11 +26,11 @@ export class IronMine extends ResourceBuilding {
 	}
 
 	public getIronProducedPerDay() {
-		return this.getProducedPerDay();
+		return this.getProducedPerSecond();
 	}
 
 	public setIronProducedPerDay(amount: number) {
-		this.setProducedPerDay(amount);
+		this.setProducedPerSecond(amount);
 	}
 
 	public addIron(amount: number) {

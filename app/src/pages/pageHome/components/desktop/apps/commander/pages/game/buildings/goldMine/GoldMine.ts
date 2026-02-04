@@ -11,7 +11,7 @@ export class GoldMine extends ResourceBuilding {
 	constructor(params: GoldMineParams) {
 		super({
 			amount: 0,
-			producedPerDay: 100,
+			producedPerSecond: 1,
 			x: params.x,
 			y: params.y,
 		});
@@ -26,11 +26,11 @@ export class GoldMine extends ResourceBuilding {
 	}
 
 	public getGoldProducedPerDay() {
-		return this.getProducedPerDay();
+		return this.getProducedPerSecond();
 	}
 
 	public setGoldProducedPerDay(amount: number) {
-		this.setProducedPerDay(amount);
+		this.setProducedPerSecond(amount);
 	}
 
 	public addGold(amount: number) {

@@ -11,7 +11,7 @@ export class OilField extends ResourceBuilding {
 	constructor(params: OilFieldParams) {
 		super({
 			amount: 0,
-			producedPerDay: 100,
+			producedPerSecond: 1,
 			x: params.x,
 			y: params.y,
 		});
@@ -26,11 +26,11 @@ export class OilField extends ResourceBuilding {
 	}
 
 	public getOilProducedPerDay() {
-		return this.getProducedPerDay();
+		return this.getProducedPerSecond();
 	}
 
 	public setOilProducedPerDay(amount: number) {
-		this.setProducedPerDay(amount);
+		this.setProducedPerSecond(amount);
 	}
 
 	public addOil(amount: number) {

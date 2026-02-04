@@ -14,6 +14,8 @@ type GameProps = {
 type Map = "sea" | "land";
 
 export class Game {
+	private static readonly TIME_LEFT = 5 * 60;
+
 	private board: HTMLDivElement;
 
 	private arenaType: ArenaType;
@@ -37,7 +39,7 @@ export class Game {
 		this.onGameOver = onGameOver;
 
 		this.arena = new Arena(this.arenaType);
-		this.timeLeft = 2.5 * 60;
+		this.timeLeft = Game.TIME_LEFT;
 
 		this.winnerIndex = -1;
 
@@ -278,24 +280,24 @@ export class Game {
 		ctx.lineWidth = 1;
 		ctx.beginPath();
 		ctx.moveTo(20, 20 + 2);
-		ctx.lineTo(300, 20 + 2);
+		ctx.lineTo(350, 20 + 2);
 		ctx.stroke();
 		ctx.fillText("Players", 20, 20);
 		ctx.fillText("Gold", 100, 20);
-		ctx.fillText("Iron", 130, 20);
-		ctx.fillText("Oil", 160, 20);
-		ctx.fillText("Buildings", 200, 20);
-		ctx.fillText("Units", 250, 20);
+		ctx.fillText("Iron", 150, 20);
+		ctx.fillText("Oil", 200, 20);
+		ctx.fillText("Buildings", 250, 20);
+		ctx.fillText("Units", 300, 20);
 
 		ctx.fillStyle = "#ffffff";
 
 		this.players.forEach((player, index) => {
 			ctx.fillText(player.getPlayerName(), 20, 40 + 20 * index);
-			ctx.fillText(`${player.getGold()}`, 100, 40 + 20 * index);
-			ctx.fillText(`${player.getIron()}`, 230, 40 + 20 * index);
-			ctx.fillText(`${player.getOil()}`, 360, 40 + 20 * index);
-			ctx.fillText(`${player.getBuildings().length}`, 500, 40 + 20 * index);
-			ctx.fillText(`${player.getUnits().length}`, 650, 40 + 20 * index);
+			ctx.fillText(`${player.getGold().toFixed(1)}`, 100, 40 + 20 * index);
+			ctx.fillText(`${player.getIron().toFixed(1)}`, 150, 40 + 20 * index);
+			ctx.fillText(`${player.getOil().toFixed(1)}`, 200, 40 + 20 * index);
+			ctx.fillText(`${player.getBuildings().length}`, 250, 40 + 20 * index);
+			ctx.fillText(`${player.getUnits().length}`, 300, 40 + 20 * index);
 		});
 
 		ctx.restore();

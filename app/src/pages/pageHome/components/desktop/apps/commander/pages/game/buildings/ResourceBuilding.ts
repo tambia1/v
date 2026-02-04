@@ -2,19 +2,19 @@ import { Position } from "../map/Position";
 
 type ResourceBuildingParams = {
 	amount: number;
-	producedPerDay: number;
+	producedPerSecond: number;
 	x: number;
 	y: number;
 };
 
 export abstract class ResourceBuilding {
 	protected amount: number;
-	protected producedPerDay: number;
+	protected producedSecond: number;
 	protected position: Position;
 
 	constructor(params: ResourceBuildingParams) {
 		this.amount = params.amount;
-		this.producedPerDay = params.producedPerDay;
+		this.producedSecond = params.producedPerSecond;
 		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
 	}
 
@@ -26,12 +26,12 @@ export abstract class ResourceBuilding {
 		this.amount = amount;
 	}
 
-	public getProducedPerDay() {
-		return this.producedPerDay;
+	public getProducedPerSecond() {
+		return this.producedSecond;
 	}
 
-	public setProducedPerDay(amount: number) {
-		this.producedPerDay = amount;
+	public setProducedPerSecond(amount: number) {
+		this.producedSecond = amount;
 	}
 
 	public add(amount: number) {
@@ -43,7 +43,7 @@ export abstract class ResourceBuilding {
 	}
 
 	public update(timeDif: number) {
-		this.amount += (timeDif / 1000) * (this.producedPerDay / 24 / 60 / 60);
+		this.amount += (timeDif / 1000) * this.producedSecond;
 	}
 
 	public getPosition(): Position {
