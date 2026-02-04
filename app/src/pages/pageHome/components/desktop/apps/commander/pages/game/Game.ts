@@ -24,8 +24,8 @@ export class Game {
 	private timeLeft: number;
 	private winnerIndex: number;
 
-	private static MAP_WIDTH = 100;
-	private static MAP_HEIGHT = 50;
+	private static MAP_WIDTH = 50;
+	private static MAP_HEIGHT = 25;
 
 	private map: Map[][] = [];
 
