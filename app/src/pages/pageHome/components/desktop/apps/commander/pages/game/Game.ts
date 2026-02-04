@@ -214,7 +214,7 @@ export class Game {
 	}
 
 	private drawTimeLeft(ctx: CanvasRenderingContext2D) {
-		const layoutWidth = this.board.parentElement?.offsetWidth || 0;
+		const y = 20;
 
 		ctx.save();
 
@@ -228,21 +228,21 @@ export class Game {
 		ctx.save();
 
 		ctx.font = "oswald 12px";
-		ctx.fillStyle = "#ffffff";
 		ctx.shadowColor = "#000000";
 		ctx.shadowOffsetX = 2;
 		ctx.shadowOffsetY = 2;
 		ctx.shadowBlur = 2;
-		ctx.textAlign = "right";
+		ctx.textAlign = "left";
 		ctx.textBaseline = "middle";
+
+		ctx.fillStyle = "#ffff66";
+		ctx.fillText("Time:", 20, y);
 
 		const minutes = Math.floor(this.timeLeft / 60);
 		const seconds = Math.floor(this.timeLeft % 60);
 
-		ctx.fillText(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, layoutWidth - 20, 20);
-
-		ctx.fillStyle = "#ffff66";
-		ctx.fillText("Time:", layoutWidth - 80, 20);
+		ctx.fillStyle = "#ffffff";
+		ctx.fillText(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, 80, y);
 
 		ctx.restore();
 	}
@@ -268,6 +268,8 @@ export class Game {
 	}
 
 	private drawPlayersDetails(ctx: CanvasRenderingContext2D) {
+		const y = 60;
+
 		ctx.save();
 
 		ctx.font = "oswald 10px";
@@ -279,25 +281,25 @@ export class Game {
 		ctx.strokeStyle = "#ffff66";
 		ctx.lineWidth = 1;
 		ctx.beginPath();
-		ctx.moveTo(20, 20 + 2);
-		ctx.lineTo(350, 20 + 2);
+		ctx.moveTo(20, y + 2);
+		ctx.lineTo(350, y + 2);
 		ctx.stroke();
-		ctx.fillText("Players", 20, 20);
-		ctx.fillText("Gold", 100, 20);
-		ctx.fillText("Iron", 150, 20);
-		ctx.fillText("Oil", 200, 20);
-		ctx.fillText("Buildings", 250, 20);
-		ctx.fillText("Units", 300, 20);
+		ctx.fillText("Players", 20, y);
+		ctx.fillText("Gold", 100, y);
+		ctx.fillText("Iron", 150, y);
+		ctx.fillText("Oil", 200, y);
+		ctx.fillText("Buildings", 250, y);
+		ctx.fillText("Units", 300, y);
 
 		ctx.fillStyle = "#ffffff";
 
 		this.players.forEach((player, index) => {
-			ctx.fillText(player.getPlayerName(), 20, 40 + 20 * index);
-			ctx.fillText(`${player.getGold().toFixed(1)}`, 100, 40 + 20 * index);
-			ctx.fillText(`${player.getIron().toFixed(1)}`, 150, 40 + 20 * index);
-			ctx.fillText(`${player.getOil().toFixed(1)}`, 200, 40 + 20 * index);
-			ctx.fillText(`${player.getBuildings().length}`, 250, 40 + 20 * index);
-			ctx.fillText(`${player.getUnits().length}`, 300, 40 + 20 * index);
+			ctx.fillText(player.getPlayerName(), 20, y + 20 + 20 * index);
+			ctx.fillText(`${player.getGold().toFixed(1)}`, 100, y + 20 + 20 * index);
+			ctx.fillText(`${player.getIron().toFixed(1)}`, 150, y + 20 + 20 * index);
+			ctx.fillText(`${player.getOil().toFixed(1)}`, 200, y + 20 + 20 * index);
+			ctx.fillText(`${player.getBuildings().length}`, 250, y + 20 + 20 * index);
+			ctx.fillText(`${player.getUnits().length}`, 300, y + 20 + 20 * index);
 		});
 
 		ctx.restore();
