@@ -109,21 +109,5 @@ export abstract class Unit {
 		return this.position;
 	}
 
-	protected get x() {
-		return this.position.x;
-	}
-
-	protected get y() {
-		return this.position.y;
-	}
-
-	protected get w() {
-		return this.position.w;
-	}
-
-	protected get h() {
-		return this.position.h;
-	}
-
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
