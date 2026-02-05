@@ -105,24 +105,23 @@ export abstract class Unit {
 		return this.buildProgress >= this.timeToBuild;
 	}
 
-	public getPosition(): Position {
+	public getPosition() {
 		return this.position;
 	}
 
-	// Convenience getters for backward compatibility
-	protected get x(): number {
+	protected get x() {
 		return this.position.x;
 	}
 
-	protected get y(): number {
+	protected get y() {
 		return this.position.y;
 	}
 
-	protected get w(): number {
+	protected get w() {
 		return this.position.w;
 	}
 
-	protected get h(): number {
+	protected get h() {
 		return this.position.h;
 	}
 
