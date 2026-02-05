@@ -1,6 +1,6 @@
 import { Arena, type ArenaType } from "./Arena";
-import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
+import { University } from "./buildings/university/University";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
 import { UtilsTouch } from "./core/UtilsTouch";
@@ -380,7 +380,7 @@ export class Game {
 						ctx.fillText(`Amount: ${building.getAmount().toFixed(1)}`, x + 10, y + 80);
 					}
 
-					if (building instanceof ProductionBuilding) {
+					if (building instanceof University) {
 						ctx.fillText(`Gold Cost: ${building.getCostGold()}`, x + 10, y + 60);
 						ctx.fillText(`Iron Cost: ${building.getCostIron()}`, x + 10, y + 80);
 						ctx.fillText(`Oil Cost: ${building.getCostOil()}`, x + 10, y + 100);
