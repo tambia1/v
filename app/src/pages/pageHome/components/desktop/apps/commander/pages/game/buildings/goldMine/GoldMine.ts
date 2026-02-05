@@ -8,6 +8,8 @@ type GoldMineParams = {
 };
 
 export class GoldMine extends ResourceBuilding {
+	private image: HTMLImageElement;
+
 	constructor(params: GoldMineParams) {
 		super({
 			amount: 0,
@@ -15,6 +17,8 @@ export class GoldMine extends ResourceBuilding {
 			x: params.x,
 			y: params.y,
 		});
+
+		this.image = UtilsImage.getImage(image);
 	}
 
 	public override getName() {
@@ -22,7 +26,7 @@ export class GoldMine extends ResourceBuilding {
 	}
 
 	public override getImage() {
-		return UtilsImage.getImage(image);
+		return this.image;
 	}
 
 	public getAmountOfGold() {
@@ -61,7 +65,7 @@ export class GoldMine extends ResourceBuilding {
 			ctx.translate(-centerX, -centerY);
 		}
 
-		ctx.drawImage(UtilsImage.getImage(image), this.position.x, this.position.y, this.position.w, this.position.h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 
 		ctx.restore();
 	}

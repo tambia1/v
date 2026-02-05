@@ -105,14 +105,6 @@ export abstract class Unit {
 		return this.buildProgress >= this.timeToBuild;
 	}
 
-	public setXY(x: number, y: number) {
-		this.position.setXY(x, y);
-	}
-
-	public setWH(w: number, h: number) {
-		this.position.setWH(w, h);
-	}
-
 	public getPosition(): Position {
 		return this.position;
 	}

@@ -10,6 +10,7 @@ type UniversityParams = {
 };
 
 export class University extends ProductionBuilding {
+	private image: HTMLImageElement;
 	private researches: Research[];
 
 	constructor(params: UniversityParams) {
@@ -22,6 +23,8 @@ export class University extends ProductionBuilding {
 			y: params.y,
 		});
 
+		this.image = UtilsImage.getImage(image);
+
 		this.researches = [];
 	}
 
@@ -30,7 +33,7 @@ export class University extends ProductionBuilding {
 	}
 
 	public override getImage() {
-		return UtilsImage.getImage(image);
+		return this.image;
 	}
 
 	public getResearches() {
@@ -64,7 +67,7 @@ export class University extends ProductionBuilding {
 			ctx.translate(-centerX, -centerY);
 		}
 
-		ctx.drawImage(UtilsImage.getImage(image), this.position.x, this.position.y, this.position.w, this.position.h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 
 		ctx.restore();
 	}
