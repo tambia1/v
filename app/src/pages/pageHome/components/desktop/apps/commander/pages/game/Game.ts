@@ -19,7 +19,6 @@ export class Game {
 	private static readonly TIME_LEFT = 5 * 60;
 
 	private board: HTMLDivElement;
-	private layout: { w: number; h: number };
 
 	private arenaType: ArenaType;
 	private onGameOver: () => void;
@@ -38,11 +37,6 @@ export class Game {
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
-
-		this.layout = {
-			w: this.board.parentElement?.offsetWidth || 0,
-			h: this.board.parentElement?.offsetHeight || 0,
-		};
 
 		this.arenaType = arenaType;
 		this.onGameOver = onGameOver;
@@ -102,6 +96,13 @@ export class Game {
 		this.drawGameOver(ctx);
 
 		ctx.restore();
+	}
+
+	private getBoardDimensions() {
+		return {
+			width: this.board.parentElement?.offsetWidth || 0,
+			height: this.board.parentElement?.offsetHeight || 0,
+		};
 	}
 
 	private initTouches(ctx: CanvasRenderingContext2D) {
@@ -356,7 +357,7 @@ export class Game {
 		this.players.forEach((player) => {
 			player.getBuildings().forEach((building) => {
 				if (building.getPosition().getIsSelected()) {
-					const x = this.layout.w - 200 - 20;
+					const x = this.getBoardDimensions().width - 200 - 20;
 					const y = 20;
 					const w = 200;
 					const h = 140;
