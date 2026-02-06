@@ -1,3 +1,4 @@
+import { Building } from "../buildings/Building";
 import { GoldMine } from "../buildings/goldMine/GoldMine";
 import { IronMine } from "../buildings/ironMine/IronMine";
 import { OilField } from "../buildings/oilField/OilField";
@@ -100,7 +101,7 @@ export class Player {
 	}
 
 	public getBuildings() {
-		const buildings: (ResourceBuilding | ProductionBuilding)[] = [];
+		const buildings: Building[] = [];
 
 		this.resourceBuildings.forEach((resourceBuilding) => {
 			buildings.push(resourceBuilding);
