@@ -1,5 +1,4 @@
 import { UtilsImage } from "../../core/UtilsImage";
-import { Position } from "../../map/Position";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/university.png";
 import { Research } from "./Research";
@@ -42,10 +41,6 @@ export class University extends ProductionBuilding {
 		if (index > -1) {
 			this.researches.splice(index, 1);
 		}
-	}
-
-	public getPosition(): Position {
-		return this.position;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

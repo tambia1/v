@@ -112,9 +112,5 @@ export abstract class Unit {
 		return this.buildProgress >= this.timeToBuild;
 	}
 
-	public getPosition() {
-		return this.position;
-	}
-
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }

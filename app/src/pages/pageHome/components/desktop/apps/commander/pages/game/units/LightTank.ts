@@ -22,7 +22,7 @@ export class LightTank extends Unit {
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(this.image, this.getPosition().x, this.getPosition().y, this.getPosition().w, this.getPosition().h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 
 		for (let i = 0; i < this.weapons.length; i++) {
 			this.weapons[i].draw(ctx);

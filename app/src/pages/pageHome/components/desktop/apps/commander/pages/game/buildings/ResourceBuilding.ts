@@ -12,7 +12,6 @@ type ResourceBuildingParams = {
 export abstract class ResourceBuilding extends Building {
 	public amount: number;
 	public producedPerSecond: number;
-	public position: Position;
 
 	constructor(params: ResourceBuildingParams) {
 		super();
@@ -28,10 +27,6 @@ export abstract class ResourceBuilding extends Building {
 
 	public update(timeDif: number) {
 		this.amount += (timeDif / 1000) * this.producedPerSecond;
-	}
-
-	public getPosition(): Position {
-		return this.position;
 	}
 
 	public abstract draw(ctx: CanvasRenderingContext2D): void;

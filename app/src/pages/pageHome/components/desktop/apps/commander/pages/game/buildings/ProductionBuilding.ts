@@ -19,7 +19,6 @@ export abstract class ProductionBuilding extends Building {
 	public unitsCanBeProduced: Unit[];
 	public productionQueue: Unit[];
 	public producedUnits: Unit[];
-	public position: Position;
 
 	constructor(params: ProductionBuildingParams) {
 		super();
