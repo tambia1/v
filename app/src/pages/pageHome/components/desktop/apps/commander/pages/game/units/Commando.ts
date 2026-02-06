@@ -5,8 +5,6 @@ import image from "./images/commando.png";
 import { Unit } from "./Unit";
 
 export class Commando extends Unit {
-	private image: HTMLImageElement;
-
 	constructor() {
 		super({
 			costGoldToBuild: 100,
@@ -18,11 +16,8 @@ export class Commando extends Unit {
 			timeToBuild: 15,
 		});
 
+		this.name = "Commando";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public getImage() {
-		return this.image;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

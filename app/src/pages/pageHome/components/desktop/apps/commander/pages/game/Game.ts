@@ -118,9 +118,9 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getPosition().isContains(xx, yy)) {
-							building.setIsSelected(true);
+							building.isSelected = true;
 						} else {
-							building.setIsSelected(false);
+							building.isSelected = false;
 						}
 					});
 				});
@@ -356,7 +356,7 @@ export class Game {
 
 		this.players.forEach((player) => {
 			player.getBuildings().forEach((building) => {
-				if (building.getIsSelected()) {
+				if (building.isSelected) {
 					const x = this.getBoardDimensions().width - 200 - 20;
 					const y = 20;
 					const w = 200;
@@ -370,10 +370,10 @@ export class Game {
 					ctx.fill();
 					ctx.stroke();
 					ctx.closePath();
-					ctx.drawImage(building.getImage(), x + 130, y, 50, 50);
+					ctx.drawImage(building.image, x + 130, y, 50, 50);
 
 					ctx.fillStyle = "#ffff66";
-					ctx.fillText(building.getName(), x + 10, y + 20);
+					ctx.fillText(building.name, x + 10, y + 20);
 					ctx.fillStyle = "#ffffff";
 
 					if (building instanceof ResourceBuilding) {

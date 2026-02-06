@@ -5,8 +5,6 @@ import image from "./images/lightTank.png";
 import { Unit } from "./Unit";
 
 export class LightTank extends Unit {
-	private image: HTMLImageElement;
-
 	constructor() {
 		super({
 			costGoldToBuild: 200,
@@ -18,11 +16,8 @@ export class LightTank extends Unit {
 			timeToBuild: 30,
 		});
 
+		this.name = "Light Tank";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public getImage() {
-		return this.image;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

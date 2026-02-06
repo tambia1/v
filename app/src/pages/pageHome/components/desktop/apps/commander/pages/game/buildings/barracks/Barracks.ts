@@ -10,8 +10,6 @@ type BarracksParams = {
 };
 
 export class Barracks extends ProductionBuilding {
-	private image: HTMLImageElement;
-
 	constructor(params: BarracksParams) {
 		super({
 			costGold: 100,
@@ -22,15 +20,8 @@ export class Barracks extends ProductionBuilding {
 			y: params.y,
 		});
 
+		this.name = "Barracks";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public override getName() {
-		return "Barracks";
-	}
-
-	public override getImage() {
-		return this.image;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

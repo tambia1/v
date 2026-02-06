@@ -8,8 +8,6 @@ type OilFieldParams = {
 };
 
 export class OilField extends ResourceBuilding {
-	private image: HTMLImageElement;
-
 	constructor(params: OilFieldParams) {
 		super({
 			amount: 0,
@@ -18,15 +16,8 @@ export class OilField extends ResourceBuilding {
 			y: params.y,
 		});
 
+		this.name = "Oil Field";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public override getName() {
-		return "Oil Field";
-	}
-
-	public override getImage() {
-		return this.image;
 	}
 
 	public getAmountOfOil() {
@@ -56,7 +47,7 @@ export class OilField extends ResourceBuilding {
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		if (this.selectable.getIsSelected()) {
+		if (this.isSelected) {
 			const centerX = this.position.getCenterX();
 			const centerY = this.position.getCenterY();
 

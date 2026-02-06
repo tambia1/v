@@ -4,8 +4,6 @@ import image from "./images/jeep.png";
 import { Unit } from "./Unit";
 
 export class Jeep extends Unit {
-	private image: HTMLImageElement;
-
 	constructor() {
 		super({
 			costGoldToBuild: 80,
@@ -17,11 +15,8 @@ export class Jeep extends Unit {
 			timeToBuild: 20,
 		});
 
+		this.name = "Jeep";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public getImage() {
-		return this.image;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

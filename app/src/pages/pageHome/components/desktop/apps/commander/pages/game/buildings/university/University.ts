@@ -10,7 +10,6 @@ type UniversityParams = {
 };
 
 export class University extends ProductionBuilding {
-	private image: HTMLImageElement;
 	private researches: Research[];
 
 	constructor(params: UniversityParams) {
@@ -23,17 +22,11 @@ export class University extends ProductionBuilding {
 			y: params.y,
 		});
 
+		this.name = "University";
+
 		this.image = UtilsImage.getImage(image);
 
 		this.researches = [];
-	}
-
-	public override getName() {
-		return "University";
-	}
-
-	public override getImage() {
-		return this.image;
 	}
 
 	public getResearches() {
@@ -58,7 +51,7 @@ export class University extends ProductionBuilding {
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		if (this.selectable.getIsSelected()) {
+		if (this.isSelected) {
 			const centerX = this.position.getCenterX();
 			const centerY = this.position.getCenterY();
 

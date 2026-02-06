@@ -1,3 +1,4 @@
+import { UtilsImage } from "../core/UtilsImage";
 import { Position } from "../map/Position";
 import { Weapon } from "../weapons/Weapon";
 
@@ -22,6 +23,9 @@ export abstract class Unit {
 	protected buildProgress: number;
 	protected position: Position;
 
+	public name: string;
+	public image: HTMLImageElement;
+
 	constructor(params: UnitParams) {
 		this.costGoldToBuild = params.costGoldToBuild;
 		this.costIronToBuild = params.costIronToBuild;
@@ -32,6 +36,9 @@ export abstract class Unit {
 		this.timeToBuild = params.timeToBuild;
 		this.buildProgress = 0;
 		this.position = new Position();
+
+		this.name = "";
+		this.image = UtilsImage.getImage("");
 	}
 
 	public getCostGoldToBuild() {

@@ -11,8 +11,6 @@ type FactoryParams = {
 };
 
 export class Factory extends ProductionBuilding {
-	private image: HTMLImageElement;
-
 	constructor(params: FactoryParams) {
 		super({
 			costGold: 200,
@@ -23,15 +21,8 @@ export class Factory extends ProductionBuilding {
 			y: params.y,
 		});
 
+		this.name = "Factory";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public override getName() {
-		return "Factory";
-	}
-
-	public override getImage() {
-		return this.image;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

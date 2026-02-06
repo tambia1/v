@@ -8,8 +8,6 @@ type IronMineParams = {
 };
 
 export class IronMine extends ResourceBuilding {
-	private image: HTMLImageElement;
-
 	constructor(params: IronMineParams) {
 		super({
 			amount: 0,
@@ -18,15 +16,8 @@ export class IronMine extends ResourceBuilding {
 			y: params.y,
 		});
 
+		this.name = "Iron Mine";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public override getName() {
-		return "Iron Mine";
-	}
-
-	public override getImage() {
-		return this.image;
 	}
 
 	public getAmountOfIron() {
@@ -56,7 +47,7 @@ export class IronMine extends ResourceBuilding {
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		if (this.selectable.getIsSelected()) {
+		if (this.isSelected) {
 			const centerX = this.position.getCenterX();
 			const centerY = this.position.getCenterY();
 

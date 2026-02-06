@@ -10,8 +10,6 @@ type AirFieldParams = {
 };
 
 export class AirField extends ProductionBuilding {
-	private image: HTMLImageElement;
-
 	constructor(params: AirFieldParams) {
 		super({
 			costGold: 250,
@@ -22,15 +20,8 @@ export class AirField extends ProductionBuilding {
 			y: params.y,
 		});
 
+		this.name = "Air Field";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public override getName() {
-		return "Air Field";
-	}
-
-	public override getImage() {
-		return this.image;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

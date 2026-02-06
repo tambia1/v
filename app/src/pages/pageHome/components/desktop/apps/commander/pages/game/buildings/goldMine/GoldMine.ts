@@ -8,8 +8,6 @@ type GoldMineParams = {
 };
 
 export class GoldMine extends ResourceBuilding {
-	private image: HTMLImageElement;
-
 	constructor(params: GoldMineParams) {
 		super({
 			amount: 0,
@@ -18,15 +16,8 @@ export class GoldMine extends ResourceBuilding {
 			y: params.y,
 		});
 
+		this.name = "Gold Mine";
 		this.image = UtilsImage.getImage(image);
-	}
-
-	public override getName() {
-		return "Gold Mine";
-	}
-
-	public override getImage() {
-		return this.image;
 	}
 
 	public getAmountOfGold() {
@@ -56,7 +47,7 @@ export class GoldMine extends ResourceBuilding {
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		if (this.selectable.getIsSelected()) {
+		if (this.isSelected) {
 			const centerX = this.position.getCenterX();
 			const centerY = this.position.getCenterY();
 

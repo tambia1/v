@@ -1,5 +1,5 @@
+import { UtilsImage } from "../core/UtilsImage";
 import { Position } from "../map/Position";
-import { Selectable } from "../map/Selectable";
 
 type ResourceBuildingParams = {
 	amount: number;
@@ -12,13 +12,20 @@ export abstract class ResourceBuilding {
 	protected amount: number;
 	protected producedSecond: number;
 	protected position: Position;
-	protected selectable: Selectable;
+
+	public name: string;
+	public image: HTMLImageElement;
+
+	public isSelected: boolean;
 
 	constructor(params: ResourceBuildingParams) {
 		this.amount = params.amount;
 		this.producedSecond = params.producedPerSecond;
 		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
-		this.selectable = new Selectable();
+
+		this.name = "";
+		this.image = UtilsImage.getImage("");
+		this.isSelected = false;
 	}
 
 	public getAmount() {
@@ -53,19 +60,5 @@ export abstract class ResourceBuilding {
 		return this.position;
 	}
 
-	public getSelectable(): Selectable {
-		return this.selectable;
-	}
-
-	public setIsSelected(isSelected: boolean) {
-		this.selectable.setIsSelected(isSelected);
-	}
-
-	public getIsSelected() {
-		return this.selectable.getIsSelected();
-	}
-
-	public abstract getName(): string;
-	public abstract getImage(): HTMLImageElement;
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
