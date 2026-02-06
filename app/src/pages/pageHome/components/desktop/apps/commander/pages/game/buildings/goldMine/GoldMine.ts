@@ -56,7 +56,7 @@ export class GoldMine extends ResourceBuilding {
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		if (this.position.getIsSelected()) {
+		if (this.selectable.getIsSelected()) {
 			const centerX = this.position.getCenterX();
 			const centerY = this.position.getCenterY();
 

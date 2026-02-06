@@ -1,4 +1,5 @@
 import { Position } from "../map/Position";
+import { Selectable } from "../map/Selectable";
 import { Unit } from "../units/Unit";
 
 type ProductionBuildingParams = {
@@ -18,6 +19,7 @@ export abstract class ProductionBuilding {
 	protected productionQueue: Unit[];
 	protected producedUnits: Unit[];
 	protected position: Position;
+	protected selectable: Selectable;
 
 	constructor(params: ProductionBuildingParams) {
 		this.costGold = params.costGold;
@@ -27,6 +29,7 @@ export abstract class ProductionBuilding {
 		this.productionQueue = [];
 		this.producedUnits = [];
 		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
+		this.selectable = new Selectable();
 	}
 
 	public getCostGold() {
@@ -92,6 +95,18 @@ export abstract class ProductionBuilding {
 
 	public getPosition(): Position {
 		return this.position;
+	}
+
+	public getSelectable(): Selectable {
+		return this.selectable;
+	}
+
+	public setIsSelected(isSelected: boolean) {
+		this.selectable.setIsSelected(isSelected);
+	}
+
+	public getIsSelected() {
+		return this.selectable.getIsSelected();
 	}
 
 	public abstract getName(): string;

@@ -118,9 +118,9 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getPosition().isContains(xx, yy)) {
-							building.getPosition().setIsSelected(true);
+							building.setIsSelected(true);
 						} else {
-							building.getPosition().setIsSelected(false);
+							building.setIsSelected(false);
 						}
 					});
 				});
@@ -356,7 +356,7 @@ export class Game {
 
 		this.players.forEach((player) => {
 			player.getBuildings().forEach((building) => {
-				if (building.getPosition().getIsSelected()) {
+				if (building.getIsSelected()) {
 					const x = this.getBoardDimensions().width - 200 - 20;
 					const y = 20;
 					const w = 200;
