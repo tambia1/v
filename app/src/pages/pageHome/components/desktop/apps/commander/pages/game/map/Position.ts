@@ -17,33 +17,6 @@ export class Position {
 		this.w = w;
 		this.h = h;
 	}
-
-	public setXY(x: number, y: number) {
-		this.x = x;
-		this.y = y;
-	}
-
-	public setWH(w: number, h: number) {
-		this.w = w;
-		this.h = h;
-	}
-
-	public getX() {
-		return this.x;
-	}
-
-	public getY() {
-		return this.y;
-	}
-
-	public getW() {
-		return this.w;
-	}
-
-	public getH() {
-		return this.h;
-	}
-
 	public getCenterX() {
 		return this.x + this.w / 2;
 	}

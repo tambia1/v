@@ -1,19 +1,18 @@
 import { UtilsImage } from "../../core/UtilsImage";
 import image from "./images/infantry.png";
-import { Research, ResearchParams } from "./Research";
+import { Research } from "./Research";
 
 export class ResearchInfantry extends Research {
-	constructor(params: ResearchParams) {
-		super(params);
-	}
-
-	public override getName() {
-		return "Infantry";
+	constructor() {
+		super({
+			name: "Infantry",
+			timeToResearch: 100,
+		});
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(UtilsImage.getImage(image), this.x, this.y, this.w, this.h);
+		ctx.drawImage(UtilsImage.getImage(image), 0, 0, 1, 1);
 		ctx.restore();
 	}
 }
