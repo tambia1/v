@@ -20,30 +20,6 @@ export class OilField extends ResourceBuilding {
 		this.image = UtilsImage.getImage(image);
 	}
 
-	public getAmountOfOil() {
-		return this.getAmount();
-	}
-
-	public setAmountOfOil(amount: number) {
-		this.setAmount(amount);
-	}
-
-	public getOilProducedPerDay() {
-		return this.getProducedPerSecond();
-	}
-
-	public setOilProducedPerDay(amount: number) {
-		this.setProducedPerSecond(amount);
-	}
-
-	public addOil(amount: number) {
-		this.add(amount);
-	}
-
-	public removeOil(amount: number) {
-		this.remove(amount);
-	}
-
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 

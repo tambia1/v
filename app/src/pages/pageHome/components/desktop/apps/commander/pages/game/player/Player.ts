@@ -1,10 +1,10 @@
-import { GoldMine } from "./buildings/goldMine/GoldMine";
-import { IronMine } from "./buildings/ironMine/IronMine";
-import { OilField } from "./buildings/oilField/OilField";
-import { ProductionBuilding } from "./buildings/ProductionBuilding";
-import { ResourceBuilding } from "./buildings/ResourceBuilding";
-import { University } from "./buildings/university/University";
-import { Unit } from "./units/Unit";
+import { GoldMine } from "../buildings/goldMine/GoldMine";
+import { IronMine } from "../buildings/ironMine/IronMine";
+import { OilField } from "../buildings/oilField/OilField";
+import { ProductionBuilding } from "../buildings/ProductionBuilding";
+import { ResourceBuilding } from "../buildings/ResourceBuilding";
+import { University } from "../buildings/university/University";
+import { Unit } from "../units/Unit";
 
 export class Player {
 	private playerName: string;
@@ -58,7 +58,7 @@ export class Player {
 
 		this.resourceBuildings.forEach((resourceBuilding) => {
 			if (resourceBuilding instanceof GoldMine) {
-				gold += resourceBuilding.getAmountOfGold();
+				gold += resourceBuilding.amount;
 			}
 		});
 
@@ -70,7 +70,7 @@ export class Player {
 
 		this.resourceBuildings.forEach((resourceBuilding) => {
 			if (resourceBuilding instanceof IronMine) {
-				iron += resourceBuilding.getAmountOfIron();
+				iron += resourceBuilding.amount;
 			}
 		});
 
@@ -82,7 +82,7 @@ export class Player {
 
 		this.resourceBuildings.forEach((resourceBuilding) => {
 			if (resourceBuilding instanceof OilField) {
-				oil += resourceBuilding.getAmountOfOil();
+				oil += resourceBuilding.amount;
 			}
 		});
 
@@ -93,7 +93,7 @@ export class Player {
 		const units: Unit[] = [];
 
 		this.productionBuildings.forEach((productionBuilding) => {
-			units.push(...productionBuilding.getProducedUnits());
+			units.push(...productionBuilding.producedUnits);
 		});
 
 		return units;

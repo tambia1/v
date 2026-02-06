@@ -1,5 +1,6 @@
 import { UtilsImage } from "../core/UtilsImage";
 import { Position } from "../map/Position";
+import { Building } from "./Building";
 
 type ResourceBuildingParams = {
 	amount: number;
@@ -8,19 +9,16 @@ type ResourceBuildingParams = {
 	y: number;
 };
 
-export abstract class ResourceBuilding {
-	protected amount: number;
-	protected producedSecond: number;
-	protected position: Position;
-
-	public name: string;
-	public image: HTMLImageElement;
-
-	public isSelected: boolean;
+export abstract class ResourceBuilding extends Building {
+	public amount: number;
+	public producedPerSecond: number;
+	public position: Position;
 
 	constructor(params: ResourceBuildingParams) {
+		super();
+
 		this.amount = params.amount;
-		this.producedSecond = params.producedPerSecond;
+		this.producedPerSecond = params.producedPerSecond;
 		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
 
 		this.name = "";
@@ -28,32 +26,8 @@ export abstract class ResourceBuilding {
 		this.isSelected = false;
 	}
 
-	public getAmount() {
-		return this.amount;
-	}
-
-	public setAmount(amount: number) {
-		this.amount = amount;
-	}
-
-	public getProducedPerSecond() {
-		return this.producedSecond;
-	}
-
-	public setProducedPerSecond(amount: number) {
-		this.producedSecond = amount;
-	}
-
-	public add(amount: number) {
-		this.amount += amount;
-	}
-
-	public remove(amount: number) {
-		this.amount -= amount;
-	}
-
 	public update(timeDif: number) {
-		this.amount += (timeDif / 1000) * this.producedSecond;
+		this.amount += (timeDif / 1000) * this.producedPerSecond;
 	}
 
 	public getPosition(): Position {

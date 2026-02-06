@@ -20,30 +20,6 @@ export class IronMine extends ResourceBuilding {
 		this.image = UtilsImage.getImage(image);
 	}
 
-	public getAmountOfIron() {
-		return this.getAmount();
-	}
-
-	public setAmountOfIron(amount: number) {
-		this.setAmount(amount);
-	}
-
-	public getIronProducedPerDay() {
-		return this.getProducedPerSecond();
-	}
-
-	public setIronProducedPerDay(amount: number) {
-		this.setProducedPerSecond(amount);
-	}
-
-	public addIron(amount: number) {
-		this.add(amount);
-	}
-
-	public removeIron(amount: number) {
-		this.remove(amount);
-	}
-
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 

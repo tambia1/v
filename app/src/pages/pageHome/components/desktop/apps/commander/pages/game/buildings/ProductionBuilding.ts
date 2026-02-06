@@ -1,6 +1,7 @@
 import { UtilsImage } from "../core/UtilsImage";
 import { Position } from "../map/Position";
 import { Unit } from "../units/Unit";
+import { Building } from "./Building";
 
 type ProductionBuildingParams = {
 	costGold: number;
@@ -11,20 +12,18 @@ type ProductionBuildingParams = {
 	y: number;
 };
 
-export abstract class ProductionBuilding {
-	protected costGold: number;
-	protected costIron: number;
-	protected costOil: number;
-	protected unitsCanBeProduced: Unit[];
-	protected productionQueue: Unit[];
-	protected producedUnits: Unit[];
-	protected position: Position;
-
-	public name: string;
-	public image: HTMLImageElement;
-	public isSelected: boolean;
+export abstract class ProductionBuilding extends Building {
+	public costGold: number;
+	public costIron: number;
+	public costOil: number;
+	public unitsCanBeProduced: Unit[];
+	public productionQueue: Unit[];
+	public producedUnits: Unit[];
+	public position: Position;
 
 	constructor(params: ProductionBuildingParams) {
+		super();
+
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
 		this.costOil = params.costOil;
@@ -38,35 +37,11 @@ export abstract class ProductionBuilding {
 		this.isSelected = false;
 	}
 
-	public getCostGold() {
-		return this.costGold;
-	}
-
-	public getCostIron() {
-		return this.costIron;
-	}
-
-	public getCostOil() {
-		return this.costOil;
-	}
-
-	public getUnitsTheBuildingCanProduce() {
-		return this.unitsCanBeProduced;
-	}
-
-	public getProducedUnits() {
-		return this.producedUnits;
-	}
-
-	public getProductionQueue() {
-		return this.productionQueue;
-	}
-
-	public addToProductionQueue(unit: Unit) {
+	public addUnitToProductionQueue(unit: Unit) {
 		this.productionQueue.push(unit);
 	}
 
-	public removeFromProductionQueue(unit: Unit) {
+	public removeUnitFromProductionQueue(unit: Unit) {
 		const index = this.productionQueue.indexOf(unit);
 		if (index > -1) {
 			this.productionQueue.splice(index, 1);
@@ -97,10 +72,6 @@ export abstract class ProductionBuilding {
 			this.productionQueue.shift();
 			this.producedUnits.push(currentUnit);
 		}
-	}
-
-	public getPosition(): Position {
-		return this.position;
 	}
 
 	public abstract draw(ctx: CanvasRenderingContext2D): void;

@@ -4,7 +4,7 @@ import { University } from "./buildings/university/University";
 import { GameEngine } from "./core/GameEngine";
 import { UtilsCanvas } from "./core/UtilsCanvas";
 import { UtilsTouch } from "./core/UtilsTouch";
-import { Player } from "./Player";
+import { Player } from "./player/Player";
 
 type GameProps = {
 	board: HTMLDivElement;
@@ -117,7 +117,7 @@ export class Game {
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (building.getPosition().isContains(xx, yy)) {
+						if (building.position.isContains(xx, yy)) {
 							building.isSelected = true;
 						} else {
 							building.isSelected = false;
@@ -377,13 +377,13 @@ export class Game {
 					ctx.fillStyle = "#ffffff";
 
 					if (building instanceof ResourceBuilding) {
-						ctx.fillText(`Amount: ${building.getAmount().toFixed(1)}`, x + 10, y + 80);
+						ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 80);
 					}
 
 					if (building instanceof University) {
-						ctx.fillText(`Gold Cost: ${building.getCostGold()}`, x + 10, y + 60);
-						ctx.fillText(`Iron Cost: ${building.getCostIron()}`, x + 10, y + 80);
-						ctx.fillText(`Oil Cost: ${building.getCostOil()}`, x + 10, y + 100);
+						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
+						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
+						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
 					}
 				}
 			});

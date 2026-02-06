@@ -11,5 +11,6 @@ export abstract class Building {
 		this.image = UtilsImage.getImage("");
 		this.isSelected = false;
 	}
+
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }

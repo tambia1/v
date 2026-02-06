@@ -20,30 +20,6 @@ export class GoldMine extends ResourceBuilding {
 		this.image = UtilsImage.getImage(image);
 	}
 
-	public getAmountOfGold() {
-		return this.getAmount();
-	}
-
-	public setAmountOfGold(amount: number) {
-		this.setAmount(amount);
-	}
-
-	public getGoldProducedPerDay() {
-		return this.getProducedPerSecond();
-	}
-
-	public setGoldProducedPerDay(amount: number) {
-		this.setProducedPerSecond(amount);
-	}
-
-	public addGold(amount: number) {
-		this.add(amount);
-	}
-
-	public removeGold(amount: number) {
-		this.remove(amount);
-	}
-
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
