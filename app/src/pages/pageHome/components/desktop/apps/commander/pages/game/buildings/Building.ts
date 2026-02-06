@@ -1,19 +1,10 @@
-import { UtilsImage } from "../core/UtilsImage";
-import { Position } from "../map/Position";
+import { Entity } from "../Entity";
 
-export abstract class Building {
-	public name: string;
-	public image: HTMLImageElement;
-
-	public position: Position;
+export abstract class Building extends Entity {
 	public isSelected: boolean;
 
 	constructor() {
-		this.name = "";
-		this.image = UtilsImage.getImage("");
-		this.position = new Position();
+		super();
 		this.isSelected = false;
 	}
-
-	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }

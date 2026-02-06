@@ -1,4 +1,3 @@
-import { UtilsImage } from "../core/UtilsImage";
 import { Position } from "../map/Position";
 import { Unit } from "../units/Unit";
 import { Building } from "./Building";
@@ -30,10 +29,6 @@ export abstract class ProductionBuilding extends Building {
 		this.productionQueue = [];
 		this.producedUnits = [];
 		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
-
-		this.name = "";
-		this.image = UtilsImage.getImage("");
-		this.isSelected = false;
 	}
 
 	public addUnitToProductionQueue(unit: Unit) {
@@ -72,6 +67,4 @@ export abstract class ProductionBuilding extends Building {
 			this.producedUnits.push(currentUnit);
 		}
 	}
-
-	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }

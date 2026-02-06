@@ -1,5 +1,4 @@
-import { UtilsImage } from "../core/UtilsImage";
-import { Position } from "../map/Position";
+import { Entity } from "../Entity";
 import { Weapon } from "../weapons/Weapon";
 
 type UnitParams = {
@@ -12,7 +11,7 @@ type UnitParams = {
 	timeToBuild: number;
 };
 
-export abstract class Unit {
+export abstract class Unit extends Entity {
 	protected costGoldToBuild: number;
 	protected costIronToBuild: number;
 	protected costOilConsumption: number;
@@ -21,12 +20,9 @@ export abstract class Unit {
 	protected weapons: Weapon[];
 	protected timeToBuild: number;
 	protected buildProgress: number;
-	protected position: Position;
-
-	public name: string;
-	public image: HTMLImageElement;
 
 	constructor(params: UnitParams) {
+		super();
 		this.costGoldToBuild = params.costGoldToBuild;
 		this.costIronToBuild = params.costIronToBuild;
 		this.costOilConsumption = params.costOilConsumption;
@@ -35,10 +31,6 @@ export abstract class Unit {
 		this.weapons = params.weapons;
 		this.timeToBuild = params.timeToBuild;
 		this.buildProgress = 0;
-		this.position = new Position();
-
-		this.name = "";
-		this.image = UtilsImage.getImage("");
 	}
 
 	public getCostGoldToBuild() {
@@ -111,6 +103,4 @@ export abstract class Unit {
 	public isBuilt() {
 		return this.buildProgress >= this.timeToBuild;
 	}
-
-	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }

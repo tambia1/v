@@ -1,4 +1,3 @@
-import { UtilsImage } from "../core/UtilsImage";
 import { Position } from "../map/Position";
 import { Building } from "./Building";
 
@@ -19,15 +18,9 @@ export abstract class ResourceBuilding extends Building {
 		this.amount = params.amount;
 		this.producedPerSecond = params.producedPerSecond;
 		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
-
-		this.name = "";
-		this.image = UtilsImage.getImage("");
-		this.isSelected = false;
 	}
 
 	public update(timeDif: number) {
 		this.amount += (timeDif / 1000) * this.producedPerSecond;
 	}
-
-	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
