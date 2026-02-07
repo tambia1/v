@@ -22,5 +22,6 @@ export abstract class Entity {
 		this.state = params.state || new State({ isSelected: false });
 	}
 
+	public abstract update(timeDif: number): void;
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }

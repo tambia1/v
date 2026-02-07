@@ -24,6 +24,10 @@ export class LightTank extends Unit {
 		});
 	}
 
+	public update(_timeDif: number) {
+		// TODO: update light tank
+	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);

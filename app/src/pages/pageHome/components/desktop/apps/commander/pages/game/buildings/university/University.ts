@@ -49,7 +49,11 @@ export class University extends ProductionBuilding {
 		}
 	}
 
-	public draw(ctx: CanvasRenderingContext2D) {
+	public update(_timeDif: number) {
+		// TODO: update researches
+	}
+
+	public override draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
 		if (this.state.isSelected) {

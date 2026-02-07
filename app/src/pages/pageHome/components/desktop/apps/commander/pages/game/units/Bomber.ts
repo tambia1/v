@@ -23,6 +23,10 @@ export class Bomber extends Unit {
 		});
 	}
 
+	public update(_timeDif: number) {
+		// TODO: update bomber
+	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
