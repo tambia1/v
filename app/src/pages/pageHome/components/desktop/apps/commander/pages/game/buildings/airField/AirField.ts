@@ -1,6 +1,8 @@
-import { UtilsImage } from "../../core/UtilsImage";
+import { Position } from "../../core/Position";
+import { State } from "../../core/State";
 import { Bomber } from "../../units/Bomber";
 import { Fighter } from "../../units/Fighter";
+import { UtilsImage } from "../../utils/UtilsImage";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/airField.png";
 
@@ -12,12 +14,20 @@ type AirFieldParams = {
 export class AirField extends ProductionBuilding {
 	constructor(params: AirFieldParams) {
 		super({
+			name: "Air Field",
+			image: UtilsImage.getImage(image),
+			position: new Position({
+				x: params.x,
+				y: params.y,
+				w: 1,
+				h: 1,
+			}),
+			state: new State({ isSelected: false }),
+
 			costGold: 250,
 			costIron: 150,
 			costOil: 50,
 			unitsCanBeProduced: [new Fighter(), new Bomber()],
-			x: params.x,
-			y: params.y,
 		});
 
 		this.name = "Air Field";
@@ -26,7 +36,7 @@ export class AirField extends ProductionBuilding {
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 		ctx.restore();
 	}
 }

@@ -1,4 +1,6 @@
-import { UtilsImage } from "../core/UtilsImage";
+import { Position } from "../core/Position";
+import { State } from "../core/State";
+import { UtilsImage } from "../utils/UtilsImage";
 import { Rifle } from "../weapons/Rifle";
 import { Rpg } from "../weapons/Rpg";
 import image from "./images/commando.png";
@@ -7,6 +9,11 @@ import { Unit } from "./Unit";
 export class Commando extends Unit {
 	constructor() {
 		super({
+			name: "Commando",
+			image: UtilsImage.getImage(image),
+			position: new Position(),
+			state: new State({ isSelected: false }),
+
 			costGoldToBuild: 100,
 			costIronToBuild: 60,
 			costOilConsumption: 0,
@@ -15,14 +22,11 @@ export class Commando extends Unit {
 			weapons: [new Rifle(), new Rpg()],
 			timeToBuild: 15,
 		});
-
-		this.name = "Commando";
-		this.image = UtilsImage.getImage(image);
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 
 		for (let i = 0; i < this.weapons.length; i++) {
 			this.weapons[i].draw(ctx);

@@ -1,4 +1,6 @@
-import { UtilsImage } from "../core/UtilsImage";
+import { Position } from "../core/Position";
+import { State } from "../core/State";
+import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
 import { Rifle } from "../weapons/Rifle";
 import image from "./images/infantry.png";
@@ -7,6 +9,11 @@ import { Unit } from "./Unit";
 export class Infantry extends Unit {
 	constructor() {
 		super({
+			name: "Infantry",
+			image: UtilsImage.getImage(image),
+			position: new Position(),
+			state: new State({ isSelected: false }),
+
 			costGoldToBuild: 50,
 			costIronToBuild: 30,
 			costOilConsumption: 0,
@@ -15,14 +22,11 @@ export class Infantry extends Unit {
 			weapons: [new Rifle(), new MachineGun()],
 			timeToBuild: 10,
 		});
-
-		this.name = "Infantry";
-		this.image = UtilsImage.getImage(image);
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 
 		for (let i = 0; i < this.weapons.length; i++) {
 			this.weapons[i].draw(ctx);

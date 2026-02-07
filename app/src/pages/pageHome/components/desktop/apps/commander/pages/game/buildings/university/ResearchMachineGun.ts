@@ -1,4 +1,4 @@
-import { UtilsImage } from "../../core/UtilsImage";
+import { UtilsImage } from "../../utils/UtilsImage";
 import image from "./images/machineGun.png";
 import { Research } from "./Research";
 

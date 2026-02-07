@@ -1,7 +1,14 @@
-import { Entity } from "../Entity";
+import { Entity } from "../core/Entity";
+import { Position } from "../core/Position";
+import { State } from "../core/State";
 import { Weapon } from "../weapons/Weapon";
 
 type UnitParams = {
+	name: string;
+	image: HTMLImageElement;
+	position: Position;
+	state: State;
+
 	costGoldToBuild: number;
 	costIronToBuild: number;
 	costOilConsumption: number;
@@ -22,7 +29,13 @@ export abstract class Unit extends Entity {
 	protected buildProgress: number;
 
 	constructor(params: UnitParams) {
-		super();
+		super({
+			name: params.name,
+			image: params.image,
+			position: params.position,
+			state: params.state,
+		});
+
 		this.costGoldToBuild = params.costGoldToBuild;
 		this.costIronToBuild = params.costIronToBuild;
 		this.costOilConsumption = params.costOilConsumption;

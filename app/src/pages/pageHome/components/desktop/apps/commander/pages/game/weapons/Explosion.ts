@@ -1,5 +1,5 @@
-import { Animation } from "../core/Animation";
-import { UtilsImage } from "../core/UtilsImage";
+import { Animation } from "../utils/Animation";
+import { UtilsImage } from "../utils/UtilsImage";
 import imageExplosion1 from "./images/explosions/explosion_1_38_128.webp";
 import imageExplosion2 from "./images/explosions/explosion_2_38_128.webp";
 import imageExplosion3 from "./images/explosions/explosion_3_5_128.webp";

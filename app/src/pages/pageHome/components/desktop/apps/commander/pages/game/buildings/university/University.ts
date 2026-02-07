@@ -1,4 +1,6 @@
-import { UtilsImage } from "../../core/UtilsImage";
+import { Position } from "../../core/Position";
+import { State } from "../../core/State";
+import { UtilsImage } from "../../utils/UtilsImage";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/university.png";
 import { Research } from "./Research";
@@ -13,17 +15,21 @@ export class University extends ProductionBuilding {
 
 	constructor(params: UniversityParams) {
 		super({
+			name: "University",
+			image: UtilsImage.getImage(image),
+			position: new Position({
+				x: params.x,
+				y: params.y,
+				w: 1,
+				h: 1,
+			}),
+			state: new State({ isSelected: false }),
+
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
 			unitsCanBeProduced: [],
-			x: params.x,
-			y: params.y,
 		});
-
-		this.name = "University";
-
-		this.image = UtilsImage.getImage(image);
 
 		this.researches = [];
 	}
@@ -46,16 +52,16 @@ export class University extends ProductionBuilding {
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		if (this.isSelected) {
-			const centerX = this.getCenterX();
-			const centerY = this.getCenterY();
+		if (this.state.isSelected) {
+			const centerX = this.position.getCenterX();
+			const centerY = this.position.getCenterY();
 
 			ctx.translate(centerX, centerY);
 			ctx.scale(1.3, 1.3);
 			ctx.translate(-centerX, -centerY);
 		}
 
-		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 
 		ctx.restore();
 	}

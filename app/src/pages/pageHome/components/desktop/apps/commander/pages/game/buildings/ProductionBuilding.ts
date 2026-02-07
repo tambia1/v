@@ -1,13 +1,18 @@
+import { Position } from "../core/Position";
+import { State } from "../core/State";
 import { Unit } from "../units/Unit";
 import { Building } from "./Building";
 
 type ProductionBuildingParams = {
+	name: string;
+	image: HTMLImageElement;
+	position: Position;
+	state: State;
+
 	costGold: number;
 	costIron: number;
 	costOil: number;
 	unitsCanBeProduced: Unit[];
-	x: number;
-	y: number;
 };
 
 export abstract class ProductionBuilding extends Building {
@@ -19,7 +24,12 @@ export abstract class ProductionBuilding extends Building {
 	public producedUnits: Unit[];
 
 	constructor(params: ProductionBuildingParams) {
-		super({ x: params.x, y: params.y, w: 1, h: 1 });
+		super({
+			name: params.name,
+			image: params.image,
+			position: params.position,
+			state: params.state,
+		});
 
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;

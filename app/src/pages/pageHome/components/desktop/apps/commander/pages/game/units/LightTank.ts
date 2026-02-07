@@ -1,4 +1,6 @@
-import { UtilsImage } from "../core/UtilsImage";
+import { Position } from "../core/Position";
+import { State } from "../core/State";
+import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
 import { TankBarrel75 } from "../weapons/TankBarrel75";
 import image from "./images/lightTank.png";
@@ -7,6 +9,11 @@ import { Unit } from "./Unit";
 export class LightTank extends Unit {
 	constructor() {
 		super({
+			name: "Light Tank",
+			image: UtilsImage.getImage(image),
+			position: new Position(),
+			state: new State({ isSelected: false }),
+
 			costGoldToBuild: 200,
 			costIronToBuild: 150,
 			costOilConsumption: 50,
@@ -15,14 +22,11 @@ export class LightTank extends Unit {
 			weapons: [new TankBarrel75(), new MachineGun()],
 			timeToBuild: 30,
 		});
-
-		this.name = "Light Tank";
-		this.image = UtilsImage.getImage(image);
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
+		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
 
 		for (let i = 0; i < this.weapons.length; i++) {
 			this.weapons[i].draw(ctx);

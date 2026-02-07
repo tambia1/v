@@ -1,10 +1,10 @@
 import { Arena, type ArenaType } from "./Arena";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
-import { GameEngine } from "./core/GameEngine";
-import { UtilsCanvas } from "./core/UtilsCanvas";
-import { UtilsTouch } from "./core/UtilsTouch";
 import { Player } from "./player/Player";
+import { GameEngine } from "./utils/GameEngine";
+import { UtilsCanvas } from "./utils/UtilsCanvas";
+import { UtilsTouch } from "./utils/UtilsTouch";
 
 type GameProps = {
 	board: HTMLDivElement;
@@ -117,10 +117,10 @@ export class Game {
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (building.isContains(xx, yy)) {
-							building.isSelected = true;
+						if (building.position.isContains(xx, yy)) {
+							building.state.isSelected = true;
 						} else {
-							building.isSelected = false;
+							building.state.isSelected = false;
 						}
 					});
 				});
@@ -356,7 +356,7 @@ export class Game {
 
 		this.players.forEach((player) => {
 			player.getBuildings().forEach((building) => {
-				if (building.isSelected) {
+				if (building.state.isSelected) {
 					const x = this.getBoardDimensions().width - 200 - 20;
 					const y = 20;
 					const w = 200;

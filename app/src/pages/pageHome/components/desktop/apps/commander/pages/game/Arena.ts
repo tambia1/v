@@ -1,7 +1,7 @@
-import { UtilsImage } from "./core/UtilsImage";
 import imageArena1 from "./images/arenas/arena1.webp";
 import imageArena2 from "./images/arenas/arena2.webp";
 import imageArena3 from "./images/arenas/arena3.webp";
+import { UtilsImage } from "./utils/UtilsImage";
 
 export type ArenaType = "worldWar1" | "worldWar2" | "worldWar3";
 

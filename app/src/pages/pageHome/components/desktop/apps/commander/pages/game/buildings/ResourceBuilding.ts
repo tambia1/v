@@ -1,10 +1,15 @@
+import { Position } from "../core/Position";
+import { State } from "../core/State";
 import { Building } from "./Building";
 
 type ResourceBuildingParams = {
+	name: string;
+	image: HTMLImageElement;
+	position: Position;
+	state: State;
+
 	amount: number;
 	producedPerSecond: number;
-	x: number;
-	y: number;
 };
 
 export abstract class ResourceBuilding extends Building {
@@ -12,7 +17,12 @@ export abstract class ResourceBuilding extends Building {
 	public producedPerSecond: number;
 
 	constructor(params: ResourceBuildingParams) {
-		super({ x: params.x, y: params.y, w: 1, h: 1 });
+		super({
+			name: params.name,
+			image: params.image,
+			position: params.position,
+			state: params.state,
+		});
 
 		this.amount = params.amount;
 		this.producedPerSecond = params.producedPerSecond;
