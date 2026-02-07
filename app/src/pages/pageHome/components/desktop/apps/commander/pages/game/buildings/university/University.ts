@@ -4,6 +4,15 @@ import { UtilsImage } from "../../utils/UtilsImage";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/university.png";
 import { Research } from "./Research";
+import { ResearchBomber } from "./ResearchBomber";
+import { ResearchCommando } from "./ResearchCommando";
+import { ResearchFighter } from "./ResearchFighter";
+import { ResearchHeavyTank } from "./ResearchHeavyTank";
+import { ResearchInfantry } from "./ResearchInfantry";
+import { ResearchJeep } from "./ResearchJeep";
+import { ResearchLightTank } from "./ResearchLightTank";
+import { ResearchMachineGun } from "./ResearchMachineGun";
+import { ResearchRifle } from "./ResearchRifle";
 
 type UniversityParams = {
 	x: number;
@@ -11,7 +20,7 @@ type UniversityParams = {
 };
 
 export class University extends ProductionBuilding {
-	private researches: Research[];
+	public researches: Research[];
 
 	constructor(params: UniversityParams) {
 		super({
@@ -31,15 +40,17 @@ export class University extends ProductionBuilding {
 			unitsCanBeProduced: [],
 		});
 
-		this.researches = [];
-	}
-
-	public getResearches() {
-		return this.researches;
-	}
-
-	public addResearch(research: Research) {
-		this.researches.push(research);
+		this.researches = [
+			new ResearchInfantry(),
+			new ResearchRifle(),
+			new ResearchMachineGun(),
+			new ResearchJeep(),
+			new ResearchLightTank(),
+			new ResearchHeavyTank(),
+			new ResearchCommando(),
+			new ResearchFighter(),
+			new ResearchBomber(),
+		];
 	}
 
 	public removeResearch(research: Research) {
