@@ -117,7 +117,7 @@ export class Game {
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (building.position.isContains(xx, yy)) {
+						if (building.isContains(xx, yy)) {
 							building.isSelected = true;
 						} else {
 							building.isSelected = false;

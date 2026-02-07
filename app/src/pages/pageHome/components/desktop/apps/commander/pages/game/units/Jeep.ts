@@ -21,7 +21,7 @@ export class Jeep extends Unit {
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
+		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
 
 		for (let i = 0; i < this.weapons.length; i++) {
 			this.weapons[i].draw(ctx);

@@ -24,15 +24,15 @@ export class IronMine extends ResourceBuilding {
 		ctx.save();
 
 		if (this.isSelected) {
-			const centerX = this.position.getCenterX();
-			const centerY = this.position.getCenterY();
+			const centerX = this.getCenterX();
+			const centerY = this.getCenterY();
 
 			ctx.translate(centerX, centerY);
 			ctx.scale(1.3, 1.3);
 			ctx.translate(-centerX, -centerY);
 		}
 
-		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
+		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
 
 		ctx.restore();
 	}

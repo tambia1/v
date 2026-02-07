@@ -1,4 +1,3 @@
-import { Position } from "../map/Position";
 import { Unit } from "../units/Unit";
 import { Building } from "./Building";
 
@@ -20,7 +19,7 @@ export abstract class ProductionBuilding extends Building {
 	public producedUnits: Unit[];
 
 	constructor(params: ProductionBuildingParams) {
-		super();
+		super({ x: params.x, y: params.y, w: 1, h: 1 });
 
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
@@ -28,7 +27,6 @@ export abstract class ProductionBuilding extends Building {
 		this.unitsCanBeProduced = params.unitsCanBeProduced;
 		this.productionQueue = [];
 		this.producedUnits = [];
-		this.position = new Position({ x: params.x, y: params.y, w: 1, h: 1 });
 	}
 
 	public addUnitToProductionQueue(unit: Unit) {
