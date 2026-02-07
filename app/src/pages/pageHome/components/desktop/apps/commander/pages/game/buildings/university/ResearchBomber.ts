@@ -7,12 +7,13 @@ export class ResearchBomber extends Research {
 		super({
 			name: "Bomber",
 			timeToResearch: 100,
+			image: UtilsImage.getImage(image),
 		});
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(UtilsImage.getImage(image), 0, 0, 1, 1);
+		ctx.drawImage(this.image, 0, 0, 1, 1);
 		ctx.restore();
 	}
 }

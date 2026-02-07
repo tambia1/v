@@ -1,14 +1,17 @@
 type ResearchParams = {
 	name: string;
+	image: HTMLImageElement;
 	timeToResearch: number;
 };
 
 export abstract class Research {
-	protected name: string;
-	protected timeToResearch: number;
+	public name: string;
+	public image: HTMLImageElement;
+	public timeToResearch: number;
 
 	constructor(params: ResearchParams) {
 		this.name = params.name;
+		this.image = params.image;
 		this.timeToResearch = params.timeToResearch;
 	}
 

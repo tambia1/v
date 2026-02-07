@@ -360,7 +360,7 @@ export class Game {
 					const x = this.getBoardDimensions().width - 200 - 20;
 					const y = 20;
 					const w = 200;
-					const h = 140;
+					const h = 250;
 
 					ctx.font = "oswald 12px";
 					ctx.fillStyle = "#000000";
@@ -384,6 +384,10 @@ export class Game {
 						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
 						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
 						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
+
+						building.getResearches().forEach((research, index) => {
+							ctx.fillText(research.name, x + 10, y + 120 + 20 * index);
+						});
 					}
 				}
 			});
