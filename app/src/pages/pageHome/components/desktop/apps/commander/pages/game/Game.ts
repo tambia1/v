@@ -18,8 +18,6 @@ type Map = "sea" | "land";
 export class Game {
 	private static readonly TIME_LEFT = 5 * 60;
 
-	private board: HTMLDivElement;
-
 	private arenaType: ArenaType;
 	private onGameOver: () => void;
 
@@ -36,8 +34,6 @@ export class Game {
 	private gameEngine: GameEngine;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
-		this.board = board;
-
 		this.arenaType = arenaType;
 		this.onGameOver = onGameOver;
 
@@ -47,9 +43,9 @@ export class Game {
 		this.winnerIndex = -1;
 
 		this.gameEngine = new GameEngine({
-			div: this.board,
+			div: board,
 			onStart: ({ ctx, timeDif }) => {
-				this.initTouches(ctx);
+				this.initTouches(board, ctx);
 				this.initPlayers(playersNames);
 				this.initMap();
 
@@ -98,16 +94,9 @@ export class Game {
 		ctx.restore();
 	}
 
-	private getBoardDimensions() {
-		return {
-			width: this.board.parentElement?.offsetWidth || 0,
-			height: this.board.parentElement?.offsetHeight || 0,
-		};
-	}
-
-	private initTouches(ctx: CanvasRenderingContext2D) {
+	private initTouches(div: HTMLDivElement, ctx: CanvasRenderingContext2D) {
 		UtilsTouch.listenToTouches({
-			div: this.board,
+			div: div,
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				const scaleX = this.getScaleX(ctx);
 				const scaleY = this.getScaleY(ctx);
@@ -357,7 +346,7 @@ export class Game {
 		this.players.forEach((player) => {
 			player.getBuildings().forEach((building) => {
 				if (building.state.isSelected) {
-					const x = this.getBoardDimensions().width - 200 - 20;
+					const x = ctx.canvas.width - 200 - 20;
 					const y = 20;
 					const w = 200;
 					const h = 550;
