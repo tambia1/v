@@ -41,13 +41,13 @@ export class University extends ProductionBuilding {
 		});
 
 		this.researches = [
-			new ResearchInfantry(),
 			new ResearchRifle(),
 			new ResearchMachineGun(),
+			new ResearchInfantry(),
+			new ResearchCommando(),
 			new ResearchJeep(),
 			new ResearchLightTank(),
 			new ResearchHeavyTank(),
-			new ResearchCommando(),
 			new ResearchFighter(),
 			new ResearchBomber(),
 		];
