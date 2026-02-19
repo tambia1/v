@@ -5,13 +5,14 @@ export const PageGame = styled.div`
 	height: 100%;
 
 	position: relative;
-
-	overflow-x: scroll;
-	overflow-y: scroll;
 `;
 
 export const Board = styled.div`
-	position: absolute;
+	position: relative;
+
 	width: 100%;
 	height: 100%;
+
+	overflow-x: scroll;
+	overflow-y: scroll;
 `;
