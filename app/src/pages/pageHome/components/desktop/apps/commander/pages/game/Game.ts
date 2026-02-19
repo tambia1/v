@@ -18,6 +18,7 @@ type Map = "sea" | "land";
 export class Game {
 	private static readonly TIME_LEFT = 5 * 60;
 
+	private board: HTMLDivElement;
 	private arenaType: ArenaType;
 	private onGameOver: () => void;
 
@@ -34,6 +35,7 @@ export class Game {
 	private gameEngine: GameEngine;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
+		this.board = board;
 		this.arenaType = arenaType;
 		this.onGameOver = onGameOver;
 
@@ -44,6 +46,8 @@ export class Game {
 
 		this.gameEngine = new GameEngine({
 			div: board,
+			width: 2000,
+			height: 1000,
 			onStart: ({ ctx, timeDif }) => {
 				this.initTouches(board, ctx);
 				this.initPlayers(playersNames);
@@ -346,7 +350,7 @@ export class Game {
 		this.players.forEach((player) => {
 			player.getBuildings().forEach((building) => {
 				if (building.state.isSelected) {
-					const x = ctx.canvas.width - 200 - 20;
+					const x = this.board.offsetWidth - 200 - 20;
 					const y = 20;
 					const w = 200;
 					const h = 550;

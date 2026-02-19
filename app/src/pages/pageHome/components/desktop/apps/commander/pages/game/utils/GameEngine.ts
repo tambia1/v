@@ -1,5 +1,7 @@
 type EngineProps = {
 	div: HTMLDivElement;
+	width: number;
+	height: number;
 	onStart: ({ ctx, timeDif }: OnStartProps) => void;
 	onUpdate: ({ ctx, timeDif }: OnUpdateProps) => void;
 };
@@ -25,7 +27,7 @@ export class GameEngine {
 	private ctx: CanvasRenderingContext2D;
 	private onUpdate: ({ ctx, timeDif }: OnUpdateProps) => void;
 
-	constructor({ div, onStart, onUpdate }: EngineProps) {
+	constructor({ div, width, height, onStart, onUpdate }: EngineProps) {
 		this.div = div;
 		this.onUpdate = onUpdate;
 
@@ -34,8 +36,8 @@ export class GameEngine {
 		this.div.appendChild(canvas);
 
 		const dpr = window.devicePixelRatio || 1;
-		canvas.width = div.offsetWidth * dpr;
-		canvas.height = div.offsetHeight * dpr;
+		canvas.width = width * dpr;
+		canvas.height = height * dpr;
 
 		this.ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
