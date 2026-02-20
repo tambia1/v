@@ -1,4 +1,5 @@
 import { Arena, type ArenaType } from "./Arena";
+import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
 import { Player } from "./player/Player";
@@ -360,7 +361,7 @@ export class Game {
 					const x = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
 					const y = 20;
 					const w = 200;
-					const h = 550;
+					const h = 560;
 
 					ctx.font = "oswald 12px";
 					ctx.fillStyle = "#000000";
@@ -389,6 +390,17 @@ export class Game {
 						building.researches.forEach((research, index) => {
 							ctx.fillText(research.name, x + 10, y + 140 + 40 * index);
 							ctx.drawImage(research.image, x + 130, y + 110 + 40 * index, 50, 50);
+						});
+					}
+
+					if (building instanceof ProductionBuilding) {
+						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
+						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
+						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
+
+						building.unitsCanBeProduced.forEach((unit, index) => {
+							ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
+							ctx.drawImage(unit.image, x + 130, y + 110 + 40 * index, 50, 50);
 						});
 					}
 				}

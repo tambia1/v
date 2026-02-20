@@ -1,5 +1,5 @@
 import { UtilsImage } from "../utils/UtilsImage";
-import image from "./images/rpg.png";
+import image from "./images/rgp.png";
 import { Weapon } from "./Weapon";
 
 export class Rpg extends Weapon {

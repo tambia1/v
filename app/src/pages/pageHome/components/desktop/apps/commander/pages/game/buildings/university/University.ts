@@ -12,7 +12,9 @@ import { ResearchInfantry } from "./ResearchInfantry";
 import { ResearchJeep } from "./ResearchJeep";
 import { ResearchLightTank } from "./ResearchLightTank";
 import { ResearchMachineGun } from "./ResearchMachineGun";
+import { ResearchMissle } from "./ResearchMissile";
 import { ResearchRifle } from "./ResearchRifle";
+import { ResearchRpg } from "./ResearchRpg";
 
 type UniversityParams = {
 	x: number;
@@ -43,6 +45,8 @@ export class University extends ProductionBuilding {
 		this.researches = [
 			new ResearchRifle(),
 			new ResearchMachineGun(),
+			new ResearchRpg(),
+			new ResearchMissle(),
 			new ResearchInfantry(),
 			new ResearchCommando(),
 			new ResearchJeep(),
