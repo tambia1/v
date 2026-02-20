@@ -3,7 +3,6 @@ import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
 import { Player } from "./player/Player";
 import { GameEngine } from "./utils/GameEngine";
-import { UtilsCanvas } from "./utils/UtilsCanvas";
 import { UtilsTouch } from "./utils/UtilsTouch";
 
 type GameProps = {
@@ -249,15 +248,6 @@ export class Game {
 
 	private drawTimeLeft(ctx: CanvasRenderingContext2D) {
 		const y = 20;
-
-		ctx.save();
-
-		ctx.fillStyle = "#00000088";
-		ctx.beginPath();
-		UtilsCanvas.rectRound(ctx, 380, 140, 80, 40, 5);
-		ctx.fill();
-
-		ctx.restore();
 
 		ctx.save();
 
