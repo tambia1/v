@@ -28,7 +28,9 @@ export abstract class ResourceBuilding extends Building {
 		this.producedPerSecond = params.producedPerSecond;
 	}
 
-	public update(timeDif: number) {
+	public override update(timeDif: number) {
+		super.update(timeDif);
+
 		this.amount += (timeDif / 1000) * this.producedPerSecond;
 	}
 }

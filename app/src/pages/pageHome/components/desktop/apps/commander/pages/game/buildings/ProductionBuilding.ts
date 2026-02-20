@@ -61,7 +61,9 @@ export abstract class ProductionBuilding extends Building {
 		}
 	}
 
-	public update(timeDif: number) {
+	public override update(timeDif: number) {
+		super.update(timeDif);
+
 		if (this.productionQueue.length === 0) {
 			return;
 		}
