@@ -1,3 +1,4 @@
+import { COLORS } from "../Constants";
 import { Entity } from "../core/Entity";
 import { Position } from "../core/Position";
 import { State } from "../core/State";
@@ -59,7 +60,7 @@ export abstract class Building extends Entity {
 
 		if (this.state.isHovered) {
 			ctx.beginPath();
-			ctx.fillStyle = "#aaffaaff";
+			ctx.fillStyle = COLORS.BUILDING_HOVER;
 			ctx.rect(this.position.x, this.position.y, this.position.w, this.position.h);
 			ctx.fill();
 			ctx.closePath();
