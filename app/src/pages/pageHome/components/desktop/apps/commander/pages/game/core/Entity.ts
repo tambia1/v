@@ -19,7 +19,7 @@ export abstract class Entity {
 		this.name = params.name || "";
 		this.image = params.image || UtilsImage.getImage("");
 		this.position = params.position || new Position();
-		this.state = params.state || new State({ isSelected: false });
+		this.state = params.state || new State({ isSelected: false, isHovered: false });
 	}
 
 	public abstract update(timeDif: number): void;

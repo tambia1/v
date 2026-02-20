@@ -101,6 +101,23 @@ export class Game {
 	private initTouches(div: HTMLDivElement, ctx: CanvasRenderingContext2D) {
 		UtilsTouch.listenToTouches({
 			div: div,
+			onTouchMove: (_e, _sx, _sy, x, y, _time) => {
+				const scaleX = this.getScaleX(ctx);
+				const scaleY = this.getScaleY(ctx);
+
+				const xx = x / scaleX;
+				const yy = y / scaleY;
+
+				this.players.forEach((player) => {
+					player.getBuildings().forEach((building) => {
+						if (building.position.isContains(xx, yy)) {
+							building.state.isHovered = true;
+						} else {
+							building.state.isHovered = false;
+						}
+					});
+				});
+			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				const scaleX = this.getScaleX(ctx);
 				const scaleY = this.getScaleY(ctx);

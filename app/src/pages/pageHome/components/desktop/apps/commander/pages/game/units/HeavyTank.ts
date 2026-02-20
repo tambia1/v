@@ -12,7 +12,7 @@ export class HeavyTank extends Unit {
 			name: "Heavy Tank",
 			image: UtilsImage.getImage(image),
 			position: new Position(),
-			state: new State({ isSelected: false }),
+			state: new State({ isSelected: false, isHovered: false }),
 
 			costGoldToBuild: 300,
 			costIronToBuild: 250,

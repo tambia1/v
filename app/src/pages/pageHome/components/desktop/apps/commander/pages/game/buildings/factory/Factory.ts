@@ -23,7 +23,7 @@ export class Factory extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-			state: new State({ isSelected: false }),
+			state: new State({ isSelected: false, isHovered: false }),
 
 			costGold: 200,
 			costIron: 150,
@@ -34,6 +34,14 @@ export class Factory extends ProductionBuilding {
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
+
+		if (this.state.isHovered) {
+			ctx.beginPath();
+			ctx.fillStyle = "#aaffaaaa";
+			ctx.rect(this.position.x, this.position.y, this.position.w, this.position.h);
+			ctx.fill();
+			ctx.closePath();
+		}
 
 		if (this.state.isSelected) {
 			const centerX = this.position.getCenterX();

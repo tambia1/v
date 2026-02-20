@@ -11,7 +11,7 @@ export class Fighter extends Unit {
 			name: "Fighter",
 			image: UtilsImage.getImage(image),
 			position: new Position(),
-			state: new State({ isSelected: false }),
+			state: new State({ isSelected: false, isHovered: false }),
 
 			costGoldToBuild: 100,
 			costIronToBuild: 60,

@@ -73,27 +73,6 @@ export const UtilsTouch = {
 
 			onTouchStart?.(e, sx, sy, x, y, 0);
 
-			//mouse move
-			const mouseMoveListener = (e: TouchEvent | MouseEvent) => {
-				// e.preventDefault();
-
-				if (status === "down" || status === "move") {
-					status = "move";
-					div.setAttribute("isPressed", "true");
-
-					const x = Math.floor(getX(e) - boundingX);
-					const y = Math.floor(getY(e) - boundingY);
-
-					timeEnd = Date.now();
-
-					const time = timeEnd - timeStart;
-
-					onTouchMove?.(e, sx, sy, x, y, time);
-				}
-			};
-
-			document.addEventListener(MOUSE_MOVE, mouseMoveListener, { passive: false });
-
 			//mouse up
 			const mouseUpListener = (e: TouchEvent | MouseEvent) => {
 				// e.preventDefault();
@@ -144,6 +123,22 @@ export const UtilsTouch = {
 
 			document.addEventListener(MOUSE_ENTER, mouseEnterListener, { passive: false });
 		});
+
+		//mouse move
+		const mouseMoveListener = (e: TouchEvent | MouseEvent) => {
+			// e.preventDefault();
+
+			const x = Math.floor(getX(e) - boundingX);
+			const y = Math.floor(getY(e) - boundingY);
+
+			timeEnd = Date.now();
+
+			const time = timeEnd - timeStart;
+
+			onTouchMove?.(e, sx, sy, x, y, time);
+		};
+
+		document.addEventListener(MOUSE_MOVE, mouseMoveListener, { passive: false });
 
 		status = "";
 		div.setAttribute("isPressed", "false");

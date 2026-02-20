@@ -11,7 +11,7 @@ export class Jeep extends Unit {
 			name: "Jeep",
 			image: UtilsImage.getImage(image),
 			position: new Position(),
-			state: new State({ isSelected: false }),
+			state: new State({ isSelected: false, isHovered: false }),
 
 			costGoldToBuild: 80,
 			costIronToBuild: 60,
