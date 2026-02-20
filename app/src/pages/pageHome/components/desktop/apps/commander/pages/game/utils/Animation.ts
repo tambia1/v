@@ -254,7 +254,7 @@ export class Animation {
 	}
 
 	public reset(): void {
-		this.isRunning = false;
+		this.isRunning = true;
 
 		this.position = 0;
 		this.actualPosition = 0;

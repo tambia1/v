@@ -110,9 +110,9 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.position.isContains(xx, yy)) {
-							building.state.isHovered = true;
+							building.setIsHovered(true);
 						} else {
-							building.state.isHovered = false;
+							building.setIsHovered(false);
 						}
 					});
 				});
@@ -127,9 +127,9 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.position.isContains(xx, yy)) {
-							building.state.isSelected = true;
+							building.setIsSelected(true);
 						} else {
-							building.state.isSelected = false;
+							building.setIsSelected(false);
 						}
 					});
 				});
@@ -356,7 +356,7 @@ export class Game {
 
 		this.players.forEach((player) => {
 			player.getBuildings().forEach((building) => {
-				if (building.state.isSelected) {
+				if (building.getIsSelected()) {
 					const x = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
 					const y = 20;
 					const w = 200;

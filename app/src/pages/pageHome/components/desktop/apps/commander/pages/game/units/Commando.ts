@@ -24,9 +24,23 @@ export class Commando extends Unit {
 		});
 	}
 
-	public update(_timeDif: number) {
-		// TODO: update commando
+	public setIsSelected(value: boolean) {
+		this.state.isSelected = value;
 	}
+
+	public getIsSelected() {
+		return this.state.isSelected;
+	}
+
+	public setIsHovered(value: boolean) {
+		this.state.isHovered = value;
+	}
+
+	public getIsHovered() {
+		return this.state.isHovered;
+	}
+
+	public update(_timeDif: number) {}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();

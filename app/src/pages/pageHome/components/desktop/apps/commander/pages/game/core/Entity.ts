@@ -13,7 +13,7 @@ export abstract class Entity {
 	public name: string;
 	public image: HTMLImageElement;
 	public position: Position;
-	public state: State;
+	protected state: State;
 
 	constructor(params: EntityParams = {}) {
 		this.name = params.name || "";
@@ -21,6 +21,11 @@ export abstract class Entity {
 		this.position = params.position || new Position();
 		this.state = params.state || new State({ isSelected: false, isHovered: false });
 	}
+
+	public abstract setIsSelected(value: boolean): void;
+	public abstract getIsSelected(): boolean;
+	public abstract setIsHovered(value: boolean): void;
+	public abstract getIsHovered(): boolean;
 
 	public abstract update(timeDif: number): void;
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
