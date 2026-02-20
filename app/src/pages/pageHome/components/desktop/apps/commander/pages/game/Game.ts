@@ -377,13 +377,20 @@ export class Game {
 					ctx.fillStyle = COLORS.YELLOW;
 					ctx.fillText(building.name, x + 10, y + 20);
 
-					ctx.fillStyle = COLORS.WHITE;
+					// draw yellow line
+					ctx.beginPath();
+					ctx.moveTo(x + 10, y + 40);
+					ctx.lineTo(x + w - 10, y + 40);
+					ctx.stroke();
+					ctx.closePath();
 
 					if (building instanceof ResourceBuilding) {
-						ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 80);
+						ctx.fillStyle = COLORS.WHITE;
+						ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 60);
 					}
 
 					if (building instanceof University) {
+						ctx.fillStyle = COLORS.WHITE;
 						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
 						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
 						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
@@ -395,6 +402,7 @@ export class Game {
 					}
 
 					if (building instanceof ProductionBuilding) {
+						ctx.fillStyle = COLORS.WHITE;
 						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
 						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
 						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
