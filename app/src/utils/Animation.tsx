@@ -170,7 +170,7 @@ export class Animation {
 
 	public calculate(): void {
 		// Get current time
-		const currentTime = +new Date();
+		const currentTime = Date.now();
 
 		// If time is not set yet (this.time == 0) then take current time
 		this.actualTime = this.actualTime || currentTime;
@@ -343,7 +343,9 @@ export class AnimationLooper {
 
 	public startLoop(): void {
 		const requestAnimationFrameFunction = () => {
-			this.animations.forEach((animation) => animation.calculate());
+			for (const animation of this.animations) {
+				animation.calculate();
+			}
 
 			if (this.isLooping === true) {
 				this.requestAnimationFrameId = window.requestAnimationFrame(requestAnimationFrameFunction);

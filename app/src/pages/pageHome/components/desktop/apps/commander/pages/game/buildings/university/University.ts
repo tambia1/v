@@ -69,7 +69,7 @@ export class University extends ProductionBuilding {
 
 		if (this.state.isHovered) {
 			ctx.beginPath();
-			ctx.fillStyle = "#aaffaaaa";
+			ctx.fillStyle = "#aaffaaff";
 			ctx.rect(this.position.x, this.position.y, this.position.w, this.position.h);
 			ctx.fill();
 			ctx.closePath();
