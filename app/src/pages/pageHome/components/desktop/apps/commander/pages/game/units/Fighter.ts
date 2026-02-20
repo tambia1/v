@@ -23,23 +23,10 @@ export class Fighter extends Unit {
 		});
 	}
 
-	public setIsSelected(value: boolean) {
-		this.state.isSelected = value;
+	public update(_timeDif: number) {
+		super.update(_timeDif);
 	}
 
-	public getIsSelected() {
-		return this.state.isSelected;
-	}
-
-	public setIsHovered(value: boolean) {
-		this.state.isHovered = value;
-	}
-
-	public getIsHovered() {
-		return this.state.isHovered;
-	}
-
-	public update(_timeDif: number) {}
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
