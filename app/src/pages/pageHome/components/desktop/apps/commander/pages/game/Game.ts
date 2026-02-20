@@ -364,6 +364,7 @@ export class Game {
 					const w = 200;
 					const h = 560;
 
+					// draw box
 					ctx.font = "oswald 12px";
 					ctx.fillStyle = COLORS.BLACK;
 					ctx.strokeStyle = COLORS.WHITE;
@@ -377,13 +378,15 @@ export class Game {
 					ctx.fillStyle = COLORS.YELLOW;
 					ctx.fillText(building.name, x + 10, y + 20);
 
-					// draw yellow line
+					// draw line
+					ctx.strokeStyle = COLORS.YELLOW;
 					ctx.beginPath();
-					ctx.moveTo(x + 10, y + 40);
-					ctx.lineTo(x + w - 10, y + 40);
+					ctx.moveTo(x + 10, y + 120);
+					ctx.lineTo(x + w - 10, y + 120);
 					ctx.stroke();
 					ctx.closePath();
 
+					//draw items
 					if (building instanceof ResourceBuilding) {
 						ctx.fillStyle = COLORS.WHITE;
 						ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 60);
@@ -397,7 +400,7 @@ export class Game {
 
 						building.researches.forEach((research, index) => {
 							ctx.fillText(research.name, x + 10, y + 140 + 40 * index);
-							ctx.drawImage(research.image, x + 130, y + 110 + 40 * index, 50, 50);
+							ctx.drawImage(research.image, x + 130, y + 120 + 40 * index, 50, 50);
 						});
 					}
 
@@ -409,7 +412,7 @@ export class Game {
 
 						building.unitsCanBeProduced.forEach((unit, index) => {
 							ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
-							ctx.drawImage(unit.image, x + 130, y + 110 + 40 * index, 50, 50);
+							ctx.drawImage(unit.image, x + 130, y + 120 + 40 * index, 50, 50);
 						});
 					}
 				}
