@@ -1,5 +1,4 @@
 import { Position } from "../../core/Position";
-import { State } from "../../core/State";
 import { HeavyTank } from "../../units/HeavyTank";
 import { Jeep } from "../../units/Jeep";
 import { LightTank } from "../../units/LightTank";
@@ -23,7 +22,6 @@ export class Factory extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGold: 200,
 			costIron: 150,

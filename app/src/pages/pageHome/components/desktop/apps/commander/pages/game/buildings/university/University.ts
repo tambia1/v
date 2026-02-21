@@ -1,5 +1,4 @@
 import { Position } from "../../core/Position";
-import { State } from "../../core/State";
 import { UtilsImage } from "../../utils/UtilsImage";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/university.png";
@@ -34,7 +33,6 @@ export class University extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGold: 1,
 			costIron: 1,

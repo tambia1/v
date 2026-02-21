@@ -1,5 +1,4 @@
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
 import { TankBarrel75 } from "../weapons/TankBarrel75";
@@ -12,7 +11,6 @@ export class LightTank extends Unit {
 			name: "Light Tank",
 			image: UtilsImage.getImage(image),
 			position: new Position(),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGoldToBuild: 200,
 			costIronToBuild: 150,
@@ -25,7 +23,7 @@ export class LightTank extends Unit {
 	}
 
 	public update(_timeDif: number) {
-		super.update(_timeDif);
+		// TODO: update light tank
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

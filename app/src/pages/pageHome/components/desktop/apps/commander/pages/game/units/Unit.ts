@@ -1,13 +1,12 @@
 import { Entity } from "../core/Entity";
+import { Drawable, Hoverable, Selectable, Updatable } from "../core/Interfaces";
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { Weapon } from "../weapons/Weapon";
 
 type UnitParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
-	state: State;
 
 	costGoldToBuild: number;
 	costIronToBuild: number;
@@ -18,7 +17,7 @@ type UnitParams = {
 	timeToBuild: number;
 };
 
-export abstract class Unit extends Entity {
+export abstract class Unit extends Entity implements Drawable, Updatable, Selectable, Hoverable {
 	protected costGoldToBuild: number;
 	protected costIronToBuild: number;
 	protected costOilConsumption: number;
@@ -27,13 +26,14 @@ export abstract class Unit extends Entity {
 	protected weapons: Weapon[];
 	protected timeToBuild: number;
 	protected buildProgress: number;
+	public isSelected = false;
+	public isHovered = false;
 
 	constructor(params: UnitParams) {
 		super({
 			name: params.name,
 			image: params.image,
 			position: params.position,
-			state: params.state,
 		});
 
 		this.costGoldToBuild = params.costGoldToBuild;
@@ -47,22 +47,23 @@ export abstract class Unit extends Entity {
 	}
 
 	public setIsSelected(value: boolean) {
-		this.state.isSelected = value;
+		this.isSelected = value;
 	}
 
 	public getIsSelected() {
-		return this.state.isSelected;
+		return this.isSelected;
 	}
 
 	public setIsHovered(value: boolean) {
-		this.state.isHovered = value;
+		this.isHovered = value;
 	}
 
 	public getIsHovered() {
-		return this.state.isHovered;
+		return this.isHovered;
 	}
 
-	public update(_timeDif: number) {}
+	public abstract update(timeDif: number): void;
+	public abstract draw(ctx: CanvasRenderingContext2D): void;
 
 	public getCostGoldToBuild() {
 		return this.costGoldToBuild;

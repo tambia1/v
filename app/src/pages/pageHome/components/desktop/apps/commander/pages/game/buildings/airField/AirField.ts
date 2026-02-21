@@ -1,5 +1,4 @@
 import { Position } from "../../core/Position";
-import { State } from "../../core/State";
 import { Bomber } from "../../units/Bomber";
 import { Fighter } from "../../units/Fighter";
 import { UtilsImage } from "../../utils/UtilsImage";
@@ -22,7 +21,6 @@ export class AirField extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGold: 250,
 			costIron: 150,

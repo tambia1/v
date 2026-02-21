@@ -1,18 +1,19 @@
 import { COLORS } from "../Constants";
 import { Entity } from "../core/Entity";
+import { Drawable, Hoverable, Selectable, Updatable } from "../core/Interfaces";
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { Animation } from "../utils/Animation";
 
 type BuildingParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
-	state: State;
 };
 
-export abstract class Building extends Entity {
+export abstract class Building extends Entity implements Drawable, Updatable, Selectable, Hoverable {
 	protected animationScale: Animation;
+	public isSelected = false;
+	public isHovered = false;
 
 	constructor(params: BuildingParams) {
 		super(params);
@@ -32,23 +33,23 @@ export abstract class Building extends Entity {
 	}
 
 	public setIsSelected(value: boolean): void {
-		if (this.state.isSelected !== value) {
+		if (this.isSelected !== value) {
 			this.animationScale.reset();
 		}
 
-		this.state.isSelected = value;
+		this.isSelected = value;
 	}
 
 	public getIsSelected(): boolean {
-		return this.state.isSelected;
+		return this.isSelected;
 	}
 
 	public setIsHovered(value: boolean): void {
-		this.state.isHovered = value;
+		this.isHovered = value;
 	}
 
 	public getIsHovered(): boolean {
-		return this.state.isHovered;
+		return this.isHovered;
 	}
 
 	public update(_timeDif: number): void {
@@ -58,7 +59,7 @@ export abstract class Building extends Entity {
 	public draw(ctx: CanvasRenderingContext2D): void {
 		ctx.save();
 
-		if (this.state.isHovered) {
+		if (this.isHovered) {
 			ctx.beginPath();
 			ctx.fillStyle = COLORS.BUILDING_HOVER;
 			ctx.rect(this.position.x, this.position.y, this.position.w, this.position.h);
@@ -68,7 +69,7 @@ export abstract class Building extends Entity {
 
 		const centerX = this.position.getCenterX();
 		const centerY = this.position.getCenterY();
-		const scale = this.state.isSelected ? this.animationScale.results[0] : this.animationScale.results[1];
+		const scale = this.isSelected ? this.animationScale.results[0] : this.animationScale.results[1];
 
 		ctx.translate(centerX, centerY);
 		ctx.scale(scale, scale);

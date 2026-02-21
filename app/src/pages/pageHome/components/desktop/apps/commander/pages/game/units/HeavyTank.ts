@@ -1,5 +1,4 @@
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
 import { TankBarrel120 } from "../weapons/TankBarrel120";
@@ -12,7 +11,6 @@ export class HeavyTank extends Unit {
 			name: "Heavy Tank",
 			image: UtilsImage.getImage(image),
 			position: new Position(),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGoldToBuild: 300,
 			costIronToBuild: 250,
@@ -25,7 +23,7 @@ export class HeavyTank extends Unit {
 	}
 
 	public update(_timeDif: number) {
-		super.update(_timeDif);
+		// TODO: update heavy tank
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

@@ -1,5 +1,4 @@
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
 import { Rifle } from "../weapons/Rifle";
@@ -12,7 +11,6 @@ export class Infantry extends Unit {
 			name: "Infantry",
 			image: UtilsImage.getImage(image),
 			position: new Position(),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGoldToBuild: 50,
 			costIronToBuild: 30,
@@ -25,7 +23,7 @@ export class Infantry extends Unit {
 	}
 
 	public update(_timeDif: number) {
-		super.update(_timeDif);
+		// TODO: update infantry
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

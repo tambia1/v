@@ -1,5 +1,4 @@
 import { Position } from "../../core/Position";
-import { State } from "../../core/State";
 import { Commando } from "../../units/Commando";
 import { Infantry } from "../../units/Infantry";
 import { UtilsImage } from "../../utils/UtilsImage";
@@ -22,7 +21,6 @@ export class Barracks extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGold: 100,
 			costIron: 50,

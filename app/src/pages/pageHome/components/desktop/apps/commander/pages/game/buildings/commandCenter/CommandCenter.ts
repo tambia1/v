@@ -1,5 +1,4 @@
 import { Position } from "../../core/Position";
-import { State } from "../../core/State";
 import { UtilsImage } from "../../utils/UtilsImage";
 import { AirField } from "../airField/AirField";
 import { Building } from "../Building";
@@ -26,7 +25,6 @@ export class CommandCenter extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGold: 1,
 			costIron: 1,

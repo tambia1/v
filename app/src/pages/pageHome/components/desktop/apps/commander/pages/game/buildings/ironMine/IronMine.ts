@@ -1,5 +1,4 @@
 import { Position } from "../../core/Position";
-import { State } from "../../core/State";
 import { UtilsImage } from "../../utils/UtilsImage";
 import { ResourceBuilding } from "../ResourceBuilding";
 import image from "./images/ironMine.png";
@@ -20,7 +19,6 @@ export class IronMine extends ResourceBuilding {
 				w: 1,
 				h: 1,
 			}),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			amount: 0,
 			producedPerSecond: 1,

@@ -1,5 +1,4 @@
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { Unit } from "../units/Unit";
 import { Building } from "./Building";
 
@@ -7,7 +6,6 @@ type ProductionBuildingParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
-	state: State;
 
 	costGold: number;
 	costIron: number;
@@ -28,7 +26,6 @@ export abstract class ProductionBuilding extends Building {
 			name: params.name,
 			image: params.image,
 			position: params.position,
-			state: params.state,
 		});
 
 		this.costGold = params.costGold;

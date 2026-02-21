@@ -1,5 +1,4 @@
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { UtilsImage } from "../utils/UtilsImage";
 import { Rifle } from "../weapons/Rifle";
 import { Rpg } from "../weapons/Rpg";
@@ -12,7 +11,6 @@ export class Commando extends Unit {
 			name: "Commando",
 			image: UtilsImage.getImage(image),
 			position: new Position(),
-			state: new State({ isSelected: false, isHovered: false }),
 
 			costGoldToBuild: 100,
 			costIronToBuild: 60,
@@ -25,7 +23,7 @@ export class Commando extends Unit {
 	}
 
 	public update(_timeDif: number) {
-		super.update(_timeDif);
+		// TODO: update commando
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

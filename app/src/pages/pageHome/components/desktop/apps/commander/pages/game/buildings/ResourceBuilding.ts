@@ -1,12 +1,10 @@
 import { Position } from "../core/Position";
-import { State } from "../core/State";
 import { Building } from "./Building";
 
 type ResourceBuildingParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
-	state: State;
 
 	amount: number;
 	producedPerSecond: number;
@@ -21,7 +19,6 @@ export abstract class ResourceBuilding extends Building {
 			name: params.name,
 			image: params.image,
 			position: params.position,
-			state: params.state,
 		});
 
 		this.amount = params.amount;
