@@ -254,20 +254,20 @@ export class Game {
 		ctx.save();
 
 		ctx.font = "oswald 12px";
-		ctx.shadowColor = COLORS.BLACK;
+		ctx.shadowColor = COLORS.BOX_BG;
 		ctx.shadowOffsetX = 2;
 		ctx.shadowOffsetY = 2;
 		ctx.shadowBlur = 2;
 		ctx.textAlign = "left";
 		ctx.textBaseline = "middle";
 
-		ctx.fillStyle = COLORS.YELLOW;
+		ctx.fillStyle = COLORS.BOX_TITLE;
 		ctx.fillText("Time:", 20, y);
 
 		const minutes = Math.floor(this.timeLeft / 60);
 		const seconds = Math.floor(this.timeLeft % 60);
 
-		ctx.fillStyle = COLORS.WHITE;
+		ctx.fillStyle = COLORS.BOX_TEXT;
 		ctx.fillText(`${minutes}:${seconds < 10 ? "0" : ""}${seconds}`, 80, y);
 
 		ctx.restore();
@@ -278,8 +278,8 @@ export class Game {
 			ctx.save();
 
 			ctx.font = "oswald 16px";
-			ctx.fillStyle = COLORS.WHITE;
-			ctx.shadowColor = COLORS.BLACK;
+			ctx.fillStyle = COLORS.BOX_TEXT;
+			ctx.shadowColor = COLORS.BOX_BG;
 			ctx.shadowOffsetX = 3;
 			ctx.shadowOffsetY = 3;
 			ctx.shadowBlur = 3;
@@ -299,12 +299,12 @@ export class Game {
 		ctx.save();
 
 		ctx.font = "oswald 10px";
-		ctx.fillStyle = COLORS.WHITE;
+		ctx.fillStyle = COLORS.BOX_TEXT;
 		ctx.textAlign = "left";
 		ctx.textBaseline = "bottom";
 
-		ctx.fillStyle = COLORS.YELLOW;
-		ctx.strokeStyle = COLORS.YELLOW;
+		ctx.fillStyle = COLORS.BOX_TITLE;
+		ctx.strokeStyle = COLORS.BOX_TITLE;
 		ctx.lineWidth = 1;
 		ctx.beginPath();
 		ctx.moveTo(20, y + 2);
@@ -317,7 +317,7 @@ export class Game {
 		ctx.fillText("Buildings", 250, y);
 		ctx.fillText("Units", 300, y);
 
-		ctx.fillStyle = COLORS.WHITE;
+		ctx.fillStyle = COLORS.BOX_TEXT;
 
 		this.players.forEach((player, index) => {
 			ctx.fillText(player.getPlayerName(), 20, y + 20 + 20 * index);
@@ -366,8 +366,8 @@ export class Game {
 
 					// draw box
 					ctx.font = "oswald 12px";
-					ctx.fillStyle = COLORS.BLACK;
-					ctx.strokeStyle = COLORS.WHITE;
+					ctx.fillStyle = COLORS.BOX_BG;
+					ctx.strokeStyle = COLORS.BOX_TEXT;
 					ctx.beginPath();
 					ctx.roundRect(x, y, w, h, [5, 5, 5, 5]);
 					ctx.fill();
@@ -375,11 +375,11 @@ export class Game {
 					ctx.closePath();
 					ctx.drawImage(building.image, x + 130, y, 50, 50);
 
-					ctx.fillStyle = COLORS.YELLOW;
+					ctx.fillStyle = COLORS.BOX_TITLE;
 					ctx.fillText(building.name, x + 10, y + 20);
 
 					// draw line
-					ctx.strokeStyle = COLORS.YELLOW;
+					ctx.strokeStyle = COLORS.BOX_TITLE;
 					ctx.beginPath();
 					ctx.moveTo(x + 10, y + 120);
 					ctx.lineTo(x + w - 10, y + 120);
@@ -388,12 +388,12 @@ export class Game {
 
 					//draw items
 					if (building instanceof ResourceBuilding) {
-						ctx.fillStyle = COLORS.WHITE;
+						ctx.fillStyle = COLORS.BOX_TEXT;
 						ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 60);
 					}
 
 					if (building instanceof University) {
-						ctx.fillStyle = COLORS.WHITE;
+						ctx.fillStyle = COLORS.BOX_TEXT;
 						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
 						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
 						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
@@ -405,7 +405,7 @@ export class Game {
 					}
 
 					if (building instanceof ProductionBuilding) {
-						ctx.fillStyle = COLORS.WHITE;
+						ctx.fillStyle = COLORS.BOX_TEXT;
 						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
 						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
 						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);

@@ -4,9 +4,9 @@ export const COLORS = {
 	SEA_FILL: "#0000ff88",
 
 	// UI colors
-	YELLOW: "#ffff66",
-	WHITE: "#ffffff",
-	BLACK: "#000000",
+	BOX_TITLE: "#ffff66",
+	BOX_TEXT: "#ffffff",
+	BOX_BG: "#000000",
 
 	// Building colors
 	BUILDING_HOVER: "#aaffaa",
