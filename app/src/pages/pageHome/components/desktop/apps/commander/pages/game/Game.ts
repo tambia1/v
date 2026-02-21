@@ -1,4 +1,5 @@
 import { Arena, type ArenaType } from "./Arena";
+import { CommandCenter } from "./buildings/commandCenter/CommandCenter";
 import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
@@ -390,6 +391,15 @@ export class Game {
 					if (building instanceof ResourceBuilding) {
 						ctx.fillStyle = COLORS.BOX_TEXT;
 						ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 60);
+					}
+
+					if (building instanceof CommandCenter) {
+						ctx.fillStyle = COLORS.BOX_TEXT;
+
+						building.buildings.forEach((building, index) => {
+							ctx.fillText(building.name, x + 10, y + 140 + 40 * index);
+							ctx.drawImage(building.image, x + 130, y + 120 + 40 * index, 50, 50);
+						});
 					}
 
 					if (building instanceof University) {

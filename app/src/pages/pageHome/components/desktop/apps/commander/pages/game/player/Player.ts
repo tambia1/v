@@ -1,6 +1,7 @@
 import { AirField } from "../buildings/airField/AirField";
 import { Building } from "../buildings/Building";
 import { Barracks } from "../buildings/barracks/Barracks";
+import { CommandCenter } from "../buildings/commandCenter/CommandCenter";
 import { Factory } from "../buildings/factory/Factory";
 import { GoldMine } from "../buildings/goldMine/GoldMine";
 import { IronMine } from "../buildings/ironMine/IronMine";
@@ -20,7 +21,13 @@ export class Player {
 		this.playerName = playerName;
 
 		this.resourceBuildings = [new GoldMine({ x: 10, y: 10 }), new IronMine({ x: 11, y: 10 }), new OilField({ x: 12, y: 10 })];
-		this.productionBuildings = [new University({ x: 10, y: 11 }), new Barracks({ x: 7, y: 12 }), new Factory({ x: 8, y: 12 }), new AirField({ x: 9, y: 12 })];
+		this.productionBuildings = [
+			new CommandCenter({ x: 9, y: 11 }),
+			new University({ x: 10, y: 11 }),
+			new Barracks({ x: 7, y: 12 }),
+			new Factory({ x: 8, y: 12 }),
+			new AirField({ x: 9, y: 12 }),
+		];
 	}
 
 	public getPlayerName() {
