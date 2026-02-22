@@ -112,10 +112,10 @@ export class Game {
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (building.position.isContains(xx, yy)) {
-							building.setIsHovered(true);
+						if (building.isTouched(xx, yy)) {
+							building.onTouchHover();
 						} else {
-							building.setIsHovered(false);
+							building.onTouchHoverEnd();
 						}
 					});
 				});
@@ -129,10 +129,14 @@ export class Game {
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (building.position.isContains(xx, yy)) {
-							building.setIsSelected(true);
-						} else {
-							building.setIsSelected(false);
+						building.setIsSelected(false);
+					});
+				});
+
+				this.players.forEach((player) => {
+					player.getBuildings().forEach((building) => {
+						if (building.isTouched(xx, yy)) {
+							building.onTouch();
 						}
 					});
 				});

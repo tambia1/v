@@ -1,7 +1,11 @@
 import { COLORS } from "../Constants";
+import { Drawable } from "../core/Drawable";
 import { Entity } from "../core/Entity";
-import { Drawable, Hoverable, Selectable, Updatable } from "../core/Interfaces";
+import { Hoverable } from "../core/Hoverable";
 import { Position } from "../core/Position";
+import { Selectable } from "../core/Selectable";
+import { Touchable } from "../core/Touchable";
+import { Updatable } from "../core/Updatable";
 import { Animation } from "../utils/Animation";
 
 type BuildingParams = {
@@ -10,7 +14,7 @@ type BuildingParams = {
 	position: Position;
 };
 
-export abstract class Building extends Entity implements Drawable, Updatable, Selectable, Hoverable {
+export abstract class Building extends Entity implements Drawable, Updatable, Selectable, Hoverable, Touchable {
 	protected animationScale: Animation;
 	public isSelected = false;
 	public isHovered = false;
@@ -50,6 +54,22 @@ export abstract class Building extends Entity implements Drawable, Updatable, Se
 
 	public getIsHovered(): boolean {
 		return this.isHovered;
+	}
+
+	public isTouched(x: number, y: number): boolean {
+		return this.position.isContains(x, y);
+	}
+
+	public onTouch(): void {
+		this.setIsSelected(true);
+	}
+
+	public onTouchHover(): void {
+		this.setIsHovered(true);
+	}
+
+	public onTouchHoverEnd(): void {
+		this.setIsHovered(false);
 	}
 
 	public update(_timeDif: number): void {

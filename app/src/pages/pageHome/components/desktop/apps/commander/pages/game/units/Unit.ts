@@ -1,6 +1,9 @@
+import { Drawable } from "../core/Drawable";
 import { Entity } from "../core/Entity";
-import { Drawable, Hoverable, Selectable, Updatable } from "../core/Interfaces";
+import { Hoverable } from "../core/Hoverable";
 import { Position } from "../core/Position";
+import { Selectable } from "../core/Selectable";
+import { Updatable } from "../core/Updatable";
 import { Weapon } from "../weapons/Weapon";
 
 type UnitParams = {
