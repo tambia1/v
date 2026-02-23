@@ -19,7 +19,7 @@ export abstract class ProductionBuilding extends Building {
 	public costOil: number;
 	public unitsCanBeProduced: Unit[];
 	public productionQueue: Unit[];
-	public producedUnits: Unit[];
+	public units: Unit[];
 
 	constructor(params: ProductionBuildingParams) {
 		super({
@@ -33,7 +33,7 @@ export abstract class ProductionBuilding extends Building {
 		this.costOil = params.costOil;
 		this.unitsCanBeProduced = params.unitsCanBeProduced;
 		this.productionQueue = [];
-		this.producedUnits = [];
+		this.units = [];
 	}
 
 	public addUnitToProductionQueue(unit: Unit) {
@@ -48,13 +48,24 @@ export abstract class ProductionBuilding extends Building {
 	}
 
 	public addProducedUnit(unit: Unit) {
-		this.producedUnits.push(unit);
+		this.units.push(unit);
 	}
 
 	public removeProducedUnit(unit: Unit) {
-		const index = this.producedUnits.indexOf(unit);
+		const index = this.units.indexOf(unit);
 		if (index > -1) {
-			this.producedUnits.splice(index, 1);
+			this.units.splice(index, 1);
+		}
+	}
+
+	public addUnit(unit: Unit) {
+		this.units.push(unit);
+	}
+
+	public removeUnit(unit: Unit) {
+		const index = this.units.indexOf(unit);
+		if (index > -1) {
+			this.units.splice(index, 1);
 		}
 	}
 
@@ -71,7 +82,7 @@ export abstract class ProductionBuilding extends Building {
 
 		if (currentUnit.isBuilt()) {
 			this.productionQueue.shift();
-			this.producedUnits.push(currentUnit);
+			this.units.push(currentUnit);
 		}
 	}
 }

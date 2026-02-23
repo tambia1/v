@@ -5,12 +5,22 @@ import { TankBarrel75 } from "../weapons/TankBarrel75";
 import image from "./images/lightTank.png";
 import { Unit } from "./Unit";
 
+type Params = {
+	x: number;
+	y: number;
+};
+
 export class LightTank extends Unit {
-	constructor() {
+	constructor(params: Params) {
 		super({
 			name: "Light Tank",
 			image: UtilsImage.getImage(image),
-			position: new Position(),
+			position: new Position({
+				x: params.x,
+				y: params.y,
+				w: 1,
+				h: 1,
+			}),
 
 			costGoldToBuild: 200,
 			costIronToBuild: 150,

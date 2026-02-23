@@ -9,6 +9,13 @@ import { OilField } from "../buildings/oilField/OilField";
 import { ProductionBuilding } from "../buildings/ProductionBuilding";
 import { ResourceBuilding } from "../buildings/ResourceBuilding";
 import { University } from "../buildings/university/University";
+import { Bomber } from "../units/Bomber";
+import { Commando } from "../units/Commando";
+import { Fighter } from "../units/Fighter";
+import { HeavyTank } from "../units/HeavyTank";
+import { Infantry } from "../units/Infantry";
+import { Jeep } from "../units/Jeep";
+import { LightTank } from "../units/LightTank";
 import { Unit } from "../units/Unit";
 
 export class Player {
@@ -28,6 +35,20 @@ export class Player {
 			new Factory({ x: 8, y: 12 }),
 			new AirField({ x: 9, y: 12 }),
 		];
+
+		const barracks = this.productionBuildings.find((building) => building instanceof Barracks) as Barracks;
+		barracks.addUnit(new Infantry({ x: 5, y: 5 }));
+		barracks.addUnit(new Infantry({ x: 6, y: 5 }));
+		barracks.addUnit(new Commando({ x: 7, y: 5 }));
+
+		const factory = this.productionBuildings.find((building) => building instanceof Factory) as Factory;
+		factory.addUnit(new Jeep({ x: 5, y: 6 }));
+		factory.addUnit(new LightTank({ x: 6, y: 6 }));
+		factory.addUnit(new HeavyTank({ x: 7, y: 6 }));
+
+		const airField = this.productionBuildings.find((building) => building instanceof AirField) as AirField;
+		airField.addUnit(new Fighter({ x: 5, y: 7 }));
+		airField.addUnit(new Bomber({ x: 6, y: 7 }));
 	}
 
 	public getPlayerName() {
@@ -104,7 +125,7 @@ export class Player {
 		const units: Unit[] = [];
 
 		this.productionBuildings.forEach((productionBuilding) => {
-			units.push(...productionBuilding.producedUnits);
+			units.push(...productionBuilding.units);
 		});
 
 		return units;
@@ -131,6 +152,10 @@ export class Player {
 
 		for (let i = 0; i < this.productionBuildings.length; i++) {
 			this.productionBuildings[i].draw(ctx);
+
+			this.productionBuildings[i].units.forEach((unit) => {
+				unit.draw(ctx);
+			});
 		}
 	}
 }

@@ -4,12 +4,22 @@ import { Bomb } from "../weapons/Bomb";
 import image from "./images/bomber.png";
 import { Unit } from "./Unit";
 
+type Params = {
+	x: number;
+	y: number;
+};
+
 export class Bomber extends Unit {
-	constructor() {
+	constructor(params: Params) {
 		super({
 			name: "Bomber",
 			image: UtilsImage.getImage(image),
-			position: new Position(),
+			position: new Position({
+				x: params.x,
+				y: params.y,
+				w: 1,
+				h: 1,
+			}),
 
 			costGoldToBuild: 100,
 			costIronToBuild: 60,

@@ -25,7 +25,7 @@ export class Barracks extends ProductionBuilding {
 			costGold: 100,
 			costIron: 50,
 			costOil: 0,
-			unitsCanBeProduced: [new Infantry(), new Commando()],
+			unitsCanBeProduced: [new Infantry({ x: 0, y: 0 }), new Commando({ x: 0, y: 0 })],
 		});
 	}
 }

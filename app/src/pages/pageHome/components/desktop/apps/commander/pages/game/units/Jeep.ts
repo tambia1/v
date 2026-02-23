@@ -4,12 +4,22 @@ import { MachineGun } from "../weapons/MachineGun";
 import image from "./images/jeep.png";
 import { Unit } from "./Unit";
 
+type Params = {
+	x: number;
+	y: number;
+};
+
 export class Jeep extends Unit {
-	constructor() {
+	constructor(params: Params) {
 		super({
 			name: "Jeep",
 			image: UtilsImage.getImage(image),
-			position: new Position(),
+			position: new Position({
+				x: params.x,
+				y: params.y,
+				w: 1,
+				h: 1,
+			}),
 
 			costGoldToBuild: 80,
 			costIronToBuild: 60,

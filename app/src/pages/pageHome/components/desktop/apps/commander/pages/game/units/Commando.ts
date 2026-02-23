@@ -6,12 +6,22 @@ import { Rpg } from "../weapons/Rpg";
 import image from "./images/commando.png";
 import { Unit } from "./Unit";
 
+type Params = {
+	x: number;
+	y: number;
+};
+
 export class Commando extends Unit {
-	constructor() {
+	constructor(params: Params) {
 		super({
 			name: "Commando",
 			image: UtilsImage.getImage(image),
-			position: new Position(),
+			position: new Position({
+				x: params.x,
+				y: params.y,
+				w: 1,
+				h: 1,
+			}),
 
 			costGoldToBuild: 100,
 			costIronToBuild: 60,
