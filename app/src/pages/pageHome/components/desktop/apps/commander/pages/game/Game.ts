@@ -113,7 +113,7 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(xx, yy)) {
-							building.onTouchHover();
+							building.onTouchHoverStart();
 						} else {
 							building.onTouchHoverEnd();
 						}
@@ -136,7 +136,7 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(xx, yy)) {
-							building.onTouch();
+							building.onTouchEnd();
 						}
 					});
 				});

@@ -1,6 +1,7 @@
 export interface Touchable {
 	isTouched(x: number, y: number): boolean;
-	onTouch(): void;
-	onTouchHover(): void;
+	onTouchStart(): void;
+	onTouchEnd(): void;
+	onTouchHoverStart(): void;
 	onTouchHoverEnd(): void;
 }

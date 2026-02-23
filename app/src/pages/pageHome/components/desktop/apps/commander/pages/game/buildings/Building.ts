@@ -60,11 +60,13 @@ export abstract class Building extends Entity implements Drawable, Updatable, Se
 		return this.position.isContains(x, y);
 	}
 
-	public onTouch(): void {
+	public onTouchStart(): void {}
+
+	public onTouchEnd(): void {
 		this.setIsSelected(true);
 	}
 
-	public onTouchHover(): void {
+	public onTouchHoverStart(): void {
 		this.setIsHovered(true);
 	}
 
