@@ -18,6 +18,8 @@ export class Rifle extends Weapon {
 		return "Rifle";
 	}
 
+	public update(_timeDif: number) {}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.drawImage(UtilsImage.getImage(image), this.x, this.y, this.w, this.h);

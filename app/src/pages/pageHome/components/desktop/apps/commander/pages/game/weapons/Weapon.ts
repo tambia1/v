@@ -1,3 +1,6 @@
+import { Drawable } from "../core/Drawable";
+import { Updatable } from "../core/Updatable";
+
 type WeaponParams = {
 	costGold: number;
 	costIron: number;
@@ -7,7 +10,7 @@ type WeaponParams = {
 	accuracy: number;
 };
 
-export abstract class Weapon {
+export abstract class Weapon implements Drawable, Updatable {
 	protected costGold: number;
 	protected costIron: number;
 	protected damage: number;
@@ -69,6 +72,7 @@ export abstract class Weapon {
 
 	public abstract getName(): string;
 
+	public abstract update(timeDif: number): void;
 	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
 

@@ -18,6 +18,8 @@ export class TankBarrel120 extends Weapon {
 		return "Tank Barrel 120";
 	}
 
+	public update(_timeDif: number) {}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 		ctx.drawImage(UtilsImage.getImage(image), this.x, this.y, this.w, this.h);
