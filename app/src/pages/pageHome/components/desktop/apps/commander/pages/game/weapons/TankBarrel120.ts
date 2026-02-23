@@ -5,7 +5,7 @@ import { Weapon } from "./Weapon";
 export class TankBarrel120 extends Weapon {
 	constructor() {
 		super({
-			name: "Tank Barrel 120",
+			name: "Tank Barrel 120mm",
 			image: UtilsImage.getImage(image),
 			costGold: 200,
 			costIron: 150,

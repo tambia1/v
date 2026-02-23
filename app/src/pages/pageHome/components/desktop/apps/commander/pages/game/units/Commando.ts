@@ -1,5 +1,6 @@
 import { Position } from "../core/Position";
 import { UtilsImage } from "../utils/UtilsImage";
+import { MachineGun } from "../weapons/MachineGun";
 import { Rifle } from "../weapons/Rifle";
 import { Rpg } from "../weapons/Rpg";
 import image from "./images/commando.png";
@@ -17,7 +18,7 @@ export class Commando extends Unit {
 			costOilConsumption: 0,
 			life: 75,
 			moveSpeed: 7,
-			weapons: [new Rifle(), new Rpg()],
+			weapons: [new Rifle(), new MachineGun(), new Rpg()],
 			timeToBuild: 15,
 		});
 	}

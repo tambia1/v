@@ -1,18 +1,18 @@
 import { UtilsImage } from "../utils/UtilsImage";
-import image from "./images/tankBarrel75.png";
+import image from "./images/missile.png";
 import { Weapon } from "./Weapon";
 
-export class TankBarrel75 extends Weapon {
+export class Missile extends Weapon {
 	constructor() {
 		super({
-			name: "Tank Barrel 75mm",
+			name: "Missile",
 			image: UtilsImage.getImage(image),
-			costGold: 150,
-			costIron: 100,
-			damage: 75,
-			range: 500,
-			rateOfFire: 2,
-			accuracy: 0.8,
+			costGold: 30,
+			costIron: 10,
+			damage: 20,
+			range: 400,
+			rateOfFire: 1,
+			accuracy: 1.0,
 		});
 	}
 
