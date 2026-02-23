@@ -5,6 +5,8 @@ import { Weapon } from "./Weapon";
 export class Rpg extends Weapon {
 	constructor() {
 		super({
+			name: "Rpg",
+			image: UtilsImage.getImage(image),
 			costGold: 80,
 			costIron: 40,
 			damage: 70,
@@ -14,15 +16,11 @@ export class Rpg extends Weapon {
 		});
 	}
 
-	public override getName() {
-		return "RPG";
-	}
-
 	public update(_timeDif: number) {}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(UtilsImage.getImage(image), this.x, this.y, this.w, this.h);
+		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
 		ctx.restore();
 	}
 }

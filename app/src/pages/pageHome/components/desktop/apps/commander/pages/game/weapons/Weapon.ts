@@ -1,7 +1,11 @@
 import { Drawable } from "../core/Drawable";
+import { Entity } from "../core/Entity";
 import { Updatable } from "../core/Updatable";
 
 type WeaponParams = {
+	name: string;
+	image: HTMLImageElement;
+
 	costGold: number;
 	costIron: number;
 	damage: number;
@@ -10,7 +14,7 @@ type WeaponParams = {
 	accuracy: number;
 };
 
-export abstract class Weapon implements Drawable, Updatable {
+export abstract class Weapon extends Entity implements Drawable, Updatable {
 	protected costGold: number;
 	protected costIron: number;
 	protected damage: number;
@@ -23,6 +27,11 @@ export abstract class Weapon implements Drawable, Updatable {
 	protected h: number;
 
 	constructor(params: WeaponParams) {
+		super({
+			name: params.name,
+			image: params.image,
+		});
+
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
 		this.damage = params.damage;
@@ -69,8 +78,6 @@ export abstract class Weapon implements Drawable, Updatable {
 		this.w = w;
 		this.h = h;
 	}
-
-	public abstract getName(): string;
 
 	public abstract update(timeDif: number): void;
 	public abstract draw(ctx: CanvasRenderingContext2D): void;

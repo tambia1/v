@@ -29,6 +29,7 @@ export abstract class Unit extends Entity implements Drawable, Updatable, Select
 	protected weapons: Weapon[];
 	protected timeToBuild: number;
 	protected buildProgress: number;
+	public position: Position;
 	public isSelected = false;
 	public isHovered = false;
 
@@ -36,8 +37,9 @@ export abstract class Unit extends Entity implements Drawable, Updatable, Select
 		super({
 			name: params.name,
 			image: params.image,
-			position: params.position,
 		});
+
+		this.position = params.position;
 
 		this.costGoldToBuild = params.costGoldToBuild;
 		this.costIronToBuild = params.costIronToBuild;

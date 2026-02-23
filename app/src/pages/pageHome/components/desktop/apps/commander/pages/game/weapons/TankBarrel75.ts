@@ -5,6 +5,8 @@ import { Weapon } from "./Weapon";
 export class TankBarrel75 extends Weapon {
 	constructor() {
 		super({
+			name: "Tank Barrel 75",
+			image: UtilsImage.getImage(image),
 			costGold: 150,
 			costIron: 100,
 			damage: 75,
@@ -14,15 +16,11 @@ export class TankBarrel75 extends Weapon {
 		});
 	}
 
-	public override getName() {
-		return "Tank Barrel 75";
-	}
-
 	public update(_timeDif: number) {}
 
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-		ctx.drawImage(UtilsImage.getImage(image), this.x, this.y, this.w, this.h);
+		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
 		ctx.restore();
 	}
 }

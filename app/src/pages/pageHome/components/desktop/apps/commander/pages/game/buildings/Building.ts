@@ -16,11 +16,14 @@ type BuildingParams = {
 
 export abstract class Building extends Entity implements Drawable, Updatable, Selectable, Hoverable, Touchable {
 	protected animationScale: Animation;
+	public position: Position;
 	public isSelected = false;
 	public isHovered = false;
 
 	constructor(params: BuildingParams) {
 		super(params);
+
+		this.position = params.position;
 
 		this.animationScale = new Animation({
 			time: 300,
