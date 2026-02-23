@@ -21,19 +21,4 @@ export class HeavyTank extends Unit {
 			timeToBuild: 45,
 		});
 	}
-
-	public update(_timeDif: number) {
-		// TODO: update heavy tank
-	}
-
-	public draw(ctx: CanvasRenderingContext2D) {
-		ctx.save();
-		ctx.drawImage(this.image, this.position.x, this.position.y, this.position.w, this.position.h);
-
-		for (let i = 0; i < this.weapons.length; i++) {
-			this.weapons[i].draw(ctx);
-		}
-
-		ctx.restore();
-	}
 }

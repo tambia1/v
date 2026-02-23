@@ -14,7 +14,9 @@ type WeaponParams = {
 	accuracy: number;
 };
 
-export abstract class Weapon extends Entity implements Drawable, Updatable {
+export abstract class Weapon implements Entity, Drawable, Updatable {
+	public name: string;
+	public image: HTMLImageElement;
 	protected costGold: number;
 	protected costIron: number;
 	protected damage: number;
@@ -27,11 +29,8 @@ export abstract class Weapon extends Entity implements Drawable, Updatable {
 	protected h: number;
 
 	constructor(params: WeaponParams) {
-		super({
-			name: params.name,
-			image: params.image,
-		});
-
+		this.name = params.name;
+		this.image = params.image;
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
 		this.damage = params.damage;

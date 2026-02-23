@@ -14,15 +14,17 @@ type BuildingParams = {
 	position: Position;
 };
 
-export abstract class Building extends Entity implements Drawable, Updatable, Selectable, Hoverable, Touchable {
+export abstract class Building implements Entity, Drawable, Updatable, Selectable, Hoverable, Touchable {
+	public name: string;
+	public image: HTMLImageElement;
 	protected animationScale: Animation;
 	public position: Position;
 	public isSelected = false;
 	public isHovered = false;
 
 	constructor(params: BuildingParams) {
-		super(params);
-
+		this.name = params.name;
+		this.image = params.image;
 		this.position = params.position;
 
 		this.animationScale = new Animation({
