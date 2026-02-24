@@ -117,6 +117,16 @@ export class Game {
 						} else {
 							building.onTouchHoverEnd();
 						}
+
+						if (building instanceof ProductionBuilding) {
+							building.units.forEach((unit) => {
+								if (unit.isTouched(xx, yy)) {
+									unit.onTouchHoverStart();
+								} else {
+									unit.onTouchHoverEnd();
+								}
+							});
+						}
 					});
 				});
 			},
@@ -130,6 +140,12 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						building.setIsSelected(false);
+
+						if (building instanceof ProductionBuilding) {
+							building.units.forEach((unit) => {
+								unit.setIsSelected(false);
+							});
+						}
 					});
 				});
 
@@ -137,6 +153,14 @@ export class Game {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(xx, yy)) {
 							building.onTouchEnd();
+						}
+
+						if (building instanceof ProductionBuilding) {
+							building.units.forEach((unit) => {
+								if (unit.isTouched(xx, yy)) {
+									unit.onTouchEnd();
+								}
+							});
 						}
 					});
 				});

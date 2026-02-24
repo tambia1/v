@@ -63,16 +63,6 @@ export class Player {
 		return this.productionBuildings;
 	}
 
-	public update(timeDif: number) {
-		for (let i = 0; i < this.resourceBuildings.length; i++) {
-			this.resourceBuildings[i].update(timeDif);
-		}
-
-		for (let i = 0; i < this.productionBuildings.length; i++) {
-			this.productionBuildings[i].update(timeDif);
-		}
-	}
-
 	public addResourceBuilding(resourceBuilding: ResourceBuilding) {
 		this.resourceBuildings.push(resourceBuilding);
 	}
@@ -143,6 +133,20 @@ export class Player {
 		});
 
 		return buildings;
+	}
+
+	public update(timeDif: number) {
+		this.resourceBuildings.forEach((resourceBuilding) => {
+			resourceBuilding.update(timeDif);
+		});
+
+		this.productionBuildings.forEach((productionBuilding) => {
+			productionBuilding.update(timeDif);
+
+			productionBuilding.units.forEach((unit) => {
+				unit.update(timeDif);
+			});
+		});
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

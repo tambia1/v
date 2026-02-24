@@ -67,11 +67,15 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		this.animationScale.resume();
 	}
 
-	public setIsSelected(value: boolean) {
+	public setIsSelected(value: boolean): void {
+		if (this.isSelected !== value) {
+			this.animationScale.reset();
+		}
+
 		this.isSelected = value;
 	}
 
-	public getIsSelected() {
+	public getIsSelected(): boolean {
 		return this.isSelected;
 	}
 
@@ -190,6 +194,7 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		const centerX = this.position.getCenterX();
 		const centerY = this.position.getCenterY();
 		const scale = this.isSelected ? this.animationScale.results[0] : this.animationScale.results[1];
+		console.log(`Unit: ${this.name}, scale: ${scale}`);
 
 		ctx.translate(centerX, centerY);
 		ctx.scale(scale, scale);
