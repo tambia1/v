@@ -194,7 +194,6 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		const centerX = this.position.getCenterX();
 		const centerY = this.position.getCenterY();
 		const scale = this.isSelected ? this.animationScale.results[0] : this.animationScale.results[1];
-		console.log(`Unit: ${this.name}, scale: ${scale}`);
 
 		ctx.translate(centerX, centerY);
 		ctx.scale(scale, scale);
