@@ -1,10 +1,23 @@
 import { Arena, type ArenaType } from "./Arena";
+import { AirField } from "./buildings/airField/AirField";
+import { Barracks } from "./buildings/barracks/Barracks";
 import { CommandCenter } from "./buildings/commandCenter/CommandCenter";
+import { Factory } from "./buildings/factory/Factory";
+import { GoldMine } from "./buildings/goldMine/GoldMine";
+import { IronMine } from "./buildings/ironMine/IronMine";
+import { OilField } from "./buildings/oilField/OilField";
 import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
 import { COLORS } from "./Constants";
 import { Player } from "./player/Player";
+import { Bomber } from "./units/Bomber";
+import { Commando } from "./units/Commando";
+import { Fighter } from "./units/Fighter";
+import { HeavyTank } from "./units/HeavyTank";
+import { Infantry } from "./units/Infantry";
+import { Jeep } from "./units/Jeep";
+import { LightTank } from "./units/LightTank";
 import { GameEngine } from "./utils/GameEngine";
 import { UtilsTouch } from "./utils/UtilsTouch";
 
@@ -174,6 +187,49 @@ export class Game {
 		playersNames.forEach((playerName) => {
 			this.players.push(new Player(playerName));
 		});
+
+		//temp
+		const player0 = this.players[0];
+		player0.addResourceBuilding(new GoldMine({ x: 10, y: 8 }));
+		player0.addResourceBuilding(new IronMine({ x: 11, y: 8 }));
+		player0.addResourceBuilding(new OilField({ x: 12, y: 8 }));
+		player0.addProductionBuilding(new CommandCenter({ x: 9, y: 9 }));
+		player0.addProductionBuilding(new University({ x: 10, y: 9 }));
+		player0.addProductionBuilding(new Barracks({ x: 7, y: 10 }));
+		player0.addProductionBuilding(new Factory({ x: 8, y: 10 }));
+		player0.addProductionBuilding(new AirField({ x: 9, y: 10 }));
+
+		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 5, y: 5 }));
+		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 6, y: 5 }));
+		player0.getProductionBuildings()[2].addUnit(new Commando({ x: 7, y: 5 }));
+
+		player0.getProductionBuildings()[3].addUnit(new Jeep({ x: 5, y: 6 }));
+		player0.getProductionBuildings()[3].addUnit(new LightTank({ x: 6, y: 6 }));
+		player0.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7, y: 6 }));
+
+		player0.getProductionBuildings()[4].addUnit(new Fighter({ x: 5, y: 7 }));
+		player0.getProductionBuildings()[4].addUnit(new Bomber({ x: 6, y: 7 }));
+
+		const player1 = this.players[1];
+		player1.addResourceBuilding(new GoldMine({ x: 10, y: 20 }));
+		player1.addResourceBuilding(new IronMine({ x: 11, y: 20 }));
+		player1.addResourceBuilding(new OilField({ x: 12, y: 20 }));
+		player1.addProductionBuilding(new CommandCenter({ x: 9, y: 21 }));
+		player1.addProductionBuilding(new University({ x: 10, y: 21 }));
+		player1.addProductionBuilding(new Barracks({ x: 7, y: 22 }));
+		player1.addProductionBuilding(new Factory({ x: 8, y: 22 }));
+		player1.addProductionBuilding(new AirField({ x: 9, y: 22 }));
+
+		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 5, y: 18 }));
+		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 6, y: 18 }));
+		player1.getProductionBuildings()[2].addUnit(new Commando({ x: 7, y: 18 }));
+
+		player1.getProductionBuildings()[3].addUnit(new Jeep({ x: 5, y: 19 }));
+		player1.getProductionBuildings()[3].addUnit(new LightTank({ x: 6, y: 19 }));
+		player1.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7, y: 19 }));
+
+		player1.getProductionBuildings()[4].addUnit(new Fighter({ x: 5, y: 20 }));
+		player1.getProductionBuildings()[4].addUnit(new Bomber({ x: 6, y: 20 }));
 	}
 
 	private initMap() {
