@@ -63,8 +63,8 @@ export const UtilsTouch = {
 			boundingX = div.getBoundingClientRect().left + window.scrollX + 0.5;
 			boundingY = div.getBoundingClientRect().top + window.scrollY + 0.5;
 
-			const x = Math.floor(getX(e) - boundingX);
-			const y = Math.floor(getY(e) - boundingY);
+			const x = Math.floor(getX(e) - boundingX + div.scrollLeft);
+			const y = Math.floor(getY(e) - boundingY + div.scrollTop);
 
 			sx = x;
 			sy = y;
@@ -77,8 +77,8 @@ export const UtilsTouch = {
 			const mouseUpListener = (e: TouchEvent | MouseEvent) => {
 				// e.preventDefault();
 
-				const x = Math.floor(getX(e) - boundingX);
-				const y = Math.floor(getY(e) - boundingY);
+				const x = Math.floor(getX(e) - boundingX + div.scrollLeft);
+				const y = Math.floor(getY(e) - boundingY + div.scrollTop);
 
 				timeEnd = Date.now();
 
@@ -128,8 +128,8 @@ export const UtilsTouch = {
 		const mouseMoveListener = (e: TouchEvent | MouseEvent) => {
 			// e.preventDefault();
 
-			const x = Math.floor(getX(e) - boundingX);
-			const y = Math.floor(getY(e) - boundingY);
+			const x = Math.floor(getX(e) - boundingX + div.scrollLeft);
+			const y = Math.floor(getY(e) - boundingY + div.scrollTop);
 
 			timeEnd = Date.now();
 

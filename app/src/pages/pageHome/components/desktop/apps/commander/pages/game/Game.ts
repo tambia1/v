@@ -389,7 +389,7 @@ export class Game {
 			player.getBuildings().forEach((building) => {
 				if (building.getIsSelected()) {
 					const x = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
-					const y = 20;
+					const y = 20 + this.board.scrollTop;
 					const w = 200;
 					const h = 560;
 
