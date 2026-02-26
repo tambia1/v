@@ -7,6 +7,9 @@ export const COLORS = {
 	BOX_TITLE: "#ffff66",
 	BOX_TEXT: "#ffffff",
 	BOX_BG: "#000000",
+
+	// Unit colors
+	UNIT_LIFE: "#ff0000",
 } as const;
 
 // Player colors
