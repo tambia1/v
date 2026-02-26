@@ -4,16 +4,19 @@ import { IronMine } from "../buildings/ironMine/IronMine";
 import { OilField } from "../buildings/oilField/OilField";
 import { ProductionBuilding } from "../buildings/ProductionBuilding";
 import { ResourceBuilding } from "../buildings/ResourceBuilding";
+import { Position } from "../core/Position";
 import { Unit } from "../units/Unit";
 
 export class Player {
 	private playerName: string;
+	private color: string;
 
 	private resourceBuildings: ResourceBuilding[];
 	private productionBuildings: ProductionBuilding[];
 
-	constructor(playerName: string) {
+	constructor(playerName: string, color: string) {
 		this.playerName = playerName;
+		this.color = color;
 
 		this.resourceBuildings = [];
 		this.productionBuildings = [];
@@ -21,6 +24,10 @@ export class Player {
 
 	public getPlayerName() {
 		return this.playerName;
+	}
+
+	public getColor() {
+		return this.color;
 	}
 
 	public getResourceBuildings() {
@@ -117,17 +124,41 @@ export class Player {
 		});
 	}
 
+	private drawBackgrounds(ctx: CanvasRenderingContext2D, position: Position) {
+		ctx.save();
+		ctx.beginPath();
+		ctx.fillStyle = this.color;
+		ctx.rect(position.x, position.y, position.w, position.h);
+		ctx.fill();
+		ctx.closePath();
+		ctx.restore();
+	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
-		for (let i = 0; i < this.resourceBuildings.length; i++) {
-			this.resourceBuildings[i].draw(ctx);
-		}
+		// Draw buildings
+		this.resourceBuildings.forEach((resourceBuilding) => {
+			if (resourceBuilding.isHovered) {
+				this.drawBackgrounds(ctx, resourceBuilding.position);
+			}
 
-		for (let i = 0; i < this.productionBuildings.length; i++) {
-			this.productionBuildings[i].draw(ctx);
+			resourceBuilding.draw(ctx);
+		});
 
-			this.productionBuildings[i].units.forEach((unit) => {
+		this.productionBuildings.forEach((productionBuilding) => {
+			if (productionBuilding.isHovered) {
+				this.drawBackgrounds(ctx, productionBuilding.position);
+			}
+
+			productionBuilding.draw(ctx);
+
+			// Draw units
+			productionBuilding.units.forEach((unit) => {
+				if (unit.isHovered) {
+					this.drawBackgrounds(ctx, unit.position);
+				}
+
 				unit.draw(ctx);
 			});
-		}
+		});
 	}
 }

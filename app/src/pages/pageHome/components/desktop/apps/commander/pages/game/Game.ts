@@ -9,7 +9,7 @@ import { OilField } from "./buildings/oilField/OilField";
 import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
-import { COLORS } from "./Constants";
+import { COLORS, PLAYER_COLORS } from "./Constants";
 import { Player } from "./player/Player";
 import { Bomber } from "./units/Bomber";
 import { Commando } from "./units/Commando";
@@ -184,8 +184,9 @@ export class Game {
 	private initPlayers(playersNames: string[]) {
 		this.players = [];
 
-		playersNames.forEach((playerName) => {
-			this.players.push(new Player(playerName));
+		playersNames.forEach((playerName, index) => {
+			const color = PLAYER_COLORS[index % PLAYER_COLORS.length];
+			this.players.push(new Player(playerName, color));
 		});
 
 		//temp

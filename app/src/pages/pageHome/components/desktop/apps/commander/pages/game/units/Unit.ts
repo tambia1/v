@@ -1,4 +1,3 @@
-import { COLORS } from "../Constants";
 import { Drawable } from "../core/Drawable";
 import { Entity } from "../core/Entity";
 import { Hoverable } from "../core/Hoverable";
@@ -67,7 +66,7 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		this.animationScale.resume();
 	}
 
-	public setIsSelected(value: boolean): void {
+	public setIsSelected(value: boolean) {
 		if (this.isSelected !== value) {
 			this.animationScale.reset();
 		}
@@ -75,7 +74,7 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		this.isSelected = value;
 	}
 
-	public getIsSelected(): boolean {
+	public getIsSelected() {
 		return this.isSelected;
 	}
 
@@ -158,38 +157,30 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		return this.buildProgress >= this.timeToBuild;
 	}
 
-	public isTouched(x: number, y: number): boolean {
+	public isTouched(x: number, y: number) {
 		return this.position.isContains(x, y);
 	}
 
-	public onTouchStart(): void {}
+	public onTouchStart() {}
 
-	public onTouchEnd(): void {
+	public onTouchEnd() {
 		this.setIsSelected(true);
 	}
 
-	public onTouchHoverStart(): void {
+	public onTouchHoverStart() {
 		this.setIsHovered(true);
 	}
 
-	public onTouchHoverEnd(): void {
+	public onTouchHoverEnd() {
 		this.setIsHovered(false);
 	}
 
-	public update(_timeDif: number): void {
+	public update(_timeDif: number) {
 		this.animationScale.calculate();
 	}
 
-	public draw(ctx: CanvasRenderingContext2D): void {
+	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-
-		if (this.isHovered) {
-			ctx.beginPath();
-			ctx.fillStyle = COLORS.BUILDING_HOVER;
-			ctx.rect(this.position.x, this.position.y, this.position.w, this.position.h);
-			ctx.fill();
-			ctx.closePath();
-		}
 
 		const centerX = this.position.getCenterX();
 		const centerY = this.position.getCenterY();
