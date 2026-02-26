@@ -37,7 +37,7 @@ export class University extends ProductionBuilding {
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
-			unitsThatCanBeProduced: [],
+			productionStore: [],
 		});
 
 		this.researches = [
