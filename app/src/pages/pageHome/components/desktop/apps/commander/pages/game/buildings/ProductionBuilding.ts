@@ -10,14 +10,15 @@ type ProductionBuildingParams = {
 	costGold: number;
 	costIron: number;
 	costOil: number;
-	unitsCanBeProduced: Unit[];
+
+	unitsThatCanBeProduced: Unit[];
 };
 
 export abstract class ProductionBuilding extends Building {
 	public costGold: number;
 	public costIron: number;
 	public costOil: number;
-	public unitsCanBeProduced: Unit[];
+	public unitsThatCanBeProduced: Unit[];
 	public productionQueue: Unit[];
 	public units: Unit[];
 
@@ -31,7 +32,7 @@ export abstract class ProductionBuilding extends Building {
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
 		this.costOil = params.costOil;
-		this.unitsCanBeProduced = params.unitsCanBeProduced;
+		this.unitsThatCanBeProduced = params.unitsThatCanBeProduced;
 		this.productionQueue = [];
 		this.units = [];
 	}

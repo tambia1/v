@@ -26,7 +26,7 @@ export class Factory extends ProductionBuilding {
 			costGold: 200,
 			costIron: 150,
 			costOil: 50,
-			unitsCanBeProduced: [new Jeep({ x: 0, y: 0 }), new LightTank({ x: 0, y: 0 }), new HeavyTank({ x: 0, y: 0 })],
+			unitsThatCanBeProduced: [new Jeep({ x: 0, y: 0 }), new LightTank({ x: 0, y: 0 }), new HeavyTank({ x: 0, y: 0 })],
 		});
 	}
 }

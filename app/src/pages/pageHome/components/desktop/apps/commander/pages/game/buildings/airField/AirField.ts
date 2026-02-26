@@ -25,7 +25,7 @@ export class AirField extends ProductionBuilding {
 			costGold: 250,
 			costIron: 150,
 			costOil: 50,
-			unitsCanBeProduced: [new Fighter({ x: 0, y: 0 }), new Bomber({ x: 0, y: 0 })],
+			unitsThatCanBeProduced: [new Fighter({ x: 0, y: 0 }), new Bomber({ x: 0, y: 0 })],
 		});
 
 		this.name = "Air Field";

@@ -505,7 +505,7 @@ export class Game {
 						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
 						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
 
-						building.unitsCanBeProduced.forEach((unit, index) => {
+						building.unitsThatCanBeProduced.forEach((unit, index) => {
 							ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
 							ctx.drawImage(unit.image, x + 130, y + 120 + 40 * index, 50, 50);
 						});

@@ -29,7 +29,7 @@ export class CommandCenter extends ProductionBuilding {
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
-			unitsCanBeProduced: [],
+			unitsThatCanBeProduced: [],
 		});
 
 		this.buildings = [new Barracks({ x: 0, y: 0 }), new Factory({ x: 0, y: 0 }), new AirField({ x: 0, y: 0 })];
