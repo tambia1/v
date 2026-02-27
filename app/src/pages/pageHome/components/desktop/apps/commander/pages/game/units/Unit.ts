@@ -190,7 +190,7 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		ctx.scale(1 / scaleX, 1 / scaleY);
 
 		ctx.beginPath();
-		ctx.rect(5, 40 - 10, 40 - 5 * 2, 5);
+		ctx.rect(this.position.x * scaleX + 5, this.position.y * scaleY + 40 - 10, 40 - 5 * 2, 5);
 		ctx.strokeStyle = COLORS.UNIT_LIFE_STROKE;
 		ctx.lineWidth = 1;
 		ctx.stroke();
@@ -199,7 +199,7 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 		const lifeRatio = this.currentLife / this.life;
 
 		ctx.beginPath();
-		ctx.rect(5, 40 - 10, (40 - 5 * 2) * lifeRatio, 5);
+		ctx.rect(this.position.x * scaleX + 5, this.position.y * scaleY + 40 - 10, (40 - 5 * 2) * lifeRatio, 5);
 		ctx.fillStyle = COLORS.UNIT_LIFE_FILL;
 		ctx.fill();
 		ctx.closePath();
