@@ -22,7 +22,7 @@ export class Factory extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-
+			life: 100,
 			costGold: 200,
 			costIron: 150,
 			costOil: 50,

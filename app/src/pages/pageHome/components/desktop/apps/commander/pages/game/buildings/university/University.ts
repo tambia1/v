@@ -33,7 +33,7 @@ export class University extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-
+			life: 100,
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,

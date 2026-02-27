@@ -21,7 +21,7 @@ export class AirField extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-
+			life: 100,
 			costGold: 250,
 			costIron: 150,
 			costOil: 50,

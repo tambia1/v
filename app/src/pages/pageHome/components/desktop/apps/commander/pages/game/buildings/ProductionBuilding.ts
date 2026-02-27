@@ -6,6 +6,7 @@ type ProductionBuildingParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
+	life: number;
 
 	costGold: number;
 	costIron: number;
@@ -27,6 +28,7 @@ export abstract class ProductionBuilding extends Building {
 			name: params.name,
 			image: params.image,
 			position: params.position,
+			life: params.life,
 		});
 
 		this.costGold = params.costGold;

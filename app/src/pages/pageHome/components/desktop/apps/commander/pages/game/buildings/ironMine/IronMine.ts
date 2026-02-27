@@ -19,7 +19,7 @@ export class IronMine extends ResourceBuilding {
 				w: 1,
 				h: 1,
 			}),
-
+			life: 100,
 			amount: 0,
 			producedPerSecond: 1,
 		});

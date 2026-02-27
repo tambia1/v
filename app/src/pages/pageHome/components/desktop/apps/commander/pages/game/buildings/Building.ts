@@ -12,12 +12,14 @@ type BuildingParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
+	life: number;
 };
 
 export abstract class Building implements Entity, Drawable, Updatable, Selectable, Hoverable, Touchable {
 	public name: string;
 	public image: HTMLImageElement;
 	public life: number;
+	public currentLife: number;
 	public position: Position;
 	public isSelected = false;
 	public isHovered = false;
@@ -28,8 +30,8 @@ export abstract class Building implements Entity, Drawable, Updatable, Selectabl
 		this.name = params.name;
 		this.image = params.image;
 		this.position = params.position;
-
-		this.life = 1;
+		this.life = params.life;
+		this.currentLife = params.life;
 
 		this.animationScale = new Animation({
 			time: 300,
@@ -101,8 +103,10 @@ export abstract class Building implements Entity, Drawable, Updatable, Selectabl
 		ctx.stroke();
 		ctx.closePath();
 
+		const lifeRatio = this.currentLife / this.life;
+
 		ctx.beginPath();
-		ctx.rect(5, 40 - 10, (40 - 5 * 2) * this.life, 5);
+		ctx.rect(5, 40 - 10, (40 - 5 * 2) * lifeRatio, 5);
 		ctx.fillStyle = COLORS.UNIT_LIFE_FILL;
 		ctx.fill();
 		ctx.closePath();

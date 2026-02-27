@@ -5,6 +5,7 @@ type ResourceBuildingParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
+	life: number;
 
 	amount: number;
 	producedPerSecond: number;
@@ -19,6 +20,7 @@ export abstract class ResourceBuilding extends Building {
 			name: params.name,
 			image: params.image,
 			position: params.position,
+			life: params.life,
 		});
 
 		this.amount = params.amount;

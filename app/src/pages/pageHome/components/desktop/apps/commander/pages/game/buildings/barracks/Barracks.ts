@@ -21,7 +21,7 @@ export class Barracks extends ProductionBuilding {
 				w: 1,
 				h: 1,
 			}),
-
+			life: 100,
 			costGold: 100,
 			costIron: 50,
 			costOil: 0,
