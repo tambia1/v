@@ -102,7 +102,7 @@ export class Game {
 
 		this.drawReset(ctx);
 		this.drawArena(ctx);
-		this.drawMap(ctx);
+		this.drawGrid(ctx);
 		this.drawTimeLeft(ctx);
 		this.drawPlayersDetails(ctx);
 		this.drawPlayersArmy(ctx);
@@ -302,11 +302,11 @@ export class Game {
 		this.arena.drawImage(ctx);
 	}
 
-	private drawMap(ctx: CanvasRenderingContext2D) {
+	private drawGrid(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		const suqareHeight = ctx.canvas.height / this.map.length;
-		const squareWidth = ctx.canvas.width / this.map[0].length;
+		const suqareHeight = this.getScaleX(ctx);
+		const squareWidth = this.getScaleY(ctx);
 
 		ctx.lineWidth = 1.0;
 
