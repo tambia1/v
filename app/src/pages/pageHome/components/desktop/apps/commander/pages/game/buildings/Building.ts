@@ -1,3 +1,4 @@
+import { COLORS } from "../Constants";
 import { Drawable } from "../core/Drawable";
 import { Entity } from "../core/Entity";
 import { Hoverable } from "../core/Hoverable";
@@ -16,15 +17,19 @@ type BuildingParams = {
 export abstract class Building implements Entity, Drawable, Updatable, Selectable, Hoverable, Touchable {
 	public name: string;
 	public image: HTMLImageElement;
-	protected animationScale: Animation;
+	public life: number;
 	public position: Position;
 	public isSelected = false;
 	public isHovered = false;
+
+	protected animationScale: Animation;
 
 	constructor(params: BuildingParams) {
 		this.name = params.name;
 		this.image = params.image;
 		this.position = params.position;
+
+		this.life = 1;
 
 		this.animationScale = new Animation({
 			time: 300,
@@ -82,8 +87,33 @@ export abstract class Building implements Entity, Drawable, Updatable, Selectabl
 		this.animationScale.calculate();
 	}
 
+	public drawLife(ctx: CanvasRenderingContext2D) {
+		ctx.save();
+
+		const scaleX = ctx.getTransform().a;
+		const scaleY = ctx.getTransform().d;
+		ctx.scale(1 / scaleX, 1 / scaleY);
+
+		ctx.beginPath();
+		ctx.rect(5, 40 - 10, 40 - 5 * 2, 5);
+		ctx.strokeStyle = COLORS.UNIT_LIFE_STROKE;
+		ctx.lineWidth = 1;
+		ctx.stroke();
+		ctx.closePath();
+
+		ctx.beginPath();
+		ctx.rect(5, 40 - 10, (40 - 5 * 2) * this.life, 5);
+		ctx.fillStyle = COLORS.UNIT_LIFE_FILL;
+		ctx.fill();
+		ctx.closePath();
+
+		ctx.restore();
+	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
+
+		this.drawLife(ctx);
 
 		const centerX = this.position.getCenterX();
 		const centerY = this.position.getCenterY();
