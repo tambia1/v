@@ -70,10 +70,6 @@ export abstract class Building implements Product, Drawable, Updatable, Selectab
 		return this.position.isContains(x, y);
 	}
 
-	public update(_timeDif: number) {
-		this.animationScale.calculate();
-	}
-
 	public drawLife(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
@@ -97,6 +93,10 @@ export abstract class Building implements Product, Drawable, Updatable, Selectab
 		ctx.closePath();
 
 		ctx.restore();
+	}
+
+	public update(_timeDif: number) {
+		this.animationScale.calculate();
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
