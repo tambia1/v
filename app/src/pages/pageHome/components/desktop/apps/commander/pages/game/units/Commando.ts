@@ -33,4 +33,8 @@ export class Commando extends Unit {
 			timeToBuild: 15,
 		});
 	}
+
+	override clone(params: { x: number; y: number }): Unit {
+		return new Commando({ x: params.x, y: params.y });
+	}
 }

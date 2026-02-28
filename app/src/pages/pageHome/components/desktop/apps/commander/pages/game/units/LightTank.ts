@@ -32,4 +32,8 @@ export class LightTank extends Unit {
 			timeToBuild: 30,
 		});
 	}
+
+	override clone(params: { x: number; y: number }): Unit {
+		return new LightTank({ x: params.x, y: params.y });
+	}
 }

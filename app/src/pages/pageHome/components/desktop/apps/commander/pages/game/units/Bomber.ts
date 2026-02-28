@@ -31,4 +31,8 @@ export class Bomber extends Unit {
 			timeToBuild: 25,
 		});
 	}
+
+	override clone(params: { x: number; y: number }): Unit {
+		return new Bomber({ x: params.x, y: params.y });
+	}
 }

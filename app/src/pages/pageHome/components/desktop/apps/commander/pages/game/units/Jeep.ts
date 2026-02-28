@@ -31,4 +31,8 @@ export class Jeep extends Unit {
 			timeToBuild: 20,
 		});
 	}
+
+	override clone(params: { x: number; y: number }): Unit {
+		return new Jeep({ x: params.x, y: params.y });
+	}
 }

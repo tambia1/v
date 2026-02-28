@@ -32,4 +32,8 @@ export class Infantry extends Unit {
 			timeToBuild: 10,
 		});
 	}
+
+	override clone(params: { x: number; y: number }): Unit {
+		return new Infantry({ x: params.x, y: params.y });
+	}
 }

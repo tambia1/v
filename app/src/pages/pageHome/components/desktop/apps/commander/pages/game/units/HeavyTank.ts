@@ -32,4 +32,8 @@ export class HeavyTank extends Unit {
 			timeToBuild: 45,
 		});
 	}
+
+	override clone(params: { x: number; y: number }): Unit {
+		return new HeavyTank({ x: params.x, y: params.y });
+	}
 }

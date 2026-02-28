@@ -10,6 +10,7 @@ import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
 import { COLORS, GRID_SIZE, PLAYER_COLORS } from "./Constants";
+import { Entity } from "./core/Entity";
 import { Player } from "./player/Player";
 import { Bomber } from "./units/Bomber";
 import { Commando } from "./units/Commando";
@@ -48,6 +49,7 @@ export class Game {
 	private map: Map[][] = [];
 
 	private gameEngine: GameEngine;
+	private hoveredBuildingItem: Entity | null = null;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
@@ -117,6 +119,7 @@ export class Game {
 		UtilsTouch.listenToTouches({
 			div: div,
 			onTouchMove: (_e, _sx, _sy, x, y, _time) => {
+				// check items on map
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(x, y)) {
@@ -136,8 +139,31 @@ export class Game {
 						}
 					});
 				});
+
+				// check items on sidebar
+				this.hoveredBuildingItem = null;
+				this.players.forEach((player) => {
+					player.getBuildings().forEach((building) => {
+						if (building.getIsSelected() && building instanceof ProductionBuilding) {
+							const boxX = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
+							const boxY = 20 + this.board.scrollTop;
+
+							building.productionStore.forEach((unit, index) => {
+								const itemX = boxX + 10;
+								const itemY = boxY + 120 + 40 * index;
+								const itemW = 180;
+								const itemH = 40;
+
+								if (x >= itemX && x <= itemX + itemW && y >= itemY && y <= itemY + itemH) {
+									this.hoveredBuildingItem = unit;
+								}
+							});
+						}
+					});
+				});
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
+				// check items on map
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						building.setIsSelected(false);
@@ -160,6 +186,27 @@ export class Game {
 							building.units.forEach((unit) => {
 								if (unit.isTouched(x, y)) {
 									unit.onTouchEnd();
+								}
+							});
+						}
+					});
+				});
+
+				// check items on sidebar
+				this.players.forEach((player) => {
+					player.getBuildings().forEach((building) => {
+						if (building.getIsSelected() && building instanceof ProductionBuilding) {
+							const boxX = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
+							const boxY = 20 + this.board.scrollTop;
+
+							building.productionStore.forEach((unit, index) => {
+								const itemX = boxX + 10;
+								const itemY = boxY + 120 + 40 * index;
+								const itemW = 180;
+								const itemH = 40;
+
+								if (x >= itemX && x <= itemX + itemW && y >= itemY && y <= itemY + itemH) {
+									building.addUnitToProductionQueue(unit.clone({ x: building.position.x, y: building.position.y }));
 								}
 							});
 						}
@@ -479,6 +526,14 @@ export class Game {
 						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
 
 						building.productionStore.forEach((unit, index) => {
+							const isHovered = this.hoveredBuildingItem === unit;
+
+							if (isHovered) {
+								ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+								ctx.fillRect(x + 10, y + 120 + 40 * index, 180, 40);
+							}
+
+							ctx.fillStyle = COLORS.BOX_TEXT;
 							ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
 							ctx.drawImage(unit.image, x + 130, y + 120 + 40 * index, 50, 50);
 						});

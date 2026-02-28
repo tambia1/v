@@ -32,4 +32,8 @@ export class Fighter extends Unit {
 			timeToBuild: 25,
 		});
 	}
+
+	override clone(params: { x: number; y: number }): Unit {
+		return new Fighter({ x: params.x, y: params.y });
+	}
 }
