@@ -1,8 +1,8 @@
 type PositionParams = {
-	x?: number;
-	y?: number;
-	w?: number;
-	h?: number;
+	x: number;
+	y: number;
+	w: number;
+	h: number;
 };
 
 export class Position {
@@ -11,11 +11,11 @@ export class Position {
 	public w: number;
 	public h: number;
 
-	constructor(params: PositionParams = {}) {
-		this.x = params.x || 0;
-		this.y = params.y || 0;
-		this.w = params.w || 0;
-		this.h = params.h || 0;
+	constructor(params: PositionParams) {
+		this.x = params.x;
+		this.y = params.y;
+		this.w = params.w;
+		this.h = params.h;
 	}
 
 	public getCenterX() {
