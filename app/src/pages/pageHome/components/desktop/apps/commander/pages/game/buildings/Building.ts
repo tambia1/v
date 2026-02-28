@@ -4,7 +4,6 @@ import { Entity } from "../core/Entity";
 import { Hoverable } from "../core/Hoverable";
 import { Position } from "../core/Position";
 import { Selectable } from "../core/Selectable";
-import { Touchable } from "../core/Touchable";
 import { Updatable } from "../core/Updatable";
 import { Animation } from "../utils/Animation";
 
@@ -15,7 +14,7 @@ type BuildingParams = {
 	life: number;
 };
 
-export abstract class Building implements Entity, Drawable, Updatable, Selectable, Hoverable, Touchable {
+export abstract class Building implements Entity, Drawable, Updatable, Selectable, Hoverable {
 	public name: string;
 	public image: HTMLImageElement;
 	public life: number;
@@ -69,20 +68,6 @@ export abstract class Building implements Entity, Drawable, Updatable, Selectabl
 
 	public isTouched(x: number, y: number) {
 		return this.position.isContains(x, y);
-	}
-
-	public onTouchStart() {}
-
-	public onTouchEnd() {
-		this.setIsSelected(true);
-	}
-
-	public onTouchHoverStart() {
-		this.setIsHovered(true);
-	}
-
-	public onTouchHoverEnd() {
-		this.setIsHovered(false);
 	}
 
 	public update(_timeDif: number) {

@@ -1,5 +1,6 @@
 import { Arena, type ArenaType } from "./Arena";
 import { AirField } from "./buildings/airField/AirField";
+import { Building } from "./buildings/Building";
 import { Barracks } from "./buildings/barracks/Barracks";
 import { CommandCenter } from "./buildings/commandCenter/CommandCenter";
 import { Factory } from "./buildings/factory/Factory";
@@ -50,6 +51,7 @@ export class Game {
 
 	private gameEngine: GameEngine;
 
+	private selectedBuilding: Building | null = null;
 	private hoveredBuildingItem: Entity | null = null;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
@@ -124,17 +126,17 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(x, y)) {
-							building.onTouchHoverStart();
+							building.setIsHovered(true);
 						} else {
-							building.onTouchHoverEnd();
+							building.setIsHovered(false);
 						}
 
 						if (building instanceof ProductionBuilding) {
 							building.units.forEach((unit) => {
 								if (unit.isTouched(x, y)) {
-									unit.onTouchHoverStart();
+									unit.setIsHovered(true);
 								} else {
-									unit.onTouchHoverEnd();
+									unit.setIsHovered(false);
 								}
 							});
 						}
@@ -165,9 +167,19 @@ export class Game {
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				// check items on map
+				const boxX = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
+				const boxY = 20 + this.board.scrollTop;
+				const boxW = 200;
+				const boxH = 560;
+
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
+						if (this.selectedBuilding && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH) {
+							return;
+						}
+
 						building.setIsSelected(false);
+						this.selectedBuilding = null;
 
 						if (building instanceof ProductionBuilding) {
 							building.units.forEach((unit) => {
@@ -180,13 +192,14 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(x, y)) {
-							building.onTouchEnd();
+							building.setIsSelected(true);
+							this.selectedBuilding = building;
 						}
 
 						if (building instanceof ProductionBuilding) {
 							building.units.forEach((unit) => {
 								if (unit.isTouched(x, y)) {
-									unit.onTouchEnd();
+									unit.setIsSelected(true);
 								}
 							});
 						}
@@ -463,90 +476,88 @@ export class Game {
 	private drawPlayersSelectedBuildingDetails(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		this.players.forEach((player) => {
-			player.getBuildings().forEach((building) => {
-				if (building.getIsSelected()) {
-					const x = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
-					const y = 20 + this.board.scrollTop;
-					const w = 200;
-					const h = 560;
+		if (this.selectedBuilding) {
+			const building = this.selectedBuilding;
 
-					// draw box
-					ctx.font = "oswald 12px";
-					ctx.fillStyle = COLORS.BOX_BG;
-					ctx.strokeStyle = COLORS.BOX_TEXT;
-					ctx.beginPath();
-					ctx.roundRect(x, y, w, h, [5, 5, 5, 5]);
-					ctx.fill();
-					ctx.stroke();
-					ctx.closePath();
-					ctx.drawImage(building.image, x + 130, y, 50, 50);
+			const x = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
+			const y = 20 + this.board.scrollTop;
+			const w = 200;
+			const h = 560;
 
-					ctx.fillStyle = COLORS.BOX_TITLE;
-					ctx.fillText(building.name, x + 10, y + 20);
+			// draw box
+			ctx.font = "oswald 12px";
+			ctx.fillStyle = COLORS.BOX_BG;
+			ctx.strokeStyle = COLORS.BOX_TEXT;
+			ctx.beginPath();
+			ctx.roundRect(x, y, w, h, [5, 5, 5, 5]);
+			ctx.fill();
+			ctx.stroke();
+			ctx.closePath();
+			ctx.drawImage(building.image, x + 130, y, 50, 50);
 
-					// draw line
-					ctx.strokeStyle = COLORS.BOX_TITLE;
-					ctx.beginPath();
-					ctx.moveTo(x + 10, y + 120);
-					ctx.lineTo(x + w - 10, y + 120);
-					ctx.stroke();
-					ctx.closePath();
+			ctx.fillStyle = COLORS.BOX_TITLE;
+			ctx.fillText(building.name, x + 10, y + 20);
 
-					//draw items
-					if (building instanceof ResourceBuilding) {
-						ctx.fillStyle = COLORS.BOX_TEXT;
-						ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 60);
+			// draw line
+			ctx.strokeStyle = COLORS.BOX_TITLE;
+			ctx.beginPath();
+			ctx.moveTo(x + 10, y + 120);
+			ctx.lineTo(x + w - 10, y + 120);
+			ctx.stroke();
+			ctx.closePath();
+
+			//draw items
+			if (building instanceof ResourceBuilding) {
+				ctx.fillStyle = COLORS.BOX_TEXT;
+				ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 60);
+			}
+
+			if (building instanceof CommandCenter) {
+				ctx.fillStyle = COLORS.BOX_TEXT;
+
+				building.buildings.forEach((building, index) => {
+					ctx.fillText(building.name, x + 10, y + 140 + 40 * index);
+					ctx.drawImage(building.image, x + 130, y + 120 + 40 * index, 50, 50);
+				});
+			}
+
+			if (building instanceof University) {
+				ctx.fillStyle = COLORS.BOX_TEXT;
+				ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
+				ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
+				ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
+
+				building.researches.forEach((research, index) => {
+					ctx.fillText(research.name, x + 10, y + 140 + 40 * index);
+					ctx.drawImage(research.image, x + 130, y + 120 + 40 * index, 50, 50);
+				});
+			}
+
+			if (building instanceof ProductionBuilding) {
+				ctx.fillStyle = COLORS.BOX_TEXT;
+				ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
+				ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
+				ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
+
+				building.productionStore.forEach((unit, index) => {
+					const isHovered = this.hoveredBuildingItem === unit;
+
+					if (isHovered) {
+						ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
+						ctx.fillRect(x + 10, y + 120 + 40 * index, 180, 40);
 					}
 
-					if (building instanceof CommandCenter) {
+					ctx.fillStyle = COLORS.BOX_TEXT;
+					ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
+					ctx.drawImage(unit.image, x + 130, y + 120 + 40 * index, 50, 50);
+
+					if (!unit.isBuilt()) {
 						ctx.fillStyle = COLORS.BOX_TEXT;
-
-						building.buildings.forEach((building, index) => {
-							ctx.fillText(building.name, x + 10, y + 140 + 40 * index);
-							ctx.drawImage(building.image, x + 130, y + 120 + 40 * index, 50, 50);
-						});
+						ctx.fillText(`Progress: ${unit.getBuildProgress().toFixed(2)} / ${unit.getTimeToBuild()}`, x + 10, y + 160 + 40 * index);
 					}
-
-					if (building instanceof University) {
-						ctx.fillStyle = COLORS.BOX_TEXT;
-						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
-						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
-						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
-
-						building.researches.forEach((research, index) => {
-							ctx.fillText(research.name, x + 10, y + 140 + 40 * index);
-							ctx.drawImage(research.image, x + 130, y + 120 + 40 * index, 50, 50);
-						});
-					}
-
-					if (building instanceof ProductionBuilding) {
-						ctx.fillStyle = COLORS.BOX_TEXT;
-						ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
-						ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
-						ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
-
-						building.productionStore.forEach((unit, index) => {
-							const isHovered = this.hoveredBuildingItem === unit;
-
-							if (isHovered) {
-								ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
-								ctx.fillRect(x + 10, y + 120 + 40 * index, 180, 40);
-							}
-
-							ctx.fillStyle = COLORS.BOX_TEXT;
-							ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
-							ctx.drawImage(unit.image, x + 130, y + 120 + 40 * index, 50, 50);
-
-							if (!unit.isBuilt()) {
-								ctx.fillStyle = COLORS.BOX_TEXT;
-								ctx.fillText(`Building: ${unit.getBuildProgress().toFixed(1)}/${unit.getTimeToBuild()}`, x + 10, y + 160 + 40 * index);
-							}
-						});
-					}
-				}
-			});
-		});
+				});
+			}
+		}
 
 		ctx.restore();
 	}

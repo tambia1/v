@@ -5,7 +5,6 @@ import { Entity } from "../core/Entity";
 import { Hoverable } from "../core/Hoverable";
 import { Position } from "../core/Position";
 import { Selectable } from "../core/Selectable";
-import { Touchable } from "../core/Touchable";
 import { Updatable } from "../core/Updatable";
 import { Animation } from "../utils/Animation";
 import { Weapon } from "../weapons/Weapon";
@@ -24,7 +23,7 @@ type UnitParams = {
 	timeToBuild: number;
 };
 
-export abstract class Unit implements Entity, Drawable, Updatable, Selectable, Hoverable, Touchable, Clonable<Unit> {
+export abstract class Unit implements Entity, Drawable, Updatable, Selectable, Hoverable, Clonable<Unit> {
 	public name: string;
 	public image: HTMLImageElement;
 	protected costGoldToBuild: number;
@@ -163,20 +162,6 @@ export abstract class Unit implements Entity, Drawable, Updatable, Selectable, H
 
 	public isTouched(x: number, y: number) {
 		return this.position.isContains(x, y);
-	}
-
-	public onTouchStart() {}
-
-	public onTouchEnd() {
-		this.setIsSelected(true);
-	}
-
-	public onTouchHoverStart() {
-		this.setIsHovered(true);
-	}
-
-	public onTouchHoverEnd() {
-		this.setIsHovered(false);
 	}
 
 	public update(_timeDif: number) {
