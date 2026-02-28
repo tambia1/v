@@ -11,6 +11,8 @@ export const COLORS = {
 	BOX_TEXT: "#ffffff",
 	BOX_BG: "#000000",
 
+	BOX_ITEM_HOVER: "#ffffff11",
+
 	// Unit colors
 	UNIT_LIFE_STROKE: "#ffffff",
 	UNIT_LIFE_FILL: "#00ff00",

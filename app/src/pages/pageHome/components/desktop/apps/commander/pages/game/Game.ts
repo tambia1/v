@@ -49,6 +49,7 @@ export class Game {
 	private map: Map[][] = [];
 
 	private gameEngine: GameEngine;
+
 	private hoveredBuildingItem: Entity | null = null;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
@@ -529,13 +530,18 @@ export class Game {
 							const isHovered = this.hoveredBuildingItem === unit;
 
 							if (isHovered) {
-								ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+								ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
 								ctx.fillRect(x + 10, y + 120 + 40 * index, 180, 40);
 							}
 
 							ctx.fillStyle = COLORS.BOX_TEXT;
 							ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
 							ctx.drawImage(unit.image, x + 130, y + 120 + 40 * index, 50, 50);
+
+							if (!unit.isBuilt()) {
+								ctx.fillStyle = COLORS.BOX_TEXT;
+								ctx.fillText(`Building: ${unit.getBuildProgress().toFixed(1)}/${unit.getTimeToBuild()}`, x + 10, y + 160 + 40 * index);
+							}
 						});
 					}
 				}
