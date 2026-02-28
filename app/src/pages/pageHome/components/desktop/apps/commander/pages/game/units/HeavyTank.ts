@@ -1,3 +1,4 @@
+import { GRID_SIZE } from "../Constants";
 import { Position } from "../core/Position";
 import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
@@ -18,8 +19,8 @@ export class HeavyTank extends Unit {
 			position: new Position({
 				x: params.x,
 				y: params.y,
-				w: 1,
-				h: 1,
+				w: GRID_SIZE,
+				h: GRID_SIZE,
 			}),
 
 			costGoldToBuild: 300,

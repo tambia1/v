@@ -1,3 +1,6 @@
+// Grid configuration
+export const GRID_SIZE = 40; // Size of each grid cell in pixels
+
 export const COLORS = {
 	// Map colors
 	LAND_STROKE: "#00ff0033",

@@ -1,3 +1,4 @@
+import { GRID_SIZE } from "../../Constants";
 import { Position } from "../../core/Position";
 import { HeavyTank } from "../../units/HeavyTank";
 import { Jeep } from "../../units/Jeep";
@@ -19,8 +20,8 @@ export class Factory extends ProductionBuilding {
 			position: new Position({
 				x: params.x,
 				y: params.y,
-				w: 1,
-				h: 1,
+				w: GRID_SIZE,
+				h: GRID_SIZE,
 			}),
 			life: 100,
 			costGold: 200,

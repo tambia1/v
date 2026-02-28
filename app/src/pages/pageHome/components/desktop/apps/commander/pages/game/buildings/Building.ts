@@ -92,21 +92,21 @@ export abstract class Building implements Entity, Drawable, Updatable, Selectabl
 	public drawLife(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		const scaleX = ctx.getTransform().a;
-		const scaleY = ctx.getTransform().d;
-		ctx.scale(1 / scaleX, 1 / scaleY);
+		const barWidth = this.position.w - 10;
+		const barHeight = 5;
+		const barX = this.position.x + 5;
+		const barY = this.position.y + this.position.h - 10;
 
 		ctx.beginPath();
-		ctx.rect(this.position.x * scaleX + 5, this.position.y * scaleY + 40 - 10, 40 - 5 * 2, 5);
+		ctx.rect(barX, barY, barWidth, barHeight);
 		ctx.strokeStyle = COLORS.UNIT_LIFE_STROKE;
 		ctx.lineWidth = 1;
 		ctx.stroke();
 		ctx.closePath();
 
 		const lifeRatio = this.currentLife / this.life;
-
 		ctx.beginPath();
-		ctx.rect(this.position.x * scaleX + 5, this.position.y * scaleY + 40 - 10, (40 - 5 * 2) * lifeRatio, 5);
+		ctx.rect(barX, barY, barWidth * lifeRatio, barHeight);
 		ctx.fillStyle = COLORS.UNIT_LIFE_FILL;
 		ctx.fill();
 		ctx.closePath();

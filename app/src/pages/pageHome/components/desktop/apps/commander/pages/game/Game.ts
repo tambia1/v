@@ -9,7 +9,7 @@ import { OilField } from "./buildings/oilField/OilField";
 import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
-import { COLORS, PLAYER_COLORS } from "./Constants";
+import { COLORS, GRID_SIZE, PLAYER_COLORS } from "./Constants";
 import { Player } from "./player/Player";
 import { Bomber } from "./units/Bomber";
 import { Commando } from "./units/Commando";
@@ -64,7 +64,7 @@ export class Game {
 			width: 2000,
 			height: 1000,
 			onStart: ({ ctx, timeDif }) => {
-				this.initTouches(board, ctx);
+				this.initTouches(board);
 				this.initPlayers(playersNames);
 				this.initMap();
 
@@ -113,19 +113,13 @@ export class Game {
 		ctx.restore();
 	}
 
-	private initTouches(div: HTMLDivElement, ctx: CanvasRenderingContext2D) {
+	private initTouches(div: HTMLDivElement) {
 		UtilsTouch.listenToTouches({
 			div: div,
 			onTouchMove: (_e, _sx, _sy, x, y, _time) => {
-				const scaleX = this.getScaleX(ctx);
-				const scaleY = this.getScaleY(ctx);
-
-				const xx = x / scaleX;
-				const yy = y / scaleY;
-
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (building.isTouched(xx, yy)) {
+						if (building.isTouched(x, y)) {
 							building.onTouchHoverStart();
 						} else {
 							building.onTouchHoverEnd();
@@ -133,7 +127,7 @@ export class Game {
 
 						if (building instanceof ProductionBuilding) {
 							building.units.forEach((unit) => {
-								if (unit.isTouched(xx, yy)) {
+								if (unit.isTouched(x, y)) {
 									unit.onTouchHoverStart();
 								} else {
 									unit.onTouchHoverEnd();
@@ -144,12 +138,6 @@ export class Game {
 				});
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
-				const scaleX = this.getScaleX(ctx);
-				const scaleY = this.getScaleY(ctx);
-
-				const xx = x / scaleX;
-				const yy = y / scaleY;
-
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						building.setIsSelected(false);
@@ -164,13 +152,13 @@ export class Game {
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (building.isTouched(xx, yy)) {
+						if (building.isTouched(x, y)) {
 							building.onTouchEnd();
 						}
 
 						if (building instanceof ProductionBuilding) {
 							building.units.forEach((unit) => {
-								if (unit.isTouched(xx, yy)) {
+								if (unit.isTouched(x, y)) {
 									unit.onTouchEnd();
 								}
 							});
@@ -191,46 +179,46 @@ export class Game {
 
 		//temp
 		const player0 = this.players[0];
-		player0.addResourceBuilding(new GoldMine({ x: 10, y: 8 }));
-		player0.addResourceBuilding(new IronMine({ x: 11, y: 8 }));
-		player0.addResourceBuilding(new OilField({ x: 12, y: 8 }));
-		player0.addProductionBuilding(new CommandCenter({ x: 9, y: 9 }));
-		player0.addProductionBuilding(new University({ x: 10, y: 9 }));
-		player0.addProductionBuilding(new Barracks({ x: 7, y: 10 }));
-		player0.addProductionBuilding(new Factory({ x: 8, y: 10 }));
-		player0.addProductionBuilding(new AirField({ x: 9, y: 10 }));
+		player0.addResourceBuilding(new GoldMine({ x: 10 * GRID_SIZE, y: 8 * GRID_SIZE }));
+		player0.addResourceBuilding(new IronMine({ x: 11 * GRID_SIZE, y: 8 * GRID_SIZE }));
+		player0.addResourceBuilding(new OilField({ x: 12 * GRID_SIZE, y: 8 * GRID_SIZE }));
+		player0.addProductionBuilding(new CommandCenter({ x: 9 * GRID_SIZE, y: 9 * GRID_SIZE }));
+		player0.addProductionBuilding(new University({ x: 10 * GRID_SIZE, y: 9 * GRID_SIZE }));
+		player0.addProductionBuilding(new Barracks({ x: 7 * GRID_SIZE, y: 10 * GRID_SIZE }));
+		player0.addProductionBuilding(new Factory({ x: 8 * GRID_SIZE, y: 10 * GRID_SIZE }));
+		player0.addProductionBuilding(new AirField({ x: 9 * GRID_SIZE, y: 10 * GRID_SIZE }));
 
-		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 5, y: 5 }));
-		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 6, y: 5 }));
-		player0.getProductionBuildings()[2].addUnit(new Commando({ x: 7, y: 5 }));
+		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 5 * GRID_SIZE, y: 5 * GRID_SIZE }));
+		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 6 * GRID_SIZE, y: 5 * GRID_SIZE }));
+		player0.getProductionBuildings()[2].addUnit(new Commando({ x: 7 * GRID_SIZE, y: 5 * GRID_SIZE }));
 
-		player0.getProductionBuildings()[3].addUnit(new Jeep({ x: 5, y: 6 }));
-		player0.getProductionBuildings()[3].addUnit(new LightTank({ x: 6, y: 6 }));
-		player0.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7, y: 6 }));
+		player0.getProductionBuildings()[3].addUnit(new Jeep({ x: 5 * GRID_SIZE, y: 6 * GRID_SIZE }));
+		player0.getProductionBuildings()[3].addUnit(new LightTank({ x: 6 * GRID_SIZE, y: 6 * GRID_SIZE }));
+		player0.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7 * GRID_SIZE, y: 6 * GRID_SIZE }));
 
-		player0.getProductionBuildings()[4].addUnit(new Fighter({ x: 5, y: 7 }));
-		player0.getProductionBuildings()[4].addUnit(new Bomber({ x: 6, y: 7 }));
+		player0.getProductionBuildings()[4].addUnit(new Fighter({ x: 5 * GRID_SIZE, y: 7 * GRID_SIZE }));
+		player0.getProductionBuildings()[4].addUnit(new Bomber({ x: 6 * GRID_SIZE, y: 7 * GRID_SIZE }));
 
 		const player1 = this.players[1];
-		player1.addResourceBuilding(new GoldMine({ x: 10, y: 20 }));
-		player1.addResourceBuilding(new IronMine({ x: 11, y: 20 }));
-		player1.addResourceBuilding(new OilField({ x: 12, y: 20 }));
-		player1.addProductionBuilding(new CommandCenter({ x: 9, y: 21 }));
-		player1.addProductionBuilding(new University({ x: 10, y: 21 }));
-		player1.addProductionBuilding(new Barracks({ x: 7, y: 22 }));
-		player1.addProductionBuilding(new Factory({ x: 8, y: 22 }));
-		player1.addProductionBuilding(new AirField({ x: 9, y: 22 }));
+		player1.addResourceBuilding(new GoldMine({ x: 10 * GRID_SIZE, y: 20 * GRID_SIZE }));
+		player1.addResourceBuilding(new IronMine({ x: 11 * GRID_SIZE, y: 20 * GRID_SIZE }));
+		player1.addResourceBuilding(new OilField({ x: 12 * GRID_SIZE, y: 20 * GRID_SIZE }));
+		player1.addProductionBuilding(new CommandCenter({ x: 9 * GRID_SIZE, y: 21 * GRID_SIZE }));
+		player1.addProductionBuilding(new University({ x: 10 * GRID_SIZE, y: 21 * GRID_SIZE }));
+		player1.addProductionBuilding(new Barracks({ x: 7 * GRID_SIZE, y: 22 * GRID_SIZE }));
+		player1.addProductionBuilding(new Factory({ x: 8 * GRID_SIZE, y: 22 * GRID_SIZE }));
+		player1.addProductionBuilding(new AirField({ x: 9 * GRID_SIZE, y: 22 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 5, y: 18 }));
-		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 6, y: 18 }));
-		player1.getProductionBuildings()[2].addUnit(new Commando({ x: 7, y: 18 }));
+		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 5 * GRID_SIZE, y: 18 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 6 * GRID_SIZE, y: 18 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addUnit(new Commando({ x: 7 * GRID_SIZE, y: 18 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[3].addUnit(new Jeep({ x: 5, y: 19 }));
-		player1.getProductionBuildings()[3].addUnit(new LightTank({ x: 6, y: 19 }));
-		player1.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7, y: 19 }));
+		player1.getProductionBuildings()[3].addUnit(new Jeep({ x: 5 * GRID_SIZE, y: 19 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addUnit(new LightTank({ x: 6 * GRID_SIZE, y: 19 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7 * GRID_SIZE, y: 19 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[4].addUnit(new Fighter({ x: 5, y: 20 }));
-		player1.getProductionBuildings()[4].addUnit(new Bomber({ x: 6, y: 20 }));
+		player1.getProductionBuildings()[4].addUnit(new Fighter({ x: 5 * GRID_SIZE, y: 20 * GRID_SIZE }));
+		player1.getProductionBuildings()[4].addUnit(new Bomber({ x: 6 * GRID_SIZE, y: 20 * GRID_SIZE }));
 	}
 
 	private initMap() {
@@ -305,15 +293,12 @@ export class Game {
 	private drawGrid(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		const suqareHeight = this.getScaleX(ctx);
-		const squareWidth = this.getScaleY(ctx);
-
 		ctx.lineWidth = 1.0;
 
 		for (let y = 0; y < this.map.length; y++) {
 			for (let x = 0; x < this.map[y].length; x++) {
 				ctx.beginPath();
-				ctx.rect(x * squareWidth, y * suqareHeight, squareWidth, suqareHeight);
+				ctx.rect(x * GRID_SIZE, y * GRID_SIZE, GRID_SIZE, GRID_SIZE);
 
 				switch (this.map[y][x]) {
 					case "land": {
@@ -417,20 +402,8 @@ export class Game {
 		ctx.restore();
 	}
 
-	private getScaleX(ctx: CanvasRenderingContext2D): number {
-		return ctx.canvas.width / Game.MAP_WIDTH;
-	}
-
-	private getScaleY(ctx: CanvasRenderingContext2D): number {
-		return ctx.canvas.height / Game.MAP_HEIGHT;
-	}
-
 	private drawPlayersArmy(ctx: CanvasRenderingContext2D) {
 		ctx.save();
-
-		const scaleX = this.getScaleX(ctx);
-		const scaleY = this.getScaleY(ctx);
-		ctx.scale(scaleX, scaleY);
 
 		this.players.forEach((player) => {
 			player.draw(ctx);
