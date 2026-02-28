@@ -1,8 +1,8 @@
 import { GRID_SIZE } from "../../Constants";
+import { Entity } from "../../core/Entity";
 import { Position } from "../../core/Position";
 import { UtilsImage } from "../../utils/UtilsImage";
 import { AirField } from "../airField/AirField";
-import { Building } from "../Building";
 import { Barracks } from "../barracks/Barracks";
 import { Factory } from "../factory/Factory";
 import { ProductionBuilding } from "../ProductionBuilding";
@@ -14,8 +14,6 @@ type CommandCenterParams = {
 };
 
 export class CommandCenter extends ProductionBuilding {
-	public buildings: Building[];
-
 	constructor(params: CommandCenterParams) {
 		super({
 			name: "Command Center",
@@ -33,6 +31,13 @@ export class CommandCenter extends ProductionBuilding {
 			productionStore: [],
 		});
 
-		this.buildings = [new Barracks({ x: 0, y: 0 }), new Factory({ x: 0, y: 0 }), new AirField({ x: 0, y: 0 })];
+		this.productionStore = [new Barracks({ x: 0, y: 0 }), new Factory({ x: 0, y: 0 }), new AirField({ x: 0, y: 0 })];
+	}
+
+	public clone(params: { x: number; y: number }): Entity {
+		return new CommandCenter({
+			x: params.x,
+			y: params.y,
+		});
 	}
 }

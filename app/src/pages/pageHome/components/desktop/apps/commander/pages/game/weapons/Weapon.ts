@@ -27,6 +27,8 @@ export abstract class Weapon implements Product, Drawable, Updatable {
 	protected y: number;
 	protected w: number;
 	protected h: number;
+	public buildProgress: number;
+	public timeToBuild: number;
 
 	constructor(params: WeaponParams) {
 		this.name = params.name;
@@ -38,10 +40,29 @@ export abstract class Weapon implements Product, Drawable, Updatable {
 		this.rateOfFire = params.rateOfFire;
 		this.accuracy = params.accuracy;
 
+		this.timeToBuild = 0;
+		this.buildProgress = 0;
+
 		this.x = 0;
 		this.y = 0;
 		this.w = 0;
 		this.h = 0;
+	}
+
+	public getTimeToBuild(): number {
+		return this.timeToBuild;
+	}
+
+	public getBuildProgress(): number {
+		return this.buildProgress;
+	}
+
+	public addBuildProgress(progress: number): void {
+		this.buildProgress += progress;
+	}
+
+	public isBuilt(): boolean {
+		return this.buildProgress >= this.timeToBuild;
 	}
 
 	public getCostGold() {

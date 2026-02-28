@@ -1,4 +1,5 @@
 import { GRID_SIZE } from "../../Constants";
+import { Entity } from "../../core/Entity";
 import { Position } from "../../core/Position";
 import { Commando } from "../../units/Commando";
 import { Infantry } from "../../units/Infantry";
@@ -27,6 +28,13 @@ export class Barracks extends ProductionBuilding {
 			costIron: 50,
 			costOil: 0,
 			productionStore: [new Infantry({ x: 0, y: 0 }), new Commando({ x: 0, y: 0 })],
+		});
+	}
+
+	public clone(params: { x: number; y: number }): Entity {
+		return new Barracks({
+			x: params.x,
+			y: params.y,
 		});
 	}
 }

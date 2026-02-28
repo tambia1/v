@@ -1,6 +1,5 @@
+import { Entity } from "../core/Entity";
 import { Position } from "../core/Position";
-import { Unit } from "../units/Unit";
-import { Building } from "./Building";
 
 type ProductionBuildingParams = {
 	name: string;
@@ -12,16 +11,16 @@ type ProductionBuildingParams = {
 	costIron: number;
 	costOil: number;
 
-	productionStore: Unit[];
+	productionStore: Entity[];
 };
 
-export abstract class ProductionBuilding extends Building {
+export abstract class ProductionBuilding extends Entity {
 	public costGold: number;
 	public costIron: number;
 	public costOil: number;
-	public productionStore: Unit[];
-	public productionQueue: Unit[];
-	public units: Unit[];
+	public productionStore: Entity[];
+	public productionQueue: Entity[];
+	public products: Entity[];
 
 	constructor(params: ProductionBuildingParams) {
 		super({
@@ -36,28 +35,28 @@ export abstract class ProductionBuilding extends Building {
 		this.costOil = params.costOil;
 		this.productionStore = params.productionStore;
 		this.productionQueue = [];
-		this.units = [];
+		this.products = [];
 	}
 
-	public addUnitToProductionQueue(unit: Unit) {
-		this.productionQueue.push(unit);
+	public addEntityToProductionQueue(entity: Entity) {
+		this.productionQueue.push(entity);
 	}
 
-	public removeUnitFromProductionQueue(unit: Unit) {
-		const index = this.productionQueue.indexOf(unit);
+	public removeEntityFromProductionQueue(entity: Entity) {
+		const index = this.productionQueue.indexOf(entity);
 		if (index > -1) {
 			this.productionQueue.splice(index, 1);
 		}
 	}
 
-	public addUnit(unit: Unit) {
-		this.units.push(unit);
+	public addEntity(entity: Entity) {
+		this.products.push(entity);
 	}
 
-	public removeUnit(unit: Unit) {
-		const index = this.units.indexOf(unit);
+	public removeEntity(entity: Entity) {
+		const index = this.products.indexOf(entity);
 		if (index > -1) {
-			this.units.splice(index, 1);
+			this.products.splice(index, 1);
 		}
 	}
 
@@ -68,13 +67,13 @@ export abstract class ProductionBuilding extends Building {
 			return;
 		}
 
-		const currentUnit = this.productionQueue[0];
+		const currentEntity = this.productionQueue[0];
 		const progressToAdd = timeDif / 1000;
-		currentUnit.addBuildProgress(progressToAdd);
+		currentEntity.addBuildProgress(progressToAdd);
 
-		if (currentUnit.isBuilt()) {
+		if (currentEntity.isBuilt()) {
 			this.productionQueue.shift();
-			this.units.push(currentUnit);
+			this.products.push(currentEntity);
 		}
 	}
 }

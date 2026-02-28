@@ -1,11 +1,10 @@
-import { Building } from "../buildings/Building";
 import { GoldMine } from "../buildings/goldMine/GoldMine";
 import { IronMine } from "../buildings/ironMine/IronMine";
 import { OilField } from "../buildings/oilField/OilField";
 import { ProductionBuilding } from "../buildings/ProductionBuilding";
 import { ResourceBuilding } from "../buildings/ResourceBuilding";
+import { Entity } from "../core/Entity";
 import { Position } from "../core/Position";
-import { Unit } from "../units/Unit";
 
 export class Player {
 	private playerName: string;
@@ -87,17 +86,17 @@ export class Player {
 	}
 
 	public getUnits() {
-		const units: Unit[] = [];
+		const units: Entity[] = [];
 
 		this.productionBuildings.forEach((productionBuilding) => {
-			units.push(...productionBuilding.units);
+			units.push(...productionBuilding.products);
 		});
 
 		return units;
 	}
 
 	public getBuildings() {
-		const buildings: Building[] = [];
+		const buildings: Entity[] = [];
 
 		this.resourceBuildings.forEach((resourceBuilding) => {
 			buildings.push(resourceBuilding);
@@ -118,7 +117,7 @@ export class Player {
 		this.productionBuildings.forEach((productionBuilding) => {
 			productionBuilding.update(timeDif);
 
-			productionBuilding.units.forEach((unit) => {
+			productionBuilding.products.forEach((unit) => {
 				unit.update(timeDif);
 			});
 		});
@@ -152,7 +151,7 @@ export class Player {
 			productionBuilding.draw(ctx);
 
 			// Draw units
-			productionBuilding.units.forEach((unit) => {
+			productionBuilding.products.forEach((unit) => {
 				if (unit.isHovered) {
 					this.drawBackgrounds(ctx, unit.position);
 				}

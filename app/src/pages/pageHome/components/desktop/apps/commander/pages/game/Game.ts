@@ -1,6 +1,5 @@
 import { Arena, type ArenaType } from "./Arena";
 import { AirField } from "./buildings/airField/AirField";
-import { Building } from "./buildings/Building";
 import { Barracks } from "./buildings/barracks/Barracks";
 import { CommandCenter } from "./buildings/commandCenter/CommandCenter";
 import { Factory } from "./buildings/factory/Factory";
@@ -9,9 +8,10 @@ import { IronMine } from "./buildings/ironMine/IronMine";
 import { OilField } from "./buildings/oilField/OilField";
 import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
+import { Research } from "./buildings/university/Research";
 import { University } from "./buildings/university/University";
 import { COLORS, GRID_SIZE, PLAYER_COLORS } from "./Constants";
-import { Product } from "./core/Product";
+import { Entity } from "./core/Entity";
 import { Player } from "./player/Player";
 import { Bomber } from "./units/Bomber";
 import { Commando } from "./units/Commando";
@@ -51,8 +51,8 @@ export class Game {
 
 	private gameEngine: GameEngine;
 
-	private selectedBuilding: Building | null = null;
-	private hoveredBuildingItem: Product | null = null;
+	private selectedBuilding: Entity | null = null;
+	private hoveredBuildingItem: Entity | Research | null = null;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
@@ -132,7 +132,7 @@ export class Game {
 						}
 
 						if (building instanceof ProductionBuilding) {
-							building.units.forEach((unit) => {
+							building.products.forEach((unit) => {
 								if (unit.isTouched(x, y)) {
 									unit.setIsHovered(true);
 								} else {
@@ -182,7 +182,7 @@ export class Game {
 						this.selectedBuilding = null;
 
 						if (building instanceof ProductionBuilding) {
-							building.units.forEach((unit) => {
+							building.products.forEach((unit) => {
 								unit.setIsSelected(false);
 							});
 						}
@@ -197,7 +197,7 @@ export class Game {
 						}
 
 						if (building instanceof ProductionBuilding) {
-							building.units.forEach((unit) => {
+							building.products.forEach((unit) => {
 								if (unit.isTouched(x, y)) {
 									unit.setIsSelected(true);
 								}
@@ -220,7 +220,7 @@ export class Game {
 								const itemH = 40;
 
 								if (x >= itemX && x <= itemX + itemW && y >= itemY && y <= itemY + itemH) {
-									building.addUnitToProductionQueue(unit.clone({ x: building.position.x, y: building.position.y }));
+									building.addEntityToProductionQueue(unit.clone({ x: building.position.x, y: building.position.y }));
 								}
 							});
 						}
@@ -249,16 +249,16 @@ export class Game {
 		player0.addProductionBuilding(new Factory({ x: 8 * GRID_SIZE, y: 10 * GRID_SIZE }));
 		player0.addProductionBuilding(new AirField({ x: 9 * GRID_SIZE, y: 10 * GRID_SIZE }));
 
-		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 5 * GRID_SIZE, y: 5 * GRID_SIZE }));
-		player0.getProductionBuildings()[2].addUnit(new Infantry({ x: 6 * GRID_SIZE, y: 5 * GRID_SIZE }));
-		player0.getProductionBuildings()[2].addUnit(new Commando({ x: 7 * GRID_SIZE, y: 5 * GRID_SIZE }));
+		player0.getProductionBuildings()[2].addEntity(new Infantry({ x: 5 * GRID_SIZE, y: 5 * GRID_SIZE }));
+		player0.getProductionBuildings()[2].addEntity(new Infantry({ x: 6 * GRID_SIZE, y: 5 * GRID_SIZE }));
+		player0.getProductionBuildings()[2].addEntity(new Commando({ x: 7 * GRID_SIZE, y: 5 * GRID_SIZE }));
 
-		player0.getProductionBuildings()[3].addUnit(new Jeep({ x: 5 * GRID_SIZE, y: 6 * GRID_SIZE }));
-		player0.getProductionBuildings()[3].addUnit(new LightTank({ x: 6 * GRID_SIZE, y: 6 * GRID_SIZE }));
-		player0.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7 * GRID_SIZE, y: 6 * GRID_SIZE }));
+		player0.getProductionBuildings()[3].addEntity(new Jeep({ x: 5 * GRID_SIZE, y: 6 * GRID_SIZE }));
+		player0.getProductionBuildings()[3].addEntity(new LightTank({ x: 6 * GRID_SIZE, y: 6 * GRID_SIZE }));
+		player0.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 7 * GRID_SIZE, y: 6 * GRID_SIZE }));
 
-		player0.getProductionBuildings()[4].addUnit(new Fighter({ x: 5 * GRID_SIZE, y: 7 * GRID_SIZE }));
-		player0.getProductionBuildings()[4].addUnit(new Bomber({ x: 6 * GRID_SIZE, y: 7 * GRID_SIZE }));
+		player0.getProductionBuildings()[4].addEntity(new Fighter({ x: 5 * GRID_SIZE, y: 7 * GRID_SIZE }));
+		player0.getProductionBuildings()[4].addEntity(new Bomber({ x: 6 * GRID_SIZE, y: 7 * GRID_SIZE }));
 
 		const player1 = this.players[1];
 		player1.addResourceBuilding(new GoldMine({ x: 10 * GRID_SIZE, y: 20 * GRID_SIZE }));
@@ -270,16 +270,16 @@ export class Game {
 		player1.addProductionBuilding(new Factory({ x: 8 * GRID_SIZE, y: 22 * GRID_SIZE }));
 		player1.addProductionBuilding(new AirField({ x: 9 * GRID_SIZE, y: 22 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 5 * GRID_SIZE, y: 18 * GRID_SIZE }));
-		player1.getProductionBuildings()[2].addUnit(new Infantry({ x: 6 * GRID_SIZE, y: 18 * GRID_SIZE }));
-		player1.getProductionBuildings()[2].addUnit(new Commando({ x: 7 * GRID_SIZE, y: 18 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 5 * GRID_SIZE, y: 18 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 6 * GRID_SIZE, y: 18 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addEntity(new Commando({ x: 7 * GRID_SIZE, y: 18 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[3].addUnit(new Jeep({ x: 5 * GRID_SIZE, y: 19 * GRID_SIZE }));
-		player1.getProductionBuildings()[3].addUnit(new LightTank({ x: 6 * GRID_SIZE, y: 19 * GRID_SIZE }));
-		player1.getProductionBuildings()[3].addUnit(new HeavyTank({ x: 7 * GRID_SIZE, y: 19 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addEntity(new Jeep({ x: 5 * GRID_SIZE, y: 19 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addEntity(new LightTank({ x: 6 * GRID_SIZE, y: 19 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 7 * GRID_SIZE, y: 19 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[4].addUnit(new Fighter({ x: 5 * GRID_SIZE, y: 20 * GRID_SIZE }));
-		player1.getProductionBuildings()[4].addUnit(new Bomber({ x: 6 * GRID_SIZE, y: 20 * GRID_SIZE }));
+		player1.getProductionBuildings()[4].addEntity(new Fighter({ x: 5 * GRID_SIZE, y: 20 * GRID_SIZE }));
+		player1.getProductionBuildings()[4].addEntity(new Bomber({ x: 6 * GRID_SIZE, y: 20 * GRID_SIZE }));
 	}
 
 	private initMap() {
@@ -507,28 +507,39 @@ export class Game {
 		this.drawBoxText(ctx, x + 10, y + 60, `Amount: ${building.amount.toFixed(1)}`);
 	}
 
-	private drawBoxCommandCenter(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, commandCenter: CommandCenter) {
-		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
-		this.drawBoxTitle(ctx, x + 10, y + 140, "Buildings");
-
-		commandCenter.buildings.forEach((building, index) => {
-			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, building.name);
-			ctx.drawImage(building.image, x + w - GRID_SIZE - 10 * 2, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
-		});
-	}
-
-	private drawBoxUniversity(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, university: University) {
-		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${university.costGold}`);
-		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${university.costIron}`);
-		this.drawBoxText(ctx, x + 10, y + 100, `Oil Cost: ${university.costOil}`);
+	private drawBoxUniversity(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: University) {
+		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${building.costGold}`);
+		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${building.costIron}`);
+		this.drawBoxText(ctx, x + 10, y + 100, `Oil Cost: ${building.costOil}`);
 
 		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
-		this.drawBoxTitle(ctx, x + 10, y + 140, "Reaserchs");
+		this.drawBoxTitle(ctx, x + 10, y + 140, "Units");
 
-		university.researches.forEach((research, index) => {
-			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, research.name);
-			ctx.drawImage(research.image, x + w - GRID_SIZE - 10 * 2, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+		building.researches.forEach((reaserch, index) => {
+			const isHovered = this.hoveredBuildingItem === reaserch;
+
+			if (isHovered) {
+				ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
+				ctx.fillRect(x + 10, y + 160 + 40 * index, w - 20, 40);
+			}
+
+			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, reaserch.name);
+			ctx.drawImage(reaserch.image, x + 130, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
 		});
+
+		const queueOffsetY = y + 180 + GRID_SIZE * building.researches.length + 10;
+
+		this.drawBoxLine(ctx, x + 10, queueOffsetY, w - 20);
+		this.drawBoxTitle(ctx, x + 10, queueOffsetY + 20, "Queue:");
+
+		if (building.productionQueue.length > 0) {
+			building.productionQueue.forEach((unit, index) => {
+				ctx.drawImage(unit.image, x + 130, queueOffsetY + 30 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+
+				this.drawBoxText(ctx, x + 10, queueOffsetY + 60 + GRID_SIZE * index, unit.name);
+				this.drawBoxText(ctx, x + 10, queueOffsetY + 75 + GRID_SIZE * index, `Progress: ${unit.getBuildProgress().toFixed(1)} / ${unit.getTimeToBuild()}`);
+			});
+		}
 	}
 
 	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
@@ -585,15 +596,11 @@ export class Game {
 				this.drawBoxResourceBuilding(ctx, x, y, building);
 			}
 
-			if (building instanceof CommandCenter) {
-				this.drawBoxCommandCenter(ctx, x, y, w, building);
-			}
-
 			if (building instanceof University) {
 				this.drawBoxUniversity(ctx, x, y, w, building);
 			}
 
-			if (building instanceof Factory || building instanceof Barracks || building instanceof AirField) {
+			if (building instanceof ProductionBuilding) {
 				this.drawBoxUnitBuilding(ctx, x, y, w, building);
 			}
 		}

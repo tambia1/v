@@ -1,4 +1,5 @@
 import { GRID_SIZE } from "../../Constants";
+import { Entity } from "../../core/Entity";
 import { Position } from "../../core/Position";
 import { Bomber } from "../../units/Bomber";
 import { Fighter } from "../../units/Fighter";
@@ -31,5 +32,12 @@ export class AirField extends ProductionBuilding {
 
 		this.name = "Air Field";
 		this.image = UtilsImage.getImage(image);
+	}
+
+	public clone(params: { x: number; y: number }): Entity {
+		return new AirField({
+			x: params.x,
+			y: params.y,
+		});
 	}
 }

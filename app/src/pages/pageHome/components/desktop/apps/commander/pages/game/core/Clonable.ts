@@ -1,3 +1,5 @@
-export interface Clonable<T> {
-	clone(params: { x: number; y: number }): T;
+import { Entity } from "./Entity";
+
+export interface Clonable {
+	clone(params: { x: number; y: number }): Entity;
 }

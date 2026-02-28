@@ -1,5 +1,5 @@
+import { Entity } from "../core/Entity";
 import { Position } from "../core/Position";
-import { Building } from "./Building";
 
 type ResourceBuildingParams = {
 	name: string;
@@ -11,7 +11,7 @@ type ResourceBuildingParams = {
 	producedPerSecond: number;
 };
 
-export abstract class ResourceBuilding extends Building {
+export abstract class ResourceBuilding extends Entity {
 	public amount: number;
 	public producedPerSecond: number;
 

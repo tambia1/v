@@ -1,36 +1,54 @@
 import { COLORS } from "../Constants";
-import { Drawable } from "../core/Drawable";
-import { Hoverable } from "../core/Hoverable";
-import { Position } from "../core/Position";
-import { Product } from "../core/Product";
-import { Selectable } from "../core/Selectable";
-import { Updatable } from "../core/Updatable";
 import { Animation } from "../utils/Animation";
+import { Clonable } from "./Clonable";
+import { Drawable } from "./Drawable";
+import { Hoverable } from "./Hoverable";
+import { Position } from "./Position";
+import { Pricable } from "./Pricable";
+import { Product } from "./Product";
+import { Selectable } from "./Selectable";
+import { Updatable } from "./Updatable";
 
-type BuildingParams = {
+type EntityParams = {
 	name: string;
 	image: HTMLImageElement;
 	position: Position;
 	life: number;
 };
 
-export abstract class Building implements Product, Drawable, Updatable, Selectable, Hoverable {
+export abstract class Entity implements Product, Drawable, Updatable, Selectable, Hoverable, Clonable, Pricable {
 	public name: string;
 	public image: HTMLImageElement;
 	public life: number;
 	public currentLife: number;
 	public position: Position;
-	public isSelected = false;
-	public isHovered = false;
+	public isSelected: boolean;
+	public isHovered: boolean;
+	public costGold: number;
+	public costIron: number;
+	public costOil: number;
+
+	public timeToBuild: number;
+	public buildProgress: number;
 
 	protected animationScale: Animation;
 
-	constructor(params: BuildingParams) {
+	constructor(params: EntityParams) {
 		this.name = params.name;
 		this.image = params.image;
 		this.position = params.position;
 		this.life = params.life;
 		this.currentLife = params.life;
+
+		this.timeToBuild = 0;
+		this.buildProgress = 0;
+
+		this.costGold = 0;
+		this.costIron = 0;
+		this.costOil = 0;
+
+		this.isSelected = false;
+		this.isHovered = false;
 
 		this.animationScale = new Animation({
 			time: 300,
@@ -70,6 +88,26 @@ export abstract class Building implements Product, Drawable, Updatable, Selectab
 		return this.position.isContains(x, y);
 	}
 
+	public getTimeToBuild() {
+		return this.timeToBuild;
+	}
+
+	public getBuildProgress() {
+		return this.buildProgress;
+	}
+
+	public addBuildProgress(progress: number) {
+		this.buildProgress += progress;
+	}
+
+	public isBuilt() {
+		return this.buildProgress >= this.timeToBuild;
+	}
+
+	public update(_timeDif: number) {
+		this.animationScale.calculate();
+	}
+
 	public drawLife(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
@@ -95,10 +133,6 @@ export abstract class Building implements Product, Drawable, Updatable, Selectab
 		ctx.restore();
 	}
 
-	public update(_timeDif: number) {
-		this.animationScale.calculate();
-	}
-
 	public draw(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
@@ -116,4 +150,6 @@ export abstract class Building implements Product, Drawable, Updatable, Selectab
 
 		ctx.restore();
 	}
+
+	public abstract clone(params: { x: number; y: number }): Entity;
 }
