@@ -111,7 +111,7 @@ export class Game {
 		this.drawTimeLeft(ctx);
 		this.drawPlayersDetails(ctx);
 		this.drawPlayersArmy(ctx);
-		this.drawPlayersSelectedBuildingDetails(ctx);
+		this.drawSelectedBuildingDetails(ctx);
 
 		this.drawGameOver(ctx);
 
@@ -153,9 +153,9 @@ export class Game {
 
 							building.productionStore.forEach((unit, index) => {
 								const itemX = boxX + 10;
-								const itemY = boxY + 120 + 40 * index;
+								const itemY = boxY + 160 + GRID_SIZE * index;
 								const itemW = 180;
-								const itemH = 40;
+								const itemH = GRID_SIZE;
 
 								if (x >= itemX && x <= itemX + itemW && y >= itemY && y <= itemY + itemH) {
 									this.hoveredBuildingItem = unit;
@@ -215,7 +215,7 @@ export class Game {
 
 							building.productionStore.forEach((unit, index) => {
 								const itemX = boxX + 10;
-								const itemY = boxY + 120 + 40 * index;
+								const itemY = boxY + 160 + 40 * index;
 								const itemW = 180;
 								const itemH = 40;
 
@@ -473,89 +473,128 @@ export class Game {
 		ctx.restore();
 	}
 
-	private drawPlayersSelectedBuildingDetails(ctx: CanvasRenderingContext2D) {
+	private drawBox(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number) {
+		ctx.font = "oswald 12px";
+		ctx.fillStyle = COLORS.BOX_BG;
+		ctx.strokeStyle = COLORS.BOX_TEXT;
+		ctx.beginPath();
+		ctx.roundRect(x, y, w, h, [5, 5, 5, 5]);
+		ctx.fill();
+		ctx.stroke();
+		ctx.closePath();
+	}
+
+	private drawBoxLine(ctx: CanvasRenderingContext2D, x: number, y: number, w: number) {
+		ctx.strokeStyle = COLORS.BOX_TITLE;
+		ctx.beginPath();
+		ctx.moveTo(x, y);
+		ctx.lineTo(x + w, y);
+		ctx.stroke();
+		ctx.closePath();
+	}
+
+	private drawBoxTitle(ctx: CanvasRenderingContext2D, x: number, y: number, text: string) {
+		ctx.fillStyle = COLORS.BOX_TITLE;
+		ctx.fillText(text, x, y);
+	}
+
+	private drawBoxText(ctx: CanvasRenderingContext2D, x: number, y: number, text: string) {
+		ctx.fillStyle = COLORS.BOX_TEXT;
+		ctx.fillText(text, x, y);
+	}
+
+	private drawBoxResourceBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, building: ResourceBuilding) {
+		this.drawBoxText(ctx, x + 10, y + 60, `Amount: ${building.amount.toFixed(1)}`);
+	}
+
+	private drawBoxCommandCenter(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, commandCenter: CommandCenter) {
+		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
+		this.drawBoxTitle(ctx, x + 10, y + 140, "Buildings");
+
+		commandCenter.buildings.forEach((building, index) => {
+			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, building.name);
+			ctx.drawImage(building.image, x + w - GRID_SIZE - 10 * 2, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+		});
+	}
+
+	private drawBoxUniversity(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, university: University) {
+		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${university.costGold}`);
+		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${university.costIron}`);
+		this.drawBoxText(ctx, x + 10, y + 100, `Oil Cost: ${university.costOil}`);
+
+		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
+		this.drawBoxTitle(ctx, x + 10, y + 140, "Reaserchs");
+
+		university.researches.forEach((research, index) => {
+			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, research.name);
+			ctx.drawImage(research.image, x + w - GRID_SIZE - 10 * 2, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+		});
+	}
+
+	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
+		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${building.costGold}`);
+		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${building.costIron}`);
+		this.drawBoxText(ctx, x + 10, y + 100, `Oil Cost: ${building.costOil}`);
+
+		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
+		this.drawBoxTitle(ctx, x + 10, y + 140, "Units");
+
+		building.productionStore.forEach((unit, index) => {
+			const isHovered = this.hoveredBuildingItem === unit;
+
+			if (isHovered) {
+				ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
+				ctx.fillRect(x + 10, y + 160 + 40 * index, w - 20, 40);
+			}
+
+			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, unit.name);
+			ctx.drawImage(unit.image, x + 130, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+		});
+
+		const queueOffsetY = y + 180 + GRID_SIZE * building.productionStore.length + 10;
+
+		this.drawBoxLine(ctx, x + 10, queueOffsetY, w - 20);
+		this.drawBoxTitle(ctx, x + 10, queueOffsetY + 20, "Queue:");
+
+		if (building.productionQueue.length > 0) {
+			building.productionQueue.forEach((unit, index) => {
+				ctx.drawImage(unit.image, x + 130, queueOffsetY + 30 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+
+				this.drawBoxText(ctx, x + 10, queueOffsetY + 60 + GRID_SIZE * index, unit.name);
+				this.drawBoxText(ctx, x + 10, queueOffsetY + 75 + GRID_SIZE * index, `Progress: ${unit.getBuildProgress().toFixed(1)} / ${unit.getTimeToBuild()}`);
+			});
+		}
+	}
+
+	private drawSelectedBuildingDetails(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
 		if (this.selectedBuilding) {
 			const building = this.selectedBuilding;
 
-			const x = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
-			const y = 20 + this.board.scrollTop;
 			const w = 200;
-			const h = 560;
+			const h = 600;
+			const x = this.board.offsetWidth - w - 20 + this.board.scrollLeft;
+			const y = 20 + this.board.scrollTop;
 
-			// draw box
-			ctx.font = "oswald 12px";
-			ctx.fillStyle = COLORS.BOX_BG;
-			ctx.strokeStyle = COLORS.BOX_TEXT;
-			ctx.beginPath();
-			ctx.roundRect(x, y, w, h, [5, 5, 5, 5]);
-			ctx.fill();
-			ctx.stroke();
-			ctx.closePath();
+			this.drawBox(ctx, x, y, w, h);
+			this.drawBoxTitle(ctx, x + 10, y + 20, building.name);
 			ctx.drawImage(building.image, x + 130, y, 50, 50);
 
-			ctx.fillStyle = COLORS.BOX_TITLE;
-			ctx.fillText(building.name, x + 10, y + 20);
-
-			// draw line
-			ctx.strokeStyle = COLORS.BOX_TITLE;
-			ctx.beginPath();
-			ctx.moveTo(x + 10, y + 120);
-			ctx.lineTo(x + w - 10, y + 120);
-			ctx.stroke();
-			ctx.closePath();
-
-			//draw items
 			if (building instanceof ResourceBuilding) {
-				ctx.fillStyle = COLORS.BOX_TEXT;
-				ctx.fillText(`Amount: ${building.amount.toFixed(1)}`, x + 10, y + 60);
+				this.drawBoxResourceBuilding(ctx, x, y, building);
 			}
 
 			if (building instanceof CommandCenter) {
-				ctx.fillStyle = COLORS.BOX_TEXT;
-
-				building.buildings.forEach((building, index) => {
-					ctx.fillText(building.name, x + 10, y + 140 + 40 * index);
-					ctx.drawImage(building.image, x + 130, y + 120 + 40 * index, 50, 50);
-				});
+				this.drawBoxCommandCenter(ctx, x, y, w, building);
 			}
 
 			if (building instanceof University) {
-				ctx.fillStyle = COLORS.BOX_TEXT;
-				ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
-				ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
-				ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
-
-				building.researches.forEach((research, index) => {
-					ctx.fillText(research.name, x + 10, y + 140 + 40 * index);
-					ctx.drawImage(research.image, x + 130, y + 120 + 40 * index, 50, 50);
-				});
+				this.drawBoxUniversity(ctx, x, y, w, building);
 			}
 
-			if (building instanceof ProductionBuilding) {
-				ctx.fillStyle = COLORS.BOX_TEXT;
-				ctx.fillText(`Gold Cost: ${building.costGold}`, x + 10, y + 60);
-				ctx.fillText(`Iron Cost: ${building.costIron}`, x + 10, y + 80);
-				ctx.fillText(`Oil Cost: ${building.costOil}`, x + 10, y + 100);
-
-				building.productionStore.forEach((unit, index) => {
-					const isHovered = this.hoveredBuildingItem === unit;
-
-					if (isHovered) {
-						ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
-						ctx.fillRect(x + 10, y + 120 + 40 * index, 180, 40);
-					}
-
-					ctx.fillStyle = COLORS.BOX_TEXT;
-					ctx.fillText(unit.name, x + 10, y + 140 + 40 * index);
-					ctx.drawImage(unit.image, x + 130, y + 120 + 40 * index, 50, 50);
-
-					if (!unit.isBuilt()) {
-						ctx.fillStyle = COLORS.BOX_TEXT;
-						ctx.fillText(`Progress: ${unit.getBuildProgress().toFixed(2)} / ${unit.getTimeToBuild()}`, x + 10, y + 160 + 40 * index);
-					}
-				});
+			if (building instanceof Factory || building instanceof Barracks || building instanceof AirField) {
+				this.drawBoxUnitBuilding(ctx, x, y, w, building);
 			}
 		}
 
