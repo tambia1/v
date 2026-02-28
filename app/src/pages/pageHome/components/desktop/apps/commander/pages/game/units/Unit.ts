@@ -1,9 +1,9 @@
 import { COLORS } from "../Constants";
 import { Clonable } from "../core/Clonable";
 import { Drawable } from "../core/Drawable";
-import { Entity } from "../core/Entity";
 import { Hoverable } from "../core/Hoverable";
 import { Position } from "../core/Position";
+import { Product } from "../core/Product";
 import { Selectable } from "../core/Selectable";
 import { Updatable } from "../core/Updatable";
 import { Animation } from "../utils/Animation";
@@ -23,7 +23,7 @@ type UnitParams = {
 	timeToBuild: number;
 };
 
-export abstract class Unit implements Entity, Drawable, Updatable, Selectable, Hoverable, Clonable<Unit> {
+export abstract class Unit implements Product, Drawable, Updatable, Selectable, Hoverable, Clonable<Unit> {
 	public name: string;
 	public image: HTMLImageElement;
 	protected costGoldToBuild: number;

@@ -1,8 +1,8 @@
 import { COLORS } from "../Constants";
 import { Drawable } from "../core/Drawable";
-import { Entity } from "../core/Entity";
 import { Hoverable } from "../core/Hoverable";
 import { Position } from "../core/Position";
+import { Product } from "../core/Product";
 import { Selectable } from "../core/Selectable";
 import { Updatable } from "../core/Updatable";
 import { Animation } from "../utils/Animation";
@@ -14,7 +14,7 @@ type BuildingParams = {
 	life: number;
 };
 
-export abstract class Building implements Entity, Drawable, Updatable, Selectable, Hoverable {
+export abstract class Building implements Product, Drawable, Updatable, Selectable, Hoverable {
 	public name: string;
 	public image: HTMLImageElement;
 	public life: number;

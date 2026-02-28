@@ -1,5 +1,5 @@
 import { Drawable } from "../core/Drawable";
-import { Entity } from "../core/Entity";
+import { Product } from "../core/Product";
 import { Updatable } from "../core/Updatable";
 
 type WeaponParams = {
@@ -14,7 +14,7 @@ type WeaponParams = {
 	accuracy: number;
 };
 
-export abstract class Weapon implements Entity, Drawable, Updatable {
+export abstract class Weapon implements Product, Drawable, Updatable {
 	public name: string;
 	public image: HTMLImageElement;
 	protected costGold: number;

@@ -11,7 +11,7 @@ import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
 import { University } from "./buildings/university/University";
 import { COLORS, GRID_SIZE, PLAYER_COLORS } from "./Constants";
-import { Entity } from "./core/Entity";
+import { Product } from "./core/Product";
 import { Player } from "./player/Player";
 import { Bomber } from "./units/Bomber";
 import { Commando } from "./units/Commando";
@@ -52,7 +52,7 @@ export class Game {
 	private gameEngine: GameEngine;
 
 	private selectedBuilding: Building | null = null;
-	private hoveredBuildingItem: Entity | null = null;
+	private hoveredBuildingItem: Product | null = null;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
