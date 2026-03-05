@@ -11,7 +11,10 @@ export const COLORS = {
 	BOX_TEXT: "#ffffff",
 	BOX_BG: "#000000",
 
+	// MENU
 	BOX_ITEM_HOVER: "#ffffff11",
+	BOX_ENTITY_FILL: "#ffffff",
+	BOX_ENTITY_STROKE: "#000000",
 
 	// Unit colors
 	UNIT_LIFE_STROKE: "#ffffff",

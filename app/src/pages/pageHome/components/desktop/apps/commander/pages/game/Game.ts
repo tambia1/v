@@ -523,7 +523,15 @@ export class Game {
 			}
 
 			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, unit.name);
-			ctx.drawImage(unit.image, x + 130, y + 180 - 25 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+
+			ctx.fillStyle = COLORS.BOX_ENTITY_FILL;
+			ctx.strokeStyle = COLORS.BOX_ENTITY_STROKE;
+			ctx.beginPath();
+			ctx.roundRect(x + w - GRID_SIZE - 10, y + 160 + 40 * index, GRID_SIZE, GRID_SIZE, [5, 5, 5, 5]);
+			ctx.fill();
+			ctx.stroke();
+
+			ctx.drawImage(unit.image, x + w - GRID_SIZE - 10 - 5, y + 180 - 25 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
 		});
 
 		const queueOffsetY = y + 180 + GRID_SIZE * building.productionStore.length + 10;
