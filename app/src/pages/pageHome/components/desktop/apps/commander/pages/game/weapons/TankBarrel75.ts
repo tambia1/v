@@ -1,3 +1,5 @@
+import { Entity } from "../core/Entity";
+import { Position } from "../core/Position";
 import { UtilsImage } from "../utils/UtilsImage";
 import image from "./images/tankBarrel75.png";
 import { Weapon } from "./Weapon";
@@ -7,20 +9,26 @@ export class TankBarrel75 extends Weapon {
 		super({
 			name: "Tank Barrel 75mm",
 			image: UtilsImage.getImage(image),
-			costGold: 150,
-			costIron: 100,
-			damage: 75,
-			range: 500,
-			rateOfFire: 2,
-			accuracy: 0.8,
+			position: new Position({
+				x: 0,
+				y: 0,
+				w: 0,
+				h: 0,
+			}),
+			costGoldToBuild: 20,
+			costIronToBuild: 10,
+			costOilConsumption: 0,
+			moveSpeed: 0,
+			timeToBuild: 10,
+			life: 10,
+			damage: 15,
+			range: 250,
+			rateOfFire: 3,
+			accuracy: 0.75,
 		});
 	}
 
-	public update(_timeDif: number) {}
-
-	public draw(ctx: CanvasRenderingContext2D) {
-		ctx.save();
-		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
-		ctx.restore();
+	public clone(_params: { x: number; y: number }): Entity {
+		return new TankBarrel75();
 	}
 }

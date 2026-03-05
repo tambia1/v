@@ -1,106 +1,127 @@
-import { Drawable } from "../core/Drawable";
-import { Product } from "../core/Product";
-import { Updatable } from "../core/Updatable";
+import { Entity } from "../core/Entity";
+import { Position } from "../core/Position";
 
 type WeaponParams = {
 	name: string;
 	image: HTMLImageElement;
+	position: Position;
+	life: number;
 
-	costGold: number;
-	costIron: number;
+	costGoldToBuild: number;
+	costIronToBuild: number;
+	costOilConsumption: number;
+	moveSpeed: number;
+	timeToBuild: number;
+
 	damage: number;
 	range: number;
 	rateOfFire: number;
 	accuracy: number;
 };
 
-export abstract class Weapon implements Product, Drawable, Updatable {
-	public name: string;
-	public image: HTMLImageElement;
-	protected costGold: number;
-	protected costIron: number;
+export abstract class Weapon extends Entity {
+	protected costGoldToBuild: number;
+	protected costIronToBuild: number;
+	protected costOilConsumption: number;
+	protected moveSpeed: number;
 	protected damage: number;
 	protected range: number;
 	protected rateOfFire: number;
 	protected accuracy: number;
-	protected x: number;
-	protected y: number;
-	protected w: number;
-	protected h: number;
-	public buildProgress: number;
-	public timeToBuild: number;
 
 	constructor(params: WeaponParams) {
-		this.name = params.name;
-		this.image = params.image;
-		this.costGold = params.costGold;
-		this.costIron = params.costIron;
+		super({
+			name: params.name,
+			image: params.image,
+			position: params.position,
+			life: params.life,
+		});
+
+		this.costGoldToBuild = params.costGoldToBuild;
+		this.costIronToBuild = params.costIronToBuild;
+		this.costOilConsumption = params.costOilConsumption;
+		this.moveSpeed = params.moveSpeed;
+
+		this.timeToBuild = params.timeToBuild;
 		this.damage = params.damage;
 		this.range = params.range;
 		this.rateOfFire = params.rateOfFire;
 		this.accuracy = params.accuracy;
-
-		this.timeToBuild = 0;
-		this.buildProgress = 0;
-
-		this.x = 0;
-		this.y = 0;
-		this.w = 0;
-		this.h = 0;
 	}
 
-	public getTimeToBuild(): number {
-		return this.timeToBuild;
+	public getCostGoldToBuild() {
+		return this.costGoldToBuild;
 	}
 
-	public getBuildProgress(): number {
-		return this.buildProgress;
+	public setCostGoldToBuild(cost: number) {
+		this.costGoldToBuild = cost;
 	}
 
-	public addBuildProgress(progress: number): void {
-		this.buildProgress += progress;
+	public getCostIronToBuild() {
+		return this.costIronToBuild;
 	}
 
-	public isBuilt(): boolean {
-		return this.buildProgress >= this.timeToBuild;
+	public setCostIronToBuild(cost: number) {
+		this.costIronToBuild = cost;
 	}
 
-	public getCostGold() {
-		return this.costGold;
+	public getCostOilConsumption() {
+		return this.costOilConsumption;
 	}
 
-	public getCostIron() {
-		return this.costIron;
+	public setCostOilConsumption(cost: number) {
+		this.costOilConsumption = cost;
+	}
+
+	public getLife() {
+		return this.life;
+	}
+
+	public setLife(life: number) {
+		this.life = life;
+	}
+
+	public getMoveSpeed() {
+		return this.moveSpeed;
+	}
+
+	public setMoveSpeed(speed: number) {
+		this.moveSpeed = speed;
 	}
 
 	public getDamage() {
 		return this.damage;
 	}
 
+	public setDamage(damage: number) {
+		this.damage = damage;
+	}
+
 	public getRange() {
 		return this.range;
+	}
+
+	public setRange(range: number) {
+		this.range = range;
 	}
 
 	public getRateOfFire() {
 		return this.rateOfFire;
 	}
 
+	public setRateOfFire(rateOfFire: number) {
+		this.rateOfFire = rateOfFire;
+	}
+
 	public getAccuracy() {
 		return this.accuracy;
 	}
 
-	public setXY(x: number, y: number) {
-		this.x = x;
-		this.y = y;
+	public setAccuracy(accuracy: number) {
+		this.accuracy = accuracy;
 	}
 
-	public setWH(w: number, h: number) {
-		this.w = w;
-		this.h = h;
+	public draw(ctx: CanvasRenderingContext2D) {
+		super.draw(ctx);
 	}
-
-	public abstract update(timeDif: number): void;
-	public abstract draw(ctx: CanvasRenderingContext2D): void;
 }
-
-export type { WeaponParams };

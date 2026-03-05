@@ -8,7 +8,6 @@ import { IronMine } from "./buildings/ironMine/IronMine";
 import { OilField } from "./buildings/oilField/OilField";
 import { ProductionBuilding } from "./buildings/ProductionBuilding";
 import { ResourceBuilding } from "./buildings/ResourceBuilding";
-import { Research } from "./buildings/university/Research";
 import { University } from "./buildings/university/University";
 import { COLORS, GRID_SIZE, PLAYER_COLORS } from "./Constants";
 import { Entity } from "./core/Entity";
@@ -52,7 +51,7 @@ export class Game {
 	private gameEngine: GameEngine;
 
 	private selectedBuilding: Entity | null = null;
-	private hoveredBuildingItem: Entity | Research | null = null;
+	private hoveredBuildingItem: Entity | null = null;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
@@ -507,41 +506,6 @@ export class Game {
 		this.drawBoxText(ctx, x + 10, y + 60, `Amount: ${building.amount.toFixed(1)}`);
 	}
 
-	private drawBoxUniversity(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: University) {
-		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${building.costGold}`);
-		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${building.costIron}`);
-		this.drawBoxText(ctx, x + 10, y + 100, `Oil Cost: ${building.costOil}`);
-
-		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
-		this.drawBoxTitle(ctx, x + 10, y + 140, "Units");
-
-		building.researches.forEach((reaserch, index) => {
-			const isHovered = this.hoveredBuildingItem === reaserch;
-
-			if (isHovered) {
-				ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
-				ctx.fillRect(x + 10, y + 160 + 40 * index, w - 20, 40);
-			}
-
-			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, reaserch.name);
-			ctx.drawImage(reaserch.image, x + 130, y + 180 - 25 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
-		});
-
-		const queueOffsetY = y + 180 + GRID_SIZE * building.researches.length + 10;
-
-		this.drawBoxLine(ctx, x + 10, queueOffsetY, w - 20);
-		this.drawBoxTitle(ctx, x + 10, queueOffsetY + 20, "Queue:");
-
-		if (building.productionQueue.length > 0) {
-			building.productionQueue.forEach((unit, index) => {
-				ctx.drawImage(unit.image, x + 130, queueOffsetY + 30 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
-
-				this.drawBoxText(ctx, x + 10, queueOffsetY + 60 + GRID_SIZE * index, unit.name);
-				this.drawBoxText(ctx, x + 10, queueOffsetY + 75 + GRID_SIZE * index, `Progress: ${unit.getBuildProgress().toFixed(1)} / ${unit.getTimeToBuild()}`);
-			});
-		}
-	}
-
 	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
 		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${building.costGold}`);
 		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${building.costIron}`);
@@ -594,10 +558,6 @@ export class Game {
 
 			if (building instanceof ResourceBuilding) {
 				this.drawBoxResourceBuilding(ctx, x, y, building);
-			}
-
-			if (building instanceof University) {
-				this.drawBoxUniversity(ctx, x, y, w, building);
 			}
 
 			if (building instanceof ProductionBuilding) {

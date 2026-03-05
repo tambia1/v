@@ -1,21 +1,22 @@
 import { GRID_SIZE } from "../../Constants";
 import { Entity } from "../../core/Entity";
 import { Position } from "../../core/Position";
+import { Bomber } from "../../units/Bomber";
+import { Commando } from "../../units/Commando";
+import { Fighter } from "../../units/Fighter";
+import { HeavyTank } from "../../units/HeavyTank";
+import { Infantry } from "../../units/Infantry";
+import { Jeep } from "../../units/Jeep";
+import { LightTank } from "../../units/LightTank";
 import { UtilsImage } from "../../utils/UtilsImage";
+import { MachineGun } from "../../weapons/MachineGun";
+import { Missile } from "../../weapons/Missile";
+import { Rifle } from "../../weapons/Rifle";
+import { Rpg } from "../../weapons/Rpg";
+import { TankBarrel75 } from "../../weapons/TankBarrel75";
+import { TankBarrel120 } from "../../weapons/TankBarrel120";
 import { ProductionBuilding } from "../ProductionBuilding";
 import image from "./images/university.png";
-import { Research } from "./Research";
-import { ResearchBomber } from "./ResearchBomber";
-import { ResearchCommando } from "./ResearchCommando";
-import { ResearchFighter } from "./ResearchFighter";
-import { ResearchHeavyTank } from "./ResearchHeavyTank";
-import { ResearchInfantry } from "./ResearchInfantry";
-import { ResearchJeep } from "./ResearchJeep";
-import { ResearchLightTank } from "./ResearchLightTank";
-import { ResearchMachineGun } from "./ResearchMachineGun";
-import { ResearchMissle } from "./ResearchMissile";
-import { ResearchRifle } from "./ResearchRifle";
-import { ResearchRpg } from "./ResearchRpg";
 
 type UniversityParams = {
 	x: number;
@@ -23,8 +24,6 @@ type UniversityParams = {
 };
 
 export class University extends ProductionBuilding {
-	public researches: Research[];
-
 	constructor(params: UniversityParams) {
 		super({
 			name: "University",
@@ -39,29 +38,22 @@ export class University extends ProductionBuilding {
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
-			productionStore: [],
+			productionStore: [
+				new Rifle(),
+				new MachineGun(),
+				new Rpg(),
+				new Missile(),
+				new TankBarrel75(),
+				new TankBarrel120(),
+				new Infantry({ x: 0, y: 0 }),
+				new Commando({ x: 0, y: 0 }),
+				new Jeep({ x: 0, y: 0 }),
+				new LightTank({ x: 0, y: 0 }),
+				new HeavyTank({ x: 0, y: 0 }),
+				new Fighter({ x: 0, y: 0 }),
+				new Bomber({ x: 0, y: 0 }),
+			],
 		});
-
-		this.researches = [
-			new ResearchRifle(),
-			new ResearchMachineGun(),
-			new ResearchRpg(),
-			new ResearchMissle(),
-			new ResearchInfantry(),
-			new ResearchCommando(),
-			new ResearchJeep(),
-			new ResearchLightTank(),
-			new ResearchHeavyTank(),
-			new ResearchFighter(),
-			new ResearchBomber(),
-		];
-	}
-
-	public removeResearch(research: Research) {
-		const index = this.researches.indexOf(research);
-		if (index > -1) {
-			this.researches.splice(index, 1);
-		}
 	}
 
 	public clone(params: { x: number; y: number }): Entity {

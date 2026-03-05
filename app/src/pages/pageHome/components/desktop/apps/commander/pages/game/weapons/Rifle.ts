@@ -1,3 +1,5 @@
+import { Entity } from "../core/Entity";
+import { Position } from "../core/Position";
 import { UtilsImage } from "../utils/UtilsImage";
 import image from "./images/rifle.png";
 import { Weapon } from "./Weapon";
@@ -7,8 +9,18 @@ export class Rifle extends Weapon {
 		super({
 			name: "Rifle",
 			image: UtilsImage.getImage(image),
-			costGold: 20,
-			costIron: 10,
+			position: new Position({
+				x: 0,
+				y: 0,
+				w: 0,
+				h: 0,
+			}),
+			costGoldToBuild: 20,
+			costIronToBuild: 10,
+			costOilConsumption: 0,
+			moveSpeed: 0,
+			timeToBuild: 10,
+			life: 10,
 			damage: 15,
 			range: 250,
 			rateOfFire: 3,
@@ -16,11 +28,7 @@ export class Rifle extends Weapon {
 		});
 	}
 
-	public update(_timeDif: number) {}
-
-	public draw(ctx: CanvasRenderingContext2D) {
-		ctx.save();
-		ctx.drawImage(this.image, this.x, this.y, this.w, this.h);
-		ctx.restore();
+	public clone(_params: { x: number; y: number }): Entity {
+		return new Rifle();
 	}
 }

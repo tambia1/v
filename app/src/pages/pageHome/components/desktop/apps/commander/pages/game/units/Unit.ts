@@ -94,6 +94,7 @@ export abstract class Unit extends Entity {
 			this.weapons.splice(index, 1);
 		}
 	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		super.draw(ctx);
 
