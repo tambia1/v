@@ -524,7 +524,7 @@ export class Game {
 			}
 
 			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, reaserch.name);
-			ctx.drawImage(reaserch.image, x + 130, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+			ctx.drawImage(reaserch.image, x + 130, y + 180 - 25 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
 		});
 
 		const queueOffsetY = y + 180 + GRID_SIZE * building.researches.length + 10;
@@ -559,7 +559,7 @@ export class Game {
 			}
 
 			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, unit.name);
-			ctx.drawImage(unit.image, x + 130, y + 180 - 20 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+			ctx.drawImage(unit.image, x + 130, y + 180 - 25 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
 		});
 
 		const queueOffsetY = y + 180 + GRID_SIZE * building.productionStore.length + 10;
