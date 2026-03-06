@@ -553,9 +553,9 @@ export class Game {
 	}
 
 	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 60, `Gold Cost: ${building.costGold}`);
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 80, `Iron Cost: ${building.costIron}`);
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 100, `Oil Cost: ${building.costOil}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 50, `Gold Cost: ${building.costGold}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 70, `Iron Cost: ${building.costIron}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 90, `Oil Cost: ${building.costOil}`);
 
 		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y + 120, w - Game.MENU_PADDING * 2);
 		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + 140, "Units");
@@ -626,7 +626,9 @@ export class Game {
 
 			this.drawBox(ctx, x, y, w, h);
 			this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_PADDING * 2, building.name);
-			ctx.drawImage(building.image, x + 130, y, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
+
+			const mainImageSize = 80;
+			ctx.drawImage(building.image, x + w - mainImageSize - Game.MENU_PADDING, y + Game.MENU_PADDING, mainImageSize, mainImageSize);
 
 			if (building instanceof ResourceBuilding) {
 				this.drawBoxResourceBuilding(ctx, x, y, building);
