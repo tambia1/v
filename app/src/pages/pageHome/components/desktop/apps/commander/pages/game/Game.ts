@@ -48,6 +48,7 @@ export class Game {
 
 	private static readonly MENU_WIDTH = 180;
 	private static readonly MENU_HEIGHT = 600;
+	private static readonly MENU_MARGIN = 20;
 	private static readonly MENU_PADDING = 10;
 	private static readonly MENU_ITEM_WIDTH = 40;
 	private static readonly MENU_ITEM_HEIGHT = 40;
@@ -155,8 +156,8 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getIsSelected() && building instanceof ProductionBuilding) {
-							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_PADDING * 2 + this.board.scrollLeft;
-							const boxY = Game.MENU_PADDING * 2 + this.board.scrollTop;
+							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
+							const boxY = Game.MENU_MARGIN + this.board.scrollTop;
 
 							let xx = boxX + Game.MENU_PADDING;
 							let yy = boxY + 160;
@@ -229,8 +230,8 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getIsSelected() && building instanceof ProductionBuilding) {
-							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_PADDING * 2 + this.board.scrollLeft;
-							const boxY = Game.MENU_PADDING * 2 + this.board.scrollTop;
+							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
+							const boxY = Game.MENU_MARGIN + this.board.scrollTop;
 
 							let xx = boxX + Game.MENU_PADDING;
 							let yy = boxY + 160;
@@ -620,8 +621,8 @@ export class Game {
 
 			const w = Game.MENU_WIDTH;
 			const h = Game.MENU_HEIGHT;
-			const x = this.board.offsetWidth - w - Game.MENU_PADDING * 2 + this.board.scrollLeft;
-			const y = Game.MENU_PADDING * 2 + this.board.scrollTop;
+			const x = this.board.offsetWidth - w - Game.MENU_MARGIN + this.board.scrollLeft;
+			const y = Game.MENU_MARGIN + this.board.scrollTop;
 
 			this.drawBox(ctx, x, y, w, h);
 			this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_PADDING * 2, building.name);
