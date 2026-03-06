@@ -50,6 +50,8 @@ export class Game {
 	private static readonly MENU_HEIGHT = 600;
 	private static readonly MENU_MARGIN = 20;
 	private static readonly MENU_PADDING = 10;
+	private static readonly MENU_BUILDING_SIZE = 80;
+	private static readonly MENU_TEXT_HEIGHT = 20;
 	private static readonly MENU_ITEM_WIDTH = 40;
 	private static readonly MENU_ITEM_HEIGHT = 40;
 	private static readonly MENU_ITEM_COLUMNS = 3;
@@ -536,7 +538,7 @@ export class Game {
 	}
 
 	private drawBoxResourceBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, building: ResourceBuilding) {
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 60, `Amount: ${building.amount.toFixed(1)}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 3, `Amount: ${building.amount.toFixed(1)}`);
 	}
 
 	private drawBoxEntityButton(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, fillColor: string) {
@@ -553,15 +555,15 @@ export class Game {
 	}
 
 	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 50, `Gold Cost: ${building.costGold}`);
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 70, `Iron Cost: ${building.costIron}`);
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 90, `Oil Cost: ${building.costOil}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 3, `Gold Cost: ${building.costGold}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 4, `Iron Cost: ${building.costIron}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 5, `Oil Cost: ${building.costOil}`);
 
-		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y + 120, w - Game.MENU_PADDING * 2);
-		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + 140, "Units");
+		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 7, w - Game.MENU_PADDING * 2);
+		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 8, "Units");
 
 		let xx = x + Game.MENU_PADDING;
-		let yy = y + 160;
+		let yy = y + Game.MENU_TEXT_HEIGHT * 9;
 		let c = 0;
 
 		building.productionStore.forEach((unit) => {
@@ -585,14 +587,12 @@ export class Game {
 			}
 		});
 
-		const queueOffsetY = y + Game.MENU_WIDTH + GRID_SIZE * 6 + Game.MENU_PADDING;
-
-		this.drawBoxLine(ctx, x + Game.MENU_PADDING, queueOffsetY, w - Game.MENU_PADDING * 2);
-		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, queueOffsetY + Game.MENU_PADDING * 2, "Queue");
+		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 22, w - Game.MENU_PADDING * 2);
+		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 23, "Queue");
 
 		c = 0;
 		xx = x + Game.MENU_PADDING;
-		yy = queueOffsetY + GRID_SIZE + Game.MENU_PADDING;
+		yy = y + Game.MENU_TEXT_HEIGHT * 24;
 
 		if (building.productionQueue.length > 0) {
 			building.productionQueue.forEach((unit) => {
@@ -627,8 +627,13 @@ export class Game {
 			this.drawBox(ctx, x, y, w, h);
 			this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_PADDING * 2, building.name);
 
-			const mainImageSize = 80;
-			ctx.drawImage(building.image, x + w - mainImageSize - Game.MENU_PADDING, y + Game.MENU_PADDING, mainImageSize, mainImageSize);
+			ctx.drawImage(
+				building.image,
+				x + w - Game.MENU_BUILDING_SIZE - Game.MENU_PADDING,
+				y + Game.MENU_PADDING,
+				Game.MENU_BUILDING_SIZE,
+				Game.MENU_BUILDING_SIZE,
+			);
 
 			if (building instanceof ResourceBuilding) {
 				this.drawBoxResourceBuilding(ctx, x, y, building);
