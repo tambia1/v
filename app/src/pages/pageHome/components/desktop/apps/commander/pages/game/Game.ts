@@ -593,7 +593,7 @@ export class Game {
 
 			this.drawBox(ctx, x, y, w, h);
 			this.drawBoxTitle(ctx, x + 10, y + 20, building.name);
-			ctx.drawImage(building.image, x + 130, y, 50, 50);
+			ctx.drawImage(building.image, x + 130, y, GRID_SIZE, GRID_SIZE);
 
 			if (building instanceof ResourceBuilding) {
 				this.drawBoxResourceBuilding(ctx, x, y, building);
