@@ -162,7 +162,7 @@ export class Game {
 							const boxY = Game.MENU_MARGIN + this.board.scrollTop;
 
 							let xx = boxX + Game.MENU_PADDING;
-							let yy = boxY + 160;
+							let yy = boxY + Game.MENU_TEXT_HEIGHT * 9;
 
 							const ww = Game.MENU_ITEM_WIDTH;
 							const hh = Game.MENU_ITEM_HEIGHT;
@@ -236,7 +236,7 @@ export class Game {
 							const boxY = Game.MENU_MARGIN + this.board.scrollTop;
 
 							let xx = boxX + Game.MENU_PADDING;
-							let yy = boxY + 160;
+							let yy = boxY + Game.MENU_TEXT_HEIGHT * 9;
 
 							const ww = Game.MENU_ITEM_WIDTH;
 							const hh = Game.MENU_ITEM_HEIGHT;
@@ -485,13 +485,14 @@ export class Game {
 
 		ctx.fillStyle = COLORS.BOX_TEXT;
 
+		const textHeight = 20;
 		this.players.forEach((player, index) => {
-			ctx.fillText(player.getPlayerName(), 20, y + 20 + 20 * index);
-			ctx.fillText(`${player.getGold().toFixed(1)}`, 100, y + 20 + 20 * index);
-			ctx.fillText(`${player.getIron().toFixed(1)}`, 150, y + 20 + 20 * index);
-			ctx.fillText(`${player.getOil().toFixed(1)}`, 200, y + 20 + 20 * index);
-			ctx.fillText(`${player.getBuildings().length}`, 250, y + 20 + 20 * index);
-			ctx.fillText(`${player.getUnits().length}`, 300, y + 20 + 20 * index);
+			ctx.fillText(player.getPlayerName(), 20, y + 20 + textHeight * index);
+			ctx.fillText(`${player.getGold().toFixed(1)}`, 100, y + 20 + textHeight * index);
+			ctx.fillText(`${player.getIron().toFixed(1)}`, 150, y + 20 + textHeight * index);
+			ctx.fillText(`${player.getOil().toFixed(1)}`, 200, y + 20 + textHeight * index);
+			ctx.fillText(`${player.getBuildings().length}`, 250, y + 20 + textHeight * index);
+			ctx.fillText(`${player.getUnits().length}`, 300, y + 20 + textHeight * index);
 		});
 
 		ctx.restore();
@@ -595,7 +596,11 @@ export class Game {
 		yy = y + Game.MENU_TEXT_HEIGHT * 24;
 
 		if (building.productionQueue.length > 0) {
-			building.productionQueue.forEach((unit) => {
+			building.productionQueue.forEach((unit, index) => {
+				if (index >= 6) {
+					return;
+				}
+
 				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_FILL);
 				ctx.drawImage(unit.image, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
 
