@@ -43,8 +43,14 @@ export class Game {
 	private timeLeft: number;
 	private winnerIndex: number;
 
-	private static MAP_WIDTH = 50;
-	private static MAP_HEIGHT = 25;
+	private static readonly MAP_WIDTH = 50;
+	private static readonly MAP_HEIGHT = 25;
+
+	private static readonly MENU_WIDTH = 180;
+	private static readonly MENU_HEIGHT = 600;
+	private static readonly MENU_PADDING = 10;
+	private static readonly MENU_ITEM_WIDTH = 40;
+	private static readonly MENU_ITEM_HEIGHT = 40;
 
 	private map: Map[][] = [];
 
@@ -147,7 +153,7 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getIsSelected() && building instanceof ProductionBuilding) {
-							const boxX = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
+							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
 							const boxY = 20 + this.board.scrollTop;
 
 							building.productionStore.forEach((unit, index) => {
@@ -166,10 +172,10 @@ export class Game {
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				// check items on map
-				const boxX = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
+				const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
 				const boxY = 20 + this.board.scrollTop;
-				const boxW = 200;
-				const boxH = 560;
+				const boxW = Game.MENU_WIDTH;
+				const boxH = Game.MENU_HEIGHT;
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
@@ -209,7 +215,7 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getIsSelected() && building instanceof ProductionBuilding) {
-							const boxX = this.board.offsetWidth - 200 - 20 + this.board.scrollLeft;
+							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
 							const boxY = 20 + this.board.scrollTop;
 
 							building.productionStore.forEach((unit, index) => {
@@ -503,7 +509,7 @@ export class Game {
 	}
 
 	private drawBoxResourceBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, building: ResourceBuilding) {
-		this.drawBoxText(ctx, x + 10, y + 60, `Amount: ${building.amount.toFixed(1)}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 60, `Amount: ${building.amount.toFixed(1)}`);
 	}
 
 	private drawBoxEntityButton(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, fillColor: string) {
@@ -520,14 +526,14 @@ export class Game {
 	}
 
 	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
-		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${building.costGold}`);
-		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${building.costIron}`);
-		this.drawBoxText(ctx, x + 10, y + 100, `Oil Cost: ${building.costOil}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 60, `Gold Cost: ${building.costGold}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 80, `Iron Cost: ${building.costIron}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + 100, `Oil Cost: ${building.costOil}`);
 
-		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
-		this.drawBoxTitle(ctx, x + 10, y + 140, "Units");
+		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y + 120, w - Game.MENU_PADDING * 2);
+		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + 140, "Units");
 
-		let xx = x + 10;
+		let xx = x + Game.MENU_PADDING;
 		let yy = y + 160;
 		let c = 0;
 
@@ -535,46 +541,46 @@ export class Game {
 			const isHovered = this.hoveredBuildingItem === unit;
 
 			if (isHovered) {
-				this.drawBoxEntityButton(ctx, xx, yy, GRID_SIZE, GRID_SIZE, COLORS.BOX_ITEM_HOVER);
+				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_HOVER);
 			} else {
-				this.drawBoxEntityButton(ctx, xx, yy, GRID_SIZE, GRID_SIZE, COLORS.BOX_ENTITY_FILL);
+				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_FILL);
 			}
 
-			ctx.drawImage(unit.image, xx, yy, GRID_SIZE, GRID_SIZE);
+			ctx.drawImage(unit.image, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
 
 			c = (c + 1) % 3;
 
 			if (c % 3 === 0) {
-				xx = x + 10;
-				yy += GRID_SIZE + 10;
+				xx = x + Game.MENU_PADDING;
+				yy += GRID_SIZE + Game.MENU_PADDING;
 			} else {
-				xx += GRID_SIZE + 20;
+				xx += GRID_SIZE + Game.MENU_PADDING * 2;
 			}
 		});
 
-		const queueOffsetY = y + 180 + GRID_SIZE * 6 + 10;
+		const queueOffsetY = y + Game.MENU_WIDTH + GRID_SIZE * 6 + Game.MENU_PADDING;
 
-		this.drawBoxLine(ctx, x + 10, queueOffsetY, w - 20);
-		this.drawBoxTitle(ctx, x + 10, queueOffsetY + 20, "Queue:");
+		this.drawBoxLine(ctx, x + Game.MENU_PADDING, queueOffsetY, w - Game.MENU_PADDING * 2);
+		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, queueOffsetY + Game.MENU_PADDING * 2, "Queue");
 
 		c = 0;
-		xx = x + 10;
-		yy = queueOffsetY + GRID_SIZE + 10;
+		xx = x + Game.MENU_PADDING;
+		yy = queueOffsetY + GRID_SIZE + Game.MENU_PADDING;
 
 		if (building.productionQueue.length > 0) {
 			building.productionQueue.forEach((unit) => {
-				this.drawBoxEntityButton(ctx, xx, yy, GRID_SIZE, GRID_SIZE, COLORS.BOX_ITEM_HOVER);
-				ctx.drawImage(unit.image, xx, yy, GRID_SIZE, GRID_SIZE);
+				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_FILL);
+				ctx.drawImage(unit.image, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
 
 				this.drawBoxTitle(ctx, xx, yy + GRID_SIZE + 12, `${unit.getBuildProgress().toFixed(1)} / ${unit.getTimeToBuild()}`);
 
 				c = (c + 1) % 3;
 
 				if (c % 3 === 0) {
-					xx = x + 10;
-					yy += GRID_SIZE + 20;
+					xx = x + Game.MENU_PADDING;
+					yy += GRID_SIZE + Game.MENU_PADDING * 2;
 				} else {
-					xx += GRID_SIZE + 20;
+					xx += GRID_SIZE + Game.MENU_PADDING * 2;
 				}
 			});
 		}
@@ -586,14 +592,14 @@ export class Game {
 		if (this.selectedBuilding) {
 			const building = this.selectedBuilding;
 
-			const w = 180;
-			const h = 600;
-			const x = this.board.offsetWidth - w - 20 + this.board.scrollLeft;
-			const y = 20 + this.board.scrollTop;
+			const w = Game.MENU_WIDTH;
+			const h = Game.MENU_HEIGHT;
+			const x = this.board.offsetWidth - w - Game.MENU_PADDING * 2 + this.board.scrollLeft;
+			const y = Game.MENU_PADDING * 2 + this.board.scrollTop;
 
 			this.drawBox(ctx, x, y, w, h);
-			this.drawBoxTitle(ctx, x + 10, y + 20, building.name);
-			ctx.drawImage(building.image, x + 130, y, GRID_SIZE, GRID_SIZE);
+			this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_PADDING * 2, building.name);
+			ctx.drawImage(building.image, x + 130, y, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
 
 			if (building instanceof ResourceBuilding) {
 				this.drawBoxResourceBuilding(ctx, x, y, building);
