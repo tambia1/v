@@ -51,6 +51,7 @@ export class Game {
 	private static readonly MENU_PADDING = 10;
 	private static readonly MENU_ITEM_WIDTH = 40;
 	private static readonly MENU_ITEM_HEIGHT = 40;
+	private static readonly MENU_ITEM_COLUMNS = 3;
 
 	private map: Map[][] = [];
 
@@ -150,20 +151,33 @@ export class Game {
 
 				// check items on sidebar
 				this.hoveredBuildingItem = null;
+
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getIsSelected() && building instanceof ProductionBuilding) {
-							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
-							const boxY = 20 + this.board.scrollTop;
+							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_PADDING * 2 + this.board.scrollLeft;
+							const boxY = Game.MENU_PADDING * 2 + this.board.scrollTop;
 
-							building.productionStore.forEach((unit, index) => {
-								const itemX = boxX + 10;
-								const itemY = boxY + 160 + GRID_SIZE * index;
-								const itemW = 180;
-								const itemH = GRID_SIZE;
+							let xx = boxX + Game.MENU_PADDING;
+							let yy = boxY + 160;
 
-								if (x >= itemX && x <= itemX + itemW && y >= itemY && y <= itemY + itemH) {
+							const ww = Game.MENU_ITEM_WIDTH;
+							const hh = Game.MENU_ITEM_HEIGHT;
+
+							let c = 0;
+
+							building.productionStore.forEach((unit) => {
+								if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
 									this.hoveredBuildingItem = unit;
+								}
+
+								c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+								if (c === 0) {
+									xx = boxX + Game.MENU_PADDING;
+									yy += GRID_SIZE + Game.MENU_PADDING;
+								} else {
+									xx += GRID_SIZE + Game.MENU_PADDING * 2;
 								}
 							});
 						}
@@ -215,17 +229,29 @@ export class Game {
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.getIsSelected() && building instanceof ProductionBuilding) {
-							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
-							const boxY = 20 + this.board.scrollTop;
+							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_PADDING * 2 + this.board.scrollLeft;
+							const boxY = Game.MENU_PADDING * 2 + this.board.scrollTop;
 
-							building.productionStore.forEach((unit, index) => {
-								const itemX = boxX + 10;
-								const itemY = boxY + 160 + 40 * index;
-								const itemW = 180;
-								const itemH = 40;
+							let xx = boxX + Game.MENU_PADDING;
+							let yy = boxY + 160;
 
-								if (x >= itemX && x <= itemX + itemW && y >= itemY && y <= itemY + itemH) {
+							const ww = Game.MENU_ITEM_WIDTH;
+							const hh = Game.MENU_ITEM_HEIGHT;
+
+							let c = 0;
+
+							building.productionStore.forEach((unit) => {
+								if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
 									building.addEntityToProductionQueue(unit.clone({ x: building.position.x, y: building.position.y }));
+								}
+
+								c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+								if (c === 0) {
+									xx = boxX + Game.MENU_PADDING;
+									yy += GRID_SIZE + Game.MENU_PADDING;
+								} else {
+									xx += GRID_SIZE + Game.MENU_PADDING * 2;
 								}
 							});
 						}
@@ -548,9 +574,9 @@ export class Game {
 
 			ctx.drawImage(unit.image, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
 
-			c = (c + 1) % 3;
+			c = (c + 1) % Game.MENU_ITEM_COLUMNS;
 
-			if (c % 3 === 0) {
+			if (c % Game.MENU_ITEM_COLUMNS === 0) {
 				xx = x + Game.MENU_PADDING;
 				yy += GRID_SIZE + Game.MENU_PADDING;
 			} else {
@@ -574,9 +600,9 @@ export class Game {
 
 				this.drawBoxTitle(ctx, xx, yy + GRID_SIZE + 12, `${unit.getBuildProgress().toFixed(1)} / ${unit.getTimeToBuild()}`);
 
-				c = (c + 1) % 3;
+				c = (c + 1) % Game.MENU_ITEM_COLUMNS;
 
-				if (c % 3 === 0) {
+				if (c % Game.MENU_ITEM_COLUMNS === 0) {
 					xx = x + Game.MENU_PADDING;
 					yy += GRID_SIZE + Game.MENU_PADDING * 2;
 				} else {
