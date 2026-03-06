@@ -506,6 +506,19 @@ export class Game {
 		this.drawBoxText(ctx, x + 10, y + 60, `Amount: ${building.amount.toFixed(1)}`);
 	}
 
+	private drawBoxEntityButton(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, fillColor: string) {
+		ctx.save();
+
+		ctx.fillStyle = fillColor;
+		ctx.strokeStyle = COLORS.BOX_ENTITY_STROKE;
+		ctx.beginPath();
+		ctx.roundRect(x, y, w, h, [5, 5, 5, 5]);
+		ctx.fill();
+		ctx.stroke();
+
+		ctx.restore();
+	}
+
 	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
 		this.drawBoxText(ctx, x + 10, y + 60, `Gold Cost: ${building.costGold}`);
 		this.drawBoxText(ctx, x + 10, y + 80, `Iron Cost: ${building.costIron}`);
@@ -514,24 +527,29 @@ export class Game {
 		this.drawBoxLine(ctx, x + 10, y + 120, w - 20);
 		this.drawBoxTitle(ctx, x + 10, y + 140, "Units");
 
-		building.productionStore.forEach((unit, index) => {
+		let xx = x + 10;
+		let yy = y + 160;
+		let c = 0;
+
+		building.productionStore.forEach((unit) => {
 			const isHovered = this.hoveredBuildingItem === unit;
 
 			if (isHovered) {
-				ctx.fillStyle = COLORS.BOX_ITEM_HOVER;
-				ctx.fillRect(x + 10, y + 160 + 40 * index, w - 20, 40);
+				this.drawBoxEntityButton(ctx, xx, yy, GRID_SIZE, GRID_SIZE, COLORS.BOX_ITEM_HOVER);
+			} else {
+				this.drawBoxEntityButton(ctx, xx, yy, GRID_SIZE, GRID_SIZE, COLORS.BOX_ENTITY_FILL);
 			}
 
-			this.drawBoxText(ctx, x + 10, y + 180 + GRID_SIZE * index, unit.name);
+			ctx.drawImage(unit.image, xx, yy, GRID_SIZE, GRID_SIZE);
 
-			ctx.fillStyle = COLORS.BOX_ENTITY_FILL;
-			ctx.strokeStyle = COLORS.BOX_ENTITY_STROKE;
-			ctx.beginPath();
-			ctx.roundRect(x + w - GRID_SIZE - 10, y + 160 + 40 * index, GRID_SIZE, GRID_SIZE, [5, 5, 5, 5]);
-			ctx.fill();
-			ctx.stroke();
+			c = (c + 1) % 3;
 
-			ctx.drawImage(unit.image, x + w - GRID_SIZE - 10 - 5, y + 180 - 25 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+			if (c % 3 === 0) {
+				xx = x + 10;
+				yy += GRID_SIZE + 10;
+			} else {
+				xx += GRID_SIZE + 20;
+			}
 		});
 
 		const queueOffsetY = y + 180 + GRID_SIZE * building.productionStore.length + 10;
@@ -555,7 +573,7 @@ export class Game {
 		if (this.selectedBuilding) {
 			const building = this.selectedBuilding;
 
-			const w = 200;
+			const w = 180;
 			const h = 600;
 			const x = this.board.offsetWidth - w - 20 + this.board.scrollLeft;
 			const y = 20 + this.board.scrollTop;
