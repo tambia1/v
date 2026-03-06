@@ -552,17 +552,30 @@ export class Game {
 			}
 		});
 
-		const queueOffsetY = y + 180 + GRID_SIZE * building.productionStore.length + 10;
+		const queueOffsetY = y + 180 + GRID_SIZE * 6 + 10;
 
 		this.drawBoxLine(ctx, x + 10, queueOffsetY, w - 20);
 		this.drawBoxTitle(ctx, x + 10, queueOffsetY + 20, "Queue:");
 
-		if (building.productionQueue.length > 0) {
-			building.productionQueue.forEach((unit, index) => {
-				ctx.drawImage(unit.image, x + 130, queueOffsetY + 30 + GRID_SIZE * index, GRID_SIZE + 10, GRID_SIZE + 10);
+		c = 0;
+		xx = x + 10;
+		yy = queueOffsetY + GRID_SIZE + 10;
 
-				this.drawBoxText(ctx, x + 10, queueOffsetY + 60 + GRID_SIZE * index, unit.name);
-				this.drawBoxText(ctx, x + 10, queueOffsetY + 75 + GRID_SIZE * index, `Progress: ${unit.getBuildProgress().toFixed(1)} / ${unit.getTimeToBuild()}`);
+		if (building.productionQueue.length > 0) {
+			building.productionQueue.forEach((unit) => {
+				this.drawBoxEntityButton(ctx, xx, yy, GRID_SIZE, GRID_SIZE, COLORS.BOX_ITEM_HOVER);
+				ctx.drawImage(unit.image, xx, yy, GRID_SIZE, GRID_SIZE);
+
+				this.drawBoxTitle(ctx, xx, yy + GRID_SIZE + 12, `${unit.getBuildProgress().toFixed(1)} / ${unit.getTimeToBuild()}`);
+
+				c = (c + 1) % 3;
+
+				if (c % 3 === 0) {
+					xx = x + 10;
+					yy += GRID_SIZE + 20;
+				} else {
+					xx += GRID_SIZE + 20;
+				}
 			});
 		}
 	}
