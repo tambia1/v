@@ -19,6 +19,7 @@ import { HeavyTank } from "./units/HeavyTank";
 import { Infantry } from "./units/Infantry";
 import { Jeep } from "./units/Jeep";
 import { LightTank } from "./units/LightTank";
+import { Unit } from "./units/Unit";
 import { GameEngine } from "./utils/GameEngine";
 import { UtilsTouch } from "./utils/UtilsTouch";
 
@@ -188,18 +189,9 @@ export class Game {
 				});
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
-				// check items on map
-				const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
-				const boxY = 20 + this.board.scrollTop;
-				const boxW = Game.MENU_WIDTH;
-				const boxH = Game.MENU_HEIGHT;
-
+				// select item
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH) {
-							return;
-						}
-
 						building.setIsSelected(false);
 						this.selectedEntity = null;
 
@@ -222,6 +214,7 @@ export class Game {
 							building.products.forEach((product) => {
 								if (product.isTouched(x, y)) {
 									product.setIsSelected(true);
+									this.selectedEntity = product;
 								}
 							});
 						}
@@ -618,11 +611,20 @@ export class Game {
 		}
 	}
 
+	private drawBoxUnit(ctx: CanvasRenderingContext2D, x: number, y: number, unit: Unit) {
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 3, `Gold Cost: ${unit.costGold}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 4, `Iron Cost: ${unit.costIron}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 5, `Oil Cost: ${unit.costOil}`);
+
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 7, `life: ${unit.life}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 8, `Status: ${unit.status}`);
+	}
+
 	private drawSelectedEntityDetails(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
 		if (this.selectedEntity) {
-			const building = this.selectedEntity;
+			const entity = this.selectedEntity;
 
 			const w = Game.MENU_WIDTH;
 			const h = Game.MENU_HEIGHT;
@@ -630,22 +632,20 @@ export class Game {
 			const y = Game.MENU_MARGIN + this.board.scrollTop;
 
 			this.drawBox(ctx, x, y, w, h);
-			this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_PADDING * 2, building.name);
+			this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_PADDING * 2, entity.name);
 
-			ctx.drawImage(
-				building.image,
-				x + w - Game.MENU_BUILDING_SIZE - Game.MENU_PADDING,
-				y + Game.MENU_PADDING,
-				Game.MENU_BUILDING_SIZE,
-				Game.MENU_BUILDING_SIZE,
-			);
+			ctx.drawImage(entity.image, x + w - Game.MENU_BUILDING_SIZE - Game.MENU_PADDING, y + Game.MENU_PADDING, Game.MENU_BUILDING_SIZE, Game.MENU_BUILDING_SIZE);
 
-			if (building instanceof ResourceBuilding) {
-				this.drawBoxResourceBuilding(ctx, x, y, building);
+			if (entity instanceof ResourceBuilding) {
+				this.drawBoxResourceBuilding(ctx, x, y, entity);
 			}
 
-			if (building instanceof ProductionBuilding) {
-				this.drawBoxProductionBuilding(ctx, x, y, w, building);
+			if (entity instanceof ProductionBuilding) {
+				this.drawBoxProductionBuilding(ctx, x, y, w, entity);
+			}
+
+			if (entity instanceof Unit) {
+				this.drawBoxUnit(ctx, x, y, entity);
 			}
 		}
 

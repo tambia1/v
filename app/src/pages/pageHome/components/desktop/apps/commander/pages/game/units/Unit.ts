@@ -8,21 +8,22 @@ type UnitParams = {
 	position: Position;
 	life: number;
 
-	costGoldToBuild: number;
-	costIronToBuild: number;
-	costOilConsumption: number;
+	costGold: number;
+	costIron: number;
+	costOil: number;
 	moveSpeed: number;
 	weapons: Weapon[];
 	timeToBuild: number;
 };
 
 export abstract class Unit extends Entity {
-	protected costGoldToBuild: number;
-	protected costIronToBuild: number;
-	protected costOilConsumption: number;
+	public costGold: number;
+	public costIron: number;
+	public costOil: number;
 	protected moveSpeed: number;
 	protected weapons: Weapon[];
 	protected movnigToPosition: Position | null;
+	public status: "idle" | "moving" | "attacking";
 
 	constructor(params: UnitParams) {
 		super({
@@ -32,47 +33,16 @@ export abstract class Unit extends Entity {
 			life: params.life,
 		});
 
-		this.costGoldToBuild = params.costGoldToBuild;
-		this.costIronToBuild = params.costIronToBuild;
-		this.costOilConsumption = params.costOilConsumption;
+		this.costGold = params.costGold;
+		this.costIron = params.costIron;
+		this.costOil = params.costOil;
 		this.moveSpeed = params.moveSpeed;
 		this.weapons = params.weapons;
 
 		this.timeToBuild = params.timeToBuild;
 
 		this.movnigToPosition = null;
-	}
-
-	public getCostGoldToBuild() {
-		return this.costGoldToBuild;
-	}
-
-	public setCostGoldToBuild(cost: number) {
-		this.costGoldToBuild = cost;
-	}
-
-	public getCostIronToBuild() {
-		return this.costIronToBuild;
-	}
-
-	public setCostIronToBuild(cost: number) {
-		this.costIronToBuild = cost;
-	}
-
-	public getCostOilConsumption() {
-		return this.costOilConsumption;
-	}
-
-	public setCostOilConsumption(cost: number) {
-		this.costOilConsumption = cost;
-	}
-
-	public getLife() {
-		return this.life;
-	}
-
-	public setLife(life: number) {
-		this.life = life;
+		this.status = "idle";
 	}
 
 	public getMoveSpeed() {
@@ -100,10 +70,6 @@ export abstract class Unit extends Entity {
 
 	public move(x: number, y: number) {
 		this.movnigToPosition = new Position({ x, y, w: this.position.w, h: this.position.h });
-	}
-
-	public isMoving() {
-		return this.movnigToPosition != null;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {

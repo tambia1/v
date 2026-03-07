@@ -23,9 +23,9 @@ export class HeavyTank extends Unit {
 				h: GRID_SIZE,
 			}),
 
-			costGoldToBuild: 300,
-			costIronToBuild: 250,
-			costOilConsumption: 80,
+			costGold: 300,
+			costIron: 250,
+			costOil: 80,
 			life: 150,
 			moveSpeed: 3,
 			weapons: [new TankBarrel120(), new MachineGun()],

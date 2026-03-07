@@ -22,9 +22,9 @@ export class Jeep extends Unit {
 				h: GRID_SIZE,
 			}),
 
-			costGoldToBuild: 80,
-			costIronToBuild: 60,
-			costOilConsumption: 20,
+			costGold: 80,
+			costIron: 60,
+			costOil: 20,
 			life: 60,
 			moveSpeed: 12,
 			weapons: [new MachineGun()],

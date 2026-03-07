@@ -23,9 +23,9 @@ export class LightTank extends Unit {
 				h: GRID_SIZE,
 			}),
 
-			costGoldToBuild: 200,
-			costIronToBuild: 150,
-			costOilConsumption: 50,
+			costGold: 200,
+			costIron: 150,
+			costOil: 50,
 			life: 100,
 			moveSpeed: 5,
 			weapons: [new TankBarrel75(), new MachineGun()],

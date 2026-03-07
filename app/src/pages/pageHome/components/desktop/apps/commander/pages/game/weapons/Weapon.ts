@@ -7,9 +7,9 @@ type WeaponParams = {
 	position: Position;
 	life: number;
 
-	costGoldToBuild: number;
-	costIronToBuild: number;
-	costOilConsumption: number;
+	costGold: number;
+	costIron: number;
+	costOil: number;
 	moveSpeed: number;
 	timeToBuild: number;
 
@@ -20,9 +20,9 @@ type WeaponParams = {
 };
 
 export abstract class Weapon extends Entity {
-	protected costGoldToBuild: number;
-	protected costIronToBuild: number;
-	protected costOilConsumption: number;
+	public costGold: number;
+	public costIron: number;
+	public costOil: number;
 	protected moveSpeed: number;
 	protected damage: number;
 	protected range: number;
@@ -37,9 +37,9 @@ export abstract class Weapon extends Entity {
 			life: params.life,
 		});
 
-		this.costGoldToBuild = params.costGoldToBuild;
-		this.costIronToBuild = params.costIronToBuild;
-		this.costOilConsumption = params.costOilConsumption;
+		this.costGold = params.costGold;
+		this.costIron = params.costIron;
+		this.costOil = params.costOil;
 		this.moveSpeed = params.moveSpeed;
 
 		this.timeToBuild = params.timeToBuild;
@@ -47,30 +47,6 @@ export abstract class Weapon extends Entity {
 		this.range = params.range;
 		this.rateOfFire = params.rateOfFire;
 		this.accuracy = params.accuracy;
-	}
-
-	public getCostGoldToBuild() {
-		return this.costGoldToBuild;
-	}
-
-	public setCostGoldToBuild(cost: number) {
-		this.costGoldToBuild = cost;
-	}
-
-	public getCostIronToBuild() {
-		return this.costIronToBuild;
-	}
-
-	public setCostIronToBuild(cost: number) {
-		this.costIronToBuild = cost;
-	}
-
-	public getCostOilConsumption() {
-		return this.costOilConsumption;
-	}
-
-	public setCostOilConsumption(cost: number) {
-		this.costOilConsumption = cost;
 	}
 
 	public getLife() {

@@ -24,9 +24,9 @@ export class Commando extends Unit {
 				h: GRID_SIZE,
 			}),
 
-			costGoldToBuild: 100,
-			costIronToBuild: 60,
-			costOilConsumption: 0,
+			costGold: 100,
+			costIron: 60,
+			costOil: 0,
 			life: 75,
 			moveSpeed: 7,
 			weapons: [new Rifle(), new MachineGun(), new Rpg()],

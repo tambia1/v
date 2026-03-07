@@ -22,9 +22,9 @@ export class Bomber extends Unit {
 				h: GRID_SIZE,
 			}),
 
-			costGoldToBuild: 100,
-			costIronToBuild: 60,
-			costOilConsumption: 0,
+			costGold: 100,
+			costIron: 60,
+			costOil: 0,
 			life: 75,
 			moveSpeed: 20,
 			weapons: [new Bomb()],
