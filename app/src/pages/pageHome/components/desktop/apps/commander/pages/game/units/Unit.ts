@@ -22,6 +22,7 @@ export abstract class Unit extends Entity {
 	protected costOilConsumption: number;
 	protected moveSpeed: number;
 	protected weapons: Weapon[];
+	protected movnigToPosition: Position | null;
 
 	constructor(params: UnitParams) {
 		super({
@@ -38,6 +39,8 @@ export abstract class Unit extends Entity {
 		this.weapons = params.weapons;
 
 		this.timeToBuild = params.timeToBuild;
+
+		this.movnigToPosition = null;
 	}
 
 	public getCostGoldToBuild() {
@@ -93,6 +96,14 @@ export abstract class Unit extends Entity {
 		if (index > -1) {
 			this.weapons.splice(index, 1);
 		}
+	}
+
+	public move(x: number, y: number) {
+		this.movnigToPosition = new Position({ x, y, w: this.position.w, h: this.position.h });
+	}
+
+	public isMoving() {
+		return this.movnigToPosition != null;
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
