@@ -60,8 +60,8 @@ export class Game {
 
 	private gameEngine: GameEngine;
 
-	private selectedBuilding: Entity | null = null;
-	private hoveredBuildingItem: Entity | null = null;
+	private hoveredEntity: Entity | null = null;
+	private selectedEntity: Entity | null = null;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
@@ -120,7 +120,7 @@ export class Game {
 		this.drawTimeLeft(ctx);
 		this.drawPlayersDetails(ctx);
 		this.drawPlayersArmy(ctx);
-		this.drawSelectedBuildingDetails(ctx);
+		this.drawSelectedEntityDetails(ctx);
 
 		this.drawGameOver(ctx);
 
@@ -141,11 +141,11 @@ export class Game {
 						}
 
 						if (building instanceof ProductionBuilding) {
-							building.products.forEach((unit) => {
-								if (unit.isTouched(x, y)) {
-									unit.setIsHovered(true);
+							building.products.forEach((product) => {
+								if (product.isTouched(x, y)) {
+									product.setIsHovered(true);
 								} else {
-									unit.setIsHovered(false);
+									product.setIsHovered(false);
 								}
 							});
 						}
@@ -153,7 +153,7 @@ export class Game {
 				});
 
 				// check items on sidebar
-				this.hoveredBuildingItem = null;
+				this.hoveredEntity = null;
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
@@ -169,9 +169,9 @@ export class Game {
 
 							let c = 0;
 
-							building.productionStore.forEach((unit) => {
+							building.productionStore.forEach((product) => {
 								if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
-									this.hoveredBuildingItem = unit;
+									this.hoveredEntity = product;
 								}
 
 								c = (c + 1) % Game.MENU_ITEM_COLUMNS;
@@ -196,16 +196,16 @@ export class Game {
 
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
-						if (this.selectedBuilding && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH) {
+						if (this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH) {
 							return;
 						}
 
 						building.setIsSelected(false);
-						this.selectedBuilding = null;
+						this.selectedEntity = null;
 
 						if (building instanceof ProductionBuilding) {
-							building.products.forEach((unit) => {
-								unit.setIsSelected(false);
+							building.products.forEach((product) => {
+								product.setIsSelected(false);
 							});
 						}
 					});
@@ -215,13 +215,13 @@ export class Game {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(x, y)) {
 							building.setIsSelected(true);
-							this.selectedBuilding = building;
+							this.selectedEntity = building;
 						}
 
 						if (building instanceof ProductionBuilding) {
-							building.products.forEach((unit) => {
-								if (unit.isTouched(x, y)) {
-									unit.setIsSelected(true);
+							building.products.forEach((product) => {
+								if (product.isTouched(x, y)) {
+									product.setIsSelected(true);
 								}
 							});
 						}
@@ -243,9 +243,9 @@ export class Game {
 
 							let c = 0;
 
-							building.productionStore.forEach((unit) => {
+							building.productionStore.forEach((product) => {
 								if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
-									building.addEntityToProductionQueue(unit.clone({ x: building.position.x, y: building.position.y }));
+									building.addEntityToProductionQueue(product.clone({ x: building.position.x, y: building.position.y }));
 								}
 
 								c = (c + 1) % Game.MENU_ITEM_COLUMNS;
@@ -555,7 +555,7 @@ export class Game {
 		ctx.restore();
 	}
 
-	private drawBoxUnitBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
+	private drawBoxProductionBuilding(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, building: ProductionBuilding) {
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 3, `Gold Cost: ${building.costGold}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 4, `Iron Cost: ${building.costIron}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 5, `Oil Cost: ${building.costOil}`);
@@ -568,7 +568,7 @@ export class Game {
 		let c = 0;
 
 		building.productionStore.forEach((unit) => {
-			const isHovered = this.hoveredBuildingItem === unit;
+			const isHovered = this.hoveredEntity === unit;
 
 			if (isHovered) {
 				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_HOVER);
@@ -618,11 +618,11 @@ export class Game {
 		}
 	}
 
-	private drawSelectedBuildingDetails(ctx: CanvasRenderingContext2D) {
+	private drawSelectedEntityDetails(ctx: CanvasRenderingContext2D) {
 		ctx.save();
 
-		if (this.selectedBuilding) {
-			const building = this.selectedBuilding;
+		if (this.selectedEntity) {
+			const building = this.selectedEntity;
 
 			const w = Game.MENU_WIDTH;
 			const h = Game.MENU_HEIGHT;
@@ -645,7 +645,7 @@ export class Game {
 			}
 
 			if (building instanceof ProductionBuilding) {
-				this.drawBoxUnitBuilding(ctx, x, y, w, building);
+				this.drawBoxProductionBuilding(ctx, x, y, w, building);
 			}
 		}
 
