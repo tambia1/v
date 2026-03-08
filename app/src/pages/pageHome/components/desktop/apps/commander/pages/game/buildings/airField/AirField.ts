@@ -27,6 +27,7 @@ export class AirField extends ProductionBuilding {
 			costGold: 250,
 			costIron: 150,
 			costOil: 50,
+			timeToBuild: 10,
 			productionStore: [new Fighter({ x: 0, y: 0 }), new Bomber({ x: 0, y: 0 })],
 		});
 

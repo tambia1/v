@@ -38,6 +38,7 @@ export class University extends ProductionBuilding {
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
+			timeToBuild: 10,
 			productionStore: [
 				new Rifle(),
 				new MachineGun(),

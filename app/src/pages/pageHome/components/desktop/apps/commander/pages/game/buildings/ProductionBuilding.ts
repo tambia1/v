@@ -6,6 +6,7 @@ type ProductionBuildingParams = {
 	image: HTMLImageElement;
 	position: Position;
 	life: number;
+	timeToBuild: number;
 
 	costGold: number;
 	costIron: number;
@@ -33,6 +34,7 @@ export abstract class ProductionBuilding extends Entity {
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
 		this.costOil = params.costOil;
+		this.timeToBuild = params.timeToBuild;
 		this.productionStore = params.productionStore;
 		this.productionQueue = [];
 		this.products = [];

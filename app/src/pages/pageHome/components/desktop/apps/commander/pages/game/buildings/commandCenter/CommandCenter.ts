@@ -28,10 +28,9 @@ export class CommandCenter extends ProductionBuilding {
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
-			productionStore: [],
+			timeToBuild: 10,
+			productionStore: [new Barracks({ x: 0, y: 0 }), new Factory({ x: 0, y: 0 }), new AirField({ x: 0, y: 0 })],
 		});
-
-		this.productionStore = [new Barracks({ x: 0, y: 0 }), new Factory({ x: 0, y: 0 }), new AirField({ x: 0, y: 0 })];
 	}
 
 	public clone(params: { x: number; y: number }): Entity {
