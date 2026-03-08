@@ -191,7 +191,16 @@ export class Game {
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
 				// select item
 				this.players.forEach((player) => {
+					const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
+					const boxY = 20 + this.board.scrollTop;
+					const boxW = Game.MENU_WIDTH;
+					const boxH = Game.MENU_HEIGHT;
+
 					player.getBuildings().forEach((building) => {
+						if (this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH) {
+							return;
+						}
+
 						building.setIsSelected(false);
 						this.selectedEntity = null;
 
