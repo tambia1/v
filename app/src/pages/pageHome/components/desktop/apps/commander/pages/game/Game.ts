@@ -591,7 +591,7 @@ export class Game {
 		});
 
 		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 22, w - Game.MENU_PADDING * 2);
-		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 23, "Queue");
+		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 23, `Queue: ${building.productionQueue.length}`);
 
 		c = 0;
 		xx = x + Game.MENU_PADDING;
