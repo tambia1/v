@@ -196,20 +196,20 @@ export class Game {
 					const boxW = Game.MENU_WIDTH;
 					const boxH = Game.MENU_HEIGHT;
 
-					player.getBuildings().forEach((building) => {
-						if (this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH) {
-							return;
-						}
+					const isMenuOpen = this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH;
 
-						building.setIsSelected(false);
-						this.selectedEntity = null;
+					if (!isMenuOpen) {
+						player.getBuildings().forEach((building) => {
+							building.setIsSelected(false);
+							this.selectedEntity = null;
 
-						if (building instanceof ProductionBuilding) {
-							building.products.forEach((product) => {
-								product.setIsSelected(false);
-							});
-						}
-					});
+							if (building instanceof ProductionBuilding) {
+								building.products.forEach((product) => {
+									product.setIsSelected(false);
+								});
+							}
+						});
+					}
 				});
 
 				this.players.forEach((player) => {
