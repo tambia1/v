@@ -190,6 +190,9 @@ export class Game {
 				});
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
+				// Check if a unit is selected and we're clicking an empty square to move
+				const previouslySelectedUnit = this.selectedEntity instanceof Unit ? this.selectedEntity : null;
+
 				// select item
 				this.players.forEach((player) => {
 					const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
@@ -213,11 +216,15 @@ export class Game {
 					}
 				});
 
+				// Check if we clicked on any entity
+				let clickedOnEntity = false;
+
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
 						if (building.isTouched(x, y)) {
 							building.setIsSelected(true);
 							this.selectedEntity = building;
+							clickedOnEntity = true;
 						}
 
 						if (building instanceof ProductionBuilding) {
@@ -225,11 +232,21 @@ export class Game {
 								if (product.isTouched(x, y)) {
 									product.setIsSelected(true);
 									this.selectedEntity = product;
+									clickedOnEntity = true;
 								}
 							});
 						}
 					});
 				});
+
+				// If a unit was selected and we clicked on an empty square, move the unit there
+				if (previouslySelectedUnit && !clickedOnEntity) {
+					const gridX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
+					const gridY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
+					previouslySelectedUnit.move(gridX, gridY);
+					previouslySelectedUnit.setIsSelected(true);
+					this.selectedEntity = previouslySelectedUnit;
+				}
 
 				// check items on sidebar
 				this.players.forEach((player) => {

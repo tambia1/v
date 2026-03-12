@@ -118,6 +118,30 @@ export abstract class Unit extends Entity {
 
 	public move(x: number, y: number) {
 		this.movnigToPosition = new Position({ x, y, w: this.position.w, h: this.position.h });
+		this.status = "moving";
+	}
+
+	public override update(timeDif: number) {
+		super.update(timeDif);
+
+		if (this.movnigToPosition && this.status === "moving") {
+			const dx = this.movnigToPosition.x - this.position.x;
+			const dy = this.movnigToPosition.y - this.position.y;
+			const distance = Math.sqrt(dx * dx + dy * dy);
+
+			const pixelsToMove = this.moveSpeed * (timeDif / 1000);
+
+			if (distance <= pixelsToMove) {
+				this.position.x = this.movnigToPosition.x;
+				this.position.y = this.movnigToPosition.y;
+				this.movnigToPosition = null;
+				this.status = "idle";
+			} else {
+				const ratio = pixelsToMove / distance;
+				this.position.x += dx * ratio;
+				this.position.y += dy * ratio;
+			}
+		}
 	}
 
 	public draw(ctx: CanvasRenderingContext2D) {
