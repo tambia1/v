@@ -2,6 +2,7 @@ import { GRID_SIZE } from "../Constants";
 import { Position } from "../core/Position";
 import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
+import { Rpg } from "../weapons/Rpg";
 import image from "./images/jeep.png";
 import { Unit } from "./Unit";
 
@@ -27,7 +28,8 @@ export class Jeep extends Unit {
 			costOil: 20,
 			life: 60,
 			moveSpeed: 12,
-			weapons: [new MachineGun()],
+			weaponsSupported: [new MachineGun(), new Rpg()],
+			weaponsEquipped: [],
 			timeToBuild: 20,
 		});
 	}

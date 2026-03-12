@@ -12,7 +12,8 @@ type UnitParams = {
 	costIron: number;
 	costOil: number;
 	moveSpeed: number;
-	weapons: Weapon[];
+	weaponsSupported: Weapon[];
+	weaponsEquipped?: Weapon[];
 	timeToBuild: number;
 };
 
@@ -21,7 +22,8 @@ export abstract class Unit extends Entity {
 	public costIron: number;
 	public costOil: number;
 	protected moveSpeed: number;
-	protected weapons: Weapon[];
+	protected weaponsSupported: Weapon[];
+	protected weaponsEquipped: Weapon[];
 	protected movnigToPosition: Position | null;
 	public status: "idle" | "moving" | "attacking";
 
@@ -37,7 +39,8 @@ export abstract class Unit extends Entity {
 		this.costIron = params.costIron;
 		this.costOil = params.costOil;
 		this.moveSpeed = params.moveSpeed;
-		this.weapons = params.weapons;
+		this.weaponsSupported = params.weaponsSupported;
+		this.weaponsEquipped = params.weaponsEquipped ?? [...params.weaponsSupported];
 
 		this.timeToBuild = params.timeToBuild;
 
@@ -53,19 +56,64 @@ export abstract class Unit extends Entity {
 		this.moveSpeed = speed;
 	}
 
+	private findWeaponIndex(weapons: Weapon[], weapon: Weapon) {
+		return weapons.findIndex((item) => item.name === weapon.name);
+	}
+
+	public getWeaponsSupported() {
+		return this.weaponsSupported;
+	}
+
+	public getWeaponsEquipped() {
+		return this.weaponsEquipped;
+	}
+
 	public getWeapons() {
-		return this.weapons;
+		return this.weaponsEquipped;
+	}
+
+	public supportsWeapon(weapon: Weapon) {
+		return this.findWeaponIndex(this.weaponsSupported, weapon) > -1;
+	}
+
+	public isWeaponEquipped(weapon: Weapon) {
+		return this.findWeaponIndex(this.weaponsEquipped, weapon) > -1;
+	}
+
+	public addWeaponSupported(weapon: Weapon) {
+		if (!this.supportsWeapon(weapon)) {
+			this.weaponsSupported.push(weapon);
+		}
+	}
+
+	public removeWeaponSupported(weapon: Weapon) {
+		const index = this.findWeaponIndex(this.weaponsSupported, weapon);
+		if (index > -1) {
+			this.weaponsSupported.splice(index, 1);
+		}
+
+		this.unequipWeapon(weapon);
+	}
+
+	public equipWeapon(weapon: Weapon) {
+		if (this.supportsWeapon(weapon) && !this.isWeaponEquipped(weapon)) {
+			this.weaponsEquipped.push(weapon);
+		}
+	}
+
+	public unequipWeapon(weapon: Weapon) {
+		const index = this.findWeaponIndex(this.weaponsEquipped, weapon);
+		if (index > -1) {
+			this.weaponsEquipped.splice(index, 1);
+		}
 	}
 
 	public addWeapon(weapon: Weapon) {
-		this.weapons.push(weapon);
+		this.equipWeapon(weapon);
 	}
 
 	public removeWeapon(weapon: Weapon) {
-		const index = this.weapons.indexOf(weapon);
-		if (index > -1) {
-			this.weapons.splice(index, 1);
-		}
+		this.unequipWeapon(weapon);
 	}
 
 	public move(x: number, y: number) {
@@ -77,8 +125,8 @@ export abstract class Unit extends Entity {
 
 		ctx.save();
 
-		for (let i = 0; i < this.weapons.length; i++) {
-			this.weapons[i].draw(ctx);
+		for (let i = 0; i < this.weaponsEquipped.length; i++) {
+			this.weaponsEquipped[i].draw(ctx);
 		}
 
 		ctx.restore();

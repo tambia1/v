@@ -28,7 +28,8 @@ export class LightTank extends Unit {
 			costOil: 50,
 			life: 100,
 			moveSpeed: 5,
-			weapons: [new TankBarrel75(), new MachineGun()],
+			weaponsSupported: [new TankBarrel75(), new MachineGun()],
+			weaponsEquipped: [],
 			timeToBuild: 30,
 		});
 	}

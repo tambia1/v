@@ -27,7 +27,8 @@ export class Bomber extends Unit {
 			costOil: 0,
 			life: 75,
 			moveSpeed: 20,
-			weapons: [new Bomb()],
+			weaponsSupported: [new Bomb()],
+			weaponsEquipped: [],
 			timeToBuild: 25,
 		});
 	}

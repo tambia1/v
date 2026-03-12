@@ -22,6 +22,7 @@ import { LightTank } from "./units/LightTank";
 import { Unit } from "./units/Unit";
 import { GameEngine } from "./utils/GameEngine";
 import { UtilsTouch } from "./utils/UtilsTouch";
+import { Weapon } from "./weapons/Weapon";
 
 type GameProps = {
 	board: HTMLDivElement;
@@ -627,6 +628,39 @@ export class Game {
 
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 7, `life: ${unit.life}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 8, `Status: ${unit.status}`);
+
+		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 10, "Weapons Supported", unit.getWeaponsSupported());
+		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 18, "Weapons Equipped", unit.getWeaponsEquipped());
+	}
+
+	private drawBoxWeaponsSection(ctx: CanvasRenderingContext2D, x: number, y: number, title: string, weapons: Weapon[]) {
+		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y, Game.MENU_WIDTH - Game.MENU_PADDING * 2);
+		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT, title);
+
+		if (weapons.length === 0) {
+			this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 2, "None");
+			return y + Game.MENU_TEXT_HEIGHT * 3;
+		}
+
+		let xx = x + Game.MENU_PADDING;
+		let yy = y + Game.MENU_TEXT_HEIGHT * 2;
+		let c = 0;
+
+		weapons.forEach((weapon) => {
+			this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_FILL);
+			ctx.drawImage(weapon.image, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
+
+			c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+			if (c % Game.MENU_ITEM_COLUMNS === 0) {
+				xx = x + Game.MENU_PADDING;
+				yy += GRID_SIZE + Game.MENU_PADDING * 2;
+			} else {
+				xx += GRID_SIZE + Game.MENU_PADDING * 2;
+			}
+		});
+
+		return y + Game.MENU_TEXT_HEIGHT * 2 + Math.ceil(weapons.length / Game.MENU_ITEM_COLUMNS) * (GRID_SIZE + Game.MENU_PADDING * 2);
 	}
 
 	private drawSelectedEntityDetails(ctx: CanvasRenderingContext2D) {

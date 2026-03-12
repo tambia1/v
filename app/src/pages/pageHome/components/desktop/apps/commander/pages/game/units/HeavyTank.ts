@@ -2,6 +2,7 @@ import { GRID_SIZE } from "../Constants";
 import { Position } from "../core/Position";
 import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
+import { TankBarrel75 } from "../weapons/TankBarrel75";
 import { TankBarrel120 } from "../weapons/TankBarrel120";
 import image from "./images/heavyTank.png";
 import { Unit } from "./Unit";
@@ -28,7 +29,8 @@ export class HeavyTank extends Unit {
 			costOil: 80,
 			life: 150,
 			moveSpeed: 3,
-			weapons: [new TankBarrel120(), new MachineGun()],
+			weaponsSupported: [new TankBarrel75(), new TankBarrel120(), new MachineGun()],
+			weaponsEquipped: [],
 			timeToBuild: 45,
 		});
 	}
