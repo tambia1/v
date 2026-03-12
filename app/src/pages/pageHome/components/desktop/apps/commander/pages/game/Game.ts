@@ -646,6 +646,10 @@ export class Game {
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 7, `life: ${unit.life}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 8, `Status: ${unit.status}`);
 
+		if (unit.status === "moving") {
+			this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 9, `Time left: ${unit.getTimeToDestination().toFixed(1)}s`);
+		}
+
 		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 10, "Weapons Supported", unit.getWeaponsSupported());
 		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 18, "Weapons Equipped", unit.getWeaponsEquipped());
 	}

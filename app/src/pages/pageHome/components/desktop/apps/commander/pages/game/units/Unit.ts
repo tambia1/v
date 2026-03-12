@@ -116,6 +116,18 @@ export abstract class Unit extends Entity {
 		this.unequipWeapon(weapon);
 	}
 
+	public getTimeToDestination(): number {
+		if (this.status !== "moving" || !this.movnigToPosition) {
+			return 0;
+		}
+
+		const dx = this.movnigToPosition.x - this.position.x;
+		const dy = this.movnigToPosition.y - this.position.y;
+		const distance = Math.sqrt(dx * dx + dy * dy);
+
+		return distance / this.moveSpeed;
+	}
+
 	public move(x: number, y: number) {
 		this.movnigToPosition = new Position({ x, y, w: this.position.w, h: this.position.h });
 		this.status = "moving";
