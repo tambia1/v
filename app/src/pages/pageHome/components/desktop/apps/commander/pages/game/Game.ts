@@ -762,7 +762,7 @@ export class Game {
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 4, `Iron Cost: ${unit.costIron}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 5, `Oil Cost: ${unit.costOil}`);
 
-		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 7, `life: ${unit.life}`);
+		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 7, `life: ${unit.currentLife}/${unit.life}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 8, `Status: ${unit.status}`);
 
 		if (unit.status === "moving") {
