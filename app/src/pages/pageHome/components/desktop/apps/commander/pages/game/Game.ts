@@ -110,6 +110,7 @@ export class Game {
 
 		this.updateTimeLeft(timeDif);
 		this.updatePlayers(timeDif);
+		this.updateCombat(timeDif);
 		this.updateGameOver(timeDif);
 	}
 
@@ -315,25 +316,25 @@ export class Game {
 		player0.getProductionBuildings()[4].addEntity(new Bomber({ x: 6 * GRID_SIZE, y: 7 * GRID_SIZE }));
 
 		const player1 = this.players[1];
-		player1.addResourceBuilding(new GoldMine({ x: 10 * GRID_SIZE, y: 20 * GRID_SIZE }));
-		player1.addResourceBuilding(new IronMine({ x: 11 * GRID_SIZE, y: 20 * GRID_SIZE }));
-		player1.addResourceBuilding(new OilField({ x: 12 * GRID_SIZE, y: 20 * GRID_SIZE }));
-		player1.addProductionBuilding(new CommandCenter({ x: 9 * GRID_SIZE, y: 21 * GRID_SIZE }));
-		player1.addProductionBuilding(new University({ x: 10 * GRID_SIZE, y: 21 * GRID_SIZE }));
-		player1.addProductionBuilding(new Barracks({ x: 7 * GRID_SIZE, y: 22 * GRID_SIZE }));
-		player1.addProductionBuilding(new Factory({ x: 8 * GRID_SIZE, y: 22 * GRID_SIZE }));
-		player1.addProductionBuilding(new AirField({ x: 9 * GRID_SIZE, y: 22 * GRID_SIZE }));
+		player1.addResourceBuilding(new GoldMine({ x: 0 * GRID_SIZE, y: 15 * GRID_SIZE }));
+		player1.addResourceBuilding(new IronMine({ x: 1 * GRID_SIZE, y: 15 * GRID_SIZE }));
+		player1.addResourceBuilding(new OilField({ x: 2 * GRID_SIZE, y: 15 * GRID_SIZE }));
+		player1.addProductionBuilding(new CommandCenter({ x: 1 * GRID_SIZE, y: 16 * GRID_SIZE }));
+		player1.addProductionBuilding(new University({ x: 2 * GRID_SIZE, y: 16 * GRID_SIZE }));
+		player1.addProductionBuilding(new Barracks({ x: 1 * GRID_SIZE, y: 17 * GRID_SIZE }));
+		player1.addProductionBuilding(new Factory({ x: 2 * GRID_SIZE, y: 17 * GRID_SIZE }));
+		player1.addProductionBuilding(new AirField({ x: 3 * GRID_SIZE, y: 17 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 5 * GRID_SIZE, y: 18 * GRID_SIZE }));
-		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 6 * GRID_SIZE, y: 18 * GRID_SIZE }));
-		player1.getProductionBuildings()[2].addEntity(new Commando({ x: 7 * GRID_SIZE, y: 18 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 2 * GRID_SIZE, y: 11 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 3 * GRID_SIZE, y: 11 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addEntity(new Commando({ x: 4 * GRID_SIZE, y: 11 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[3].addEntity(new Jeep({ x: 5 * GRID_SIZE, y: 19 * GRID_SIZE }));
-		player1.getProductionBuildings()[3].addEntity(new LightTank({ x: 6 * GRID_SIZE, y: 19 * GRID_SIZE }));
-		player1.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 7 * GRID_SIZE, y: 19 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addEntity(new Jeep({ x: 2 * GRID_SIZE, y: 12 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addEntity(new LightTank({ x: 3 * GRID_SIZE, y: 12 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 4 * GRID_SIZE, y: 12 * GRID_SIZE }));
 
-		player1.getProductionBuildings()[4].addEntity(new Fighter({ x: 5 * GRID_SIZE, y: 20 * GRID_SIZE }));
-		player1.getProductionBuildings()[4].addEntity(new Bomber({ x: 6 * GRID_SIZE, y: 20 * GRID_SIZE }));
+		player1.getProductionBuildings()[4].addEntity(new Fighter({ x: 2 * GRID_SIZE, y: 13 * GRID_SIZE }));
+		player1.getProductionBuildings()[4].addEntity(new Bomber({ x: 3 * GRID_SIZE, y: 13 * GRID_SIZE }));
 	}
 
 	private initMap() {
@@ -370,6 +371,62 @@ export class Game {
 		this.players.forEach((player) => {
 			player.update(timeDif);
 		});
+	}
+
+	private updateCombat(timeDif: number) {
+		for (let i = 0; i < this.players.length; i++) {
+			for (let j = i + 1; j < this.players.length; j++) {
+				const unitsA = this.players[i].getUnits().filter((u): u is Unit => u instanceof Unit);
+				const unitsB = this.players[j].getUnits().filter((u): u is Unit => u instanceof Unit);
+
+				for (const unitA of unitsA) {
+					for (const unitB of unitsB) {
+						// Check if units are on the same grid cell
+						const gridAx = Math.floor(unitA.position.x / GRID_SIZE);
+						const gridAy = Math.floor(unitA.position.y / GRID_SIZE);
+						const gridBx = Math.floor(unitB.position.x / GRID_SIZE);
+						const gridBy = Math.floor(unitB.position.y / GRID_SIZE);
+
+						if (gridAx !== gridBx || gridAy !== gridBy) {
+							continue;
+						}
+
+						// Unit A attacks Unit B
+						for (const weapon of unitA.getWeaponsEquipped()) {
+							if (weapon.canTarget(unitB.unitType)) {
+								const damage = weapon.tryFire(timeDif);
+								if (damage > 0) {
+									unitB.currentLife -= damage;
+								}
+							}
+						}
+
+						// Unit B attacks Unit A
+						for (const weapon of unitB.getWeaponsEquipped()) {
+							if (weapon.canTarget(unitA.unitType)) {
+								const damage = weapon.tryFire(timeDif);
+								if (damage > 0) {
+									unitA.currentLife -= damage;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Remove dead units
+		for (const player of this.players) {
+			for (const building of player.getProductionBuildings()) {
+				const deadUnits = building.products.filter((u) => u.currentLife <= 0);
+				for (const dead of deadUnits) {
+					if (dead === this.selectedEntity) {
+						this.selectedEntity = null;
+					}
+					building.removeEntity(dead);
+				}
+			}
+		}
 	}
 
 	private updateGameOver(_timeDif: number) {

@@ -31,6 +31,7 @@ export abstract class Weapon extends Entity {
 	protected range: number;
 	protected rateOfFire: number;
 	protected accuracy: number;
+	private fireCooldown: number;
 
 	constructor(params: WeaponParams) {
 		super({
@@ -51,6 +52,28 @@ export abstract class Weapon extends Entity {
 		this.range = params.range;
 		this.rateOfFire = params.rateOfFire;
 		this.accuracy = params.accuracy;
+		this.fireCooldown = 0;
+	}
+
+	public canTarget(targetUnitType: UnitType): boolean {
+		return this.unitType === targetUnitType;
+	}
+
+	public tryFire(timeDif: number): number {
+		this.fireCooldown -= timeDif / 1000;
+
+		if (this.fireCooldown <= 0) {
+			this.fireCooldown = 1 / this.rateOfFire;
+
+			const hit = Math.random() <= this.accuracy;
+			return hit ? this.damage : 0;
+		}
+
+		return 0;
+	}
+
+	public resetCooldown() {
+		this.fireCooldown = 0;
 	}
 
 	public getLife() {
