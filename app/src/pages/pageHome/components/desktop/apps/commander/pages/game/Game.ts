@@ -223,19 +223,78 @@ export class Game {
 				});
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
-				// Check if a unit is selected and we're clicking an empty square to move
-				const previouslySelectedUnit = this.selectedEntity instanceof Unit ? this.selectedEntity : null;
+				// Check if click is inside the menu box
+				const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
+				const boxY = Game.MENU_MARGIN + this.board.scrollTop;
+				const boxW = Game.MENU_WIDTH;
+				const boxH = Game.MENU_HEIGHT;
+				const isClickInMenu = this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH;
 
-				// select item
-				this.players.forEach((player) => {
-					const boxX = this.board.offsetWidth - Game.MENU_WIDTH - 20 + this.board.scrollLeft;
-					const boxY = 20 + this.board.scrollTop;
-					const boxW = Game.MENU_WIDTH;
-					const boxH = Game.MENU_HEIGHT;
+				if (isClickInMenu) {
+					// Handle clicks on sidebar menu items only
+					this.players.forEach((player) => {
+						player.getBuildings().forEach((building) => {
+							if (building.getIsSelected() && building instanceof ProductionBuilding) {
+								let xx = boxX + Game.MENU_PADDING;
+								let yy = boxY + Game.MENU_TEXT_HEIGHT * 9;
 
-					const isMenuOpen = this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH;
+								const ww = Game.MENU_ITEM_WIDTH;
+								const hh = Game.MENU_ITEM_HEIGHT;
 
-					if (!isMenuOpen) {
+								let c = 0;
+
+								building.productionStore.forEach((product) => {
+									if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
+										building.addEntityToProductionQueue(product.clone({ x: building.position.x, y: building.position.y }));
+									}
+
+									c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+									if (c === 0) {
+										xx = boxX + Game.MENU_PADDING;
+										yy += GRID_SIZE + Game.MENU_PADDING;
+									} else {
+										xx += GRID_SIZE + Game.MENU_PADDING * 2;
+									}
+								});
+							}
+
+							if (building instanceof ProductionBuilding) {
+								building.products.forEach((product) => {
+									if (product.getIsSelected() && product instanceof Unit) {
+										let xx = boxX + Game.MENU_PADDING;
+										let yy = boxY + Game.MENU_TEXT_HEIGHT * 12;
+
+										const ww = Game.MENU_ITEM_WIDTH;
+										const hh = Game.MENU_ITEM_HEIGHT;
+
+										let c = 0;
+
+										product.getWeaponsSupported().forEach((weapon) => {
+											if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
+												product.addWeaponToProductionQueue(weapon);
+											}
+
+											c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+											if (c === 0) {
+												xx = boxX + Game.MENU_PADDING;
+												yy += GRID_SIZE + Game.MENU_PADDING;
+											} else {
+												xx += GRID_SIZE + Game.MENU_PADDING * 2;
+											}
+										});
+									}
+								});
+							}
+						});
+					});
+				} else {
+					// Handle clicks on the map
+					const previouslySelectedUnit = this.selectedEntity instanceof Unit ? this.selectedEntity : null;
+
+					// Deselect all
+					this.players.forEach((player) => {
 						player.getBuildings().forEach((building) => {
 							building.setIsSelected(false);
 							this.selectedEntity = null;
@@ -246,105 +305,42 @@ export class Game {
 								});
 							}
 						});
+					});
+
+					// Check if we clicked on any entity
+					let clickedOnEntity = false;
+
+					this.players.forEach((player) => {
+						player.getBuildings().forEach((building) => {
+							if (building.isTouched(x, y)) {
+								building.setIsSelected(true);
+								this.selectedEntity = building;
+								clickedOnEntity = true;
+							}
+
+							if (building instanceof ProductionBuilding) {
+								building.products.forEach((product) => {
+									if (product.isTouched(x, y)) {
+										product.setIsSelected(true);
+										this.selectedEntity = product;
+										clickedOnEntity = true;
+									}
+								});
+							}
+						});
+					});
+
+					// If a unit was selected and we clicked on an empty square, move the unit there
+					if (previouslySelectedUnit && !clickedOnEntity) {
+						const gridX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
+						const gridY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
+
+						previouslySelectedUnit.move(gridX, gridY);
+						previouslySelectedUnit.setIsSelected(true);
+
+						this.selectedEntity = previouslySelectedUnit;
 					}
-				});
-
-				// Check if we clicked on any entity
-				let clickedOnEntity = false;
-
-				this.players.forEach((player) => {
-					player.getBuildings().forEach((building) => {
-						if (building.isTouched(x, y)) {
-							building.setIsSelected(true);
-							this.selectedEntity = building;
-							clickedOnEntity = true;
-						}
-
-						if (building instanceof ProductionBuilding) {
-							building.products.forEach((product) => {
-								if (product.isTouched(x, y)) {
-									product.setIsSelected(true);
-									this.selectedEntity = product;
-									clickedOnEntity = true;
-								}
-							});
-						}
-					});
-				});
-
-				// If a unit was selected and we clicked on an empty square, move the unit there
-				if (previouslySelectedUnit && !clickedOnEntity) {
-					const gridX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
-					const gridY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
-					previouslySelectedUnit.move(gridX, gridY);
-					previouslySelectedUnit.setIsSelected(true);
-					this.selectedEntity = previouslySelectedUnit;
 				}
-
-				// check items on sidebar
-				this.players.forEach((player) => {
-					player.getBuildings().forEach((building) => {
-						if (building.getIsSelected() && building instanceof ProductionBuilding) {
-							const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
-							const boxY = Game.MENU_MARGIN + this.board.scrollTop;
-
-							let xx = boxX + Game.MENU_PADDING;
-							let yy = boxY + Game.MENU_TEXT_HEIGHT * 9;
-
-							const ww = Game.MENU_ITEM_WIDTH;
-							const hh = Game.MENU_ITEM_HEIGHT;
-
-							let c = 0;
-
-							building.productionStore.forEach((product) => {
-								if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
-									building.addEntityToProductionQueue(product.clone({ x: building.position.x, y: building.position.y }));
-								}
-
-								c = (c + 1) % Game.MENU_ITEM_COLUMNS;
-
-								if (c === 0) {
-									xx = boxX + Game.MENU_PADDING;
-									yy += GRID_SIZE + Game.MENU_PADDING;
-								} else {
-									xx += GRID_SIZE + Game.MENU_PADDING * 2;
-								}
-							});
-						}
-
-						if (building instanceof ProductionBuilding) {
-							building.products.forEach((product) => {
-								if (product.getIsSelected() && product instanceof Unit) {
-									const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
-									const boxY = Game.MENU_MARGIN + this.board.scrollTop;
-
-									let xx = boxX + Game.MENU_PADDING;
-									let yy = boxY + Game.MENU_TEXT_HEIGHT * 12;
-
-									const ww = Game.MENU_ITEM_WIDTH;
-									const hh = Game.MENU_ITEM_HEIGHT;
-
-									let c = 0;
-
-									product.getWeaponsSupported().forEach((weapon) => {
-										if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
-											product.addWeaponToProductionQueue(weapon);
-										}
-
-										c = (c + 1) % Game.MENU_ITEM_COLUMNS;
-
-										if (c === 0) {
-											xx = boxX + Game.MENU_PADDING;
-											yy += GRID_SIZE + Game.MENU_PADDING;
-										} else {
-											xx += GRID_SIZE + Game.MENU_PADDING * 2;
-										}
-									});
-								}
-							});
-						}
-					});
-				});
 			},
 		});
 	}
