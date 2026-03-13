@@ -4,6 +4,7 @@ import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
 import { Rifle } from "../weapons/Rifle";
 import { Rpg } from "../weapons/Rpg";
+import { Stinger } from "../weapons/Stinger";
 import image from "./images/infantry.png";
 import { Unit } from "./Unit";
 
@@ -29,7 +30,7 @@ export class Infantry extends Unit {
 			costOil: 0,
 			life: 50,
 			moveSpeed: 8,
-			weaponsSupported: [new Rifle(), new MachineGun(), new Rpg()],
+			weaponsSupported: [new Rifle(), new MachineGun(), new Rpg(), new Stinger()],
 			weaponsEquipped: [],
 			timeToBuild: 10,
 		});

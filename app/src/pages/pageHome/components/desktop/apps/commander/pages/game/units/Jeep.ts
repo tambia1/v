@@ -3,6 +3,7 @@ import { Position } from "../core/Position";
 import { UtilsImage } from "../utils/UtilsImage";
 import { MachineGun } from "../weapons/MachineGun";
 import { Rpg } from "../weapons/Rpg";
+import { Stinger } from "../weapons/Stinger";
 import image from "./images/jeep.png";
 import { Unit } from "./Unit";
 
@@ -28,7 +29,7 @@ export class Jeep extends Unit {
 			costOil: 20,
 			life: 60,
 			moveSpeed: 12,
-			weaponsSupported: [new MachineGun(), new Rpg()],
+			weaponsSupported: [new MachineGun(), new Rpg(), new Stinger()],
 			weaponsEquipped: [],
 			timeToBuild: 20,
 		});
