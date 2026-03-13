@@ -29,6 +29,7 @@ export abstract class Unit extends Entity {
 	protected moveSpeed: number;
 	protected weaponsSupported: Weapon[];
 	protected weaponsEquipped: Weapon[];
+	public weaponProductionQueue: Weapon[];
 	protected movnigToPosition: Position | null;
 	public status: "idle" | "moving" | "attacking";
 
@@ -50,6 +51,7 @@ export abstract class Unit extends Entity {
 		this.weaponsEquipped = params.weaponsEquipped ?? [...params.weaponsSupported];
 
 		this.timeToBuild = params.timeToBuild;
+		this.weaponProductionQueue = [];
 
 		this.movnigToPosition = null;
 		this.status = "idle";
@@ -123,6 +125,24 @@ export abstract class Unit extends Entity {
 		this.unequipWeapon(weapon);
 	}
 
+	public isWeaponInProductionQueue(weapon: Weapon) {
+		return this.weaponProductionQueue.some((item) => item.name === weapon.name);
+	}
+
+	public addWeaponToProductionQueue(weapon: Weapon) {
+		if (this.isWeaponEquipped(weapon) || this.isWeaponInProductionQueue(weapon)) {
+			return;
+		}
+
+		const clone = weapon.clone({ x: 0, y: 0 }) as Weapon;
+		clone.buildProgress = 0;
+		this.weaponProductionQueue.push(clone);
+	}
+
+	public getWeaponProductionQueue() {
+		return this.weaponProductionQueue;
+	}
+
 	public getTimeToDestination(): number {
 		if (this.status !== "moving" || !this.movnigToPosition) {
 			return 0;
@@ -142,6 +162,18 @@ export abstract class Unit extends Entity {
 
 	public override update(timeDif: number) {
 		super.update(timeDif);
+
+		// Process weapon production queue
+		if (this.weaponProductionQueue.length > 0) {
+			const currentWeapon = this.weaponProductionQueue[0];
+			const progressToAdd = timeDif / 1000;
+			currentWeapon.addBuildProgress(progressToAdd);
+
+			if (currentWeapon.isBuilt()) {
+				this.weaponProductionQueue.shift();
+				this.equipWeapon(currentWeapon);
+			}
+		}
 
 		if (this.movnigToPosition && this.status === "moving") {
 			const dx = this.movnigToPosition.x - this.position.x;

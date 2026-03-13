@@ -187,6 +187,38 @@ export class Game {
 								}
 							});
 						}
+
+						if (building instanceof ProductionBuilding) {
+							building.products.forEach((product) => {
+								if (product.getIsSelected() && product instanceof Unit) {
+									const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
+									const boxY = Game.MENU_MARGIN + this.board.scrollTop;
+
+									let xx = boxX + Game.MENU_PADDING;
+									let yy = boxY + Game.MENU_TEXT_HEIGHT * 12;
+
+									const ww = Game.MENU_ITEM_WIDTH;
+									const hh = Game.MENU_ITEM_HEIGHT;
+
+									let c = 0;
+
+									product.getWeaponsSupported().forEach((weapon) => {
+										if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
+											this.hoveredEntity = weapon;
+										}
+
+										c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+										if (c === 0) {
+											xx = boxX + Game.MENU_PADDING;
+											yy += GRID_SIZE + Game.MENU_PADDING;
+										} else {
+											xx += GRID_SIZE + Game.MENU_PADDING * 2;
+										}
+									});
+								}
+							});
+						}
 					});
 				});
 			},
@@ -276,6 +308,38 @@ export class Game {
 									yy += GRID_SIZE + Game.MENU_PADDING;
 								} else {
 									xx += GRID_SIZE + Game.MENU_PADDING * 2;
+								}
+							});
+						}
+
+						if (building instanceof ProductionBuilding) {
+							building.products.forEach((product) => {
+								if (product.getIsSelected() && product instanceof Unit) {
+									const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
+									const boxY = Game.MENU_MARGIN + this.board.scrollTop;
+
+									let xx = boxX + Game.MENU_PADDING;
+									let yy = boxY + Game.MENU_TEXT_HEIGHT * 12;
+
+									const ww = Game.MENU_ITEM_WIDTH;
+									const hh = Game.MENU_ITEM_HEIGHT;
+
+									let c = 0;
+
+									product.getWeaponsSupported().forEach((weapon) => {
+										if (x >= xx && x <= xx + ww && y >= yy && y <= yy + hh) {
+											product.addWeaponToProductionQueue(weapon);
+										}
+
+										c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+										if (c === 0) {
+											xx = boxX + Game.MENU_PADDING;
+											yy += GRID_SIZE + Game.MENU_PADDING;
+										} else {
+											xx += GRID_SIZE + Game.MENU_PADDING * 2;
+										}
+									});
 								}
 							});
 						}
@@ -697,7 +761,7 @@ export class Game {
 		}
 	}
 
-	private drawBoxUnit(ctx: CanvasRenderingContext2D, x: number, y: number, unit: Unit) {
+	private drawBoxUnit(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, unit: Unit) {
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 3, `Gold Cost: ${unit.costGold}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 4, `Iron Cost: ${unit.costIron}`);
 		this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 5, `Oil Cost: ${unit.costOil}`);
@@ -709,11 +773,42 @@ export class Game {
 			this.drawBoxText(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 9, `Time left: ${unit.getTimeToDestination().toFixed(1)}s`);
 		}
 
-		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 10, "Weapons Supported", unit.getWeaponsSupported());
-		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 18, "Weapons Equipped", unit.getWeaponsEquipped());
+		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 10, "Weapons Supported", unit.getWeaponsSupported(), true);
+		this.drawBoxWeaponsSection(ctx, x, y + Game.MENU_TEXT_HEIGHT * 18, "Weapons Equipped", unit.getWeaponsEquipped(), false);
+
+		// Draw weapon production queue
+		const queue = unit.getWeaponProductionQueue();
+		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 24, w - Game.MENU_PADDING * 2);
+		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT * 25, `Weapon Queue: ${queue.length}`);
+
+		let c = 0;
+		let xx = x + Game.MENU_PADDING;
+		let yy = y + Game.MENU_TEXT_HEIGHT * 26;
+
+		if (queue.length > 0) {
+			queue.forEach((weapon, index) => {
+				if (index >= 6) {
+					return;
+				}
+
+				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_FILL);
+				ctx.drawImage(weapon.image, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
+
+				this.drawBoxTitle(ctx, xx, yy + GRID_SIZE + 12, `${weapon.getBuildProgress().toFixed(1)} / ${weapon.getTimeToBuild()}`);
+
+				c = (c + 1) % Game.MENU_ITEM_COLUMNS;
+
+				if (c % Game.MENU_ITEM_COLUMNS === 0) {
+					xx = x + Game.MENU_PADDING;
+					yy += GRID_SIZE + Game.MENU_PADDING * 2;
+				} else {
+					xx += GRID_SIZE + Game.MENU_PADDING * 2;
+				}
+			});
+		}
 	}
 
-	private drawBoxWeaponsSection(ctx: CanvasRenderingContext2D, x: number, y: number, title: string, weapons: Weapon[]) {
+	private drawBoxWeaponsSection(ctx: CanvasRenderingContext2D, x: number, y: number, title: string, weapons: Weapon[], hoverable: boolean) {
 		this.drawBoxLine(ctx, x + Game.MENU_PADDING, y, Game.MENU_WIDTH - Game.MENU_PADDING * 2);
 		this.drawBoxTitle(ctx, x + Game.MENU_PADDING, y + Game.MENU_TEXT_HEIGHT, title);
 
@@ -727,7 +822,14 @@ export class Game {
 		let c = 0;
 
 		weapons.forEach((weapon) => {
-			this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_FILL);
+			const isHovered = hoverable && this.hoveredEntity === weapon;
+
+			if (isHovered) {
+				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_HOVER);
+			} else {
+				this.drawBoxEntityButton(ctx, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT, COLORS.BOX_ENTITY_FILL);
+			}
+
 			ctx.drawImage(weapon.image, xx, yy, Game.MENU_ITEM_WIDTH, Game.MENU_ITEM_HEIGHT);
 
 			c = (c + 1) % Game.MENU_ITEM_COLUMNS;
@@ -768,7 +870,7 @@ export class Game {
 			}
 
 			if (entity instanceof Unit) {
-				this.drawBoxUnit(ctx, x, y, entity);
+				this.drawBoxUnit(ctx, x, y, w, entity);
 			}
 		}
 
