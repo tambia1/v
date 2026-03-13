@@ -19,6 +19,7 @@ export class Rpg extends Weapon {
 			costIron: 10,
 			costOil: 0,
 			moveSpeed: 0,
+			unitType: "ground",
 			timeToBuild: 10,
 			life: 10,
 			damage: 15,

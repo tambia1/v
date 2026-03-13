@@ -28,6 +28,7 @@ export class Commando extends Unit {
 			costIron: 60,
 			costOil: 0,
 			life: 75,
+			unitType: "ground",
 			moveSpeed: 7,
 			weaponsSupported: [new Rifle(), new MachineGun(), new Rpg()],
 			weaponsEquipped: [],

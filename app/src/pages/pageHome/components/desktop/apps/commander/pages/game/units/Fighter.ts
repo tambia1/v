@@ -27,6 +27,7 @@ export class Fighter extends Unit {
 			costIron: 60,
 			costOil: 0,
 			life: 75,
+			unitType: "air",
 			moveSpeed: 30,
 			weaponsSupported: [new Missile(), new MachineGun()],
 			weaponsEquipped: [],

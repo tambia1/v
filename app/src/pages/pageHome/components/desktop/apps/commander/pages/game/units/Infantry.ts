@@ -29,6 +29,7 @@ export class Infantry extends Unit {
 			costIron: 30,
 			costOil: 0,
 			life: 50,
+			unitType: "ground",
 			moveSpeed: 8,
 			weaponsSupported: [new Rifle(), new MachineGun(), new Rpg(), new Stinger()],
 			weaponsEquipped: [],

@@ -1,5 +1,6 @@
 import { Entity } from "../core/Entity";
 import { Position } from "../core/Position";
+import { type UnitType } from "../units/Unit";
 
 type WeaponParams = {
 	name: string;
@@ -11,6 +12,7 @@ type WeaponParams = {
 	costIron: number;
 	costOil: number;
 	moveSpeed: number;
+	unitType: UnitType;
 	timeToBuild: number;
 
 	damage: number;
@@ -23,6 +25,7 @@ export abstract class Weapon extends Entity {
 	public costGold: number;
 	public costIron: number;
 	public costOil: number;
+	public unitType: UnitType;
 	protected moveSpeed: number;
 	protected damage: number;
 	protected range: number;
@@ -40,6 +43,7 @@ export abstract class Weapon extends Entity {
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
 		this.costOil = params.costOil;
+		this.unitType = params.unitType;
 		this.moveSpeed = params.moveSpeed;
 
 		this.timeToBuild = params.timeToBuild;

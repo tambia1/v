@@ -28,6 +28,7 @@ export class Jeep extends Unit {
 			costIron: 60,
 			costOil: 20,
 			life: 60,
+			unitType: "ground",
 			moveSpeed: 12,
 			weaponsSupported: [new MachineGun(), new Rpg(), new Stinger()],
 			weaponsEquipped: [],

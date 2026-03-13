@@ -27,6 +27,7 @@ export class LightTank extends Unit {
 			costIron: 150,
 			costOil: 50,
 			life: 100,
+			unitType: "ground",
 			moveSpeed: 5,
 			weaponsSupported: [new TankBarrel75(), new MachineGun()],
 			weaponsEquipped: [],

@@ -19,6 +19,7 @@ export class Missile extends Weapon {
 			costIron: 10,
 			costOil: 0,
 			moveSpeed: 0,
+			unitType: "air",
 			timeToBuild: 10,
 			life: 10,
 			damage: 15,

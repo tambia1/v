@@ -2,6 +2,8 @@ import { Entity } from "../core/Entity";
 import { Position } from "../core/Position";
 import { Weapon } from "../weapons/Weapon";
 
+export type UnitType = "ground" | "air" | "sea";
+
 type UnitParams = {
 	name: string;
 	image: HTMLImageElement;
@@ -12,6 +14,7 @@ type UnitParams = {
 	costIron: number;
 	costOil: number;
 	moveSpeed: number;
+	unitType: UnitType;
 	weaponsSupported: Weapon[];
 	weaponsEquipped?: Weapon[];
 	timeToBuild: number;
@@ -21,6 +24,7 @@ export abstract class Unit extends Entity {
 	public costGold: number;
 	public costIron: number;
 	public costOil: number;
+	public unitType: UnitType;
 	protected moveSpeed: number;
 	protected weaponsSupported: Weapon[];
 	protected weaponsEquipped: Weapon[];
@@ -38,6 +42,7 @@ export abstract class Unit extends Entity {
 		this.costGold = params.costGold;
 		this.costIron = params.costIron;
 		this.costOil = params.costOil;
+		this.unitType = params.unitType;
 		this.moveSpeed = params.moveSpeed;
 		this.weaponsSupported = params.weaponsSupported;
 		this.weaponsEquipped = params.weaponsEquipped ?? [...params.weaponsSupported];

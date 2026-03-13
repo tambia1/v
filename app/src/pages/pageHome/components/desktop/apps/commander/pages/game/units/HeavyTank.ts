@@ -28,6 +28,7 @@ export class HeavyTank extends Unit {
 			costIron: 250,
 			costOil: 80,
 			life: 150,
+			unitType: "ground",
 			moveSpeed: 3,
 			weaponsSupported: [new TankBarrel75(), new TankBarrel120(), new MachineGun()],
 			weaponsEquipped: [],
