@@ -295,46 +295,48 @@ export class Game {
 
 		//temp
 		const player0 = this.players[0];
-		player0.addResourceBuilding(new GoldMine({ x: 10 * GRID_SIZE, y: 8 * GRID_SIZE }));
-		player0.addResourceBuilding(new IronMine({ x: 11 * GRID_SIZE, y: 8 * GRID_SIZE }));
-		player0.addResourceBuilding(new OilField({ x: 12 * GRID_SIZE, y: 8 * GRID_SIZE }));
-		player0.addProductionBuilding(new CommandCenter({ x: 9 * GRID_SIZE, y: 9 * GRID_SIZE }));
-		player0.addProductionBuilding(new University({ x: 10 * GRID_SIZE, y: 9 * GRID_SIZE }));
-		player0.addProductionBuilding(new Barracks({ x: 7 * GRID_SIZE, y: 10 * GRID_SIZE }));
-		player0.addProductionBuilding(new Factory({ x: 8 * GRID_SIZE, y: 10 * GRID_SIZE }));
-		player0.addProductionBuilding(new AirField({ x: 9 * GRID_SIZE, y: 10 * GRID_SIZE }));
+		const color0 = player0.getColor();
+		player0.addResourceBuilding(new GoldMine({ x: 10 * GRID_SIZE, y: 8 * GRID_SIZE, color: color0 }));
+		player0.addResourceBuilding(new IronMine({ x: 11 * GRID_SIZE, y: 8 * GRID_SIZE, color: color0 }));
+		player0.addResourceBuilding(new OilField({ x: 12 * GRID_SIZE, y: 8 * GRID_SIZE, color: color0 }));
+		player0.addProductionBuilding(new CommandCenter({ x: 9 * GRID_SIZE, y: 9 * GRID_SIZE, color: color0 }));
+		player0.addProductionBuilding(new University({ x: 10 * GRID_SIZE, y: 9 * GRID_SIZE, color: color0 }));
+		player0.addProductionBuilding(new Barracks({ x: 7 * GRID_SIZE, y: 10 * GRID_SIZE, color: color0 }));
+		player0.addProductionBuilding(new Factory({ x: 8 * GRID_SIZE, y: 10 * GRID_SIZE, color: color0 }));
+		player0.addProductionBuilding(new AirField({ x: 9 * GRID_SIZE, y: 10 * GRID_SIZE, color: color0 }));
 
-		player0.getProductionBuildings()[2].addEntity(new Infantry({ x: 5 * GRID_SIZE, y: 5 * GRID_SIZE }));
-		player0.getProductionBuildings()[2].addEntity(new Infantry({ x: 6 * GRID_SIZE, y: 5 * GRID_SIZE }));
-		player0.getProductionBuildings()[2].addEntity(new Commando({ x: 7 * GRID_SIZE, y: 5 * GRID_SIZE }));
+		player0.getProductionBuildings()[2].addEntity(new Infantry({ x: 5 * GRID_SIZE, y: 5 * GRID_SIZE, color: color0 }));
+		player0.getProductionBuildings()[2].addEntity(new Infantry({ x: 6 * GRID_SIZE, y: 5 * GRID_SIZE, color: color0 }));
+		player0.getProductionBuildings()[2].addEntity(new Commando({ x: 7 * GRID_SIZE, y: 5 * GRID_SIZE, color: color0 }));
 
-		player0.getProductionBuildings()[3].addEntity(new Jeep({ x: 5 * GRID_SIZE, y: 6 * GRID_SIZE }));
-		player0.getProductionBuildings()[3].addEntity(new LightTank({ x: 6 * GRID_SIZE, y: 6 * GRID_SIZE }));
-		player0.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 7 * GRID_SIZE, y: 6 * GRID_SIZE }));
+		player0.getProductionBuildings()[3].addEntity(new Jeep({ x: 5 * GRID_SIZE, y: 6 * GRID_SIZE, color: color0 }));
+		player0.getProductionBuildings()[3].addEntity(new LightTank({ x: 6 * GRID_SIZE, y: 6 * GRID_SIZE, color: color0 }));
+		player0.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 7 * GRID_SIZE, y: 6 * GRID_SIZE, color: color0 }));
 
-		player0.getProductionBuildings()[4].addEntity(new Fighter({ x: 5 * GRID_SIZE, y: 7 * GRID_SIZE }));
-		player0.getProductionBuildings()[4].addEntity(new Bomber({ x: 6 * GRID_SIZE, y: 7 * GRID_SIZE }));
+		player0.getProductionBuildings()[4].addEntity(new Fighter({ x: 5 * GRID_SIZE, y: 7 * GRID_SIZE, color: color0 }));
+		player0.getProductionBuildings()[4].addEntity(new Bomber({ x: 6 * GRID_SIZE, y: 7 * GRID_SIZE, color: color0 }));
 
 		const player1 = this.players[1];
-		player1.addResourceBuilding(new GoldMine({ x: 0 * GRID_SIZE, y: 15 * GRID_SIZE }));
-		player1.addResourceBuilding(new IronMine({ x: 1 * GRID_SIZE, y: 15 * GRID_SIZE }));
-		player1.addResourceBuilding(new OilField({ x: 2 * GRID_SIZE, y: 15 * GRID_SIZE }));
-		player1.addProductionBuilding(new CommandCenter({ x: 1 * GRID_SIZE, y: 16 * GRID_SIZE }));
-		player1.addProductionBuilding(new University({ x: 2 * GRID_SIZE, y: 16 * GRID_SIZE }));
-		player1.addProductionBuilding(new Barracks({ x: 1 * GRID_SIZE, y: 17 * GRID_SIZE }));
-		player1.addProductionBuilding(new Factory({ x: 2 * GRID_SIZE, y: 17 * GRID_SIZE }));
-		player1.addProductionBuilding(new AirField({ x: 3 * GRID_SIZE, y: 17 * GRID_SIZE }));
+		const color1 = player1.getColor();
+		player1.addResourceBuilding(new GoldMine({ x: 0 * GRID_SIZE, y: 15 * GRID_SIZE, color: color1 }));
+		player1.addResourceBuilding(new IronMine({ x: 1 * GRID_SIZE, y: 15 * GRID_SIZE, color: color1 }));
+		player1.addResourceBuilding(new OilField({ x: 2 * GRID_SIZE, y: 15 * GRID_SIZE, color: color1 }));
+		player1.addProductionBuilding(new CommandCenter({ x: 1 * GRID_SIZE, y: 16 * GRID_SIZE, color: color1 }));
+		player1.addProductionBuilding(new University({ x: 2 * GRID_SIZE, y: 16 * GRID_SIZE, color: color1 }));
+		player1.addProductionBuilding(new Barracks({ x: 1 * GRID_SIZE, y: 17 * GRID_SIZE, color: color1 }));
+		player1.addProductionBuilding(new Factory({ x: 2 * GRID_SIZE, y: 17 * GRID_SIZE, color: color1 }));
+		player1.addProductionBuilding(new AirField({ x: 3 * GRID_SIZE, y: 17 * GRID_SIZE, color: color1 }));
 
-		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 2 * GRID_SIZE, y: 11 * GRID_SIZE }));
-		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 3 * GRID_SIZE, y: 11 * GRID_SIZE }));
-		player1.getProductionBuildings()[2].addEntity(new Commando({ x: 4 * GRID_SIZE, y: 11 * GRID_SIZE }));
+		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 2 * GRID_SIZE, y: 11 * GRID_SIZE, color: color1 }));
+		player1.getProductionBuildings()[2].addEntity(new Infantry({ x: 3 * GRID_SIZE, y: 11 * GRID_SIZE, color: color1 }));
+		player1.getProductionBuildings()[2].addEntity(new Commando({ x: 4 * GRID_SIZE, y: 11 * GRID_SIZE, color: color1 }));
 
-		player1.getProductionBuildings()[3].addEntity(new Jeep({ x: 2 * GRID_SIZE, y: 12 * GRID_SIZE }));
-		player1.getProductionBuildings()[3].addEntity(new LightTank({ x: 3 * GRID_SIZE, y: 12 * GRID_SIZE }));
-		player1.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 4 * GRID_SIZE, y: 12 * GRID_SIZE }));
+		player1.getProductionBuildings()[3].addEntity(new Jeep({ x: 2 * GRID_SIZE, y: 12 * GRID_SIZE, color: color1 }));
+		player1.getProductionBuildings()[3].addEntity(new LightTank({ x: 3 * GRID_SIZE, y: 12 * GRID_SIZE, color: color1 }));
+		player1.getProductionBuildings()[3].addEntity(new HeavyTank({ x: 4 * GRID_SIZE, y: 12 * GRID_SIZE, color: color1 }));
 
-		player1.getProductionBuildings()[4].addEntity(new Fighter({ x: 2 * GRID_SIZE, y: 13 * GRID_SIZE }));
-		player1.getProductionBuildings()[4].addEntity(new Bomber({ x: 3 * GRID_SIZE, y: 13 * GRID_SIZE }));
+		player1.getProductionBuildings()[4].addEntity(new Fighter({ x: 2 * GRID_SIZE, y: 13 * GRID_SIZE, color: color1 }));
+		player1.getProductionBuildings()[4].addEntity(new Bomber({ x: 3 * GRID_SIZE, y: 13 * GRID_SIZE, color: color1 }));
 	}
 
 	private initMap() {

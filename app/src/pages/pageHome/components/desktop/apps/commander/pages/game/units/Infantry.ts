@@ -11,6 +11,7 @@ import { Unit } from "./Unit";
 type Params = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class Infantry extends Unit {
@@ -28,16 +29,22 @@ export class Infantry extends Unit {
 			costGold: 50,
 			costIron: 30,
 			costOil: 0,
+			color: params.color,
 			life: 50,
 			unitType: "ground",
 			moveSpeed: 8,
-			weaponsSupported: [new Rifle(), new MachineGun(), new Rpg(), new Stinger()],
+			weaponsSupported: [
+				new Rifle({ color: params.color }),
+				new MachineGun({ color: params.color }),
+				new Rpg({ color: params.color }),
+				new Stinger({ color: params.color }),
+			],
 			weaponsEquipped: [],
 			timeToBuild: 10,
 		});
 	}
 
 	override clone(params: { x: number; y: number }): Unit {
-		return new Infantry({ x: params.x, y: params.y });
+		return new Infantry({ x: params.x, y: params.y, color: this.color });
 	}
 }

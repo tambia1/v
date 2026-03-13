@@ -11,6 +11,7 @@ import image from "./images/commandCenter.png";
 type CommandCenterParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class CommandCenter extends ProductionBuilding {
@@ -25,11 +26,16 @@ export class CommandCenter extends ProductionBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
 			timeToBuild: 10,
-			productionStore: [new Barracks({ x: 0, y: 0 }), new Factory({ x: 0, y: 0 }), new AirField({ x: 0, y: 0 })],
+			productionStore: [
+				new Barracks({ x: 0, y: 0, color: params.color }),
+				new Factory({ x: 0, y: 0, color: params.color }),
+				new AirField({ x: 0, y: 0, color: params.color }),
+			],
 		});
 	}
 
@@ -37,6 +43,7 @@ export class CommandCenter extends ProductionBuilding {
 		return new CommandCenter({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }

@@ -18,7 +18,6 @@ export const COLORS = {
 
 	// Unit colors
 	UNIT_LIFE_STROKE: "#ffffff",
-	UNIT_LIFE_FILL: "#00ff00",
 } as const;
 
 // Player colors

@@ -6,6 +6,7 @@ type ProductionBuildingParams = {
 	image: HTMLImageElement;
 	position: Position;
 	life: number;
+	color: string;
 	timeToBuild: number;
 
 	costGold: number;
@@ -29,6 +30,7 @@ export abstract class ProductionBuilding extends Entity {
 			image: params.image,
 			position: params.position,
 			life: params.life,
+			color: params.color,
 		});
 
 		this.costGold = params.costGold;
@@ -41,6 +43,7 @@ export abstract class ProductionBuilding extends Entity {
 	}
 
 	public addEntityToProductionQueue(entity: Entity) {
+		entity.color = this.color;
 		this.productionQueue.push(entity);
 	}
 

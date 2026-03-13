@@ -14,6 +14,7 @@ type EntityParams = {
 	image: HTMLImageElement;
 	position: Position;
 	life: number;
+	color: string;
 };
 
 export abstract class Entity implements Product, Drawable, Updatable, Selectable, Hoverable, Clonable, Pricable {
@@ -30,6 +31,7 @@ export abstract class Entity implements Product, Drawable, Updatable, Selectable
 
 	public timeToBuild: number;
 	public buildProgress: number;
+	public color: string;
 
 	protected animationScale: Animation;
 
@@ -42,6 +44,7 @@ export abstract class Entity implements Product, Drawable, Updatable, Selectable
 
 		this.timeToBuild = 0;
 		this.buildProgress = 0;
+		this.color = params.color;
 
 		this.costGold = 0;
 		this.costIron = 0;
@@ -126,7 +129,7 @@ export abstract class Entity implements Product, Drawable, Updatable, Selectable
 		const lifeRatio = this.currentLife / this.life;
 		ctx.beginPath();
 		ctx.rect(barX, barY, barWidth * lifeRatio, barHeight);
-		ctx.fillStyle = COLORS.UNIT_LIFE_FILL;
+		ctx.fillStyle = this.color;
 		ctx.fill();
 		ctx.closePath();
 

@@ -5,7 +5,7 @@ import image from "./images/tankBarrel75.png";
 import { Weapon } from "./Weapon";
 
 export class TankBarrel75 extends Weapon {
-	constructor() {
+	constructor(params: { color: string }) {
 		super({
 			name: "Tank Barrel 75mm",
 			image: UtilsImage.getImage(image),
@@ -15,6 +15,7 @@ export class TankBarrel75 extends Weapon {
 				w: 0,
 				h: 0,
 			}),
+			color: params.color,
 			costGold: 20,
 			costIron: 10,
 			costOil: 0,
@@ -30,6 +31,6 @@ export class TankBarrel75 extends Weapon {
 	}
 
 	public clone(_params: { x: number; y: number }): Entity {
-		return new TankBarrel75();
+		return new TankBarrel75({ color: this.color });
 	}
 }

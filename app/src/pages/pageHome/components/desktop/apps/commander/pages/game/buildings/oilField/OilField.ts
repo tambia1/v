@@ -8,6 +8,7 @@ import image from "./images/oilField.png";
 type OilFieldParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class OilField extends ResourceBuilding {
@@ -22,6 +23,7 @@ export class OilField extends ResourceBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			amount: 0,
 			producedPerSecond: 1,
 		});
@@ -31,6 +33,7 @@ export class OilField extends ResourceBuilding {
 		return new OilField({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }

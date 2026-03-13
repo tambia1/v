@@ -21,6 +21,7 @@ import image from "./images/university.png";
 type UniversityParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class University extends ProductionBuilding {
@@ -35,24 +36,25 @@ export class University extends ProductionBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			costGold: 1,
 			costIron: 1,
 			costOil: 1,
 			timeToBuild: 10,
 			productionStore: [
-				new Rifle(),
-				new MachineGun(),
-				new Rpg(),
-				new Missile(),
-				new TankBarrel75(),
-				new TankBarrel120(),
-				new Infantry({ x: 0, y: 0 }),
-				new Commando({ x: 0, y: 0 }),
-				new Jeep({ x: 0, y: 0 }),
-				new LightTank({ x: 0, y: 0 }),
-				new HeavyTank({ x: 0, y: 0 }),
-				new Fighter({ x: 0, y: 0 }),
-				new Bomber({ x: 0, y: 0 }),
+				new Rifle({ color: params.color }),
+				new MachineGun({ color: params.color }),
+				new Rpg({ color: params.color }),
+				new Missile({ color: params.color }),
+				new TankBarrel75({ color: params.color }),
+				new TankBarrel120({ color: params.color }),
+				new Infantry({ x: 0, y: 0, color: params.color }),
+				new Commando({ x: 0, y: 0, color: params.color }),
+				new Jeep({ x: 0, y: 0, color: params.color }),
+				new LightTank({ x: 0, y: 0, color: params.color }),
+				new HeavyTank({ x: 0, y: 0, color: params.color }),
+				new Fighter({ x: 0, y: 0, color: params.color }),
+				new Bomber({ x: 0, y: 0, color: params.color }),
 			],
 		});
 	}
@@ -61,6 +63,7 @@ export class University extends ProductionBuilding {
 		return new University({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }

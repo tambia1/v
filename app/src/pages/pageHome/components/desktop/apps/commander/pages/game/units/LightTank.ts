@@ -9,6 +9,7 @@ import { Unit } from "./Unit";
 type Params = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class LightTank extends Unit {
@@ -26,16 +27,17 @@ export class LightTank extends Unit {
 			costGold: 200,
 			costIron: 150,
 			costOil: 50,
+			color: params.color,
 			life: 100,
 			unitType: "ground",
 			moveSpeed: 5,
-			weaponsSupported: [new TankBarrel75(), new MachineGun()],
+			weaponsSupported: [new TankBarrel75({ color: params.color }), new MachineGun({ color: params.color })],
 			weaponsEquipped: [],
 			timeToBuild: 30,
 		});
 	}
 
 	override clone(params: { x: number; y: number }): Unit {
-		return new LightTank({ x: params.x, y: params.y });
+		return new LightTank({ x: params.x, y: params.y, color: this.color });
 	}
 }

@@ -8,6 +8,7 @@ import image from "./images/goldMine.png";
 type GoldMineParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class GoldMine extends ResourceBuilding {
@@ -22,6 +23,7 @@ export class GoldMine extends ResourceBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			amount: 0,
 			producedPerSecond: 1,
 		});
@@ -31,6 +33,7 @@ export class GoldMine extends ResourceBuilding {
 		return new GoldMine({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }

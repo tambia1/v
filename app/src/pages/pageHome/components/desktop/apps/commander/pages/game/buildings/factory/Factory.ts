@@ -11,6 +11,7 @@ import image from "./images/factory.png";
 type FactoryParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class Factory extends ProductionBuilding {
@@ -25,11 +26,16 @@ export class Factory extends ProductionBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			costGold: 200,
 			costIron: 150,
 			costOil: 50,
 			timeToBuild: 10,
-			productionStore: [new Jeep({ x: 0, y: 0 }), new LightTank({ x: 0, y: 0 }), new HeavyTank({ x: 0, y: 0 })],
+			productionStore: [
+				new Jeep({ x: 0, y: 0, color: params.color }),
+				new LightTank({ x: 0, y: 0, color: params.color }),
+				new HeavyTank({ x: 0, y: 0, color: params.color }),
+			],
 		});
 	}
 
@@ -37,6 +43,7 @@ export class Factory extends ProductionBuilding {
 		return new Factory({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }

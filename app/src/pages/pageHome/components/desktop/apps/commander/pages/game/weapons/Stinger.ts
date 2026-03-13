@@ -5,7 +5,7 @@ import image from "./images/stinger.png";
 import { Weapon } from "./Weapon";
 
 export class Stinger extends Weapon {
-	constructor() {
+	constructor(params: { color: string }) {
 		super({
 			name: "RPG",
 			image: UtilsImage.getImage(image),
@@ -15,6 +15,7 @@ export class Stinger extends Weapon {
 				w: 0,
 				h: 0,
 			}),
+			color: params.color,
 			costGold: 20,
 			costIron: 10,
 			costOil: 0,
@@ -30,6 +31,6 @@ export class Stinger extends Weapon {
 	}
 
 	public clone(_params: { x: number; y: number }): Entity {
-		return new Stinger();
+		return new Stinger({ color: this.color });
 	}
 }

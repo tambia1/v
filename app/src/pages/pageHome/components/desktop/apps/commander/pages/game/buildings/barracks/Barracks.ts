@@ -10,6 +10,7 @@ import image from "./images/barracks.png";
 type BarracksParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class Barracks extends ProductionBuilding {
@@ -24,11 +25,12 @@ export class Barracks extends ProductionBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			costGold: 100,
 			costIron: 50,
 			costOil: 0,
 			timeToBuild: 15,
-			productionStore: [new Infantry({ x: 0, y: 0 }), new Commando({ x: 0, y: 0 })],
+			productionStore: [new Infantry({ x: 0, y: 0, color: params.color }), new Commando({ x: 0, y: 0, color: params.color })],
 		});
 	}
 
@@ -36,6 +38,7 @@ export class Barracks extends ProductionBuilding {
 		return new Barracks({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }

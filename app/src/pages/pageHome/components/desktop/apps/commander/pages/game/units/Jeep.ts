@@ -10,6 +10,7 @@ import { Unit } from "./Unit";
 type Params = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class Jeep extends Unit {
@@ -27,16 +28,17 @@ export class Jeep extends Unit {
 			costGold: 80,
 			costIron: 60,
 			costOil: 20,
+			color: params.color,
 			life: 60,
 			unitType: "ground",
 			moveSpeed: 12,
-			weaponsSupported: [new MachineGun(), new Rpg(), new Stinger()],
+			weaponsSupported: [new MachineGun({ color: params.color }), new Rpg({ color: params.color }), new Stinger({ color: params.color })],
 			weaponsEquipped: [],
 			timeToBuild: 20,
 		});
 	}
 
 	override clone(params: { x: number; y: number }): Unit {
-		return new Jeep({ x: params.x, y: params.y });
+		return new Jeep({ x: params.x, y: params.y, color: this.color });
 	}
 }

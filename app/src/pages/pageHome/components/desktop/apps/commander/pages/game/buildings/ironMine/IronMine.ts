@@ -8,6 +8,7 @@ import image from "./images/ironMine.png";
 type IronMineParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class IronMine extends ResourceBuilding {
@@ -22,6 +23,7 @@ export class IronMine extends ResourceBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			amount: 0,
 			producedPerSecond: 1,
 		});
@@ -31,6 +33,7 @@ export class IronMine extends ResourceBuilding {
 		return new IronMine({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }

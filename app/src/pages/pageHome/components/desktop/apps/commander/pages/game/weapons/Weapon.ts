@@ -7,6 +7,7 @@ type WeaponParams = {
 	image: HTMLImageElement;
 	position: Position;
 	life: number;
+	color: string;
 
 	costGold: number;
 	costIron: number;
@@ -39,6 +40,7 @@ export abstract class Weapon extends Entity {
 			image: params.image,
 			position: params.position,
 			life: params.life,
+			color: params.color,
 		});
 
 		this.costGold = params.costGold;

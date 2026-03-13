@@ -10,6 +10,7 @@ import image from "./images/airField.png";
 type AirFieldParams = {
 	x: number;
 	y: number;
+	color: string;
 };
 
 export class AirField extends ProductionBuilding {
@@ -24,11 +25,12 @@ export class AirField extends ProductionBuilding {
 				h: GRID_SIZE,
 			}),
 			life: 100,
+			color: params.color,
 			costGold: 250,
 			costIron: 150,
 			costOil: 50,
 			timeToBuild: 10,
-			productionStore: [new Fighter({ x: 0, y: 0 }), new Bomber({ x: 0, y: 0 })],
+			productionStore: [new Fighter({ x: 0, y: 0, color: params.color }), new Bomber({ x: 0, y: 0, color: params.color })],
 		});
 
 		this.name = "Air Field";
@@ -39,6 +41,7 @@ export class AirField extends ProductionBuilding {
 		return new AirField({
 			x: params.x,
 			y: params.y,
+			color: this.color,
 		});
 	}
 }
