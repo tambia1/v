@@ -64,6 +64,8 @@ export class Game {
 
 	private hoveredEntity: Entity | null = null;
 	private selectedEntity: Entity | null = null;
+	private hoveredGridX = -1;
+	private hoveredGridY = -1;
 
 	constructor({ board, playersNames, arenaType, onGameOver }: GameProps) {
 		this.board = board;
@@ -134,6 +136,9 @@ export class Game {
 		UtilsTouch.listenToTouches({
 			div: div,
 			onTouchMove: (_e, _sx, _sy, x, y, _time) => {
+				this.hoveredGridX = Math.floor(x / GRID_SIZE);
+				this.hoveredGridY = Math.floor(y / GRID_SIZE);
+
 				// check items on map
 				this.players.forEach((player) => {
 					player.getBuildings().forEach((building) => {
@@ -223,6 +228,9 @@ export class Game {
 				});
 			},
 			onTouchEnd: (_e, _sx, _sy, x, y, _time) => {
+				this.hoveredGridX = -1;
+				this.hoveredGridY = -1;
+
 				// Check if click is inside the menu box
 				const boxX = this.board.offsetWidth - Game.MENU_WIDTH - Game.MENU_MARGIN + this.board.scrollLeft;
 				const boxY = Game.MENU_MARGIN + this.board.scrollTop;
@@ -549,6 +557,31 @@ export class Game {
 				}
 			}
 		}
+
+		ctx.restore();
+
+		this.drawMovementIndicator(ctx);
+	}
+
+	private drawMovementIndicator(ctx: CanvasRenderingContext2D) {
+		if (!(this.selectedEntity instanceof Unit)) {
+			return;
+		}
+
+		if (this.hoveredGridX < 0 || this.hoveredGridY < 0) {
+			return;
+		}
+
+		ctx.save();
+
+		ctx.fillStyle = COLORS.MOVEMENT_INDICATOR_FILL;
+		ctx.strokeStyle = COLORS.MOVEMENT_INDICATOR_STROKE;
+		ctx.lineWidth = 2.0;
+
+		ctx.beginPath();
+		ctx.rect(this.hoveredGridX * GRID_SIZE, this.hoveredGridY * GRID_SIZE, GRID_SIZE, GRID_SIZE);
+		ctx.fill();
+		ctx.stroke();
 
 		ctx.restore();
 	}

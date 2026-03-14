@@ -18,6 +18,10 @@ export const COLORS = {
 
 	// Unit colors
 	UNIT_LIFE_STROKE: "#ffffff",
+
+	// Movement indicator
+	MOVEMENT_INDICATOR_FILL: "#00FFFF4D",
+	MOVEMENT_INDICATOR_STROKE: "#00FFFFCC",
 } as const;
 
 // Player colors
