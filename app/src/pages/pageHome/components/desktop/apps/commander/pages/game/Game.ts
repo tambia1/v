@@ -239,6 +239,20 @@ export class Game {
 				const isClickInMenu = this.selectedEntity && x >= boxX && x <= boxX + boxW && y >= boxY && y <= boxY + boxH;
 
 				if (isClickInMenu) {
+					// Check if the click is on the main image of the selected entity to deselect it
+					if (this.selectedEntity) {
+						const imgX = boxX + boxW - Game.MENU_BUILDING_SIZE - Game.MENU_PADDING;
+						const imgY = boxY + Game.MENU_PADDING;
+						const imgW = Game.MENU_BUILDING_SIZE;
+						const imgH = Game.MENU_BUILDING_SIZE;
+
+						if (x >= imgX && x < imgX + imgW && y >= imgY && y < imgY + imgH) {
+							this.selectedEntity.setIsSelected(false);
+							this.selectedEntity = null;
+							return; // Early exit, as the action is to deselect
+						}
+					}
+
 					// Handle clicks on sidebar menu items only
 					this.players.forEach((player) => {
 						player.getBuildings().forEach((building) => {
@@ -299,54 +313,69 @@ export class Game {
 					});
 				} else {
 					// Handle clicks on the map
-					const previouslySelectedUnit = this.selectedEntity instanceof Unit ? this.selectedEntity : null;
+					const previouslySelectedEntity = this.selectedEntity;
 
-					// Deselect all
-					this.players.forEach((player) => {
-						player.getBuildings().forEach((building) => {
-							building.setIsSelected(false);
-							this.selectedEntity = null;
-
-							if (building instanceof ProductionBuilding) {
-								building.products.forEach((product) => {
-									product.setIsSelected(false);
-								});
-							}
-						});
-					});
-
-					// Check if we clicked on any entity
-					let clickedOnEntity = false;
-
+					// 1. Find all entities at the click location
+					const clickedEntities: Entity[] = [];
 					this.players.forEach((player) => {
 						player.getBuildings().forEach((building) => {
 							if (building.isTouched(x, y)) {
-								building.setIsSelected(true);
-								this.selectedEntity = building;
-								clickedOnEntity = true;
+								clickedEntities.push(building);
 							}
-
 							if (building instanceof ProductionBuilding) {
 								building.products.forEach((product) => {
 									if (product.isTouched(x, y)) {
-										product.setIsSelected(true);
-										this.selectedEntity = product;
-										clickedOnEntity = true;
+										clickedEntities.push(product);
 									}
 								});
 							}
 						});
 					});
 
-					// If a unit was selected and we clicked on an empty square, move the unit there
-					if (previouslySelectedUnit && !clickedOnEntity) {
+					// 2. Logic when a unit is already selected
+					if (previouslySelectedEntity instanceof Unit) {
+						// If a unit is selected, any click on the map is a move command.
+						// This solves the problem of not being able to move to an occupied tile.
+						// To select another unit, the user must first deselect via the menu.
 						const gridX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
 						const gridY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
+						previouslySelectedEntity.move(gridX, gridY);
+					} else {
+						// 3. Logic when nothing or a non-unit is selected (for selection)
+						// Deselect everything first
+						if (this.selectedEntity) {
+							this.selectedEntity.setIsSelected(false);
+						}
+						this.players.forEach((p) => {
+							p.getBuildings().forEach((b) => {
+								b.setIsSelected(false);
+								if (b instanceof ProductionBuilding) {
+									b.products.forEach((prod) => {
+										prod.setIsSelected(false);
+									});
+								}
+							});
+						});
 
-						previouslySelectedUnit.move(gridX, gridY);
-						previouslySelectedUnit.setIsSelected(true);
+						if (clickedEntities.length === 0) {
+							this.selectedEntity = null;
+						} else {
+							let entityToSelect: Entity;
+							// Check if we are cycling through entities on the same spot
+							const isCycling = previouslySelectedEntity && clickedEntities.includes(previouslySelectedEntity);
+							if (isCycling) {
+								const currentIndex = clickedEntities.indexOf(previouslySelectedEntity);
+								const nextIndex = (currentIndex + 1) % clickedEntities.length;
+								entityToSelect = clickedEntities[nextIndex];
+							} else {
+								// Not cycling, so pick a new entity, prioritizing units
+								const clickedUnit = clickedEntities.find((e) => e instanceof Unit);
+								entityToSelect = clickedUnit || clickedEntities[0];
+							}
 
-						this.selectedEntity = previouslySelectedUnit;
+							this.selectedEntity = entityToSelect;
+							this.selectedEntity.setIsSelected(true);
+						}
 					}
 				}
 			},
