@@ -27,6 +27,7 @@ export class Stinger extends Weapon {
 			range: 55,
 			rateOfFire: 1.5,
 			accuracy: 0.75,
+			rangeColor: "#00eeff",
 		});
 	}
 

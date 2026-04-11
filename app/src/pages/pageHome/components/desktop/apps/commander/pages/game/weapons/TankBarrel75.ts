@@ -27,6 +27,7 @@ export class TankBarrel75 extends Weapon {
 			range: 38,
 			rateOfFire: 3,
 			accuracy: 0.75,
+			rangeColor: "#4488ff",
 		});
 	}
 

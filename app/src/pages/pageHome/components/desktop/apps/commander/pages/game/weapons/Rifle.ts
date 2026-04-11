@@ -27,6 +27,7 @@ export class Rifle extends Weapon {
 			range: 15,
 			rateOfFire: 3,
 			accuracy: 0.75,
+			rangeColor: "#00ff88",
 		});
 	}
 

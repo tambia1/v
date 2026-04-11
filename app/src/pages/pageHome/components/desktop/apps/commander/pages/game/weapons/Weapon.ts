@@ -2,6 +2,8 @@ import { Entity } from "../core/Entity";
 import { Position } from "../core/Position";
 import { type UnitType } from "../units/Unit";
 
+export type WeaponRangeColor = string;
+
 type WeaponParams = {
 	name: string;
 	image: HTMLImageElement;
@@ -20,6 +22,7 @@ type WeaponParams = {
 	range: number;
 	rateOfFire: number;
 	accuracy: number;
+	rangeColor: WeaponRangeColor;
 };
 
 export abstract class Weapon extends Entity {
@@ -27,6 +30,7 @@ export abstract class Weapon extends Entity {
 	public costIron: number;
 	public costOil: number;
 	public unitType: UnitType;
+	public rangeColor: WeaponRangeColor;
 	protected moveSpeed: number;
 	protected damage: number;
 	protected range: number;
@@ -54,6 +58,7 @@ export abstract class Weapon extends Entity {
 		this.range = params.range;
 		this.rateOfFire = params.rateOfFire;
 		this.accuracy = params.accuracy;
+		this.rangeColor = params.rangeColor;
 		this.fireCooldown = 0;
 	}
 

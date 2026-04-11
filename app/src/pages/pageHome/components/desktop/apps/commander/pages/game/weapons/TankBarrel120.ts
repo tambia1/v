@@ -27,6 +27,7 @@ export class TankBarrel120 extends Weapon {
 			range: 48,
 			rateOfFire: 3,
 			accuracy: 0.75,
+			rangeColor: "#aa00ff",
 		});
 	}
 

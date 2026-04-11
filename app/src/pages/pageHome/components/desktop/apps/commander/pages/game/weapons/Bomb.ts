@@ -27,6 +27,7 @@ export class Bomb extends Weapon {
 			range: 18,
 			rateOfFire: 3,
 			accuracy: 0.75,
+			rangeColor: "#ff4444",
 		});
 	}
 

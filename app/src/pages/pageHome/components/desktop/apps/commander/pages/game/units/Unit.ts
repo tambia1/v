@@ -195,15 +195,6 @@ export abstract class Unit extends Entity {
 		}
 	}
 
-	private static readonly WEAPON_RANGE_COLORS = [
-		{ stroke: "#00eeffaa", fill: "#00eeff11" },
-		{ stroke: "#ff8800aa", fill: "#ff880011" },
-		{ stroke: "#ff00ffaa", fill: "#ff00ff11" },
-		{ stroke: "#ffff00aa", fill: "#ffff0011" },
-		{ stroke: "#00ff88aa", fill: "#00ff8811" },
-		{ stroke: "#aa00ffaa", fill: "#aa00ff11" },
-	];
-
 	private drawWeaponRanges(ctx: CanvasRenderingContext2D) {
 		if (this.weaponsEquipped.length === 0) {
 			return;
@@ -215,21 +206,21 @@ export abstract class Unit extends Entity {
 		for (let i = 0; i < this.weaponsEquipped.length; i++) {
 			const weapon = this.weaponsEquipped[i];
 			const range = weapon.getRange();
-			const palette = Unit.WEAPON_RANGE_COLORS[i % Unit.WEAPON_RANGE_COLORS.length];
+			const color = weapon.rangeColor;
 
 			ctx.save();
 
 			// filled circle
 			ctx.beginPath();
 			ctx.arc(centerX, centerY, range, 0, Math.PI * 2);
-			ctx.fillStyle = palette.fill;
+			ctx.fillStyle = `${color}11`;
 			ctx.fill();
 			ctx.closePath();
 
 			// dashed border
 			ctx.beginPath();
 			ctx.arc(centerX, centerY, range, 0, Math.PI * 2);
-			ctx.strokeStyle = palette.stroke;
+			ctx.strokeStyle = `${color}aa`;
 			ctx.lineWidth = 1.5;
 			ctx.setLineDash([6, 4]);
 			ctx.stroke();
@@ -238,7 +229,7 @@ export abstract class Unit extends Entity {
 			// label at top-right of the circle
 			ctx.setLineDash([]);
 			ctx.font = "bold 11px monospace";
-			ctx.fillStyle = palette.stroke;
+			ctx.fillStyle = `${color}aa`;
 			ctx.textAlign = "left";
 			ctx.textBaseline = "bottom";
 			const labelAngle = -Math.PI / 4 - (i * Math.PI) / 8;

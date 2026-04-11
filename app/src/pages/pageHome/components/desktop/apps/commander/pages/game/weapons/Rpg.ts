@@ -27,6 +27,7 @@ export class Rpg extends Weapon {
 			range: 30,
 			rateOfFire: 3,
 			accuracy: 0.75,
+			rangeColor: "#ff8800",
 		});
 	}
 

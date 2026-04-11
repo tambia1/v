@@ -27,6 +27,7 @@ export class Missile extends Weapon {
 			range: 65,
 			rateOfFire: 3,
 			accuracy: 0.75,
+			rangeColor: "#ff00ff",
 		});
 	}
 

@@ -27,6 +27,7 @@ export class MachineGun extends Weapon {
 			range: 22,
 			rateOfFire: 3,
 			accuracy: 0.75,
+			rangeColor: "#ffff00",
 		});
 	}
 
