@@ -24,7 +24,7 @@ export class TankBarrel120 extends Weapon {
 			timeToBuild: 10,
 			life: 10,
 			damage: 15,
-			range: 250,
+			range: 48,
 			rateOfFire: 3,
 			accuracy: 0.75,
 		});

@@ -195,10 +195,67 @@ export abstract class Unit extends Entity {
 		}
 	}
 
+	private static readonly WEAPON_RANGE_COLORS = [
+		{ stroke: "#00eeffaa", fill: "#00eeff11" },
+		{ stroke: "#ff8800aa", fill: "#ff880011" },
+		{ stroke: "#ff00ffaa", fill: "#ff00ff11" },
+		{ stroke: "#ffff00aa", fill: "#ffff0011" },
+		{ stroke: "#00ff88aa", fill: "#00ff8811" },
+		{ stroke: "#aa00ffaa", fill: "#aa00ff11" },
+	];
+
+	private drawWeaponRanges(ctx: CanvasRenderingContext2D) {
+		if (this.weaponsEquipped.length === 0) {
+			return;
+		}
+
+		const centerX = this.position.getCenterX();
+		const centerY = this.position.getCenterY();
+
+		for (let i = 0; i < this.weaponsEquipped.length; i++) {
+			const weapon = this.weaponsEquipped[i];
+			const range = weapon.getRange();
+			const palette = Unit.WEAPON_RANGE_COLORS[i % Unit.WEAPON_RANGE_COLORS.length];
+
+			ctx.save();
+
+			// filled circle
+			ctx.beginPath();
+			ctx.arc(centerX, centerY, range, 0, Math.PI * 2);
+			ctx.fillStyle = palette.fill;
+			ctx.fill();
+			ctx.closePath();
+
+			// dashed border
+			ctx.beginPath();
+			ctx.arc(centerX, centerY, range, 0, Math.PI * 2);
+			ctx.strokeStyle = palette.stroke;
+			ctx.lineWidth = 1.5;
+			ctx.setLineDash([6, 4]);
+			ctx.stroke();
+			ctx.closePath();
+
+			// label at top-right of the circle
+			ctx.setLineDash([]);
+			ctx.font = "bold 11px monospace";
+			ctx.fillStyle = palette.stroke;
+			ctx.textAlign = "left";
+			ctx.textBaseline = "bottom";
+			const labelAngle = -Math.PI / 4 - (i * Math.PI) / 8;
+			const labelX = centerX + range * Math.cos(labelAngle);
+			const labelY = centerY + range * Math.sin(labelAngle);
+			ctx.fillText(weapon.name, labelX + 4, labelY - 2);
+
+			ctx.restore();
+		}
+	}
+
 	public draw(ctx: CanvasRenderingContext2D) {
 		super.draw(ctx);
 
 		ctx.save();
+
+		this.drawWeaponRanges(ctx);
 
 		for (let i = 0; i < this.weaponsEquipped.length; i++) {
 			this.weaponsEquipped[i].draw(ctx);

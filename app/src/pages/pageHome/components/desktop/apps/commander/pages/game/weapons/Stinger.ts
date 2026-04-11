@@ -7,7 +7,7 @@ import { Weapon } from "./Weapon";
 export class Stinger extends Weapon {
 	constructor(params: { color: string }) {
 		super({
-			name: "RPG",
+			name: "Stinger",
 			image: UtilsImage.getImage(image),
 			position: new Position({
 				x: 0,
@@ -24,7 +24,7 @@ export class Stinger extends Weapon {
 			timeToBuild: 10,
 			life: 10,
 			damage: 15,
-			range: 450,
+			range: 55,
 			rateOfFire: 1.5,
 			accuracy: 0.75,
 		});

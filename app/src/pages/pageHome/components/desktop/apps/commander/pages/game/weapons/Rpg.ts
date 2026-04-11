@@ -24,7 +24,7 @@ export class Rpg extends Weapon {
 			timeToBuild: 10,
 			life: 10,
 			damage: 15,
-			range: 250,
+			range: 30,
 			rateOfFire: 3,
 			accuracy: 0.75,
 		});
