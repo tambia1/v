@@ -334,12 +334,16 @@ export class Game {
 
 					// 2. Logic when a unit is already selected
 					if (previouslySelectedEntity instanceof Unit) {
-						// If a unit is selected, any click on the map is a move command.
-						// This solves the problem of not being able to move to an occupied tile.
-						// To select another unit, the user must first deselect via the menu.
-						const gridX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
-						const gridY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
-						previouslySelectedEntity.move(gridX, gridY);
+						// If the click is on the already-selected unit, deselect it
+						if (previouslySelectedEntity.isTouched(x, y)) {
+							previouslySelectedEntity.setIsSelected(false);
+							this.selectedEntity = null;
+						} else {
+							// Otherwise any click on the map is a move command
+							const gridX = Math.floor(x / GRID_SIZE) * GRID_SIZE;
+							const gridY = Math.floor(y / GRID_SIZE) * GRID_SIZE;
+							previouslySelectedEntity.move(gridX, gridY);
+						}
 					} else {
 						// 3. Logic when nothing or a non-unit is selected (for selection)
 						// Deselect everything first
@@ -366,6 +370,12 @@ export class Game {
 							if (isCycling) {
 								const currentIndex = clickedEntities.indexOf(previouslySelectedEntity);
 								const nextIndex = (currentIndex + 1) % clickedEntities.length;
+
+								// If cycling would wrap back to the same entity, deselect instead
+								if (nextIndex === currentIndex) {
+									this.selectedEntity = null;
+									return;
+								}
 								entityToSelect = clickedEntities[nextIndex];
 							} else {
 								// Not cycling, so pick a new entity, prioritizing units
