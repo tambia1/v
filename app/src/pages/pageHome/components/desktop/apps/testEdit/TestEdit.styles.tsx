@@ -62,3 +62,8 @@ const TextWithCustomColorBase = styled(Text)`
 `;
 
 export const TextWithCustomColor = (props: React.ComponentProps<typeof Text>) => <TextWithCustomColorBase variant="title" {...props} />;
+
+export const CardVariants = styled.div`
+	display: flex;
+	gap: 1rem;
+`;

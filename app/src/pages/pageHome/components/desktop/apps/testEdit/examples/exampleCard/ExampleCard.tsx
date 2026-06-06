@@ -60,6 +60,16 @@ export const ExampleCard = () => {
 				<Card.Header content={"Header"} />
 				<Card.Body content="Body" />
 			</Card.Compose>
+
+			<Text>Card variants</Text>
+
+			<S.CardVariants>
+				<Card width="size700" height="size700" bodyContent={"Body"} />
+				<Card width="size700" height="size700" bodyContent={"Body"} />
+				<Card width="size700" height="size700" bodyContent={"Body"} />
+				<Card width="size700" height="size700" bodyContent={"Body"} />
+				<Card width="size700" height="size700" bodyContent={"Body"} />
+			</S.CardVariants>
 		</S.Col>
 	);
 };
