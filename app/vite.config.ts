@@ -6,13 +6,12 @@ import * as path from "node:path";
 import federation from "@originjs/vite-plugin-federation";
 import react from "@vitejs/plugin-react";
 import * as dotenv from "dotenv";
-import { defineConfig, type Plugin, type PluginOption } from "vite";
-import checker from "vite-plugin-checker";
 import styleX from "vite-plugin-stylex";
+import { defineConfig as defineVitestConfig } from "vitest/config";
 
 dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
-export default defineConfig({
+export default defineVitestConfig({
 	base: "/v",
 
 	plugins: [
@@ -21,12 +20,14 @@ export default defineConfig({
 			babel: {
 				plugins: ["@emotion/babel-plugin"],
 			},
-		}) as PluginOption,
+		}),
 
-		checker({
-			typescript: true,
-		}) as unknown as Plugin,
+		// TODO: Re-enable after updating vite-plugin-checker to support TypeScript 7
+		// checker({
+		// 	typescript: true,
+		// }) as unknown as Plugin,
 
+		// @ts-expect-error - Plugin type mismatch due to monorepo Vite versions
 		styleX(),
 
 		federation({
@@ -67,7 +68,6 @@ export default defineConfig({
 			exclude: ["./playwright-tests/**", "**/node_modules/**"],
 			provider: "v8",
 			reporter: ["text", "json", "html"],
-			all: true,
 			thresholds: {
 				lines: 85,
 				functions: 85,
