@@ -3,6 +3,7 @@
 
 import path from "node:path";
 import federation from "@originjs/vite-plugin-federation";
+import babel from "@rolldown/plugin-babel";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import checker from "vite-plugin-checker";
@@ -13,9 +14,10 @@ export default defineConfig({
 	plugins: [
 		react({
 			jsxImportSource: "@emotion/react",
-			babel: {
-				plugins: ["@emotion/babel-plugin"],
-			},
+		}),
+
+		babel({
+			plugins: ["@emotion/babel-plugin"],
 		}),
 
 		checker({

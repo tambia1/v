@@ -4,6 +4,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import federation from "@originjs/vite-plugin-federation";
+import babel from "@rolldown/plugin-babel";
 import react from "@vitejs/plugin-react";
 import * as dotenv from "dotenv";
 import styleX from "vite-plugin-stylex";
@@ -17,9 +18,10 @@ export default defineVitestConfig({
 	plugins: [
 		react({
 			jsxImportSource: "@emotion/react",
-			babel: {
-				plugins: ["@emotion/babel-plugin"],
-			},
+		}),
+
+		babel({
+			plugins: ["@emotion/babel-plugin"],
 		}),
 
 		// TODO: Re-enable after updating vite-plugin-checker to support TypeScript 7
@@ -27,7 +29,6 @@ export default defineVitestConfig({
 		// 	typescript: true,
 		// }) as unknown as Plugin,
 
-		// @ts-expect-error - Plugin type mismatch due to monorepo Vite versions
 		styleX(),
 
 		federation({
