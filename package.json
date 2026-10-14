@@ -6,11 +6,6 @@
 		"shared/ui",
 		"frontend/*"
 	],
-	"devDependencies": {
-		"@testing-library/dom": "10.4.1",
-		"typescript": "7.0.2",
-		"vitest": "4.0.12"
-	},
 	"dependencies": {
 		"@google/generative-ai": "0.24.1"
 	}
