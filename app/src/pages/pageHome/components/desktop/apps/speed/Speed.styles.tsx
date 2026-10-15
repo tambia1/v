@@ -1,5 +1,6 @@
 import { css, type SerializedStyles } from "@emotion/react";
 import styled from "@emotion/styled";
+
 import caliper from "./images/caliper.png";
 import compass from "./images/compass.png";
 import speedometer from "./images/speedometer.png";
@@ -182,10 +183,10 @@ export const GpsIndicator = styled.div<{ $enabled: boolean }>`
 		props.$enabled
 			? css`
 					text-shadow: 0px 1px 3px #00ff00;
-			`
+				`
 			: css`
 					text-shadow: 0px 1px 3px #ff0000;
-			`}
+				`}
 `;
 
 const Indicator = css`

@@ -1,4 +1,5 @@
 import { ErrorInfo, ReactNode, Suspense, useEffect, useRef } from "react";
+
 import ErrorBoundary from "./ErrorBoundary";
 import { SuspensionFallback } from "./SuspensionFallback";
 

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import imageBg from "./assets/bg.avif";
 
 export const SmileClock = styled.div`
@@ -17,7 +18,7 @@ export const SmileClock = styled.div`
 	background-color: #000000;
 
 	background-image: url(${imageBg});
-	background-size: cover; 
+	background-size: cover;
 `;
 
 export const Video = styled.video`

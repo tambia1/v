@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+
 import { INote } from "../Notes.types";
 
 type Props = {

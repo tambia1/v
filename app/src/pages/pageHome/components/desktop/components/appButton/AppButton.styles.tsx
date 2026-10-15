@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+
 import board from "./assets/board.png";
 import calculator from "./assets/calculator.png";
 import calendar from "./assets/calendar.png";
@@ -84,10 +85,10 @@ export const AppButton = styled.div<{ $isLoading: boolean; $isShakeMode: boolean
 	justify-content: start;
 	flex-direction: column;
 	gap: 0.5rem;
-    width: 100%;
-    height: 10rem;
+	width: 100%;
+	height: 10rem;
 	padding: 0.5rem;
-    box-sizing: border-box;
+	box-sizing: border-box;
 	border-radius: 0.5rem;
 	position: relative;
 	transition: all 0.3s ease;

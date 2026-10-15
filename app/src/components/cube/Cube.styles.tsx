@@ -27,8 +27,8 @@ export const Container = styled.div<{
 	height: ${(props) => props.$height}px;
 	position: relative;
 	transform-style: preserve-3d;
-	transform: translateX(${(props) => props.$x}px) translateY(${(props) => props.$y}px) translateZ(${(props) => props.$z}px) rotateX(${(props) => props.$rotateX}deg)
-		rotateY(${(props) => props.$rotateY}deg) rotateZ(${(props) => props.$rotateZ}deg);
+	transform: translateX(${(props) => props.$x}px) translateY(${(props) => props.$y}px) translateZ(${(props) => props.$z}px)
+		rotateX(${(props) => props.$rotateX}deg) rotateY(${(props) => props.$rotateY}deg) rotateZ(${(props) => props.$rotateZ}deg);
 	display: flex;
 	justify-content: center;
 	align-items: center;

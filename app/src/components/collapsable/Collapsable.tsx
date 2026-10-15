@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
+
 import * as S from "./Collapsable.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {

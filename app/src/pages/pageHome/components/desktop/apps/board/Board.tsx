@@ -4,6 +4,7 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useRef, useState } from "react";
+
 import * as S from "./Board.styles";
 
 type BoardProps = {
@@ -161,7 +162,7 @@ export const Board = () => {
 	};
 
 	const handleOnClickModalOk = () => {
-		setBoards([...boards.map((board, index) => (index === 0 ? { ...board, tasks: [...board.tasks, modalText] } : board))]);
+		setBoards(boards.map((board, index) => (index === 0 ? { ...board, tasks: [...board.tasks, modalText] } : board)));
 		setModalText("");
 		setIsModalVisible(false);
 	};

@@ -1,6 +1,7 @@
 import { Navigator } from "@src/components/navigator/Navigator";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+
 import * as S from "./Chat.styles";
 import { User } from "./components/user/User";
 

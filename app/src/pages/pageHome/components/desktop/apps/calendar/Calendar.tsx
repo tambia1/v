@@ -1,6 +1,7 @@
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useEffect, useRef } from "react";
+
 import * as S from "./Calendar.styles";
 
 export const Calendar = () => {
@@ -25,7 +26,7 @@ export const Calendar = () => {
 		}
 
 		handleOnClickToday();
-	}, [refYear.current]);
+	}, []);
 
 	const handleOnClickToday = () => {
 		if (!refYear.current) {

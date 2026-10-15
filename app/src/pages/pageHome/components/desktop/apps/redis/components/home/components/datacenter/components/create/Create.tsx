@@ -12,6 +12,7 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import { Api } from "../../../../../../api/Api";
 import { dataPersistenceMap, modulesMap } from "../../../../../../api/Api.types";
 import { convertBytes } from "../../../../../../api/Api.utils";

@@ -75,7 +75,7 @@ export const BackButton = styled.div<{ $isVisible: boolean }>`
 
 	color: ${(props) => props.theme.color.primary700};
 
-	&:hover{
+	&:hover {
 		color: ${(props) => props.theme.color.primary100};
 		background-color: ${(props) => props.theme.color.primary400};
 	}

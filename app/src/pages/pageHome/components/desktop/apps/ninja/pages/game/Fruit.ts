@@ -1,5 +1,6 @@
 import { Animation, AnimationLooper } from "@src/utils/Animation";
 import { getRandomNumber } from "@src/utils/Random";
+
 import { FruitType } from "./Game";
 
 type Props = {

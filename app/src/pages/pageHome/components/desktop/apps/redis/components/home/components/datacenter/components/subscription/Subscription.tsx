@@ -7,6 +7,7 @@ import { WorldMap } from "@src/components/worldMap/WorldMap";
 import { lang } from "@src/locales/i18n";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import { Api } from "../../../../../../api/Api";
 import type { Plan as PlanType, Region, Subscription as SubscriptionType } from "../../../../../../api/Api.types";
 import { regionsLocations } from "../../../../../../data/regionsLocations";

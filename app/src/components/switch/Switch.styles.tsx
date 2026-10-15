@@ -15,11 +15,9 @@ export const Switch = styled.div<{ disabled: boolean }>`
 	${(props) =>
 		props.disabled &&
 		css`
-		
 			cursor: not-allowed;
 			opacity: 0.6;
 		`}
-
 `;
 
 export const Dot = styled.div<{ $checked: boolean }>`

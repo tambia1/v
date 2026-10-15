@@ -1,16 +1,16 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
+/// <reference types="vite-plus/test" />
+/// <reference types="vite-plus/client" />
+
+import path from "path";
 
 import babel from "@rolldown/plugin-babel";
 import react from "@vitejs/plugin-react";
-import path from "path";
-import { defineConfig } from "vite";
-import checker from "vite-plugin-checker";
+import { defineConfig, lazyPlugins } from "vite-plus";
 
 export default defineConfig({
 	base: "/v",
 
-	plugins: [
+	plugins: lazyPlugins(() => [
 		react({
 			jsxImportSource: "@emotion/react",
 		}),
@@ -18,11 +18,7 @@ export default defineConfig({
 		babel({
 			plugins: ["@emotion/babel-plugin"],
 		}),
-
-		checker({
-			typescript: true,
-		}),
-	],
+	]),
 
 	resolve: {
 		alias: {

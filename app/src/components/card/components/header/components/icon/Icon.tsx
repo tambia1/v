@@ -1,4 +1,5 @@
 import { IconName } from "@src/components/icon/Icon.types";
+
 import * as S from "./Icon.styles";
 
 export type Props = {

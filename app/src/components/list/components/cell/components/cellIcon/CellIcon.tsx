@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+
 import * as S from "./CellIcon.styles";
 
 export type Props = {

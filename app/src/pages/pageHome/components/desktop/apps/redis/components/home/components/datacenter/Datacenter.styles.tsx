@@ -180,7 +180,7 @@ export const DatabasesHeader = styled.div`
 	white-space: nowrap;
 	padding: 0rem 1rem;
 	background-color: #252525;
-	color: #A99D5D;
+	color: #a99d5d;
 	cursor: pointer;
 
 	${DatabasesWidth}
@@ -206,7 +206,7 @@ export const DatabasesLine = styled.div`
 	width: 100%;
 	margin-left: 1rem;
 	margin-right: 1rem;
-	border-bottom: dashed #A99D5D 1px;
+	border-bottom: dashed #a99d5d 1px;
 `;
 
 export const IconCollapse = styled.div<{ $collapsed: boolean }>`
@@ -255,30 +255,28 @@ export const DatabasesText = styled.div`
 	align-items: center;
 	font-weight: normal;
 	flex-shrink: 0;
-	color: #ffffff
+	color: #ffffff;
 `;
 
 export const DatabaseDetailText = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: normal;
-	color: #ffffff
-
+	color: #ffffff;
 `;
 
 export const DatabaseDetailTextDisabled = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: normal;
-	color: #666666
-
+	color: #666666;
 `;
 
 export const DatabaseDetailValue = styled.div`
 	display: flex;
 	align-items: center;
 	font-weight: normal;
-	color: #A99D5D
+	color: #a99d5d;
 `;
 
 export const SubscriptionRow = styled.div`
@@ -288,7 +286,7 @@ export const SubscriptionRow = styled.div`
 	flex-direction: column;
 	background-color: ${(props) => props.theme.color.primary300};
 
-	&:nth-child(odd){
+	&:nth-child(odd) {
 		background-color: ${(props) => props.theme.color.primary100};
 	}
 `;
@@ -378,7 +376,7 @@ export const DatabasesInfoCell = styled.div`
 export const Progress = styled(ProgressComponent)<{ percent: number }>`
 	border: 1px solid #ffffff;
 
-	& ${ProgressValue}{
+	& ${ProgressValue} {
 		background-color: #ffffff;
 	}
 `;
@@ -408,12 +406,12 @@ export const Pin = styled.div`
 	white-space: nowrap;
 	transition: scale 0.3s ease;
 
-	&:hover{
+	&:hover {
 		scale: 150%;
 
-		& ${RegionValue}{
+		& ${RegionValue} {
 			opacity: 1;
-		} 
+		}
 	}
 
 	& ${Flag} {
@@ -426,5 +424,5 @@ export const Pin = styled.div`
 `;
 
 export const IconModule = styled(Icon)<{ $enabled: boolean }>`
-	color: ${(props) => (props.$enabled ? "#A99D5D" : "#666666")} 
+	color: ${(props) => (props.$enabled ? "#A99D5D" : "#666666")};
 `;

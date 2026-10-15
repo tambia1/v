@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import { Icon } from "../icon/Icon";
 import { Text } from "../text/Text";
 import { Item } from "./components/item/Item";
@@ -120,7 +121,7 @@ export const Navigator = ({ className, children, onPushStart, onPushEnd, onPopSt
 		}
 
 		if (navigatorItem.pageAnimation === "moveFromCenterToRight") {
-			setNavigatorItems((prevPages) => [...prevPages.slice(0, -1)]);
+			setNavigatorItems((prevPages) => prevPages.slice(0, -1));
 		}
 	};
 

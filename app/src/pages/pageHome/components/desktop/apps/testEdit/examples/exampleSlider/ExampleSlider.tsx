@@ -1,6 +1,7 @@
 import { Slider } from "@src/components/slider/Slider";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
+
 import * as S from "../../TestEdit.styles";
 
 export const ExampleSlider = () => {
@@ -26,4 +27,3 @@ export const ExampleSlider = () => {
 		</S.Col>
 	);
 };
-

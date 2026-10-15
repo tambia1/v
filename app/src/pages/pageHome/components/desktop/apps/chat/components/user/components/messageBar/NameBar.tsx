@@ -1,6 +1,7 @@
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useState } from "react";
+
 import * as S from "./NameBar.styles";
 
 type Props = {

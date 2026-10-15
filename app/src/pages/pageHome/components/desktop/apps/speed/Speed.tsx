@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import * as S from "./Speed.styles";
 
 export const Speed = () => {

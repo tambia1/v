@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { List } from "../list/List.styles";
 
 export const PopupMenu = styled.div`
@@ -18,7 +19,7 @@ export const Items = styled.div<{ $isOpen: boolean }>`
 	border-radius: 2rem;
 	max-height: 25rem;
 
-	& ${List}{
+	& ${List} {
 		overflow-y: hidden;
 
 		&::-webkit-scrollbar-track {

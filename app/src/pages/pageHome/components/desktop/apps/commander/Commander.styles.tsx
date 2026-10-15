@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { BackButton, Headers } from "@src/components/navigator/Navigator.styles";
 import { Text } from "@src/components/text/Text.styles";
+
 import oswaldFont from "./pages/fonts/Oswald-VariableFont_wght.ttf";
 
 export const themeGame = {
@@ -67,7 +68,7 @@ export const Commander = styled.div`
 	display: flex;
 
 	& ${Headers} {
-		background-image: linear-gradient(45deg, #2F3337, #4A4F55);
+		background-image: linear-gradient(45deg, #2f3337, #4a4f55);
 		color: ${(props) => props.theme.color.success400};
 	}
 

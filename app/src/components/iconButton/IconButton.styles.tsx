@@ -20,7 +20,7 @@ export const IconButton = styled.div`
 		fill: ${(props) => props.theme.color.primary100};
 	}
 
-	&:hover{
+	&:hover {
 		color: ${(props) => props.theme.color.primary400};
 		background-color: ${(props) => props.theme.color.primary600};
 	}

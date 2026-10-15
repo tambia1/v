@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon";
+
 import imageBg from "./assets/bg.jpg";
 
 export const Store = styled.div`

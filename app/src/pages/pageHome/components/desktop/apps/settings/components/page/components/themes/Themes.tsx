@@ -6,6 +6,7 @@ import { T } from "@src/locales/T";
 import { type Theme, themes } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import { useSearchParams } from "react-router-dom";
+
 import { ThemeStore } from "./store/ThemeStore";
 import * as S from "./Themes.styles";
 

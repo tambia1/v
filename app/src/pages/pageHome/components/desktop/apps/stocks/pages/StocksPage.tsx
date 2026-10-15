@@ -7,6 +7,7 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+
 import { QueryStocks, type StockOk } from "../queries/QueryStocks";
 import { Stock } from "./components/stock/Stock";
 import * as S from "./StocksPage.styles";

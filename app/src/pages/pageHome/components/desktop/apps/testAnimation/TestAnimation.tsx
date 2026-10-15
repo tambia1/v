@@ -1,6 +1,7 @@
 import { Text } from "@src/components/text/Text";
 import { Animation, AnimationLooper, type CallbackResult } from "@src/utils/Animation";
 import { useEffect, useRef, useState } from "react";
+
 import * as S from "./TestAnimation.styles";
 
 export const TestAnimation = () => {

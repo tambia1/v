@@ -1,4 +1,5 @@
 import type { Theme } from "@src/theme/Theme.types";
+
 import * as S from "./Space.styles";
 import type { Direction } from "./Space.types";
 

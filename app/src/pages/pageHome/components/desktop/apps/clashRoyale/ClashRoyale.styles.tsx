@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Headers } from "@src/components/navigator/Navigator.styles";
+
 import supercellMagicFont from "./pages/game/fonts/SupercellMagicFont.ttf";
 
 export const ClashRoyale = styled.div`

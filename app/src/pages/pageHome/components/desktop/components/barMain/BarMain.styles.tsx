@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import type { BarPosition } from "../../Desktop.styles";
 
 export const BarMain = styled.div`

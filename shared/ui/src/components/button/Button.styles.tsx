@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+
 import { Variant } from "./Button";
 
 export const Button = styled.button<{ $variant: Variant }>`
@@ -84,7 +85,7 @@ export const Button = styled.button<{ $variant: Variant }>`
 				background-color: var(--background-disabled-color);
 				border-color: var(--border-disabled-color);
 			}
-		`} 
+		`}
 
 	${(props) =>
 		props.$variant === "link" &&

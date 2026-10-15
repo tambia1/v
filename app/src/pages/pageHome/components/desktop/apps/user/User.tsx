@@ -7,6 +7,7 @@ import { StoreUser } from "@src/pages/pageHome/components/desktop/apps/user/stor
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
+
 import { useBarMain } from "../../hooks/UseBarMain";
 import { Api } from "./api/Api";
 import * as S from "./User.styles";

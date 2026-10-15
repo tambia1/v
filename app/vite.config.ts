@@ -1,14 +1,15 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
+/// <reference types="vite-plus/test" />
+/// <reference types="vite-plus/client" />
 
 import * as fs from "node:fs";
 import * as path from "node:path";
+
 import federation from "@originjs/vite-plugin-federation";
 import babel from "@rolldown/plugin-babel";
 import react from "@vitejs/plugin-react";
 import * as dotenv from "dotenv";
 import styleX from "vite-plugin-stylex";
-import { defineConfig as defineVitestConfig } from "vitest/config";
+import { defineConfig as defineVitestConfig } from "vite-plus";
 
 dotenv.config({ path: `./env/.env.${process.env.ENV}` });
 
@@ -23,11 +24,6 @@ export default defineVitestConfig({
 		babel({
 			plugins: ["@emotion/babel-plugin"],
 		}),
-
-		// TODO: Re-enable after updating vite-plugin-checker to support TypeScript 7
-		// checker({
-		// 	typescript: true,
-		// }) as unknown as Plugin,
 
 		styleX(),
 

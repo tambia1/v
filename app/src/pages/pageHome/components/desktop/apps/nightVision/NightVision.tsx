@@ -1,6 +1,7 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Loader } from "@src/components/loader/Loader";
 import { useEffect, useRef, useState } from "react";
+
 import * as S from "./NightVision.styles";
 
 type CameraFacingMode = "user" | "environment";

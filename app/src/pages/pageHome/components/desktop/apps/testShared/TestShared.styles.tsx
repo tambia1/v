@@ -38,4 +38,3 @@ export const Title = styled.div`
 	font-weight: ${(props) => props.theme.font.font100.weight};
 	font-size: ${(props) => props.theme.font.font100.size};
 `;
-

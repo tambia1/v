@@ -1,5 +1,6 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+
 import { Icon } from "../icon/Icon.styles";
 
 export const Check = styled.div<{ disabled: boolean }>`
@@ -22,7 +23,7 @@ export const Check = styled.div<{ disabled: boolean }>`
 		fill: ${(props) => (props.disabled ? props.theme.color.primary300 : props.theme.color.primary100)};
 	}
 
-	&:hover{
+	&:hover {
 		color: ${(props) => props.theme.color.primary400};
 		background-color: ${(props) => props.theme.color.primary600};
 	}
@@ -30,14 +31,13 @@ export const Check = styled.div<{ disabled: boolean }>`
 	${(props) =>
 		props.disabled &&
 		css`
-		
 			cursor: not-allowed;
 			opacity: 0.6;
 		`}
 
-	& ${Icon}{
+	& ${Icon} {
 		width: 120%;
 		height: 120%;
 		margin: -10%;
-	} 
+	}
 `;

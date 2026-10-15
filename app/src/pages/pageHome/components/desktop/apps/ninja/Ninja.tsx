@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+
 import * as S from "./Ninja.styles";
 import { Game } from "./pages/game/Game";
 

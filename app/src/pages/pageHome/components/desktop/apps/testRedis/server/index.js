@@ -1,8 +1,10 @@
 import http from "node:http";
 import { exit } from "node:process";
 import url from "node:url";
+
 import dotenv from "dotenv";
 import { createClient } from "redis";
+
 import config from "./../../../../../../../config.json" with { type: "json" };
 import { colors, log } from "./log.js";
 import { routes } from "./routes.js";

@@ -53,7 +53,6 @@ export const Columns = styled.div`
 
 	margin: 1rem;
 
-
 	& > ${Column}:nth-child(1) ${ColumnHeader} {
 		background-color: #f48897;
 	}

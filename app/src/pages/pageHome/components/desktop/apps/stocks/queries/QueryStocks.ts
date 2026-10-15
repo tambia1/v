@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { stocksData } from "./QueryStocksData";
 
 const API_KEY = "08f42b10a3844a79b80e4cc2782e4f10";

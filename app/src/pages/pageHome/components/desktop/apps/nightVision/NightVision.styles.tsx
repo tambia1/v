@@ -107,7 +107,7 @@ export const ZoomContainer = styled.div<{ $visible: boolean }>`
 	position: absolute;
 	left: 1rem;
 	right: 1rem;
-	bottom: 11rem; 
+	bottom: 11rem;
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;

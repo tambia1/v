@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import { LanguageName, languages } from "../../../locales/i18n.types";
 
 type Props = {

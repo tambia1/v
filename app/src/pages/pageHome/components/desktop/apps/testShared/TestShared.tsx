@@ -2,6 +2,7 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { Button } from "@v/shared-ui";
+
 import * as S from "./TestShared.styles";
 
 export const TestShared = () => {

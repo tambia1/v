@@ -5,6 +5,7 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useEffect, useRef, useState } from "react";
+
 import { Api } from "./api/Api";
 import type { ChatMessage } from "./api/Api.types";
 import * as S from "./TestAi.styles";

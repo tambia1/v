@@ -14,7 +14,7 @@ export const Items = styled.div<{ $isOpen: boolean; $width: string }>`
 	max-height: 20rem;
 	overflow-y: hidden;
 
-	& ${List}{
+	& ${List} {
 		overflow-y: hidden;
 		scrollbar-gutter: stable;
 

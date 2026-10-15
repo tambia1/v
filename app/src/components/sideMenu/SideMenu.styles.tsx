@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { Cell } from "../list/components/cell/Cell.styles";
 import { Section } from "../list/components/section/Section.styles";
 import { List } from "../list/List.styles";

@@ -41,8 +41,8 @@ export const Line = styled.div`
 	width: auto;
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
-	margin-top: 1.0rem;
-	margin-bottom: 1.0rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 	border-top: solid ${(props) => props.theme.color.primary600} 1px;
 `;
 

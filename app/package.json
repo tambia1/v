@@ -1,24 +1,21 @@
 {
 	"name": "@v/app",
-	"private": true,
 	"version": "1.6.0",
-	"type": "module",
+	"private": true,
 	"homepage": "https://tambia1.github.io",
+	"type": "module",
 	"scripts": {
-		"init": "npm install --legacy-peer-deps",
-		"start": "vite --host --port 5000",
-		"build": "tsc && vite build",
-		"preview": "vite preview --port 5000",
+		"init": "vp install",
+		"start": "vp dev --host --port 5000",
+		"build": "tsc && vp build",
+		"preview": "vp preview --port 5000",
 		"deploy": "gh-pages -d ./dist",
 		"release": "node ./src/scripts/release.js",
-		"biome": "biome check .",
-		"biome:format": "biome format --write .",
-		"biome:fix": "biome check --write .",
 		"env:dev": "cross-env ENV=dev",
 		"env:qa": "cross-env ENV=qa",
 		"env:prod": "cross-env ENV=prod",
-		"test:units": "vitest",
-		"test:coverage": "vitest watch --coverage",
+		"test:units": "vp test",
+		"test:coverage": "vp test watch --coverage",
 		"test:visuals:install": "playwright install chromium",
 		"test:visuals": "playwright test",
 		"test:visuals:show": "playwright test --headed",
@@ -26,7 +23,11 @@
 		"test:visuals:manual": "playwright test --ui",
 		"test:visuals:update": "playwright test --update-snapshots --headed",
 		"test:visuals:codegen": "playwright codegen --viewport-size=390,844",
-		"test:visuals:reporter": "playwright test --reporter=list"
+		"test:visuals:reporter": "playwright test --reporter=list",
+		"check": "vp check",
+		"check:fix": "vp check --fix",
+		"fmt": "vp fmt",
+		"lint": "vp lint"
 	},
 	"dependencies": {
 		"@dotenvx/dotenvx": "1.51.1",
@@ -59,7 +60,6 @@
 	},
 	"devDependencies": {
 		"@babel/core": "7.29.7",
-		"@biomejs/biome": "2.2.5",
 		"@emotion/babel-plugin": "11.13.5",
 		"@originjs/vite-plugin-federation": "1.4.1",
 		"@playwright/test": "1.56.0",
@@ -82,9 +82,9 @@
 		"jsdom": "27.0.0",
 		"playwright": "1.56.0",
 		"typescript": "7.0.2",
-		"vite": "8.3.4",
-		"vite-plugin-checker": "0.11.0",
+		"vite": "npm:@voidzero-dev/vite-plus-core@1.2.0",
 		"vite-plugin-stylex": "0.13.0",
+		"vite-plus": "1.2.0",
 		"vitest": "5.0.4"
 	}
 }

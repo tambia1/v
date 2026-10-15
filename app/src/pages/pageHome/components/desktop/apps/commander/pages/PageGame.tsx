@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+
 import type { ArenaType } from "./game/Arena";
 import { Game } from "./game/Game";
 import * as S from "./PageGame.styles";

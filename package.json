@@ -6,7 +6,17 @@
 		"shared/ui",
 		"frontend/*"
 	],
+	"scripts": {
+		"prepare": "vp config --no-agent"
+	},
 	"dependencies": {
 		"@google/generative-ai": "0.24.1"
+	},
+	"devDependencies": {
+		"vite-plus": "1.2.0"
+	},
+	"overrides": {
+		"vite": "npm:@voidzero-dev/vite-plus-core@1.2.0",
+		"vitest": "5.0.4"
 	}
 }

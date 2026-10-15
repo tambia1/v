@@ -1,6 +1,7 @@
 import { Icon } from "@src/components/icon/Icon";
 import { List } from "@src/components/list/List";
 import type { HTMLAttributes, ReactNode } from "react";
+
 import { useContextSelect } from "../../context/UseContextSelect";
 import * as S from "./Display.styles";
 

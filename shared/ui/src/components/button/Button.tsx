@@ -1,4 +1,5 @@
 import type React from "react";
+
 import * as S from "./Button.styles";
 
 export type Variant = "full" | "stroke" | "link";

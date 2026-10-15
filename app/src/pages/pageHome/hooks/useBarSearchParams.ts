@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import { BarPosition } from "../components/desktop/Desktop.styles";
 
 type Props = {

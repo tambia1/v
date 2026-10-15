@@ -1,6 +1,6 @@
 import { Global } from "@emotion/react";
-import { Pages } from "@pages/Pages.types";
 import { PageNotFound } from "@pages/pageNotFound/PageNotFound";
+import { Pages } from "@pages/Pages.types";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { globalStyles } from "@src/styles/globalStyles";
 import { ThemeProvider } from "@src/theme/ThemeProvider";
@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { PageHome } from "./pages/pageHome/PageHome";
 import { Device } from "./utils/Device";
 

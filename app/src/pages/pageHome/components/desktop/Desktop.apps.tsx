@@ -12,6 +12,7 @@ import { Weather } from "@apps/weather/Weather";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { lazy, type ReactElement, type ReactNode } from "react";
+
 import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";

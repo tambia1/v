@@ -54,7 +54,7 @@ export const Chwazi = styled.div<{ $isGlowing: boolean }>`
 		props.$isGlowing &&
 		css`
 			animation: ${glow} 0.3s forwards;
-	`}
+		`}
 `;
 
 export const Circle = styled.div<{ color: string; $isAnimate: boolean }>`
@@ -76,7 +76,7 @@ export const Circle = styled.div<{ color: string; $isAnimate: boolean }>`
 
 export const ProgressBar = styled.div<{ $isProgressing: boolean; $isPicked: boolean }>`
 	width: 0%;
-	height: 1rem; 
+	height: 1rem;
 	border-radius: 0.5rem;
 	background-color: #ffffff;
 
@@ -86,9 +86,9 @@ export const ProgressBar = styled.div<{ $isProgressing: boolean; $isPicked: bool
 			background-color: #ff0000;
 		`}
 
-${(props) =>
-	props.$isProgressing &&
-	css`
-			animation: ${progress} 2.0s linear forwards; 
+	${(props) =>
+		props.$isProgressing &&
+		css`
+			animation: ${progress} 2s linear forwards;
 		`}
 `;

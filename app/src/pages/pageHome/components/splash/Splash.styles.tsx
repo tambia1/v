@@ -1,6 +1,7 @@
 import { Progress as ProgressComponent } from "@components/progress/Progress";
 import { ProgressValue } from "@components/progress/Progress.styles";
 import styled from "@emotion/styled";
+
 import logo from "./assets/logo.png";
 
 export const Splash = styled.div`
@@ -42,7 +43,7 @@ export const ProgressContainer = styled.div`
 export const Progress = styled(ProgressComponent)<{ percent: number }>`
 	border: 1px solid #ffffff;
 
-	& ${ProgressValue}{
+	& ${ProgressValue} {
 		background-color: #ffffff;
 	}
 `;

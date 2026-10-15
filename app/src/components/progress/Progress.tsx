@@ -1,5 +1,6 @@
 import { useTheme } from "@emotion/react";
 import type { Theme } from "@src/theme/Theme.types";
+
 import * as S from "./Progress.styles";
 
 export type Props = {

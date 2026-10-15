@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+
 import * as S from "./ClashRoyaleGame.styles";
 import type { ArenaType } from "./game/Arena";
 import { Game } from "./game/Game";

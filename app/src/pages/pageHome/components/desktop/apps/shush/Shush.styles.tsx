@@ -22,7 +22,7 @@ export const ProgressStyled = styled(Progress)<{ percent: number }>`
 	border-color: #ffffff;
 	margin-top: ${(props) => props.theme.size.size200};
 
-	& ${ProgressValue}{
+	& ${ProgressValue} {
 		background-color: #ffffff;
 	}
 `;

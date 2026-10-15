@@ -3,6 +3,7 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useState } from "react";
+
 import * as S from "./TestMenu.styles";
 
 type MenuItemId = "add" | "remove" | "update" | "about";

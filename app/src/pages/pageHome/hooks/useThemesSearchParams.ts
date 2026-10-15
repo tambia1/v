@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import { Theme, themes } from "../../../theme/Theme.types";
 
 type Props = {

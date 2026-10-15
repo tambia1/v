@@ -1,6 +1,7 @@
 import { Select } from "@src/components/select/Select";
 import { Table, type Type } from "@src/components/table/Table";
 import { useState } from "react";
+
 import { data } from "./Data";
 import * as S from "./TestTable.styles";
 

@@ -1,5 +1,6 @@
 import type { Theme } from "@src/theme/Theme.types";
 import type { ReactNode } from "react";
+
 import * as S from "./Text.styles";
 
 export type Variant = "title" | "header" | "body" | "note";

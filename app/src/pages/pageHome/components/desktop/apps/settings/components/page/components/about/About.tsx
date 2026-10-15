@@ -4,6 +4,7 @@ import { lang } from "@src/locales/i18n";
 import { Device } from "@src/utils/Device";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import * as S from "./About.styles";
 
 export const About = () => {

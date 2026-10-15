@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon";
 import { Input } from "@src/components/input/Input";
+
 import imageBg from "./assets/login_bg.svg";
 import imageUserLoggedIn from "./assets/userLoggedIn.png";
 import imageUserLoggedOut from "./assets/userLoggedOut.png";
@@ -21,10 +22,10 @@ export const User = styled.div`
 		transition: all 0.3s ease;
 	}
 
-    background-color: rgba(0, 0, 200, 0.2);
-    background-image: url(${imageBg});
-    background-size: contain;
-    background-repeat: no-repeat;
+	background-color: rgba(0, 0, 200, 0.2);
+	background-image: url(${imageBg});
+	background-size: contain;
+	background-repeat: no-repeat;
 `;
 
 export const Box = styled.div`
@@ -42,7 +43,6 @@ export const Box = styled.div`
 	border-radius: 16px;
 	color: ${(props) => props.theme.color.primary800};
 	background-color: ${(props) => props.theme.color.primary100};
-
 `;
 
 export const EmailBox = styled.div<{ disabled: boolean }>`
@@ -50,10 +50,10 @@ export const EmailBox = styled.div<{ disabled: boolean }>`
 	height: 3rem;
 	display: flex;
 	flex-direction: row;
-    align-items: center;
+	align-items: center;
 	border-radius: 5rem;
 	border: 1px solid #8f9092;
-    box-sizing: border-box;
+	box-sizing: border-box;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
@@ -73,7 +73,7 @@ export const EmailInput = styled(Input)`
 	font-size: inherit;
 	font-weight: inherit;
 	padding-right: 0.5rem;
-	
+
 	&::placeholder {
 		color: ${(props) => props.theme.color.primary500};
 	}
@@ -89,10 +89,10 @@ export const PasswordBox = styled.div<{ disabled: boolean }>`
 	height: 3rem;
 	display: flex;
 	flex-direction: row;
-    align-items: center;
+	align-items: center;
 	border-radius: 5rem;
 	border: 1px solid #8f9092;
-    box-sizing: border-box;
+	box-sizing: border-box;
 	opacity: ${(props) => (props.disabled ? 0.5 : 1)};
 `;
 
@@ -112,7 +112,7 @@ export const PasswordInput = styled(Input)`
 	font-size: inherit;
 	font-weight: inherit;
 	padding-right: 0.5rem;
-	
+
 	&::placeholder {
 		color: ${(props) => props.theme.color.primary500};
 	}

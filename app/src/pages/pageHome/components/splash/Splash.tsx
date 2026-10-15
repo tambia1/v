@@ -3,6 +3,7 @@ import { useAnimation } from "@src/hooks/UseAnimation";
 import { Files } from "@src/services/Files";
 import { Promises } from "@src/services/Promises";
 import { useLayoutEffect, useRef, useState } from "react";
+
 import * as S from "./Splash.styles";
 import { getImagesToCache } from "./Splash.utils";
 

@@ -11,7 +11,7 @@ export const Notes = styled.div`
 		background-color: #fbdc4a;
 	}
 
-	& ${Headers} ${BackButton}:hover{
+	& ${Headers} ${BackButton}:hover {
 		background-color: #dbbc2a;
 	}
 `;

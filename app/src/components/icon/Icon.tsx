@@ -1,6 +1,7 @@
 import { useTheme } from "@emotion/react";
 import type { Theme } from "@src/theme/Theme.types";
 import { ReactSVG } from "react-svg";
+
 import * as S from "./Icon.styles";
 import { type IconName, Icons } from "./Icon.types";
 

@@ -1,4 +1,5 @@
 import React, { type ReactElement, type ReactNode, useEffect, useRef, useState } from "react";
+
 import { Pin } from "./components/pin/Pin";
 import * as S from "./WorldMap.styles";
 

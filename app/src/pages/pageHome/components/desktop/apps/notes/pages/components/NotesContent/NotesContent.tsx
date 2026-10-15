@@ -5,6 +5,7 @@ import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
 import { useNotesStore } from "../../../store/UseNotesStore";
 import * as S from "./NotesContent.styles";
 

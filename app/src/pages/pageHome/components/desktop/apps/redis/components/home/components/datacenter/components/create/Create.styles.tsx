@@ -31,9 +31,9 @@ export const Row = styled.div`
 `;
 
 export const Matches = styled.div`
-	white-space: nowrap; 
-	overflow: hidden; 
-	text-overflow: ellipsis; 
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 
 export const TableContainer = styled.div`

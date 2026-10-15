@@ -1,6 +1,7 @@
 import { type Touch, useTouch } from "@src/hooks/UseTouch";
 import type { Theme } from "@src/theme/Theme.types";
 import type { ComponentProps } from "react";
+
 import * as S from "./Button.styles";
 
 export type Variant = "styled" | "full" | "stroke" | "link" | "text" | "none";

@@ -2,6 +2,7 @@ import { useNavigator } from "@src/components/navigator/hooks/UseNavigator";
 import { Navigator } from "@src/components/navigator/Navigator";
 import { Pager } from "@src/components/pager/Pager";
 import { useState } from "react";
+
 import type { ArenaType } from "./game/Arena";
 import { PageGame } from "./PageGame";
 import * as S from "./PageMenu.styles";

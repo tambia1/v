@@ -2,6 +2,7 @@ import { Icon } from "@src/components/icon/Icon";
 import type { Theme } from "@src/theme/Theme.types";
 import { useThemeContext } from "@src/theme/UseThemeContext";
 import type { ReactNode } from "react";
+
 import type { BarPosition } from "../../Desktop.styles";
 import * as S from "./BarMain.styles";
 

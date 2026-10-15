@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import { Text } from "@src/components/text/Text.styles";
+
 import type { LineState } from "./Cell";
 
 export const Content = styled.div`

@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+
 import { ANIMATION_TIME, performLogin } from "./utils";
 
 test("Settings", async ({ page }) => {

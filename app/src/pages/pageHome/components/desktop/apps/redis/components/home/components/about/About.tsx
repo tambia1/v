@@ -1,5 +1,6 @@
 import { version } from "@src/../package.json";
 import { Text } from "@src/components/text/Text";
+
 import * as S from "./About.styles";
 
 export const About = () => {

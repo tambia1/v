@@ -1,5 +1,6 @@
 import { Animation, AnimationLooper, type CallbackResult } from "@src/utils/Animation";
 import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
+
 import * as S from "./Slot.styles";
 
 export type SlotState = "spin" | "stop";

@@ -1,5 +1,6 @@
 import { type Touch, useTouch } from "@src/hooks/UseTouch";
 import { type ReactNode, useEffect, useRef, useState } from "react";
+
 import * as S from "./Pager.styles";
 
 type Props = {

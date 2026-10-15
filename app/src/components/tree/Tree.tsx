@@ -1,6 +1,7 @@
 import { Icon } from "@src/components/icon/Icon";
 import { Search } from "@src/utils/Search";
 import { createContext, type ReactNode, useContext } from "react";
+
 import * as S from "./Tree.styles";
 
 const TreeContext = createContext<{

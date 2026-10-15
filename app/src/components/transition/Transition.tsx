@@ -1,5 +1,6 @@
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { type ReactNode, useLayoutEffect, useRef, useState } from "react";
+
 import * as S from "./Transition.styles";
 
 type Props = {

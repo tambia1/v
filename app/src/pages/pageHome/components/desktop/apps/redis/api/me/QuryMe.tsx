@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { me as fakeResponse } from "../../data/me";
 import type { Me, QueryResult } from "../Api.types";
 

@@ -8,14 +8,14 @@ const shadow = keyframes`
 `;
 
 export const Sun = styled.div`
-    font-size: 100%;
+	font-size: 100%;
 
-    width: 5em;
+	width: 5em;
 	height: 5em;
 
-    border-radius:50%;
-    background:rgb(255, 239, 96);
-    box-shadow: 0px 0px 40px 15px rgb(255, 235, 145);
+	border-radius: 50%;
+	background: rgb(255, 239, 96);
+	box-shadow: 0px 0px 40px 15px rgb(255, 235, 145);
 
-    animation: ${shadow} 5s linear infinite alternate;
+	animation: ${shadow} 5s linear infinite alternate;
 `;

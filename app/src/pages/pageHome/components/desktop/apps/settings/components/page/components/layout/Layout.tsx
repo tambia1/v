@@ -5,6 +5,7 @@ import { T } from "@src/locales/T";
 import type { BarPosition } from "@src/pages/pageHome/components/desktop/Desktop.styles";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
 import * as S from "./Layout.styles";
 
 export const Layout = () => {

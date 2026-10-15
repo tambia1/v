@@ -1,5 +1,6 @@
 import config from "@src/config.json";
 import { useMutation } from "@tanstack/react-query";
+
 import type { ChatRequest, ChatResponse, QueryResult } from "../Api.types";
 
 type Props = ChatRequest;

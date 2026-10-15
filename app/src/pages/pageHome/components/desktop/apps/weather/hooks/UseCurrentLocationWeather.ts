@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import type { WeatherResponse } from "../types/Weather.types";
 import { getCurrentLocation } from "../utils/WeatherUtils";
 import { useWeatherQuery } from "./UseWeatherQuery";

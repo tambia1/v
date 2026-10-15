@@ -1,7 +1,8 @@
 import { ReactNode } from "react";
+
 import { Buttons } from "./components/buttons/Buttons";
-import { Content } from "./components/content/Content";
 import { IconsName } from "./components/content/components/icon/Icon.styles";
+import { Content } from "./components/content/Content";
 import { Compose } from "./compose/Compose";
 
 export type Props = {

@@ -1,27 +1,23 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
+/// <reference types="vite-plus/test" />
+/// <reference types="vite-plus/client" />
 
 import path from "node:path";
+
 import federation from "@originjs/vite-plugin-federation";
 import babel from "@rolldown/plugin-babel";
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
-import checker from "vite-plugin-checker";
+import { defineConfig, lazyPlugins } from "vite-plus";
 
 export default defineConfig({
 	base: "/v",
 
-	plugins: [
+	plugins: lazyPlugins(() => [
 		react({
 			jsxImportSource: "@emotion/react",
 		}),
 
 		babel({
 			plugins: ["@emotion/babel-plugin"],
-		}),
-
-		checker({
-			typescript: true,
 		}),
 
 		federation({
@@ -31,7 +27,7 @@ export default defineConfig({
 				"./Mfe": "./src/mfe/Mfe.tsx",
 			},
 		}),
-	],
+	]),
 
 	resolve: {
 		alias: {

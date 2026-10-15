@@ -5,6 +5,7 @@ import { Navigator } from "@src/components/navigator/Navigator";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+
 import { About } from "./components/about/About";
 import { Language } from "./components/language/Language";
 import { Layout } from "./components/layout/Layout";

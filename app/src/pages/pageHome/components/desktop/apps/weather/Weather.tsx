@@ -3,6 +3,7 @@ import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+
 import { useCurrentLocationWeather } from "./hooks/UseCurrentLocationWeather";
 import { getWeatherDescription } from "./utils/WeatherUtils";
 import * as S from "./Weather.styles";

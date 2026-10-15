@@ -1,4 +1,5 @@
 import { version } from "@src/../package.json";
+
 import type { Settings } from "../types/settings.types";
 
 export const translation: Settings = {

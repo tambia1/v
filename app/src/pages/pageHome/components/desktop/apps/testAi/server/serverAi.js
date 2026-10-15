@@ -1,6 +1,8 @@
 import http from "node:http";
 import url from "node:url";
+
 import { GoogleGenerativeAI } from "@google/generative-ai";
+
 import config from "./../../../../../../../config.json" with { type: "json" };
 
 const HOST = "localhost";

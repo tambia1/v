@@ -1,6 +1,7 @@
 import { version } from "@src/../package.json";
 import { useAnimation } from "@src/hooks/UseAnimation";
 import { useLayoutEffect, useRef, useState } from "react";
+
 import { Desktop } from "./components/desktop/Desktop";
 import { Splash } from "./components/splash/Splash";
 import * as S from "./PageHome.styles";

@@ -1,5 +1,6 @@
 import { Button } from "@src/components/button/Button";
 import { useLayoutEffect, useRef, useState } from "react";
+
 import { Game } from "./game/Game";
 import * as S from "./Snake.styles";
 

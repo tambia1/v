@@ -1,5 +1,6 @@
 import { Promises } from "@src/services/Promises";
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import type { Role } from "../../../../Desktop.types";
 import { dbTokens, dbUsers } from "../../db/db";
 import { FAKE_RESPONSE_DELAY, type QueryResult } from "../Api.types";

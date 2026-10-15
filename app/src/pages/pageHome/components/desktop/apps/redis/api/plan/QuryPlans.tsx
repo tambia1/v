@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { plans as fakeUserPlans } from "../../data/plans";
 import { plansAll as fakeAllPlans } from "../../data/plansAll";
 import type { Plan, QueryResult } from "../Api.types";

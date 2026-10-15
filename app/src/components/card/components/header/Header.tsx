@@ -1,5 +1,6 @@
 import { IconName } from "@src/components/icon/Icon.types";
 import type { ReactNode } from "react";
+
 import { Content } from "./components/content/Content";
 import { Icon } from "./components/icon/Icon";
 import { Compose } from "./compose/Compose";

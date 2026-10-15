@@ -2,6 +2,7 @@ import { Switch } from "@src/components/switch/Switch";
 import { Text } from "@src/components/text/Text";
 import { Transition } from "@src/components/transition/Transition";
 import { useState } from "react";
+
 import * as S from "./TestTransition.styles";
 
 export const TestTransition = () => {

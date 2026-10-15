@@ -7,6 +7,7 @@ import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
 import { useState } from "react";
+
 import { useNotesStore } from "../store/UseNotesStore";
 import { NotesContent } from "./components/NotesContent/NotesContent";
 import * as S from "./NotesPage.styles";

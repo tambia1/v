@@ -1,5 +1,6 @@
 import config from "@src/config.json";
 import { useMutation } from "@tanstack/react-query";
+
 import type { ClearConversationRequest, ClearConversationResponse, QueryResult } from "../Api.types";
 
 type Props = ClearConversationRequest;

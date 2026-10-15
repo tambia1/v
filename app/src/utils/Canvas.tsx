@@ -33,15 +33,15 @@ export const drawCube = (
 	wx: number,
 	wy: number,
 	h: number,
-	color1: string,
-	color2: string,
-	color3: string,
-	color4: string,
+	hexColor1: string,
+	hexColor2: string,
+	hexColor3: string,
+	hexColor4: string,
 ) => {
-	color1 = hex2rgba(color1);
-	color2 = hex2rgba(color2);
-	color3 = hex2rgba(color3);
-	color4 = hex2rgba(color4);
+	const color1 = hex2rgba(hexColor1);
+	const color2 = hex2rgba(hexColor2);
+	const color3 = hex2rgba(hexColor3);
+	const color4 = hex2rgba(hexColor4);
 
 	ctx.save();
 	ctx.translate(0.5, 0.5);

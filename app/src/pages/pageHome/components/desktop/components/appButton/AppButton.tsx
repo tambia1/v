@@ -1,6 +1,7 @@
 import { Icon } from "@src/components/icon/Icon";
 import { type Touch, useTouch } from "@src/hooks/UseTouch";
 import { type MutableRefObject, type ReactNode, useRef } from "react";
+
 import { StoreApps } from "../../stores/StoreApps";
 import * as S from "./AppButton.styles";
 
@@ -32,7 +33,7 @@ export const AppButton = ({ id, title, icon, onClick, onLongPress, isPreventTouc
 			} else if (status === "up" && time < 700) {
 				if (isShakeMode && isExternalApp) {
 					if (storeApps.apps.find((item) => item.name === id)) {
-						storeApps.setData([...storeApps.apps.filter((item) => item.name !== id)]);
+						storeApps.setData(storeApps.apps.filter((item) => item.name !== id));
 					}
 
 					return;

@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { csrf as fakeResponse } from "../../data/csrf";
 import type { QueryResult } from "../Api.types";
 

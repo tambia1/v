@@ -1,4 +1,5 @@
 import { create } from "zustand";
+
 import type { Login, QueryResult } from "../../../api/Api.types";
 
 interface State {

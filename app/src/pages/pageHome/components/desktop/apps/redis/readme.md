@@ -8,6 +8,4 @@ https://test.redislabs.com:5000/v
 use direct login:
 email and password
 
-
-
 on fetch data error it will use fake data

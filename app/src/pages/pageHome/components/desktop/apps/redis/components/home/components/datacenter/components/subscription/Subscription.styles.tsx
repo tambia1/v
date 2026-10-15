@@ -34,7 +34,7 @@ export const Pin = styled.div`
 	white-space: nowrap;
 	transition: scale 0.3s ease;
 
-	&:hover{
+	&:hover {
 		scale: 150%;
 	}
 

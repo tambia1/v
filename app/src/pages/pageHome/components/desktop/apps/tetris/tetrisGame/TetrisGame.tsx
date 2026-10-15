@@ -2,6 +2,7 @@ import { Board } from "./components/board/Board";
 import { Controls } from "./components/controls/Controls";
 import { Lines } from "./components/lines/Lines";
 import { Next } from "./components/next/Next";
+
 import "./TetrisGame.css";
 
 type Props = {

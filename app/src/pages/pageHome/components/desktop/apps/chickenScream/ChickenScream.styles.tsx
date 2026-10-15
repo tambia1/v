@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import ground from "./assets/ground.png";
 import stone from "./assets/stone.png";
 
@@ -12,7 +13,7 @@ export const ChickenScream = styled.div`
 	padding: 1rem;
 	box-sizing: border-box;
 
-	background-image: linear-gradient(0deg, #32AE7F, #04B4C6); 
+	background-image: linear-gradient(0deg, #32ae7f, #04b4c6);
 `;
 
 export const Spacer = styled.div`

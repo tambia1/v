@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import slotMachine from "./assets/slotMachine.png";
 
 export const Spin = styled.div`
@@ -34,12 +35,12 @@ export const SlotMachine = styled.div`
 
 export const Slot_1 = styled.div`
 	width: 14.5rem;
-    height: 5.0rem;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 14.9rem;
-    left: 10.3rem;
-    z-index: 0;
-    border-radius: 0.3rem;
+	height: 5rem;
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 14.9rem;
+	left: 10.3rem;
+	z-index: 0;
+	border-radius: 0.3rem;
 `;

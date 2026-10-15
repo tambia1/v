@@ -1,5 +1,6 @@
 import { Theme } from "@src/theme/Theme.types";
 import { ReactNode } from "react";
+
 import { IconName } from "../icon/Icon.types";
 import { Body } from "./components/body/Body";
 import { Footer } from "./components/footer/Footer";

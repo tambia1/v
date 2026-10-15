@@ -1,18 +1,33 @@
 {
 	"name": "@v/shared-ui",
-	"private": true,
 	"version": "1.0.9",
-	"type": "module",
+	"private": true,
 	"homepage": "https://tambia1.github.io",
+	"files": [
+		"dist"
+	],
+	"type": "module",
+	"main": "./dist/lib.umd.cjs",
+	"module": "./dist/lib.es.js",
+	"types": "./dist/lib/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/lib.es.js",
+			"require": "./dist/lib.umd.js",
+			"types": "./dist/lib/index.d.ts"
+		}
+	},
 	"scripts": {
-		"start": "vite --host --port 8080",
-		"build": "tsc && vite build && tsc -p tsconfig.build.json",
-		"preview": "vite preview --port 8081",
-		"test": "vitest",
-		"coverage": "vitest watch --coverage",
+		"start": "vp dev --host --port 8080",
+		"build": "tsc && vp build && tsc -p tsconfig.build.json",
+		"preview": "vp preview --port 8081",
+		"test": "vp test",
+		"coverage": "vp test watch --coverage",
 		"deploy": "gh-pages -d ./dist",
-		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-		"prepack": "json -f package.json -I -e \"delete this.devDependencies; delete this.dependencies\""
+		"lint": "vp lint",
+		"prepack": "node -e \"const fs=require('fs');const p=JSON.parse(fs.readFileSync('package.json','utf8'));delete p.devDependencies;delete p.dependencies;fs.writeFileSync('package.json',JSON.stringify(p,null,'\\t')+'\\n')\"",
+		"fmt": "vp fmt",
+		"check": "vp check"
 	},
 	"dependencies": {
 		"@emotion/react": "11.14.0",
@@ -39,34 +54,15 @@
 		"@types/node": "24.7.0",
 		"@types/react": "19.1.8",
 		"@types/react-dom": "19.1.6",
-		"@typescript-eslint/eslint-plugin": "7.0.2",
-		"@typescript-eslint/parser": "7.0.2",
 		"@vitejs/plugin-react": "6.1.2",
 		"@vitest/coverage-v8": "5.0.4",
 		"dotenv": "16.4.5",
-		"eslint": "8.57.0",
-		"eslint-config-prettier": "9.1.0",
-		"eslint-plugin-react": "7.33.2",
-		"eslint-plugin-react-hooks": "4.6.0",
 		"gh-pages": "6.1.1",
 		"jsdom": "24.0.0",
 		"typescript": "7.0.2",
-		"vite": "8.3.4",
-		"vite-plugin-checker": "0.11.0",
+		"vite": "npm:@voidzero-dev/vite-plus-core@1.2.0",
+		"vite-plus": "1.2.0",
 		"vitest": "5.0.4",
 		"zustand": "4.5.1"
-	},
-	"files": [
-		"dist"
-	],
-	"module": "./dist/lib.es.js",
-	"main": "./dist/lib.umd.cjs",
-	"types": "./dist/lib/index.d.ts",
-	"exports": {
-		".": {
-			"import": "./dist/lib.es.js",
-			"require": "./dist/lib.umd.js",
-			"types": "./dist/lib/index.d.ts"
-		}
 	}
 }

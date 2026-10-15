@@ -1,4 +1,5 @@
 import { MouseEvent, ReactNode } from "react";
+
 import * as S from "./Compose.styles";
 
 export interface Props extends React.HTMLAttributes<HTMLDivElement> {

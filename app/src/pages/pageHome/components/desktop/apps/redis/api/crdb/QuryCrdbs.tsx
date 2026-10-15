@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { crdbs as fakeResponse } from "../../data/crdbs";
 import type { Crdb, QueryResult } from "../Api.types";
 

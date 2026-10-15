@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { List } from "../list/List.styles";
 
 export const Select = styled.div<{ $width: string }>`
@@ -6,7 +7,7 @@ export const Select = styled.div<{ $width: string }>`
 	height: 4rem;
 	position: relative;
 
-	&>${List}{
+	&>${List} {
 		border-radius: 10rem;
 	}
 `;

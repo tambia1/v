@@ -2,6 +2,7 @@ import { Pages } from "@pages/Pages.types";
 import { Button } from "@src/components/button/Button";
 import { Text } from "@src/components/text/Text";
 import { useNavigate } from "react-router-dom";
+
 import * as S from "./PageNotFound.styles";
 
 export const PageNotFound = () => {

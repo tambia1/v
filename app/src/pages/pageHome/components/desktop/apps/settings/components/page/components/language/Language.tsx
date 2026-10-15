@@ -6,6 +6,7 @@ import type { LanguageName } from "@src/locales/i18n.types";
 import { T } from "@src/locales/T";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+
 import * as S from "./Language.styles";
 
 export const Language = () => {

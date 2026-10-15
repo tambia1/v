@@ -1,5 +1,6 @@
 import { Theme } from "@src/theme/Theme.types";
 import { HTMLAttributes } from "react";
+
 import * as S from "./Compose.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {

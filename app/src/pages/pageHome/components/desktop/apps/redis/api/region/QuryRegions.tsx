@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { regions as fakeResponse } from "../../data/regions";
 import type { QueryResult, Region } from "../Api.types";
 

@@ -1,6 +1,7 @@
 import type { GetTypeAsObjectPath } from "@src/types/Types";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+
 import { translation as enChat } from "./en/chat";
 import { translation as enHome } from "./en/home";
 import { translation as enSettings } from "./en/settings";

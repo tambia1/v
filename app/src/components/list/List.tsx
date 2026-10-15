@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
+
 import { Cell } from "./components/cell/Cell";
 import { Section } from "./components/section/Section";
 import * as S from "./List.styles";

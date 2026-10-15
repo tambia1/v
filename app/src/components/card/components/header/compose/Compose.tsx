@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+
 import * as S from "./Compose.styles";
 
 export type Props = HTMLAttributes<HTMLDivElement> & {

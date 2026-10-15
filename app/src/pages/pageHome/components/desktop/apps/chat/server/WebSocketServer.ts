@@ -1,10 +1,12 @@
-import fs from "node:fs";
-import { log } from "@src/utils/Terminal";
 import https from "https";
+import fs from "node:fs";
+
+import { log } from "@src/utils/Terminal";
 import WebSocket, { WebSocketServer } from "ws";
+
 import config from "./../../../../../../../config.json";
 
-const HOST: string = "0.0.0.0";
+const HOST = "0.0.0.0";
 const PORT: number = config.chat.port;
 
 type Message = {

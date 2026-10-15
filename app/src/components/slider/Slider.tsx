@@ -1,5 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { Theme } from "@src/theme/Theme.types";
+
 import * as S from "./Slider.styles";
 
 export type Props = {

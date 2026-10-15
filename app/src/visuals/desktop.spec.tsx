@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+
 import { performSwipe } from "./utils";
 
 const ANIMATION_TIME = 1000;

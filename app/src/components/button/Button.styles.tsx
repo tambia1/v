@@ -1,6 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 import type { Theme } from "@src/theme/Theme.types";
+
 import type { Variant } from "./Button";
 
 export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["size"] }>`
@@ -33,11 +34,15 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 
 			&:not(:disabled) {
 				&:hover {
-					box-shadow: inset 0 0 3px 0px #bbbbbb, inset 0 0 10px #eeeeee;
+					box-shadow:
+						inset 0 0 3px 0px #bbbbbb,
+						inset 0 0 10px #eeeeee;
 				}
 
 				&:active {
-					box-shadow: inset 0 0 3px 0px #bbbbbb, inset 0 0 10px #dddddd;
+					box-shadow:
+						inset 0 0 3px 0px #bbbbbb,
+						inset 0 0 10px #dddddd;
 					background-image: linear-gradient(to top, #fdfdfd 0%, #ffffff 20%, #d8d9db 100%);
 				}
 			}
@@ -121,81 +126,81 @@ export const Button = styled.button<{ $variant: Variant; $width: keyof Theme["si
 			}
 		`}
 
-		${(props) =>
-			props.$variant === "link" &&
-			css`
-				--label-color: hsl(230, 60%, 50%);
-				--background-color: hsla(0, 0%, 0%, 0);
+	${(props) =>
+		props.$variant === "link" &&
+		css`
+			--label-color: hsl(230, 60%, 50%);
+			--background-color: hsla(0, 0%, 0%, 0);
 
-				color: var(--label-color);
-				background-color: var(--background-color);
-				border-color: transparent;
+			color: var(--label-color);
+			background-color: var(--background-color);
+			border-color: transparent;
 
-				border-width: 0.2rem;
-				border-style: solid;
-				box-sizing: border-box;
+			border-width: 0.2rem;
+			border-style: solid;
+			box-sizing: border-box;
 
-				padding: 0.5rem 1rem 0.5rem 1rem;
-				border-radius: 0.5rem;
-				font-size: 100%;
+			padding: 0.5rem 1rem 0.5rem 1rem;
+			border-radius: 0.5rem;
+			font-size: 100%;
 
-				width: ${props.theme.size[props.$width]};
-				min-width: 5em;
-				height: 3rem;
+			width: ${props.theme.size[props.$width]};
+			min-width: 5em;
+			height: 3rem;
 
-				&:not(:disabled) {
-					&:hover {
-						--label-color: hsl(230, 55%, 70%);
-						color: var(--label-color);
-					}
-
-					&:active {
-						--label-color: hsl(230, 55%, 75%);
-						color: var(--label-color);
-					}
-				}
-
-				&:disabled {
-					cursor: not-allowed;
-					--label-color: hsl(0, 0%, 63%);
+			&:not(:disabled) {
+				&:hover {
+					--label-color: hsl(230, 55%, 70%);
 					color: var(--label-color);
 				}
-			`}
 
-		${(props) =>
-			props.$variant === "text" &&
-			css`
-				color: ${props.theme.color.primary800};
-				background-color: transparent;
-				border-color: transparent;
+				&:active {
+					--label-color: hsl(230, 55%, 75%);
+					color: var(--label-color);
+				}
+			}
 
-				border-width: 0.2rem;
-				border-style: solid;
-				box-sizing: border-box;
+			&:disabled {
+				cursor: not-allowed;
+				--label-color: hsl(0, 0%, 63%);
+				color: var(--label-color);
+			}
+		`}
 
-				padding: 0.5rem 1rem 0.5rem 1rem;
-				border-radius: 0.5rem;
-				font-size: 100%;
+	${(props) =>
+		props.$variant === "text" &&
+		css`
+			color: ${props.theme.color.primary800};
+			background-color: transparent;
+			border-color: transparent;
 
-				width: ${props.theme.size[props.$width]};
-				min-width: 5em;
-				height: 3rem;
+			border-width: 0.2rem;
+			border-style: solid;
+			box-sizing: border-box;
 
-				&:not(:disabled) {
-					&:hover {
-						color: ${props.theme.color.primary400};
-					}
+			padding: 0.5rem 1rem 0.5rem 1rem;
+			border-radius: 0.5rem;
+			font-size: 100%;
 
-					&:active {
-						color: ${props.theme.color.primary700};
-					}
+			width: ${props.theme.size[props.$width]};
+			min-width: 5em;
+			height: 3rem;
+
+			&:not(:disabled) {
+				&:hover {
+					color: ${props.theme.color.primary400};
 				}
 
-				&:disabled {
-					cursor: not-allowed;
-					color: ${props.theme.color.primary500};
+				&:active {
+					color: ${props.theme.color.primary700};
 				}
-			`}
+			}
 
-		${(props) => props.$variant === "none" && css``}
+			&:disabled {
+				cursor: not-allowed;
+				color: ${props.theme.color.primary500};
+			}
+		`}
+
+	${(props) => props.$variant === "none" && css``}
 `;

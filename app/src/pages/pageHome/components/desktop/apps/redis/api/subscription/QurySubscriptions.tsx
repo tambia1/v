@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { subs as fakeResponse } from "../../data/subs";
 import type { QueryResult, Subscription } from "../Api.types";
 

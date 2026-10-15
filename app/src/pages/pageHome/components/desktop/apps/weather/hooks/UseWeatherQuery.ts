@@ -1,4 +1,5 @@
 import { type UseQueryOptions, useQuery } from "@tanstack/react-query";
+
 import { fetchWeatherData } from "../queries/WeatherApi";
 import type { WeatherQueryProps, WeatherResponse } from "../types/Weather.types";
 

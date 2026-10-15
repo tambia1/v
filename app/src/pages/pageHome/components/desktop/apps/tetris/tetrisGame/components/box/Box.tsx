@@ -1,4 +1,5 @@
 import type React from "react";
+
 import "./Box.css";
 
 const colors = ["box-empty", "box-yellow", "box-green", "box-red", "box-purple", "box-brown", "box-blue", "box-cyan", "box-grey"];

@@ -1,5 +1,6 @@
 import { useTimeout } from "@src/hooks/UseTimeout";
 import { type TouchEvent, useEffect, useState } from "react";
+
 import * as S from "./Chwazi.styles";
 
 type Circle = {

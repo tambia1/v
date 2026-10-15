@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from "react";
+
 import { Icon } from "../icon/Icon";
 import * as S from "./Check.styles";
 

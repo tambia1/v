@@ -13,6 +13,5 @@ export const Compose = styled.div`
 
 	background-color: ${(props) => props.theme.color.primary900}66;
 
-
 	z-index: 100;
 `;

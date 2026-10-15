@@ -15,16 +15,16 @@ export const Button = styled.div`
 
 	cursor: pointer;
 
-	&:hover{
+	&:hover {
 		background-color: ${(props) => props.theme.color.primary200};
 	}
 
-	&:active{
+	&:active {
 		color: ${(props) => props.theme.color.primary700};
 		background-color: ${(props) => props.theme.color.primary300};
 	}
 
-	&:disabled{
+	&:disabled {
 		color: ${(props) => props.theme.color.primary400};
 		background-color: ${(props) => props.theme.color.primary100};
 	}

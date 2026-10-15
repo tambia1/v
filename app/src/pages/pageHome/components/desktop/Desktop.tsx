@@ -16,6 +16,7 @@ import { useThemeContext } from "@src/theme/UseThemeContext";
 import { type ErrorInfo, type ReactNode, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
+
 import { useBarSearchParams } from "../../hooks/useBarSearchParams";
 import { Api } from "./apps/user/api/Api";
 import { AppButton } from "./components/appButton/AppButton";

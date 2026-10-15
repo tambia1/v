@@ -10,6 +10,10 @@ export const Compose = styled.div<{ $clickable: boolean }>`
 	background-color: ${(props) => props.theme.color.primary300};
 	padding: 0.5rem;
 	box-sizing: border-box;
-	
-	${(props) => props.$clickable && css`cursor: pointer`}
+
+	${(props) =>
+		props.$clickable &&
+		css`
+			cursor: pointer;
+		`}
 `;

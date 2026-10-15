@@ -7,6 +7,7 @@ import { Text } from "@src/components/text/Text";
 import { useAnimationFrame } from "@src/hooks/UseAnimationFrame";
 import { useMicrophone } from "@src/hooks/useMicrophone";
 import { useEffect, useState } from "react";
+
 import * as S from "./ChickenScream.styles";
 import { Chicken } from "./components/chicken/Chicken";
 import type { State as ChickenState } from "./components/chicken/Chicken.types";

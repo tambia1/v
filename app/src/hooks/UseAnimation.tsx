@@ -1,4 +1,5 @@
 import { type RefObject, useCallback, useLayoutEffect, useRef } from "react";
+
 import "./UseAnimation.css";
 
 const Animations = {

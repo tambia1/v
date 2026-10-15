@@ -1,6 +1,7 @@
 import { Card } from "@src/components/card/Card";
 import { Text } from "@src/components/text/Text";
 import { useState } from "react";
+
 import * as S from "../../TestEdit.styles";
 
 export const ExampleCard = () => {

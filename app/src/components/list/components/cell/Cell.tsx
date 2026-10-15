@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from "react";
+
 import * as S from "./Cell.styles";
 import { CellInfo } from "./components/cellEnd/CellInfo";
 import { CellIcon } from "./components/cellIcon/CellIcon";

@@ -15,7 +15,7 @@ export const Snake = styled.div`
 `;
 
 export const Container = styled.div`
-	width: 100%;	
+	width: 100%;
 	height: 100%;
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -37,6 +37,6 @@ export const Buttons = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	
+
 	gap: 1rem;
 `;

@@ -1,4 +1,5 @@
 import { Activity, ReactNode } from "react";
+
 import * as S from "./Compose.styles";
 
 export type Props = {
