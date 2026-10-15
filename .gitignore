@@ -7,11 +7,11 @@ node_modules
 
 coverage
 
-app/env/*
-!app/env/.env
+apps/host/env/*
+!apps/host/env/.env
 /.env
 
-app/tsconfig.tsbuildinfo
-app/playwright-report
-app/test-results
+apps/host/tsconfig.tsbuildinfo
+apps/host/playwright-report
+apps/host/test-results
 

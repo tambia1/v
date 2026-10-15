@@ -1,0 +1,17 @@
+import { Text } from "@src/components/text/Text";
+import { lang } from "@src/locales/i18n";
+import { T } from "@src/locales/T";
+
+import * as S from "./Test.styles";
+
+export const Test = () => {
+	return (
+		<S.Test>
+			<Text variant="header">
+				<T>{lang.test.title}</T>
+			</Text>
+
+			<S.Spacer />
+		</S.Test>
+	);
+};

@@ -1,0 +1,75 @@
+import styled from "@emotion/styled";
+
+import ground from "./assets/ground.png";
+import stone from "./assets/stone.png";
+
+export const ChickenScream = styled.div`
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	padding: 1rem;
+	box-sizing: border-box;
+
+	background-image: linear-gradient(0deg, #32ae7f, #04b4c6);
+`;
+
+export const Spacer = styled.div`
+	width: 100%;
+	height: 1rem;
+`;
+
+export const Row = styled.div`
+	display: flex;
+	flex-direction: row;
+	gap: 0.5rem;
+	align-items: center;
+	height: 3rem;
+`;
+
+export const Col = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+`;
+
+export const Chicken = styled.div<{ $isJumping: boolean }>`
+	position: absolute;
+	left: 2rem;
+	bottom: ${(props) => (props.$isJumping ? "7rem" : "5rem")};
+
+	font-size: 50%;
+
+	transition: all 0.3s ease;
+`;
+
+export const Ground = styled.div<{ $x: number }>`
+	position: absolute;
+	height: 5.6rem;
+	left: 0rem;
+	right: 0rem;
+	bottom: 0rem;
+	background-image: url(${ground});
+	background-size: contain;
+	background-repeat: repeat-x;
+	background-position: ${(props) => -props.$x}px 0px;
+`;
+
+export const Sun = styled.div`
+	position: absolute;
+	right: 5rem;
+	bottom: 22rem;
+`;
+
+export const Stone = styled.div<{ $x: number }>`
+	position: absolute;
+	height: 3rem;
+	width: 5rem;
+	bottom: 3.5rem;
+	background-image: url(${stone});
+	background-size: contain;
+	background-repeat: repeat-x;
+	left: ${(props) => props.$x}px;
+`;

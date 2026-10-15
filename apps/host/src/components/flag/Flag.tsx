@@ -1,0 +1,22 @@
+import { useTheme } from "@emotion/react";
+import type { Theme } from "@src/theme/Theme.types";
+import { ReactSVG } from "react-svg";
+
+import * as S from "./Flag.styles";
+import { type FlagName, Flags } from "./Flag.types";
+
+export interface Props extends React.HTMLAttributes<HTMLDivElement> {
+	className?: string;
+	flagName: FlagName;
+	size?: keyof Theme["size"];
+}
+
+export const Flag = ({ className, flagName, size = "size200", ...rest }: Props) => {
+	const theme = useTheme();
+
+	return (
+		<S.Flag className={className} $size={theme.size[size]} {...rest} data-name={flagName}>
+			<ReactSVG src={Flags[flagName]} title={flagName} />
+		</S.Flag>
+	);
+};
