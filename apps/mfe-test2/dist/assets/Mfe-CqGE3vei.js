@@ -5,7 +5,7 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __commonJSMin = (cb, mod) => () => (mod || (cb((mod = { exports: {} }).exports, mod, mod.exports), cb = null), mod.exports);
+var __commonJSMin = (cb, mod) => () => (mod || (cb((mod = { exports: {} }).exports, mod), cb = null), mod.exports);
 var __copyProps = (to, from, except, desc) => {
 	if (from && typeof from === "object" || typeof from === "function") for (var keys = __getOwnPropNames(from), i = 0, n = keys.length, key; i < n; i++) {
 		key = keys[i];
@@ -1747,10 +1747,10 @@ var Mfe = () => {
 	return /* @__PURE__ */ jsx("div", {
 		"data-mfe-version": `${version}}`,
 		className: "mfe",
-		children: "Hello Micro Frontend 1 Test"
+		children: "Hello Micro Frontend 2 Test"
 	});
 };
 //#endregion
 export { require_react as a, jsxs as i, Fragment as n, __commonJSMin as o, jsx as r, __toESM as s, Mfe as t };
 
-//# sourceMappingURL=Mfe-DsJNdDhY.js.map
+//# sourceMappingURL=Mfe-CqGE3vei.js.map
