@@ -1,9 +1,8 @@
 /// <reference types="vite-plus/test" />
 /// <reference types="vite-plus/client" />
 
-import path from "node:path";
+import path from "path";
 
-import federation from "@originjs/vite-plugin-federation";
 import babel from "@rolldown/plugin-babel";
 import react from "@vitejs/plugin-react";
 import { defineConfig, lazyPlugins } from "vite-plus";
@@ -19,23 +18,18 @@ export default defineConfig({
 		babel({
 			plugins: ["@emotion/babel-plugin"],
 		}),
-
-		federation({
-			name: "frontend",
-			filename: "remote.js",
-			exposes: {
-				"./Mfe": "./src/mfe/Mfe.tsx",
-			},
-		}),
 	]),
 
 	resolve: {
 		alias: {
 			"@src": path.resolve(__dirname, "./src"),
+			"@assets": path.resolve(__dirname, "./src/assets"),
+			"@components": path.resolve(__dirname, "./src/components"),
 		},
 	},
 
 	test: {
+		passWithNoTests: true,
 		globals: true,
 		environment: "jsdom",
 		css: true,
@@ -55,10 +49,12 @@ export default defineConfig({
 		},
 	},
 
-	build: {
-		target: "ESNext",
-		minify: false,
-		cssCodeSplit: false,
-		sourcemap: true,
+	pack: {
+		entry: ["./src/lib/index.ts"],
+		format: ["esm"],
+		platform: "browser",
+		dts: {
+			generator: "tsgo",
+		},
 	},
 });

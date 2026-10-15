@@ -36,6 +36,7 @@ export default defineConfig({
 	},
 
 	test: {
+		passWithNoTests: true,
 		globals: true,
 		environment: "jsdom",
 		css: true,

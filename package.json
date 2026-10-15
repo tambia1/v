@@ -2,11 +2,13 @@
 	"name": "v",
 	"private": true,
 	"workspaces": [
-		"app",
-		"shared/ui",
-		"frontend/*"
+		"apps/*",
+		"packages/*"
 	],
+	"type": "module",
 	"scripts": {
+		"ready": "vp check && vp run -r test && vp run -r build",
+		"dev": "vp run @v/app#start",
 		"prepare": "vp config --no-agent"
 	},
 	"dependencies": {
@@ -18,5 +20,15 @@
 	"overrides": {
 		"vite": "npm:@voidzero-dev/vite-plus-core@1.2.0",
 		"vitest": "5.0.4"
+	},
+	"devEngines": {
+		"packageManager": {
+			"name": "npm",
+			"version": "11.19.1",
+			"onFail": "download"
+		}
+	},
+	"engines": {
+		"node": ">=22.18.0"
 	}
 }

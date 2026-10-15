@@ -49,7 +49,7 @@ export default defineVitestConfig({
 			"@pages": path.resolve(__dirname, "./src/pages"),
 			"@components": path.resolve(__dirname, "./src/components"),
 			"@apps": path.resolve(__dirname, "./src/pages/pageHome/components/desktop/apps"),
-			"@tanstack/react-query": path.resolve(__dirname, "../node_modules/@tanstack/react-query"),
+			"@tanstack/react-query": path.resolve(__dirname, "../../node_modules/@tanstack/react-query"),
 		},
 	},
 

@@ -24,4 +24,4 @@ jobs:
 
       - name: Run tests
         run: vp run test:units
-        working-directory: ./app
+        working-directory: ./apps/host

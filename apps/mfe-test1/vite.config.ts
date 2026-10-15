@@ -1,8 +1,9 @@
 /// <reference types="vite-plus/test" />
 /// <reference types="vite-plus/client" />
 
-import path from "path";
+import path from "node:path";
 
+import federation from "@originjs/vite-plugin-federation";
 import babel from "@rolldown/plugin-babel";
 import react from "@vitejs/plugin-react";
 import { defineConfig, lazyPlugins } from "vite-plus";
@@ -18,17 +19,24 @@ export default defineConfig({
 		babel({
 			plugins: ["@emotion/babel-plugin"],
 		}),
+
+		federation({
+			name: "frontend",
+			filename: "remote.js",
+			exposes: {
+				"./Mfe": "./src/mfe/Mfe.tsx",
+			},
+		}),
 	]),
 
 	resolve: {
 		alias: {
 			"@src": path.resolve(__dirname, "./src"),
-			"@assets": path.resolve(__dirname, "./src/assets"),
-			"@components": path.resolve(__dirname, "./src/components"),
 		},
 	},
 
 	test: {
+		passWithNoTests: true,
 		globals: true,
 		environment: "jsdom",
 		css: true,
@@ -49,22 +57,9 @@ export default defineConfig({
 	},
 
 	build: {
-		lib: {
-			entry: "./src/lib/index.ts",
-			name: "ui",
-			formats: ["es", "umd"],
-			fileName: (format) => `lib.${format}.js`,
-		},
-		rollupOptions: {
-			external: ["react", "react-dom", "@emotion/react", "@emotion/styled"],
-			output: {
-				globals: {
-					react: "React",
-					"react-dom": "ReactDOM",
-					"@emotion/react": "emotionReact",
-					"@emotion/styled": "emotionStyled",
-				},
-			},
-		},
+		target: "ESNext",
+		minify: false,
+		cssCodeSplit: false,
+		sourcemap: true,
 	},
 });

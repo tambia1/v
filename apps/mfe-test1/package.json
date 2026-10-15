@@ -1,14 +1,14 @@
 {
-	"name": "@v/mfe-test2",
+	"name": "@v/mfe-test1",
 	"version": "1.0.0",
 	"private": true,
 	"homepage": "https://tambia1.github.io",
 	"type": "module",
 	"scripts": {
-		"start": "vp dev --host --port 5002 --strictPort",
+		"start": "vp dev --host --port 5001 --strictPort",
 		"build": "vp build",
-		"preview": "vp preview --port 5002 --strictPort",
-		"serve": "concurrently 'vp build --watch' 'vp preview --port 5002 --strictPort'",
+		"preview": "vp preview --port 5001 --strictPort",
+		"serve": "concurrently 'vp build --watch' 'vp preview --port 5001 --strictPort'",
 		"test": "vp test",
 		"coverage": "vp test watch --coverage",
 		"deploy": "gh-pages -d ./dist",
@@ -20,7 +20,7 @@
 		"@emotion/react": "11.14.0",
 		"@emotion/styled": "11.14.0",
 		"@tanstack/react-query": "5.81.5",
-		"@v/shared-ui": "file:../../shared/ui",
+		"@v/shared-ui": "file:../../packages/ui",
 		"i18next": "23.10.0",
 		"i18next-browser-languagedetector": "7.2.0",
 		"localforage": "1.10.0",
@@ -29,7 +29,7 @@
 		"react-dom": "19.2.0",
 		"react-i18next": "14.0.5",
 		"react-router-dom": "6.22.1",
-		"react-svg": "16.1.33",
+		"react-svg": "16.3.0",
 		"zustand": "4.4.7"
 	},
 	"devDependencies": {
