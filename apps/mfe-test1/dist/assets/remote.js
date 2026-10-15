@@ -99,7 +99,7 @@ var exportSet = /* @__PURE__ */ new Set([
 ]);
 var moduleMap = { "./Mfe": () => {
 	dynamicLoadingCss(["style-yutavFy1.css"], false, "./Mfe");
-	return __federation_import("/v/assets/__federation_expose_Mfe-BeljZY_Y.js").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
+	return __federation_import("${__federation_expose_./Mfe}").then((module) => Object.keys(module).every((item) => exportSet.has(item)) ? () => module.default : () => module);
 } };
 var seen = {};
 var dynamicLoadingCss = (cssFilePaths, dontAppendStylesToHead, exposeItemName) => {
