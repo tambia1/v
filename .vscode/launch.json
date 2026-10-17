@@ -13,16 +13,6 @@
 	],
 	"configurations": [
 		{
-			"name": "launch edge 5000",
-			"type": "msedge",
-			"request": "launch",
-			"url": "https://localhost:5000/v",
-			"webRoot": "${workspaceFolder}/app",
-			"sourceMapPathOverrides": {
-				"\\mnt\\c\\*": "C:/*"
-			}
-		},
-		{
 			"name": "launch brave 5000",
 			"type": "chrome",
 			"request": "launch",
@@ -55,13 +45,6 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "app updates",
-			"command": "npx npm-check-updates -u",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
 			"name": "app start",
 			"command": "vp run start",
 			"request": "launch",
@@ -70,51 +53,6 @@
 			"env": {
 				"ENV": "dev"
 			}
-		},
-		{
-			"name": "app ts check",
-			"command": "vp exec tsc --noEmit",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "app test units",
-			"command": "vp run test:units",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "app test visuals",
-			"command": "vp run test:visuals:update",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/",
-			"env": {
-				"ENV": "prod"
-			}
-		},
-		{
-			"name": "app coverage",
-			"command": "vp run test:coverage",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "app build",
-			"command": "vp run build",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "app preview",
-			"command": "vp run preview",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
 		},
 		{
 			"name": "app deploy",
@@ -137,40 +75,6 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "ui build",
-			"command": "vp run build",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/packages/ui/"
-		},
-		{
-			"name": "---------------------------------",
-			"command": "",
-			"request": "launch",
-			"type": "node-terminal"
-		},
-		{
-			"name": "frontend 1 start",
-			"command": "vp run start",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/mfe-test1/"
-		},
-		{
-			"name": "frontend 1 build",
-			"command": "vp run build",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/mfe-test1/"
-		},
-		{
-			"name": "frontend 1 preview",
-			"command": "vp run preview",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/mfe-test1/"
-		},
-		{
 			"name": "frontend 1 serve",
 			"command": "vp run serve",
 			"request": "launch",
@@ -182,27 +86,6 @@
 			"command": "",
 			"request": "launch",
 			"type": "node-terminal"
-		},
-		{
-			"name": "frontend 2 start",
-			"command": "vp run start",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/mfe-test2/"
-		},
-		{
-			"name": "frontend 2 build",
-			"command": "vp run build",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/mfe-test2/"
-		},
-		{
-			"name": "frontend 2 preview",
-			"command": "vp run preview",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/mfe-test2/"
 		},
 		{
 			"name": "frontend 2 serve",
@@ -218,41 +101,8 @@
 			"type": "node-terminal"
 		},
 		{
-			"name": "playwright install",
-			"command": "vp exec playwright install chromium",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "playwright test visuals",
-			"command": "vp run test:visuals",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/",
-			"env": {
-				"ENV": "prod"
-			}
-		},
-		{
-			"name": "playwright test visuals - show",
-			"command": "vp run test:visuals:show",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/",
-			"env": {
-				"ENV": "prod"
-			}
-		},
-		{
-			"name": "---------------------------------",
-			"command": "",
-			"request": "launch",
-			"type": "node-terminal"
-		},
-		{
 			"name": "app create v application",
-			"command": "node createApp.js",
+			"command": "vp node createApp.js",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/host/scripts/"
@@ -265,21 +115,21 @@
 		},
 		{
 			"name": "server websocket",
-			"command": "tsx WebSocketServer.ts",
+			"command": "vp exec tsx WebSocketServer.ts",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/host/src/pages/pageHome/components/desktop/apps/chat/server/"
 		},
 		{
 			"name": "server redis",
-			"command": "node index.js",
+			"command": "vp node index.js",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/host/src/pages/pageHome/components/desktop/apps/testRedis/server/"
 		},
 		{
 			"name": "server ai",
-			"command": "node serverAi.js",
+			"command": "vp node serverAi.js",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/host/src/pages/pageHome/components/desktop/apps/testAi/server/",
@@ -295,28 +145,7 @@
 		},
 		{
 			"name": "Show versions",
-			"command": "npm -v && node -v && tsc -v ",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "Update npm",
-			"command": "npm install -g npm stable",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "Update node",
-			"command": "npm install -g node stable",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "Update typescript",
-			"command": "npm install -g typescript",
+			"command": "vp env doctor",
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/host/"
@@ -375,12 +204,6 @@
 			"request": "launch",
 			"type": "node-terminal",
 			"cwd": "${workspaceFolder}/apps/host/"
-		},
-		{
-			"name": "---------------------------------",
-			"command": "",
-			"request": "launch",
-			"type": "node-terminal"
 		}
 	]
 }
