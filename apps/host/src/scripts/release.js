@@ -15,11 +15,8 @@ function commitAndPush(version) {
 	try {
 		execSync("git add .", { stdio: "inherit" });
 		execSync(`git commit -m "Build ${version}"`, { stdio: "inherit" });
-		execSync("git push", { stdio: "inherit" });
-		execSync("git tag -d Live", { stdio: "inherit" });
-		execSync("git push origin :refs/tags/Live", { stdio: "inherit" });
-		execSync("git tag Live", { stdio: "inherit" });
-		execSync("git push origin Live", { stdio: "inherit" });
+		execSync("git tag -f Live", { stdio: "inherit" });
+		execSync("git push --atomic origin HEAD +refs/tags/Live", { stdio: "inherit" });
 	} catch (error) {
 		console.error(`Error committing and pushing: ${error}`);
 		process.exit(1);
