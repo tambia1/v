@@ -100,17 +100,17 @@ export const HourlyForecastContainer = styled.div`
 	}
 
 	&::-webkit-scrollbar-track {
-		background: ${(props) => props.theme.color.secondary200};
+		background: ${(props) => props.theme.color.primary100};
 		border-radius: 3px;
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background: ${(props) => props.theme.color.secondary400};
+		background: ${(props) => props.theme.color.primary300};
 		border-radius: 3px;
 	}
 
 	&::-webkit-scrollbar-thumb:hover {
-		background: ${(props) => props.theme.color.secondary500};
+		background: ${(props) => props.theme.color.primary600};
 	}
 `;
 
@@ -167,25 +167,4 @@ export const LocationInfo = styled.div`
 	align-items: center;
 	gap: 0.5rem;
 	margin-bottom: 0.5rem;
-`;
-
-export const RefreshButton = styled.button`
-	background: ${(props) => props.theme.color.secondary500};
-	color: white;
-	border: none;
-	border-radius: 0.5rem;
-	padding: 0.5rem 1rem;
-	font-size: 0.9rem;
-	cursor: pointer;
-	transition: background-color 0.2s;
-
-	&:hover {
-		background: ${(props) => props.theme.color.secondary600};
-		opacity: 0.9;
-	}
-
-	&:disabled {
-		background: ${(props) => props.theme.color.secondary400};
-		cursor: not-allowed;
-	}
 `;

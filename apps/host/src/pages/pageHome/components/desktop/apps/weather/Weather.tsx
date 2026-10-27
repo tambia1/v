@@ -1,3 +1,4 @@
+import { Button } from "@src/components/button/Button";
 import { Card } from "@src/components/card/Card";
 import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
@@ -66,7 +67,7 @@ export const Weather = () => {
 					<Text color="danger600">
 						<T>{errorMessage}</T>
 					</Text>
-					<S.RefreshButton onClick={handleRefresh}>Try Again</S.RefreshButton>
+					<Button onClick={handleRefresh}>Try Again</Button>
 				</S.ErrorContainer>
 			</WeatherFrame>
 		);
@@ -79,7 +80,9 @@ export const Weather = () => {
 					<Text color="danger600">
 						<T>{lang.weather.error}</T>
 					</Text>
-					<S.RefreshButton onClick={handleRefresh}>Refresh</S.RefreshButton>
+					<Button variant="styled" onClick={handleRefresh}>
+						Refresh
+					</Button>
 				</S.ErrorContainer>
 			</WeatherFrame>
 		);
@@ -104,12 +107,12 @@ export const Weather = () => {
 	return (
 		<WeatherFrame>
 			<S.LocationInfo>
-				<Text variant="note">
+				<Text variant="note" color="primary100">
 					📍 {data.latitude.toFixed(2)}°, {data.longitude.toFixed(2)}°
 				</Text>
-				<S.RefreshButton onClick={handleRefresh} disabled={isLoading}>
+				<Button variant="styled" onClick={handleRefresh} disabled={isLoading}>
 					{isLoading ? "..." : "↻"}
-				</S.RefreshButton>
+				</Button>
 			</S.LocationInfo>
 
 			<Card
@@ -213,7 +216,7 @@ export const Weather = () => {
 			/>
 
 			<S.HourlyForecastSection>
-				<Text variant="header" color="secondary800">
+				<Text variant="header" color="primary100">
 					<T>{lang.weather.hourlyForecast}</T>
 				</Text>
 
