@@ -18,11 +18,11 @@ export const Check = ({ className, onClickCheck, checked = false, disabled = fal
 	};
 
 	return (
-		<Check.Compose className={className} onClick={handleOnClick} aria-checked={checked} disabled={disabled} {...rest}>
+		<Check.Root className={className} onClick={handleOnClick} aria-checked={checked} disabled={disabled} {...rest}>
 			{!checked && <Icon iconName="iconSquare" />}
 			{checked && <Icon iconName="iconVSquare" />}
-		</Check.Compose>
+		</Check.Root>
 	);
 };
 
-Check.Compose = S.Check;
+Check.Root = S.Check;

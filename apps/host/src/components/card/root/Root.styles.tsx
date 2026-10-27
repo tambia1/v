@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Theme } from "@src/theme/Theme.types";
 
-export const Compose = styled.div<{ width?: keyof Theme["size"]; height?: keyof Theme["size"] }>`
+export const Root = styled.div<{ width?: keyof Theme["size"]; height?: keyof Theme["size"] }>`
 	width: ${(props) => (props.width ? props.theme.size[props.width] : "100%")};
 	height: ${(props) => (props.height ? props.theme.size[props.height] : "auto")};
 	max-width: 50rem;

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { Content } from "./components/content/Content";
 import { Icon } from "./components/icon/Icon";
-import { Compose } from "./compose/Compose";
+import { Root } from "./root/Root";
 
 export type Props = {
 	$collapsed?: boolean;
@@ -24,13 +24,13 @@ export const Header = ({ content, iconName = "iconChevronDown", $collapsed = fal
 	};
 
 	return (
-		<Header.Compose onClick={handleOnClick} $clickable={!!onClickCollapse}>
+		<Header.Root onClick={handleOnClick} $clickable={!!onClickCollapse}>
 			<Header.Content content={content} />
 			<Header.Icon iconName={onClickCollapse ? iconName : ""} $collapsed={$collapsed} />
-		</Header.Compose>
+		</Header.Root>
 	);
 };
 
-Header.Compose = Compose;
+Header.Root = Root;
 Header.Content = Content;
 Header.Icon = Icon;

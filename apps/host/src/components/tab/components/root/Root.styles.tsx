@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Compose = styled.div`
+export const Root = styled.div`
 	width: auto;
 	height: auto;
 	display: flex;

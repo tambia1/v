@@ -38,29 +38,29 @@ export const ExampleCard = () => {
 
 			<Text>Card Composition - body and footer switched</Text>
 
-			<Card.Compose>
+			<Card.Root>
 				<Card.Header $collapsed={isCardOpen3} iconName="iconChevronsDown" content={"Header"} onClickCollapse={() => setIsCardOpen3(!isCardOpen3)} />
 				<Card.Footer content="Footer" />
 				<Card.Body $collapsed={isCardOpen3} content="Body" />
-			</Card.Compose>
+			</Card.Root>
 
 			<Text>Card Composition - header content and arrow switched and no footer</Text>
 
-			<Card.Compose>
-				<Card.Header.Compose onClick={() => setIsCardOpen4(!isCardOpen4)} $clickable>
+			<Card.Root>
+				<Card.Header.Root onClick={() => setIsCardOpen4(!isCardOpen4)} $clickable>
 					<Card.Header.Icon iconName="iconArrowDown" $collapsed={isCardOpen4} />
 					<Card.Header.Content content="Header" />
-				</Card.Header.Compose>
+				</Card.Header.Root>
 
 				<Card.Body $collapsed={isCardOpen4} content="Body" />
-			</Card.Compose>
+			</Card.Root>
 
 			<Text>Card Composition - header with no arrow and no collapse</Text>
 
-			<Card.Compose>
+			<Card.Root>
 				<Card.Header content={"Header"} />
 				<Card.Body content="Body" />
-			</Card.Compose>
+			</Card.Root>
 
 			<Text>Card variants</Text>
 

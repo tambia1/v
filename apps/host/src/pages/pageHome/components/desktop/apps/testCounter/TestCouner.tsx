@@ -22,17 +22,17 @@ export const TestCouner = () => {
 
 			<S.Spacer />
 
-			<Stepper.Compose>
+			<Stepper.Root>
 				<Stepper.Minus iconName="iconMinusCircle" onClick={() => {}} />
 				<Stepper.Plus iconName="iconPlusCircle" onClick={() => {}} />
-			</Stepper.Compose>
+			</Stepper.Root>
 
 			<S.Spacer />
 
-			<Stepper.Compose>
+			<Stepper.Root>
 				<Stepper.Plus iconName="iconPlusSquare" onClick={() => {}} />
 				<Stepper.Minus iconName="iconMinusSquare" onClick={() => {}} />
-			</Stepper.Compose>
+			</Stepper.Root>
 		</S.TestCouner>
 	);
 };

@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import { Description } from "./components/description/Description";
 import { Title } from "./components/title/Title";
-import { Compose } from "./compose/Compose";
+import { Root } from "./root/Root";
 
 export type Props = {
 	title?: ReactNode;
@@ -11,13 +11,13 @@ export type Props = {
 
 export const Header = ({ title, description }: Props) => {
 	return (
-		<Header.Compose>
+		<Header.Root>
 			<Header.Title>{title}</Header.Title>
 			<Header.Description>{description}</Header.Description>
-		</Header.Compose>
+		</Header.Root>
 	);
 };
 
-Header.Compose = Compose;
+Header.Root = Root;
 Header.Title = Title;
 Header.Description = Description;

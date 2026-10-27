@@ -1,6 +1,6 @@
 import { Activity, ReactNode } from "react";
 
-import * as S from "./Compose.styles";
+import * as S from "./Root.styles";
 
 export type Props = {
 	children?: ReactNode;
@@ -8,7 +8,7 @@ export type Props = {
 	onClickBackground?: () => void;
 };
 
-export const Compose = ({ children, isVisible, onClickBackground }: Props) => {
+export const Root = ({ children, isVisible, onClickBackground }: Props) => {
 	const handleOnClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.target !== e.currentTarget) {
 			return;
@@ -19,7 +19,7 @@ export const Compose = ({ children, isVisible, onClickBackground }: Props) => {
 
 	return (
 		<Activity mode={isVisible ? "visible" : "hidden"}>
-			<S.Compose onClick={handleOnClick}>{children}</S.Compose>
+			<S.Root onClick={handleOnClick}>{children}</S.Root>
 		</Activity>
 	);
 };

@@ -1,7 +1,7 @@
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const Compose = styled.div<{ $clickable: boolean }>`
+export const Root = styled.div<{ $clickable: boolean }>`
 	width: 100%;
 	height: 3rem;
 	display: flex;

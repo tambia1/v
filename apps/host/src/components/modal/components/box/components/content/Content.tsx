@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { Header } from "./components/header/Header";
 import { Icon } from "./components/icon/Icon";
 import { IconsName } from "./components/icon/Icon.styles";
-import { Compose } from "./compose/Compose";
+import { Root } from "./root/Root";
 
 export type Props = {
 	iconName?: IconsName;
@@ -13,13 +13,13 @@ export type Props = {
 
 export const Content = ({ iconName, title, description }: Props) => {
 	return (
-		<Content.Compose>
+		<Content.Root>
 			<Content.Icon iconName={iconName} />
 			<Content.Header title={title} description={description} />
-		</Content.Compose>
+		</Content.Root>
 	);
 };
 
-Content.Compose = Compose;
+Content.Root = Root;
 Content.Icon = Icon;
 Content.Header = Header;

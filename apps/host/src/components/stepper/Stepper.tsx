@@ -1,5 +1,5 @@
 import { Button } from "./components/button/Button";
-import { Compose } from "./components/compose/Compose";
+import { Root } from "./components/root/Root";
 import * as S from "./Stepper.styles";
 
 export type Props = {
@@ -10,14 +10,14 @@ export type Props = {
 
 export const Stepper = ({ className, onClickMinus, onClickPlus, ...rest }: Props) => {
 	return (
-		<Stepper.Compose {...rest} className={className}>
+		<Stepper.Root {...rest} className={className}>
 			<Button iconName="iconMinus" onClick={onClickMinus} />
 			<S.Line />
 			<Button iconName="iconPlus" onClick={onClickPlus} />
-		</Stepper.Compose>
+		</Stepper.Root>
 	);
 };
 
-Stepper.Compose = Compose;
+Stepper.Root = Root;
 Stepper.Minus = Button;
 Stepper.Plus = Button;

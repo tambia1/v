@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
 
 import { Button } from "../button/Button";
-import { Compose } from "./components/compose/Compose";
 import { Item } from "./components/item/Item";
+import { Root } from "./components/root/Root";
 
 export type Props = {
 	className?: string;
@@ -18,15 +18,15 @@ export const Tab = ({ children, className, selectedTabIndex, onClickItem, ...res
 	};
 
 	return (
-		<Tab.Compose className={className} {...rest}>
+		<Tab.Root className={className} {...rest}>
 			{children.map((item, index) => (
 				<Button key={index} variant={selectedTabIndex === index ? "styled" : "text"} onClick={() => handleClickItem(index, item)}>
 					{item}
 				</Button>
 			))}
-		</Tab.Compose>
+		</Tab.Root>
 	);
 };
 
-Tab.Compose = Compose;
+Tab.Root = Root;
 Tab.Item = Item;

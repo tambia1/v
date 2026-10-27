@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 import { Box } from "./components/box/Box";
 import { IconsName } from "./components/box/components/content/components/icon/Icon.styles";
-import { Compose } from "./compose/Compose";
+import { Root } from "./root/Root";
 
 type Props = {
 	isVisible?: boolean;
@@ -18,11 +18,11 @@ type Props = {
 
 export const Modal = ({ isVisible = true, onClickBackground, title, description, iconName, buttons }: Props) => {
 	return (
-		<Modal.Compose isVisible={isVisible} onClickBackground={onClickBackground}>
+		<Modal.Root isVisible={isVisible} onClickBackground={onClickBackground}>
 			<Modal.Box iconName={iconName} title={title} description={description} buttons={buttons} />
-		</Modal.Compose>
+		</Modal.Root>
 	);
 };
 
-Modal.Compose = Compose;
+Modal.Root = Root;
 Modal.Box = Box;

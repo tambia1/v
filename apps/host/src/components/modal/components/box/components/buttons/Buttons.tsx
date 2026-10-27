@@ -1,7 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { ReactNode } from "react";
 
-import { Compose } from "./compose/Compose";
+import { Root } from "./root/Root";
 
 export type Props = {
 	buttons?: {
@@ -12,14 +12,14 @@ export type Props = {
 
 export const Buttons = ({ buttons = [] }: Props) => {
 	return (
-		<Buttons.Compose>
+		<Buttons.Root>
 			{buttons.map((button, index) => (
 				<Button key={index} onClick={button.onClick} variant="styled" size="size500">
 					{button.content}
 				</Button>
 			))}
-		</Buttons.Compose>
+		</Buttons.Root>
 	);
 };
 
-Buttons.Compose = Compose;
+Buttons.Root = Root;

@@ -72,16 +72,16 @@ export const ExampleModal = () => {
 					</S.Cell>
 				</S.Row>
 
-				<Modal.Compose
+				<Modal.Root
 					isVisible={isModalOpen2}
 					onClickBackground={() => {
 						setIsModalOpen2(false);
 					}}
 				>
-					<Modal.Box.Compose>
-						<Modal.Box.Content.Compose>
+					<Modal.Box.Root>
+						<Modal.Box.Content.Root>
 							<Modal.Box.Content.Header title="Modal Title" description="Modal description text." />
-						</Modal.Box.Content.Compose>
+						</Modal.Box.Content.Root>
 						<Modal.Box.Buttons
 							buttons={[
 								{
@@ -98,8 +98,8 @@ export const ExampleModal = () => {
 								},
 							]}
 						/>
-					</Modal.Box.Compose>
-				</Modal.Compose>
+					</Modal.Box.Root>
+				</Modal.Root>
 			</S.Col>
 
 			<S.Col>
@@ -118,19 +118,19 @@ export const ExampleModal = () => {
 					</S.Cell>
 				</S.Row>
 
-				<Modal.Compose
+				<Modal.Root
 					isVisible={isModalOpen3}
 					onClickBackground={() => {
 						setIsModalOpen3(false);
 					}}
 				>
-					<Modal.Box.Compose>
-						<Modal.Box.Content.Compose>
+					<Modal.Box.Root>
+						<Modal.Box.Content.Root>
 							<Modal.Box.Content.Icon iconName="info" />
-							<Modal.Box.Content.Header.Compose>
+							<Modal.Box.Content.Header.Root>
 								<Modal.Box.Content.Header.Description>Modal description text.</Modal.Box.Content.Header.Description>
-							</Modal.Box.Content.Header.Compose>
-						</Modal.Box.Content.Compose>
+							</Modal.Box.Content.Header.Root>
+						</Modal.Box.Content.Root>
 						<Modal.Box.Buttons
 							buttons={[
 								{
@@ -147,8 +147,8 @@ export const ExampleModal = () => {
 								},
 							]}
 						/>
-					</Modal.Box.Compose>
-				</Modal.Compose>
+					</Modal.Box.Root>
+				</Modal.Root>
 			</S.Col>
 
 			<S.Col>
@@ -167,13 +167,13 @@ export const ExampleModal = () => {
 					</S.Cell>
 				</S.Row>
 
-				<Modal.Compose
+				<Modal.Root
 					isVisible={isModalOpen4}
 					onClickBackground={() => {
 						setIsModalOpen4(false);
 					}}
 				>
-					<Modal.Box.Compose>
+					<Modal.Box.Root>
 						<Modal.Box.Content iconName="check" title="Modal Title" description="Modal description text." />
 						<div>
 							<hr />
@@ -194,8 +194,8 @@ export const ExampleModal = () => {
 								},
 							]}
 						/>
-					</Modal.Box.Compose>
-				</Modal.Compose>
+					</Modal.Box.Root>
+				</Modal.Root>
 			</S.Col>
 		</>
 	);

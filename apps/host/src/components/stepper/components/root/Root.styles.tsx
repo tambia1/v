@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Icon } from "@src/components/icon/Icon";
 
-export const Compose = styled.div`
+export const Root = styled.div`
 	width: 12rem;
 	height: 3rem;
 	display: flex;

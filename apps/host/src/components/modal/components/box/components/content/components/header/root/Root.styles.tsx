@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const Compose = styled.div`
+export const Root = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: start;
