@@ -3,10 +3,19 @@ import { Loader } from "@src/components/loader/Loader";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
+import type { ReactNode } from "react";
 
+import { ShaderBackground } from "./components/shaderBackground/ShaderBackground";
 import { useCurrentLocationWeather } from "./hooks/UseCurrentLocationWeather";
 import { getWeatherDescription } from "./utils/WeatherUtils";
 import * as S from "./Weather.styles";
+
+const WeatherFrame = ({ children }: { children: ReactNode }) => (
+	<S.Weather>
+		<ShaderBackground />
+		<S.Content>{children}</S.Content>
+	</S.Weather>
+);
 
 export const Weather = () => {
 	const { locationQuery, weatherQuery, isLoading, error, data } = useCurrentLocationWeather();
@@ -31,11 +40,11 @@ export const Weather = () => {
 
 	if (isLoading) {
 		return (
-			<S.Weather>
+			<WeatherFrame>
 				<S.LoaderContainer>
 					<Loader />
 				</S.LoaderContainer>
-			</S.Weather>
+			</WeatherFrame>
 		);
 	}
 
@@ -52,27 +61,27 @@ export const Weather = () => {
 		}
 
 		return (
-			<S.Weather>
+			<WeatherFrame>
 				<S.ErrorContainer>
 					<Text color="danger600">
 						<T>{errorMessage}</T>
 					</Text>
 					<S.RefreshButton onClick={handleRefresh}>Try Again</S.RefreshButton>
 				</S.ErrorContainer>
-			</S.Weather>
+			</WeatherFrame>
 		);
 	}
 
 	if (!data) {
 		return (
-			<S.Weather>
+			<WeatherFrame>
 				<S.ErrorContainer>
 					<Text color="danger600">
 						<T>{lang.weather.error}</T>
 					</Text>
 					<S.RefreshButton onClick={handleRefresh}>Refresh</S.RefreshButton>
 				</S.ErrorContainer>
-			</S.Weather>
+			</WeatherFrame>
 		);
 	}
 
@@ -93,7 +102,7 @@ export const Weather = () => {
 	}));
 
 	return (
-		<S.Weather>
+		<WeatherFrame>
 			<S.LocationInfo>
 				<Text variant="note">
 					📍 {data.latitude.toFixed(2)}°, {data.longitude.toFixed(2)}°
@@ -241,6 +250,6 @@ export const Weather = () => {
 					))}
 				</S.HourlyForecastContainer>
 			</S.HourlyForecastSection>
-		</S.Weather>
+		</WeatherFrame>
 	);
 };

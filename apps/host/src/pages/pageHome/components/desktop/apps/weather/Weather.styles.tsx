@@ -1,6 +1,15 @@
 import styled from "@emotion/styled";
 
 export const Weather = styled.div`
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #0a0014;
+`;
+
+export const Content = styled.div`
+	position: relative;
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -10,7 +19,6 @@ export const Weather = styled.div`
 	gap: 1rem;
 	overflow-y: auto;
 	color: ${(props) => props.theme.color.secondary900};
-	background-color: ${(props) => props.theme.color.secondary100};
 `;
 
 export const LoaderContainer = styled.div`
