@@ -17,7 +17,7 @@ export const useApiKeyStore = create<Props>()(
 			setApiKey: (apiKey: string) => set(() => ({ apiKey })),
 		}),
 		{
-			name: "testAi",
+			name: "chatBot",
 			storage: createJSONStorage(() => localStorage),
 		},
 	),

@@ -7,10 +7,9 @@ import { T } from "@src/locales/T";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { Api } from "./api/Api";
-import type { ChatMessage } from "./api/Api.types";
 import { useApiKeyStore } from "./api/hooks/useApiKeyStore";
-import * as S from "./TestAi.styles";
+import { type ChatMessage, useMutateChat } from "./api/hooks/useChat";
+import * as S from "./ChatBot.styles";
 
 const formatTime = (timestamp: number) => {
 	return new Date(timestamp).toLocaleTimeString([], {
@@ -19,7 +18,7 @@ const formatTime = (timestamp: number) => {
 	});
 };
 
-export const TestAi = () => {
+export const ChatBot = () => {
 	const { t } = useTranslation();
 	const { apiKey, setApiKey } = useApiKeyStore();
 	const [apiKeyValue, setApiKeyValue] = useState("");
@@ -29,7 +28,7 @@ export const TestAi = () => {
 	const conversationEndRef = useRef<HTMLDivElement>(null);
 	const inputRef = useRef<HTMLInputElement>(null);
 
-	const { mutate: sendMessage, isPending } = Api.chat.useMutateChat();
+	const { mutate: sendMessage, isPending } = useMutateChat();
 
 	useEffect(() => {
 		conversationEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -107,9 +106,9 @@ export const TestAi = () => {
 	};
 
 	return (
-		<S.TestAi>
+		<S.ChatBot>
 			<Text variant="title">
-				<T>{lang.testAi.title}</T>
+				<T>{lang.chatBot.title}</T>
 			</Text>
 
 			<S.Col>
@@ -120,11 +119,11 @@ export const TestAi = () => {
 							value={apiKeyValue}
 							onTextChange={setApiKeyValue}
 							onPressEnter={handleConnectClick}
-							placeholder={t(lang.testAi.apiKeyPlaceholder)}
+							placeholder={t(lang.chatBot.apiKeyPlaceholder)}
 						/>
 
 						<Button variant="styled" onClick={handleConnectClick} disabled={!apiKeyValue.trim()}>
-							<T>{lang.testAi.connect}</T>
+							<T>{lang.chatBot.connect}</T>
 						</Button>
 					</S.Row>
 				) : (
@@ -135,12 +134,12 @@ export const TestAi = () => {
 								value={inputValue}
 								onTextChange={setInputValue}
 								onPressEnter={handleSendClick}
-								placeholder={t(lang.testAi.placeholder)}
+								placeholder={t(lang.chatBot.placeholder)}
 								disabled={isPending}
 							/>
 
 							<Button variant="styled" onClick={handleSendClick} disabled={isPending || !inputValue.trim()}>
-								<T>{lang.testAi.send}</T>
+								<T>{lang.chatBot.send}</T>
 							</Button>
 
 							<S.LoaderContainer $isVisible={isPending}>
@@ -150,11 +149,11 @@ export const TestAi = () => {
 
 						<S.ControlsRow>
 							<Button variant="styled" onClick={handleClearClick} disabled={isPending}>
-								<T>{lang.testAi.clear}</T>
+								<T>{lang.chatBot.clear}</T>
 							</Button>
 
 							<Button variant="styled" onClick={handleDisconnectClick} disabled={isPending}>
-								<T>{lang.testAi.disconnect}</T>
+								<T>{lang.chatBot.disconnect}</T>
 							</Button>
 						</S.ControlsRow>
 					</>
@@ -164,10 +163,10 @@ export const TestAi = () => {
 					{messages.length === 0 && !isPending ? (
 						<S.EmptyState>
 							<Text variant="body">
-								<T>{apiKey ? lang.testAi.emptyTitle : lang.testAi.connectTitle}</T>
+								<T>{apiKey ? lang.chatBot.emptyTitle : lang.chatBot.connectTitle}</T>
 							</Text>
 							<Text variant="note">
-								<T>{apiKey ? lang.testAi.emptyNote : lang.testAi.connectNote}</T>
+								<T>{apiKey ? lang.chatBot.emptyNote : lang.chatBot.connectNote}</T>
 							</Text>
 						</S.EmptyState>
 					) : (
@@ -182,6 +181,6 @@ export const TestAi = () => {
 					<div ref={conversationEndRef} />
 				</S.ConversationContainer>
 			</S.Col>
-		</S.TestAi>
+		</S.ChatBot>
 	);
 };

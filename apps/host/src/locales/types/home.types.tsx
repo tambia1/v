@@ -235,7 +235,7 @@ export type Home = {
 		title: string;
 	};
 
-	testAi: {
+	chatBot: {
 		title: string;
 		connect: string;
 		disconnect: string;

@@ -16,6 +16,7 @@ import { lazy, type ReactElement, type ReactNode } from "react";
 import { Board } from "./apps/board/Board";
 import { Calendar } from "./apps/calendar/Calendar";
 import { Chat } from "./apps/chat/Chat";
+import { ChatBot } from "./apps/chatBot/ChatBot";
 import { ChickenScream } from "./apps/chickenScream/ChickenScream";
 import { Chwazi } from "./apps/chwazi/Chwazi";
 import { Commander } from "./apps/commander/Commander";
@@ -30,7 +31,6 @@ import { Speed } from "./apps/speed/Speed";
 import { Spin } from "./apps/spin/Spin";
 import { Stocks } from "./apps/stocks/Stocks";
 import { Store } from "./apps/store/Store";
-import { TestAi } from "./apps/testAi/TestAi";
 import { TestAnimation } from "./apps/testAnimation/TestAnimation";
 import { TestCouner } from "./apps/testCounter/TestCouner";
 import { TestCube } from "./apps/testCube/TestCube";
@@ -86,7 +86,7 @@ export const apps: App[][] = [
 		{ id: "snake", roles: ["admin", "user", "guest"], title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
 		{ id: "nightVision", roles: ["admin", "user", "guest"], title: <T>{lang.nightVision.title}</T>, icon: "nightVision", component: <NightVision /> },
 		{ id: "commander", roles: ["admin", "user", "guest"], title: <T>{lang.commander.title}</T>, icon: "commander", component: <Commander /> },
-		{ id: "chatBot", roles: ["admin", "user", "guest"], title: <T>{lang.testAi.title}</T>, icon: "chatBot", component: <TestAi /> },
+		{ id: "chatBot", roles: ["admin", "user", "guest"], title: <T>{lang.chatBot.title}</T>, icon: "chatBot", component: <ChatBot /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },

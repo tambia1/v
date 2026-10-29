@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const TestAi = styled.div`
+export const ChatBot = styled.div`
 	width: 100%;
 	height: 100%;
 
@@ -126,7 +126,7 @@ export const MessageBubble = styled.div<{ $isUser: boolean }>`
 
 export const MessageTime = styled.div`
 	font-size: 0.75rem;
-	color: ${(props) => props.theme.color.primary500};
+	color: ${(props) => props.theme.color.primary200};
 	margin-top: 0.25rem;
 	text-align: right;
 `;

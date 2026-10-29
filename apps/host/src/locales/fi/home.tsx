@@ -235,17 +235,17 @@ export const translation: Home = {
 		title: "Test\nCounter",
 	},
 
-	testAi: {
+	chatBot: {
 		title: "ChatBot",
 		connect: "Connect",
 		disconnect: "Disconnect",
 		apiKeyPlaceholder: "Gemini API key",
 		connectTitle: "Connect to Gemini",
 		connectNote: "Paste your API key from aistudio.google.com",
-		placeholder: "Ask Gemini anything...",
+		placeholder: "Ask me anything...",
 		send: "Send",
 		clear: "Clear",
-		emptyTitle: "Start a conversation with Gemini",
+		emptyTitle: "Start a conversation",
 		emptyNote: "Ask me anything!",
 	},
 

@@ -1,10 +1,35 @@
 import { ApiError, GoogleGenAI } from "@google/genai";
 import { useMutation } from "@tanstack/react-query";
 
-import type { ChatRequest, QueryResult } from "../Api.types";
+export type ChatMessage = {
+	role: "user" | "assistant";
+	content: string;
+	timestamp: number;
+	isError?: boolean;
+};
 
-type Props = ChatRequest;
-type Result = QueryResult<string>;
+type Props = {
+	apiKey: string;
+	messages: ChatMessage[];
+	onText: (text: string) => void;
+};
+
+type Result = {
+	error: number;
+	message: string;
+	response?: string;
+};
+
+const getErrorMessage = (message: string): string => {
+	try {
+		const parsed = JSON.parse(message);
+		const inner = parsed?.error?.message;
+
+		return typeof inner === "string" ? getErrorMessage(inner) : message;
+	} catch {
+		return message;
+	}
+};
 
 const send = async (props: Props): Promise<Result> => {
 	let result: Result;
@@ -50,8 +75,12 @@ const send = async (props: Props): Promise<Result> => {
 				result = { error: 2, message: "Rate limited, try again later" };
 			} else if (error.status === 400 || error.status === 401 || error.status === 403) {
 				result = { error: 2, message: "Invalid API key or request" };
+			} else if (error.status === 503) {
+				result = { error: 2, message: "Gemini is busy right now, please try again in a moment" };
+			} else if (error.status >= 500) {
+				result = { error: 2, message: "Gemini had a problem, please try again later" };
 			} else {
-				result = { error: 2, message: error.message };
+				result = { error: 2, message: getErrorMessage(error.message) };
 			}
 		} else {
 			result = { error: 1, message: "Network error" };
