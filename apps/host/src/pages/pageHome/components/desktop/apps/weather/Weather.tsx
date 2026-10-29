@@ -32,10 +32,10 @@ export const Weather = () => {
 		return directions[index];
 	};
 
-	const handleRefresh = () => {
-		locationQuery.refetch();
-		if (locationQuery.data) {
-			weatherQuery.refetch();
+	const handleRefresh = async () => {
+		const { data: location } = await locationQuery.refetch();
+		if (location) {
+			await weatherQuery.refetch();
 		}
 	};
 

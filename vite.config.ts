@@ -30,6 +30,7 @@ export default defineConfig({
 			"react/rules-of-hooks": "warn",
 			"react/exhaustive-deps": "warn",
 			"unicorn/prefer-number-properties": "error",
+			"oxc/only-used-in-recursion": "off",
 		},
 		options: { typeAware: true, typeCheck: true },
 	},
