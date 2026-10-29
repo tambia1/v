@@ -6,9 +6,5 @@
 
 	"redis": {
 		"port": 5003
-	},
-
-	"serverAi": {
-		"port": 5004
 	}
 }

@@ -6,6 +6,7 @@ import calculator from "./assets/calculator.png";
 import calendar from "./assets/calendar.png";
 import camera from "./assets/camera.png";
 import chat from "./assets/chat.png";
+import chatBot from "./assets/chatBot.png";
 import chickenScream from "./assets/chickenScream.png";
 import chwazi from "./assets/chwazi.png";
 import clashRoyale from "./assets/clashRoyale.webp";
@@ -49,6 +50,7 @@ export const appIcons = {
 	snake,
 	stocks,
 	chat,
+	chatBot,
 	spin,
 	test,
 	speed,

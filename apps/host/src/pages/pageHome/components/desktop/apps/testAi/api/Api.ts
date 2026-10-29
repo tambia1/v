@@ -1,9 +1,7 @@
-import { useMutateChat } from "./chat/MutateChat";
-import { useMutateClearConversation } from "./chat/MutateClearConversation";
+import { useMutateChat } from "./hooks/useChat";
 
 export const Api = {
 	chat: {
 		useMutateChat,
-		useMutateClearConversation,
 	},
 };

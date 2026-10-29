@@ -11,9 +11,6 @@
 		"dev": "vp run @v/app#start",
 		"prepare": "vp config --no-agent"
 	},
-	"dependencies": {
-		"@google/generative-ai": "0.24.1"
-	},
 	"devDependencies": {
 		"vite-plus": "1.2.0"
 	},

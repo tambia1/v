@@ -128,16 +128,6 @@
 			"cwd": "${workspaceFolder}/apps/host/src/pages/pageHome/components/desktop/apps/testRedis/server/"
 		},
 		{
-			"name": "server ai",
-			"command": "vp node serverAi.js",
-			"request": "launch",
-			"type": "node-terminal",
-			"cwd": "${workspaceFolder}/apps/host/src/pages/pageHome/components/desktop/apps/testAi/server/",
-			"env": {
-				"GEMINI_API_KEY": "123123"
-			}
-		},
-		{
 			"name": "---------------------------------",
 			"command": "",
 			"request": "launch",

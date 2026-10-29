@@ -237,6 +237,16 @@ export type Home = {
 
 	testAi: {
 		title: string;
+		connect: string;
+		disconnect: string;
+		apiKeyPlaceholder: string;
+		connectTitle: string;
+		connectNote: string;
+		placeholder: string;
+		send: string;
+		clear: string;
+		emptyTitle: string;
+		emptyNote: string;
 	};
 
 	testEdit: {

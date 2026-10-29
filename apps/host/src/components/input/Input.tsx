@@ -1,12 +1,13 @@
 import { useTheme } from "@emotion/react";
 import type { Theme } from "@src/theme/Theme.types";
-import type { InputHTMLAttributes } from "react";
+import type { InputHTMLAttributes, Ref } from "react";
 
 import * as S from "./Input.styles";
 
 export type TextAlign = "left" | "center" | "right";
 
 export type Props = Omit<InputHTMLAttributes<HTMLInputElement>, "size"> & {
+	ref?: Ref<HTMLInputElement>;
 	className?: string;
 	value: string;
 	placeholder?: string;

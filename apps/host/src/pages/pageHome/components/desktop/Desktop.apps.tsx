@@ -86,7 +86,7 @@ export const apps: App[][] = [
 		{ id: "snake", roles: ["admin", "user", "guest"], title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
 		{ id: "nightVision", roles: ["admin", "user", "guest"], title: <T>{lang.nightVision.title}</T>, icon: "nightVision", component: <NightVision /> },
 		{ id: "commander", roles: ["admin", "user", "guest"], title: <T>{lang.commander.title}</T>, icon: "commander", component: <Commander /> },
-		{ id: "testAi", roles: ["admin", "user", "guest"], title: <T>{lang.testAi.title}</T>, icon: "test", component: <TestAi /> },
+		{ id: "chatBot", roles: ["admin", "user", "guest"], title: <T>{lang.testAi.title}</T>, icon: "chatBot", component: <TestAi /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
