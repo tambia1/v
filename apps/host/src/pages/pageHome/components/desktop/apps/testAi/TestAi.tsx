@@ -122,10 +122,14 @@ export const TestAi = () => {
 
 			<S.Col>
 				<S.Row>
-					<Input value={inputValue} onTextChange={handleInputChange} onPressEnter={handleSendClick} placeholder="Ask the AI anything..." disabled={isLoading} />
+					<Input value={inputValue} onTextChange={handleInputChange} onPressEnter={handleSendClick} placeholder="Ask me anything..." disabled={isLoading} />
 
 					<Button variant="styled" onClick={handleSendClick} disabled={isLoading || !inputValue.trim()}>
 						Send
+					</Button>
+
+					<Button variant="styled" onClick={handleClearConversation} disabled={isLoading}>
+						Clear
 					</Button>
 
 					<S.LoaderContainer $isVisible={isLoading}>
@@ -133,17 +137,10 @@ export const TestAi = () => {
 					</S.LoaderContainer>
 				</S.Row>
 
-				<S.ControlsRow>
-					<Button variant="styled" onClick={handleClearConversation} disabled={isLoading}>
-						Clear
-					</Button>
-				</S.ControlsRow>
-
 				<S.ConversationContainer>
 					{messages.length === 0 ? (
 						<S.EmptyState>
-							<Text variant="body">Start a conversation with AI</Text>
-							<Text variant="note">Ask me anything!</Text>
+							<Text variant="body">Start a conversation</Text>
 						</S.EmptyState>
 					) : (
 						messages.map((message, index) => (

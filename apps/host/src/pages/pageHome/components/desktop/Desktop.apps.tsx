@@ -86,6 +86,7 @@ export const apps: App[][] = [
 		{ id: "snake", roles: ["admin", "user", "guest"], title: <T>{lang.snake.title}</T>, icon: "snake", component: <Snake /> },
 		{ id: "nightVision", roles: ["admin", "user", "guest"], title: <T>{lang.nightVision.title}</T>, icon: "nightVision", component: <NightVision /> },
 		{ id: "commander", roles: ["admin", "user", "guest"], title: <T>{lang.commander.title}</T>, icon: "commander", component: <Commander /> },
+		{ id: "testAi", roles: ["admin", "user", "guest"], title: <T>{lang.testAi.title}</T>, icon: "test", component: <TestAi /> },
 	],
 	[
 		{ id: "test", roles: ["admin"], title: <T>{lang.test.title}</T>, icon: "test", component: <Test /> },
@@ -101,6 +102,5 @@ export const apps: App[][] = [
 		{ id: "testTree", roles: ["admin"], title: <T>{lang.testTree.title}</T>, icon: "test", component: <TestTree /> },
 		{ id: "testCounter", roles: ["admin"], title: <T>{lang.testCounter.title}</T>, icon: "test", component: <TestCouner /> },
 		{ id: "testMenu", roles: ["admin"], title: <T>{lang.testMenu.title}</T>, icon: "test", component: <TestMenu /> },
-		{ id: "testAi", roles: ["admin"], title: <T>{lang.testAi.title}</T>, icon: "test", component: <TestAi /> },
 	],
 ];

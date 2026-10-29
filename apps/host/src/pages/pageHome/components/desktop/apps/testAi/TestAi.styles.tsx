@@ -33,6 +33,7 @@ export const Col = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+	height: 100%;
 `;
 
 export const Line = styled.div`
@@ -97,8 +98,6 @@ export const ConversationContainer = styled.div`
 	border: 1px solid ${(props) => props.theme.color.primary400};
 	border-radius: 0.5rem;
 	overflow-y: auto;
-	max-height: 400px;
-	min-height: 200px;
 `;
 
 export const MessageBubble = styled.div<{ $isUser: boolean }>`
@@ -136,11 +135,12 @@ export const EmptyState = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	justify-content: start;
 	height: 100%;
 	color: ${(props) => props.theme.color.primary500};
 	text-align: center;
 	gap: 0.5rem;
+	padding-top: 1rem;
 `;
 
 export const ControlsRow = styled.div`
