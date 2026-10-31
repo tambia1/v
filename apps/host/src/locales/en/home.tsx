@@ -247,6 +247,8 @@ export const translation: Home = {
 		clear: "Clear",
 		emptyTitle: "Start a conversation",
 		emptyNote: "Ask me anything!",
+		talk: "Talk",
+		stopTalk: "Stop",
 	},
 
 	testEdit: {

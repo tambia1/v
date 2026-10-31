@@ -88,6 +88,22 @@ export const LoaderContainer = styled.div<{ $isVisible: boolean }>`
 	transition: opacity 0.3s ease;
 `;
 
+export const CharacterSelect = styled.div`
+	position: relative;
+	z-index: 1;
+`;
+
+export const ChatBotAvatar = styled.div`
+	position: relative;
+	z-index: 0;
+	width: 100%;
+	height: 20rem;
+	flex-shrink: 0;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	background: radial-gradient(circle at 50% 40%, ${(props) => props.theme.color.primary100}, ${(props) => props.theme.color.primary400});
+`;
+
 export const ConversationContainer = styled.div`
 	flex: 1;
 	display: flex;

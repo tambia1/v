@@ -1,6 +1,7 @@
 import { Button } from "@src/components/button/Button";
 import { Input } from "@src/components/input/Input";
 import { Loader } from "@src/components/loader/Loader";
+import { Select } from "@src/components/select/Select";
 import { Text } from "@src/components/text/Text";
 import { lang } from "@src/locales/i18n";
 import { T } from "@src/locales/T";
@@ -10,6 +11,9 @@ import { useTranslation } from "react-i18next";
 import { useApiKeyStore } from "./api/hooks/useApiKeyStore";
 import { type ChatMessage, useMutateChat } from "./api/hooks/useChat";
 import * as S from "./ChatBot.styles";
+import { Avatar, type AvatarHandle } from "./components/avatar/Avatar";
+import { characters } from "./components/avatar/characters";
+import { useSpeech } from "./hooks/useSpeech";
 
 const formatTime = (timestamp: number) => {
 	return new Date(timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -26,6 +30,10 @@ export const ChatBot = () => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const { mutate: sendMessage, isPending } = useMutateChat();
+	const { isSupported: isSpeechSupported, isListening, listen, stopListening, speak, stopSpeaking } = useSpeech();
+	const avatarRef = useRef<AvatarHandle>(null);
+	const [characterId, setCharacterId] = useState(characters[0].id);
+	const character = characters.find((c) => c.id === characterId) ?? characters[0];
 
 	useEffect(() => {
 		conversationEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -57,10 +65,11 @@ export const ChatBot = () => {
 	const handleDisconnectClick = () => {
 		setApiKey("");
 		setMessages([]);
+		stopSpeaking();
 	};
 
-	const handleSendClick = () => {
-		const content = inputValue.trim();
+	const send = (text: string, isVoice: boolean) => {
+		const content = text.trim();
 
 		if (!content || isPending) {
 			return;
@@ -93,13 +102,35 @@ export const ChatBot = () => {
 
 					setMessages((prev) => [...prev, aiMessage]);
 					setStreamingText("");
+
+					if (isVoice && !aiMessage.isError) {
+						speak(aiMessage.content, {
+							onSentence: (sentence, durationMs) => avatarRef.current?.speak(sentence, durationMs),
+							onEnd: () => avatarRef.current?.stop(),
+						});
+					}
 				},
 			},
 		);
 	};
 
+	const handleSendClick = () => {
+		send(inputValue, false);
+	};
+
+	const handleTalkClick = () => {
+		if (isListening) {
+			stopListening();
+			return;
+		}
+
+		listen((transcript) => send(transcript, true));
+	};
+
 	const handleClearClick = () => {
 		setMessages([]);
+		stopSpeaking();
+		avatarRef.current?.stop();
 	};
 
 	return (
@@ -139,6 +170,12 @@ export const ChatBot = () => {
 								<T>{lang.chatBot.send}</T>
 							</Button>
 
+							{isSpeechSupported && (
+								<Button variant="styled" onClick={handleTalkClick} disabled={isPending}>
+									<T>{isListening ? lang.chatBot.stopTalk : lang.chatBot.talk}</T>
+								</Button>
+							)}
+
 							<S.LoaderContainer $isVisible={isPending}>
 								<Loader />
 							</S.LoaderContainer>
@@ -155,6 +192,23 @@ export const ChatBot = () => {
 						</S.ControlsRow>
 					</>
 				)}
+
+				<S.CharacterSelect>
+					<Select onClickItem={(_index, value) => setCharacterId(value)} size="size800">
+						<Select.Display>{character.name}</Select.Display>
+						<Select.Items>
+							{characters.map((c) => (
+								<Select.Items.Item key={c.id} value={c.id}>
+									{c.name}
+								</Select.Items.Item>
+							))}
+						</Select.Items>
+					</Select>
+				</S.CharacterSelect>
+
+				<S.ChatBotAvatar>
+					<Avatar ref={avatarRef} character={character} isListening={isListening} />
+				</S.ChatBotAvatar>
 
 				<S.ConversationContainer>
 					{messages.length === 0 && !isPending ? (

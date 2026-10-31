@@ -247,6 +247,8 @@ export type Home = {
 		clear: string;
 		emptyTitle: string;
 		emptyNote: string;
+		talk: string;
+		stopTalk: string;
 	};
 
 	testEdit: {
