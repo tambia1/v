@@ -12,10 +12,7 @@ import { type ChatMessage, useMutateChat } from "./api/hooks/useChat";
 import * as S from "./ChatBot.styles";
 
 const formatTime = (timestamp: number) => {
-	return new Date(timestamp).toLocaleTimeString([], {
-		hour: "2-digit",
-		minute: "2-digit",
-	});
+	return new Date(timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 };
 
 export const ChatBot = () => {
