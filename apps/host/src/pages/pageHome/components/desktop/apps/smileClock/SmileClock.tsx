@@ -24,6 +24,7 @@ export const SmileClock = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const videoRef = useRef<HTMLVideoElement>(null);
+	const streamRef = useRef<MediaStream | null>(null);
 
 	const [emotion, setEmotion] = useState("");
 	const [expression, setExpression] = useState(statusIcons.default);
@@ -38,10 +39,10 @@ export const SmileClock = () => {
 
 			await Promise.all([
 				faceapi.nets.tinyFaceDetector.loadFromUri(
-					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/smileClock/models/",
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/apps/host/src/pages/pageHome/components/desktop/apps/smileClock/models/",
 				),
 				faceapi.nets.faceExpressionNet.loadFromUri(
-					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/smileClock/models/",
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/apps/host/src/pages/pageHome/components/desktop/apps/smileClock/models/",
 				),
 			]);
 
@@ -51,6 +52,11 @@ export const SmileClock = () => {
 		};
 
 		loadModels();
+
+		return () => {
+			streamRef.current?.getTracks().forEach((track) => track.stop());
+			streamRef.current = null;
+		};
 	}, []);
 
 	useEffect(() => {
@@ -68,11 +74,16 @@ export const SmileClock = () => {
 				},
 			});
 
-			if (videoRef.current) {
-				videoRef.current.srcObject = stream;
-
-				setCameraState("play");
+			if (!videoRef.current) {
+				stream.getTracks().forEach((track) => track.stop());
+				return;
 			}
+
+			streamRef.current?.getTracks().forEach((track) => track.stop());
+			streamRef.current = stream;
+			videoRef.current.srcObject = stream;
+
+			setCameraState("play");
 		} catch (error) {
 			console.error("Error accessing camera:", error);
 		}

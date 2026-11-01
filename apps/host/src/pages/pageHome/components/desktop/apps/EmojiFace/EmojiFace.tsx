@@ -23,6 +23,7 @@ export const EmojiFace = () => {
 	const [isLoading, setIsLoading] = useState(false);
 
 	const videoRef = useRef<HTMLVideoElement>(null);
+	const streamRef = useRef<MediaStream | null>(null);
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
 	const [emotion, setEmotion] = useState("");
@@ -36,10 +37,10 @@ export const EmojiFace = () => {
 
 			await Promise.all([
 				faceapi.nets.tinyFaceDetector.loadFromUri(
-					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/EmojiFace/models/",
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/apps/host/src/pages/pageHome/components/desktop/apps/EmojiFace/models/",
 				),
 				faceapi.nets.faceExpressionNet.loadFromUri(
-					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/app/src/pages/pageHome/components/desktop/apps/EmojiFace/models/",
+					"https://raw.githubusercontent.com/tambia1/v/refs/heads/main/apps/host/src/pages/pageHome/components/desktop/apps/EmojiFace/models/",
 				),
 			]);
 
@@ -48,6 +49,11 @@ export const EmojiFace = () => {
 		};
 
 		loadModels();
+
+		return () => {
+			streamRef.current?.getTracks().forEach((track) => track.stop());
+			streamRef.current = null;
+		};
 	}, []);
 
 	useEffect(() => {
@@ -65,11 +71,16 @@ export const EmojiFace = () => {
 				},
 			});
 
-			if (videoRef.current) {
-				videoRef.current.srcObject = stream;
-
-				setCameraState("play");
+			if (!videoRef.current) {
+				stream.getTracks().forEach((track) => track.stop());
+				return;
 			}
+
+			streamRef.current?.getTracks().forEach((track) => track.stop());
+			streamRef.current = stream;
+			videoRef.current.srcObject = stream;
+
+			setCameraState("play");
 		} catch (error) {
 			console.error("Error accessing camera:", error);
 		}
@@ -91,7 +102,12 @@ export const EmojiFace = () => {
 
 			const canvas = canvasRef.current;
 			const video = videoRef.current;
-			const displaySize = { width: video.width, height: video.height };
+			const displaySize = { width: video.clientWidth, height: video.clientHeight };
+
+			if (!displaySize.width || !displaySize.height) {
+				return;
+			}
+
 			faceapi.matchDimensions(canvas, displaySize);
 
 			const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
